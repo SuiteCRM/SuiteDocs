@@ -31,11 +31,11 @@ the remote repositories that this repository will reference. By default,
 git creates the origin remote, which points to the fork you created on
 github (https://github.com/username/SuiteCRM) . However, in order to
 stay up to date with the changes to the parent repository
-(https://github.com/salesagility/SuiteCRM) you'll want to setup the
+(https://github.com/SuiteCRM/SuiteCRM) you'll want to setup the
 upstream remote as well. Here's how: 
 
 `cd SuiteCRM` + 
-`git remote add upstream git@github.com:salesagility/SuiteCRM.git` + 
+`git remote add upstream git@github.com:SuiteCRM/SuiteCRM.git` + 
 `git fetch upstream` + 
 
 Now anytime you want to update your forked branch it's a simple process.
@@ -48,7 +48,7 @@ example, the master branch) and then issue the commands below:
 `git push origin master` + 
 
 These commands will pull down the latest changes from the upstream repo
-(https://github.com/salesagility/SuiteCRM) to your local repo, then
+(https://github.com/SuiteCRM/SuiteCRM) to your local repo, then
 merge the changes into your local clone's master branch, and finally
 push those changes back up to your fork's repository on Github. This is
 key to keep your master, hotfix, and develop up to date after a minor
