@@ -26,7 +26,7 @@ _Released 06 August 2025_
 
 ==== icon:star[] Outbound Email Changes
 
-* You are now able to configure an Outbound Email Account with OAuth. To see more information on setup please see link:../../administration-panel/emails/inboundemail-oauth-howto[here.]
+* You are now able to configure an Outbound Email Account with OAuth. To see more information on setup please see link:../../../../admin/administration-panel/emails/inboundemail-oauth-howto[here.]
 
 ==== icon:lock[] Security
 
