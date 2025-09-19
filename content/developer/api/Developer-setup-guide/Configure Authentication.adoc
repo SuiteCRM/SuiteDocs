@@ -45,7 +45,7 @@ image:Admin-OAuth2Clients-2.png[Create a new Client]
 | Field| Description
 |*Name* |This makes it easy to identify the client.
 |*Secret* |Defines the *client_secret* which is posted to the server
-during authentication.
+during authentication. This is the value of oauth2_encryption_key in `config.php`.
 |*Is Confidential* |A confidential client is an application that is
 capable of keeping a client password confidential to the world.
 |*Associated User* |Limits the client access to CRM, by associating the client with the security privileges of a user.
@@ -55,6 +55,8 @@ capable of keeping a client password confidential to the world.
 The 'secret' will be hashed when saved, and will not be accessible
 later. The 'id' is created by SuiteCRM and will be visible once the
 client is saved.
+
+When the Oauth2 client has been saved, the entry has to be edited and the value of client_secret entered in the Change Secret field.
 
 image:Admin-OAuth2Clients-5.png[View a Client Credentials Client]
 
