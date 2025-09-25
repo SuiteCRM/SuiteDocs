@@ -21,12 +21,12 @@ After the support period ends, for ESR (Extended Support Release) releases, ther
 
 | 7.14 ESR
 | August 2023
-| June 2025
+| October 2025
 | December 2025
 
-| 8.6
-| April 2024
-| July 2024
+| 8.9
+| September 2025
+| December 2025
 | -
 
 |===
@@ -50,7 +50,7 @@ After the support period ends, for ESR (Extended Support Release) releases, ther
 
 | 8.2
 | October 2022
-| March 2023
+| May 2023
 | -
 
 | 8.3
@@ -68,6 +68,20 @@ After the support period ends, for ESR (Extended Support Release) releases, ther
 | April 2024
 | -
 
+| 8.6
+| April 2024
+| October 2024
+| -
+
+| 8.7
+| October 2024
+| January 2025
+| -
+
+| 8.8
+| January 2025
+| September 2025
+| -
 |===
 
 
