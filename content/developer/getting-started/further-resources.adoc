@@ -1,0 +1,55 @@
+---
+weight: 50
+title: "Further Resources"
+aliases:
+    - /developer/further-resources/
+---
+
+:experimental:
+
+= Further Resources
+
+Although this book has aimed to be a thorough resource, SuiteCRM is
+large and feature rich. Therefore it is not possible to include all the
+information you may require. Here are some extra resources for
+developing with SuiteCRM.
+
+== SuiteCRM Website
+
+The SuiteCRM website http://suitecrm.com[suitecrm.com^] has many
+excellent resources including:
+
+* https://community.suitecrm.com[SuiteCRM Community Forums^] - Come and say hi!
+* https://suitecrm.com/about/newsroom/news/[SuiteCRM Blog^]
+
+== External SuiteCRM Resources
+
+https://github.com/SuiteCRM/SuiteCRM[SuiteCRM GitHub^] - The SuiteCRM source code is hosted on GitHub.
+Here you can get bleeding edge code changes and even contribute code.
+
+== SugarCRM Resources
+
+SuiteCRM has strived to remain compatible with the SugarCRM community
+edition and much of the documentation is still valid. The appropriate
+version for SuiteCRM information is 6.5. Versions of documentation
+higher than this (i.e. 7) will probably not be relevant.
+
+* https://support.sugarcrm.com/Documentation/Unsupported_Versions/Sugar_6.5/[SugarCRM version 6.5 Developer docs^]
+* https://community.sugarcrm.com/community/developer[SugarCRM Developer Blog^]
+
+== Technical Links
+
+* https://www.php.net[PHP^] - The main language used by SuiteCRM
+* https://www.smarty.net/[Smarty^] - The templating language used throughout SuiteCRM
+* https://xdebug.org[XDebug^] - Debugging/profiling extension for PHP
+* https://git-scm.com/[Git^] - Distributed version control system
+* https://jquery.com/[JQuery^] - Javascript library used in SuiteCRM
+* https://github.com/PHPMailer/PHPMailer[PHPMailer^] - Email library used in SuiteCRM
+* https://www.php.net/manual/en/book.opcache.php[OPcache^] - PHP opcode cache (built into PHP 7+), strongly recommended for production
+* https://www.php.net/manual/en/book.wincache.php[WinCache^] - Windows PHP opcode cache
+* https://www.jetbrains.com/phpstorm/[PHPStorm^] - PHP IDE (Paid)
+* https://code.visualstudio.com/[Visual Studio Code^] - Free editor with PHP support via extensions (e.g. Intelephense)
+
+== Other Links
+
+* https://suitecrm.com/[SuiteCRM Ltd^] - The company behind SuiteCRM.

@@ -1,0 +1,158 @@
+---
+weight: 35
+title: "Subpanels"
+---
+= Subpanels
+
+Subpanels display related records at the bottom of a Detail View. When you create a relationship between modules (via Studio or code), SuiteCRM will attempt to display the related records automatically. This page covers how to customise subpanel definitions and create custom subpanels.
+
+== How Subpanels Work
+
+Each subpanel is defined by a **subpanel layout** file that specifies which columns to display, the search fields, and any action buttons. Subpanel layout files are found in:
+
+[source]
+----
+modules/<Module>/metadata/subpaneldefs.php      # defines subpanels shown ON this module
+modules/<Module>/metadata/subpanellayouts/       # defines how this module appears IN other modules' subpanels
+----
+
+Custom overrides go in:
+
+[source]
+----
+custom/Extension/modules/<Module>/Ext/Layoutdefs/
+----
+
+== Customising an Existing Subpanel
+
+To add or remove columns from a subpanel, create an override file:
+
+[source,php]
+----
+<?php
+// custom/Extension/modules/Accounts/Ext/Layoutdefs/contacts_subpanel.php
+
+// Override the Contacts subpanel shown on the Accounts detail view
+$layout_defs['Accounts']['subpanel_setup']['contacts']['subpanel_name'] = 'ForAccounts';
+$layout_defs['Accounts']['subpanel_setup']['contacts']['list_fields'] = array(
+    'full_name' => array(
+        'name'    => 'full_name',
+        'vname'   => 'LBL_LIST_FULL_NAME',
+        'widget_class' => 'SubPanelDetailViewLink',
+        'width'   => '30%',
+    ),
+    'title' => array(
+        'name'  => 'title',
+        'vname' => 'LBL_TITLE',
+        'width' => '20%',
+    ),
+    'email' => array(
+        'name'    => 'email',
+        'vname'   => 'LBL_EMAIL_ADDRESS',
+        'width'   => '25%',
+    ),
+    'phone_work' => array(
+        'name'  => 'phone_work',
+        'vname' => 'LBL_OFFICE_PHONE',
+        'width' => '25%',
+    ),
+);
+----
+
+Run a **Quick Repair and Rebuild** after adding or editing layoutdef files.
+
+== Hiding a Subpanel
+
+To hide a subpanel from appearing on a module's detail view:
+
+[source,php]
+----
+<?php
+// custom/Extension/modules/Accounts/Ext/Layoutdefs/hide_documents_subpanel.php
+$layout_defs['Accounts']['subpanel_setup']['documents']['collapsed'] = true;
+----
+
+To remove it entirely (not just collapse it):
+
+[source,php]
+----
+<?php
+unset($layout_defs['Accounts']['subpanel_setup']['documents']);
+----
+
+== Defining How Your Module Appears in Another Module's Subpanel
+
+When your custom module is related to another module, you need a **subpanel layout** file to define how it is displayed when shown as a subpanel. Create:
+
+[source]
+----
+modules/MyModule/metadata/subpanellayouts/subpanel_def.php
+----
+
+A minimal example:
+
+[source,php]
+----
+<?php
+$subpanel_layout = array(
+    'top_buttons' => array(
+        array(
+            'widget_class' => 'SubPanelTopCreateButton',
+        ),
+        array(
+            'widget_class' => 'SubPanelTopSelectButton',
+        ),
+    ),
+    'where'   => '',
+    'list_fields' => array(
+        'name' => array(
+            'vname'        => 'LBL_NAME',
+            'widget_class' => 'SubPanelDetailViewLink',
+            'width'        => '40%',
+        ),
+        'status' => array(
+            'vname' => 'LBL_STATUS',
+            'width' => '20%',
+        ),
+        'date_entered' => array(
+            'vname' => 'LBL_DATE_ENTERED',
+            'width' => '20%',
+        ),
+        'edit_button' => array(
+            'vname'        => 'LBL_EDIT_BUTTON',
+            'widget_class' => 'SubPanelEditButton',
+            'width'        => '10%',
+        ),
+        'remove_button' => array(
+            'vname'        => 'LBL_REMOVE',
+            'widget_class' => 'SubPanelRemoveButtonModuleTop',
+            'width'        => '10%',
+        ),
+    ),
+);
+----
+
+== Controlling Subpanel Display Order
+
+Subpanel display order can be set in the module's `subpaneldefs.php` using the `order` key:
+
+[source,php]
+----
+<?php
+$layout_defs['Accounts']['subpanel_setup']['contacts']['order'] = 10;
+$layout_defs['Accounts']['subpanel_setup']['cases']['order']    = 20;
+----
+
+Lower numbers appear higher on the page. Custom overrides follow the same pattern in `custom/Extension/modules/<Module>/Ext/Layoutdefs/`.
+
+== Disabling Subpanels Globally for Performance
+
+On instances with large datasets, loading subpanels can slow down the detail view significantly. You can collapse all subpanels by default via `config_override.php`:
+
+[source,php]
+----
+<?php
+$sugar_config['subpanel_def_max_tabs'] = 10;
+----
+
+Or disable specific subpanels across the entire application via **Admin > Display Modules and Subpanels**.

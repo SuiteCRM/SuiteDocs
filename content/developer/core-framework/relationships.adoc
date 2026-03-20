@@ -1,0 +1,148 @@
+---
+weight: 35
+title: "Relationships"
+---
+= Relationships
+
+SuiteCRM modules can be linked to each other through relationships. Understanding how to create and work with relationships in code is essential for building integrations and custom modules.
+
+== Relationship Types
+
+[cols="20%,80%",options="header"]
+|===
+|Type |Description
+|One-to-Many (1:M) |One record in Module A can be related to many records in Module B. Example: one Account, many Contacts.
+|Many-to-Many (M:M) |Records in Module A can be related to many records in Module B, and vice versa. Example: Contacts and Cases. Requires a join table.
+|One-to-One (1:1) |A special case of One-to-Many where the "many" side is restricted to one record.
+|===
+
+== Defining Relationships via Studio
+
+For simple relationships between existing modules, use **Admin > Studio > [Module] > Relationships > Add Relationship**. Studio generates all required files automatically.
+
+For custom modules or when you need programmatic control, define relationships in code as described below.
+
+== Defining Relationships in Code
+
+Relationships are defined in the `relationships` key of the module's Vardef. Place the definition in a Vardef extension file.
+
+=== One-to-Many relationship
+
+The following example creates a relationship where one `Project` record has many `Tasks`:
+
+[source,php]
+----
+<?php
+// custom/Extension/modules/Project/Ext/Vardefs/project_tasks_relationship.php
+$dictionary['Project']['relationships']['project_tasks'] = array(
+    'lhs_module'        => 'Project',
+    'lhs_table'         => 'project',
+    'lhs_key'           => 'id',
+    'rhs_module'        => 'Tasks',
+    'rhs_table'         => 'tasks',
+    'rhs_key'           => 'parent_id',
+    'relationship_type' => 'one-to-many',
+    'rhs_rel_key'       => 'parent_type',
+    'rhs_rel_value'     => 'Project',
+);
+----
+
+=== Many-to-Many relationship
+
+Many-to-many relationships require a join table. SuiteCRM creates the join table automatically when you run a Quick Repair and Rebuild.
+
+[source,php]
+----
+<?php
+// custom/Extension/modules/Accounts/Ext/Vardefs/accounts_documents_relationship.php
+$dictionary['accounts_documents'] = array(
+    'true_relationship_type' => 'many-to-many',
+    'from_studio'            => true,
+    'relationships'          => array(
+        'accounts_documents' => array(
+            'lhs_module'        => 'Accounts',
+            'lhs_table'         => 'accounts',
+            'lhs_key'           => 'id',
+            'rhs_module'        => 'Documents',
+            'rhs_table'         => 'documents',
+            'rhs_key'           => 'id',
+            'relationship_type' => 'many-to-many',
+            'join_table'        => 'accounts_documents',
+            'join_key_lhs'      => 'account_id',
+            'join_key_rhs'      => 'document_id',
+        ),
+    ),
+);
+----
+
+After adding the relationship definition, run **Admin > Repair > Quick Repair and Rebuild** and execute the generated SQL.
+
+== Working with Relationships in Code
+
+=== Loading related records
+
+Use the bean's `load_relationship` method to access a relationship:
+
+[source,php]
+----
+<?php
+$account = BeanFactory::getBean('Accounts', $accountId);
+
+// Load the contacts relationship
+$account->load_relationship('contacts');
+
+// Get all related contacts as an array of beans
+$contacts = $account->contacts->getBeans();
+
+foreach ($contacts as $contact) {
+    echo $contact->full_name . PHP_EOL;
+}
+----
+
+=== Creating a relationship between records
+
+[source,php]
+----
+<?php
+$account = BeanFactory::getBean('Accounts', $accountId);
+$account->load_relationship('contacts');
+
+// Relate an existing contact to the account
+$account->contacts->add($contactId);
+----
+
+=== Removing a relationship
+
+[source,php]
+----
+<?php
+$account = BeanFactory::getBean('Accounts', $accountId);
+$account->load_relationship('contacts');
+
+// Remove the relationship (does not delete the contact record)
+$account->contacts->remove($contactId);
+----
+
+=== Querying related records with conditions
+
+[source,php]
+----
+<?php
+$account = BeanFactory::getBean('Accounts', $accountId);
+$account->load_relationship('contacts');
+
+// Retrieve related contacts filtered by a condition
+$relatedContacts = $account->contacts->getBeans(
+    array('where' => "contacts.title = 'Manager'")
+);
+----
+
+== Accessing Relationship Data via the API
+
+The v4.1 REST/SOAP API exposes relationships through the `get_relationships` and `set_relationship` methods. See the link:../../integration-api/v4/endpoints/[API v4.1 Endpoints] page.
+
+The V8 API exposes relationships as JSON API relationship objects. See the link:../../integration-api/v8/[V8 API] section.
+
+== Subpanels
+
+When you create a relationship, SuiteCRM will automatically attempt to show a subpanel on the related module's detail view. To customise how the subpanel appears, see the link:../../extending-ui/subpanels/[Subpanels] page.

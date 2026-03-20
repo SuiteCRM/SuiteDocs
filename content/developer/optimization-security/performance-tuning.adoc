@@ -1,0 +1,84 @@
+---
+title: "Performance Tuning"
+weight: 20
+---
+
+= Performance Tuning
+
+Architecture-level strategies for optimising SuiteCRM 7 in large dataset or high-concurrency environments. For quick configuration wins that apply to any instance, see the link:../performance-tweaks/[Performance Tweaks] page.
+
+SuiteCRM 7 performance is heavily influenced by database indexing, PHP resource management, and the efficiency of the metadata-driven query engine. Use these strategies to optimize your instance for production.
+
+== 1. Database Indexing via Vardefs
+
+The most common cause of slow List Views and Reports is missing database indices. While you can add indices directly in MySQL, doing so via **Vardefs** ensures they are upgrade-safe and recognized by the SuiteCRM Repair system.
+
+=== Adding a Custom Index
+Add the following to `custom/Extension/modules/<Module>/Ext/Vardefs/your_index.php`:
+
+[source,php]
+----
+$dictionary['<Module>']['indices'][] = array(
+    'name' => 'idx_custom_field_search',
+    'type' => 'index',
+    'fields' => array('your_custom_field_c'),
+);
+----
+*Run a **Quick Repair and Rebuild** and execute the generated SQL to apply the index.*
+
+== 2. Optimizing the "Tracker" Tables
+
+SuiteCRM tracks every user action in the `tracker` table. Over time, this table can grow to millions of rows, slowing down every database transaction.
+
+* **Pruning:** Use the **Prune Database** scheduler in Admin > Schedulers to keep tracker data for only 30-60 days.
+* **Selective Tracking:** Disable tracking for modules that don't require audit trails in **Admin > Tracker**.
+
+== 3. PHP & OpCache Configuration
+
+SuiteCRM 7 loads hundreds of PHP files per request. Without proper caching, the server spends more time reading files than executing code.
+
+=== Recommended `php.ini` Settings
+[source,ini]
+----
+opcache.memory_consumption=256
+opcache.interned_strings_buffer=16
+opcache.max_accelerated_files=20000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1
+----
+
+* **Memory Limit:** Set `memory_limit` to at least **512M**.
+* **Post Max Size:** Ensure `post_max_size` and `upload_max_filesize` are aligned (e.g., **30M**) to prevent crashes during large imports.
+
+== 4. Reducing List View Overhead
+
+The SuiteCRM List View performs a `COUNT(*)` query to calculate pagination. On large tables (e.g., 1M+ Leads), this can take seconds.
+
+* **Disable Count Queries:** In `config_override.php`, set `'disable_count_query' => true`. This replaces the total record count with "1-20 of many" but significantly speeds up page loads.
+* **Subpanel Sub-query Limit:** Limit the number of records fetched in subpanels:
+[source,php]
+----
+$sugar_config['subpanel_res_items_limit'] = 10;
+----
+
+== 5. External Caching (Redis/Memcached)
+
+By default, SuiteCRM uses the file system for caching (`cache/` directory). In high-traffic environments, this leads to I/O bottlenecks.
+
+Switch to **Redis** for backend caching by adding this to `config_override.php`:
+
+[source,php]
+----
+$sugar_config['external_cache']['redis'] = array(
+    'host' => '127.0.0.1',
+    'port' => 6379,
+);
+----
+
+== 6. Identifying Bottlenecks
+
+Enable the **Slow Query Log** in SuiteCRM to find the exact queries causing delays.
+1. Go to **Admin > System Settings**.
+2. Set **Log Level** to `Error` or `Debug`.
+3. Set **Slow Query Threshold** to `1000` (1 second).
+4. Review queries in `suitecrm.log` marked with `[FATAL] Query Execution Time:`.

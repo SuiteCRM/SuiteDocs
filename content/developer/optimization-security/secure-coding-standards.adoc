@@ -1,0 +1,75 @@
+---
+title: "Secure Coding Standards"
+weight: 10
+---
+
+= Secure Coding Standards
+
+Writing secure code in SuiteCRM 7 is critical because the platform relies heavily on direct database interactions and manual input handling. Follow these standards to prevent common vulnerabilities like SQL Injection and Cross-Site Scripting (XSS).
+
+== 1. Preventing SQL Injection
+
+Never insert raw variables directly into a SQL string. SuiteCRM provides a database abstraction layer to handle sanitization.
+
+=== Prohibited (Unsafe)
+[source,php]
+----
+$id = $_GET['record'];
+$db->query("SELECT * FROM accounts WHERE id = '$id'"); // DANGEROUS
+----
+
+=== Recommended (Safe)
+Use the `$db->quote()` method to escape data before including it in a query.
+
+[source,php]
+----
+global $db;
+$id = $db->quote($_REQUEST['record']);
+$sql = "SELECT * FROM accounts WHERE id = '$id'";
+$result = $db->query($sql);
+----
+
+== 2. Handling User Input (XSS Prevention)
+
+When outputting data to the browser, use the `SugarCleaner` class to prevent malicious scripts from executing.
+
+* **For HTML Output:** Use `SugarCleaner::cleanHtml($html)`
+* **For General Input:** Use `SugarCleaner::stripTags()`
+
+[source,php]
+----
+$unsafe_input = $_POST['description'];
+$safe_input = SugarCleaner::cleanHtml($unsafe_input);
+----
+
+== 3. Upgrade-Safe Development
+
+Always use the **Extension Framework** to modify core logic. Modifying files in the root `modules/` directory is not only a maintenance risk but a security risk, as your changes may be overwritten by security patches during a core upgrade.
+
+* **Custom Logic:** Place in `custom/modules/<Module>/`
+* **Metadata Changes:** Place in `custom/Extension/modules/<Module>/Ext/Vardefs/`
+
+== 4. Check ACL Permissions
+
+A common security gap is forgetting to check if the current user has permission to view or edit a record programmatically.
+
+[source,php]
+----
+if (!$focus->ACLAccess('Save')) {
+    ACLController::displayNoAccess(true);
+    sugar_cleanup(true);
+}
+----
+
+== 5. Proper Use of Entry Points
+
+Custom entry points are often targeted because they bypass standard UI checks.
+* **Always** set `'auth' => true` in your `entry_point_registry.php` unless the page absolutely must be public (e.g., a Web-to-Lead form).
+* Use `sugarEntry` defined check at the top of every file:
+
+[source,php]
+----
+if (!defined('sugarEntry') || !sugarEntry) {
+    die('Not A Valid Entry Point');
+}
+----

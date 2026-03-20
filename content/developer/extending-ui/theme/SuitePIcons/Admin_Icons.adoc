@@ -1,0 +1,12 @@
+---
+title: "Admin Icons"
+weight: 20
+aliases:
+    - /developer/theme/suitepicons/admin_icons/
+---
+
+:imagesdir: /images/en/developer/theme-icons/
+
+
+image:Admin_image.png[title="Admin image"]
+

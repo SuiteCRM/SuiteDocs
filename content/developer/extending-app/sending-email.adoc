@@ -1,0 +1,160 @@
+---
+weight: 25
+title: "Sending Email"
+---
+= Sending Email
+
+SuiteCRM provides a built-in email library (`SugarPHPMailer`) that wraps https://github.com/PHPMailer/PHPMailer[PHPMailer^] and uses the outbound email settings configured in **Admin > Email Settings**. Always use this library rather than PHP's `mail()` function to ensure emails respect the configured SMTP server and logging.
+
+== Basic Email
+
+[source,php]
+----
+<?php
+if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+require_once 'include/SugarPHPMailer.php';
+
+$mailer = new SugarPHPMailer();
+$mailer->setMailerForSystem(); // Use the system outbound email settings
+
+$mailer->AddAddress('recipient@example.com', 'Recipient Name');
+$mailer->Subject  = 'Hello from SuiteCRM';
+$mailer->Body     = '<p>This is an <strong>HTML</strong> email.</p>';
+$mailer->AltBody  = 'This is a plain text email.'; // Fallback for non-HTML clients
+$mailer->IsHTML(true);
+
+if (!$mailer->Send()) {
+    $GLOBALS['log']->error('Email failed: ' . $mailer->ErrorInfo);
+}
+----
+
+== Setting the From Address
+
+By default `setMailerForSystem()` sets the From address from the system outbound email configuration. To override it:
+
+[source,php]
+----
+<?php
+$mailer->From     = 'noreply@yourcompany.com';
+$mailer->FromName = 'Your Company';
+----
+
+== Sending to Multiple Recipients
+
+[source,php]
+----
+<?php
+$mailer->AddAddress('first@example.com', 'First Person');
+$mailer->AddAddress('second@example.com', 'Second Person');
+$mailer->AddCC('cc@example.com', 'CC Person');
+$mailer->AddBCC('bcc@example.com');
+----
+
+== Attaching Files
+
+[source,php]
+----
+<?php
+// Attach a file from the filesystem
+$mailer->AddAttachment('/path/to/file.pdf', 'Report.pdf');
+
+// Attach a SuiteCRM Note attachment (file stored in upload/)
+$note = BeanFactory::getBean('Notes', $noteId);
+if (!empty($note->filename)) {
+    $mailer->AddAttachment(
+        'upload/' . $note->id,
+        $note->filename
+    );
+}
+----
+
+== Using Email Templates
+
+SuiteCRM email templates (stored in the `EmailTemplates` module) can be loaded and merged with bean data before sending.
+
+[source,php]
+----
+<?php
+require_once 'include/SugarPHPMailer.php';
+require_once 'modules/Emails/EmailUI.php';
+
+// Load the template by its record ID
+$template = BeanFactory::getBean('EmailTemplates', $templateId);
+
+// Replace variables like $contact_first_name with values from a bean
+$emailUI = new EmailUI();
+$body    = $emailUI->getParsedTemplate($template, array(), $contactBean);
+
+$mailer = new SugarPHPMailer();
+$mailer->setMailerForSystem();
+$mailer->AddAddress($contactBean->email1, $contactBean->full_name);
+$mailer->Subject = $template->subject;
+$mailer->Body    = $body['body'];
+$mailer->AltBody = $body['body_alt'];
+$mailer->IsHTML(true);
+$mailer->Send();
+----
+
+== Sending from a Logic Hook
+
+A common pattern is to send an email when a record is saved. Place this in an `after_save` logic hook:
+
+[source,php]
+----
+<?php
+if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+require_once 'include/SugarPHPMailer.php';
+
+class Cases_EmailNotifier
+{
+    public function afterSave($bean, $event, $arguments)
+    {
+        // Only send on new record creation
+        if (!$arguments['isUpdate']) {
+            $this->sendNewCaseNotification($bean);
+        }
+    }
+
+    private function sendNewCaseNotification($case)
+    {
+        $mailer = new SugarPHPMailer();
+        $mailer->setMailerForSystem();
+        $mailer->AddAddress($case->assigned_user->email1);
+        $mailer->Subject = 'New Case Assigned: ' . $case->name;
+        $mailer->Body    = 'A new case has been assigned to you: ' . $case->name;
+        $mailer->IsHTML(false);
+
+        if (!$mailer->Send()) {
+            $GLOBALS['log']->error('Case notification failed: ' . $mailer->ErrorInfo);
+        }
+    }
+}
+----
+
+{{% notice warning %}}
+Avoid sending emails in `before_save` hooks. If the save subsequently fails, the email will have already been sent. Use `after_save` instead.
+{{% /notice %}}
+
+== Long-Running Email Jobs
+
+For bulk emails or emails that involve slow external lookups, do not send from a logic hook directly as it will slow down the save operation for the user. Instead, create a job via the Schedulers queue. See the link:../scheduled-tasks/[Scheduled Tasks] page.
+
+== Logging Sent Emails
+
+To record sent emails against a CRM record, save an `Emails` bean and relate it to the record:
+
+[source,php]
+----
+<?php
+$email = BeanFactory::newBean('Emails');
+$email->name            = $mailer->Subject;
+$email->description     = $mailer->AltBody;
+$email->description_html = $mailer->Body;
+$email->status          = 'sent';
+$email->date_sent       = date('Y-m-d H:i:s');
+$email->parent_type     = 'Cases';
+$email->parent_id       = $case->id;
+$email->save();
+----

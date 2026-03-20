@@ -1,0 +1,135 @@
+---
+weight: 30
+title: "Modern Dev Workflow"
+aliases:
+    - /developer/modern-dev-workflow/
+---
+= Modern Dev Workflow
+
+SuiteCRM 7 was built before modern PHP tooling matured, but it is fully compatible with Composer, Git-based workflows, and PSR-4 autoloading for custom code. This page describes the recommended approach.
+
+== Composer
+
+SuiteCRM ships with its own `composer.json` and a vendored `vendor/` directory. You can use Composer to manage dependencies for your custom modules without affecting the core.
+
+=== Adding a dependency to a custom extension
+
+Do **not** modify the root `composer.json` — it is owned by SuiteCRM core and will be overwritten on upgrade. Instead, place a separate `composer.json` inside your custom module and require it from your extension's entry point:
+
+[source,bash]
+----
+# Inside your custom module directory
+cd custom/modules/MyModule/
+composer init
+composer require vendor/some-library
+----
+
+Then require your module's own autoloader at the top of your main file:
+
+[source,php]
+----
+<?php
+if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+require_once __DIR__ . '/vendor/autoload.php';
+----
+
+=== Running Composer on the core
+
+When you need to update core dependencies (e.g. after pulling a new release):
+
+[source,bash]
+----
+composer install --no-dev --optimize-autoloader
+----
+
+Always run `composer install` (not `update`) when deploying, to ensure the `composer.lock` is honoured.
+
+== Git Workflow
+
+=== What to version control
+
+In a SuiteCRM project, commit only the files you own. A typical `.gitignore` for a SuiteCRM development repository should exclude:
+
+[source]
+----
+# SuiteCRM generated/cached files
+cache/
+config.php
+suitecrm.log
+
+# Installed vendor code
+vendor/
+
+# Uploaded files
+upload/
+----
+
+Track your customisations under `custom/`, your module packages, and any deployment scripts.
+
+=== Branching strategy
+
+A simple feature-branch workflow works well:
+
+. Create a feature branch from `main` (or `master`).
+. Develop and test on a dedicated development instance.
+. Open a Pull Request / Merge Request for review.
+. On merge, deploy to staging, run a **Quick Repair and Rebuild**, and verify.
+. Deploy to production using the same steps.
+
+{{% notice warning %}}
+Never develop directly on a production SuiteCRM instance. Always test on a separate instance first, as metadata changes require a Repair cycle that can briefly take the instance offline.
+{{% /notice %}}
+
+== PSR-4 Autoloading for Custom Code
+
+SuiteCRM's core loader does not use PSR-4, but you can add PSR-4 autoloading for your own custom classes via Composer.
+
+=== Setting up autoloading
+
+In your custom module's `composer.json`:
+
+[source,json]
+----
+{
+    "autoload": {
+        "psr-4": {
+            "MyCompany\\MyModule\\": "src/"
+        }
+    }
+}
+----
+
+Run `composer dump-autoload` after updating the autoload configuration. Your classes in `custom/modules/MyModule/src/` will then be available as `\MyCompany\MyModule\ClassName`.
+
+=== Invoking from a Logic Hook
+
+[source,php]
+----
+<?php
+if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+require_once 'custom/modules/MyModule/vendor/autoload.php';
+
+use MyCompany\MyModule\SomeService;
+
+class MyModule_LogicHook
+{
+    public function afterSave($bean, $event, $arguments)
+    {
+        $service = new SomeService();
+        $service->process($bean);
+    }
+}
+----
+
+== Automated Build Tasks with Robo
+
+For automating repetitive tasks (building Sass, running tests, triggering a repair), SuiteCRM ships with https://robo.li[Robo^]. See the link:../../extending-app/automated-tasks/[Automated Tasks] section for full details on using and extending Robo within SuiteCRM.
+
+== Recommended Tools
+
+* https://git-scm.com/[Git^] — version control
+* https://getcomposer.org/[Composer^] — PHP dependency management
+* https://xdebug.org[XDebug^] — PHP debugger and profiler
+* https://www.jetbrains.com/phpstorm/[PHPStorm^] or https://code.visualstudio.com/[VS Code^] with the https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client[Intelephense^] extension — IDE support
+* https://robo.li[Robo^] — task runner (bundled with SuiteCRM)

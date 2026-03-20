@@ -1,0 +1,9 @@
+---
+title: API v8
+weight: 40
+aliases:
+    - /developer/api/developer-setup-guide/
+---
+
+=== Table of Contents
+{{% children depth="4" showhidden="false" %}}

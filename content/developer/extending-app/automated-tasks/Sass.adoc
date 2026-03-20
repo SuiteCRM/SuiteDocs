@@ -1,0 +1,34 @@
+---
+Title: "Building Sass"
+aliases:
+    - /developer/automatedtasks/sass/
+---
+
+== SuiteP Theme
+
+SuiteCRM provides an automated to task to build SuiteP colors
+
+=== Build Each SuiteP Colors (bash):
+
+Open terminal and run robo
+
+`./vendor/bin/robo build:suite-p`
+
+=== Build Each SuiteP Colors (Command Prompt):
+
+Open Command Prompt and run robo
+
+`.\vendor\bin\robo build:suite-p`
+
+
+=== Build a specific SuiteP Color (bash):
+
+Open terminal and run robo
+
+`./vendor/bin/robo build:suite-p --color-scheme=[ColorName]`
+
+=== Build a specific SuiteP Color (Command Prompt):
+
+Open Command Prompt and run robo
+
+`.\vendor\bin\robo build:suite-p --color-scheme=[ColorName]`

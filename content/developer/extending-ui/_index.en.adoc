@@ -1,0 +1,8 @@
+---
+title: "Extending UI"
+weight: 30
+---
+
+Customising what users see and interact with: Views, Controllers, Language Strings, Smarty template overrides, and the SuiteP theme system.
+
+{{% children depth="2" showhidden="false" %}}

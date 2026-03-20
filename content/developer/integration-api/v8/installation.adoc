@@ -1,0 +1,31 @@
+---
+title: "Installation & Setup"
+weight: 20
+aliases:
+    - /developer/api/developer-setup-guide/
+---
+
+= API V8 Installation
+
+To use the V8 API, your server must support **OAuth2 encryption** and **URL rewriting**.
+
+== 1. Generating Encryption Keys
+The API uses a public/private key pair to sign Access Tokens. These must be stored in `Api/V8/OAuth2/`.
+
+[source,bash]
+----
+# Generate private key
+openssl genrsa -out Api/V8/OAuth2/private.key 2048
+
+# Generate public key
+openssl rsa -in Api/V8/OAuth2/private.key -pubout -out Api/V8/OAuth2/public.key
+----
+
+{{% notice info %}}
+Ensure the keys are owned by the web server user (e.g., `www-data`) and have `600` permissions.
+{{% /notice %}}
+
+== 2. URL Rewriting
+All API requests must be routed to `Api/index.php`.
+
+* **Apache:** Ensure `mod_rewrite` is enabled and the `.htaccess` file in the `Api/` directory is present.

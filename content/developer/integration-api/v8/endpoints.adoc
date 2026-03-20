@@ -1,0 +1,144 @@
+---
+title: "Endpoints"
+weight: 40
+aliases:
+    - /developer/api/api-v8/
+    - /developer/api/developer-setup-guide/json-api/
+---
+
+= API V8 Endpoints
+
+The V8 API provides a structured set of endpoints to interact with SuiteCRM data and metadata. All requests require a valid OAuth2 Bearer token in the header:
+`Authorization: Bearer <your_token>`
+
+== Module Endpoints
+These endpoints handle the standard data operations for CRM modules (Accounts, Contacts, Leads, etc.).
+
+=== List Records (GET)
+`GET {{suitecrm.url}}/Api/V8/module/{moduleName}`
+
+[cols="1,3"]
+|===
+| Parameter | Description
+
+| `fields[Module]` | Comma-separated list of fields (e.g., `fields[Accounts]=name,billing_address_city`).
+| `page[number]` | The page index (starts at 1).
+| `page[size]` | Number of records per page.
+| `sort` | Sort field. Use `-` for descending (e.g., `sort=-date_entered`).
+| `filter` | Advanced filtering logic (e.g., `filter[name][eq]=Acme`).
+|===
+
+=== Fetch Single Record (GET)
+`GET {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}`
+
+=== Create Record (POST)
+`POST {{suitecrm.url}}/Api/V8/module`
+
+[source,json]
+----
+{
+  "data": {
+    "type": "Lead",
+    "attributes": {
+      "last_name": "Smith",
+      "status": "New"
+    }
+  }
+}
+----
+
+=== Update Record (PATCH)
+`PATCH {{suitecrm.url}}/Api/V8/module`
+
+[source,json]
+----
+{
+  "data": {
+    "type": "Accounts",
+    "id": "11a71596-83e7-624d-c792-5ab9006dd493",
+    "attributes": {
+      "name": "Updated Acme Corp"
+    }
+  }
+}
+----
+
+=== Delete Record (DELETE)
+`DELETE {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}`
+
+---
+
+== Relationship Endpoints
+Manage links between records using the `{linkFieldName}` defined in the module Vardefs.
+
+=== Get Related Records (GET)
+`GET {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}/relationships/{linkFieldName}`
+
+=== Link Records (POST)
+`POST {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}/relationships/{linkFieldName}`
+
+=== Unlink Records (DELETE)
+`DELETE {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}/relationships/{linkFieldName}/{relatedBeanId}`
+
+---
+
+== User & Preference Endpoints
+Specific routes for the authenticated user and their settings.
+
+=== Get Current User (GET)
+`GET {{suitecrm.url}}/Api/V8/current-user`
+Returns details about the user associated with the current access token.
+
+=== User Preferences (GET)
+`GET {{suitecrm.url}}/Api/V8/user-preferences/{id}`
+Retrieve specific preference settings for a user.
+
+---
+
+== Meta & Documentation Endpoints
+Use these to discover the CRM structure programmatically.
+
+=== List All Modules (GET)
+`GET {{suitecrm.url}}/Api/V8/meta/modules`
+
+=== List Module Fields (GET)
+`GET {{suitecrm.url}}/Api/V8/meta/fields/{moduleName}`
+
+=== Get Swagger Schema (GET)
+`GET {{suitecrm.url}}/Api/V8/meta/swagger.json`
+Returns the full OpenAPI/Swagger definition for the API.
+
+---
+
+== Advanced Filtering Logic
+To use multiple filters, you must specify a logical operator.
+
+[source,text]
+----
+# Example: Active Accounts in London
+?filter[operator]=and&filter[status][eq]=Active&filter[billing_address_city][eq]=London
+----
+
+[cols="1,2"]
+|===
+| Operator | Description
+
+| `eq` | Equal to
+| `neq` | Not equal to
+| `gt` / `gte` | Greater than / Greater than or equal to
+| `lt` / `lte` | Less than / Less than or equal to
+| `in` / `nin` | In list / Not in list (values separated by commas)
+| `li` | SQL Like (use `%` as wildcard)
+|===
+
+---
+
+== Utility Endpoints
+
+=== Logout (POST)
+`POST {{suitecrm.url}}/Api/V8/logout`
+Invalidates the token and ends the session.
+
+=== Custom Routes
+Any routes defined in `custom/application/Ext/Api/V8/Config/routes.php` are automatically prefixed with:
+`{{suitecrm.url}}/Api/V8/custom/`
