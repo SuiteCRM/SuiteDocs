@@ -1,0 +1,164 @@
+---
+title: "Architecture"
+weight: 5
+---
+
+= Architecture
+
+SuiteCRM 7 is a PHP web application derived from SugarCRM Community Edition. It follows an MVC (Model-View-Controller) pattern built on a module-based architecture, with a MySQL/MariaDB database backend and a Smarty-based template layer on the frontend.
+
+Understanding how these layers fit together is essential before working with any of the building blocks covered in the rest of this section.
+
+== Technology Stack
+
+[cols="1,3"]
+|===
+| Layer | Technology
+
+| Language | PHP 7.4+
+| Web Server | Apache 2.4 / Nginx
+| Database | MySQL 5.7+ / MariaDB 10.3+
+| Templating | Smarty 3
+| CLI Automation | Robo
+| API | JSON:API (V8), Legacy SOAP/REST (V4.1)
+|===
+
+== Request Lifecycle
+
+Every HTTP request to SuiteCRM 7 is routed through a single entry point.
+
+[source]
+----
+Browser Request
+    └── index.php
+        └── SugarApplication::execute()
+            └── SugarController::process()
+                ├── authenticate / ACL check
+                ├── execute action (e.g. DetailView, Save, Delete)
+                └── SugarView::display()
+                    └── Smarty template (.tpl)
+----
+
+The two key request parameters that drive all routing are:
+
+* `module` — identifies which module is being accessed (e.g. `Accounts`, `Contacts`)
+* `action` — identifies what to do with it (e.g. `DetailView`, `EditView`, `Save`, `index`)
+
+=== Controller
+
+`SugarController` (in `include/MVC/Controller/`) handles the request. Each module can override it with its own `controller.php`:
+
+----
+modules/<Module>/controller.php         ← core module controller
+custom/modules/<Module>/controller.php  ← custom override
+----
+
+=== View
+
+`SugarView` (in `include/MVC/View/`) prepares the data and passes it to Smarty for rendering. Views follow the same override pattern:
+
+----
+modules/<Module>/views/view.<action>.php
+custom/modules/<Module>/views/view.<action>.php
+----
+
+== Module System
+
+SuiteCRM's functionality is divided into modules. Each module is a self-contained directory under `modules/` with a predictable internal structure:
+
+----
+modules/<Module>/
+├── <Module>.php          ← Bean class (data model)
+├── controller.php        ← Request controller (optional)
+├── views/                ← View classes
+├── metadata/             ← Layout definitions (detailviewdefs, editviewdefs, etc.)
+├── language/             ← Label strings
+├── vardefs.php           ← Field definitions
+└── Ext/                  ← Compiled Extension output (do not edit directly)
+----
+
+Custom and third-party additions follow the same structure under `custom/modules/`:
+
+----
+custom/modules/<Module>/
+├── metadata/             ← Layout overrides
+├── language/             ← Label overrides
+├── vardefs.php           ← Vardef additions
+├── views/                ← View overrides
+└── Ext/                  ← Compiled Extension output
+----
+
+The `custom/` directory is the correct place for all developer customisations. Files here take precedence over their counterparts in `modules/` without modifying core files.
+
+== Data Layer
+
+The data layer is built around `SugarBean` — the base class for every record in SuiteCRM.
+
+* **Vardefs** define the schema: field names, types, database columns, relationships, and indexes.
+* **DBManager** provides the database abstraction layer, translating Vardef definitions into SQL.
+* **BeanFactory** is the correct way to instantiate any Bean:
+
+[source,php]
+----
+$account = BeanFactory::newBean('Accounts');
+$account = BeanFactory::getBean('Accounts', $id);
+----
+
+The full data layer is covered in link:../working-with-beans[Working with Beans], link:../vardefs[Vardefs], link:../relationships[Relationships], and link:../custom-fields[Custom Fields].
+
+== Extension System
+
+The Extension Framework is SuiteCRM's mechanism for layering customisations without editing core files. Rather than modifying a module's `vardefs.php` directly, you place partial files in a structured directory:
+
+----
+custom/Extension/modules/<Module>/Ext/
+├── Vardefs/          ← Field additions
+├── Language/         ← Label additions
+├── LogicHooks/       ← Hook registrations
+└── Layoutdefs/       ← Layout modifications
+----
+
+When a link:../cache-management[Cache Management] (Quick Repair and Rebuild) is triggered, these fragment files are merged into compiled output files under `custom/modules/<Module>/Ext/`. SuiteCRM then loads the compiled file rather than scanning every fragment on each request.
+
+This pattern is used by Studio, Module Builder, and the Module Installer — all of which write to `custom/Extension/` automatically.
+
+== Caching Layer
+
+SuiteCRM compiles and caches several categories of data to avoid expensive re-processing on every request:
+
+[cols="2,3"]
+|===
+| Cache type | Location
+
+| Compiled Vardefs | `cache/modules/<Module>/<Module>Vardefs.php`
+| Compiled Extensions | `custom/modules/<Module>/Ext/`
+| View metadata | `cache/modules/<Module>/`
+| Smarty templates | `cache/smarty/templates_c/`
+| JavaScript language | `cache/jsLanguage/`
+|===
+
+When you make changes to Vardefs, Extensions, metadata, or language files, the cache must be rebuilt before your changes take effect. See link:../cache-management[Cache Management] for how to trigger this from the UI, CLI, or within deployment scripts.
+
+== Frontend Layer
+
+The frontend of SuiteCRM 7 is server-rendered HTML produced by Smarty templates. Views are primarily **metadata-driven** — rather than writing template code for each field, you define which fields to show and in what order in a layout definition file:
+
+----
+modules/<Module>/metadata/detailviewdefs.php
+modules/<Module>/metadata/editviewdefs.php
+modules/<Module>/metadata/listviewdefs.php
+modules/<Module>/metadata/searchdefs.php
+----
+
+`SugarView` reads these definitions, fetches the Bean data, and passes both to a Smarty template which produces the final HTML. Custom JavaScript and CSS are served from the `themes/` directory (SuiteP theme).
+
+The full view layer is covered in link:../../../extending-ui/views[Views], link:../../../extending-ui/controllers[Controllers], and link:../../../extending-ui/template-overrides[Template Overrides].
+
+== API Layer
+
+SuiteCRM 7 exposes two APIs:
+
+* **V8 API** (recommended) — A JSON:API compliant REST API introduced to align with SuiteCRM 8. See link:../../../integration-api/v8/[V8 API].
+* **V4.1 API** (legacy) — The original SOAP/REST API inherited from SugarCRM. See link:../../../integration-api/v4/[V4.1 API].
+
+Custom lightweight endpoints can also be registered as link:../../../integration-api/entry-points[Entry Points] for webhooks, file streams, and similar use cases.

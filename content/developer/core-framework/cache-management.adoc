@@ -1,0 +1,97 @@
+---
+title: "Cache Management"
+weight: 70
+---
+
+= Cache Management
+
+In SuiteCRM 7, application logic is heavily driven by **Metadata** (Vardefs, Layoutdefs, and Extensions). To ensure high performance, SuiteCRM compiles these fragmented PHP files into optimized cache files.
+
+The **Quick Repair and Rebuild** (QR&R) tool is the core engine that synchronises your physical source code with the cached application state and the database schema.
+
+== The Compilation Lifecycle
+
+When you trigger a Quick Repair and Rebuild, the system executes a multi-stage process managed by the `RepairAndClear` class.
+
+
+
+=== Stage A: Extension Consolidation
+The system scans `custom/Extension/modules/<Module>/Ext/` directories. It merges fragmented files into a single "Extension" file.
+* **Resulting File:** `custom/modules/<Module>/Ext/Vardefs/vardefs.ext.php`
+* **Developer Note:** If your changes aren't appearing, check if they exist in the `.ext.php` file after a repair. If they are missing, your file in the Extension folder may have a naming or permission issue.
+
+=== Stage B: Cache Clearing
+The system flushes the `cache/` directory, including:
+* **Vardefs:** `cache/modules/<Module>/<Module>Vardefs.php`
+* **Language Files:** `cache/jsLanguage/`
+* **Smarty:** Compiled templates in `cache/smarty/templates_c/`
+
+=== Stage C: Database Synchronization
+The system compares the compiled Vardefs (intended state) against the actual Database Schema (current state).
+
+{{% notice warning %}}
+The web interface only *previews* the SQL changes. You must scroll to the bottom of the Repair summary page and click **Execute** to apply the generated SQL changes to the database.
+{{% /notice %}}
+
+== Troubleshooting the "White Screen of Death" (WSOD)
+
+If the Repair process stops mid-way or results in a blank white screen, it indicates a **PHP Fatal Error**.
+
+=== 1. Check the PHP Error Log
+This is the most critical diagnostic step. A "White Screen" usually means an error occurred before the SuiteCRM application-level logger could catch it.
+* **Check:** Your web server logs (e.g., `/var/log/apache2/error.log` or `php-fpm.log`).
+* **Note:** Do not confuse this with `suitecrm.log`, which tracks application-level issues like failing SQL queries or SMTP errors, rather than server-level crashes.
+
+=== 2. Common Resource Failures
+[cols="1,3"]
+|===
+| Cause | Resolution
+
+| **Syntax Errors**
+| A missing semicolon or brace in a `custom/Extension` file will crash the entire repair process.
+
+| **Memory Limits**
+| Metadata compilation is memory-intensive. Ensure `memory_limit` in `php.ini` is at least **512M**.
+
+| **Timeouts**
+| Large databases or complex metadata may require `max_execution_time` to be increased to **120** or higher.
+|===
+
+== Developing in "Developer Mode"
+
+To bypass the metadata cache during active development:
+1. Navigate to **Admin > System Settings**.
+2. Check **Developer Mode**.
+
+{{% notice warning %}}
+This forces a metadata re-scan on every request. Performance will degrade significantly; never enable this in production.
+{{% /notice %}}
+
+== Triggering Repair via CLI
+
+For modern workflows and automated deployments, you can trigger the repair system from the terminal:
+
+[source,php]
+----
+<?php
+// scripts/repair.php
+if (php_sapi_name() !== 'cli') die('CLI only');
+
+define('sugarEntry', true);
+require_once('include/entryPoint.php');
+require_once('modules/Administration/QuickRepairAndRebuild.php');
+
+global $current_user;
+$current_user = new User();
+$current_user->getSystemUser();
+
+$repair = new RepairAndClear();
+$repair->repairAndClearAll(
+    array('clearAll'), 
+    array(translate('LBL_ALL_MODULES')), 
+    true, // Auto-execute SQL
+    false // Show output
+);
+
+echo "Metadata and Database successfully synchronized.\n";
+----

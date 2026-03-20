@@ -1,0 +1,8 @@
+---
+title: "Extending App"
+weight: 40
+---
+
+Adding and customising application behaviour: the Module Installer for packaging extensions, Scheduled Tasks for background jobs, Config file management, and automated build tasks with Robo.
+
+{{% children depth="2" showhidden="false" %}}

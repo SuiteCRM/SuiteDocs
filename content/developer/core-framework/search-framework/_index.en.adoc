@@ -1,0 +1,9 @@
+---
+title: Search Framework
+weight: 80
+aliases:
+    - /developer/searchframework/
+---
+
+=== Table of Contents
+{{% children depth="4" showhidden="false" %}}

@@ -1,0 +1,74 @@
+---
+title: "Extending the API"
+weight: 50
+aliases:
+    - /developer/api/developer-setup-guide/customization/
+---
+
+= Extending the API
+
+The SuiteCRM V8 API uses a **Manual Extension** pattern. Unlike other areas of the system, it does **not** compile fragments from the `custom/Extension/` directory. Instead, the `CustomLoader` looks for specific files directly within the `custom/application/Ext/Api/V8/` directory.
+
+== 1. Custom Routes
+
+To add new endpoints, you must create a `routes.php` file. All routes defined here are automatically prefixed with the `/custom/` namespace.
+
+=== Configuration Path
+`custom/application/Ext/Api/V8/Config/routes.php`
+
+[source,php]
+----
+<?php
+// custom/application/Ext/Api/V8/Config/routes.php
+
+$app->get('/hello', function ($request, $response) {
+    return $response->withJson(['message' => 'Hello from Custom API']);
+});
+----
+
+{{% notice info %}}
+Your custom route will be accessible at: +
+`{{suitecrm.url}}/Api/V8/custom/hello`
+{{% /notice %}}
+
+== 2. Registering Custom Controllers
+
+Because the API does not use the standard auto-compilation, controllers must be manually registered in the Dependency Injection (DI) container.
+
+=== Step 1: Create the Controller
+Place your logic in: `custom/application/Ext/Api/V8/Controllers/MyCustomController.php`
+
+=== Step 2: Register in `controllers.php`
+Create the file: `custom/application/Ext/Api/V8/controllers.php`
+
+[source,php]
+----
+<?php
+use Psr\Container\ContainerInterface as Container;
+
+return [
+    'MyCustomController' => function (Container $container) {
+        return new \Custom\Api\V8\Controllers\MyCustomController();
+    },
+];
+----
+
+== 3. Extension File Map
+
+The `CustomLoader` only recognizes the following specific filenames. Any other files in these directories will be ignored.
+
+[cols="1,2"]
+|===
+| Filename | Purpose
+
+| `Config/routes.php` | Define custom Slim routes.
+| `services.php` | Register custom services in the DI container.
+| `controllers.php` | Register custom controllers.
+| `middlewares.php` | Add custom Slim middlewares.
+| `slim.php` | Override core Slim framework settings.
+|===
+
+
+{{% notice warning %}}
+**File Location:** Ensure files are placed directly in `custom/application/Ext/Api/V8/` and **NOT** in `custom/Extension/`. The API loader will not find files in the Extension folder.
+{{% /notice %}}

@@ -1,0 +1,65 @@
+---
+weight: 20
+title: "Directory Structure"
+aliases:
+    - /developer/suitecrm-directory-structure/
+---
+
+= SuiteCRM Directory Structure
+
+`Api`::
+  Contains the V8 API layer, built on JSON API specification. Includes
+  core framework and versioned API controllers. See
+  link:../api/api-8[V8 API documentation] for usage.
+`cache`::
+  Contains cache files used by SuiteCRM including compiled Smarty
+  templates, grouped vardefs, and minified JavaScript. Some modules and
+  custom modules may also store temporary module-specific data here.
+`custom`::
+  Contains user and developer customisations to SuiteCRM. Customisations
+  placed here are preserved across upgrades. See
+  link:../core-framework/extensions[Extensions] for the recommended
+  structure.
+`data`::
+  Stores the classes and files used to work with SugarBeans and their
+  relationships.
+`include`::
+  Contains the bulk of non-module, non-data SuiteCRM framework code.
+`install`::
+  Code used by the SuiteCRM installer.
+`jssource`::
+  Contains the unminified source of JavaScript files used within SuiteCRM.
+`lib`::
+  Internal libraries and utilities used by SuiteCRM, including the Robo
+  build/CLI tooling, search integration, PDF handling, and logging
+  utilities. See link:../getting-started/cli-tools[CLI Tools] for
+  available Robo commands.
+`metadata`::
+  Stores relationship metadata for the various stock SuiteCRM modules.
+  Not to be confused with module metadata, which contains view, dashlet
+  and search definitions.
+`ModuleInstall`::
+  Code for the module installer (used by the Module Loader in the admin panel).
+`modules`::
+  Contains the code for all stock SuiteCRM modules. Custom modules are
+  also placed here.
+`public`::
+  Web server document root for file uploads and user-facing assets such
+  as profile photos.
+`service`::
+  Code for the legacy SuiteCRM SOAP and REST v4/v4.1 APIs. For new
+  integrations use the V8 API in `Api/`.
+`tests`::
+  The test suite. Contains unit, acceptance and API tests run via Robo
+  commands. See link:../getting-started/cli-tools[CLI Tools].
+`themes`::
+  Code, data and images for the bundled SuiteCRM themes.
+`upload`::
+  Contains documents uploaded to SuiteCRM. File names correspond to the
+  ID of the matching Document Revision or Note record. `upload/upgrades`
+  also stores upgrade packages and installed module packages.
+`vendor`::
+  Composer-managed third-party dependencies. Do not modify directly.
+`soap`, `XTemplate`, `Zend`::
+  Source code for legacy third-party libraries bundled with SuiteCRM.
+  These are deprecated and will be removed in a future version.

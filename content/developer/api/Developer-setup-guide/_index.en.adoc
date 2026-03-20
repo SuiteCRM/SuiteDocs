@@ -1,7 +1,0 @@
----
-title: API V8 Setup Guide
-weight:
----
-
-=== Table of Contents
-{{% children depth="4" showhidden="false" %}}

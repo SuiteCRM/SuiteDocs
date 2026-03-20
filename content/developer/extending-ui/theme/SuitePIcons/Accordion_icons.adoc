@@ -1,0 +1,13 @@
+---
+title: "Accordion Icons"
+weight: 20
+aliases:
+    - /developer/theme/suitepicons/accordion_icons/
+---
+
+:experimental:
+
+:imagesdir: /images/en/developer/theme-icons/
+
+
+image:Accordion_image.png[title="Accordion image"]

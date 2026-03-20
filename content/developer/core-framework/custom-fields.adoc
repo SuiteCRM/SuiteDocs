@@ -1,0 +1,155 @@
+---
+weight: 25
+title: "Custom Fields"
+---
+= Custom Fields
+
+Custom fields allow you to add new data attributes to any SuiteCRM module without modifying core files. There are two ways to add them: through **Studio** (the GUI) or directly via **Vardefs** (code). Both are upgrade-safe when done correctly.
+
+== Adding Fields via Studio
+
+Studio is the recommended starting point for simple fields. Navigate to **Admin > Studio**, select the module, then **Fields > Add Field**. Studio generates the necessary Vardef extension files automatically.
+
+{{% notice note %}}
+Even when using Studio, always verify the generated files in `custom/Extension/modules/<Module>/Ext/Vardefs/` before deploying to production. Studio-generated fields are fully upgrade-safe.
+{{% /notice %}}
+
+== Adding Fields via Vardefs (Code)
+
+For programmatic control — required when building a Module Installer package or when you need field types Studio doesn't expose — add fields directly via the Extension Framework.
+
+=== File location
+
+Create a file at:
+
+[source]
+----
+custom/Extension/modules/<Module>/Ext/Vardefs/<descriptive_name>.php
+----
+
+For example, to add a field to the Accounts module:
+
+[source]
+----
+custom/Extension/modules/Accounts/Ext/Vardefs/acct_custom_fields.php
+----
+
+=== Basic field example
+
+[source,php]
+----
+<?php
+$dictionary['Account']['fields']['priority_level_c'] = array(
+    'name'    => 'priority_level_c',
+    'vname'   => 'LBL_PRIORITY_LEVEL',
+    'type'    => 'varchar',
+    'len'     => 100,
+    'comment' => 'Custom priority level field',
+);
+----
+
+After saving the file, run a **Quick Repair and Rebuild** (Admin > Repair) and execute the generated SQL to add the column to the database.
+
+== Common Field Types
+
+[cols="20%,80%",options="header"]
+|===
+|Type |Description
+|`varchar` |Variable-length string. Use `len` to set max length.
+|`text` |Unlimited-length text area.
+|`int` |Integer.
+|`decimal` |Decimal number. Use `precision` to set decimal places.
+|`bool` |Checkbox (true/false).
+|`date` |Date field.
+|`datetime` |Date and time field.
+|`currency` |Monetary value, respects the user's currency setting.
+|`relate` |A relationship field that displays a linked record's name. Requires `id_name`, `module`, and `rname`.
+|`enum` |Drop-down list. Requires a `options` key pointing to a drop-down list defined in `app_list_strings`.
+|`multienum` |Multi-select list. Same as `enum` but allows multiple selections.
+|`file` |File upload field.
+|`url` |URL field, renders as a clickable link.
+|===
+
+=== Enum (drop-down) field example
+
+[source,php]
+----
+<?php
+// custom/Extension/modules/Accounts/Ext/Vardefs/acct_status_field.php
+$dictionary['Account']['fields']['account_tier_c'] = array(
+    'name'    => 'account_tier_c',
+    'vname'   => 'LBL_ACCOUNT_TIER',
+    'type'    => 'enum',
+    'options' => 'account_tier_list',
+    'len'     => 100,
+);
+----
+
+Define the drop-down list in a language file:
+
+[source,php]
+----
+<?php
+// custom/Extension/application/Ext/Language/en_us.account_tier.php
+$app_list_strings['account_tier_list'] = array(
+    ''         => '',
+    'bronze'   => 'Bronze',
+    'silver'   => 'Silver',
+    'gold'     => 'Gold',
+    'platinum' => 'Platinum',
+);
+----
+
+=== Relate field example
+
+[source,php]
+----
+<?php
+$dictionary['Account']['fields']['primary_contact_name_c'] = array(
+    'name'    => 'primary_contact_name_c',
+    'vname'   => 'LBL_PRIMARY_CONTACT',
+    'type'    => 'relate',
+    'module'  => 'Contacts',
+    'id_name' => 'primary_contact_id_c',
+    'rname'   => 'full_name',
+    'len'     => 255,
+);
+$dictionary['Account']['fields']['primary_contact_id_c'] = array(
+    'name'   => 'primary_contact_id_c',
+    'type'   => 'varchar',
+    'len'    => 36,
+);
+----
+
+== Adding a Custom Index
+
+To index your custom field for faster search queries:
+
+[source,php]
+----
+<?php
+$dictionary['Account']['indices'][] = array(
+    'name'   => 'idx_acct_priority_level',
+    'type'   => 'index',
+    'fields' => array('priority_level_c'),
+);
+----
+
+== Adding Fields to Layouts
+
+After adding a field via Vardefs, it will not appear in views automatically. Add it to the desired layout through **Studio > [Module] > Layouts**, or programmatically via a custom `editviewdefs.php`/`detailviewdefs.php` file. See the link:../metadata/[Metadata] page for layout customisation details.
+
+== Adding Labels
+
+Add a display label for your field in a language extension file:
+
+[source,php]
+----
+<?php
+// custom/Extension/modules/Accounts/Ext/Language/en_us.priority_level.php
+$mod_strings['LBL_PRIORITY_LEVEL'] = 'Priority Level';
+----
+
+== Naming Conventions
+
+Custom fields added via Studio are automatically suffixed with `_c` (e.g. `priority_level_c`). When adding fields manually, follow the same convention to distinguish custom fields from core fields and avoid upgrade conflicts.

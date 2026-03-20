@@ -1,0 +1,10 @@
+---
+title: API v4
+weight: 50
+---
+
+{{% notice warning %}}
+The v4.1 API is legacy and provided for reference only. New integrations should use the link:../v8/[V8 API], which is based on the JSON API specification and uses OAuth2 for authentication.
+{{% /notice %}}
+
+{{% children depth="4" showhidden="false" %}}

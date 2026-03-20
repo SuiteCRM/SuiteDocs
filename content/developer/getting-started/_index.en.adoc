@@ -1,0 +1,8 @@
+---
+title: "Getting Started"
+weight: 10
+---
+
+Everything you need to begin developing with SuiteCRM 7: setting up your environment, understanding the codebase structure, development best practices, and useful external resources.
+
+{{% children depth="2" showhidden="false" %}}

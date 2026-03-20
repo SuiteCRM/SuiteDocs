@@ -1,0 +1,357 @@
+---
+title: "CLI Tools"
+weight: 35
+aliases:
+    - /developer/automatedtasks/
+---
+
+= CLI Tools
+
+SuiteCRM 7 provides a set of CLI commands via https://robo.li[Robo], a PHP task runner, to automate common development, maintenance, and deployment tasks.
+
+{{% notice info %}}
+Robo versions below 3.0.7 may fail to locate `autoload.php`. If you see autoload errors, either upgrade Robo to 3.0.7+ via Composer or invoke it directly: `./vendor/consolidation/robo/robo` instead of `./vendor/bin/robo`.
+{{% /notice %}}
+
+== Running Commands
+
+List all available commands:
+
+[source,bash]
+----
+./vendor/bin/robo list
+----
+
+Get help for a specific command:
+
+[source,bash]
+----
+./vendor/bin/robo <command> -h
+----
+
+On Windows, replace `/` with `\` in all paths:
+
+[source,bat]
+----
+.\vendor\bin\robo list
+----
+
+== Cache
+
+=== `cache:clean`
+
+Clears the application cache directories. Prompts for confirmation unless `--force` is set.
+
+[source,bash]
+----
+./vendor/bin/robo cache:clean
+./vendor/bin/robo cache:clean --force
+----
+
+Clears the following from the `cache/` directory: Relationships, dashlets, dynamic fields, feeds, JavaScript, jsLanguage, PDF, themes, XML, and all per-module caches (excluding Emails).
+
+Alias: `clean:cache`
+
+== Repair
+
+=== `repair:database`
+
+Compares compiled Vardefs against the live database schema and generates the SQL needed to synchronise them. By default, it executes the SQL immediately.
+
+[source,bash]
+----
+# Synchronise database with vardefs (executes SQL)
+./vendor/bin/robo repair:database
+
+# Preview SQL without applying changes
+./vendor/bin/robo repair:database --no-execute
+----
+
+=== `repair:rebuild-extensions`
+
+Merges the fragment files in `custom/Extension/` into compiled output files under `custom/modules/<Module>/Ext/`. Run this after adding or modifying any Extension files.
+
+[source,bash]
+----
+./vendor/bin/robo repair:rebuild-extensions
+./vendor/bin/robo repair:rebuild-extensions --show-output
+----
+
+=== `repair:rebuild-relationships`
+
+Rebuilds the relationship metadata defined in module vardefs.
+
+[source,bash]
+----
+./vendor/bin/robo repair:rebuild-relationships
+./vendor/bin/robo repair:rebuild-relationships --show-output
+----
+
+=== `repair:normalize-record-encoding`
+
+Normalises record data encoding to UTF-8. Useful after migrations or upgrades from older instances with encoding inconsistencies.
+
+By default it queues a background scheduler job (requires cron). Pass `--sync-run` to process all records immediately in one go.
+
+[source,bash]
+----
+# Queue as background job (requires cron)
+./vendor/bin/robo repair:normalize-record-encoding
+
+# Run synchronously (may take a long time)
+./vendor/bin/robo repair:normalize-record-encoding --sync-run
+
+# Only normalise records created/modified after a given date
+./vendor/bin/robo repair:normalize-record-encoding --repair-from=2023-01-01
+----
+
+{{% notice warning %}}
+Back up your database before running this command. It updates data in your tables directly.
+{{% /notice %}}
+
+== Build
+
+=== `build:suite-p`
+
+Compiles the SuiteP theme Sass files into CSS. Run this after modifying any `.scss` files under `themes/SuiteP/`.
+
+[source,bash]
+----
+# Compile all SuiteP colour schemes
+./vendor/bin/robo build:suite-p
+
+# Compile a specific colour scheme
+./vendor/bin/robo build:suite-p --color-scheme=Dawn
+----
+
+=== `build:theme`
+
+Compiles Sass for any named theme, including custom themes derived from SuiteP.
+
+[source,bash]
+----
+./vendor/bin/robo build:theme --theme=SuiteP
+./vendor/bin/robo build:theme --theme=SuiteP --color-scheme=Dawn
+./vendor/bin/robo build:theme --theme=MyCustomTheme --color-scheme=Default
+----
+
+Custom theme Sass files are looked up in `custom/themes/<ThemeName>/css/` as well as `themes/<ThemeName>/css/`.
+
+== Code Quality
+
+=== `style:phpcs-fixer`
+
+Automatically fixes PHP coding standard violations across the codebase using PHP-CS-Fixer (PSR-2).
+
+[source,bash]
+----
+./vendor/bin/robo style:phpcs-fixer
+----
+
+=== `style:phpcs-fixer-dry-run`
+
+Checks for coding standard violations without modifying any files. Useful in CI pipelines.
+
+[source,bash]
+----
+./vendor/bin/robo style:phpcs-fixer-dry-run
+----
+
+=== `style:phpcs-fixer-modified`
+
+Fixes coding standard violations only in files that have been modified (staged or unstaged) according to `git diff`. Faster than running a full fix during active development.
+
+[source,bash]
+----
+./vendor/bin/robo style:phpcs-fixer-modified
+----
+
+== Testing
+
+See link:../../optimization-security/automated-testing/[Automated Testing] for full setup instructions.
+
+=== `tests:unit`
+
+Runs the PHPUnit unit test suite.
+
+[source,bash]
+----
+./vendor/bin/robo tests:unit
+./vendor/bin/robo tests:unit ./tests/unit/phpunit/modules/Accounts/
+./vendor/bin/robo tests:unit --filter=testSaveAccount ./tests/unit/phpunit/modules/Accounts/AccountTest.php
+./vendor/bin/robo tests:unit --fail-fast
+----
+
+=== `tests:acceptance`
+
+Runs the Codeception acceptance test suite against a live instance.
+
+[source,bash]
+----
+./vendor/bin/robo tests:acceptance
+./vendor/bin/robo tests:acceptance ./tests/acceptance/modules/Contacts/
+./vendor/bin/robo tests:acceptance --debug ./tests/acceptance/modules/Contacts/ContactCest.php
+----
+
+=== `tests:api`
+
+Runs the Codeception API test suite against the V8 API.
+
+[source,bash]
+----
+./vendor/bin/robo tests:api
+./vendor/bin/robo tests:api ./tests/api/V8/
+----
+
+=== `tests:install`
+
+Runs the Codeception installer test suite.
+
+[source,bash]
+----
+./vendor/bin/robo tests:install
+----
+
+== Test Environment
+
+=== `configure:tests`
+
+Interactive wizard that sets up the environment variables needed by the test suites (database credentials, instance URL, OAuth2 client ID/secret, etc.). Values are written to `.bash_aliases` on Linux/macOS or via `setx` on Windows.
+
+[source,bash]
+----
+./vendor/bin/robo configure:tests
+----
+
+Options can also be passed directly to skip interactive prompts:
+
+[source,bash]
+----
+./vendor/bin/robo configure:tests \
+  --database_host=localhost \
+  --database_name=suitecrm \
+  --instance_url=http://localhost \
+  --instance_admin_user=admin \
+  --instance_admin_password=admin
+----
+
+=== `chromedriver:install`
+
+Downloads and installs ChromeDriver for acceptance testing.
+
+[source,bash]
+----
+./vendor/bin/robo chromedriver:install
+
+# Force reinstall (useful for updating to a newer version)
+./vendor/bin/robo chromedriver:install --reinstall
+----
+
+=== `chromedriver:run`
+
+Starts the ChromeDriver process for use with acceptance tests.
+
+[source,bash]
+----
+./vendor/bin/robo chromedriver:run
+----
+
+== Elasticsearch
+
+=== `elastic:search`
+
+Runs a search query against the Elasticsearch engine directly from the CLI.
+
+[source,bash]
+----
+./vendor/bin/robo elastic:search "Smith" 20
+./vendor/bin/robo elastic:search "Smith" 20 1   # show JSON output
+----
+
+Supports the full https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html[Elasticsearch query string syntax].
+
+=== `elastic:index`
+
+Indexes the database in Elasticsearch. Differential mode (default) only processes records created, modified, or removed since the last run.
+
+[source,bash]
+----
+# Differential index (default)
+./vendor/bin/robo elastic:index
+
+# Full index
+./vendor/bin/robo elastic:index 0
+----
+
+=== `elastic:rm-index`
+
+Deletes the Elasticsearch index entirely. Use with care.
+
+[source,bash]
+----
+./vendor/bin/robo elastic:rm-index
+----
+
+== V8 API Setup
+
+=== `api:configure-v8`
+
+Configures the V8 API in one step: installs Composer dependencies, generates OAuth2 keys, sets permissions, rebuilds `.htaccess`, creates an OAuth2 client and API user, and exports a Postman environment file.
+
+[source,bash]
+----
+./vendor/bin/robo api:configure-v8 <clientName> <password>
+----
+
+Individual steps are also available as separate commands:
+
+[source,bash]
+----
+./vendor/bin/robo api:generate-keys
+./vendor/bin/robo api:set-key-permissions
+./vendor/bin/robo api:rebuild-htaccess-file
+./vendor/bin/robo api:create-client <name>
+./vendor/bin/robo api:create-user <name> <password>
+./vendor/bin/robo api:export-postman-env
+----
+
+== Upgrade
+
+=== `upgrade:suite`
+
+Runs a silent (non-interactive) upgrade using the SuiteCRM upgrade wizard.
+
+[source,bash]
+----
+./vendor/bin/robo upgrade:suite \
+  /path/to/SuiteCRM-Upgrade-7.x.x.zip \
+  /path/to/upgrade.log \
+  /path/to/suitecrm \
+  admin
+----
+
+== Custom Commands
+
+You can add your own Robo commands by placing a class in `custom/lib/Robo/Plugin/Commands/`. The class must extend `\Robo\Tasks` and use the namespace `SuiteCRM\Custom\Robo\Plugin\Commands`.
+
+[source,php]
+----
+<?php
+namespace SuiteCRM\Custom\Robo\Plugin\Commands;
+
+class DeployCommands extends \Robo\Tasks
+{
+    /**
+     * Deploy a specific git branch.
+     * @option string $branch The branch to deploy.
+     */
+    public function deploy(array $opts = ['branch' => 'master'])
+    {
+        $this->say("Deploying branch: {$opts['branch']}");
+        $this->_exec("git checkout {$opts['branch']} && git pull");
+        $this->say("Deploy complete.");
+    }
+}
+----
+
+Run `composer dump-autoload` after adding a new command class so Composer picks it up. Your commands will appear in `./vendor/bin/robo list` alongside the built-in ones.

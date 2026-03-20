@@ -1,0 +1,8 @@
+---
+title: "Optimization & Security"
+weight: 60
+---
+
+Guidance on making SuiteCRM fast and secure: performance tweaks for any instance, architecture-level tuning for large deployments, secure coding standards, logging, and automated testing.
+
+{{% children depth="2" showhidden="false" %}}

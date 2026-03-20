@@ -1,0 +1,8 @@
+---
+title: "Core Framework"
+weight: 20
+---
+
+The fundamental building blocks of SuiteCRM 7: Beans (the data model), Vardefs (field definitions), Metadata (view layouts), Logic Hooks (event-driven customisation), the Extension Framework, and the Repair system.
+
+{{% children depth="2" showhidden="false" %}}
