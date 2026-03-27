@@ -18,7 +18,7 @@ If your SuiteCRM version is lower than 8.2.x please read the following guide lin
 
 * The upgrade between two 8.x versions is **done using the package of the version you want to upgrade to**, e.g. to upgrade from *8.2.x to 8.6.0* use the *SuiteCRM-8.6.0.zip* as the upgrade package.
 
-*1.2.* Create the following folder on you current instance:
+*1.2.* Create the following folder on your current instance:
 
 * `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
 
@@ -26,7 +26,8 @@ If your SuiteCRM version is lower than 8.2.x please read the following guide lin
 
 == 2. Run Upgrade
 
-*2.1.* ⚠️ Re-set the correct permissions.
+*2.1.* ⚠️ Re-set the correct permissions and make console executable
+* `sudo chmod +x ./bin/console`
 
 *2.2.* Run the upgrade command
 
@@ -38,7 +39,8 @@ where `<version>` is the name on the SuiteCRM 8 package you've downloaded, i.e. 
 ./bin/console suitecrm:app:upgrade -t SuiteCRM-8.6.0
 ----
 
-*2.3.* ⚠️ Re-set the correct permissions.
+*2.3.* ⚠️ Re-set the correct permissions and make console executable
+* `sudo chmod +x ./bin/console`
 
 *2.4.* Run the post upgrade command
 
