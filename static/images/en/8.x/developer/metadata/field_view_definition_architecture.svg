@@ -1,0 +1,98 @@
+<svg width="100%" viewBox="0 0 680 662.1" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Field and view definition architecture</title>
+  <desc>Two-column flowchart: field definitions flow through vardef config mappers and field definition mappers to produce a FieldDefinition entity; view definitions flow through view config mappers to produce raw view structure. Both merge into the Record View Definition Handler, then View Definition Mappers, then the GraphQL API frontend.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Column headers -->
+  <text x="175" y="18" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#333">Field definitions</text>
+  <text x="505" y="18" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#333">View definitions</text>
+  <line x1="340" y1="26" x2="340" y2="366" stroke="#C8C4B8" stroke-width="0.5" stroke-dasharray="4 4"/>
+
+  <!-- LEFT: Legacy vardefs.php -->
+  <g>
+    <rect x="55" y="30" width="240" height="40" rx="6" fill="#F0EDE6" stroke="#C8C4B8" stroke-width="0.5"/>
+    <text x="175" y="50" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" fill="#333">Legacy vardefs.php</text>
+  </g>
+  <line x1="175" y1="70" x2="175" y2="116" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- ◆ Vardef Config Mappers -->
+  <g>
+    <rect x="45" y="118" width="260" height="60" rx="8" fill="#DCE5F5" stroke="#A8BBD8" stroke-width="0.5"/>
+    <text x="175" y="139" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#2B4A82">◆ Vardef Config Mappers</text>
+    <text x="175" y="158" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#4A6A9E">VardefConfigMapperInterface</text>
+  </g>
+  <line x1="175" y1="178" x2="175" y2="210" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- ◆ Field Definition Mappers -->
+  <g>
+    <rect x="45" y="212" width="260" height="60" rx="8" fill="#DCE5F5" stroke="#A8BBD8" stroke-width="0.5"/>
+    <text x="175" y="233" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#2B4A82">◆ Field Definition Mappers</text>
+    <text x="175" y="252" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#4A6A9E">FieldDefinitionMapperInterface</text>
+  </g>
+  <line x1="175" y1="272" x2="175" y2="300" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- FieldDefinition entity -->
+  <g>
+    <rect x="65" y="302" width="220" height="44" rx="8" fill="#FDF0D5" stroke="#D4B876" stroke-width="0.5"/>
+    <text x="175" y="324" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#7A5C1F">FieldDefinition entity</text>
+  </g>
+
+  <!-- RIGHT: Legacy viewdefs.php -->
+  <g>
+    <rect x="385" y="30" width="240" height="60" rx="6" fill="#F0EDE6" stroke="#C8C4B8" stroke-width="0.5"/>
+    <text x="505" y="49" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" fill="#333">Legacy viewdefs.php</text>
+    <text x="505" y="68" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#777">core + custom overlay  ◆</text>
+  </g>
+  <line x1="505" y1="90" x2="505" y2="116" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- ◆ View Config Mappers -->
+  <g>
+    <rect x="385" y="118" width="240" height="60" rx="8" fill="#DCE5F5" stroke="#A8BBD8" stroke-width="0.5"/>
+    <text x="505" y="139" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#2B4A82">◆ View Config Mappers</text>
+    <text x="505" y="158" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#4A6A9E">ViewConfigMapperInterface</text>
+  </g>
+  <line x1="505" y1="178" x2="505" y2="300" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- Raw view structure -->
+  <g>
+    <rect x="385" y="302" width="240" height="58" rx="8" fill="#FDF0D5" stroke="#D4B876" stroke-width="0.5"/>
+    <text x="505" y="322" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#7A5C1F">Raw view structure</text>
+    <text x="505" y="342" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#9A7A30">panels, actions, ...</text>
+  </g>
+
+  <!-- MERGE: L-shaped paths converging to junction -->
+  <path d="M 175 346 V 372 H 340" fill="none" stroke="#888" stroke-width="1.5"/>
+  <path d="M 505 360 V 372 H 340" fill="none" stroke="#888" stroke-width="1.5"/>
+  <circle cx="340" cy="372" r="4" fill="#888"/>
+  <line x1="340" y1="372" x2="340" y2="388" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- Record View Definition Handler -->
+  <g>
+    <rect x="188" y="390" width="304" height="86" rx="8" fill="#E0E0F0" stroke="#9A9ACE" stroke-width="0.5"/>
+    <text x="340" y="417" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#3A3A7E">Record View Definition Handler</text>
+    <text x="340" y="434" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#5A5A9E">injects field definitions into</text>
+    <text x="340" y="450" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#5A5A9E">each panel cell as fieldDefinition</text>
+  </g>
+  <line x1="340" y1="476" x2="340" y2="500" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- ◆ View Definition Mappers -->
+  <g>
+    <rect x="188" y="502" width="304" height="60" rx="8" fill="#DCE5F5" stroke="#A8BBD8" stroke-width="0.5"/>
+    <text x="340" y="523" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#2B4A82">◆ View Definition Mappers</text>
+    <text x="340" y="542" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="12" fill="#4A6A9E">ViewDefinitionMapperInterface</text>
+  </g>
+  <line x1="340" y1="562" x2="340" y2="586" marker-end="url(#arrow)" fill="none" stroke="#888" stroke-width="1.5"/>
+
+  <!-- GraphQL API → Frontend -->
+  <g>
+    <rect x="210" y="588" width="260" height="44" rx="8" fill="#D4EDDA" stroke="#82C091" stroke-width="0.5"/>
+    <text x="340" y="610" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#256B3A">GraphQL API → Frontend</text>
+  </g>
+
+  <!-- Legend -->
+  <text x="340" y="650" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#666">◆ = Extension point (implement the interface in your extension)</text>
+</svg>

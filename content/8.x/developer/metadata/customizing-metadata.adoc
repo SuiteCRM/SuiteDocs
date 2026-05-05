@@ -1,0 +1,461 @@
+---
+title: "Customizing View Metadata"
+weight: 15
+---
+
+:imagesdir: /images/en/8.x/developer/metadata/
+
+== 1. Introduction
+
+SuiteCRM 8 provides several mechanisms to customize view metadata (the configuration that drives how record views, list views, and other UI components are rendered). These range from simple legacy file overrides to powerful PHP mapper classes in extensions.
+
+This guide provides an overview of each approach, when to use it, and where the files go. Detailed documentation for each approach is linked where available.
+
+=== 1.1 Metadata processing pipeline
+
+Understanding the order in which metadata is processed helps you choose the right approach.
+
+Field definitions and view definitions are processed in **two separate pipelines** that merge when the view handler assembles the final metadata:
+
+image:field_view_definition_architecture.svg[Metadata Processing Pipeline,width=70%,align=center,id="field_view_definition_architecture",link="#field_view_definition_architecture"]
+
+////
+Text version of the diagram above:
+
+  FIELD DEFINITIONS                      VIEW DEFINITIONS
+  ─────────────────                      ────────────────
+
+  Legacy vardefs.php                     Legacy viewdefs.php
+        |                                (core + custom overlay)  ◆
+        v                                        |
+  ◆ Vardef Config Mappers                        v
+    (VardefConfigMapperInterface)         ◆ View Config Mappers
+        |                                   (ViewConfigMapperInterface)
+        v                                        |
+  ◆ Field Definition Mappers                     |
+    (FieldDefinitionMapperInterface)             |
+        |                                        |
+        v                                        v
+  FieldDefinition entity            Raw view structure (panels, actions, ...)
+        |                                        |
+        +───────────────┐  ┌─────────────────────+
+                        v  v
+               Record View Definition Handler
+               (injects field definitions into
+                each panel cell as fieldDefinition)
+                          |
+                          v
+               ◆ View Definition Mappers
+                 (ViewDefinitionMapperInterface)
+                          |
+                          v
+                  GraphQL API -> Frontend
+
+  ◆ = Extension point (implement the interface in your extension)
+////
+
+The **left pipeline** processes field-level metadata (vardefs). The **right pipeline** processes view-level structure (panels, widgets, actions). They merge in the Record View Definition Handler, which injects field definitions into each field cell within the view panels. View Definition Mappers run last and have access to both the assembled view structure and the field definitions.
+
+Each mapper type operates at a different stage and has access to different context. Choose the approach that matches the stage where your customization makes sense.
+
+The following sections explain each extension point in detail:
+
+* <<custom-legacy-viewdefs>> — file-based overrides (simplest, no code)
+* <<field-definition-pipeline>> — field-level mappers (vardefs)
+** <<vardef-config-mappers>> — raw vardef transforms
+** <<field-definition-mappers>> — field logic, validation, display conditions
+* <<view-definition-pipeline>> — view-level mappers (viewdefs)
+** <<view-config-mappers>> — pre-assembly view structure changes
+** <<view-definition-mappers>> — post-assembly, context-aware transforms
+* <<choosing-the-right-approach>> — comparison table
+
+[[custom-legacy-viewdefs]]
+== 2. Custom legacy viewdefs
+
+The simplest approach. Copy the core viewdefs file to the custom directory and modify it directly.
+
+=== When to use
+
+* Quick layout changes (reorder fields, add/remove panels)
+* Adding record actions (buttons), sidebar widgets, or top widgets
+* Adding `recordLogic` entries for record-level logic
+* Simple one-off customizations for a specific module
+
+=== Where files go
+
+Copy the core file from `public/legacy/modules/<Module>/metadata/` to:
+
+[source]
+----
+public/legacy/custom/modules/<Module>/metadata/detailviewdefs.php
+public/legacy/custom/modules/<Module>/metadata/listviewdefs.php
+public/legacy/custom/modules/<Module>/metadata/searchdefs.php
+public/legacy/custom/modules/<Module>/metadata/subpaneldefs.php
+public/legacy/custom/modules/<Module>/metadata/popupdefs.php
+----
+
+=== Example
+
+[source,php]
+----
+<?php
+
+// public/legacy/custom/modules/Accounts/metadata/detailviewdefs.php
+
+$viewdefs['Accounts'] = [
+    'DetailView' => [
+        'templateMeta' => [
+            'maxColumns' => '2',
+            'useTabs' => false,
+            'tabDefs' => [],
+        ],
+        'panels' => [
+            // ... panel definitions
+        ],
+        'recordLogic' => [
+            // ... record logic rules
+        ],
+    ],
+];
+----
+
+=== Drawbacks compared with extension mappers
+
+* **Full file replacement** — custom viewdefs fully replace the core file for that module/view. You must copy and maintain the entire file, not just your changes. When the core viewdefs are updated in a new SuiteCRM release, your custom file will not pick up those changes automatically.
+* **Not composable** — only one custom viewdefs file can exist per module/view. If two independent customizations need to modify the same viewdefs, they must be manually merged into a single file. Extension mappers, by contrast, are additive — multiple mappers can modify the same view independently.
+* **Module-specific only** — each custom file applies to a single module. To apply the same change across many modules, you must duplicate the file for each one. Mappers can target `'default'` to apply globally.
+* **No programmatic logic** — the custom file is a static PHP array. You cannot conditionally add panels, inject logic based on field types, or read configuration at runtime. Mappers are PHP classes with full access to the service container.
+* **Not packaged in extensions** — custom viewdefs live in `public/legacy/custom/`, outside the extension system. They cannot be distributed as part of a self-contained extension folder. Mappers live under `extensions/<ExtName>/` and can be installed or removed cleanly.
+
+[[field-definition-pipeline]]
+== 3. Field definition pipeline
+
+These mappers operate on the **left column** of the pipeline diagram — they transform field-level metadata (vardefs) before fields are injected into views.
+
+[[vardef-config-mappers]]
+=== 3.1 Vardef Config Mappers
+
+Modify raw vardef field definitions before they are processed by other mappers. Useful for setting default properties on fields globally.
+
+==== When to use
+
+* Setting default field properties across all modules (or a specific module)
+* Transforming field configuration at the source level
+* Simple, early-stage field modifications
+
+==== Interface
+
+Implement `App\FieldDefinitions\Service\VardefConfigMapperInterface`:
+
+[source,php]
+----
+interface VardefConfigMapperInterface
+{
+    public function getKey(): string;
+    public function getModule(): string;      // 'default' for all modules
+    public function map(array $vardefs): array;
+}
+----
+
+Auto-tagged as `vardef.mapper` — no manual service registration needed.
+
+==== Where files go
+
+For global mappers (targeting all modules), place them under `backend/` following the same structure used in `core/backend/`:
+
+[source]
+----
+extensions/<ExtName>/backend/FieldDefinitions/VardefConfigMappers/MyVardefMapper.php
+----
+
+For module-specific mappers, place them under the corresponding `modules/` folder. We recommend mirroring the core path from there on, or grouping files by domain:
+
+[source]
+----
+extensions/<ExtName>/modules/<Module>/Service/Fields/MyVardefMapper.php
+----
+
+As long as the file is under `extensions/<ExtName>/backend/` or `extensions/<ExtName>/modules/`, it will be auto-discovered.
+
+==== More information
+
+For a detailed example, see link:../../extensions/backend/fields/vardef-config-mapper[Adding field vardef config mapper].
+
+[[field-definition-mappers]]
+=== 3.2 Field Definition Mappers
+
+Transform individual field definitions after vardef processing. This is where you add field logic, validation, display conditions, and other field behaviors programmatically.
+
+==== When to use
+
+* Adding `logic` or `displayLogic` to fields programmatically
+* Adding async validators or footnotes
+* Transforming field types or metadata
+* Applying field behaviors consistently across modules
+
+==== Interface
+
+Implement `App\FieldDefinitions\LegacyHandler\FieldDefinitionMapperInterface`:
+
+[source,php]
+----
+interface FieldDefinitionMapperInterface
+{
+    public function getKey(): string;
+    public function getModule(): string;      // 'default' for all modules
+    public function map(FieldDefinition $definition): void;
+}
+----
+
+Auto-tagged as `field.definition.mapper` — no manual service registration needed.
+
+==== Where files go
+
+For global mappers (targeting all modules), place them under `backend/` following the same structure used in `core/backend/`:
+
+[source]
+----
+extensions/<ExtName>/backend/FieldDefinitions/MyFieldMapper.php
+----
+
+For module-specific mappers, place them under the corresponding `modules/` folder:
+
+[source]
+----
+extensions/<ExtName>/modules/<Module>/Service/FieldDefinitions/MyFieldMapper.php
+----
+
+==== Example
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Accounts\Service\FieldDefinitions;
+
+use App\FieldDefinitions\Entity\FieldDefinition;
+use App\FieldDefinitions\LegacyHandler\FieldDefinitionMapperInterface;
+
+class AccountIndustryLogicMapper implements FieldDefinitionMapperInterface
+{
+    public function getKey(): string
+    {
+        return 'account-industry-logic-mapper';
+    }
+
+    public function getModule(): string
+    {
+        return 'accounts';
+    }
+
+    public function map(FieldDefinition $definition): void
+    {
+        $vardefs = $definition->getVardef();
+
+        if (!isset($vardefs['employees'])) {
+            return;
+        }
+
+        $vardefs['employees']['logic']['update-from-industry'] = [
+            'key' => 'updateValue',
+            'modes' => ['edit', 'create'],
+            'params' => [
+                'fieldDependencies' => ['industry'],
+                'activeOnFields' => [
+                    'industry' => ['Banking'],
+                ],
+                'targetValue' => '500',
+            ],
+        ];
+
+        $definition->setVardef($vardefs);
+    }
+}
+----
+
+[[view-definition-pipeline]]
+== 4. View definition pipeline
+
+These mappers operate on the **right column** of the pipeline diagram — they transform view-level structure (panels, widgets, actions) and the final assembled view.
+
+[[view-config-mappers]]
+=== 4.1 View Config Mappers
+
+Transform raw viewdefs before the Record View Definition Handler assembles panels, widgets, and actions. This operates on the raw PHP array.
+
+==== When to use
+
+* Modifying view structure before it is assembled (add/remove panels, change template meta)
+* Adding `recordLogic` entries programmatically
+* Restructuring views based on conditions
+* Changes that need to happen before fields are injected into panels
+
+==== Interface
+
+Implement `App\ViewDefinitions\LegacyHandler\ViewConfigMapperInterface`:
+
+[source,php]
+----
+interface ViewConfigMapperInterface
+{
+    public function getKey(): string;
+    public function getView(): string;        // 'record', 'list', 'search', etc.
+    public function getModule(): string;      // 'default' for all modules
+    public function map(array $viewDefs): array;
+}
+----
+
+Auto-tagged as `view.config.mapper` — no manual service registration needed.
+
+==== Where files go
+
+For global mappers (targeting all modules), place them under `backend/` following the same structure used in `core/backend/`:
+
+[source]
+----
+extensions/<ExtName>/backend/ViewDefinitions/MyViewConfigMapper.php
+----
+
+For module-specific mappers, place them under the corresponding `modules/` folder:
+
+[source]
+----
+extensions/<ExtName>/modules/<Module>/Service/ViewDefinitions/MyViewConfigMapper.php
+----
+
+==== Example
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Accounts\Service\ViewDefinitions;
+
+use App\ViewDefinitions\LegacyHandler\ViewConfigMapperInterface;
+
+class AccountRecordLogicMapper implements ViewConfigMapperInterface
+{
+    public function getKey(): string
+    {
+        return 'account-record-logic-mapper';
+    }
+
+    public function getView(): string
+    {
+        return 'record';
+    }
+
+    public function getModule(): string
+    {
+        return 'accounts';
+    }
+
+    public function map(array $viewDefs): array
+    {
+        $viewDefs['recordLogic']['copy-billing-to-shipping'] = [
+            'key' => 'updateValues',
+            'modes' => ['edit', 'create'],
+            'params' => [
+                'fieldDependencies' => ['billing_address_city'],
+                'activeOnFields' => [
+                    'billing_address_city' => [
+                        ['operator' => 'not-empty'],
+                    ],
+                ],
+                'updateFields' => [
+                    'shipping_address_city' => ['source' => 'billing_address_city'],
+                    'shipping_address_state' => ['source' => 'billing_address_state'],
+                ],
+            ],
+        ];
+
+        return $viewDefs;
+    }
+}
+----
+
+[[view-definition-mappers]]
+=== 4.2 View Definition Mappers
+
+Transform view definitions after the Record View Definition Handler has assembled the full view structure. This is the most powerful mapper — it has access to both the assembled view and the field definitions.
+
+==== When to use
+
+* Transforming field appearances within the assembled view (change type, add metadata)
+* Context-aware modifications that need both view and field information
+* Complex transformations like converting fields to composite/grouped types
+
+==== Interface
+
+Implement `App\ViewDefinitions\LegacyHandler\ViewDefinitionMapperInterface`:
+
+[source,php]
+----
+interface ViewDefinitionMapperInterface
+{
+    public function getKey(): string;
+    public function getModule(): string;      // 'default' for all modules
+    public function map(ViewDefinition $definition, FieldDefinition $fieldDefinition): void;
+}
+----
+
+Auto-tagged as `view.definition.mapper` — no manual service registration needed.
+
+==== Where files go
+
+For global mappers (targeting all modules), place them under `backend/` following the same structure used in `core/backend/`:
+
+[source]
+----
+extensions/<ExtName>/backend/ViewDefinitions/MyViewDefinitionMapper.php
+----
+
+For module-specific mappers, place them under the corresponding `modules/` folder:
+
+[source]
+----
+extensions/<ExtName>/modules/<Module>/Service/ViewDefinitions/MyViewDefinitionMapper.php
+----
+
+[[choosing-the-right-approach]]
+== 5. Choosing the right approach
+
+[cols="1,2,2"]
+|===
+| Approach | Best for | Limitations
+
+| **Custom legacy viewdefs**
+| Quick layout changes, adding buttons/widgets, one-off customizations
+| Replaces entire viewdef file; no programmatic logic; module-specific only
+
+| **Vardef Config Mappers**
+| Default field properties, global field transforms
+| Only raw vardefs (no view context); runs early in pipeline
+
+| **Field Definition Mappers**
+| Field logic, validation, display conditions, field behavior
+| Per-field scope; no view context
+
+| **View Config Mappers**
+| Programmatic view structure changes, adding recordLogic, pre-assembly transforms
+| Raw array (fields not yet injected into panels)
+
+| **View Definition Mappers**
+| Context-aware field transforms, composite field assembly, view-specific logic
+| Runs last (some changes easier earlier in pipeline)
+|===
+
+{{% notice info %}}
+All mapper classes in extensions are **auto-discovered** via Symfony's service tagging. Simply implement the interface, place the file under `extensions/<ExtName>/backend/` or `extensions/<ExtName>/modules/`, and run `php bin/console cache:clear`.
+{{% /notice %}}
+
+== 6. Clearing the cache
+
+After making changes to metadata — whether custom legacy viewdefs, extension mappers, or service configuration — you need to clear the cache for the changes to take effect.
+
+Run `Repair and Rebuild` from the Admin menu, or from the project root:
+
+[source,bash]
+----
+php bin/console cache:clear
+----
