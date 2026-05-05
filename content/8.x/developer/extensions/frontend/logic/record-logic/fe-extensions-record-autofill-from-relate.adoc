@@ -1,0 +1,207 @@
+---
+title: "Autofill fields from a related record"
+weight: 30
+---
+
+{{% notice note %}}
+There are several ways to customize view metadata. You can use custom legacy viewdefs, view config mappers, or other extension mechanisms. For a full overview of all approaches see link:../../../../../metadata/customizing-metadata[Customizing View Metadata].
+{{% /notice %}}
+
+== 1. Introduction
+
+The `autofillFromRelate` record logic allows you to automatically populate fields on the current record by fetching values from a related record. When the user selects a value in a relate field, the system calls the backend to retrieve the related record and copies the specified field values back.
+
+This is commonly used to autofill contact or account details when selecting a relationship.
+
+=== 1.1 Example scenario
+
+On the `Contacts` module, when a user selects an Account in the `account_name` relate field, we want to automatically fill in the primary address fields on the Contact from the selected Account's billing address.
+
+== 2. Logic Metadata definition
+
+The following example shows the `recordLogic` entry to add to your viewdefs:
+
+[source,php]
+----
+'recordLogic' => [
+    'autofill-from-account' => [
+        'key' => 'autofillFromRelate',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => [
+                'account_name',
+            ],
+            'relateField' => 'account_name',
+            'activeOnFields' => [
+                'account_name' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+            'updateFields' => [
+                'primary_address_street' => ['sourceField' => 'billing_address_street'],
+                'primary_address_city' => ['sourceField' => 'billing_address_city'],
+                'primary_address_state' => ['sourceField' => 'billing_address_state'],
+                'primary_address_postalcode' => ['sourceField' => 'billing_address_postalcode'],
+                'primary_address_country' => ['sourceField' => 'billing_address_country'],
+            ],
+        ],
+    ],
+],
+----
+
+== 3. How it works
+
+When the conditions are met, the following happens:
+
+. The frontend reads the `relateField` field definition to determine:
+.. The related module (from the field's `module` property in vardefs)
+.. The related record ID (from the field's `id_name` property in vardefs)
+. A backend request is made to the `autofill-from-relate` process handler
+. The handler fetches the related record and extracts the values for the `sourceField` entries
+. The field values are returned to the frontend and applied to the target fields
+
+{{% notice info %}}
+The `relateField` must be a relate-type field defined in the module's vardefs with `module` and `id_name` properties. The `fieldDependencies` should use the relate field that is displayed on the view layout (e.g. `account_name`), not the hidden ID field.
+{{% /notice %}}
+
+== 4. Configuring the relate field
+
+For the autofill to work correctly, the relate field referenced in `relateField` must have proper vardefs configuration. Here is an example of what the `account_name` relate field looks like in Contacts vardefs:
+
+[source,php]
+----
+'account_name' => [
+    'name' => 'account_name',
+    'rname' => 'name',
+    'id_name' => 'account_id',
+    'vname' => 'LBL_ACCOUNT_NAME',
+    'type' => 'relate',
+    'link' => 'accounts',
+    'table' => 'accounts',
+    'module' => 'Accounts',
+    'source' => 'non-db',
+],
+----
+
+The key properties are:
+
+* `id_name` — The field that stores the related record's ID. Used internally to resolve the related record.
+* `module` — The module of the related record. This tells the backend which module to fetch the record from.
+
+== 5. Multiple autofill rules
+
+You can define multiple autofill rules for different relate fields on the same record:
+
+[source,php]
+----
+'recordLogic' => [
+    'autofill-from-account' => [
+        'key' => 'autofillFromRelate',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['account_name'],
+            'relateField' => 'account_name',
+            'activeOnFields' => [
+                'account_name' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+            'updateFields' => [
+                'primary_address_street' => ['sourceField' => 'billing_address_street'],
+                'primary_address_city' => ['sourceField' => 'billing_address_city'],
+                'primary_address_country' => ['sourceField' => 'billing_address_country'],
+            ],
+        ],
+    ],
+    'autofill-from-reports-to' => [
+        'key' => 'autofillFromRelate',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['report_to_name'],
+            'relateField' => 'report_to_name',
+            'activeOnFields' => [
+                'report_to_name' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+            'updateFields' => [
+                'department' => ['sourceField' => 'department'],
+            ],
+        ],
+    ],
+],
+----
+
+== 6. Properties description
+
+=== Key
+
+The `key` must be set to `autofillFromRelate`.
+
+=== Modes
+
+Supported modes: `edit`, `create`.
+
+=== Params
+
+==== fieldDependencies
+
+**Required.** Array of field names that trigger this logic when their value changes. This should be the relate field displayed on the view layout (e.g. `account_name`), not the hidden ID field.
+
+==== relateField
+
+**Required.** The name of the relate field in the module's vardefs. This field's definition provides the `module` and `id_name` properties needed to fetch the related record.
+
+==== activeOnFields
+
+Conditions that must be met for the autofill to execute. Typically, you want to check that the relate ID field is not empty. See link:../../operators/[Logic Operators] for available operators.
+
+==== activeOnAttributes
+
+Similar to `activeOnFields` but checks field attributes instead of values.
+
+==== displayConfirmation
+
+Boolean. When `true`, a confirmation modal is shown before values are updated. Defaults to `false`.
+
+==== confirmationLabel
+
+Language label key for the confirmation modal header text.
+
+==== confirmationTitle
+
+You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
+
+==== updateFields
+
+**Required.** An object mapping target field names (on the current record) to their source configuration. Each entry must have:
+
+* `sourceField` — The name of the field on the related record whose value should be copied
+
+[source,php]
+----
+'updateFields' => [
+    'primary_address_street' => ['sourceField' => 'billing_address_street'],
+    'primary_address_city' => ['sourceField' => 'billing_address_city'],
+    'primary_address_country' => ['sourceField' => 'billing_address_country'],
+],
+----
+
+The target field name (left side) is the field on the current record. The `sourceField` value (right side) is the field on the related record. They do not need to have the same name:
+
+[source,php]
+----
+'updateFields' => [
+    'phone_work' => ['sourceField' => 'phone_office'],
+],
+----
+
+In the above example, the `phone_office` value from the related Account will be set on the Contact's `phone_work` field.
+
+== 7. Backend Handler
+
+The `autofillFromRelate` action uses a built-in backend handler (`autofill-from-relate` process type). You do not need to create a custom ProcessHandler — the handler is provided in core.
+
+The handler validates that `relateModule`, `relateId`, and `updateFields` are present, fetches the related record, and returns the mapped field values.
+
+For more information on different logic types see link:../[here.]

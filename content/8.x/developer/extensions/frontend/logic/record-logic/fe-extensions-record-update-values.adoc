@@ -1,0 +1,189 @@
+---
+title: "Update record field values"
+weight: 10
+---
+
+{{% notice note %}}
+There are several ways to customize view metadata. You can use custom legacy viewdefs, view config mappers, or other extension mechanisms. For a full overview of all approaches see link:../../../../../metadata/customizing-metadata[Customizing View Metadata].
+{{% /notice %}}
+
+== 1. Introduction
+
+The `updateValues` record logic allows you to update multiple field values on the frontend when dependency fields change. Values can be set to a static value or copied from another field on the same record.
+
+This action runs entirely on the frontend — no backend request is made.
+
+=== 1.1 Example scenario
+
+In this example, when a user selects `Banking` as the `industry` on an Account record, we want to automatically set the `employees` field to `500` and the `rating` field to `Active`.
+
+== 2. Logic Metadata definition
+
+The following example shows the `recordLogic` entry to add to your viewdefs:
+
+[source,php]
+----
+'recordLogic' => [
+    'set-banking-defaults' => [
+        'key' => 'updateValues',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => [
+                'industry',
+            ],
+            'activeOnFields' => [
+                'industry' => ['Banking'],
+            ],
+            'updateFields' => [
+                'employees' => ['value' => '500'],
+                'rating' => ['value' => 'Active'],
+            ],
+        ],
+    ],
+],
+----
+
+== 3. Multiple rules
+
+You can define multiple rules within `recordLogic`. Each rule is evaluated independently — when a dependency field changes, all rules whose conditions are met will execute:
+
+[source,php]
+----
+'recordLogic' => [
+    'set-banking-defaults' => [
+        'key' => 'updateValues',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['industry'],
+            'activeOnFields' => [
+                'industry' => ['Banking'],
+            ],
+            'updateFields' => [
+                'employees' => ['value' => '500'],
+            ],
+        ],
+    ],
+    'set-media-defaults' => [
+        'key' => 'updateValues',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['industry'],
+            'activeOnFields' => [
+                'industry' => ['Media'],
+            ],
+            'updateFields' => [
+                'employees' => ['value' => '5000'],
+            ],
+        ],
+    ],
+],
+----
+
+In this example, `employees` will be set to `500` when `industry` is `Banking`, and to `5000` when `industry` is `Media`. Since the conditions are mutually exclusive here, only one rule will run at a time. However, if both rules' conditions were met simultaneously, both would execute.
+
+== 4. Copying values from another field
+
+Instead of setting a static value, you can copy the value from another field on the same record using the `source` property:
+
+[source,php]
+----
+'recordLogic' => [
+    'copy-billing-to-shipping' => [
+        'key' => 'updateValues',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['billing_address_city'],
+            'activeOnFields' => [
+                'billing_address_city' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+            'updateFields' => [
+                'shipping_address_city' => ['source' => 'billing_address_city'],
+                'shipping_address_state' => ['source' => 'billing_address_state'],
+                'shipping_address_country' => ['source' => 'billing_address_country'],
+            ],
+        ],
+    ],
+],
+----
+
+In the above example, when `billing_address_city` is not empty, the shipping address fields are automatically copied from the billing address fields.
+
+== 5. Confirmation modal
+
+You can require user confirmation before the values are updated by setting `displayConfirmation`:
+
+[source,php]
+----
+'recordLogic' => [
+    'copy-address-with-confirm' => [
+        'key' => 'updateValues',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['billing_address_city'],
+            'activeOnFields' => [
+                'billing_address_city' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+            'displayConfirmation' => true,
+            'confirmationLabel' => 'LBL_COPY_ADDRESS_CONFIRM',
+            'updateFields' => [
+                'shipping_address_city' => ['source' => 'billing_address_city'],
+            ],
+        ],
+    ],
+],
+----
+
+== 6. Properties description
+
+=== Key
+
+The `key` must be set to `updateValues`.
+
+=== Modes
+
+Supported modes: `edit`, `create`.
+
+=== Params
+
+==== fieldDependencies
+
+Array of field names that trigger this logic when their value changes.
+
+==== activeOnFields
+
+Conditions that must be met for the update to execute. Multiple fields act as AND. Multiple values for a single field act as OR. See link:../../operators/[Logic Operators] for available operators.
+
+==== activeOnAttributes
+
+Similar to `activeOnFields` but checks field attributes instead of values.
+
+==== updateFields
+
+An object mapping target field names to their update configuration. Each entry can have:
+
+* `value` — A static value to set on the target field
+* `source` — The name of another field whose value should be copied to the target field
+
+If both are provided, `source` takes precedence.
+
+==== displayConfirmation
+
+Boolean. When `true`, a confirmation modal is shown before values are updated. Defaults to `false`.
+
+==== confirmationLabel
+
+Language label key for the confirmation modal header text.
+
+==== confirmationTitle
+
+You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
+
+==== confirmationMessages
+
+Array of language label keys for additional messages in the confirmation modal.
+
+For more information on different logic types see link:../[here.]

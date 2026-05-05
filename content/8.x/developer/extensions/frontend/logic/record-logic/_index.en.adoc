@@ -1,0 +1,85 @@
+---
+title: "Adding Custom Record Logic"
+weight: 50
+---
+
+== Introduction
+
+Record Logic allows you to define rules that automatically update field values at the record level when dependency fields change.
+
+Unlike link:../field-logic/[Field Logic], which is configured per-field within vardefs and only affects a single field, Record Logic is defined in the view metadata (`detailviewdefs.php`) and can update multiple fields at once based on cross-field conditions.
+
+=== When to use Record Logic
+
+* When you need to update **multiple fields** based on a single field change
+* When you need to **copy values** between fields on the same record
+* When you need to **autofill fields** from a related record
+* When you need a **backend calculation** that updates several fields at once
+
+=== How it works
+
+Record Logic is configured in the `recordLogic` entry of a module's view definition (e.g., `detailviewdefs.php`).
+
+When the record view loads, the frontend:
+
+. Reads the `recordLogic` configuration from the view metadata
+. Runs any actions with the `onInit` triggering status
+. Subscribes to value changes on all dependency fields
+. When a dependency field changes (debounced by 500ms), runs matching actions with the `onDependencyChange` triggering status
+
+=== Configuration structure
+
+The `recordLogic` entry is placed at the top level of the viewdefs array, alongside other entries like `templateMeta` and `panels`:
+
+[source,php]
+----
+<?php
+
+$viewdefs['MyModule'] = [
+    'DetailView' => [
+        'templateMeta' => [
+            'maxColumns' => '2',
+            'useTabs' => false,
+            'tabDefs' => [],
+        ],
+        'panels' => [
+            // ... panel definitions
+        ],
+        'recordLogic' => [
+            'my-logic-rule' => [
+                'key' => 'updateValues',
+                'modes' => ['edit', 'create'],
+                'params' => [
+                    'fieldDependencies' => ['industry'],
+                    'activeOnFields' => [
+                        'industry' => ['Banking'],
+                    ],
+                    'updateFields' => [
+                        'employees' => ['value' => '500'],
+                        'rating' => ['value' => 'Active'],
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
+----
+
+=== Common properties
+
+All record logic actions share these properties:
+
+* **key** — The action type to use. See the subpages for available types.
+* **modes** — Array of view modes where this logic should be active: `edit`, `create`, `detail`, `list`, `massupdate`, `filter`.
+* **params** — Action-specific parameters (see each action's documentation).
+
+==== Common params
+
+* **fieldDependencies** — Array of field names that this logic depends on. When any of these fields change, the logic is evaluated. If not provided, the keys from `activeOnFields` are used instead.
+* **activeOnFields** — Conditions that must be met for the logic to run. Multiple fields within `activeOnFields` work as an AND condition. Multiple values for a single field work as an OR. See link:../operators/[Logic Operators] for available operators.
+* **activeOnAttributes** — Similar to `activeOnFields` but checks field attributes instead of values.
+* **triggeringStatus** — Array of triggering statuses. Defaults to `['onDependencyChange']`. Available values: `onDependencyChange`, `onInit`.
+
+=== Available record logic actions
+
+{{% children depth="3" showhidden="false" %}}

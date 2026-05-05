@@ -1,0 +1,321 @@
+---
+title: "Update record field values via backend"
+weight: 20
+---
+
+{{% notice note %}}
+There are several ways to customize view metadata. You can use custom legacy viewdefs, view config mappers, or other extension mechanisms. For a full overview of all approaches see link:../../../../../metadata/customizing-metadata[Customizing View Metadata].
+{{% /notice %}}
+
+== 1. Introduction
+
+The `updateValuesBackend` record logic allows you to update multiple field values by making a backend call. When the conditions for the field dependencies are met, a request is sent to a backend `ProcessHandler`. The handler calculates the values and returns them to the frontend, which updates the fields.
+
+This is useful for calculations that require data from other modules, external sources, or complex business logic that should not be exposed to the frontend.
+
+{{% notice info %}}
+If you only need to set static values or copy values between fields on the same record, see link:../fe-extensions-record-update-values[Update record field values] instead.
+{{% /notice %}}
+
+=== 1.1 Example scenario
+
+On the `Cases` module we want to automatically set the `priority` and `status` fields based on the `type` and `name` (Subject) fields. The rules are:
+
+. When `type` is `User` and `name` contains `Error` -> set `priority` to `P1` and `status` to `Open_Escalated`
+. When `type` is `User` and `name` contains `Warning` -> set `priority` to `P2` and `status` to `Open_New`
+. When `type` is `User` and `name` does not contain `Error` or `Warning` -> set `priority` to `P3` and `status` to `Open_New`
+
+== 2. Logic Metadata definition
+
+The following example shows the `recordLogic` entry to add to your viewdefs:
+
+[source,php]
+----
+'recordLogic' => [
+    'case-calculate-priority' => [
+        'key' => 'updateValuesBackend',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => [
+                'type',
+                'name',
+            ],
+            'process' => 'case-calculate-priority-status',
+            'activeOnFields' => [
+                'type' => ['User'],
+                'name' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+        ],
+    ],
+],
+----
+
+{{% notice info %}}
+The `process` param must match the `PROCESS_TYPE` constant in the backend ProcessHandler (see Section 3).
+{{% /notice %}}
+
+== 3. Backend Handler
+
+{{% notice note %}}
+When making these changes be sure to make them within an extension on the 'extensions' directory, e.g.: 'extensions/<my-extension>/...'
+{{% /notice %}}
+
+After defining the logic metadata we need to create the backend `ProcessHandler` that will calculate the values.
+
+=== 3.1 Steps to add a new process handler to extensions
+
+. Create the folder `extensions/defaultExt/modules/Cases/Service/RecordLogic`
+. Within that folder create `CaseCalculatePriorityStatus.php`
+. Add the code from the snippet on link:./#_3_2_process_handler_implementation[3.2 Process handler implementation]
+. Run `php bin/console cache:clear`
+. (optional) If you have php cache like opcache or APCu, restart apache
+
+=== 3.2 Process handler implementation
+
+A class is recognized as a `ProcessHandler` if it implements the `ProcessHandlerInterface`.
+
+For it to be matched with the request from the record logic, it needs:
+
+- The `ProcessType` to match the `process` value defined in the metadata (in this example: `case-calculate-priority-status`)
+- The response data to include a `fieldValues` entry with the values to update
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Cases\Service\RecordLogic;
+
+use ApiPlatform\Metadata\Exception\InvalidArgumentException;
+use App\Process\Entity\Process;
+use App\Process\Service\ProcessHandlerInterface;
+
+class CaseCalculatePriorityStatus implements ProcessHandlerInterface
+{
+    protected const MSG_OPTIONS_NOT_FOUND = 'Process options are not defined';
+    protected const MSG_INVALID_TYPE = 'Invalid type';
+    public const PROCESS_TYPE = 'case-calculate-priority-status';
+
+    public function getProcessType(): string
+    {
+        return self::PROCESS_TYPE;
+    }
+
+    public function requiredAuthRole(): string
+    {
+        return 'ROLE_USER';
+    }
+
+    public function getRequiredACLs(Process $process): array
+    {
+        $options = $process->getOptions();
+        $module = $options['module'] ?? '';
+
+        return [
+            $module => [
+                ['action' => 'edit']
+            ],
+        ];
+    }
+
+    public function configure(Process $process): void
+    {
+        $process->setId(self::PROCESS_TYPE);
+        $process->setAsync(false);
+    }
+
+    public function validate(Process $process): void
+    {
+        $options = $process->getOptions();
+        if (empty($options)) {
+            throw new InvalidArgumentException(self::MSG_OPTIONS_NOT_FOUND);
+        }
+    }
+
+    public function run(Process $process): void
+    {
+        $options = $process->getOptions();
+        $type = $options['record']['attributes']['type'] ?? '';
+        $name = $options['record']['attributes']['name'] ?? '';
+
+        $priority = 'P3';
+        $status = 'Open_New';
+
+        if (stripos($name, 'warning') !== false) {
+            $priority = 'P2';
+        }
+
+        if (stripos($name, 'error') !== false) {
+            $priority = 'P1';
+            $status = 'Open_Escalated';
+        }
+
+        $fieldValues = [
+            'priority' => ['value' => $priority],
+            'status' => ['value' => $status],
+        ];
+
+        $process->setStatus('success');
+        $process->setMessages([]);
+        $process->setData(['fieldValues' => $fieldValues]);
+    }
+}
+----
+
+=== 3.3 Response data format
+
+The `updateValuesBackend` record logic expects the backend to return a `fieldValues` object within the process data. Each entry maps a target field name to its new value:
+
+[source,php]
+----
+$process->setData([
+    'fieldValues' => [
+        'priority' => ['value' => 'P1'],
+        'status' => ['value' => 'Open_Escalated'],
+    ],
+]);
+----
+
+Each field entry supports:
+
+* `value` — The new field value (string)
+* `valueList` — Array of values (for multi-select fields)
+* `valueObject` — Object value (for relate fields and other complex types)
+* `valueObjectArray` — Array of objects (for line-items and similar)
+
+==== 3.3.1 Process handler interface methods
+
+**getProcessType()**
+
+Must return the same string as the `process` param in the metadata. In our example: `case-calculate-priority-status`.
+
+**requiredAuthRole()**
+
+Should return `ROLE_USER` so only logged-in users can call this process.
+
+**getRequiredACLs()**
+
+Defines the ACL checks. Typically requires `edit` access to the module.
+
+**validate()**
+
+Validates the process options before running. Throw an `InvalidArgumentException` if validation fails.
+
+**run()**
+
+The main logic. Use `$process->getOptions()` to access the input data.
+
+The current record data is available at `$options['record']['attributes']`, which contains all field values as submitted from the frontend.
+
+Set the response using `$process->setData(['fieldValues' => [...]])`.
+
+== 4. Confirmation modal
+
+You can require user confirmation before the backend call is made:
+
+[source,php]
+----
+'recordLogic' => [
+    'recalculate-with-confirm' => [
+        'key' => 'updateValuesBackend',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['type'],
+            'process' => 'my-recalculation',
+            'activeOnFields' => [
+                'type' => ['User'],
+            ],
+            'displayConfirmation' => true,
+            'confirmationLabel' => 'LBL_RECALCULATE_CONFIRM',
+            'confirmationMessages' => ['LBL_RECALCULATE_WARNING'],
+        ],
+    ],
+],
+----
+
+== 5. Select modal
+
+You can show a module select modal before the backend call. The selected record is sent along with the process options:
+
+[source,php]
+----
+'recordLogic' => [
+    'copy-from-template' => [
+        'key' => 'updateValuesBackend',
+        'modes' => ['edit', 'create'],
+        'params' => [
+            'fieldDependencies' => ['type'],
+            'process' => 'apply-template',
+            'activeOnFields' => [
+                'type' => [
+                    ['operator' => 'not-empty'],
+                ],
+            ],
+            'selectModal' => [
+                'module' => 'AOS_PDF_Templates',
+            ],
+        ],
+    ],
+],
+----
+
+The selected record will be available in the backend as `$options['modalRecord']`.
+
+== 6. Properties description
+
+=== Key
+
+The `key` must be set to `updateValuesBackend`.
+
+=== Modes
+
+Supported modes: `edit`, `create`, `detail`.
+
+=== Params
+
+==== fieldDependencies
+
+Array of field names that trigger this logic when their value changes.
+
+==== process
+
+**Required.** The process type string that identifies which backend `ProcessHandler` to call.
+
+==== activeOnFields
+
+Conditions that must be met for the backend call to execute. See link:../../operators/[Logic Operators] for available operators.
+
+==== activeOnAttributes
+
+Similar to `activeOnFields` but checks field attributes instead of values.
+
+==== displayConfirmation
+
+Boolean. When `true`, a confirmation modal is shown before calling the backend.
+
+==== confirmationLabel
+
+Language label key for the confirmation modal header.
+
+==== confirmationMessages
+
+Array of language label keys for additional messages in the confirmation modal.
+
+==== confirmationTitle
+
+You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
+
+==== selectModal
+
+Object with `module` key. When set, a record selection modal is shown before the backend call. The selected record is sent as `modalRecord` in the process options.
+
+==== fieldModal
+
+Object with field modal configuration. When set, a field input modal is shown before the backend call. The entered values are sent as `modalFields` in the process options.
+
+=== 6.1 More Info on ProcessHandlers
+
+For more information on how to create a process handler see the link:../../../../backend/process-api/process-handler[Adding a Process Handler] guide.
+
+For more information on different logic types see link:../[here.]
