@@ -4,7 +4,7 @@ weight: 10
 ---
 
 {{% notice note %}}
-When making these changes be sure to make them in the custom directory, ie: 'public/legacy/custom/modules/<module>/...'
+There are several ways to customize field and view metadata. You can use custom vardefs, custom viewdefs, field definition mappers, or other extension mechanisms. For a full overview of all approaches see link:../../../../metadata/customizing-metadata[Customizing View Metadata].
 {{% /notice %}}
 
 When adding this configuration, it can be added to the `vardefs.php` or the `detailviewdefs.php`.

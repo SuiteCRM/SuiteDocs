@@ -6,7 +6,7 @@ weight: 40
 :imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/
 
 {{% notice note %}}
-When making these changes be sure to make them in the custom directory, ie: 'public/legacy/custom/modules/<module>/...'
+There are several ways to customize field and view metadata. You can use custom vardefs, custom viewdefs, field definition mappers, or other extension mechanisms. For a full overview of all approaches see link:../../../../../metadata/customizing-metadata[Customizing View Metadata].
 {{% /notice %}}
 
 == 1. Introduction
