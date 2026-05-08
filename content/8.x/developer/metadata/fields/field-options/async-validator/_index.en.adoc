@@ -165,7 +165,7 @@ class PhoneAsyncValidator implements ProcessHandlerInterface
 }
 ----
 
-Async Validators also now support confirmation modals. Just set `displayConfirmation` to true and add the `confirmationLabel` or `confirmationMessages` entries to the data array.
+Async Validators also now support confirmation modals. Just set `displayConfirmation` to true and add the `confirmationLabel` or `confirmationMessages` entries to the data array. You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
 
 When adding a confirmation modal, be aware that proceeding despite validation errors will still submit the form with the invalid value.
 
