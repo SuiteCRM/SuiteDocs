@@ -1,0 +1,22 @@
+---
+title: "Navigation"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts
+
+= Navigation
+
+The top navigation menu is the main menu you will use to navigate to modules to create and manage records.
+
+image:top-navigation-menu.png[SuiteCRM top navigation menu]
+
+The top navigation menu has the following elements:
+
+* *Home Button:* Brings you back to your Homepage.
+* *Modules:* Depending on your user preference, the modules will be displayed in the navigation bar individually or grouped into module menu filters, such as Sales, Marketing, or Support. Regardless of how they are displayed, you can access and create records within the module in the same way.
+* *Quick Actions:* The + icon allows you to create specific record types quickly. Not all modules are available via this method, only a selected set of commonly used record types can be created this way. However, if you are already within a module, for example, viewing the Documents List View, the + icon will also include the option to create a new record for that module.
+* *Recently Viewed:* The Clock icon allows you to view your recently accessed records, leaving a breadcrumb trail so that previously viewed records can be quickly accessed.
+* *Global Search:* Allows you to search SuiteCRM globally for records and data.
+* *Notification Bell:* Shows the number of notifications you have not yet read.
+* *User Menu:* Displays the username for the user currently logged in. The drop-down menu gives you access to your User Profile, Employees, Community Forum, the About page, and a link to Log Out.

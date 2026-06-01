@@ -1,0 +1,162 @@
+---
+title: "Managing Your Profile"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/user/getting-started
+
+= Managing Your Profile
+
+There are many configuration options available to you once you have logged into SuiteCRM. You can view and modify your preferences by hovering over the user icon in the top right section of the navigation menu and clicking *Edit Profile*.
+
+image:user-menu.png[User menu showing Edit Profile option]
+
+== User Profile Tab
+
+Once you have clicked to access your preferences, you will be taken to the *User Profile* tab which gives an overview of your credentials such as username, first name, last name, and title. Here you can also enter your employee information and update your email settings.
+
+image:user-profile-tab.png[User Profile tab]
+
+== Personal Email Account Settings
+
+Setting up a personal email account in SuiteCRM allows you to view personal mail accounts within the *Emails* module.
+
+image:email-settings.png[Personal email account settings]
+
+* *Email Address:* Add the email address(es) for your SuiteCRM account. Click *+* to add more addresses. Where you have more than one email address, you can specify which is the main address using the _Primary_ radio button. You can also specify which account to use as the _Reply-to_ account.
+* *Email Client:* This setting controls which editor is used to compose and send email when you click on an email link in SuiteCRM, for example an email address on a Contact or Account record.
+** *SuiteCRM Email Editor*: The SuiteCRM _Emails_ module editor will be used.
+** *External Email Editor:* Mail links in SuiteCRM will open in whichever email client you have set to open mailto:// links, for example Outlook or Thunderbird.
+* *Editor:* This allows you to set the editor used when creating and editing email templates and within the _Campaigns_ module. Available options are Direct HTML and TinyMCE.
+* *Settings:* There are further settings for mail. You can access them by clicking the *Settings* button:
+** *Check for New Mail*: Specify a time interval to automatically check for new mail in your account's monitored folders. The default setting is to check for mail manually using the *Check Mail* button in the _Emails_ List View.
+** *Default Signature*: Specify the default signature that will be added to the email body when a new email is composed. Click *Create* to add a new one or select one from the list. Existing signatures can be edited and deleted here.
+** *Folder Management*: Select the folder(s) which will be available to view from the _Emails_ module. This list will show all monitored folders from all mail accounts to which you have access. Use Ctrl+click to select more than one folder.
+
+Click *Done* to save your settings. A confirmation dialogue will appear.
+
+== Password Tab
+
+Clicking on the *Password* tab will allow you to change your user account password. To change your password, you will need to specify the current password, a new password, and confirm the new password. It is recommended that passwords are secure.
+
+image:password-tab.png[Password tab]
+
+== Advanced Tab
+
+The *Advanced* tab allows you to modify user preferences that you set during the User Wizard process. This gives you the ability to change any of your user preferences if there were any mistakes or if you require amending them at a later date.
+
+image:advanced-tab.png[Advanced tab]
+
+== Two-Factor Authentication
+
+Two-Factor Authentication (2FA) adds an additional layer of security to your SuiteCRM account by requiring you to enter a one-time code from an authenticator app in addition to your username and password when logging in. This helps protect your account even if your password is compromised.
+
+{{% notice note %}}
+Two-Factor Authentication must be enabled by your system administrator before it is available to users. If you do not see the Two-Factor Authentication tab in your profile, contact your system administrator.
+{{% /notice %}}
+
+=== Enabling Two-Factor Authentication
+
+To set up Two-Factor Authentication:
+
+. Click on the *Two-Factor Authentication* tab within your profile. This tab displays the current status of your 2FA configuration and a *Two Factor Configuration* button.
+. Click *Two Factor Configuration* to proceed to the setup page.
+
+image:2fa-tab.png[Two-Factor Authentication tab]
+
+[start=3]
+. Click *Enable* to begin the setup process. A QR code will be displayed on screen.
+
+image:2fa-enable.png[Two-Factor Authentication enable button]
+
+[start=4]
+. Open your authenticator app on your mobile device (such as Google Authenticator, Microsoft Authenticator, or Authy) and scan the QR code.
+. Once scanned, your authenticator app will display a code. Enter this code into the field provided in SuiteCRM to verify the setup.
+
+image:2fa-verify.png[Two-Factor Authentication QR code and verification field]
+
+[start=6]
+. Click *Verify Code* to complete the process.
+
+{{% notice note %}}
+If you are unable to scan the QR code, click *Unable to scan the QR Code?* to reveal a secret key that you can enter manually into your authenticator app. When setting up manually, use the following configuration if prompted by your app: Type: TOTP, Time based: Yes, Interval: 30 seconds, Digits: 6, Algorithm: SHA1.
+{{% /notice %}}
+
+=== Recovery and Backup Codes
+
+After successfully enabling Two-Factor Authentication, a set of ten recovery codes will be displayed on screen. These are one-time use backup codes that can be used to access your account if you are unable to use your authenticator app, for example if you lose access to your mobile device.
+
+{{% notice warning %}}
+These codes will only be displayed once and will not be shown again when you revisit the page. Store them in a safe and secure location immediately.
+{{% /notice %}}
+
+Each backup code can only be used once. Once a code has been used it cannot be used again.
+
+*Regenerating Backup Codes*
+
+If you have used your backup codes or need to generate a new set, you can do so from the Two-Factor Configuration page:
+
+. Navigate to the *Two-Factor Authentication* tab in your profile.
+. Click *Two Factor Configuration*.
+. Click *Regenerate Backup Codes*.
+. Enter the current code from your authenticator app to confirm.
+. A new set of backup codes will be displayed. Store these securely as the previous codes will no longer be valid.
+
+*Logging In with Two-Factor Authentication*
+
+Once Two-Factor Authentication is enabled on your account, you will be prompted to enter an authentication code each time you log in to SuiteCRM. After entering your username and password, a pop-up will appear asking for your six-digit code. Open your authenticator app, retrieve the current code, and enter it to complete the login process.
+
+=== Disabling Two-Factor Authentication
+
+To disable Two-Factor Authentication on your account:
+
+. Navigate to the *Two-Factor Authentication* tab in your profile.
+. Click *Two Factor Configuration*.
+. Click *Disable*.
+. Enter the current code from your authenticator app to confirm.
+
+Two-Factor Authentication will then be disabled on your account.
+
+{{% notice note %}}
+System administrators can also disable Two-Factor Authentication on behalf of a user if required. If a user has 2FA enabled, a *Disable 2FA* option will appear in the Actions drop-down when an administrator views that user's profile.
+{{% /notice %}}
+
+== Layout Options
+
+The *Layout Options* tab allows you to personalise the appearance and behaviour of your SuiteCRM interface. Changes made here are specific to your user account and will not affect any other users.
+
+image:layout-options-tab.png[Layout Options tab]
+
+The following settings are available:
+
+* *Style:* Select the visual theme you wish to use for your SuiteCRM interface. In the current SuiteCRM 8, the available theme is Dawn.
+* *Module Menu Filters:* When enabled, the modules displayed in the navigation bar will reflect the group tab configuration set up by your system administrator, allowing you to browse modules by group. When disabled, all modules will be listed individually in the navigation bar regardless of any group tab configuration.
+* *Select Modules for Navigation Bar:* This setting allows you to control which modules appear in your Top Navigation Bar. Modules listed under Display Modules will be visible in the navigation bar, while those listed under Hide Modules will not. You can move modules between the two lists using the arrow buttons, and reorder the displayed modules using the up and down arrows. This is useful if you want to prioritise the modules you use most frequently and remove those you don't need.
+* *Sort Modules Alphabetically:* When enabled, the modules displayed in your navigation bar will be sorted in alphabetical order. When disabled, modules will appear in the order you have specified in the Select Modules for Navigation Bar setting above.
+* *Sub-panel Pagination Type:* Controls how records are paginated within sub-panels. The available options are Pagination (traditional page navigation) or Load More (a continuous scroll style where additional records are loaded on demand). Select whichever option suits your preferred way of working.
+* *List View Pagination Type:* Controls how records are paginated within List Views across all modules. As with the sub-panel setting, the available options are Pagination or Load More.
+* *Pop Up Record List Pagination Type:* Controls the pagination style used in pop-up record selection windows, such as when linking an existing record to another via a sub-panel. The available options are the same as above.
+* *Show Collapsed Sub-panel Hint:* When enabled, a hint will be displayed on collapsed sub-panels to indicate that related records exist, even when the sub-panel is not expanded. This setting applies to modules that are still displayed in the legacy view in SuiteCRM 8. For modules using the modern SuiteCRM 8 interface, this setting has no effect as the related record count is displayed on the sub-panel tile by default.
+* *Sub-panel Tabs:* When enabled, sub-panels within the Relationships section of a record are grouped into tabs rather than displayed as individual tiles. As with the setting above, this applies only to modules that are still displayed in the legacy view in SuiteCRM 8. For modules using the modern SuiteCRM 8 interface, sub-panels are displayed as individual tiles within the Relationships grid and this setting has no effect.
+
+Once you have made your changes, click *Save* to apply them. Your updated layout preferences will take effect immediately.
+
+{{% notice note %}}
+Some layout options may be restricted or pre-configured by your system administrator and may not be available for individual users to change.
+{{% /notice %}}
+
+== Resetting Your Preferences
+
+You can reset your user preferences to the system default by clicking the *Reset User Preferences* button on your profile.
+
+image:reset-preferences.png[Reset User Preferences button]
+
+Clicking the button will prompt you to confirm, with the message: "Are you sure you want to reset all of your user preferences? Warning: This will also log you out of the application." You can then click *OK* or *Cancel* to action appropriately. If you select *OK*, you will be logged out and will need to log back in.
+
+== Resetting Your Homepage
+
+You can reset your Homepage to the system default by clicking the *Reset Homepage* button. This will reset both Dashlet and Dashboard preferences and layouts to the system default.
+
+image:reset-homepage.png[Reset Homepage button]
+
+Clicking the button will prompt you to confirm with the message: "Are you sure you want to reset your Homepage?" You can then click *OK* or *Cancel* to action appropriately.

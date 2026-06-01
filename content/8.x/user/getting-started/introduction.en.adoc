@@ -1,0 +1,25 @@
+---
+title: "Introduction"
+weight: 10
+---
+
+= Introduction
+
+== About This Guide
+
+This guide is intended for end users of SuiteCRM (version 8.x). It provides guidance on how to navigate within SuiteCRM, manage records, and carry out the day-to-day tasks you will need to perform in your role.
+
+A glossary of key terms and definitions used throughout this guide can be found in the link:../../appendix/glossary[Glossary].
+
+== What is SuiteCRM?
+
+SuiteCRM is a Customer Relationship Management (CRM) system. It helps your organisation manage all of its interactions and relationships with customers, prospects, and partners in one central place. Rather than relying on scattered spreadsheets, email inboxes, and individual notes, SuiteCRM gives your teams a single, shared view of your customer data, so that everyone is working from the same up-to-date information.
+
+=== What can SuiteCRM help you do?
+
+* *Manage your customers and contacts:* Store and access all information about the companies and individuals your organisation works with, including contact details, communication history, and associated documents.
+* *Log and schedule activities:* Record calls, meetings, and tasks against the relevant records so that nothing gets missed and your colleagues can see what has been done and what is outstanding.
+* *Run marketing campaigns:* Manage targeted marketing campaigns and track their effectiveness directly within the system.
+* *Report on your data:* Generate reports and dashboards to give you visibility of performance across your organisation.
+
+SuiteCRM is built around the concept of *records* (individual entries of data such as a Contact, an Account, or a Note), and *modules*, which are the different sections of the system dedicated to managing each type of record. It is important to understand this structure to easily navigate and work with SuiteCRM.

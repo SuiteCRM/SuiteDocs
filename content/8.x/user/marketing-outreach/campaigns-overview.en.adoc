@@ -1,6 +1,8 @@
 ---
-Title: Campaigns
-Weight: 190
+title: "Campaigns"
+weight: 10
+aliases:
+  - /8.x/user/modules/_campaigns/
 ---
 
 :imagesdir: /images/en/8.x/user/modules/campaigns/
@@ -88,7 +90,7 @@ This table has four actions:
 [cols="20,80"]
 |===
 |*New Marketing Email*| This action will create a Marketing type Email Marketing Record; this record requires an unsubscribe
-link in the Email body. To add an unsubscribe link see link:../_campaigns/#_opt_out_tracker[here.]
+link in the Email body. To add an unsubscribe link see link:#_opt_out_tracker[Opt Out Tracker.]
 |*New Transactional Email*|This action will create a Transactional type Email Marketing record; this record is required to *not* have an
 unsubscribe link within the Email body.
 |*New Survey Email*|This action will create a Survey type Email Marketing record; this record is also required to have an unsubscribe link.
@@ -167,7 +169,7 @@ This is to enable trackers on this Email Marketing Record specifically.
 
 Please Note if trackers are disabled globally, you *cannot* enable them on an Email Marketing record.
 
-See more information about trackers link:../_campaigns/#_tracker_urls[here].
+See more information about trackers link:#_tracker_urls[here].
 
 *Duplicate Handling*
 
@@ -201,7 +203,7 @@ Aside from standard editor buttons there is also:
 |*image:Variable-Injector-Icon.png[Code, width=75]*| This will allow you to insert placeholder variables into the email.
 |===
 
-To see more information on the Variable Injector, see link:../daily-activities/emails/email-compose.en.adoc#_variable_injection[here.]
+To see more information on the Variable Injector, see link:../../daily-activities/emails/email-compose#_variable_injection[here.]
 
 == Tracker Urls
 
@@ -329,13 +331,13 @@ A Bounce record can exist and not be configured correctly, be wary of this if ru
 
 ==== Settings
 
-This shows some of the Settings that are present in the "Campaign Email Settings". To see more info about these settings, see link:../_campaigns/#_campaign_settings[here.]
+This shows some of the Settings that are present in the "Campaign Email Settings". To see more info about these settings, see link:#_campaign_settings[Campaign Settings.]
 
 === Email Marketing Record Charts
 
 As for the parent Campaign, you can track overall Recipient Activity and Send Status of each Email Marketing Record.
 
-To see more information about the Charts shown, see link:../_campaigns/#_campaign_charts[here.]
+To see more information about the Charts shown, see link:#_campaign_charts[Campaign Charts.]
 
 == Campaign Email Subpanels
 
@@ -359,4 +361,3 @@ On this page you can change different Campaign Settings:
 |*Location of campaign tracking files*| This is to define the location of the campaign tracking files.
 |*Keep copies of campaign messages*|This is if you want copies of individual Email Marketing Records.
 |===
-
