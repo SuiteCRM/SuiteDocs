@@ -1,0 +1,42 @@
+---
+title: "Notifications Configuration"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/features/
+
+= Notifications Configuration
+
+The notifications service is configured via `config/services/ui/notifications.yaml`.
+
+To override the default values, copy the file to your extension package:
+
+----
+extensions/<your-package>/config/services/ui/notifications.yaml
+----
+
+== Available Parameters
+
+[source,yaml]
+----
+parameters:
+  notifications:
+    module: 'alerts'
+    class: 'notifications'
+    maxListHeight: 350
+    autoRefreshFrequency: 1 #minutes
+    autoRefreshDeviationMin: -15 #seconds. set 0 for no deviation
+    autoRefreshDeviationMax: 15 #seconds. set 0 for no deviation
+----
+
+=== autoRefreshFrequency
+
+Defines how often, in minutes, the notification bell is checked for new notifications. The default is `1` (every minute).
+
+=== autoRefreshDeviationMin / autoRefreshDeviationMax
+
+For performance, a random deviation is added to the refresh period to prevent every active user triggering a request at exactly the same time. The default deviation range is -15 to +15 seconds. Set both to `0` to disable deviation.
+
+=== maxListHeight
+
+Controls the maximum height in pixels of the notifications pop-up list. Defaults to `350`.
