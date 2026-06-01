@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting and Support"
-weight: 20
+weight: 80
 ---
 
 = Troubleshooting and Support

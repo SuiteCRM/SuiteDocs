@@ -1,0 +1,122 @@
+---
+title: "CLI Upgrade"
+weight: 30
+---
+:experimental:
+
+The CLI upgrade runs the upgrade process from the command line on your server, bypassing web server timeout and upload size constraints. It is the recommended method for larger databases or if the Upgrade Wizard has previously timed out.
+
+{{% notice warning %}}
+Before proceeding, ensure you have completed all steps on the link:../before-you-upgrade[Before You Upgrade] page, including backing up your instance.
+{{% /notice %}}
+
+== Choosing a method
+
+Two CLI methods are available depending on your SuiteCRM version:
+
+[cols="1,1", options="header"]
+|===
+|Method |Version requirement
+|`robo upgrade:suite` |SuiteCRM 7.11.3 and newer
+|`silentUpgrade.php` |All 7.x versions
+|===
+
+Use the `robo` command if your version supports it. The `silentUpgrade.php` script is available as a fallback for older installations.
+
+== Method 1: Robo command (7.11.3+)
+
+=== 1. Place the upgrade pack
+
+Download the upgrade pack from the link:https://suitecrm.com/upgrade-suitecrm/[SuiteCRM releases page] and copy it into the SuiteCRM root directory.
+
+=== 2. Run the upgrade
+
+From the SuiteCRM root directory, run:
+
+[source,bash]
+----
+./vendor/bin/robo upgrade:suite <upgradeZipFile> <logFile> <pathToSuiteCRMInstance> <adminUser>
+----
+
+[cols="1,3", options="header"]
+|===
+|Argument |Description
+|`upgradeZipFile` |Path to the upgrade ZIP file (e.g. `SuiteCRM-Upgrade-7.12.x-to-7.13.0.zip`)
+|`logFile` |Path and name for the log output file (e.g. `upgrade.log`)
+|`pathToSuiteCRMInstance` |Absolute path to your SuiteCRM installation. Use `.` if running from the root.
+|`adminUser` |Username of a SuiteCRM administrator account
+|===
+
+Example:
+
+[source,bash]
+----
+./vendor/bin/robo upgrade:suite SuiteCRM-Upgrade-7.12.x-to-7.13.0.zip upgrade.log . admin
+----
+
+== Method 2: silentUpgrade.php (all versions)
+
+=== 1. Place the upgrade pack
+
+Download the upgrade pack and copy it to a location accessible from your server. Note the full path.
+
+=== 2. Run the script
+
+[source,bash]
+----
+php -f <path-to-suitecrm>/modules/UpgradeWizard/silentUpgrade.php \
+  <upgradeZipFile> <logFile> <pathToSuiteCRMInstance> <adminUser>
+----
+
+[cols="1,3", options="header"]
+|===
+|Argument |Description
+|`upgradeZipFile` |Full path to the upgrade ZIP file
+|`logFile` |Full path to a log file (will be created if it does not exist)
+|`pathToSuiteCRMInstance` |Full path to the SuiteCRM installation directory
+|`adminUser` |Username of a SuiteCRM administrator account
+|===
+
+Example:
+
+[source,bash]
+----
+php -f /var/www/suitecrm/modules/UpgradeWizard/silentUpgrade.php \
+  /tmp/SuiteCRM-Upgrade-7.12.x-to-7.13.0.zip \
+  /var/www/suitecrm/upgrade.log \
+  /var/www/suitecrm \
+  admin
+----
+
+[#file-permissions]
+== File permissions after a CLI upgrade
+
+Any files written during the upgrade will be owned by the user running the command — which is often `root` in server environments. If Apache (or your web server) runs as a different user, it will be unable to read or write those files, causing the application to fail.
+
+After the upgrade completes, reset permissions:
+
+[source,bash]
+----
+# Adjust user:group to match your web server (e.g. www-data:www-data, apache:apache)
+chown -R www-data:www-data /path/to/suitecrm
+find /path/to/suitecrm -type d -exec chmod 755 {} \;
+find /path/to/suitecrm -type f -exec chmod 644 {} \;
+----
+
+== Post-upgrade steps
+
+. Reset file permissions as described above.
+. Log in as an Administrator and navigate to menu:Admin[Repair].
+. Run *Rebuild Relationships*.
+. Run *Rebuild Extensions*.
+. Re-enable opcode caching if you disabled it before the upgrade.
+
+== Troubleshooting
+
+Review the log file you specified in the command for details on any errors. The upgrade wizard log is also written to:
+
+----
+<suitecrm-root>/upgradeWizard.log
+----
+
+See also link:../troubleshooting/logs[Logs] and link:../troubleshooting/known-issues[Known Issues].

@@ -1,0 +1,85 @@
+---
+title: "Known Issues"
+weight: 20
+---
+:experimental:
+
+== Application not loading after CLI upgrade
+
+**Symptom:** The application returns errors or a blank page immediately after a CLI upgrade.
+
+**Cause:** Files written during the upgrade are owned by the user who ran the command (often `root`), not the web server user. Apache or Nginx cannot read or write them.
+
+**Resolution:** Reset file ownership and permissions:
+
+[source,bash]
+----
+chown -R www-data:www-data /path/to/suitecrm
+find /path/to/suitecrm -type d -exec chmod 755 {} \;
+find /path/to/suitecrm -type f -exec chmod 644 {} \;
+----
+
+Adjust `www-data:www-data` to match your web server user and group.
+
+== Upgrade Wizard times out before completing
+
+**Symptom:** The browser returns a timeout error during the Commit step.
+
+**Cause:** The upgrade process exceeded PHP's `max_execution_time` or the web server's request timeout.
+
+**Resolution:** Either:
+
+* Increase PHP and web server timeouts (see link:../../before-you-upgrade[Before You Upgrade]) and retry the Wizard.
+* Switch to the link:../../cli-upgrade[CLI Upgrade], which is not subject to web server timeouts.
+
+== Labels or strings not updated after upgrade
+
+**Symptom:** Some interface text still shows old or missing labels after completing the upgrade.
+
+**Resolution:**
+
+. Navigate to menu:Admin[Repair].
+. Run *Quick Repair and Rebuild*.
+. Clear your browser cache and reload.
+
+If labels are still missing after a repair, check `upgradeWizard.log` for errors during the file copy phase.
+
+== Upgrade Wizard is stuck on the processing screen or will not start a new upgrade
+
+**Symptom:** The Upgrade Wizard shows a spinning processing indicator and does not progress, or after a previous upgrade (successful or failed) the wizard immediately returns to a processing or mid-upgrade state instead of the start screen.
+
+**Cause:** The wizard tracks its progress in `cache/upgrades/temp/upgrade_progress.php`. If an upgrade crashed, timed out, or completed but left that file behind, the wizard reads it on load and attempts to resume the previous run — including re-showing the processing spinner. Session variables stored alongside it compound this behaviour.
+
+**Resolution:**
+
+. Log out of SuiteCRM.
+. On the server, remove the upgrade temp directory and persistence cache:
++
+[source,bash]
+----
+rm -rf /path/to/suitecrm/cache/upgrades/temp/
+rm -f /path/to/suitecrm/cache/modules/UpgradeWizard/_persistence.php
+----
+. If you want to re-run the same upgrade pack, leave the ZIP in place. If you want a completely clean state, also remove the uploaded package:
++
+[source,bash]
+----
+rm -rf /path/to/suitecrm/upload/upgrades/patch/
+----
+. Log back in and navigate to menu:Admin[Upgrade Wizard]. The wizard will start fresh from the beginning.
+
+{{% notice info %}}
+If the previous upgrade fully completed before getting stuck, confirm this by checking `upgradeWizard.log`, then navigate to menu:Admin[Repair] and run *Quick Repair and Rebuild*, *Rebuild Relationships*, and *Repair Roles* before attempting another upgrade.
+{{% /notice %}}
+
+{{% notice tip %}}
+If the previous upgrade only partially failed but the upgrade completed, also run *Rebuild .htaccess File* and *Rebuild Config File* from menu:Admin[Repair] to ensure those files upgraded correctly.
+{{% /notice %}}
+
+== Customisations overwritten after upgrade
+
+**Symptom:** Changes you made to module behaviour or layouts are gone after upgrading.
+
+**Cause:** Customisations stored in core files (rather than in the `/custom` directory) are overwritten when the upgrade replaces those files.
+
+**Resolution:** Restore your customisations from your pre-upgrade backup and re-implement them in an upgrade-safe way using the `/custom` directory, Studio, or Logic Hooks. See the Developer Guide for upgrade-safe customisation patterns.

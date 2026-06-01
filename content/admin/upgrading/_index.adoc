@@ -1,0 +1,56 @@
+---
+title: "SuiteCRM 7 Upgrade"
+weight: 40
+aliases:
+  - /admin/installation-guide/upgrading/
+---
+:experimental:
+
+This section covers upgrading between SuiteCRM 7.x versions. Each upgrade applies a pack that patches your existing installation in place.
+
+{{% notice info %}}
+**Moving to SuiteCRM 8?** That is a migration, not an upgrade, and requires different steps.
+See link:../migration/to-suitecrm-8[Moving to SuiteCRM 8].
+**Coming from SugarCRM CE?** See link:../migration/from-sugarcrm-ce[Migrating from SugarCRM CE].
+{{% /notice %}}
+
+== Before you start
+
+Review the link:before-you-upgrade[Before You Upgrade] page before doing anything else. It covers backups, PHP settings, and file permission requirements that apply to both upgrade methods.
+
+== Choosing an upgrade method
+
+You can upgrade SuiteCRM 7 using either the Upgrade Wizard in the user interface or the CLI method from the command line on your server. The table below highlights the key differences between the two methods to help you decide which is best for your needs.
+
+[cols="1,1", options="header"]
+|===
+|Upgrade Wizard (UI)
+|CLI Upgrade
+
+|Guided, browser-based
+|Run from the command line
+
+|Suitable for smaller instances (under ~10,000 records per table)
+|Recommended for larger databases or if the Wizard times out
+
+|Requires PHP upload limits to be increased
+|Avoids web server timeout and upload size constraints
+
+|Available in all 7.x versions
+|Requires SuiteCRM 7.11.3 or newer for the `robo` command
+|===
+
+* link:upgrade-wizard[Upgrade Wizard] — step-by-step UI guide
+* link:cli-upgrade[CLI Upgrade] — command line guide
+
+== Upgrade paths
+
+Always upgrade incrementally through the supported version steps. Do not skip major minor versions — check the release notes for each version you pass through to identify any required manual steps.
+
+Upgrade packs are available from the link:https://suitecrm.com/releases/[SuiteCRM releases page].
+
+== Compatibility
+
+Before downloading an upgrade pack, verify that your PHP version, database, and web server are supported by the target version. See the link:../compatibility-matrix[Compatibility Matrix].
+
+{{% children depth="2" showhidden="false" %}}

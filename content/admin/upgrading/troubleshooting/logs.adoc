@@ -1,0 +1,39 @@
+---
+title: "Upgrade Logs"
+weight: 10
+---
+
+When an upgrade fails or produces unexpected results, these log files are the first place to look.
+
+== upgradeWizard.log
+
+The primary upgrade log. Written by both the Upgrade Wizard and the CLI upgrade methods.
+
+----
+<suitecrm-root>/upgradeWizard.log
+----
+
+This file records each step of the upgrade process and captures errors encountered during file operations and database changes. Check here first for any failure message.
+
+== suitecrm.log
+
+The main SuiteCRM application log. May contain errors related to the upgraded application that surface after the upgrade is complete rather than during it.
+
+----
+<suitecrm-root>/suitecrm.log
+----
+
+== CLI upgrade log
+
+When using the link:../../cli-upgrade[CLI upgrade], you specify the log file path as an argument. Check the path you provided to the command.
+
+For the `robo` method this is the `<logFile>` argument. For `silentUpgrade.php` this is the second argument passed to the script.
+
+== Increasing log verbosity
+
+If the standard logs do not contain enough detail, you can increase SuiteCRM's log level temporarily:
+
+. Navigate to menu:Admin[Diagnostic Tool] or edit `config.php` directly.
+. Set `logger_level` to `debug`.
+. Re-run the operation you are investigating.
+. Reset `logger_level` to its previous value (`fatal` or `error`) afterwards to avoid excessive log growth.

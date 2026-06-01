@@ -1,0 +1,56 @@
+---
+title: "Migrating from SugarCRM CE"
+weight: 10
+---
+:experimental:
+
+SuiteCRM provides a migration pack that allows you to move an existing SugarCRM Community Edition 6.x installation across to SuiteCRM 7. The migration pack is applied using the same Upgrade Wizard used for standard SuiteCRM upgrades.
+
+== Compatibility
+
+[cols="1,1", options="header"]
+|===
+|Source version
+|Target version
+
+|SugarCRM CE 6.5.x
+|SuiteCRM 7.6.6
+|===
+
+After completing the migration to 7.6.6, upgrade to the current SuiteCRM 7 release using the standard link:../upgrading[upgrade process].
+
+== Before you start
+
+Complete the same preparation steps as for a standard upgrade:
+
+* Back up your SugarCRM CE files and database — this is your only recovery option if something goes wrong
+* Confirm your PHP version, database, and web server are supported by SuiteCRM 7.6.6 — check the link:../compatibility-matrix[Compatibility Matrix]
+* Test the migration on a copy of your production environment before running it on production
+* Review your customisations — any code changes made directly to SugarCRM CE core files will need to be re-applied after migration using SuiteCRM's upgrade-safe `/custom` directory approach
+* Configure PHP limits as per the link:../upgrading/before-you-upgrade[Before You Upgrade] checklist
+
+== Download the migration pack
+
+Download the *SugarCRM CE Migration Pack* from the link:https://suitecrm.com/upgrade-suitecrm/[SuiteCRM releases page].
+
+The pack is named: `SuiteCRM-7.6.6-Migration-from-SugarCRM-CE-6.x.zip`
+
+== Running the migration
+
+The migration pack is applied via the SugarCRM CE Upgrade Wizard, not the SuiteCRM one — you are running this against your existing SugarCRM CE instance.
+
+. Log in to your SugarCRM CE instance as an administrator.
+. Navigate to menu:Admin[Upgrade Wizard].
+. Work through the wizard steps, uploading the migration pack ZIP when prompted.
+. Complete the wizard. Your instance will now be running SuiteCRM 7.6.6.
+
+== Post-migration steps
+
+. Navigate to menu:Admin[Repair] and run *Rebuild Relationships* and *Rebuild Extensions*.
+. Review your customisations and re-implement any that were lost.
+. Verify data integrity — check key modules (Accounts, Contacts, Opportunities) for completeness.
+. Upgrade to the current SuiteCRM 7 release following the link:../upgrading[upgrading guide].
+
+{{% notice info %}}
+The migration pack brings your instance to SuiteCRM 7.6.6 only. It is strongly recommended to upgrade to the latest 7.x release promptly to benefit from security fixes and current support.
+{{% /notice %}}
