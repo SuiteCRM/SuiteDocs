@@ -1,9 +1,11 @@
 ---
 title: "Subpanel Filtering"
 weight: 80
+aliases:
+  - /8.x/features/filters/subpanel-filtering/subpanel-filtering/
 ---
 
-:imagesdir: /images/en/8.x/user/features/subpanels
+:imagesdir: /images/en/8.x/developer/extensions/backend
 
 === How to Configure Filtering on Subpanels?
 

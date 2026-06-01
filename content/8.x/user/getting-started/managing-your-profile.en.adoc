@@ -49,77 +49,7 @@ image:advanced-tab.png[Advanced tab]
 
 == Two-Factor Authentication
 
-Two-Factor Authentication (2FA) adds an additional layer of security to your SuiteCRM account by requiring you to enter a one-time code from an authenticator app in addition to your username and password when logging in. This helps protect your account even if your password is compromised.
-
-{{% notice note %}}
-Two-Factor Authentication must be enabled by your system administrator before it is available to users. If you do not see the Two-Factor Authentication tab in your profile, contact your system administrator.
-{{% /notice %}}
-
-=== Enabling Two-Factor Authentication
-
-To set up Two-Factor Authentication:
-
-. Click on the *Two-Factor Authentication* tab within your profile. This tab displays the current status of your 2FA configuration and a *Two Factor Configuration* button.
-. Click *Two Factor Configuration* to proceed to the setup page.
-
-image:2fa-tab.png[Two-Factor Authentication tab]
-
-[start=3]
-. Click *Enable* to begin the setup process. A QR code will be displayed on screen.
-
-image:2fa-enable.png[Two-Factor Authentication enable button]
-
-[start=4]
-. Open your authenticator app on your mobile device (such as Google Authenticator, Microsoft Authenticator, or Authy) and scan the QR code.
-. Once scanned, your authenticator app will display a code. Enter this code into the field provided in SuiteCRM to verify the setup.
-
-image:2fa-verify.png[Two-Factor Authentication QR code and verification field]
-
-[start=6]
-. Click *Verify Code* to complete the process.
-
-{{% notice note %}}
-If you are unable to scan the QR code, click *Unable to scan the QR Code?* to reveal a secret key that you can enter manually into your authenticator app. When setting up manually, use the following configuration if prompted by your app: Type: TOTP, Time based: Yes, Interval: 30 seconds, Digits: 6, Algorithm: SHA1.
-{{% /notice %}}
-
-=== Recovery and Backup Codes
-
-After successfully enabling Two-Factor Authentication, a set of ten recovery codes will be displayed on screen. These are one-time use backup codes that can be used to access your account if you are unable to use your authenticator app, for example if you lose access to your mobile device.
-
-{{% notice warning %}}
-These codes will only be displayed once and will not be shown again when you revisit the page. Store them in a safe and secure location immediately.
-{{% /notice %}}
-
-Each backup code can only be used once. Once a code has been used it cannot be used again.
-
-*Regenerating Backup Codes*
-
-If you have used your backup codes or need to generate a new set, you can do so from the Two-Factor Configuration page:
-
-. Navigate to the *Two-Factor Authentication* tab in your profile.
-. Click *Two Factor Configuration*.
-. Click *Regenerate Backup Codes*.
-. Enter the current code from your authenticator app to confirm.
-. A new set of backup codes will be displayed. Store these securely as the previous codes will no longer be valid.
-
-*Logging In with Two-Factor Authentication*
-
-Once Two-Factor Authentication is enabled on your account, you will be prompted to enter an authentication code each time you log in to SuiteCRM. After entering your username and password, a pop-up will appear asking for your six-digit code. Open your authenticator app, retrieve the current code, and enter it to complete the login process.
-
-=== Disabling Two-Factor Authentication
-
-To disable Two-Factor Authentication on your account:
-
-. Navigate to the *Two-Factor Authentication* tab in your profile.
-. Click *Two Factor Configuration*.
-. Click *Disable*.
-. Enter the current code from your authenticator app to confirm.
-
-Two-Factor Authentication will then be disabled on your account.
-
-{{% notice note %}}
-System administrators can also disable Two-Factor Authentication on behalf of a user if required. If a user has 2FA enabled, a *Disable 2FA* option will appear in the Actions drop-down when an administrator views that user's profile.
-{{% /notice %}}
+The *Two-Factor Authentication* tab displays the current status of your 2FA configuration. For full setup, login, and recovery code instructions see the link:../two-factor-authentication/[Two-Factor Authentication] page.
 
 == Layout Options
 
@@ -129,15 +59,15 @@ image:layout-options-tab.png[Layout Options tab]
 
 The following settings are available:
 
-* *Style:* Select the visual theme you wish to use for your SuiteCRM interface. In the current SuiteCRM 8, the available theme is Dawn.
+* *Style:* Select the visual theme you wish to use for your SuiteCRM interface. The available theme is Dawn.
 * *Module Menu Filters:* When enabled, the modules displayed in the navigation bar will reflect the group tab configuration set up by your system administrator, allowing you to browse modules by group. When disabled, all modules will be listed individually in the navigation bar regardless of any group tab configuration.
 * *Select Modules for Navigation Bar:* This setting allows you to control which modules appear in your Top Navigation Bar. Modules listed under Display Modules will be visible in the navigation bar, while those listed under Hide Modules will not. You can move modules between the two lists using the arrow buttons, and reorder the displayed modules using the up and down arrows. This is useful if you want to prioritise the modules you use most frequently and remove those you don't need.
 * *Sort Modules Alphabetically:* When enabled, the modules displayed in your navigation bar will be sorted in alphabetical order. When disabled, modules will appear in the order you have specified in the Select Modules for Navigation Bar setting above.
 * *Sub-panel Pagination Type:* Controls how records are paginated within sub-panels. The available options are Pagination (traditional page navigation) or Load More (a continuous scroll style where additional records are loaded on demand). Select whichever option suits your preferred way of working.
 * *List View Pagination Type:* Controls how records are paginated within List Views across all modules. As with the sub-panel setting, the available options are Pagination or Load More.
 * *Pop Up Record List Pagination Type:* Controls the pagination style used in pop-up record selection windows, such as when linking an existing record to another via a sub-panel. The available options are the same as above.
-* *Show Collapsed Sub-panel Hint:* When enabled, a hint will be displayed on collapsed sub-panels to indicate that related records exist, even when the sub-panel is not expanded. This setting applies to modules that are still displayed in the legacy view in SuiteCRM 8. For modules using the modern SuiteCRM 8 interface, this setting has no effect as the related record count is displayed on the sub-panel tile by default.
-* *Sub-panel Tabs:* When enabled, sub-panels within the Relationships section of a record are grouped into tabs rather than displayed as individual tiles. As with the setting above, this applies only to modules that are still displayed in the legacy view in SuiteCRM 8. For modules using the modern SuiteCRM 8 interface, sub-panels are displayed as individual tiles within the Relationships grid and this setting has no effect.
+* *Show Collapsed Sub-panel Hint:* When enabled, a hint will be displayed on collapsed sub-panels to indicate that related records exist, even when the sub-panel is not expanded. This setting applies to modules that are still displayed in the legacy view. For modules using the modern SuiteCRM interface, this setting has no effect as the related record count is displayed on the sub-panel tile by default.
+* *Sub-panel Tabs:* When enabled, sub-panels within the Relationships section of a record are grouped into tabs rather than displayed as individual tiles. As with the setting above, this applies only to modules that are still displayed in the legacy view. For modules using the modern SuiteCRM interface, sub-panels are displayed as individual tiles within the Relationships grid and this setting has no effect.
 
 Once you have made your changes, click *Save* to apply them. Your updated layout preferences will take effect immediately.
 

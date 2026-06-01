@@ -7,7 +7,7 @@ weight: 60
 
 = Relationships and Subpanels
 
-Below the main record detail, you will find the *Relationships* section. This section displays all other modules that are linked to the record you are currently viewing, presented as a grid of tiles. Each tile shows the module name, its icon, and a count of how many related records exist, giving you an at-a-glance summary of all associated data. The modules shown will vary depending on the record type — for example, a *Contact* record may display tiles for _Activities, History, Documents, Cases_, and _Security Groups_, as illustrated in the screenshot below.
+Below the main record detail, you will find the *Relationships* section. This section displays all other modules that are linked to the record you are currently viewing, presented as a grid of tiles. Each tile shows the module name, its icon, and a count of how many related records exist, giving you an at-a-glance summary of all associated data. The modules shown will vary depending on the record type — for example, a Contact record may display tiles for Activities, History, Documents, Cases, and Security Groups, as illustrated in the screenshot below.
 
 image:relationships-grid.png[Relationships section showing a grid of module tiles]
 
@@ -39,13 +39,17 @@ The sub-panels available on a record and the relationships configured between mo
 
 It is worth noting that relate fields and sub-panels are two sides of the same relationship. When you populate a relate field on a record, for example linking a Contact to an Account during data entry, the relationship is created immediately on save. The Contact will then appear in the Contacts sub-panel on the Account record, and the Account will be shown in the Account Name field on the Contact record. This means that regardless of which method is used to create a relationship, the outcome is the same: both records will reflect the connection between them.
 
+== Subpanel Filtering
+
+Some sub-panels include a *Filter* button that allows you to search and filter records within that specific sub-panel without affecting the rest of the page. If a sub-panel on your instance does not have a filter button and you need one, speak to your system administrator or developer — see link:../../../developer/extensions/backend/subpanel-filtering/[Subpanel Filtering] for configuration details.
+
 == Relate Fields
 
 Relate fields are a special type of field found on many record creation and edit forms throughout SuiteCRM. They allow you to link one record to another record in a different module and are visually distinct from standard text fields. They have a small *selector icon* (arrow) to the right of the field, which opens a search pop-up allowing you to find and select the record you wish to link.
 
 image:relate-field.png[Relate field showing the selector icon]
 
-*Using a Relate Field*
+=== Using a Relate Field
 
 To populate a relate field:
 

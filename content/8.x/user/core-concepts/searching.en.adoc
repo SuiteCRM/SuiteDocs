@@ -42,8 +42,8 @@ Some useful things to know when using Module Search:
 
 * *Search is persistent:* Once you have performed a search, the filter criteria will be retained as you navigate away from and back to the module. This means you will not lose your search results when clicking into a record and returning to the list.
 * *Clearing a search:* To clear your current search and return to the full record list, click the *Clear* button in the filter panel and then click *Search*.
-* *My Items:* Most modules include a _My Items_ option within the filter. Enabling this will restrict results to records that are assigned to your user account, which is useful for quickly viewing your own workload.
-* *My Favourites:* Most modules also include a _My Favourites_ option. Enabling this will restrict the results to only records you have marked as a favourite. Records can be marked as a favourite by clicking the Star icon on a record.
+* *My Items:* Most modules include a My Items option within the filter. Enabling this will restrict results to records that are assigned to your user account, which is useful for quickly viewing your own workload.
+* *My Favourites:* Most modules also include a My Favourites option. Enabling this will restrict the results to only records you have marked as a favourite. Records can be marked as a favourite by clicking the *Star* icon on a record.
 
 {{% notice note %}}
 The fields available in the module search filter are configured per module and can be modified by a system administrator via Studio. If you need additional fields added to the search filter for a particular module, speak to your system administrator.
@@ -58,6 +58,36 @@ image:save-search.png[Save Search button in the filter panel]
 To load a saved search, select it from the *My Filters* drop-down. This will return results that match the criteria specified in the saved search.
 
 image:my-filters-dropdown.png[My Filters drop-down showing saved searches]
+
+== Quick Filters
+
+Quick Filters give you one-click access to your most frequently used saved filters directly from the List View, without having to open the filter panel each time.
+
+image:quick-filter-demo-docs.gif[Quick Filters Demo]
+
+=== Creating a Quick Filter
+
+. Navigate to the module's List View and click the *Filter* button.
+. Fill in your filter criteria.
+. Give the filter a name, check the *Quick Filter* checkbox, and click *Save*.
+
+Your new Quick Filter will appear as a button alongside the filter panel. Click it to instantly apply that filter. Click *X* on the button, or click it again, to remove it.
+
+=== Using Quick Filters
+
+When a Quick Filter is selected it is highlighted and the results update accordingly.
+
+image:Will-Selected.png[Quick Filter selected]
+
+If more Quick Filters exist than can be displayed inline, the remaining filters are grouped into a *My Filters* dropdown.
+
+image:My-Filters-Highlighted.png[My Filters dropdown]
+
+To switch between filters, simply select the one you want and the results will update.
+
+{{% notice note %}}
+The number of Quick Filters displayed before collapsing into a dropdown, and their behaviour at different screen sizes, can be configured by a developer. See link:../../../developer/configuration/quick-filters/[Quick Filters Configuration].
+{{% /notice %}}
 
 == Using Wildcards in Search
 

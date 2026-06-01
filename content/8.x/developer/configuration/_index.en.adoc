@@ -1,0 +1,8 @@
+---
+title: "Configuration"
+weight: 60
+---
+
+= Configuration
+
+This section covers configuration files used to customise and extend SuiteCRM 8 behaviour. These files are typically found under `config/services/` or overridden via the `extensions/` folder and `config_override.php`.

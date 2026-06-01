@@ -1,0 +1,52 @@
+---
+title: "Quick Filters Configuration"
+weight: 30
+aliases:
+  - /8.x/features/filters/quick-filters/quick-filters/
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts/
+
+= Quick Filters Configuration
+
+The default Quick Filter configuration is defined in `config/services/ui/ui.yaml`.
+
+To override the configuration, copy the file into your extension package:
+
+----
+extensions/<your-package>/config/services/ui/ui.yaml
+----
+
+== Available Parameters
+
+[source,yaml]
+----
+parameters:
+  ui:
+     enable_quick_filters:
+      XSmall: true
+      Small: false
+      Medium: true
+      Large: true
+      XLarge: true
+----
+
+=== displayed_quick_filters
+
+Configures the maximum number of Quick Filter buttons displayed inline before the remaining filters are collapsed into a *My Filters* dropdown.
+
+image:My-Filters-Highlighted.png[My Filters Highlighted]
+
+=== quick_filters_breakdown_threshold
+
+Controls when filters wrap to a new line. If `displayed_quick_filters` is set higher than this value, filters will wrap to a new line before collapsing into a dropdown.
+
+image:SmallFilters.png[Small Filters]
+
+=== enable_quick_filters
+
+Enables or disables Quick Filters per screen size breakpoint.
+
+=== quick_filters_breakdown_screen_sizes
+
+Sets whether Quick Filters appear on a separate line to the main filter button, per breakpoint.
