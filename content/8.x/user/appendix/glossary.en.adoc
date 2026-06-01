@@ -1,0 +1,70 @@
+---
+title: "Glossary"
+weight: 10
+---
+
+= Glossary
+
+The following table provides definitions of key terms and concepts used throughout this guide.
+
+[cols="1,3", options="header"]
+|===
+|Term |Meaning
+
+|Account
+|A record representing a company or business entity that your organisation has a relationship with. Accounts act as the central hub from which most other records in SuiteCRM are connected.
+
+|Activity
+|A collective term for time-based interactions logged in SuiteCRM, including Calls, Meetings, and Tasks. Activities associated with a record are displayed in the Activities sub-panel when they are open or upcoming, and move to the History sub-panel once completed.
+
+|Assigned To
+|The user responsible for managing or acting on a specific record. Most records in SuiteCRM have an Assigned To field, which can be set to any active user in the system.
+
+|Contact
+|A record representing an individual person, typically associated with an Account. Contacts are the people your organisation interacts with within a business relationship.
+
+|Dashboard
+|A tabbed page on the SuiteCRM home screen that contains one or more Dashlets. Multiple Dashboards can be created and configured per user to organise information into logical groupings.
+
+|Dashlet
+|A configurable widget displayed on a Dashboard that provides a quick overview of data from a specific module or tool. Dashlets can be added, removed, rearranged, and configured by each user individually.
+
+|Detail View
+|The view presented when opening an individual record. It displays all information held against that record, organised into tabs, and provides access to related records via the Relationships section.
+
+|Edit View
+|The view presented when creating or editing a record. It displays all editable fields for that record and allows users to enter or update data.
+
+|History
+|A sub-panel found on most records that displays completed activities and logged interactions associated with that record, such as completed Calls, Meetings, Tasks, and sent Emails.
+
+|List View
+|The default view presented when navigating to a module. It displays all records for that module in a tabular format and provides options for searching, filtering, sorting, and bulk actions.
+
+|Module
+|A section of SuiteCRM dedicated to managing a specific type of data or business process. Examples include Accounts, Contacts, and Tasks. Each module has its own List View, Detail View, and Edit View.
+
+|Record
+|A single entry of data within a module. For example, a Contact record holds all the information relating to one individual, and an Account record holds all the information relating to one account.
+
+|Relate Field
+|A field on a record that links it to a record in another module, establishing a relationship between the two. For example, the Account Name field on a Contact record is a relate field that links the Contact to its associated Account.
+
+|Relationship
+|A link between two records in different modules. Relationships allow users to see connected data across the CRM, for example viewing all Contacts associated with a specific Account.
+
+|Security Group
+|A named group of users in SuiteCRM that controls which records those users can see. Security groups are linked to records and determine record visibility across the system.
+
+|Sub-panel
+|A section within the Relationships area of a record's Detail View that displays records from a related module. For example, the Contacts sub-panel on an Account record shows all Contacts linked to that Account.
+
+|Task
+|A record used to track an action item or to-do item that requires completion. Tasks can be assigned to users, linked to other records, and given a due date and priority level.
+
+|User Role
+|User Roles are assigned to users by a system administrator and determine each user's permissions. Roles define what a user can see and do within SuiteCRM, including which modules they can access and which actions (such as view, edit, or delete) they can perform.
+
+|View
+|The way in which records are displayed within SuiteCRM. The main views are List View, Detail View, and Edit View. The Calendar module has its own set of views including Day, Week, Month, Shared Week, and Shared Month.
+|===

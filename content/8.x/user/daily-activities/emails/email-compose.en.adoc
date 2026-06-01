@@ -5,74 +5,70 @@ weight: 30
 
 :imagesdir: /images/en/8.x/user/daily-activities/emails
 
-== Composing Emails
+= Composing Emails
 
-=== Overview
+The email compose modal allows you to send emails directly from SuiteCRM. The modal can be collapsed while navigating the app and supports rich text editing with the Squire editor.
 
-SuiteCRM 8 provides a redesigned email compose modal that allows you to send emails directly from the CRM.
-
-The compose modal can be collapsed while navigating the app and supports rich text editing with the Squire editor.
-
-=== Opening the Compose Modal
+== Opening the Compose Modal
 
 There are multiple ways to open the email compose modal. Two of the most common are:
 
-* **From the Emails Module** — Navigate to the Emails module and select "Compose Email" from the module menu.
-* **By Clicking an Email Address** — Click on any email address link within a record (e.g., Contact, Lead, Account). This will open a new compose modal pre-addressed to that record.
+* *From the Emails Module* — Navigate to the Emails module and select *Compose Email* from the module menu.
+* *By Clicking an Email Address* — Click on any email address link within a record (e.g., Contact, Lead, Account). This will open a new compose modal pre-addressed to that record.
 
-image:email-compose-open.png[Open Compose Modal]
+image:email-compose-open.png[Compose modal opening from an email address link on a record]
 
-=== Compose Modal Fields
+== Compose Modal Fields
 
-==== From
+=== From
 
 Select the outbound email account to send from. If you have multiple outbound email accounts configured, you can choose which one to use. Your default outbound email account will be pre-selected.
 
 If your outbound email account has a signature configured, it will automatically be included in the email body when you select that account.
 
-==== To, CC and BCC
+=== To, CC and BCC
 
 These fields support searching and selecting from SuiteCRM Accounts, Contacts, Leads, Users, or entering individual email addresses.
 
-* **To** — Primary recipients of the email
-* **CC** — Carbon copy recipients (visible to all recipients)
-* **BCC** — Blind carbon copy recipients (hidden from other recipients)
+* *To* — Primary recipients of the email
+* *CC* — Carbon copy recipients (visible to all recipients)
+* *BCC* — Blind carbon copy recipients (hidden from other recipients)
 
-==== Subject
+=== Subject
 
 Enter the subject line for your email.
 
-==== Body (Squire Editor)
+=== Body (Squire Editor)
 
 The body field uses the lightweight Squire editor, offering rich text editing tailored for emails.
 
 You can format text, add links, create lists, insert variables, and style your email content.
 
-==== Variable Injection
+=== Variable Injection
 
 The Variable Injector allows you to insert variables into the email body field that reference data from the parent record (Related To).
 When the email is sent, these variables are parsed and replaced with the corresponding values from the selected record.
 
-image:variable-injector-email.png[Variable Injector Email]
+image:variable-injector-email.png[Variable Injector panel open in the email compose body toolbar]
 
-===== Availability and Usage
+==== Availability and Usage
 
 The Variable Injector is available in two contexts:
 
-* **Email Compose** — When composing individual emails, variables are based on the Related To record.
-* **Campaigns** — When composing campaign emails, variables are based on the different types of records that can be added to target lists (Contacts, Leads, Targets, Users, and Accounts).
+* *Email Compose* — When composing individual emails, variables are based on the Related To record.
+* *Campaigns* — When composing campaign emails, variables are based on the different types of records that can be added to target lists (Contacts, Leads, Targets, Users, and Accounts).
 
-**To use the Variable Injector:**
+To use the Variable Injector:
 
 . Open an email compose window.
-. Click the Variable Injector button in the email body field toolbar.
+. Click the *Variable Injector* button in the email body field toolbar.
 . Select a variable from the dropdown (format: `${module}_{field_name}`, e.g., `$accounts_name`).
 . The variable will be inserted at your cursor position.
 . To update available variables, change the parent module in the Related To field.
 
 When the email is sent, variables are parsed based on the selected Related To record and replaced with actual values.
 
-===== Example
+==== Example
 
 If you select a Contact as the Related To record, the Contacts entry label will show as "Contact/Lead/Target" in the dropdown.
 
@@ -86,97 +82,91 @@ Dear $contact_full_name,
 We have an update regarding your account: $contact_account_name. Please contact us if you have any questions.
 ----
 
-===== Notes
-
-ℹ️ If a referenced field is empty or the relationship doesn't exist, the variable will be replaced with an empty string.
+{{% notice note %}}
+If a referenced field is empty or the relationship doesn't exist, the variable will be replaced with an empty string.
+{{% /notice %}}
 
 While you are unable to insert variables into the email subject line directly, you can use them, and they will be parsed.
 
 Variables can be used with formatting and in combination with other text in the email body.
 
-=== Related To
+== Related To
 
 Link your email to a specific record in SuiteCRM (e.g., Account, Opportunity, Case). This helps maintain context and allows for better email tracking and history within the CRM.
 
-When a Related To record is selected, and you insert an Email Template, variables in the template will be parsed  on send, based on the selected record.
+When a Related To record is selected, and you insert an Email Template, variables in the template will be parsed on send, based on the selected record.
 
-=== Attachments
+== Attachments
 
 You can attach files to your email in two ways:
 
-* Uploading files directly from your computer. (Select "Upload from files")
-* Attaching documents from the Documents module.
+* Uploading files directly from your computer using *Attach Files*.
+* Attaching documents from the Documents module using *Attach Documents*.
 
-==== Attaching a Document
+=== Attaching a Document
 
 Select a document to attach its latest revision to your email. Multiple documents can be attached as needed.
 
 To attach a document:
 
-* Click the "Attach Document" button in the compose modal footer.
-* Search for the document you want to attach.
-* Select the document from the search results to attach it to your email.
+. Click the *Attach Documents* button in the compose modal footer.
+. Search for the document you want to attach.
+. Select the document from the search results to attach it to your email.
 
-===== Updated Document Attachments
+==== Updated Document Attachments
 
 If a document attached to a draft email is updated with a new revision, reopening the compose view displays the latest revision of the document as the attachment.
 
-===== Deleted Document Attachments
+==== Deleted Document Attachments
 
 If a document attached to a draft email is deleted, reopening the compose view displays a "Document not found" attachment.
 Emails with deleted document attachments cannot be sent.
 
-image:deleted-document-attachment.png[Deleted Document Attachment]
+image:deleted-document-attachment.png[Compose modal showing a "Document not found" attachment placeholder]
 
-===== Sending Documents as Attachments
+==== Sending Documents as Attachments
 
 When you send an email with an attached Document record, the document's latest revision at the time of sending will be included as the attachment.
 
-==== Difference Between Document Attachments and File Uploads
+=== Difference Between Document Attachments and File Uploads
 
 To tell the difference between a document attachment and a file upload, check the attachment icon:
 
 * Document attachments show a document icon.
 * File uploads show a generic file icon.
 
-image:attached-file-and-document.png[Attached File and Document]
+image:attached-file-and-document.png[Compose modal attachment area showing a document attachment icon alongside a file upload icon]
 
-=== Inserting an Email Template
+== Inserting an Email Template
 
-To insert an email template, click the "Insert Template" button in the compose modal footer. This allows you to select from your available email templates and insert the content directly into your email body / subject.
+To insert an email template, click the *Insert Template* button in the compose modal footer. This allows you to select from your available email templates and insert the content directly into your email body and subject.
 
 When you select a template, any variables within the template will be parsed based on the selected Related To record.
 
-=== Sending Your Email
+== Sending Your Email
 
-Once you have completed composing your email, click the "Send" button to send it immediately.
+Once you have completed composing your email, click *Send* to send it immediately.
 
-=== Saving your Email as a Draft
+== Saving Your Email as a Draft
 
-For more information on Drafts, see the link:../managing-drafts[Managing Drafts] section.
+For more information on Drafts, see the link:../../managing-drafts[Managing Drafts] section.
 
-=== Maximizing the Compose Modal
+== Maximizing the Compose Modal
 
-The compose modal can be maximized to provide a larger workspace for composing your email.
+The compose modal can be maximized to provide a larger workspace for composing your email. To maximize it, click the maximize icon in the top right corner of the modal.
 
-To maximize the compose modal, click the maximize icon in the top right corner of the modal.
+image:maximised-compose-modal.png[Compose modal in maximized view showing the full-width editor]
 
-image:maximised-compose-modal.png[Maximized Compose Modal]
+== Navigating While Composing
 
-=== Navigating While Composing
+The compose modal can be collapsed to allow you to navigate to other records or modules while keeping your email draft open. This is useful for referencing information or attaching documents from other records without losing your email content.
 
-The compose modal can be collapsed to allow you to navigate to other records or modules while keeping your email draft open.
+To collapse the modal, click the minimize icon in the top right corner of the compose modal or click the modal header.
 
-This is useful for referencing information or attaching documents from other records without losing your email content.
+image:minimized-modal.png[Compose modal collapsed to a bar at the bottom of the screen]
 
-To do so, click the minimize icon in the top right corner of the compose modal or click the modal header.
+== Opening Multiple Compose Modals
 
-image:minimized-modal.png[Minimized Compose Modal]
+You can open multiple compose modals at the same time, allowing you to work on several emails simultaneously. Each compose modal will function independently, and you can switch between them as needed.
 
-=== Opening Multiple Compose Modals
-
-You can open multiple compose modals at the same time, allowing you to work on several emails simultaneously.
-
-Each compose modal will function independently, and you can switch between them as needed.
-
-image:multiple-open-modals.png[Multiple Compose Modals]
+image:multiple-open-modals.png[Multiple compose modals open simultaneously at the bottom of the screen]
