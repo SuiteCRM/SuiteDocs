@@ -1,0 +1,34 @@
+---
+title: "Migration"
+weight: 50
+---
+:experimental:
+
+Migration covers moving to SuiteCRM from a different product, or moving from SuiteCRM 7 to SuiteCRM 8. These are distinct from upgrades — they involve a change of platform or major architecture, not just applying a patch to an existing installation.
+
+== Upgrading vs migrating
+
+[cols="1,1", options="header"]
+|===
+|Upgrade
+|Migration
+
+|Stays on the same major version (7.x to 7.x)
+|Moves between products or major versions
+
+|Applied as a patch to your existing installation
+|Requires a new installation as the destination
+
+|Uses the Upgrade Wizard or CLI upgrade
+|Uses a dedicated migration package
+
+|Reversible via backup restore
+|Reversible via backup restore, but more involved
+|===
+
+== Available migrations
+
+* link:from-sugarcrm-ce[Migrating from SugarCRM CE] — move from SugarCRM Community Edition 6.x to SuiteCRM 7
+* link:to-suitecrm-8[Moving to SuiteCRM 8] — move your SuiteCRM 7 instance to SuiteCRM 8
+
+{{% children depth="2" showhidden="false" %}}

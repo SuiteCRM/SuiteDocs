@@ -1,7 +1,7 @@
 
 ---
 Title: Licensing
-weight: 30
+weight: 60
 ---
 
 :imagesdir: /images/en/user

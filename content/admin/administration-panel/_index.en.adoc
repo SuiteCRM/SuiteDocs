@@ -1,6 +1,6 @@
 ---
 title: Administration Panel
-weight: 10
+weight: 20
 ---
 
 === Table of Contents

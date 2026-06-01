@@ -1,0 +1,39 @@
+---
+title: "Moving to SuiteCRM 8"
+weight: 20
+---
+:experimental:
+
+SuiteCRM 8 is a fundamentally different architecture from SuiteCRM 7 — it introduces a Symfony application layer and an Angular-based frontend, with your SuiteCRM 7 codebase running inside it as a legacy layer. Because of this, moving from 7 to 8 is a migration rather than an upgrade: the process involves a new SuiteCRM 8 installation, not a patch applied to your existing instance.
+
+== What this means for your instance
+
+* Your SuiteCRM 7 code and data are preserved — they are moved into the SuiteCRM 8 folder structure and become the `legacy` layer
+* The migration is performed using a dedicated migration package, separate from standard upgrade packs
+* All migration commands run from the command line against the new SuiteCRM 8 instance
+
+== Prerequisites
+
+Before starting the migration, your SuiteCRM 7 instance must be on the **latest 7.x release**. The migration package is built against a specific minimum 7.x version — check the migration package name on the releases page to confirm the required version (e.g. `8.7.0 Upgrade from 7.14.x` requires 7.14.x).
+
+If your instance is not on the required version, link:../upgrading[upgrade it] before proceeding.
+
+{{% notice warning %}}
+Do not attempt the migration until your SuiteCRM 7 instance is on the required version. Running the migration from an older 7.x version will fail or produce an unstable result.
+{{% /notice %}}
+
+Also complete the following before starting:
+
+* Back up your SuiteCRM 7 files and database
+* Test the full migration on a development environment before running on production
+* Audit your customisations — the migration may remove non-core files from the `public/legacy/` folder. See link:../upgrading/large-or-complex-upgrades[Large or Complex Upgrades] for guidance on auditing customisations
+* Review add-on compatibility with SuiteCRM 8 before migrating
+* Confirm your server meets the SuiteCRM 8 compatibility requirements — check the link:../../8.x/admin/compatibility-matrix[SuiteCRM 8 Compatibility Matrix]
+
+== Migration guide
+
+The full migration process is documented in the SuiteCRM 8 admin guide:
+
+link:../../8.x/admin/migration[SuiteCRM 8 — Migration Guide]
+
+That guide covers downloading the migration package, copying your SuiteCRM 7 instance, running the migration commands, resetting permissions, and post-migration checks.

@@ -1,0 +1,100 @@
+---
+title: "Upgrade Wizard"
+weight: 20
+aliases:
+  - /admin/installation-guide/using-the-upgrade-wizard/
+---
+:experimental:
+
+The Upgrade Wizard provides a guided, browser-based upgrade process accessible directly from the SuiteCRM Admin panel.
+
+{{% notice warning %}}
+Before proceeding, ensure you have completed all steps on the link:../before-you-upgrade[Before You Upgrade] page, including backing up your instance and configuring PHP limits.
+{{% /notice %}}
+
+== When to use the Upgrade Wizard
+
+The Upgrade Wizard is suitable for most standard upgrades. Consider using the link:../cli-upgrade[CLI Upgrade] instead if:
+
+* Any table in your database has more than ~10,000 records
+* The wizard has previously timed out on your server
+* Your hosting environment has restrictive PHP or web server timeout limits
+
+== Running the Upgrade Wizard
+
+=== Step 1: Access the Upgrade Wizard
+
+. Log in as an Administrator.
+. Navigate to menu:Admin[Upgrade Wizard].
+
+=== Step 2: System Check
+
+The wizard runs an automated check of your environment. It will report any issues with file permissions, database connectivity, or server settings.
+
+* If issues are reported, resolve them before continuing.
+* If all checks pass, click btn:[Next].
+
+=== Step 3: Upload the Upgrade Pack
+
+. Click btn:[Choose File] and select the upgrade ZIP you downloaded from the SuiteCRM releases page.
+. Click btn:[Upload Upgrade].
+
+The system will upload and validate the package. If needed, use btn:[Delete Package] to remove it and upload a different file.
+
+Once the package appears in the list, click btn:[Next].
+
+=== Step 4: Preflight Check
+
+The wizard checks the upgrade pack against your current installation.
+
+* If the upgrade pack includes SQL schema changes, a *Show Schema Change Script* link and a *Database Update Method* dropdown will appear. These are only shown when there are schema queries to run — most standard upgrades will not display them.
+** If they are visible, leave the database update method set to *Run SQL* unless you intend to run the queries manually.
+* Click btn:[Recheck] to re-run the preflight if needed.
+* Click btn:[Next] to proceed.
+
+=== Step 5: Commit Upgrade
+
+The wizard applies the upgrade. SuiteCRM copies the new files and runs the necessary database updates.
+
+You can click *Show* to review the list of files copied and any queries that were skipped.
+
+Click btn:[Next] to continue.
+
+=== Step 6: Confirm Layouts (if applicable)
+
+This step only appears if your installation has module layouts that were customised through Studio, *and* the upgrade includes changes to those layouts' default fields or positions.
+
+The wizard performs a three-way merge: it compares your customised layout, the old default layout, and the new default layout, and merges the differences.
+
+The Confirm Layouts page lists each affected module layout. By default, all are selected for merging.
+
+* Uncheck a module if you want to keep your existing customisation exactly as-is and skip the merge for that layout.
+* Click btn:[Next] to apply the selected merges.
+
+=== Step 7: Complete
+
+The Debrief page confirms the upgrade is complete.
+
+* If any files were skipped (because you unchecked them in earlier steps), extract them manually from the upgrade ZIP and merge them into your installation directory.
+* If you chose to run SQL manually, complete that now.
+
+Click btn:[Done]. SuiteCRM will return to the Home page.
+
+== Post-upgrade steps
+
+After the wizard completes, run a repair to ensure all caches, relationships, and extensions are rebuilt correctly:
+
+. Navigate to menu:Admin[Repair].
+. Run *Rebuild Relationships*.
+. Run *Rebuild Extensions*.
+. Re-enable opcode caching if you disabled it before the upgrade.
+
+== Troubleshooting
+
+If the upgrade fails or produces unexpected results, check the upgrade log:
+
+----
+<suitecrm-root>/upgradeWizard.log
+----
+
+See also link:../troubleshooting/logs[Logs] and link:../troubleshooting/known-issues[Known Issues].

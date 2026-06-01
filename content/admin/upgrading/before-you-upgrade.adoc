@@ -1,0 +1,106 @@
+---
+title: "Before You Upgrade"
+weight: 10
+---
+:experimental:
+
+Complete every item on this page before running an upgrade, regardless of which method you use.
+
+== 1. Check the compatibility matrix
+
+Confirm that your current PHP version, database, and web server are supported by the target SuiteCRM version.
+
+link:../compatibility-matrix[View the Compatibility Matrix]
+
+If your stack needs updating, plan that work separately and complete it before upgrading SuiteCRM.
+
+== 2. Test on a development instance first
+
+Never run an upgrade directly on production. Clone your production environment — files and database — to a development or staging server and complete the full upgrade there before touching production.
+
+This is especially important if you have customisations. See link:../large-or-complex-upgrades[Large or Complex Upgrades] for a full guide to planning this process.
+
+== 3. Back up your instance
+
+Back up both your SuiteCRM files and your database before proceeding. If the upgrade fails or causes issues, a clean backup is the only reliable recovery path.
+
+[source,bash]
+----
+# Example: database backup
+mysqldump -u <user> -p <database_name> > suitecrm_backup_$(date +%Y%m%d).sql
+----
+
+Ensure the backup is stored outside the SuiteCRM root directory.
+
+== 4. Download the upgrade pack
+
+Download the appropriate upgrade pack from the link:https://suitecrm.com/upgrade-suitecrm/[SuiteCRM releases page].
+
+Upgrade packs are named in the format `SuiteCRM-Upgrade-7.x.x-to-7.x.x.zip`. Ensure you are downloading the pack for your exact starting version.
+
+== 5. Configure PHP settings
+
+The upgrade process requires generous PHP limits. Update your `php.ini` (or equivalent server configuration) with the following minimum values:
+
+[cols="2,1", options="header"]
+|===
+|Setting |Minimum value
+|`post_max_size` |60M
+|`upload_max_filesize` |60M
+|`max_input_time` |3000
+|`max_execution_time` |6000
+|`memory_limit` |256M
+|===
+
+Restart your web server after making changes for them to take effect.
+
+{{% notice info %}}
+These settings apply to the **Upgrade Wizard**. If you are using the link:../cli-upgrade[CLI upgrade], the PHP limits for web requests are less relevant, but `memory_limit` still applies to the CLI PHP process.
+{{% /notice %}}
+
+== 6. Configure SuiteCRM upload settings
+
+If using the Upgrade Wizard, the maximum upload size must also be increased within SuiteCRM itself:
+
+. Log in as an Administrator.
+. Navigate to menu:Admin[System Settings].
+. In the *Advanced* section, set *Maximum Upload Size* to `30000000` (30 MB).
+. Click btn:[Save].
+
+== 7. Disable opcode caching
+
+If your server uses an opcode cache (such as OPcache or APC), disable it before upgrading. A stale opcode cache can cause the upgraded application to behave unpredictably.
+
+Re-enable it after the upgrade is complete and you have confirmed the instance is working correctly.
+
+== 8. Check file permissions
+
+The web server user must have write permissions to the SuiteCRM root directory and all subdirectories during the upgrade. The upgrade process adds, replaces, and removes files across the installation.
+
+[source,bash]
+----
+# Example: set ownership on Linux (adjust user/group to match your web server)
+chown -R www-data:www-data /path/to/suitecrm
+----
+
+{{% notice warning %}}
+If running the CLI upgrade, be aware that any files created during the upgrade will be owned by the user running the command — not necessarily the web server user. See link:../cli-upgrade#file-permissions[CLI Upgrade: File Permissions] for details.
+{{% /notice %}}
+
+== 9. Verify config.php is writable
+
+The Upgrade Wizard requires that `config.php` in the SuiteCRM root directory is writable by the web server user before it will proceed.
+
+== Summary checklist
+
+Before starting, confirm:
+
+* [ ] Target version is compatible with your PHP, database, and web server
+* [ ] Development instance tested (or this is the development run)
+* [ ] Files and database backed up
+* [ ] Correct upgrade pack downloaded
+* [ ] PHP settings updated and web server restarted
+* [ ] SuiteCRM upload size set to 30 MB (Wizard only)
+* [ ] Opcode caching disabled
+* [ ] Web server user has write access to the SuiteCRM root
+* [ ] `config.php` is writable (Wizard only)
