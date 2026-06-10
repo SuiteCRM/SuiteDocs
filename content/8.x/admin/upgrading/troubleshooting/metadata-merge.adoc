@@ -1,0 +1,38 @@
+---
+title: "Metadata Merge Modes"
+weight: 20
+aliases:
+  - /8.x/admin/upgrading/additional-materials/metadata-merge/
+---
+:experimental:
+
+During the finalize step, you can control how view metadata customisations are handled using the `-m` option on the `suitecrm:app:upgrade-finalize` command. The default mode is `keep`.
+
+== Keep mode (default)
+
+Preserves your existing view metadata customisations and skips the merge process entirely.
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -m keep
+----
+
+== Merge mode
+
+Attempts to merge your current customisations with the new core view metadata for each module. Merged metadata is placed in `public/legacy/custom/<Module>/metadata`. A backup of the previous customisations is saved in the same folder.
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -m merge
+----
+
+== Override mode
+
+{{% notice warning %}}
+This mode deletes your current customisation files in `public/legacy/custom/<Module>/metadata` and replaces them with the new core metadata.
+{{% /notice %}}
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -m override
+----

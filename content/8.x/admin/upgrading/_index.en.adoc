@@ -1,7 +1,64 @@
 ---
-title: "Upgrading Guide"
+title: "SuiteCRM 8 Upgrade"
 weight: 20
+aliases:
+  - /8.x/admin/upgrading/general-info/
 ---
+:experimental:
 
-=== Table of Contents
-{{% children depth="3" showhidden="false" %}}
+This section covers upgrading between SuiteCRM 8.x versions. The upgrade process uses the `bin/console` command-line tool and applies the target version package to your existing installation.
+
+{{% notice info %}}
+**Migrating from SuiteCRM 7?** Moving from SuiteCRM 7 to SuiteCRM 8 is a migration, not an upgrade, and requires different steps. See link:../migration[Migrating from SuiteCRM 7].
+{{% /notice %}}
+
+== Before you start
+
+Review the link:before-you-upgrade[Before You Upgrade] page before doing anything else. It covers backups, compatibility checks, APP_ENV requirements, and file permissions.
+
+== Required actions
+
+Some versions require a manual action before or after upgrading. Check the table below for any steps that apply to your target version.
+
+[cols="1,2,3,2", options="header"]
+|===
+|Version |Type |Action required |Release notes
+
+|8.7.0
+|Configuration change
+|If there is an existing SAML configuration it will need to be updated before upgrading.
+|link:../releases/8.7/[8.7 Release notes]
+|===
+
+== Upgrade paths
+
+Always upgrade through the supported version steps. Do not skip versions — check the release notes for each version you pass through.
+
+* Upgrading from 8.2.x to the latest version: 8.2.x → Current
+* Upgrading from RC / 8.0.x / 8.1.x to the latest version: RC/8.0/8.1 → 8.2.x → Current
+* Upgrading from Beta to the latest version: Beta → RC/8.0.x/8.1.x → 8.2.x → Current
+
+[cols="1,2", options="header"]
+|===
+|Starting version |Guide
+
+|RC / 8.0.x / 8.1.x → 8.2.x, then 8.2.x → current
+|link:running-the-upgrade[Running the Upgrade]
+
+|8.0.x → 8.1.x
+|link:older-versions/upgrading-80-to-81-versions[Upgrading from 8.0.x to 8.1.x]
+
+|Beta → RC
+|link:older-versions/upgrading-rc-versions[Upgrading RC versions]
+|===
+
+== Upgrade restrictions
+
+* If you are on any version between 8.0.x and 8.1.x and want to upgrade to 8.3.x or later, you must first upgrade to 8.2.x.
+* There was a bug when upgrading to version 8.3.1, resolved in 8.4.0. See link:troubleshooting/known-issues[Known Issues] for details.
+
+== Compatibility
+
+Before downloading an upgrade pack, verify your PHP version, database, and web server are supported by the target version. See the link:../compatibility-matrix[Compatibility Matrix].
+
+{{% children depth="2" showhidden="false" %}}
