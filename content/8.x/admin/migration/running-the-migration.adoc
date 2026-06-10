@@ -1,0 +1,92 @@
+---
+title: "Running the Migration"
+weight: 20
+aliases:
+  - /8.x/admin/legacy-migration/8.7.0-legacy-migration/
+---
+:experimental:
+
+{{% notice info %}}
+This guide applies to migrations to SuiteCRM 8.7.0 and later. If you are migrating to a version between 8.2.0 and 8.6.x, see the link:older-versions/8.2.0-legacy-migration[Migration guide for 8.2.0–8.6.x].
+{{% /notice %}}
+
+{{% notice note %}}
+Only run the migration if your SuiteCRM 7.x instance is already on the latest 7.14.x version.
+{{% /notice %}}
+
+== 1. Download the migration package
+
+. Download the SuiteCRM 8 migration package for your target version (e.g. `8.7.0 Upgrade from 7.14.x`) from the link:https://suitecrm.com/upgrade-suitecrm/[SuiteCRM releases page].
+. Unzip the package contents to your SuiteCRM 8 destination folder, e.g. `/var/www/<SuiteCRM8-folder>`.
+. Re-set permissions if needed.
+
+== 2. Copy your SuiteCRM 7.14.x instance
+
+. Copy your SuiteCRM 7.14.x instance folder into the `public` folder of the SuiteCRM 8 destination, e.g. `/var/www/<SuiteCRM8-folder>/public/<SuiteCRM7-folder>`.
+. Rename the copied folder to `legacy`, giving you `/var/www/<SuiteCRM8-folder>/public/legacy`.
+. Re-set permissions if needed.
+
+== 3. Apply required files from the migration package
+
+As of SuiteCRM 8.7.x, some folders and files must be updated manually before running the migration scripts.
+
+. Replace `/var/www/<SuiteCRM8-folder>/public/legacy/vendor` with the `vendor` folder from `tmp/package/upgrade/legacy-migration/vendor`.
+. Replace `/var/www/<SuiteCRM8-folder>/public/legacy/include` with the `include` folder from `tmp/package/upgrade/legacy-migration/include`.
+. Replace `/var/www/<SuiteCRM8-folder>/public/legacy/deprecated.php` with the `deprecated.php` file from `tmp/package/upgrade/deprecated.php`.
+
+== 4. Set permissions
+
+Set permissions so that the command-line user has read and write access to the instance files.
+
+== 5. Run the migration prepare command
+
+. From your SuiteCRM 8 instance root, run:
++
+[source,bash]
+----
+./bin/console suitecrm:app:setup-legacy-migration
+----
+
+. When prompted, update the following values in the legacy config:
+** `session_dir` — set to `''`. You can reconfigure this after migration. See link:../../configuration/sessions-configuration[Session Configuration].
+** `site_url` — set to the address you are using to access this SuiteCRM 8 instance. If your vhost does not point directly to the `public` directory, append `/public` (e.g. `https://your-host/crm/public`).
+
+. When prompted, update the `RewriteBase` in the legacy `.htaccess`:
+** If your vhost points directly to the `public` directory: set `RewriteBase /legacy`
+** Otherwise, prepend the path to the `public` folder (e.g. `RewriteBase /crm/public/legacy`)
+
+== 6. Run the upgrade command
+
+From your SuiteCRM 8 instance root:
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade -t SuiteCRM-8.7.0
+----
+
+Replace `SuiteCRM-8.7.0` with the name of your downloaded package.
+
+== 7. Run the post-upgrade command
+
+{{% notice note %}}
+If your instance has customisations, ensure your custom code complies with the minimum PHP version listed in the link:../../compatibility-matrix[Compatibility Matrix].
+{{% /notice %}}
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize
+----
+
+See link:../upgrading/troubleshooting/metadata-merge[Metadata Merge Modes] for options to control how view metadata customisations are handled during this step.
+
+== 8. Re-set permissions
+
+If you ran the migration commands as a different user from the web server user (e.g. as root), re-set permissions so that the web server can read and write the files.
+
+== 9. Restart server (optional)
+
+If you are using `opcache`, `apcu`, or other PHP caches, restart your web server to clear the cache.
+
+== 10. Open your instance
+
+Once all steps are complete, you should be able to log into your SuiteCRM 8 instance.

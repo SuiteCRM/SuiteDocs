@@ -1,6 +1,8 @@
 ---
-Title: Migration - 7.12.x+ to 8.2.x+ (old)
+title: "Migration from 7.12.x to 8.2.x–8.6.x"
 weight: 30
+aliases:
+  - /8.x/admin/legacy-migration/8.2.0-legacy-migration/
 ---
 
 :imagesdir: /images/en/user

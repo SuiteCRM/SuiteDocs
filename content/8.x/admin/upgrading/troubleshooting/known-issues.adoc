@@ -1,0 +1,68 @@
+---
+title: "Known Issues"
+weight: 30
+aliases:
+  - /8.x/admin/upgrading/additional-materials/upgrading-issues/
+---
+:experimental:
+
+== Upgrading from 8.0.x to 8.1.x
+
+After running the upgrade command you may see:
+
+[source,bash]
+----
+Error running migrations
+
+In ClassLoader.php line 576:
+
+  Warning: include(<path>/vendor/composer/../symfony/maker-bundle/src/Event/ConsoleErrorSubscriber.php): failed to open stream: No such file or directory
+----
+
+*Resolution:* Re-run the following from the SuiteCRM 8 root directory:
+
+[source,bash]
+----
+composer install
+----
+
+== Upgrading from 8.1.0 to 8.1.1
+
+If you had previously upgraded (e.g. 8.0.2 → 8.0.4 → 8.1.1), running the upgrade command may produce:
+
+[source]
+----
+CRITICAL  [php] Fatal Compile Error: require(): Failed opening required '/<path>/cache/prod/ContainerZatgzYy/getConsole_ErrorListenerService.php'
+----
+
+This is caused by Symfony cache clearing being called immediately after clearing.
+
+*Resolution:* Re-set permissions, then run:
+
+[source,bash]
+----
+bin/console clear:cache
+----
+
+== Upgrading to version 8.3.1
+
+A bug in the 8.3.1 upgrade process causes it to fail if you are upgrading from below 8.3.0. First upgrade to 8.3.0, then upgrade to 8.3.1.
+
+This issue is resolved in 8.4.0. If you are upgrading to 8.4.0 or later you can upgrade directly from any 8.2.x version.
+
+== Upgrading from Beta 3 to the RC version
+
+After the upgrade command you may see:
+
+[source,bash]
+----
+Running: clear-symfony-cache
+PHP Fatal error:  Interface 'Stringable' not found in /<path>/vendor/symfony/string/AbstractString.php on line 30
+----
+
+*Resolution:* Clear the Symfony cache from your instance root:
+
+[source,bash]
+----
+./bin/console cache:clear
+----
