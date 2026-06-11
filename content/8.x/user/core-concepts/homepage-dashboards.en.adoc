@@ -20,13 +20,13 @@ When adding Dashlets, the Add Dashlets pop-up is organised into four tabs:
 * *Tools*: Contains a range of utility Dashlets. Two particularly useful ones are JotPad and Activity Stream, both of which are described in the sections below.
 * *Web*: Allows you to embed external web pages or content directly into a Dashlet on your Homepage.
 
+image:add-dashlets.png[ Add Dashlets pop-up showing multiple tabs]
+
 === Adding Dashlets
 
 To add a Dashlet, click the *Add Dashlets* button from the *Actions* drop-down on the Homepage. This will open the _Add Dashlets_ pop-up, which allows you to select from a range of out-of-the-box Dashlets.
 
 Simply click on a Dashlet name to add it to your Homepage. The pop-up will remain open after each selection, allowing you to add multiple Dashlets in one go. Once you have added all the Dashlets you need, close the pop-up to return to your Homepage.
-
-image:homepage-with-dashlets.png[Homepage showing multiple Dashlets]
 
 === Removing Dashlets
 

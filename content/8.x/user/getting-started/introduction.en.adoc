@@ -7,19 +7,42 @@ weight: 10
 
 == About This Guide
 
-This guide is intended for end users of SuiteCRM (version 8.x). It provides guidance on how to navigate within SuiteCRM, manage records, and carry out the day-to-day tasks you will need to perform in your role.
+This guide is intended for end users of SuiteCRM. It provides guidance on how to navigate within SuiteCRM, manage records, and carry out the day-to-day tasks you will need to perform in your role.
+
+{{% notice note %}}
+This guide covers SuiteCRM 8.x. If you are unsure which version your organisation runs, click **your name** in the top-right section of the navigation menu and select **About**. The version number is displayed under the SuiteCRM logo.
+{{% /notice %}}
+
+Two things to be aware of before you start:
+
+* *Your system may look different from the screenshots:* administrators can hide modules you do not use, rename fields, add fields, and rearrange screens. If something in this guide is missing from your system, it has most likely been switched off or renamed rather than being unavailable.
+* *This guide does not cover administration or development:* setting up users, configuring the system, and extending it in code are covered in the link:../../../admin/[Administrator Guide] and link:../../../developer/[Developer Guide].
 
 A glossary of key terms and definitions used throughout this guide can be found in the link:../../appendix/glossary[Glossary].
 
 == What is SuiteCRM?
 
-SuiteCRM is a Customer Relationship Management (CRM) system. It helps your organisation manage all of its interactions and relationships with customers, prospects, and partners in one central place. Rather than relying on scattered spreadsheets, email inboxes, and individual notes, SuiteCRM gives your teams a single, shared view of your customer data, so that everyone is working from the same up-to-date information.
+SuiteCRM is an open-source Customer Relationship Management (CRM) system. It helps your organisation manage all of its interactions and relationships with customers, prospects, and partners in one central place. Rather than relying on scattered spreadsheets, email inboxes, and individual notes, SuiteCRM gives your teams a single, shared view of your customer data, so that everyone is working from the same up-to-date information.
+
+Everything described in this guide is part of SuiteCRM itself. There are no paid tiers with extra features: if a module is not available to you, it is because an administrator has switched it off, not because it needs to be purchased separately.
+
+=== How SuiteCRM is Organised
+
+It is important to understand the difference between a *record* and a *module*:
+
+* *Record:* an individual entry, such as a single Contact, Account, Opportunity, or Note. Each record has its own page, where you can see its details and everything connected to it.
+* *Module:* a collection of records of the same type. The Contacts module holds your contact records, the Accounts module holds your organisations, and so on. Each module has a List View for finding and working with many records at once, and a Detail View for looking at one record in detail.
+
+Records are linked to each other, which is what makes a CRM more useful than a spreadsheet. A Contact belongs to an Account, an Opportunity relates to both, and any Call, Meeting, Email, Note, or Document you log is attached to the records it concerns.
 
 === What can SuiteCRM help you do?
 
-* *Manage your customers and contacts:* Store and access all information about the companies and individuals your organisation works with, including contact details, communication history, and associated documents.
-* *Log and schedule activities:* Record calls, meetings, and tasks against the relevant records so that nothing gets missed and your colleagues can see what has been done and what is outstanding.
-* *Run marketing campaigns:* Manage targeted marketing campaigns and track their effectiveness directly within the system.
-* *Report on your data:* Generate reports and dashboards to give you visibility of performance across your organisation.
-
-SuiteCRM is built around the concept of *records* (individual entries of data such as a Contact, an Account, or a Note), and *modules*, which are the different sections of the system dedicated to managing each type of record. It is important to understand this structure to easily navigate and work with SuiteCRM.
+* *Manage organisations and people:* store everything you know about the companies and individuals your organisation works with, including contact details, addresses, and your own categories. Every Call, Email, Meeting, Note, and Document is attached to the record, so anyone on your team can see the full history in one place.
+* *Track sales from first enquiry to close:* capture and qualify leads, convert them into contacts and Opportunities, and manage them through your pipeline. Build Quotes from a catalogue of the products and services you sell, convert them to Invoices, and track Contracts through their renewal cycle.
+* *Handle customer service:* log support enquiries, complaints, and service requests as Cases, assign them to agents, and track how long they take to resolve. Cases can be created automatically from incoming email, and a Knowledge Base lets you publish answers to common questions.
+* *Run campaigns:* send marketing and transactional email Campaigns, segment recipients into Target Lists, and monitor open rates, click-throughs, and bounces.
+* *Plan your day:* keep calls, meetings, tasks, and events in one calendar, see your colleagues' availability, and get notified when you are invited or a reminder is due.
+* *Produce documents from your data:* design a template once and let SuiteCRM populate it, generating branded quotes, invoices, contracts, and letters with details pulled from the linked records.
+* *Automate routine work:* workflows can assign new records to the right person, escalate cases, alert you to high-value opportunities, and update fields, all without anyone having to remember.
+* *Report on your data:* build reports across any module with filters, groupings, and charts, save them for reuse, and schedule them by email. Add them to dashboards on your homepage.
+* *Find things quickly:* search across every module at once, filter any list on multiple criteria, save the filters you use often, and star the records you return to regularly.
