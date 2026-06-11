@@ -6,6 +6,7 @@
 
 <div class="home-title-wrap">
 	<h1 class="home-title">{{ T "suitedocs-title" }}</h1>
+	{{ with .Site.Home.Description }}<p class="home-subtitle">{{ . }}</p>{{ end }}
 </div>
 
 <div class="home-ctas">
@@ -20,20 +21,9 @@
      </div>
 </div>
 
-<!--
-<div class="home-row2">
-     <div class="home-cta4">
-          {{ partial "home-cta4.html" . }}
-     </div>
-</div>
--->
-
 <div class="home-recent">
-     <div class="home-blog-latest">
+     <div class="home-blog-latest home-blog-latest--full">
           {{ partial "last-blog-posts.html" . }}
-     </div>
-     <div class="home-recently-edited">
-          {{ partial "recently-edited.html" . }}
      </div>
 </div>
 

@@ -21,6 +21,9 @@ ignoreErrors = ["error-remote-getjson"]
   showVisitedLinks = true
   themeVariant = "suitecrm"
 
+  sidebarAnnouncementText = "NEED DEDICATED SUPPORT?<br>Check out your options"
+  sidebarAnnouncementUrl  = "https://suitecrm.com/enterprise/support-plans/"
+
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 section = [ "HTML", "RSS"]
@@ -39,28 +42,6 @@ weight = 1
 languageName = "English"
 languageDir = "/"
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fa fa-newspaper-o'></i> Blog"
-url = "blog"
-weight = 10
-
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fa fa-github'></i> GitHub"
-identifier = "ds"
-url = "https://github.com/SuiteCRM/SuiteCRM"
-weight = 11
-
-
-# [[Languages.en.menu.shortcuts]]
-# name = "<i class='fa fa-bookmark'></i> Hugo Documentation"
-# identifier = "hugodoc"
-# url = "https://gohugo.io/"
-# weight = 20
-
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fa fa-bullhorn'></i> Credits"
-url = "/credits"
-weight = 30
 
 # ------------------------------------------------------------
 # ------------------ SPANISH ---------------------------------
@@ -72,38 +53,6 @@ weight = 2
 languageName = "Español"
 languageDir = "/es/"
 
-[[Languages.es.menu.shortcuts]]
-name = "<i class='fa fa-github'></i> GitHub"
-identifier = "ds"
-url = "https://github.com/SuiteCRM/SuiteCRM"
-weight = 10
-
-[[Languages.es.menu.shortcuts]]
-name = "<i class='fa fa-newspaper-o'></i> Blog"
-url = "blog"
-weight = 10
-
-[[Languages.es.menu.shortcuts]]
-name = "<i class='fa fa-github'></i> GitHub"
-identifier = "ds"
-url = "https://github.com/SuiteCRM/SuiteCRM"
-weight = 11
-
-[[Languages.es.menu.shortcuts]]
-name = "<i class='fa fa-bullhorn'></i> Gracias"
-url = "/credits"
-weight = 30
-
-# [[Languages.es.menu.shortcuts]]
-# name = "<i class='fa fa-camera'></i> Vitrine"
-# url = "/showcase"
-# weight = 11
-
-# [[Languages.es.menu.shortcuts]]
-# name = "<i class='fa fa-bookmark'></i> Documentation Hugo"
-# identifier = "hugodoc"
-# url = "https://gohugo.io/"
-# weight = 20
 
 # ------------------------------------------------------------
 # ------------------ RUSSIAN ---------------------------------
