@@ -65,11 +65,11 @@
 <nav id="topmenu" class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}">
 	
 	<ul class="menu_desktop">
-		<li><a title="Documentation" href="{{.Site.Language.Params.LanguageDir}}">{{ i18n "Documentation" }}</a></li><li class="guide guide_start">{{ i18n "Guides" }}:</li><li class="guide"><a title="User Guide" href="{{.Site.Language.Params.LanguageDir}}user/">{{ i18n "User" }}</a></li><li class="guide"><a title="Developer Guide" href="{{.Site.Language.Params.LanguageDir}}developer/">{{ i18n "Developer" }}</a></li><li class="guide"><a title="Administrator Guide" href="{{.Site.Language.Params.LanguageDir}}admin/">{{ i18n "Administrator" }}</a></li><li class="guide guide_end"><a href="{{.Site.Language.Params.LanguageDir}}community/">{{i18n "Community" }}</a></li><li><a title="Technical Blog" href="{{.Site.Language.Params.LanguageDir}}blog/">{{ i18n "TechnicalBlog" }}</a></li>
-	</ul> 
-	
+		<li><a title="Documentation" href="{{.Site.Language.Params.LanguageDir}}">{{ i18n "Documentation" }}</a></li><li class="guide guide_start">{{ i18n "Guides" }}:</li><li class="guide"><a title="SuiteCRM 7 Guide" href="{{.Site.Language.Params.LanguageDir}}user/">SuiteCRM 7</a></li><li class="guide"><a title="SuiteCRM 8 Guide" href="{{.Site.Language.Params.LanguageDir}}8.x/">SuiteCRM 8</a></li><li class="guide guide_end"><a href="{{.Site.Language.Params.LanguageDir}}community/">{{i18n "Community" }}</a></li><li><a title="Technical Blog" href="{{.Site.Language.Params.LanguageDir}}blog/">{{ i18n "TechnicalBlog" }}</a></li>
+	</ul>
+
 	<ul class="menu_mobile">
-		<li><a title="Documentation" href="{{.Site.Language.Params.LanguageDir}}">>{{i18n "Documentation" }}</a></li><li><a title="Technical Blog" href="{{.Site.Language.Params.LanguageDir}}blog/">>{{i18n "Technical Blog" }}</a></li><br><li class="guide guide_start">>{{i18n "Guides"}}:</li><li class="guide"><a title="User Guide" href="{{.Site.Language.Params.LanguageDir}}user/">>{{i18n "User" }}</a></li><li class="guide"><a title="Developer Guide" href="{{.Site.Language.Params.LanguageDir}}developer/">>{{i18n "Developer" }}</a></li><li class="guide guide_end"><a title="Administrator Guide" href="{{.Site.Language.Params.LanguageDir}}admin/">>{{i18n "Admin-SHORT" }}</a></li><li class="guide guide_end"><a href="{{.Site.Language.Params.LanguageDir}}community/">>{{i18n "Community" }}</a></li>
+		<li><a title="Documentation" href="{{.Site.Language.Params.LanguageDir}}">>{{i18n "Documentation" }}</a></li><li><a title="Technical Blog" href="{{.Site.Language.Params.LanguageDir}}blog/">>{{i18n "Technical Blog" }}</a></li><br><li class="guide guide_start">>{{i18n "Guides"}}:</li><li class="guide"><a title="SuiteCRM 7 Guide" href="{{.Site.Language.Params.LanguageDir}}user/">>SuiteCRM 7</a></li><li class="guide"><a title="SuiteCRM 8 Guide" href="{{.Site.Language.Params.LanguageDir}}8.x/">>SuiteCRM 8</a></li><li class="guide guide_end"><a href="{{.Site.Language.Params.LanguageDir}}community/">>{{i18n "Community" }}</a></li>
 	</ul>
 	
 	
@@ -134,16 +134,28 @@
 
     <div class="highlightable">
     <ul class="topics">
+        {{ $v7user    := .Site.GetPage "user" }}
+        {{ $v7admin   := .Site.GetPage "admin" }}
+        {{ $v7dev     := .Site.GetPage "developer" }}
+        {{ $v8user    := .Site.GetPage "/8.x/user" }}
+        {{ $v8admin   := .Site.GetPage "/8.x/admin" }}
+        {{ $v8dev     := .Site.GetPage "/8.x/developer" }}
+        {{ $community := .Site.GetPage "community" }}
+        {{ $blog      := .Site.GetPage "blog" }}
 
-        {{if eq .Site.Params.ordersectionsby "title"}}  
-          {{range .Site.Home.Sections.ByTitle}}
-          {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
-          {{end}}
-        {{else}}
-          {{range .Site.Home.Sections.ByWeight}}
-          {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
-          {{end}}
-        {{end}} 
+        <li class="nav-group-title"><span>SuiteCRM 7</span></li>
+        {{ if $v7user}}{{ template "section-tree-nav" dict "sect" $v7user "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+        {{ if $v7admin }}{{ template "section-tree-nav" dict "sect" $v7admin "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+        {{ if $v7dev }}{{ template "section-tree-nav" dict "sect" $v7dev "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+
+        <li class="nav-group-title"><span>SuiteCRM 8</span></li>
+        {{ if $v8user }}{{ template "section-tree-nav" dict "sect" $v8user "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+        {{ if $v8admin }}{{ template "section-tree-nav" dict "sect" $v8admin "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+        {{ if $v8dev }}{{ template "section-tree-nav" dict "sect" $v8dev "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+
+        <li class="nav-group-title"><span>Community</span></li>
+        {{ if $community }}{{ template "section-tree-nav" dict "sect" $community "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+        {{ if $blog }}{{ template "section-tree-nav" dict "sect" $blog "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
     </ul>
 
     {{ $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle}}
@@ -187,7 +199,7 @@
     {{safeHTML .Params.head}}
     <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item 
         {{if .IsAncestor $currentNode }}parent{{end}}
-        {{if eq .File.UniqueID $currentFileUniqueID}}active{{end}}
+        {{ with .File }}{{ if eq .UniqueID $currentFileUniqueID }}active{{ end }}{{ end }}
         {{if .Params.alwaysopen}}parent{{end}}
         ">
       <a href="{{.RelPermalink}}">
@@ -225,7 +237,7 @@
     </li>
   {{else}}
     {{ if not .Params.Hidden }}
-    <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item {{if eq .File.UniqueID $currentFileUniqueID}}active{{end}}">
+    <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item {{ with .File }}{{ if eq .UniqueID $currentFileUniqueID }}active{{ end }}{{ end }}">
         <a href="{{ .RelPermalink}}">
         {{safeHTML .Params.Pre}}{{or .Params.menuTitle .LinkTitle .Title}}{{safeHTML .Params.Post}}
         {{ if $showvisitedlinks}}<i class="fas fa-check read-icon"></i>{{end}}

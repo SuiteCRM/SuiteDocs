@@ -1,6 +1,6 @@
 ---
 title: "Administrator Guide"
-weight: 30
+weight: 20
 ---
 
 === Table of Contents

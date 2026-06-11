@@ -1398,3 +1398,17 @@ div.license p {
 .ulist li p {
    margin: 0.5rem 0;
 }
+
+/* Sidebar navigation group header */
+#sidebar .nav-group-title {
+   list-style: none;
+   padding: 0.6rem 1rem 0.3rem;
+   font-size: 0.75rem;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.08em;
+   color: var(--MENU-SECTIONS-LINK-color);
+   opacity: 0.6;
+   margin-top: 0.5rem;
+   pointer-events: none;
+}

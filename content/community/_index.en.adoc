@@ -1,8 +1,6 @@
-
 ---
 title: "Community Guide"
-weight: 40
-pre: "<b>4. </b>"
+weight: 50
 ---
 
 === Table of Contents
