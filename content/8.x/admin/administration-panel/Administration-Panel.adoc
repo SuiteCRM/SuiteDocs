@@ -5,136 +5,134 @@ weight: 20
 
 :imagesdir: /images/en/8.x/admin/administration-panel
 
-=== Administration Panel
+== Administration Panel
 
-The Admin Panel lists all the various configuration options and settings that a client may with to update to personalise
-their own CRM system.
+The Administration Panel lists all the configuration options and settings available to personalise and manage your SuiteCRM. Selecting an option highlights it and shows a short description of what it controls.
 
-When selecting an option to visit, it will highlight in purple and show you a small description of what each setting is for
+image:admin_panel.png[Administration Panel]
 
-image:Admin-Panel-Highlighted.png[Admin-Panel-Highlighted.png]
+[NOTE]
+====
+You can jump directly to any admin panel using the Admin Multi-menu, without returning to this index page each time. This lets you move between settings more quickly once you know where you are going.
+====
 
-Below you will find links to pages that describe each aspect of the following settings:
+image:admin-multi-menu.png[Admin Multi-menu]
 
-image:Admin-Panel-Top.png[Admin-Panel-Top.png]
+The list below describes each setting and links to the relevant documentation.
 
-image:Admin-Panel-Bottom.png[Admin-Panel-Bottom.png]
+== Users & Authentication
 
-==== Users & Authentication
+* link:../../../../admin/administration-panel/users[User Management]
+** Create, edit, activate, and deactivate user accounts, and set user type and access.
+* link:../../../../admin/administration-panel/roles-and-security-groups[Role Management]
+** Define what users can see and do across each module using the role access matrix.
+* link:../../../../user/modules/passwordmanagement[Password Management]
+** Set password security rules, automatic password generation, and Two-Factor Authentication.
+* link:../../../../developer/api/developer-setup-guide/configure-authentication[OAuth2 Clients and Tokens]
+** Create and manage the API clients and the access tokens issued to them for authenticating with the SuiteCRM V8 REST API.
+* link:../../../../developer/api/developer-setup-guide/configure-authentication[OAuth Keys]
+** Manage the OAuth keys (client ID and secret) used to authenticate external applications with the SuiteCRM V8 REST API.
+* link:../../../../admin/administration-panel/roles-and-security-groups[Security Suite Group Management]
+** Create and manage groups of users to control which records each team can see.
+* link:../../../../user/security-suite-groups[Security Suite Settings]
+** Configure system-wide Security Groups behaviour, such as inheritance and additive security.
 
-* link:../../../../admin/administration-panel/users[Users]
-** User Management
-** Role Management
-** Password Management
-* link:../../../../admin/administration-panel/roles-and-security-groups/[Roles & Security Groups]
-** Role Management
-** Security Suite Group Management
-** Security Suite Settings
-* link:../../../../developer/api/developer-setup-guide/managing-tokens/[OAuth2 Clients and Tokens]
-** OAuth Tokens and Clients
+== System
 
-==== System
-
-* link:../../../../admin/administration-panel/system/[System]
-** System Settings
-** Locale
-** Currencies
-** Languages
-** Themes
-** link:../administration-panel/schedulers/[Schedulers]
-
-* link:../../../../admin/administration-panel/search/elasticsearch/[Elasticsearch]
-** Elasticsearch
-
+* link:../../../../admin/administration-panel/system/#_system_settings[System Settings]
+** Configure system-wide interface settings such as the system name, logo, and records shown per page.
+* link:../../../../admin/administration-panel/system/#_currencies[Currencies]
+** Add and manage currencies available throughout SuiteCRM.
+* link:../../../../admin/installation-guide/language-management[Languages]
+** Install and manage the languages available in SuiteCRM.
+* link:../../../../admin/administration-panel/system/#_locale[Locale]
+** Set system-wide date, time, currency, number, and name formats.
 * PDF Settings
-* Search Settings
+** Choose the engine used to generate PDF documents.
+* link:../../../../admin/administration-panel/system/#_global_search[Search Settings]
+** Control which modules appear in global search and the order of results.
+* link:../../../../admin/administration-panel/search/elasticsearch[Elasticsearch]
+** Configure full-text search powered by Elasticsearch for faster, more powerful searching.
+* link:../../../../admin/administration-panel/system/#_scheduler[Schedulers]
+** View, schedule, and manage the automated background jobs that keep SuiteCRM running.
+* Themes
+** Set the default theme and appearance options for SuiteCRM.
 
-==== Module Settings
+== Module Settings
 
-* link:../../../../admin/administration-panel/system/#_activity_streams[Activity Stream]
-** Activity Stream Settings
-
+* link:../../../../admin/administration-panel/system/#_activity_streams[Activity Stream Settings]
+** Configure what appears in the Activity Stream feed.
 * link:../../../../admin/administration-panel/advanced-openadmin/#_business_hours[Business Hours]
-** Business Hours
-
-* link:../../../../admin/administration-panel/advanced-openadmin/#_aop_settings[Cases]
-** Case Module Settings
-
-* link:../../../../admin/administration-panel/developer-tools/#_configure_module_menu_filters[Module Menu Filters]
-** Configure Module Menu Filters
-
+** Set your organisation's working hours, used by scheduled workflows and project working-day calculations.
+* link:../../../../admin/administration-panel/advanced-openadmin/#_aop_settings[Case Module Settings]
+** Configure settings for the Cases module, including case handling and inbound case email.
+* link:../../../../admin/administration-panel/developer-tools/#_configure_module_menu_filters[Configure Module Menu Filters]
+** Control which filter presets appear in each module's navigation menu.
 * Connectors
-
+** Connect SuiteCRM to external data sources.
 * link:../../../../admin/administration-panel/developer-tools/#_display_modules_and_subpanels[Display Modules and Subpanels]
-** Display Modules and Subpanels
-
+** Control which modules appear in the navigation bar and which sub-panels appear on records.
 * link:../../../../admin/administration-panel/developer-tools/#_history_subpanel[History Subpanel]
-** History Subpanel
-
-* link:../../../../admin/administration-panel/advanced-openadmin/#_aos_settings[Sales Module Settings]
-** Sales Module Settings
-
+** Configure the History sub-panel that consolidates past activities on a record.
+* link:../../../../admin/administration-panel/advanced-openadmin[Sales Module Settings]
+** Configure settings for the Sales module.
 * link:../../../../admin/administration-panel/release[Releases]
-** Releases
+** View information about installed releases and updates.
 
-==== Emails
+== Email
 
-* link:../../../../admin/administration-panel/emails/email[Emails]
-** Email Settings
-** Inbound Email
-** Outbound Email
-** Campaign Email Settings
-** Email Queue
+* link:../../../../admin/administration-panel/emails/email/#_email_settings[Email Settings]
+** Configure the system outbound account used for notifications, password resets, and workflow emails.
+* link:../../../../admin/administration-panel/emails/email/#_inbound_email[Inbound Email]
+** Set up group mailboxes and bounce handling accounts for receiving email.
+* link:../../../../admin/administration-panel/emails/email/#_outbound_email[Outbound Email]
+** Set up system and personal outbound accounts for sending email.
+* link:../../../../admin/administration-panel/emails/inboundemail-oauth-howto[External OAuth Connections]
+** Store the OAuth tokens used by email accounts to authenticate with external providers.
+* link:../../../../admin/administration-panel/emails/oauth-provider-overview[External OAuth Providers]
+** Set up the OAuth application credentials for each external provider.
+* link:../../../../admin/administration-panel/emails/email/#_campaign_email_settings[Campaign Email Settings]
+** Control the batch size and behaviour of bulk campaign email sending.
+* link:../../../../admin/administration-panel/emails/email/#_email_queue[Email Queue]
+** View and send outbound campaign emails waiting in the queue.
 
-* link:../../../../admin/administration-panel/emails/inboundemail-oauth-howto/[How to configure Inbound Email with OAuth]
-** External OAuth Connections
+== Admin Tools
 
-* link:../../../../admin/administration-panel/emails/oauth-provider-overview/[External OAuth Provider Overview]
-** External OAuth Providers
-
-==== Admin Tools
-
-* link:../../../../admin/administration-panel/system/[System]
-** Repair
-** Backups
-** Diagnostic Tool
-
-* link:../../../../user/introduction/user-interface/record-management/#_importing_records[Importing Records]
-** Import Wizard
-
+* link:../../../../admin/administration-panel/system/#_repair[Repair]
+** Repair and rebuild the system after changes; the first step for most issues.
+* link:../../../../admin/administration-panel/system/#_backups[Backups]
+** Back up your SuiteCRM application files.
+* link:../../../../admin/administration-panel/system/#_diagnostic_tool[Diagnostic Tool]
+** Package your environment details to share with technical support.
+* link:../../../../admin/administration-panel/system/#_import_wizard[Import Wizard]
+** Import data into SuiteCRM modules from a CSV file using a guided wizard.
 * link:../../../../admin/administration-panel/developer-tools/#_module_loader[Module Loader]
-** Module Loader
+** Install, manage, and remove modules and add-on packages.
 
-==== Developer Tools
+== Developer Tools
 
 * link:../../../../admin/administration-panel/studio[Studio]
-** Studio
+** Configure the fields, layouts, and relationships of existing modules.
+* link:../../../../admin/administration-panel/developer-tools[Rename Modules]
+** Change the display labels of modules, for example renaming Accounts to Organisations.
+* link:../../../../admin/administration-panel/developer-tools/#_module_builder[Module Builder]
+** Create new custom modules from a set of starter templates.
+* link:../../../../admin/administration-panel/developer-tools/#_dropdown_editor[Dropdown Editor]
+** Manage the value lists used in dropdown and multi-select fields.
+* link:../../../../user/advanced-modules/workflow[Workflow Manager]
+** Create automated business processes triggered by record events.
 
-* link:../../../../admin/administration-panel/developer-tools[Developer Tools]
-** Rename Modules
-** Module Builder
-** Dropdown Editor
+== Google Suite
 
-* link:../../../../user/advanced-modules/workflow[Workflows]
-** Workflow Manager
-
-==== Google Suite
-
-* link:../../../../admin/administration-panel/google-sync/#_overview[Google Credentials and Syncing]
-** Google Calendar Settings
-
-* link:../../../../admin/administration-panel/google-maps/#_google_map_setup[Google Maps]
-** Google Maps Settings
-** Geocoding Test
-** Geocode Addresses
-** Address Cache
-
-== Admin Multi-Menu
-
-You can now visit any menu in the admin page via the Admin Multi-menu.
-
-image:Admin-Panel-Extended.png[Admin-Panel-Extended.png]
-
-image:Admin-Panel-Scheduler.png[Admin-Panel-Extended.png]
-
-image:Scheduler-View.png[Scheduler-View.png]
+* link:../../../../admin/administration-panel/google-sync[Google Calendar Settings]
+** Configure Google Calendar synchronisation.
+* link:../../../../admin/administration-panel/google-maps[Google Maps Settings]
+** Configure Google Maps integration.
+* link:../../../../admin/administration-panel/google-maps[Geocoded Counts]
+** View the count of records that have been geocoded.
+* link:../../../../admin/administration-panel/google-maps[Geocoding Test]
+** Test the geocoding configuration.
+* link:../../../../admin/administration-panel/google-maps[Geocode Addresses]
+** Geocode existing address records.
+* link:../../../../admin/administration-panel/google-maps[Address Cache]
+** Manage the cache of geocoded addresses.
