@@ -1,7 +1,6 @@
 ---
 title: "Administrator Guide"
-weight: 30
-pre: "<b>3. </b>"
+weight: 20
 ---
 
 === Table of Contents

@@ -1,7 +1,6 @@
 ---
 title: "Developer Guide"
-weight: 20
-pre: "<b>2. </b>"
+weight: 30
 ---
 
 === Table of Contents

@@ -2,17 +2,17 @@
 <h4 class="hd">{{ T "FromTechnicalBlog" }}</h4>
 
 <div class="blog_wrap">
-{{ range first 3 ( sort (where .Site.RegularPages "Section" "blog") "Date" "desc" ) }} 
+{{ $posts := getJSON "https://suitecrm.com/wp-json/wp/v2/posts?per_page=3&_fields=title,link,date,content" }}
+{{ range $posts }}
 
-  <h3><a href="{{ .URL }}">{{ .Params.title }}</a></h3>{{ partial "tags.html" . }}
-  <p class="author">
-    {{ if .Params.Author }}By {{ .Params.Author }} | {{ end }}{{ .Date.Format "January 2, 2006" }}
-  </p>
-  {{ .Summary }}
-  {{ if .Truncated }}
-  <p>
-    <a class="more" href="{{ .RelPermalink }}">Read More ></a>
-  </p>
-  {{ end }}
+  {{ $title := .title.rendered | replaceRE `<[^>]+>` "" | replaceRE `&#8217;|&#8216;` "'" | replaceRE `&#8220;|&#8221;` "\"" | replaceRE `&#8211;|&#8212;` "-" | replaceRE `&#8230;` "..." | replaceRE `&amp;` "&" | replaceRE `&#[0-9]+;` "" | replaceRE `&[a-z]+;` "" }}
+
+  {{ $text := .content.rendered | replaceRE `<[^>]+>` " " | replaceRE `\s+` " " | replaceRE `&#8217;|&#8216;` "'" | replaceRE `&#8220;|&#8221;` "\"" | replaceRE `&#8211;|&#8212;` " - " | replaceRE `&#8230;` "..." | replaceRE `&amp;` "&" | replaceRE `&#[0-9]+;` "" | replaceRE `&[a-z]+;` "" | truncate 200 "..." }}
+
+  <h3><a href="{{ .link }}" target="_blank" rel="noopener">{{ $title }}</a></h3>
+  <p class="author">{{ dateFormat "January 2, 2006" .date }}</p>
+  <p>{{ $text }}</p>
+  <p><a class="more" href="{{ .link }}" target="_blank" rel="noopener">Read More ></a></p>
+
 {{ end }}
 </div>

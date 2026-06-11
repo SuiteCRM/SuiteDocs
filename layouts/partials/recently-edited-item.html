@@ -1,13 +1,14 @@
 <ul>
 {{ range  . }}
+    {{ $path := .Path }}
     <li>
 	<h4 class="">
 	    <a href="{{ .Permalink }}">{{ .Title }}</a>
-            <a href="https://github.com/salesagility/SuiteDocs/commits/{{.GitInfo.Hash}}/content/{{.Path}}" target="_blank" title="File History"><i class="far fa-sm fa-clock"></i></a>
+            {{ with .GitInfo }}<a href="https://github.com/SuiteCRM/SuiteDocs/commits/{{.Hash}}/content/{{$path}}" target="_blank" title="File History"><i class="far fa-sm fa-clock"></i></a>{{ end }}
 	</h4>
 	<p class="">
-	   Edited on the {{ .Lastmod.Format "2 January" }} in commit <b>"{{ with .GitInfo }}{{ .Subject }}{{ else }}[Commit description]{{ end }}"</b>  
-             <a href="https://github.com/salesagility/SuiteDocs/commit/{{.GitInfo.Hash}}" target="_blank" title="Commit Diff"><i class="fas fa-sm fa-indent"></i></a>
+	   Edited on the {{ .Lastmod.Format "2 January" }} in commit <b>"{{ with .GitInfo }}{{ .Subject }}{{ else }}[Commit description]{{ end }}"</b>
+             {{ with .GitInfo }}<a href="https://github.com/SuiteCRM/SuiteDocs/commit/{{.Hash}}" target="_blank" title="Commit Diff"><i class="fas fa-sm fa-indent"></i></a>{{ end }}
         </p>
     </li>
 {{ end }}

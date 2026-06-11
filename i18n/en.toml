@@ -62,10 +62,10 @@ other = "Community"
 other = "Technical Blog"
 
 [FromTechnicalBlog]
-other = "From Our Technical Blog"
+other = "From SuiteCRM.com"
 
 [LatestPosts]
-other = "Latest Posts"
+other = "Latest News"
 
 [GettingStarted]
 other = "Getting Started"
