@@ -2,7 +2,7 @@
 <h4 class="hd">{{ T "FromTechnicalBlog" }}</h4>
 
 <div class="blog_wrap">
-{{ $posts := getJSON "https://suitecrm.com/wp-json/wp/v2/posts?per_page=3&_fields=title,link,date,content" }}
+{{ $posts := getJSON "https://suitecrm.com/wp-json/wp/v2/posts?per_page=5&_fields=title,link,date,content" }}
 {{ range $posts }}
 
   {{ $title := .title.rendered | replaceRE `<[^>]+>` "" | replaceRE `&#8217;|&#8216;` "'" | replaceRE `&#8220;|&#8221;` "\"" | replaceRE `&#8211;|&#8212;` "-" | replaceRE `&#8230;` "..." | replaceRE `&amp;` "&" | replaceRE `&#[0-9]+;` "" | replaceRE `&[a-z]+;` "" }}

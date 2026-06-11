@@ -1,5 +1,5 @@
 [suitedocs-title]
-other= "SuiteCRM Documentation Site"
+other= "SuiteCRM Documentation"
 
 [navigation]
 other="Navigation"
@@ -97,8 +97,8 @@ other = "User Interface"
 [Understand-the]
 other = "Understand the"
 
-[CoreModules]
-other = "Core Modules"
+[CoreConcepts]
+other = "Core Concepts"
 
 [Its-open-source]
 other = "It's open source and"
@@ -144,3 +144,33 @@ other = "SuiteCRM 7"
 
 [Suite8]
 other = "SuiteCRM 8"
+
+[or]
+other = "or"
+
+[and]
+other = "and"
+
+[InstallSetUp]
+other = "Install & Set Up"
+
+[User-guide]
+other = "User guide"
+
+[Admin-guide]
+other = "Admin guide"
+
+[Dev-guide]
+other = "Developer guide"
+
+[ExtendDevelop]
+other = "Extend & Develop"
+
+[Customise-with]
+other = "Customise with"
+
+[ModuleBuilder]
+other = "Module Builder"
+
+[Docs]
+other = "Docs"

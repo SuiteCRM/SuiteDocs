@@ -1,79 +1,3 @@
-{{/*
- {{ partial "suitecrm.com-menu.html" }}
-*/}}
-
-<nav class="webnav mini">
-	<a href="https://suitecrm.com"><img src="/images/suitecrm-logo.png" alt="SuiteCRM"></a>
-	<ul>	
-		<li class="download"><a href="https://suitecrm.com">Explore SuitCRM</a></li>
-	</ul>
-</nav>
-
-<nav class="webnav">
-    <ul>
-        <li><a>About</a>
-            <ul>
-                <li><a href="https://suitecrm.com/about/about-us/suitecrm-ltd//">About Us</a></li>
-                <li><a href="https://suitecrm.com/suitecrm-roadmap/">SuiteCRM Roadmap</a></li>
-                <li><a href="https://suitecrm.com/about/about-us/suitecrm-ltd/jobs/">Careers</a></li>
-                <li><a href="https://suitecrm.com/about/newsroom/case-studies/">Case Studies</a></li>
-                <li><a href="https://suitecrm.com/about/newsroom/press/">News &amp; Press</a></li>
-                <li><a href="https://suitecrm.com/about/about-us/sign-up-for-marketing/">Newsletter Sign Up</a></li>
-                <li><a href="https://suitecrm.com/about/about-us/contact/">Contact Us</a></li>
-            </ul>
-        </li>
-        
-        <li><a>Products</a>
-            <ul>
-                <li><a href="https://suitecrm.com/what-is-suitecrm/">Explore SuiteCRM</a></li>
-                <li><a href="https://suitecrm.com/enterprise/suiteassured/">Get SuiteAssured</a></li>
-            </ul>
-        </li>
-
-        <li><a>Services</a>
-            <ul>
-                <li><a href="https://suitecrm.com/suitecrmhosted/">SuiteCRM Hosting</a></li>
-                <li><a href="https://suitecrm.com/enterprise/support-services/">Support Services</a></li>
-                <li><a href="https://suitecrm.com/enterprise/hosted-migration/">Hosted Migration</a></li>
-                <li><a href="https://suitecrm.com/enterprise/migrations/">SuiteCRM Migration</a></li>
-                <li><a href="https://suitecrm.com/enterprise/customisation/">Consultancy and Implementations</a></li>
-                <li><a href="https://suitecrm.com/enterprise-verification-service/">Enterprise Verification Service</a></li>
-                <li><a href="https://suitecrm.com/enterprise/training/">Training</a></li>
-            </ul>
-        </li>
-
-        <li><a>Community</a>
-            <ul>
-                <li><a href="https://community.suitecrm.com/">Community Forum</a></li>
-                <li><a href="https://suitecrm.com/join-the-project/suitecrm-community-sponsorship/">Sponsorship</a></li>
-                <li><a href="https://github.com/SuiteCRM">Github</a></li>
-                <li><a href="https://sourceforge.net/projects/suitecrmtranslations/files/">Translations</a></li>
-                <li><a href="https://store.suitecrm.com/?tag=suitecrm">Store</a></li>
-                <li><a href="https://suitecrm.com/about/about-us/partners/">Partners</a></li>
-            </ul>
-        </li>
-
-        <li class="download"><a href="https://suitecrm.com/demo/">Demo</a></li>
-        <li></li>
-        <li class="download"><a href="https://suitecrm.com/download/">Download</a></li>
-    </ul>
-</nav>
-
-
-
-
-<nav id="topmenu" class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}">
-	
-	<ul class="menu_desktop">
-		<li><a title="Documentation" href="{{.Site.Language.Params.LanguageDir}}">{{ i18n "Documentation" }}</a></li><li class="guide guide_start">{{ i18n "Guides" }}:</li><li class="guide"><a title="SuiteCRM 7 Guide" href="{{.Site.Language.Params.LanguageDir}}user/">SuiteCRM 7</a></li><li class="guide"><a title="SuiteCRM 8 Guide" href="{{.Site.Language.Params.LanguageDir}}8.x/">SuiteCRM 8</a></li><li class="guide guide_end"><a href="{{.Site.Language.Params.LanguageDir}}community/">{{i18n "Community" }}</a></li><li><a title="Technical Blog" href="{{.Site.Language.Params.LanguageDir}}blog/">{{ i18n "TechnicalBlog" }}</a></li>
-	</ul>
-
-	<ul class="menu_mobile">
-		<li><a title="Documentation" href="{{.Site.Language.Params.LanguageDir}}">>{{i18n "Documentation" }}</a></li><li><a title="Technical Blog" href="{{.Site.Language.Params.LanguageDir}}blog/">>{{i18n "Technical Blog" }}</a></li><br><li class="guide guide_start">>{{i18n "Guides"}}:</li><li class="guide"><a title="SuiteCRM 7 Guide" href="{{.Site.Language.Params.LanguageDir}}user/">>SuiteCRM 7</a></li><li class="guide"><a title="SuiteCRM 8 Guide" href="{{.Site.Language.Params.LanguageDir}}8.x/">>SuiteCRM 8</a></li><li class="guide guide_end"><a href="{{.Site.Language.Params.LanguageDir}}community/">>{{i18n "Community" }}</a></li>
-	</ul>
-	
-	
-</nav>
 
 
 <nav id="sidebar" class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}">
@@ -88,7 +12,9 @@
         {{ partial "search.html" . }}
     {{end}}
   </div>
-	<div class="sidebar-announcement masterclass"><a href="https://suitecrm.com/enterprise/support-plans/">NEED DEDICATED SUPPORT?<br>Check out your options</a></div>
+	{{ with .Site.Params.sidebarAnnouncementText }}
+	<div class="sidebar-announcement masterclass"><a href="{{ $.Site.Params.sidebarAnnouncementUrl }}">{{ . | safeHTML }}</a></div>
+	{{ end }}
 
     {{ if .Site.IsMultiLingual }}
     <section id="lang-selector">
@@ -96,7 +22,7 @@
       {{ if and .Site.IsMultiLingual (not .Site.Params.DisableLanguageSwitchingButton)}}
         <li>
           <a class="padding">
-            <i class="fas fa-user-edit fa-fw"></i>
+            <i class="fas fa-globe fa-fw"></i>
           <div class="select-style">
             <select id="select-language" onchange="location = this.value;">
           {{ $siteLanguages := .Site.Languages}}
@@ -155,22 +81,9 @@
 
         <li class="nav-group-title"><span>Community</span></li>
         {{ if $community }}{{ template "section-tree-nav" dict "sect" $community "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
-        {{ if $blog }}{{ template "section-tree-nav" dict "sect" $blog "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}{{ end }}
+
     </ul>
 
-    {{ $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle}}
-    {{with .Site.Menus.shortcuts}}
-      <section id="shortcuts">
-        <h3>{{ if not $disableShortcutsTitle}}{{ T "Shortcuts-Title"}}{{ end }}</h3>
-        <ul>
-          {{ range sort . "Weight"}}
-              <li class="" role=""> 
-                  {{.Pre}}<a class="padding" href="{{.URL | absLangURL }}">{{safeHTML .Name}}</a>{{.Post}}
-              </li>
-          {{end}}
-        </ul>
-      </section>
-    {{end}}
 
     {{ if $showvisitedlinks }}
     <section id="prefooter">

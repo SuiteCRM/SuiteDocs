@@ -201,7 +201,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     top: 0;
     width: 300px;
     bottom: 0;
-    right: 0;
+    left: 0;
     font-weight: 400;
     font-size: 15px;
 }
@@ -346,7 +346,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 #body {
     position: relative;
-    margin-right: 300px;
+    margin-left: 300px;
     min-height: 100%;
 }
 #body img, #body .video-container {
@@ -430,10 +430,10 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     background: #F6F6F6;
 }
 #body .nav.nav-prev {
-    left: 0;
+    left: 300px;
 }
 #body .nav.nav-next {
-    right: 300px;
+    right: 0;
 }
 #body-inner {
     margin-bottom: 4rem;
