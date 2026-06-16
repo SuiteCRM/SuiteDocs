@@ -1,0 +1,10 @@
+---
+title: "Integrations"
+weight: 80
+---
+
+= Integrations
+
+SuiteCRM can connect to external tools and services to keep your data in sync and reduce manual entry. Each integration is configured per user — you connect your own accounts without affecting other users.
+
+{{% children depth="2" showhidden="false" %}}

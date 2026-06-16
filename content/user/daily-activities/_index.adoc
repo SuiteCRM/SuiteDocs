@@ -1,6 +1,6 @@
 ---
-title: "User Guide"
-weight: 10
+title: "Daily Activities"
+weight: 30
 ---
 
 === Table of Contents

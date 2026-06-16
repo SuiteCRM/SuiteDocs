@@ -1,0 +1,44 @@
+---
+title: "Bugs"
+weight: 30
+aliases:
+  - /user/core-modules/bugs
+---
+
+:imagesdir: /images/en/user
+
+= Bugs
+
+The Bugs module allows you to record and track software defects and feature requests. Bugs can be linked to Cases, Contacts, Accounts and a product Release, giving you full traceability from a customer support request through to the fix.
+
+{{% notice note %}}
+The Bugs module is hidden by default. Contact your administrator to enable it in the navigation bar.
+{{% /notice %}}
+
+== Key Fields
+
+* *Subject* — A short description of the bug. Required field and the primary identifier in List Views.
+* *Status* — Where the bug is in its lifecycle: New, Assigned, Pending, Rejected or Closed.
+* *Priority* — The urgency: Urgent, High, Medium or Low.
+* *Type* — Whether this is a Defect or a Feature request.
+* *Source* — Where the bug was discovered: Internal, Forum or Web.
+* *Found In Release* — The product release version in which the bug was identified. Links to a Release record.
+* *Fixed In Release* — The product release version in which the bug was resolved. Links to a Release record.
+* *Description* — A full description of the problem.
+* *Resolution* — How the bug was resolved: Accepted, Duplicate, Fixed, Invalid, Later or Out of Date.
+
+
+== Relationships
+
+From a Bug record you can view and manage all associated records via sub-panels:
+
+* *Cases* — Support tickets that reported or are related to this bug.
+* *Contacts* — Individuals who reported or are affected by the bug.
+* *Accounts* — Organisations associated with this bug.
+* *Activities* — Calls, Meetings and Tasks related to investigating or resolving the bug.
+* *History* — Archived emails and completed activities.
+* *Documents* — Supporting files such as screenshots, logs or test cases.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging and importing, see link:../../core-concepts/record-management[Record Management].

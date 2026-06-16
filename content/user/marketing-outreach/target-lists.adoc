@@ -1,0 +1,42 @@
+---
+title: "Target Lists"
+weight: 30
+aliases:
+  - /user/core-modules/target-lists
+---
+
+:experimental: ////this is here to allow btn:[] syntax used below
+
+= Target Lists
+
+Target Lists group individuals into named sets that are attached to Campaigns. Each list has a type that controls whether its members receive the campaign, are excluded from it, or receive test emails only. A single campaign can have multiple target lists of different types attached to it.
+
+== Key Fields
+
+* *Name* — The name of the target list. Required.
+* *List Type* — Controls how this list is used within a campaign. See <<Target List Types>> below. Required.
+* *Description* — Optional notes about the list's purpose or contents.
+* *Domain Name* — Used only for the Suppression List by Domain type. Enter a domain (for example `competitor.com`) to suppress all email addresses at that domain.
+* *Entry Count* — A read-only count of the number of records currently on the list.
+
+
+== Target List Types
+
+A target list controls inclusion or exclusion of its members from a campaign using one of the following types:
+
+[cols="30h,70", options="header"]
+|=======
+|Target List Type |Description
+|Default |The normal list of targets you intend to send your campaign to.
+|Seed |These targets will receive the campaign, but they will not be recorded in the campaign statistics on the *View Status* page. Use this for people who preview and approve the campaign email before it is sent to everyone else.
+|Suppression List - By Domain |Targets with email domain names on this list will be suppressed. Add a domain to prevent the campaign from sending to any address at that domain.
+|Suppression List - By Email Address |Targets with individual email addresses on this list will be suppressed. A typical use is for people who have opted out of receiving emails from your company or from a specific campaign.
+|Suppression List - By Id |Suppression is applied by linking SuiteCRM records (Contacts, Leads, Targets, Accounts, Users) to the list. Unlike suppression by email address, all email addresses on a linked record are excluded. Required for Newsletter campaigns to support operational opt-out links.
+|Test |The list of those who receive test emails while you are still working on the campaign content. Use the btn:[Delete Test Entries] button on the *View Status* page to clear test results between re-sends.
+|=======
+
+== Adding Members to a Target List
+
+Members can be added from the Target List's Detail View using the sub-panels for Contacts, Leads, Targets, Users and Accounts. You can also add members in bulk by importing a file and selecting the target list during the final step of the import wizard.
+
+For standard record operations including searching, editing and duplicating, see link:../../core-concepts/record-management[Record Management].

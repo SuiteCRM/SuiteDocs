@@ -1,0 +1,156 @@
+---
+title: "CalDAV Provider Guide"
+weight: 20
+aliases:
+  - /user/calendar-sync/caldav-guide
+---
+
+:toc:
+
+= CalDAV Provider Guide
+
+This guide helps you find and verify the CalDAV URL for your calendar server. Use it alongside link:../calendar-sync[Calendar Sync] when setting up a CalDAV Calendar Account.
+
+== What is CalDAV
+
+CalDAV (Calendar Distributed Authoring and Versioning) is an open standard protocol for accessing and synchronising calendars over the internet. It is widely supported by self-hosted and cloud calendar servers.
+
+== Understanding CalDAV URLs
+
+=== URL Structure
+
+A CalDAV URL points directly to a specific calendar on the server:
+
+[source]
+----
+https://server.example.com/dav-path/username/calendar-name/
+----
+
+* *Protocol* — Always `https://` (or `http://` for local servers)
+* *Server* — Hostname or IP address of your CalDAV server
+* *DAV Path* — The path to the CalDAV service endpoint (varies by implementation)
+* *Username* — Your CalDAV account username
+* *Calendar Name* — The specific calendar identifier
+* *Trailing slash* — Required by most CalDAV implementations
+
+=== Trailing Slash
+
+Most CalDAV servers require the URL to end with a trailing slash. Without it, you may see "Calendar not found" or "Invalid URL" errors.
+
+*Correct:*
+[source]
+----
+https://caldav.example.com/dav/calendars/john/personal/
+----
+
+*Incorrect:*
+[source]
+----
+https://caldav.example.com/dav/calendars/john/personal
+----
+
+=== Port Numbers
+
+Some servers run on non-standard ports. Include the port in the URL when necessary:
+
+[source]
+----
+http://localhost:5232/username/calendar/
+----
+
+== Common URL Patterns
+
+Standard URL patterns for popular CalDAV providers. Replace placeholders with your actual values.
+
+[cols="1,2,3"]
+|===
+|Provider |URL Pattern |Notes
+
+|*Nextcloud*
+|`https://your-nextcloud.com/remote.php/dav/calendars/USERNAME/CALENDAR_NAME/`
+|USERNAME is your Nextcloud username; CALENDAR_NAME is the calendar's internal ID (visible in Nextcloud calendar settings)
+
+|*Fastmail*
+|`https://caldav.fastmail.com/dav/principals/user/EMAIL/`
+|Use your full Fastmail email address as the username
+
+|*Radicale*
+|`http://localhost:5232/USERNAME/CALENDAR_NAME/`
+|Default port is 5232; replace with your server hostname if not running locally
+
+|*SOGo*
+|`https://sogo.example.com/SOGo/dav/USERNAME/Calendar/CALENDAR_ID/`
+|Replace with your SOGo server hostname; CALENDAR_ID is visible in SOGo calendar settings
+
+|*Apple iCloud*
+|See your iCloud calendar settings
+|Apple iCloud CalDAV requires an app-specific password; the URL is provided in iCloud account settings under "Set Up CalDAV"
+|===
+
+These patterns are starting points. Verify the exact URL format with your provider's documentation.
+
+== Finding Your CalDAV URL
+
+If your provider is not listed above, use these general discovery steps:
+
+. *Check provider documentation* — Most CalDAV servers document their URL structure in setup guides or help articles.
+. *Contact your administrator* — If using a company-hosted server, ask your IT team for the correct URL.
+. *Use a desktop CalDAV client* — Configure the same account in Thunderbird, macOS Calendar, or GNOME Evolution and inspect the connection settings for the URL format.
+. *Try CalDAV autodiscovery* — Some servers support autodiscovery at `https://your-server/.well-known/caldav`.
+
+== Troubleshooting
+
+=== "Calendar not found" or "Invalid URL"
+
+*Causes:*
+
+* Incorrect CalDAV URL structure
+* Missing trailing slash
+* Wrong calendar name or identifier
+* Calendar has been deleted or renamed
+
+*Solutions:*
+
+* Verify the URL ends with a trailing slash: `https://server/path/calendar/`
+* Check that the calendar name matches exactly (case-sensitive on some servers)
+* Log into the CalDAV web interface and confirm the calendar exists
+* Re-copy the URL from your provider's settings page
+
+=== "Authentication failed" or "Invalid credentials"
+
+*Causes:*
+
+* Incorrect username or password
+* Username format mismatch (email address vs. username)
+* Two-factor authentication enabled without an app-specific password
+* Account locked or disabled
+
+*Solutions:*
+
+* Verify the username format — some providers require your full email address
+* Create an app-specific password in your provider's security settings and use that instead of your main password
+* Check that your CalDAV account is active and not locked
+
+== Security Best Practices
+
+=== Use App Passwords
+
+When available, use app-specific passwords instead of your main account password. App passwords:
+
+* Limit scope to calendar access only
+* Can be revoked without changing your main password
+* Provide a better security audit trail
+* Are compatible with accounts that have two-factor authentication enabled
+
+=== Use HTTPS
+
+Always use HTTPS for CalDAV connections to protect your credentials and calendar data in transit. For self-hosted servers, use Let's Encrypt for a free SSL certificate.
+
+== Next Steps
+
+* Return to link:../calendar-sync[Calendar Sync] to complete your Calendar Account setup.
+* For sync behaviour and advanced troubleshooting, see link:/admin/administration-panel/calendar-sync/understanding-sync-troubleshooting[Understanding Sync & Troubleshooting].
+
+{{% notice note %}}
+If you encounter a CalDAV connection issue not covered here, check your provider's documentation or contact their support team for provider-specific assistance.
+{{% /notice %}}

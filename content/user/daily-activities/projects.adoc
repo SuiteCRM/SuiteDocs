@@ -1,0 +1,59 @@
+---
+title: "Projects"
+weight: 70
+aliases:
+  - /user/core-modules/projects
+---
+
+:imagesdir: /images/en/user
+
+= Projects
+
+The Projects module allows you to arrange and track your organisation's projects by breaking work down into tasks, allocating resources, and monitoring progress. A project can be visualised as a Gantt chart or in a project grid view.
+
+== Key Fields
+
+* *Name* — The project name. Required.
+* *Status* — The overall state of the project: Draft, In Review or Published.
+* *Start Date / End Date* — The planned start and end dates for the project. Both are required.
+* *Priority* — The importance of the project: Low, Medium or High.
+* *Description* — A summary of the project's purpose and scope.
+* *Override Business Hours* — When checked, business hours rules are not applied when calculating project task durations.
+* *Total Estimated Effort / Total Actual Effort* — Read-only totals calculated from all project tasks, showing planned versus actual hours spent.
+
+
+== Relationships
+
+Projects can be related to Contacts, Accounts, Opportunities, Cases and other records. Associations are managed from sub-panels on the project's Detail View.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating and importing, see link:../../core-concepts/record-management[Record Management].
+
+== Creating Projects
+
+. In the Actions bar, click *Create Project*.
+. On the Projects page, enter information for the following fields:
+.. *Name* — Enter a name for the project.
+.. *Status* — Select the project status: Draft, In Review or Published.
+.. *Start Date / End Date* — Select the planned start and end dates.
+.. *Assigned To* — The user responsible for the project. Defaults to you.
+.. *Priority* — Select the importance of the project: Low, Medium or High.
+.. *Description* — Enter a brief description of the project.
+. Click *Save* to create the project.
+
+Once saved, the project's Detail View opens. From here you can relate the project to Contacts, Opportunities, Cases and other records, and begin adding Project Tasks.
+
+== Creating Project Tasks
+
+. In the *Project Tasks* sub-panel, click *Create*.
+. Enter information for the following fields:
+.. *Name* — Enter a name for the task.
+.. *Task ID* — A numerical identifier for the task within the project.
+.. *Start Date / Finish Date* — The expected start and completion dates for the task.
+.. *Percentage Complete* — A value from 0–100 indicating how much of the task is done.
+.. *Priority* — The importance of completing this task.
+.. *Milestone* — Check this box if completing this task represents a key project milestone.
+.. *Project Name* — Click *Select* to associate the task with a project if not already set.
+.. *Description* — A brief description of the work required.
+. Click *Save* to create the task.

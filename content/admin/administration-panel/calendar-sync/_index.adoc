@@ -73,7 +73,7 @@ Start with link:/admin/administration-panel/calendar-sync/admin-setup[Admin Setu
 
 === User connecting a calendar
 
-Go to link:/user/calendar-sync/user-guide[User Guide] to:
+Go to link:/user/integrations/calendar-sync[User Guide] to:
 
 * Create and configure your Calendar Account
 * Authenticate with Google Calendar or CalDAV
@@ -83,7 +83,7 @@ Go to link:/user/calendar-sync/user-guide[User Guide] to:
 
 === Needing CalDAV Configured
 
-See link:/user/calendar-sync/caldav-guide[CalDAV Provider Guide] for:
+See link:/user/integrations/caldav-guide[CalDAV Provider Guide] for:
 
 * Finding your CalDAV URL for various providers
 * CalDAV authentication and credentials

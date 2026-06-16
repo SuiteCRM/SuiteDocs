@@ -1,0 +1,30 @@
+---
+title: "Notes & Attachments"
+weight: 60
+aliases:
+  - /user/core-modules/notes
+---
+
+:imagesdir: /images/en/user
+
+= Notes & Attachments
+
+The Notes module allows you to keep a record of comments, observations or explanations — whether internal to your organisation or linked to a SuiteCRM record such as an Account, Contact, Lead, Case or Bug. Notes can also carry a file attachment, making them useful for logging correspondence, decisions, and supporting materials against any record.
+
+== Key Fields
+
+* *Subject* — A brief title for the note. Required.
+* *Related To* — Links the note to a parent record (Account, Contact, Lead, Opportunity, Case, Bug and others). Once linked, the note appears in the History sub-panel on that record.
+* *Contact* — Links the note to a specific Contact record, independently of the Related To field.
+* *Description* — The body text of the note.
+* *Attachment* — A single file can be uploaded and stored with the note. Supported for any file type.
+* *Portal Flag* — When checked, the note and its attachment are visible to portal users who have access to the related Case via the Customer Portal.
+
+
+== Relationships
+
+Notes appear in the *History* sub-panel of the record they are linked to via the *Related To* field. From a Note record you can navigate directly to the parent record.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating and importing, see link:../../core-concepts/record-management[Record Management].

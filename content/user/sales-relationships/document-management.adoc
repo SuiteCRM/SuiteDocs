@@ -1,0 +1,37 @@
+---
+title: "Document Management"
+weight: 60
+aliases:
+  - /user/core-modules/documents
+---
+
+:imagesdir: /images/en/user
+
+= Document Management
+
+The Documents module is a repository for files associated with your CRM records. Documents can be uploaded, versioned through revisions, and linked to Accounts, Contacts, Opportunities, Cases and other modules.
+
+== Key Fields
+
+* *Document Name* — The display name of the document. Required.
+* *Filename* — The actual file to upload. Required. Supported for any file type.
+* *Active Date* — The date from which the document is considered effective. Required.
+* *Expiration Date* — The date after which the document is no longer current. Useful for contracts, policies or time-limited materials.
+* *Category / Subcategory* — Classifies the document for browsing and filtering across the module.
+* *Status* — The document's current state: Active, Draft, FAQ, For Review or Obsolete.
+* *Revision* — The version number of the document. Each upload creates a new Document Revision record, preserving version history.
+* *Is Template / Template Type* — Marks the document as a reusable template, available for use with PDF Templates or mail merge operations.
+* *Doc Type* — For documents hosted externally in Google Drive, Box or a similar service, this identifies the provider and links to the external file rather than uploading a local copy.
+
+
+== Document Revisions
+
+SuiteCRM tracks document versions through Document Revisions. Each time a file is updated, a new revision is created while the previous versions are retained. To add a new version, open the Document's Detail View and create a revision from the *Document Revisions* sub-panel. The most recent revision becomes the active version shown on the Document record.
+
+== Relationships
+
+Documents can be linked to Accounts, Contacts, Opportunities, Leads, Cases, Bugs and other records. Linked documents appear in the *Documents* sub-panel on the related record.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating and importing, see link:../../core-concepts/record-management[Record Management].

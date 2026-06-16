@@ -11,7 +11,7 @@ Weight: 86
 
 This guide provides comprehensive technical reference material for advanced Calendar Sync configuration and migration from legacy Google Sync. Use this as your authoritative reference for complete configuration options, migration procedures, and system disabling instructions.
 
-For initial setup, see link:/admin/administration-panel/calendar-sync/admin-setup[Administrator Setup Guide] and link:/user/calendar-sync/user-guide[User Guide].
+For initial setup, see link:/admin/administration-panel/calendar-sync/admin-setup[Administrator Setup Guide] and link:/user/integrations/calendar-sync[User Guide].
 
 == Migration from Legacy Google Sync
 
@@ -178,7 +178,7 @@ Each user must create their own Calendar Account:
 * Click *Authenticate* to complete OAuth authorization
 * Click *Save* to create the account
 
-See link:/user/calendar-sync/user-guide[User Guide] for detailed Calendar Account creation instructions.
+See link:/user/integrations/calendar-sync[User Guide] for detailed Calendar Account creation instructions.
 
 **3. Verify Scheduler Configuration**
 
@@ -909,6 +909,6 @@ Maintain security through periodic audits:
 You've completed the Calendar Sync documentation. For ongoing reference:
 
 * Review link:/admin/administration-panel/calendar-sync/admin-setup[Administrator Setup Guide] for configuration changes
-* Consult link:/user/calendar-sync/user-guide[User Guide] when assisting users with calendar connections
-* Reference link:/user/calendar-sync/caldav-guide[CalDAV Provider Guide] for CalDAV-specific troubleshooting
+* Consult link:/user/integrations/calendar-sync[User Guide] when assisting users with calendar connections
+* Reference link:/user/integrations/caldav-guide[CalDAV Provider Guide] for CalDAV-specific troubleshooting
 * See link:/admin/administration-panel/calendar-sync/understanding-sync-troubleshooting[Understanding Sync & Troubleshooting] for diagnostic procedures

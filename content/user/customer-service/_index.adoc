@@ -1,6 +1,6 @@
 ---
-title: "User Guide"
-weight: 10
+title: "Customer Service"
+weight: 60
 ---
 
 === Table of Contents

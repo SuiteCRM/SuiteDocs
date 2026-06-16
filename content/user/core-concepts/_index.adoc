@@ -1,6 +1,6 @@
 ---
-title: "User Guide"
-weight: 10
+title: "Core Concepts"
+weight: 20
 ---
 
 === Table of Contents

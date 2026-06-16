@@ -259,7 +259,7 @@ Disabling deletion sync can lead to orphaned events that exist in one system but
 
 After configuring the administrator settings:
 
-* Review link:/user/calendar-sync/user-guide[User Guide] to understand the user experience
-* See link:/user/calendar-sync/caldav-guide[CalDAV Provider Guide] if your users will connect to CalDAV servers
+* Review link:/user/integrations/calendar-sync[User Guide] to understand the user experience
+* See link:/user/integrations/caldav-guide[CalDAV Provider Guide] if your users will connect to CalDAV servers
 * Check link:/admin/administration-panel/calendar-sync/understanding-sync-troubleshooting[Understanding Sync & Troubleshooting] for diagnostic information
 * Consult link:/admin/administration-panel/calendar-sync/advanced-migration[Advanced Topics & Migration] for complete configuration reference

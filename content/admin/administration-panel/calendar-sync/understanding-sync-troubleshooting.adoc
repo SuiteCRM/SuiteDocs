@@ -11,7 +11,7 @@ Weight: 85
 
 This guide explains how calendar synchronization works internally and provides comprehensive troubleshooting guidance. Use this as your technical reference for understanding sync behavior, diagnosing issues, and implementing security best practices.
 
-For initial setup, see link:/admin/administration-panel/calendar-sync/admin-setup[Administrator Setup Guide] and link:/user/calendar-sync/user-guide[User Guide]. For CalDAV-specific details, see link:/user/calendar-sync/caldav-guide[CalDAV Provider Guide].
+For initial setup, see link:/admin/administration-panel/calendar-sync/admin-setup[Administrator Setup Guide] and link:/user/integrations/calendar-sync[User Guide]. For CalDAV-specific details, see link:/user/integrations/caldav-guide[CalDAV Provider Guide].
 
 == How Synchronization Works
 
@@ -281,7 +281,7 @@ Common error messages, their causes, and solutions:
 
 |*Authentication token expired* / *Re-authorization required*
 |OAuth authorization has expired or refresh token is unavailable
-|Edit the Calendar Account, click *Authenticate* to re-authorize, and test connection again. See link:/user/calendar-sync/user-guide#_re_authorizing_oauth[Re-authorizing OAuth].
+|Edit the Calendar Account, click *Authenticate* to re-authorize, and test connection again. See link:/user/integrations/calendar-sync[Calendar Sync user guide].
 
 |*Authentication failed. Please check your CalDAV credentials*
 |CalDAV username or password is incorrect
@@ -332,7 +332,7 @@ When events are not syncing between systems, follow these diagnostic steps:
 * Navigate to your Calendar Account detail view
 * Verify *Test Successful* shows "Yes"
 * Check *Last Sync Date* is updating regularly
-* If connection test failed, see link:/user/calendar-sync/user-guide#_test_connection_workflow[Test Connection Workflow] to re-test
+* If connection test failed, see link:/user/integrations/calendar-sync[Calendar Sync user guide] to re-test
 * For OAuth accounts, re-authorize if token expired
 
 **3. Verify Sync Window**
@@ -649,10 +649,76 @@ Maintain security through periodic audits:
 * Implement IP restrictions on external calendar access when possible
 * Use VPN or private networks for CalDAV connections to self-hosted servers
 
+== CalDAV Connectivity Troubleshooting
+
+Use these steps to diagnose CalDAV connection issues from the server side.
+
+=== Test CalDAV Access from the Server
+
+Run `curl` from your SuiteCRM server to verify the CalDAV endpoint is reachable and credentials are valid:
+
+[source,bash]
+----
+# Basic connectivity test (replace USERNAME, PASSWORD, and URL)
+curl -X PROPFIND -u "USERNAME:PASSWORD" https://your-caldav-server/path/to/calendar/
+
+# With Depth header to list calendar contents
+curl -X PROPFIND -u "USERNAME:PASSWORD" -H "Depth: 1" https://your-caldav-server/path/to/calendar/
+
+# For servers with self-signed certificates (testing only)
+curl -k -X PROPFIND -u "USERNAME:PASSWORD" https://your-caldav-server/path/to/calendar/
+----
+
+Expected responses:
+
+* `207 Multi-Status` — Success; CalDAV is working
+* `401 Unauthorized` — Invalid credentials
+* `404 Not Found` — Incorrect URL path
+
+=== SSL Certificate Issues
+
+==== "SSL certificate problem" or "Certificate verification failed"
+
+*Causes:*
+
+* Self-signed certificate on the CalDAV server
+* Expired SSL certificate
+* Certificate hostname mismatch
+* Missing intermediate certificates
+
+*Solutions:*
+
+* Add the server's certificate to your SuiteCRM server's trusted certificate store
+* Verify the certificate is valid and not expired: `openssl s_client -connect your-caldav-server:443`
+* Ensure the certificate hostname matches the URL you are using
+* For testing only, SSL verification can be disabled in SuiteCRM (not recommended for production)
+
+=== Connection Timeout or Failed to Connect
+
+*Causes:*
+
+* CalDAV server is not accessible from the SuiteCRM server
+* Firewall blocking outbound connections on port 443 (or 5232 for Radicale)
+* Incorrect port number
+* Server is down or unreachable
+
+*Solutions:*
+
+* Test basic connectivity from the SuiteCRM server:
++
+[source,bash]
+----
+curl -I https://your-caldav-server/
+----
++
+* Check that firewall rules allow outbound HTTPS connections from the SuiteCRM server
+* Confirm the port number — standard CalDAV uses 443, Radicale defaults to 5232
+* If using an internal hostname, ensure DNS resolves correctly from the SuiteCRM server
+
 == Next Steps
 
 After understanding synchronization mechanics and troubleshooting:
 
 * Review link:/admin/administration-panel/calendar-sync/advanced-migration[Advanced Topics & Migration] for complete configuration reference and migration details
 * Consult link:/admin/administration-panel/calendar-sync/admin-setup[Administrator Setup Guide] to adjust global sync settings
-* See link:/user/calendar-sync/caldav-guide[CalDAV Provider Guide] for CalDAV-specific configuration and troubleshooting
+* See link:/user/integrations/caldav-guide[CalDAV Provider Guide] for the user-facing CalDAV URL reference
