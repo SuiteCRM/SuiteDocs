@@ -1,0 +1,104 @@
+---
+title: "Accounts & Contacts"
+weight: 20
+aliases:
+  - /user/core-modules/accounts
+  - /user/core-modules/contacts
+---
+
+:experimental:
+
+:imagesdir: /images/en/user
+
+= Accounts & Contacts
+
+== Accounts
+
+The Accounts module is the centralised base from which you can create an
+association with most records in SuiteCRM. It is possible to create a
+relationship with Contacts, Converted Leads, Opportunities, any Activity
+such as Emails or Meetings and Cases. Accounts in SuiteCRM will
+typically hold all information specific to a company that your
+organisation will have a relationship with. In real world terms an
+Account may be a business entity that is a qualified Sales Prospect,
+Customer, Supplier or Re-seller and can be used to track all
+interactions that take place between these entities and your
+organisation.
+
+=== Key Fields
+
+* *Name* — The company name. This is the only required field.
+* *Type* — Classifies the account: Analyst, Competitor, Customer, Integrator, Partner, Press, Prospect, Reseller or Other.
+* *Industry* — The sector the account operates in, for example Technology, Finance or Healthcare.
+* *Member Of* — Links this account to a parent Account. Use this to model corporate hierarchies where a subsidiary belongs to a larger organisation. The parent account's sub-panel will then list all member accounts beneath it.
+* *Billing / Shipping Address* — Separate address fields for billing and shipping. Where these differ, both can be stored independently.
+* *Annual Revenue / Employees* — Company profiling fields useful for segmentation and reporting.
+* *Rating* — A freeform field for recording your assessment of the account (for example Hot, Warm, Cold).
+
+
+=== Relationships
+
+Accounts act as the central hub in SuiteCRM. From an Account record you can view and manage all associated records via sub-panels:
+
+* *Contacts* — The individuals who work at or represent the account.
+* *Opportunities* — Open and historical deals associated with the account.
+* *Cases* — Support tickets raised by or on behalf of the account.
+* *Activities* — Calls, Meetings, Tasks and Emails logged against the account.
+* *Documents* — Files and documents attached to the account.
+* *Member Organisations* — Child accounts linked via the *Member Of* field.
+
+{{% notice tip %}}
+SuiteCRM includes a built-in Maps feature. A map panel showing the billing or shipping address is available on Account records. See link:../integrations/maps[Maps] for details.
+{{% /notice %}}
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging and importing, see link:../../core-concepts/record-management[Record Management].
+
+---
+
+== Contacts
+
+In SuiteCRM a Contact is an individual who is typically associated with
+an Account (organisation) or Opportunity (qualified prospect). For
+example if Techco is the Account, then John Smith, Sales Manager of
+Techco is the Contact. This module holds all information relating to
+these individuals and also provides a vantage point for any history
+relating to a Contact record, for example if they were involved in a
+Meeting, raised a Case or sent an Email.
+
+=== Key Fields
+
+* *Account Name* — Links the Contact to their organisation. Populating this field creates a relationship with the Account record and causes the Contact to appear in the Account's Contacts sub-panel.
+* *Title / Department* — The Contact's role and team within their organisation.
+* *Reports To* — Links to another Contact record, allowing you to model a reporting hierarchy within an organisation.
+* *Lead Source* — Records how the Contact was acquired, for example Web Site, Trade Show, Word of Mouth or Cold Call. Useful for campaign attribution and reporting.
+* *Status* — Indicates whether the Contact is Active or not. Can be used to filter contact lists.
+* *Do Not Call* — Flag to mark a Contact who should not be contacted by phone.
+* *Email Opt Out* — Flag to mark a Contact who has opted out of email communications. SuiteCRM respects this setting when sending campaign emails.
+* *Campaign* — Records which campaign this Contact is associated with, if any.
+* *Opportunity Role* — When a Contact is linked to an Opportunity, this field records their role in the deal (for example Decision Maker, Evaluator, Influencer). Set from the Opportunity's Contacts sub-panel.
+
+
+=== Relationships
+
+From a Contact record you can view and manage all associated records via sub-panels:
+
+* *Account* — The organisation the Contact belongs to.
+* *Opportunities* — Deals the Contact is involved in.
+* *Cases* — Support tickets associated with the Contact.
+* *Activities* — Calls, Meetings, Tasks and Emails logged against the Contact.
+* *Documents* — Files and documents attached to the Contact.
+* *Campaigns* — Campaigns the Contact has been included in.
+
+{{% notice tip %}}
+SuiteCRM includes a built-in Maps feature. A map panel showing the Contact's address is available on Contact records. See link:../integrations/maps[Maps] for details.
+{{% /notice %}}
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging and importing, see link:../../core-concepts/record-management[Record Management].
+
+=== vCard Export
+
+By default, exporting a Contact to vCard format is not available. A system administrator needs to replace the fields *First Name* and *Last Name* with the combined *Name* field using link:../../../admin/administration-panel/studio/#_layouts[Studio]. Once done, a btn:[vCard] button will appear to the right of the *Name* field on the Contact's Detail View.

@@ -194,3 +194,7 @@ See the link:../../administration-panel/studio/#_adding_a_dropdown_field[Studio 
 instructions on adding or editing a dropdown list.
 
 image:StudioDropdownEditor.png["Dropdown Editor"]
+
+For example, the `pdf_template_type_dom` dropdown controls which modules are available in the *Type* field when creating a PDF Template. To make PDF Templates available for an additional module, add a new item to this dropdown via the Dropdown Editor. The *Item Name* must exactly match the module's directory name (e.g. `AOS_Quotes`, `Contacts`).
+
+The `case_status_dom` dropdown uses a compound naming convention: each status value must be prefixed with its parent State value and an underscore (e.g. `Open_New`, `Open_Assigned`, `Closed_Rejected`). Values prefixed with `Open_` appear when the Case State is Open; values prefixed with `Closed_` appear when the State is Closed.

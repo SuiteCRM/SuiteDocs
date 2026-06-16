@@ -1,0 +1,48 @@
+---
+title: "Opportunities"
+weight: 30
+aliases:
+  - /user/core-modules/opportunities
+---
+
+:imagesdir: /images/en/user
+
+= Opportunities
+
+An Opportunity is a qualified Sales prospect with a likely chance that
+they will be able to do business with your company. You have established
+that they have buying power and have entered into the buying cycle. This
+module allows you to track your Opportunities throughout the Sales
+Pipeline until the deal is 'Closed Lost' or 'Closed Won'.
+
+== Key Fields
+
+* *Account Name* — The Account (organisation) this opportunity is associated with. Linking the opportunity to an account connects it to all other activity on that account.
+* *Amount* — The expected value of the deal. Supports multiple currencies; SuiteCRM stores both the original currency amount and a USD equivalent for cross-currency reporting.
+* *Close Date* — The expected date the deal will close. Required field. Used in pipeline forecasting and reporting.
+* *Sales Stage* — Where the opportunity sits in your sales pipeline: Prospecting, Qualification, Needs Analysis, Value Proposition, Id. Decision Makers, Perception Analysis, Proposal/Price Quote, Negotiation/Review, Closed Won or Closed Lost.
+* *Probability* — Automatically set based on the Sales Stage, but can be overridden. Represents the likelihood of the deal closing and is used in weighted pipeline calculations.
+* *Type* — Classifies the deal as New Business or Existing Business.
+* *Lead Source* — How the opportunity was generated, for example Cold Call, Email, Partner or Trade Show.
+* *Campaign* — Links the opportunity to the campaign that influenced it, for ROI tracking.
+* *Next Step* — A freeform field to record the immediate next action required to progress the deal.
+
+
+== Relationships
+
+From an Opportunity record you can view and manage all associated records via sub-panels:
+
+* *Account* — The organisation the opportunity is associated with.
+* *Contacts* — The individuals involved in the buying decision.
+* *Activities* — Calls, Meetings, Tasks and Emails logged against the opportunity.
+* *History* — Archived emails and completed activities.
+* *Documents* — Proposals, contracts and supporting files.
+* *Quotes / Contracts* — Transactional records generated from the opportunity. See link:../quotes-invoices-contracts[Quotes, Invoices & Contracts].
+
+{{% notice tip %}}
+SuiteCRM includes a built-in Maps feature. A map panel showing the associated account's address is available on Opportunity records. See link:../integrations/maps[Maps] for details.
+{{% /notice %}}
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging and importing, see link:../../core-concepts/record-management[Record Management].

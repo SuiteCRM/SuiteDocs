@@ -55,14 +55,33 @@ guide for more information on searching in *SuiteCRM*.
 
 == AOP Settings
 
-Here you can enable or disable the Advanced OpenPortal functionality, 
-configure the Joomla URL, set the case distribution method, the 'from' name and email address and configure
-the email templates used by the portal. 
+Advanced OpenPortal (AOP) extends the link:../../../user/customer-service/cases[Cases] module to support a customer-facing portal and email-based case creation and updates. Configure it here.
 
-See link:../../../user/advanced-modules/cases-with-portal[Cases with Portal] for more information
-on AOP.
+image:AdminAOPSettings.png[title="Advanced OpenPortal Settings"]
 
-image:AdminAOPSettings.png[Advanced OpenPortal Settings]
+[cols="30,70",frame="none",grid="none"]
+|===
+|*Enable AOP*|Enables or disables the Advanced OpenPortal functionality across SuiteCRM.
+|*Enable Portal*|Whether the customer-facing Joomla portal is active.
+|*Joomla URL*|The URL of the connected Joomla portal site.
+|*Support From Name*|The name used in the From field of all portal-related email notifications sent to contacts.
+|*Support From Address*|The email address used in the From field of portal-related emails.
+|*Case Distribution Method*|How cases created from inbound email or the portal are automatically assigned. Options: Single User (assign to a specified user), Round Robin by Role, Round Robin by Security Group.
+|*Email Templates*|Select the email templates used for: new portal user welcome, contact case notification, case creation confirmation, and case closure notification. Templates are managed in the link:../../../user/marketing-outreach/email-templates[Email Templates] module.
+|===
+
+=== Portal Setup
+
+The Joomla portal component can be downloaded from the https://suitecrm.com/resources/suitecrm-joomla-portal-plug-in/[SuiteCRM Joomla Portal Plug-in page^]. Install it using the Joomla Extension Manager, then configure the SuiteCRM URL and a valid SuiteCRM username and password under *Components → advancedopen-portal* in Joomla.
+
+Once configured, two menu items can be added to your Joomla portal:
+
+* *List Cases* — shows a list of all cases the contact has logged, with filters for State and keyword search
+* *New Case* — allows contacts to create cases in SuiteCRM from the portal
+
+=== Creating Portal Users
+
+To give a Contact access to the portal, open the Contact record in SuiteCRM and click *Create Portal User* (or find it in the action menu if action menus are enabled). This creates a Joomla account for the contact and emails them their portal credentials.
 
 
 == Business Hours

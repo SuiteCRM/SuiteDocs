@@ -1,0 +1,70 @@
+---
+title: "Relationships & Subpanels"
+weight: 60
+---
+
+:imagesdir: /images/en/user
+
+= Relationships & Subpanels
+
+Below the main record detail, you will find sub-panels that display all other records linked to the
+record you are currently viewing. Each sub-panel shows the module name and related records in a list
+format, giving you an at-a-glance summary of all associated data. The sub-panels shown will vary
+depending on the record type — for example, a *Contact* record may display sub-panels for
+Activities, History, Documents, Cases, and Security Groups.
+
+== Using Subpanels
+
+Each sub-panel provides its own set of actions and functionality:
+
+* *Creating a related record:* Within a sub-panel, click *Create* to create a new record in that module that will be automatically linked to the current record.
+* *Editing a related record:* Click the *Pencil* icon to edit a related record in-line.
+* *Linking an existing record:* Click *Select* to search for and link an existing record from that module to the current record.
+* *Removing a relationship:* You can remove the link between the current record and a related record by clicking *Remove*. Note that this removes the relationship only and does not delete the related record itself.
+
+== How Relationships Work
+
+Relationships in SuiteCRM define how records across different modules are connected to one another.
+For example, a Contact can be related to an Account, a Note, a Meeting, and a series of historical
+emails. These relationships allow you to build a complete picture of your interactions and data around
+a single record.
+
+Relationships can be created in two ways:
+
+* *Via the sub-panel:* Within any sub-panel, use the *Create* button to create a new related record
+that will be automatically linked to the current record, or the *Select* button to search for and
+link an existing record from that module.
+* *During data entry:* When creating or editing a record, relate fields within the form allow you to
+link records from other modules directly. For example, when creating a Contact you can specify the
+Account it belongs to, establishing the relationship at the point of data entry.
+
+{{% notice note %}}
+The sub-panels available on a record and the relationships configured between modules can be managed
+by a system administrator. If you feel a relationship between two modules is missing, speak to your
+system administrator.
+{{% /notice %}}
+
+Relate fields and sub-panels are two sides of the same relationship. When you populate a relate field
+on a record — for example, linking a Contact to an Account — the relationship is created on save.
+The Contact will then appear in the Contacts sub-panel on the Account record, and the Account will be
+shown in the Account Name field on the Contact record.
+
+== Relate Fields
+
+Relate fields are a special type of field found on many record creation and edit forms throughout
+SuiteCRM. They allow you to link one record to another record in a different module and are visually
+distinct from standard text fields — they have a small *selector icon* (arrow) to the right of the
+field, which opens a search pop-up allowing you to find and select the record you wish to link.
+
+*Using a Relate Field*
+
+To populate a relate field:
+
+. Click the *selector icon* to the right of the relate field. A search pop-up will appear.
+. Use the search fields in the pop-up to find the record you wish to link.
+. Click on the record name to select it. The pop-up will close and the selected record's name will be populated in the relate field.
+. If you wish to clear a relate field that has already been populated, click the *X* icon to the right to remove the linked record.
+
+Alternatively, if you know the name of the record you wish to link, you can begin typing it directly
+into the relate field. SuiteCRM will suggest matching records as you type, allowing you to select the
+correct one without opening the full search pop-up.

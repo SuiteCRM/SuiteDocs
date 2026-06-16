@@ -1,0 +1,98 @@
+---
+title: "Maps"
+weight: 30
+aliases:
+  - /user/jjw-maps
+---
+
+:imagesdir: /images/en/user
+
+= Maps
+
+SuiteCRM includes a built-in Maps feature powered by Google Maps. It allows you to geocode addresses stored in SuiteCRM and visualise them on interactive maps. You can search for records within a radius of any address, place custom markers, and draw map areas.
+
+== Map panels on records
+
+When Maps is configured, a map panel appears on the following record types, showing the relevant address on a Google Map:
+
+* *Accounts* — Billing or shipping address.
+* *Contacts* — Contact address.
+* *Leads* — Lead address.
+* *Opportunities* — Address of the associated account.
+* *Cases* — Address of the associated account.
+* *Targets* — Target address.
+* *Meetings* — Location field.
+
+== Maps module
+
+The Maps module lets you search for and display records on a map based on their proximity to a central point.
+
+=== Creating a map
+
+. Navigate to *Maps* in the navigation bar and select *Create Map*.
+. Fill in the following fields:
++
+* *Name* — A label for this map.
+* *Show on map address (centre)* — The record whose address will be used as the centre point. All results are shown within a radius of this address.
+* *Display on map* — The type of records to plot (for example, Contacts, Accounts). Only one record type can be shown per map.
+* *Distance unit* — Kilometres or miles.
+* *Show records within radius* — The search radius around the centre point.
+* *Assigned to* — Defaults to you. Change this to assign the map to another user.
+* *Description* — An optional note about the map.
+. Click *Save*. The map renders with matching records plotted as pins.
+
+{{% notice note %}}
+Records are only plotted if their addresses have been geocoded. Geocoding is configured by your administrator. If records are missing from the map, ask your administrator to run the geocoding process.
+{{% /notice %}}
+
+=== Searching from a custom address
+
+You can search from an address that is not already in SuiteCRM:
+
+. In the Maps module menu, select *Show records*.
+. Enter the address, choose the record type and radius, then click *Run*.
+
+=== Adding results to a Target List
+
+After a map renders, a button at the bottom of the results list allows you to add all displayed records to a Target List. This is useful for creating a geographically filtered audience for a campaign.
+
+=== Embedding a map in a dashlet
+
+A map view can be embedded in a Home page dashlet:
+
+. Use *Show records* to display a map as described above.
+. At the bottom of the map, an *IFrame URL* link appears. Right-click it and copy the link address.
+. Go to the Home page and click *Add Dashlet*.
+. On the *Web* tab, paste the copied URL and click *Add*.
+. In the dashlet settings, set the height to at least 600 pixels for the map to display fully.
+
+== Markers
+
+Markers are individual pins you can place anywhere on a map, independent of SuiteCRM records.
+
+. Navigate to *Map Markers* and select *Create Marker*.
++
+You can also create a marker from the *Markers* sub-panel on an existing map's Detail View.
+. Choose a marker icon from the list and drag it to the desired location on the map. Latitude and longitude coordinates are set automatically as you drag.
+. Fill in any additional fields and click *Save*.
+
+== Map Areas
+
+Map Areas let you draw a polygon on a map to highlight or define a region.
+
+. Navigate to *Map Areas* and select *Create Area*.
++
+You can also create an area from the *Map Areas* sub-panel on an existing map's Detail View.
+. Click on the map to place boundary points. Click the first point again to close the polygon. The coordinates update automatically as you adjust the shape. Use *Reset* to start over.
+. Once satisfied, click *Use map area coordinates*.
+. Fill in any additional fields and click *Save*.
+
+== Address Cache
+
+Geocoding converts text addresses into geographic coordinates so they can be plotted on a map. To avoid re-querying Google for addresses already processed, SuiteCRM caches geocoded results in the Address Cache module.
+
+The cache is populated automatically during the geocoding process, which is managed by your administrator. If you need to import geocoded addresses from an external source, use *Import* from the Address Cache module's action menu and follow the import wizard.
+
+== Administrator Resources
+
+For API key setup, geocoding configuration, and the scheduler job that automates geocoding, see the link:/admin/administration-panel/google-maps[Google Maps Administrator Documentation].

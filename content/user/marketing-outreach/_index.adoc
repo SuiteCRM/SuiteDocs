@@ -1,6 +1,6 @@
 ---
-title: "User Guide"
-weight: 10
+title: "Marketing & Outreach"
+weight: 50
 ---
 
 === Table of Contents

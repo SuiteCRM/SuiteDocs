@@ -1,6 +1,6 @@
 ---
-title: "User Guide"
-weight: 10
+title: "Insights"
+weight: 70
 ---
 
 === Table of Contents

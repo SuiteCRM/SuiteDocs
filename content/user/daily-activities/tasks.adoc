@@ -1,0 +1,35 @@
+---
+title: "Tasks"
+weight: 50
+aliases:
+  - /user/core-modules/tasks
+---
+
+:imagesdir: /images/en/user
+
+= Tasks
+
+SuiteCRM Tasks allow you to record, assign and track action items and to-do items. Tasks can be related to other records so that outstanding actions are visible from the relevant Account, Contact, Opportunity or Case.
+
+== Key Fields
+
+* *Subject* — The name or description of the task. Required.
+* *Status* — Where the task stands: Not Started, In Progress, Completed, Pending Input or Deferred.
+* *Priority* — The urgency of the task: High, Medium or Low.
+* *Due Date* — When the task needs to be completed by.
+* *Start Date* — When work on the task is expected to begin.
+* *Related To* — Links the task to a parent record (Account, Contact, Opportunity, Case, etc.). The task will appear in the Activities sub-panel on that record while open, and move to the History sub-panel once closed.
+* *Contact* — Links the task to a specific Contact record.
+
+
+== Relationships
+
+Tasks appear in the *Activities* sub-panel of the record they are linked to. Completed or closed tasks move to the *History* sub-panel.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
+
+For standard record operations including searching, editing, duplicating and importing, see link:../../core-concepts/record-management[Record Management].
+
+== Closing a Task
+
+To mark a task as done, click the *x* icon in the Tasks List View, or click *Close* on the Task's Detail View. You can also use *Close and Create New* to immediately open a new Task form — useful when completing one action item leads directly to the next.

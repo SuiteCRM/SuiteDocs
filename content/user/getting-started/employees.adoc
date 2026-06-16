@@ -1,0 +1,31 @@
+---
+title: "Employees"
+weight: 50
+aliases:
+  - /user/core-modules/employees
+---
+
+:imagesdir: /images/en/user
+
+= Employees
+
+The Employees module is an internal directory of all staff members in your organisation. All system users created by an administrator are automatically listed as employees. You can also add employees who are not system users — for example, staff who need to appear in the directory but do not have a SuiteCRM login.
+
+You can access the Employees module from the user menu in the top-right corner of the navigation bar.
+
+image:AdminPanelOpenEmployee.png[title="Employees in the user menu"]
+
+== Key Fields
+
+* *First Name / Last Name* — The employee's name.
+* *Title* — The employee's job title.
+* *Department* — The team or department the employee belongs to.
+* *Email Address* — The employee's work email address.
+* *Phone* — Office, mobile or other contact numbers.
+* *Reports To* — Links to another employee record to model the reporting hierarchy.
+
+== Finding Employees
+
+Use the search bar in the Employees List View to find staff by name, title, department or other fields. You can use the Advanced Search for more precise filtering.
+
+For standard record operations including searching, editing and exporting, see link:../../core-concepts/record-management[Record Management].
