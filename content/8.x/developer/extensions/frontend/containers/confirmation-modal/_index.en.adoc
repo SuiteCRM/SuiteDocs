@@ -1,0 +1,115 @@
+---
+title: "Confirmation Modal"
+weight: 10
+---
+
+== 1. Introduction
+
+The Confirmation Modal is a dialog that asks the user to confirm or cancel an action. It is used across several features in SuiteCRM 8:
+
+* **Async validators** — when a backend process handler returns `displayConfirmation: true`, a confirmation modal is shown before the save proceeds (see link:../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators] and link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators])
+* **Record logic** — logic actions like `updateValues` and `autofillFromRelate` can show a confirmation modal before applying changes
+
+For the **List Confirmation Modal** — a variant that displays a searchable, paginated table of records — see link:./confirmation-list-modal[Confirmation List Modal].
+
+== 2. Configuration Properties
+
+=== 2.1 Backend Response Properties
+
+When returning a confirmation modal from a `ProcessHandler`, set these keys in `$process->setData([...])`:
+
+[source,php]
+----
+$process->setStatus('error');
+$process->setData([
+    'displayConfirmation' => true,
+    'confirmationTitle' => 'LBL_CONFIRM_TITLE',
+    'confirmationLabel' => 'LBL_CONFIRM_MESSAGE',
+    'confirmationMessages' => ['LBL_ADDITIONAL_LINE_1', 'LBL_ADDITIONAL_LINE_2'],
+]);
+----
+
+[cols="1,1,1,3"]
+|===
+| Key | Type | Required | Description
+
+| `displayConfirmation`
+| `boolean`
+| Yes
+| Set to `true` to show the confirmation modal
+
+| `confirmationTitle`
+| `string`
+| No
+| Language key for the modal title
+
+| `confirmationLabel`
+| `string`
+| No
+| Language key for the main message
+
+| `confirmationMessages`
+| `string[]`
+| No
+| Array of additional language keys displayed as extra lines below the main message
+|===
+
+The `confirmationLabel` and each entry in `confirmationMessages` support micro-templating — you can reference field values using `{{fields.field_name.value}}` syntax in the language label definition. For example:
+
+----
+LBL_CONFIRM_COPY = "Are you sure you want to copy the address from {{fields.billing_address_city.value}}?"
+----
+
+=== 2.2 Record Logic Properties
+
+When using the confirmation modal in record logic (e.g. `updateValues`, `autofillFromRelate`, `updateValuesBackend`), set these keys inside the `params` object:
+
+[source,php]
+----
+'params' => [
+    'displayConfirmation' => true,
+    'confirmationTitle' => 'LBL_CONFIRM_TITLE',
+    'confirmationLabel' => 'LBL_CONFIRM_MESSAGE',
+    'confirmationMessages' => ['LBL_ADDITIONAL_LINE'],
+    // ... other params
+],
+----
+
+The property names and behaviour are the same as the backend response properties above.
+
+== 3. Modal Behaviour
+
+The confirmation modal shows two buttons:
+
+* **Cancel** — dismisses the modal
+* **Proceed** — dismisses the modal and continues the action (save, field update, etc.)
+
+=== 3.1 Silent Validation Errors
+
+When the confirmation modal is triggered by an async validator and the user clicks **Cancel**, the save is blocked but the yellow `LBL_VALIDATION_ERRORS` warning is not shown. This is called a "silent" validation error.
+
+The framework handles this automatically — you do not need to set any flags. The silent behaviour applies whenever a `displayConfirmation` modal is shown and the user cancels.
+
+If the form also has non-silent errors (for example, a required field is empty), the warning will still be shown. The warning is only suppressed when _all_ errors on the form are silent.
+
+== 4. Where the Confirmation Modal is Used
+
+[cols="1,3"]
+|===
+| Feature | Description
+
+| link:../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators]
+| Backend returns `displayConfirmation: true` to confirm before saving
+
+| link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators]
+| Backend returns `displayConfirmation: true` to confirm before saving
+
+| link:../../logic/record-logic/fe-extensions-record-update-values[updateValues Record Logic]
+| Shows confirmation before applying field updates
+
+| link:../../logic/record-logic/fe-extensions-record-autofill-from-relate[autofillFromRelate Record Logic]
+| Shows confirmation before autofilling field values
+
+| link:../../logic/record-logic/fe-extensions-record-update-values-backend[updateValuesBackend Record Logic]
+| Shows confirmation before calling backend to update values
+|===

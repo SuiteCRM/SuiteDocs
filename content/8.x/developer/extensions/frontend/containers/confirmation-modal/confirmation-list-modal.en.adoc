@@ -1,0 +1,335 @@
+---
+title: "Confirmation List Modal"
+weight: 10
+---
+
+== 1. Introduction
+
+The Confirmation List Modal displays a searchable, paginated table of records inside a modal dialog. It is used when a backend process needs to show the user a list of related records — for example, duplicate contacts — and let them decide whether to proceed or cancel.
+
+The modal is typically opened from a record-level async validator (see link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators]).
+
+== 2. Backend Response Properties
+
+When returning a list confirmation modal from a `ProcessHandler`, set these keys in `$process->setData([...])`:
+
+[source,php]
+----
+$process->setStatus('error');
+$process->setData([
+    'displayListConfirmation' => true,
+    'confirmationTitle' => 'LBL_DUPLICATE_TITLE',
+    'confirmationLabel' => 'LBL_DUPLICATE_MESSAGE',
+    'module' => 'Contacts',
+    'showFilter' => true,
+    'fields' => [
+        ['name' => 'name'],
+        ['name' => 'email1', 'link' => false],
+        ['name' => 'account_name', 'link' => false],
+    ],
+    'preset' => [
+        'type' => 'duplicate-email-contacts',
+        'params' => ['email' => $email, 'excludeId' => $currentId],
+    ],
+    'actions' => [],
+]);
+----
+
+[cols="1,1,1,3"]
+|===
+| Key | Type | Required | Description
+
+| `displayListConfirmation`
+| `boolean`
+| Yes
+| Set to `true` to open the list confirmation modal
+
+| `confirmationTitle`
+| `string`
+| Yes
+| Language key for the modal title
+
+| `confirmationLabel`
+| `string`
+| No
+| Language key for a message displayed above the table. Supports micro-templating with `{{fields.field_name.value}}` syntax.
+
+| `module`
+| `string`
+| Yes
+| The module whose records are displayed in the table
+
+| `showFilter`
+| `boolean`
+| No
+| Show a filter panel above the table (default: `false`)
+
+| `fields`
+| `array`
+| No
+| Array of column configurations with optional overrides (see link:./#_3_column_configuration[Column Configuration])
+
+| `preset`
+| `object`
+| Yes
+| Preset data handler configuration with `type` and `params` (see link:./#_4_preset_data_handlers[Preset Data Handlers])
+
+| `actions`
+| `array`
+| No
+| Array of action button configurations. Empty array uses default Cancel/Proceed buttons (see link:./#_5_action_buttons[Action Buttons])
+|===
+
+See the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page for the full backend response reference.
+
+== 3. Column Configuration
+
+The `fields` property in the backend response controls which columns appear in the table and allows overriding column properties.
+
+[source,php]
+----
+'fields' => [
+    ['name' => 'name'],
+    ['name' => 'email1', 'link' => false],
+    ['name' => 'account_name', 'link' => false, 'label' => 'Company'],
+],
+----
+
+=== 3.1 Available Override Properties
+
+[cols="1,1,3"]
+|===
+| Property | Type | Description
+
+| `name`
+| `string`
+| Field name. Must match a column from the module's list metadata.
+
+| `label`
+| `string`
+| Override the column label text
+
+| `labelKey`
+| `string`
+| Override the column label language key
+
+| `type`
+| `string`
+| Override the field type
+
+| `link`
+| `boolean`
+| Control whether the column renders as a clickable link
+|===
+
+=== 3.2 Column Order and Filtering
+
+When `fields` is provided:
+
+. Only the listed columns are shown, in the order specified
+. Each entry is matched to a `ColumnDefinition` from the module's list metadata by `name`
+. Override properties are shallow-merged onto the base definition
+. If a column name does not match any metadata column, it is silently skipped
+
+=== 3.3 Link Behaviour
+
+By default, `relate` type fields in the table have their links disabled to prevent navigation away from the modal. To explicitly control link behaviour per column:
+
+* `['name' => 'name']` — keeps the default link behaviour (name fields open in a new tab)
+* `['name' => 'email1', 'link' => false]` — disables the link
+* `['name' => 'account_name', 'link' => true]` — forces the link on (opens in a new tab)
+
+Fields with an explicit `link` value are not affected by the automatic relate-field link disabling.
+
+== 4. Preset Data Handlers
+
+The modal fetches its data via a preset data handler on the backend. The `preset.type` in the response is matched to a handler's `getType()` return value.
+
+=== 4.1 Creating a Preset Handler
+
+Create a PHP class in your extension that implements `PresetListDataHandlerInterface` and extends `ListDataHandler`:
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Contacts\Service;
+
+use App\Data\LegacyHandler\ListData;
+use App\Data\LegacyHandler\ListDataHandler;
+use App\Data\LegacyHandler\PresetListDataHandlerInterface;
+
+class DuplicateEmailPresetHandler extends ListDataHandler implements PresetListDataHandlerInterface
+{
+    public const HANDLER_KEY = 'duplicate-email-contacts-handler';
+
+    public function getHandlerKey(): string
+    {
+        return self::HANDLER_KEY;
+    }
+
+    public function getType(): string
+    {
+        return 'duplicate-email-contacts';
+    }
+
+    public function fetch(
+        string $module,
+        array $criteria = [],
+        int $offset = -1,
+        int $limit = -1,
+        array $sort = []
+    ): ListData {
+        // Build custom query and return list data
+        // See the complete example in the Record-Level Async Validators page
+    }
+}
+----
+
+The `getType()` return value must match the `preset.type` used in the process handler's response. `ListDataHandler` provides helper methods like `getBean()`, `mapCriteria()`, `prepareQueryData()`, and `buildListData()`.
+
+For a complete preset handler implementation, see the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7.5).
+
+=== 4.2 How It Works
+
+. The frontend sends a GraphQL list request with the `preset` criteria
+. The backend matches `preset.type` to a registered handler via `getType()`
+. The handler builds a custom query and returns `ListData`
+. The results are rendered in the modal table
+
+Preset handlers are auto-discovered. Implement `PresetListDataHandlerInterface` and the framework registers them automatically via the `_instanceof` tag in `core_services.yaml`.
+
+=== 4.3 Filter Panel Integration
+
+When `showFilter` is `true`, a filter panel appears above the table. The user's filter criteria are merged with the preset filter before being passed to the handler. This means your `fetch()` method receives both the preset params and any additional user-entered criteria in the `$criteria` parameter.
+
+== 5. Action Buttons
+
+The modal footer shows action buttons that control what happens when the user interacts with the modal.
+
+=== 5.1 Default Buttons
+
+When `actions` is empty or not provided, the modal shows two default buttons:
+
+* **Cancel** — dismisses the modal
+* **Proceed** — closes the modal and continues the action
+
+=== 5.2 Custom Actions
+
+Provide an `actions` array to fully control the footer buttons:
+
+[source,php]
+----
+'actions' => [
+    [
+        'key' => 'cancel',
+        'labelKey' => 'LBL_CANCEL',
+        'klass' => ['btn-outline-danger'],
+    ],
+    [
+        'key' => 'proceed',
+        'labelKey' => 'LBL_SAVE_ANYWAY',
+        'klass' => ['btn-primary'],
+    ],
+    [
+        'key' => 'merge-duplicates',
+        'labelKey' => 'LBL_MERGE',
+        'asyncProcess' => true,
+        'klass' => ['btn-warning'],
+        'params' => ['targetModule' => 'Contacts'],
+    ],
+]
+----
+
+=== 5.3 Action Properties
+
+[cols="1,1,1,3"]
+|===
+| Property | Type | Required | Description
+
+| `key`
+| `string`
+| Yes
+| Action handler key (e.g. `cancel`, `proceed`, or a custom key)
+
+| `labelKey`
+| `string`
+| Yes
+| Language key for the button label
+
+| `asyncProcess`
+| `boolean`
+| No
+| If `true`, dispatches the action as an async process to the backend
+
+| `klass`
+| `string[]`
+| No
+| CSS classes for the button (e.g. `['btn-primary']`, `['btn-outline-danger']`)
+
+| `params`
+| `object`
+| No
+| Additional parameters passed to the action handler or async process
+|===
+
+=== 5.4 Overriding Default Buttons
+
+To change the label or styling of the default Cancel and Proceed buttons, include them in the `actions` array with the same `key`:
+
+[source,php]
+----
+'actions' => [
+    ['key' => 'cancel', 'labelKey' => 'LBL_DISMISS'],
+    ['key' => 'proceed', 'labelKey' => 'LBL_SAVE_ANYWAY', 'klass' => ['btn-warning']],
+]
+----
+
+To remove a button entirely, omit it from the array. For example, to show only a **Proceed** button with no cancel option:
+
+[source,php]
+----
+'actions' => [
+    ['key' => 'proceed', 'labelKey' => 'LBL_PROCEED'],
+]
+----
+
+=== 5.5 Built-in Action Keys
+
+[cols="1,3"]
+|===
+| Key | Behaviour
+
+| `cancel`
+| Dismisses the modal
+
+| `proceed`
+| Closes the modal and continues the action
+|===
+
+=== 5.6 Async Actions
+
+When `asyncProcess` is set to `true`, the action is dispatched to the backend as an async process. The action key is submitted along with all record IDs currently in the list.
+
+The backend response can include control flags to manage the modal:
+
+[cols="1,3"]
+|===
+| Flag | Description
+
+| `closeModal`
+| Close the modal
+
+| `dismissModal`
+| Dismiss the modal without close animation
+
+| `callOnProceed`
+| Continue the action (e.g. proceed with save)
+
+| `reload`
+| Reload the list data (refresh the table)
+|===
+
+== 6. Complete Example
+
+For a complete end-to-end example that uses the Confirmation List Modal — including viewdef configuration, process handler, preset data handler, language labels, and the full user flow — see the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7).
