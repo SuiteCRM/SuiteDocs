@@ -1,0 +1,868 @@
+---
+title: "Record-Level Async Validators"
+weight: 10
+---
+
+== 1. Introduction
+
+Record-level async validators check the entire record at save time. Unlike link:../fields/field-options/async-validator[field-level async validators] which validate a single field value, record-level validators receive all record attributes and can perform cross-field validation, duplicate detection, or any logic that depends on multiple field values.
+
+Record-level validators are configured in `detailviewdefs.php` (inside the `DetailView` key) and are powered by the Process API — the frontend submits a process request with all record attributes, and the backend handler decides whether the save should proceed.
+
+== 2. Metadata Definition
+
+Add `asyncValidators` inside the `DetailView` key of the module's `detailviewdefs.php`:
+
+[source,php]
+----
+<?php
+
+// public/legacy/custom/modules/Contacts/metadata/detailviewdefs.php
+
+$viewdefs['Contacts'] = [
+    'DetailView' => [
+        'templateMeta' => [ /* ... */ ],
+        'panels' => [ /* ... */ ],
+
+        // Record-level async validators
+        'asyncValidators' => [
+            'duplicate-email' => [
+                'key' => 'validate-contact-duplicate-email',
+            ],
+        ],
+    ],
+];
+----
+
+Each entry has a unique key (used as identifier) and a `key` property that maps to a backend `ProcessHandler`.
+
+{{% notice warning %}}
+The `asyncValidators` key must be placed inside the `DetailView` array, not at the top level of `$viewdefs`. The backend reads this value from the `DetailView` content via `RecordViewDefinitionHandler`.
+{{% /notice %}}
+
+=== 2.1 Alternative: Using a ViewConfigMapper
+
+Instead of editing `detailviewdefs.php` directly, you can add `asyncValidators` programmatically using a `ViewConfigMapper`. This is the recommended approach for extensions, as it avoids modifying or duplicating the module's metadata files.
+
+Create a PHP class in your extension that implements `ViewConfigMapperInterface`:
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Contacts\Service;
+
+use App\ViewDefinitions\LegacyHandler\ViewConfigMapperInterface;
+
+class ContactAsyncValidatorsConfigMapper implements ViewConfigMapperInterface
+{
+    public function getKey(): string
+    {
+        return 'contact-async-validators';
+    }
+
+    public function getView(): string
+    {
+        return 'record';
+    }
+
+    public function getModule(): string
+    {
+        return 'Contacts';
+    }
+
+    public function map(array $viewDefs): array
+    {
+        $viewDefs['asyncValidators'] = $viewDefs['asyncValidators'] ?? [];
+
+        $viewDefs['asyncValidators']['duplicate-email'] = [
+            'key' => 'validate-contact-duplicate-email',
+        ];
+
+        return $viewDefs;
+    }
+}
+----
+
+The mapper is auto-discovered — implementing `ViewConfigMapperInterface` is sufficient. The framework tags it with `view.config.mapper` and runs it during view definition loading, before the `asyncValidators` are read by `RecordViewDefinitionHandler`.
+
+After creating the mapper, run `php bin/console cache:clear`.
+
+[cols="1,3"]
+|===
+| Method | Description
+
+| `getKey()`
+| Unique identifier for this mapper
+
+| `getView()`
+| The view type to target. Use `'record'` for the detail/edit view
+
+| `getModule()`
+| The module name (frontend format). Use `'default'` to apply to all modules
+
+| `map(array $viewDefs)`
+| Receives the raw `detailviewdefs` array and must return the modified array
+|===
+
+{{% notice info %}}
+The `ViewConfigMapper` runs on the raw viewdefs before they are processed into panels, widgets, and validators. This means you can modify any part of the `DetailView` array — not just `asyncValidators`.
+{{% /notice %}}
+
+== 3. Backend Process Handler
+
+The process handler follows the same `ProcessHandlerInterface` pattern as other process handlers. It receives the full record attributes and returns a response that controls validation outcome.
+
+=== 3.1 Creating a Process Handler
+
+{{% notice note %}}
+When making these changes be sure to make them within an extension on the `extensions` directory, e.g.: `extensions/<my-extension>/...`
+{{% /notice %}}
+
+. Create a PHP class in your extension that implements `ProcessHandlerInterface`
+. Set the `PROCESS_TYPE` constant to match the `key` from the metadata configuration
+. Implement the `run()` method with your validation logic
+. Run `php bin/console cache:clear`
+. Re-set file permissions if needed
+
+=== 3.2 Handler Skeleton
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Contacts\Service;
+
+use ApiPlatform\Metadata\Exception\InvalidArgumentException;
+use App\Engine\LegacyHandler\LegacyHandler;
+use App\Engine\LegacyHandler\LegacyScopeState;
+use App\Process\Entity\Process;
+use App\Process\Service\ProcessHandlerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+class DuplicateEmailValidationHandler extends LegacyHandler implements ProcessHandlerInterface
+{
+    protected const PROCESS_TYPE = 'validate-contact-duplicate-email';
+
+    public function __construct(
+        string $projectDir,
+        string $legacyDir,
+        string $legacySessionName,
+        string $defaultSessionName,
+        LegacyScopeState $legacyScopeState,
+        RequestStack $requestStack,
+        protected DuplicateEmailPresetHandler $presetHandler
+    ) {
+        parent::__construct(
+            $projectDir, $legacyDir, $legacySessionName,
+            $defaultSessionName, $legacyScopeState, $requestStack
+        );
+    }
+
+    public function getHandlerKey(): string
+    {
+        return self::PROCESS_TYPE;
+    }
+
+    public function getProcessType(): string
+    {
+        return self::PROCESS_TYPE;
+    }
+
+    public function requiredAuthRole(): string
+    {
+        return 'ROLE_USER';
+    }
+
+    public function getRequiredACLs(Process $process): array
+    {
+        return [
+            'Contacts' => [
+                ['action' => 'edit'],
+            ],
+        ];
+    }
+
+    public function configure(Process $process): void
+    {
+        $process->setId(self::PROCESS_TYPE);
+        $process->setAsync(false);
+    }
+
+    public function validate(Process $process): void
+    {
+        if (empty($process->getOptions())) {
+            throw new InvalidArgumentException('Process options are not defined');
+        }
+    }
+
+    public function run(Process $process): void
+    {
+        // Your validation logic here
+        // See the response options below for how to control the outcome
+    }
+}
+----
+
+=== 3.3 Available Data
+
+The `$process->getOptions()` method provides:
+
+[cols="1,3"]
+|===
+| Key | Description
+
+| `attributes`
+| All current record attributes (mapped from fields)
+
+| `originalAttributes`
+| The original record attributes before the user's edits
+
+| `params`
+| Custom parameters from the `asyncValidators` metadata configuration
+
+| `module`
+| The record's module name
+|===
+
+== 4. Response Options
+
+The handler controls validation outcome by setting the process status and data.
+
+=== 4.1 Success
+
+Set the status to `success` to pass validation and allow the save to proceed:
+
+[source,php]
+----
+$process->setStatus('success');
+----
+
+=== 4.2 Error with Labels
+
+Return a validation error that displays labels on the form:
+
+[source,php]
+----
+$process->setStatus('error');
+$process->setData([
+    'errors' => [
+        'startLabelKey' => 'LBL_ERROR_BEFORE_ICON',
+        'icon' => 'exclamation-triangle',    // optional icon between labels
+        'endLabelKey' => 'LBL_ERROR_AFTER_ICON',
+    ],
+]);
+----
+
+=== 4.3 Text Confirmation Modal
+
+Show a simple confirmation dialog with a text message. If the user clicks **Proceed**, validation passes. If the user clicks **Cancel**, validation fails silently (save is blocked but no yellow warning).
+
+[source,php]
+----
+$process->setStatus('error');
+$process->setData([
+    'displayConfirmation' => true,
+    'confirmationTitle' => 'LBL_CONFIRM_TITLE',
+    'confirmationLabel' => 'LBL_CONFIRM_MESSAGE',
+    'confirmationMessages' => ['LBL_ADDITIONAL_LINE'],
+]);
+----
+
+[cols="1,1,3"]
+|===
+| Key | Required | Description
+
+| `displayConfirmation`
+| Yes
+| Set to `true` to show the text confirmation modal
+
+| `confirmationTitle`
+| No
+| Language key for the modal title
+
+| `confirmationLabel`
+| No
+| Language key for the main message
+
+| `confirmationMessages`
+| No
+| Array of additional language keys displayed as extra lines
+|===
+
+=== 4.4 List Confirmation Modal
+
+Show a modal with a searchable, paginated table of records. This is useful for showing the user a list of related or duplicate records before they decide whether to proceed.
+
+[source,php]
+----
+$process->setStatus('error');
+$process->setData([
+    'displayListConfirmation' => true,
+    'confirmationTitle' => 'LBL_DUPLICATE_TITLE',
+    'confirmationLabel' => 'LBL_DUPLICATE_MESSAGE',
+    'module' => 'Contacts',
+    'showFilter' => true,
+    'fields' => [
+        ['name' => 'name'],
+        ['name' => 'email1', 'link' => false],
+        ['name' => 'account_name', 'link' => false],
+    ],
+    'preset' => [
+        'type' => 'duplicate-email-contacts',
+        'params' => ['email' => $email, 'excludeId' => $currentId],
+    ],
+    'actions' => [],
+]);
+----
+
+[cols="1,1,3"]
+|===
+| Key | Required | Description
+
+| `displayListConfirmation`
+| Yes
+| Set to `true` to open the list confirmation modal
+
+| `confirmationTitle`
+| Yes
+| Language key for the modal title
+
+| `confirmationLabel`
+| No
+| Language key for a message displayed above the table
+
+| `module`
+| Yes
+| The module whose records are displayed in the table
+
+| `showFilter`
+| No
+| Show a filter panel above the table (default: `false`)
+
+| `fields`
+| No
+| Array of column configurations with optional overrides (e.g. `link`, `label`, `type`)
+
+| `preset`
+| Yes
+| Preset data handler configuration with `type` and `params`
+
+| `actions`
+| No
+| Array of action button configurations. Empty array uses default Cancel/Proceed buttons
+|===
+
+See the link:../../../extensions/frontend/containers/confirmation-modal/confirmation-list-modal[Confirmation List Modal] page for full details on column configuration, preset data handlers, and action buttons.
+
+== 5. Silent Validation Errors
+
+When a confirmation modal (either text or list) is shown and the user clicks **Cancel**, the save is blocked but the yellow `LBL_VALIDATION_ERRORS` warning is not shown. This is called a "silent" validation error.
+
+The framework handles this automatically — you do not need to set any flags in your process handler. The silent behaviour applies whenever:
+
+* A `displayConfirmation` or `displayListConfirmation` modal is shown
+* The user cancels (clicks **Cancel** or closes the modal)
+
+If the form also has non-silent errors (for example, a required field is empty), the warning will still be shown. The warning is only suppressed when _all_ errors on the form are silent.
+
+== 6. Difference from Field-Level Validators
+
+[cols="1,2,2"]
+|===
+| Aspect | Field-Level | Record-Level
+
+| Configuration location
+| `vardefs.php` (`asyncValidators` on a field)
+| `detailviewdefs.php` (`asyncValidators` in `DetailView`)
+
+| Scope
+| Validates a single field value
+| Validates the whole record (all attributes)
+
+| Available data
+| Field value, input value, field definition, record attributes
+| All record attributes, original attributes, module name
+
+| Form attachment
+| Attached to individual field `formControl`
+| Attached to the record `formGroup`
+
+| List confirmation
+| Not supported
+| Supported (`displayListConfirmation`)
+|===
+
+For field-level async validators, see the link:../fields/field-options/async-validator[Async Validators] page under Metadata.
+
+== 7. Complete Example: Duplicate Email Check
+
+This section walks through building a complete duplicate email check for the Contacts module. When a user saves a Contact, the system checks whether another Contact already has the same email address. If duplicates are found, a modal appears showing the matching records, and the user can choose to proceed or cancel.
+
+=== 7.1 What We Are Building
+
+When saving a Contact:
+
+. The system extracts the email address from the record
+. It queries the database for other Contacts with the same email
+. If no duplicates are found, the save proceeds normally
+. If duplicates are found, a modal opens showing them in a table with name, email, and account columns
+. The user can use the filter panel to search the duplicates
+. Clicking **Proceed** continues the save; clicking **Cancel** blocks it (without showing a warning)
+
+=== 7.2 File Structure
+
+All files are created in the `extensions/defaultExt` extension:
+
+----
+extensions/defaultExt/
+├── modules/
+│   └── Contacts/
+│       └── Service/
+│           ├── DuplicateEmailValidationHandler.php   # Process handler
+│           └── DuplicateEmailPresetHandler.php        # Preset data handler
+public/legacy/
+├── custom/
+│   └── modules/
+│       └── Contacts/
+│           └── metadata/
+│               └── detailviewdefs.php                 # Viewdef configuration
+└── include/
+    └── language/
+        └── en_us.lang.php                             # Language labels (or custom/)
+----
+
+=== 7.3 Viewdef Configuration
+
+Add the `asyncValidators` entry inside the `DetailView` key of the Contacts `detailviewdefs.php`.
+
+If you do not already have a custom `detailviewdefs.php`, copy the core one:
+
+. Copy `public/legacy/modules/Contacts/metadata/detailviewdefs.php` to `public/legacy/custom/modules/Contacts/metadata/detailviewdefs.php`
+. Add the `asyncValidators` key inside the `DetailView` array
+
+[source,php]
+----
+<?php
+
+$viewdefs['Contacts'] = array(
+    'DetailView' => array(
+        'templateMeta' => array( /* ... existing config ... */ ),
+        'panels' => array( /* ... existing panels ... */ ),
+
+        // Add this block
+        'asyncValidators' => array(
+            'duplicate-email' => array(
+                'key' => 'validate-contact-duplicate-email',
+            ),
+        ),
+    ),
+);
+----
+
+The `key` value (`validate-contact-duplicate-email`) must match the `PROCESS_TYPE` constant in the process handler.
+
+Alternatively, you can use a `ViewConfigMapper` to add the validator programmatically without modifying the metadata file — see link:./#_2_1_alternative_using_a_viewconfigmapper[Section 2.1].
+
+=== 7.4 Process Handler
+
+Create the file `extensions/defaultExt/modules/Contacts/Service/DuplicateEmailValidationHandler.php`:
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Contacts\Service;
+
+use ApiPlatform\Metadata\Exception\InvalidArgumentException;
+use App\Engine\LegacyHandler\LegacyHandler;
+use App\Engine\LegacyHandler\LegacyScopeState;
+use App\Process\Entity\Process;
+use App\Process\Service\ProcessHandlerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+class DuplicateEmailValidationHandler extends LegacyHandler implements ProcessHandlerInterface, LoggerAwareInterface
+{
+    protected const MSG_OPTIONS_NOT_FOUND = 'Process options are not defined';
+    protected const PROCESS_TYPE = 'validate-contact-duplicate-email';
+
+    protected LoggerInterface $logger;
+
+    public function __construct(
+        string $projectDir,
+        string $legacyDir,
+        string $legacySessionName,
+        string $defaultSessionName,
+        LegacyScopeState $legacyScopeState,
+        RequestStack $requestStack,
+        protected DuplicateEmailPresetHandler $presetHandler
+    ) {
+        parent::__construct(
+            $projectDir,
+            $legacyDir,
+            $legacySessionName,
+            $defaultSessionName,
+            $legacyScopeState,
+            $requestStack
+        );
+    }
+
+    public function getHandlerKey(): string
+    {
+        return self::PROCESS_TYPE;
+    }
+
+    public function getProcessType(): string
+    {
+        return self::PROCESS_TYPE;
+    }
+
+    public function requiredAuthRole(): string
+    {
+        return 'ROLE_USER';
+    }
+
+    public function getRequiredACLs(Process $process): array
+    {
+        return [
+            'Contacts' => [
+                [
+                    'action' => 'edit',
+                ]
+            ],
+        ];
+    }
+
+    public function configure(Process $process): void
+    {
+        $process->setId(self::PROCESS_TYPE);
+        $process->setAsync(false);
+    }
+
+    public function validate(Process $process): void
+    {
+        if (empty($process->getOptions())) {
+            throw new InvalidArgumentException(self::MSG_OPTIONS_NOT_FOUND);
+        }
+    }
+
+    public function run(Process $process): void
+    {
+        $this->init();
+        $this->startLegacyApp();
+
+        try {
+            $options = $process->getOptions();
+            $attributes = $options['attributes'] ?? [];
+            $email = $this->extractEmail($attributes);
+
+            // No email — nothing to check
+            if (empty($email)) {
+                $process->setStatus('success');
+                $process->setMessages([]);
+
+                return;
+            }
+
+            $currentId = $attributes['id'] ?? '';
+            $presetParams = [
+                'email' => $email,
+                'excludeId' => $currentId,
+            ];
+
+            $criteria = [
+                'preset' => [
+                    'type' => 'duplicate-email-contacts',
+                    'params' => $presetParams,
+                ],
+            ];
+
+            // Quick check: fetch just 1 record to see if duplicates exist
+            $listData = $this->presetHandler->fetch('Contacts', $criteria, 0, 1, []);
+
+            if (empty($listData->getRecords())) {
+                // No duplicates — pass validation
+                $process->setStatus('success');
+                $process->setMessages([]);
+
+                return;
+            }
+
+            // Duplicates found — show the list confirmation modal
+            $process->setStatus('error');
+            $process->setMessages(['LBL_DUPLICATE_EMAIL_FOUND']);
+            $process->setData([
+                'displayListConfirmation' => true,
+                'confirmationTitle' => 'LBL_DUPLICATE_EMAIL_TITLE',
+                'confirmationLabel' => 'LBL_DUPLICATE_EMAIL_MESSAGE',
+                'module' => 'Contacts',
+                'showFilter' => true,
+                'fields' => [
+                    ['name' => 'name'],
+                    ['name' => 'email1', 'link' => false],
+                    ['name' => 'account_name', 'link' => false],
+                ],
+                'preset' => [
+                    'type' => 'duplicate-email-contacts',
+                    'params' => $presetParams,
+                ],
+                'actions' => [],
+            ]);
+        } finally {
+            $this->close();
+        }
+    }
+
+    protected function extractEmail(array $attributes): string
+    {
+        // Try email1 first (simple email field)
+        $email1 = $attributes['email1'] ?? '';
+
+        if (!empty($email1)) {
+            return trim($email1);
+        }
+
+        // Fall back to email_addresses array (line-items format)
+        $emailAddresses = $attributes['email_addresses'] ?? [];
+
+        if (empty($emailAddresses)) {
+            return '';
+        }
+
+        foreach ($emailAddresses as $entry) {
+            $addr = $entry['email_address'] ?? '';
+
+            if (!empty($addr)) {
+                return trim($addr);
+            }
+        }
+
+        return '';
+    }
+
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
+    }
+}
+----
+
+Key points:
+
+* The handler extends `LegacyHandler` because it needs to access the legacy database layer via the preset handler
+* The `extractEmail` method handles both the simple `email1` field and the `email_addresses` line-items format
+* The handler first does a quick check (`fetch` with limit 1) to avoid opening the modal unnecessarily
+* The `fields` array controls which columns appear in the modal table. Setting `link: false` on `email1` and `account_name` prevents them from being clickable links
+* The `actions` array is empty, so the modal uses the default Cancel/Proceed buttons
+* The `preset` config tells the frontend which preset data handler to use for fetching the full list
+
+=== 7.5 Preset Data Handler
+
+The preset data handler provides the data for the modal table. It builds a custom query that finds Contacts with a matching email address.
+
+Create the file `extensions/defaultExt/modules/Contacts/Service/DuplicateEmailPresetHandler.php`:
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Contacts\Service;
+
+use App\Data\LegacyHandler\ListData;
+use App\Data\LegacyHandler\ListDataHandler;
+use App\Data\LegacyHandler\PresetListDataHandlerInterface;
+
+class DuplicateEmailPresetHandler extends ListDataHandler implements PresetListDataHandlerInterface
+{
+    public const HANDLER_KEY = 'duplicate-email-contacts-handler';
+
+    public function getHandlerKey(): string
+    {
+        return self::HANDLER_KEY;
+    }
+
+    /**
+     * Must match the preset.type value used in the process handler response.
+     */
+    public function getType(): string
+    {
+        return 'duplicate-email-contacts';
+    }
+
+    public function fetch(
+        string $module,
+        array $criteria = [],
+        int $offset = -1,
+        int $limit = -1,
+        array $sort = []
+    ): ListData {
+        $email = $criteria['preset']['params']['email'] ?? '';
+        $excludeId = $criteria['preset']['params']['excludeId'] ?? '';
+
+        $type = 'advanced';
+        $bean = $this->getBean($module);
+
+        $sort['orderBy'] = $sort['orderBy'] ?? 'last_name';
+        $sort['sortOrder'] = $sort['sortOrder'] ?? 'asc';
+
+        $legacyCriteria = $this->mapCriteria($criteria, $sort, $type);
+        [$params, $filterWhere, $filter_fields] = $this->prepareQueryData(
+            $type, $bean, $legacyCriteria
+        );
+
+        // Build the email matching WHERE clause
+        $emailWhere = $this->buildEmailWhere($email, $excludeId);
+
+        $where = $emailWhere;
+
+        // Merge with any user-entered filter criteria from the modal's filter panel
+        if (!empty($filterWhere)) {
+            $where = "({$emailWhere}) AND ({$filterWhere})";
+        }
+
+        $resultData = $this->getListDataPort()->get(
+            $bean, $where, $offset, $limit, $filter_fields, $params
+        );
+
+        return $this->buildListData($resultData);
+    }
+
+    protected function buildEmailWhere(string $email, string $excludeId): string
+    {
+        $db = \DBManagerFactory::getInstance();
+        $emailClean = $db->quote(strtolower(trim($email)));
+
+        $where = "contacts.id IN (
+            SELECT eabr.bean_id FROM email_addr_bean_rel eabr
+            INNER JOIN email_addresses ea
+                ON ea.id = eabr.email_address_id AND ea.deleted = 0
+            WHERE eabr.bean_module = 'Contacts' AND eabr.deleted = 0
+            AND LOWER(ea.email_address) = '{$emailClean}'
+        )";
+
+        if (!empty($excludeId)) {
+            $excludeIdClean = $db->quote($excludeId);
+            $where .= " AND contacts.id != '{$excludeIdClean}'";
+        }
+
+        return $where;
+    }
+}
+----
+
+Key points:
+
+* The `getType()` return value must match the `preset.type` used in the process handler's response
+* The handler extends `ListDataHandler` which provides helper methods like `getBean()`, `mapCriteria()`, `prepareQueryData()`, and `buildListData()`
+* The `$filterWhere` variable contains any additional filter criteria entered by the user in the modal's filter panel — it is merged with the email matching clause
+* The email lookup uses the `email_addr_bean_rel` and `email_addresses` tables for accurate matching
+* All user input is escaped via `$db->quote()` to prevent SQL injection
+* Preset handlers are auto-discovered — implementing `PresetListDataHandlerInterface` is sufficient for registration
+
+=== 7.6 Language Labels
+
+Add the language labels used by the modal. There are two ways to add labels: via the legacy language extension directory, or via a YAML file in your extension.
+
+==== Legacy Language Extension
+
+Add to the Contacts module language file (e.g. `public/legacy/custom/Extension/modules/Contacts/Ext/Language/en_us.duplicate_email.php`):
+
+[source,php]
+----
+<?php
+
+$mod_strings['LBL_DUPLICATE_EMAIL_TITLE'] = 'Duplicate Email Found';
+$mod_strings['LBL_DUPLICATE_EMAIL_MESSAGE'] = 'One or more contacts with the same email address already exist. Do you want to continue?';
+$mod_strings['LBL_DUPLICATE_EMAIL_FOUND'] = 'Duplicate email address found';
+----
+
+==== Extension Language YAML
+
+Alternatively, add the labels via a YAML file in your extension (e.g. `extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml`).
+
+To add module-level labels (`mod_strings`), use the `module` key with the module name:
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      module:
+        Contacts:
+          LBL_DUPLICATE_EMAIL_TITLE: 'Duplicate Email Found'
+          LBL_DUPLICATE_EMAIL_MESSAGE: 'One or more contacts with the same email address already exist. Do you want to continue?'
+          LBL_DUPLICATE_EMAIL_FOUND: 'Duplicate email address found'
+----
+
+To add global app strings instead, use the `application` key:
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_DUPLICATE_EMAIL_TITLE: 'Duplicate Email Found'
+----
+
+The YAML language files support three key types: `application` (app strings), `module.<ModuleName>` (module strings), and `lists` (dropdown options).
+
+=== 7.7 Clear Cache and Rebuild
+
+After creating all files:
+
+. Run `php bin/console cache:clear`
+. Run **Repair and Rebuild** from the Admin menu (to pick up the viewdef changes)
+. Re-set file permissions if needed (depends on your setup)
+
+=== 7.8 How It Works
+
+Once everything is in place, the flow when saving a Contact is:
+
+. The user edits a Contact and clicks **Save**
+. The save action attaches all async validators and triggers validation
+. The `recordAsyncValidator` on the frontend submits a process request to `validate-contact-duplicate-email` with all record attributes
+. The `DuplicateEmailValidationHandler` extracts the email and uses the `DuplicateEmailPresetHandler` to check for existing Contacts with the same email
+. If no duplicates exist, the handler returns `success` and the save continues
+. If duplicates exist, the handler returns `error` with `displayListConfirmation: true`
+. The frontend opens the Confirmation List Modal showing the duplicate Contacts
+. The user can see the duplicates in a paginated table with name, email, and account columns
+. The filter panel allows searching within the duplicates
+. If the user clicks **Proceed**, validation passes and the save continues
+. If the user clicks **Cancel**, validation fails silently — the save is blocked but no yellow warning is shown
+
+== 8. Process Handler Interface Reference
+
+All async validator handlers must implement `ProcessHandlerInterface`. The key methods are:
+
+[cols="1,3"]
+|===
+| Method | Description
+
+| `getProcessType()`
+| Returns the process key. Must match the `key` from the metadata configuration.
+
+| `requiredAuthRole()`
+| The authentication role required. Use `'ROLE_USER'` for logged-in users or `'ROLE_ADMIN'` for admin-only access.
+
+| `getRequiredACLs(Process $process)`
+| Defines the SuiteCRM ACLs required to run this handler. See the link:../../../extensions/backend/process-api/process-handler[Process Handler] guide for details.
+
+| `configure(Process $process)`
+| Sets the process ID and whether it is async. For validators, always use `$process->setAsync(false)`.
+
+| `validate(Process $process)`
+| Validates the process inputs. Throw `InvalidArgumentException` if inputs are invalid.
+
+| `run(Process $process)`
+| Runs the validation logic. Set `$process->setStatus('success')` to pass or `$process->setStatus('error')` with `$process->setData([...])` to fail.
+|===
+
+== 9. Related Topics
+
+* link:../fields/field-options/async-validator[Field-Level Async Validators] — validators that check a single field value (configured in `vardefs.php`)
+* link:../../../extensions/frontend/containers/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
+* link:../../../extensions/frontend/containers/confirmation-modal/confirmation-list-modal[Confirmation List Modal] — the modal variant that displays a searchable table of records
+* link:../../../extensions/backend/process-api/process-handler[Process Handler] — general guide for creating process handlers
