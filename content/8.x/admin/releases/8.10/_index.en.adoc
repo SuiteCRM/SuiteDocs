@@ -11,6 +11,131 @@ aliases:
 :icons: font
 :imagesdir: /images/en/8.x/admin/release
 
+== 8.10.2
+
+_Released 31st July 2026_
+
+=== icon:box-open[] Assets
+
+* https://github.com/SuiteCRM/SuiteCRM-Core/releases/tag/v8.10.2[GitHub — Download v8.10.2]
+* link:../../installation-guide/downloading-installing[SuiteCRM 8 Install Guide]
+* link:../../upgrading[SuiteCRM 8 Upgrade Guide]
+
+===  icon:check[] Release Notes
+
+==== Important Notes
+
+===== SOAP Portal Removal
+{{% notice warning %}}
+This release removes SOAP Portal support. If you are using SOAP Portal, please migrate to REST API or other supported methods.
+{{% /notice %}}
+
+===== API v4 Query Config
+
+A new configuration option `disable_v4_api_query_where` has been added. This option allows administrators to disable the v4 API query where clause for improved performance. By default, this option is set to `true`, meaning the v4 API query where clause is disabled. To enable it, set the option to `false` in the `config_override.php`.
+
+==== icon:lock[] Security
+
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control ] | https://github.com/SuiteCRM/SuiteCRM-Core/security/advisories/GHSA-mjjw-75gv-j5g5[GitHub Advisory] | Reporter: prakhar0x01
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control ] | https://github.com/SuiteCRM/SuiteCRM-Core/security/advisories/GHSA-7qwx-m7r8-fc9f[GitHub Advisory] | Reporter: MichaelPasternak1337
+
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61653[CVE-2026-61653: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pqq6-v2mj-hrm2[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61649[CVE-2026-61649: SSRF Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-r665-27q3-wvg8[GitHub Advisory] | Reporter: morimori-dev
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61650[CVE-2026-61650: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-qmh9-m7g7-pxxp[GitHub Advisory] | Reporter: larlarua
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61651[CVE-2026-61651: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-7cj5-pc2f-9xgv[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61653[CVE-2026-61653: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-5m7h-v4v6-2r8h[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-6c7r-7g6m-29f9[GitHub Advisory] | Reporter: marginaldeer
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-3phg-q9w9-4pqw[GitHub Advisory] | Reporter: Tristan Madani (@TristanInSec) from Talence Security
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-gcc4-hvpc-cgvv[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-3mjp-45mc-3256[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SSRF Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-72r3-24x4-j46c[GitHub Advisory] | Reporter: Max Gabriel (EntroVyx)
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-xg3m-xvc9-j55j[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-wphj-qjgj-4j23[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pjc8-2w2x-xcgf[GitHub Advisory] | Reporter: AdrianJunge
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rc6r-hwhg-7pfg[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-j2r4-r4wh-339v[GitHub Advisory] | Reporter: Yash Shendge (GitHub: ashrexon)
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63111[CVE-2026-63111: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-gx3x-3f4c-cjmx[GitHub Advisory] | Reporter: Pedro J. Núñez-Cacho Fuentes (tunelko / blogs.tunelko.com)
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63214[CVE-2026-63214: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-gjgm-wrr6-hrmp[GitHub Advisory] | Reporter: radoi-teodor
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63215[CVE-2026-63215: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pmhw-r27f-w92m[GitHub Advisory] | Reporter: Furkan KARAARSLAN https://www.linkedin.com/in/furkan-k/
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63217[CVE-2026-63217: IDOR Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-m5xj-rrwv-g3q3[GitHub Advisory] | Reporter: geo-chen
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63218[CVE-2026-63218: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-v624-ccrf-9v97[GitHub Advisory] | Reporter: Yash Shendge (GitHub: ashrexon)
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4fhr-x4wr-fwqg[GitHub Advisory] | Reporter: Anonymous
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: LFI to RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-cx24-rr7r-mxrg[GitHub Advisory] | Reporter: amwhoi
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-239h-ffjr-v957[GitHub Advisory] | Reporter: isch1zo
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-2hv5-wj8h-mv8m[GitHub Advisory] | Reporter: AdrianJunge
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4773-c8fh-3rww[GitHub Advisory] | Reporter: MichaelPasternak1337
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-22rh-qc6x-cvgw[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rxx9-4rg7-c3qp[GitHub Advisory] | Reporter: voraci0us
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-8rjm-vpj3-hch8[GitHub Advisory] | Reporter: usmonkhudoyorov
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-jhhh-64wx-fj9c[GitHub Advisory] | Reporter: adilkhan7546
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rc46-hjjp-4jv5[GitHub Advisory] | Reporter: MichaelPasternak1337
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-6jf7-hh5p-8fcm[GitHub Advisory] | Reporter: TA-MU-TA
+
+==== icon:bug[] Bug Fixes
+
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/936[PR #936] - Update Legacy Migration Description to 7.15.x
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/943[PR #943] - Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/910[#910]: Filters are forgotten when leaving module
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/944[PR #944] - Fix Email Signature not loading when opening a compose modal
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/945[PR #945] - Fix saving a field with metadata in module builder shows the field as custom
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/904[PR #904] - Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/832[#832]: Boolean/checkbox filter returns inverted or no results
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/948[PR #948] - Update dependencies
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/954[PR #954] - Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/930[#930]: variable injector not retrieving module language
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/955[PR #955] - Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/933[#933]: Fix Notes file and filename fields both using LBL_FILENAME as vname
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/974[PR #974] - Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/973[#973]: add missing parameter
+* https://github.com/SuiteCRM/SuiteCRM-Core/pull/980[PR #980] - Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/937[#937]: Drafts confirmation is too long
+* Update Classic View rendering to cope with the deprecation of the `unload` browser event.
+* Fix Print as PDF bulk action
+
+* https://github.com/SuiteCRM/SuiteCRM/pull/9773[PR #9773] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9772[#9772]: Importing text emails with attachments
+* https://github.com/SuiteCRM/SuiteCRM/pull/10807[PR #10807] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10804[#10804]: CalendarSync sync-back preserves external fields
+* https://github.com/SuiteCRM/SuiteCRM/pull/10478[PR #10478] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10477[#10477]: Do not exclude email sends from the message queue without filtering by campaign
+* https://github.com/SuiteCRM/SuiteCRM/pull/10822[PR #10822] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/8289[#8289]: Fix Import data for floating point fields wrongly saved
+* https://github.com/SuiteCRM/SuiteCRM/pull/10823[PR #10823] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/8951[#8951]: Fix rich text field validation
+* https://github.com/SuiteCRM/SuiteCRM/pull/10501[PR #10501] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10499[#10499]: Error when importing in the Locations module
+* https://github.com/SuiteCRM/SuiteCRM/pull/10832[PR #10832] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9788[#9788]: Database failures in subpanels
+* https://github.com/SuiteCRM/SuiteCRM/pull/10831[PR #10831] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10830[#10830]: Primary email doesn't update when importing
+* https://github.com/SuiteCRM/SuiteCRM/pull/10856[PR #10856] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10646[#10646]: Fix Module builder label creation
+* https://github.com/SuiteCRM/SuiteCRM/pull/10838[PR #10838] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10594[#10594]: Bad relationship definitions filling the suitecrm logs
+* https://github.com/SuiteCRM/SuiteCRM/pull/10826[PR #10826] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10825[#10825]: Truncated value when saving large values in workflow and report conditions
+* https://github.com/SuiteCRM/SuiteCRM/pull/10870[PR #10870] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10023[#10023]: Email Folders Don't Select
+* https://github.com/SuiteCRM/SuiteCRM/pull/10870[PR #10870] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10023[#10023]: Email Folders Don't Select
+* https://github.com/SuiteCRM/SuiteCRM/pull/10875[PR #10875] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10874[#10874]: 'Associated user' field in OAuth Clients and Tokens lists does not link correctly
+* https://github.com/SuiteCRM/SuiteCRM/pull/10869[PR #10869] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10763[#10763]: SMTP credentials wrong after changing a field in outbound email settings
+* https://github.com/SuiteCRM/SuiteCRM/pull/10860[PR #10860] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10859[#10859]: Auth window loses connection to the opener when requesting an OAuth token
+* Fix https://github.com/SuiteCRM/SuiteCRM/issues/3855[#3855] - Update PDF Template Samples
+* Fix https://github.com/SuiteCRM/SuiteCRM/issues/7687[#7687] - update sample pdf loader to ignore invalid files
+* Fix IMAP issue affecting users in certain timezone where Emails were not importing correctly
+
+== Upgrade Process Improvements
+
+We have added support for pre-upgrade migrations. This allows to have migrations (for example, to update data or configuration) run before the upgrade process begins.
+
+== icon:code[] Developer Improvements
+
+
+
+=== icon:heart[] Community
+
+SuiteCRM is built with and for its community — thank you to everyone who reported issues, submitted feedback, and contributed code to this release.
+
+_Special thanks to the following contributors for their contributions to this release:_
+
+{{% ghcontributors SinergiaCRM timo-ecm2 pstevens71 rpeshnegi ctucker1984 hjdeheer kingfisher77 likhobory ramezquitao likhobory %}}
+
+_Special thanks to everyone who reported the security issues addressed in this release!_
+
+{{% ghcontributors MichaelPasternak1337 tuannm-1876 morimori-dev larlarua mosaa404 TristanInSec EntroVyx AdrianJunge ashrexon tunelko radoi-teodor furkan1x337 geo-chen amwhoi voraci0us usmonkhudoyorov adilkhan7546 TA-MU-TA prakhar0x01 %}}
+
+Visit https://suitecrm.com/releases/[Releases] for the appropriate upgrade package for your installation.
+
+* *Found a Bug?* https://github.com/suitecrm/SuiteCRM-Core/issues[Submit an Issue]
+* *Want to contribute?* https://github.com/suitecrm/SuiteCRM-Core/pulls[Open a Pull Request]
+* *Translations:* https://crowdin.com/project/suitecrmtranslations[Join us on Crowdin]
+
+To report a security issue, please follow our link:../../../../community/security-policy[Security Policy].
+
+'''
+
 == 8.10.1
 
 _Released 13th May 2026_
