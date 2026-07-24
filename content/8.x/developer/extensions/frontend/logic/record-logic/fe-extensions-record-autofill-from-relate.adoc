@@ -154,7 +154,7 @@ Supported modes: `edit`, `create`.
 
 ==== activeOnFields
 
-Conditions that must be met for the autofill to execute. Typically, you want to check that the relate ID field is not empty. See link:../../operators/[Logic Operators] for available operators.
+Conditions that must be met for the autofill to execute. Typically, you want to check that the relate field is not empty. See link:../../operators/[Logic Operators] for available operators.
 
 ==== activeOnAttributes
 
@@ -166,11 +166,15 @@ Boolean. When `true`, a confirmation modal is shown before values are updated. D
 
 ==== confirmationLabel
 
-Language label key for the confirmation modal header text.
+Language label key for the main confirmation modal message.
 
 ==== confirmationTitle
 
-You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
+Language label key for the confirmation modal title.
+
+==== confirmationMessages
+
+Array of language label keys for additional messages in the confirmation modal.
 
 ==== updateFields
 
