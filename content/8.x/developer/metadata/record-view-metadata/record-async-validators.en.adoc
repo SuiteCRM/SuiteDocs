@@ -5,7 +5,7 @@ weight: 10
 
 == 1. Introduction
 
-Record-level async validators check the entire record at save time. Unlike link:../fields/field-options/async-validator[field-level async validators] which validate a single field value, record-level validators receive all record attributes and can perform cross-field validation, duplicate detection, or any logic that depends on multiple field values.
+Record-level async validators check the entire record at save time. Unlike link:../../fields/field-options/async-validator[field-level async validators] which validate a single field value, record-level validators receive all record attributes and can perform cross-field validation, duplicate detection, or any logic that depends on multiple field values.
 
 Record-level validators are configured in `detailviewdefs.php` (inside the `DetailView` key) and are powered by the Process API — the frontend submits a process request with all record attributes, and the backend handler decides whether the save should proceed.
 
@@ -143,21 +143,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class DuplicateEmailValidationHandler extends LegacyHandler implements ProcessHandlerInterface
 {
     protected const PROCESS_TYPE = 'validate-contact-duplicate-email';
-
-    public function __construct(
-        string $projectDir,
-        string $legacyDir,
-        string $legacySessionName,
-        string $defaultSessionName,
-        LegacyScopeState $legacyScopeState,
-        RequestStack $requestStack,
-        protected DuplicateEmailPresetHandler $presetHandler
-    ) {
-        parent::__construct(
-            $projectDir, $legacyDir, $legacySessionName,
-            $defaultSessionName, $legacyScopeState, $requestStack
-        );
-    }
 
     public function getHandlerKey(): string
     {
@@ -393,7 +378,7 @@ If the form also has non-silent errors (for example, a required field is empty),
 | Supported (`displayListConfirmation`)
 |===
 
-For field-level async validators, see the link:../fields/field-options/async-validator[Async Validators] page under Metadata.
+For field-level async validators, see the link:../../fields/field-options/async-validator[Async Validators] page under Metadata.
 
 == 7. Complete Example: Duplicate Email Check
 
@@ -765,24 +750,24 @@ Key points:
 
 Add the language labels used by the modal. There are two ways to add labels: via the legacy language extension directory, or via a YAML file in your extension.
 
-==== Legacy Language Extension
-
-Add to the Contacts module language file (e.g. `public/legacy/custom/Extension/modules/Contacts/Ext/Language/en_us.duplicate_email.php`):
-
-[source,php]
-----
-<?php
-
-$mod_strings['LBL_DUPLICATE_EMAIL_TITLE'] = 'Duplicate Email Found';
-$mod_strings['LBL_DUPLICATE_EMAIL_MESSAGE'] = 'One or more contacts with the same email address already exist. Do you want to continue?';
-$mod_strings['LBL_DUPLICATE_EMAIL_FOUND'] = 'Duplicate email address found';
-----
-
 ==== Extension Language YAML
 
-Alternatively, add the labels via a YAML file in your extension (e.g. `extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml`).
+Add the labels via a YAML file in your extension (e.g. `extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml`).
 
-To add module-level labels (`mod_strings`), use the `module` key with the module name:
+Since the modal is rendered in a shared UI context, use the `application` key so the labels are available regardless of which module is active:
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_DUPLICATE_EMAIL_TITLE: 'Possible Duplicate Contacts'
+        LBL_DUPLICATE_EMAIL_MESSAGE: 'The following contacts already have this email address. Do you still want to proceed?'
+        LBL_DUPLICATE_EMAIL_FOUND: 'Duplicate email address found'
+----
+
+To add module-level labels (`mod_strings`) instead, use the `module` key with the module name:
 
 [source,yaml]
 ----
@@ -791,23 +776,23 @@ parameters:
     en_us:
       module:
         Contacts:
-          LBL_DUPLICATE_EMAIL_TITLE: 'Duplicate Email Found'
-          LBL_DUPLICATE_EMAIL_MESSAGE: 'One or more contacts with the same email address already exist. Do you want to continue?'
-          LBL_DUPLICATE_EMAIL_FOUND: 'Duplicate email address found'
+          LBL_DUPLICATE_EMAIL_TITLE: 'Possible Duplicate Contacts'
 ----
 
-To add global app strings instead, use the `application` key:
+For full documentation on the YAML language system — including file placement, all key types, multiple language support, and override priority — see link:../../../extensions/backend/languages[Adding Language Labels via YAML].
 
-[source,yaml]
-----
-parameters:
-  language:
-    en_us:
-      application:
-        LBL_DUPLICATE_EMAIL_TITLE: 'Duplicate Email Found'
-----
+==== Legacy Language Extension
 
-The YAML language files support three key types: `application` (app strings), `module.<ModuleName>` (module strings), and `lists` (dropdown options).
+Alternatively, add to the global app strings file (e.g. `public/legacy/include/language/en_us.lang.php`) or via the legacy extension directory (e.g. `public/legacy/custom/Extension/application/Ext/Language/en_us.duplicate_email.php`):
+
+[source,php]
+----
+<?php
+
+$app_strings['LBL_DUPLICATE_EMAIL_TITLE'] = 'Possible Duplicate Contacts';
+$app_strings['LBL_DUPLICATE_EMAIL_MESSAGE'] = 'The following contacts already have this email address. Do you still want to proceed?';
+$app_strings['LBL_DUPLICATE_EMAIL_FOUND'] = 'Duplicate email address found';
+----
 
 === 7.7 Clear Cache and Rebuild
 
@@ -862,7 +847,7 @@ All async validator handlers must implement `ProcessHandlerInterface`. The key m
 
 == 9. Related Topics
 
-* link:../fields/field-options/async-validator[Field-Level Async Validators] — validators that check a single field value (configured in `vardefs.php`)
+* link:../../fields/field-options/async-validator[Field-Level Async Validators] — validators that check a single field value (configured in `vardefs.php`)
 * link:../../../extensions/frontend/containers/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
 * link:../../../extensions/frontend/containers/confirmation-modal/confirmation-list-modal[Confirmation List Modal] — the modal variant that displays a searchable table of records
 * link:../../../extensions/backend/process-api/process-handler[Process Handler] — general guide for creating process handlers
