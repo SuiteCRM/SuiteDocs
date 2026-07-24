@@ -8,7 +8,7 @@ weight: 10
 The Confirmation Modal is a dialog that asks the user to confirm or cancel an action. It is used across several features in SuiteCRM 8:
 
 * **Async validators** — when a backend process handler returns `displayConfirmation: true`, a confirmation modal is shown before the save proceeds (see link:../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators] and link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators])
-* **Record logic** — logic actions like `updateValues` and `autofillFromRelate` can show a confirmation modal before applying changes
+* **Record logic** — logic actions like link:../../logic/record-logic/fe-extensions-record-update-values[updateValues] and link:../../logic/record-logic/fe-extensions-record-autofill-from-relate[autofillFromRelate] can show a confirmation modal before applying changes
 
 For the **List Confirmation Modal** — a variant that displays a searchable, paginated table of records — see link:./confirmation-list-modal[Confirmation List Modal].
 
