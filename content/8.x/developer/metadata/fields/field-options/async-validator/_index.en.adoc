@@ -1,5 +1,5 @@
 ---
-title: "Async Validators option"
+title: "Async Validators"
 weight: 20
 ---
 
@@ -7,31 +7,33 @@ weight: 20
 
 == 1. Introduction
 
-In SuiteCRM 8, you can add save validators that run on the backend (a.k.a. asynchronous validators) to fields in your modules. This allows you to perform custom validation logic that runs asynchronously on save.
+In SuiteCRM 8, you can add save validators that run on the backend (asynchronous validators) to fields in your modules. This allows you to perform custom validation logic — such as format checks or uniqueness constraints — that runs when the user clicks **Save**.
 
-This guide will show you how to create an async validator for a field.
+Field-level async validators check a single field value and can be configured on the field definition (vardefs). They are powered by the Process API: the frontend submits a process request with the field value, the backend handler runs the validation logic, and the response determines whether the save proceeds.
 
-== 2. Async Validator Metadata Definition
+{{% notice tip %}}
+Besides editing `vardefs.php` directly, you can also add async validators programmatically using a link:../../../../extensions/backend/fields/vardef-config-mapper[Field Definition Mapper]. This is the recommended approach for extensions.
+{{% /notice %}}
 
-The first thing to define is the `asyncValidators` entry in the metadata.
+Async validators are only attached at save time (not on field change) to avoid unnecessary backend calls. The save action attaches them, runs validation, then immediately removes them.
 
-The configuration for the logic can be added to the `vardefs.php` or the `detailviewdefs.php`.
+{{% notice info %}}
+For validators that check the **entire record** (e.g. duplicate detection across multiple fields), see link:../../../record-view-metadata/record-async-validators[Record-Level Async Validators].
+{{% /notice %}}
 
-In the following example we are going to add one to the `Accounts` module field vardefs.
+== 2. Field-Level Async Validators
 
-=== 2.1 Steps to add the logic on the custom vardefs
+Field-level validators check a single field value. They are configured in the field's vardef definition using the `asyncValidators` property.
 
-. Create a new field in custom extensions for Accounts module:
-.. Example:  `public/legacy/custom/Extension/modules/Accounts/Ext/Vardefs/annual_revenue.php`
-. Copy the `phone_office` definition from `public/legacy/include/SugarObjects/templates/company/vardefs.php`
-. Replace the `logic` entry to the  `phone_office` definition with the code on the snippet below.
-** Re-set permissions if needed (will depend on your setup)
-. Run `Repair and Rebuild` on Admin menu
+=== 2.1 Metadata Definition
 
+Add `asyncValidators` to a field definition in the vardefs. Each entry specifies a process `key` that maps to a backend `ProcessHandler`.
 
 [source,php]
 ----
 <?php
+
+// public/legacy/custom/Extension/modules/Accounts/Ext/Vardefs/phone_office.php
 
 $dictionary['Account']['fields']['phone_office'] = array(
     'name' => 'phone_office',
@@ -40,10 +42,7 @@ $dictionary['Account']['fields']['phone_office'] = array(
     'dbType' => 'varchar',
     'len' => 100,
     'audited' => true,
-    'unified_search' => true,
-    'full_text_search' => array('boost' => 1),
     'comment' => 'The office phone number',
-    'merge_filter' => 'enabled',
     'asyncValidators' => [
         'my-async-validator' => [
             'key' => 'my-async-validator',
@@ -52,55 +51,42 @@ $dictionary['Account']['fields']['phone_office'] = array(
 );
 ----
 
-=== 2.2 Steps to add a new field async validator
+You can pass additional parameters to the backend handler:
 
-{{% notice info %}}
-As a best practice extension backend code should be added to `extensions/<your-extension>/backend/` or `extensions/<your-extension>/modules/`. For `extensions/<your-extension>/backend/` the subfolder should follow the same structure as used in `core/backend`
+[source,php]
+----
+'asyncValidators' => [
+    'validate-unique-email' => [
+        'key' => 'validate-unique-email',
+        'params' => [
+            'module' => 'Contacts',
+        ],
+    ],
+],
+----
+
+=== 2.2 Backend Process Handler
+
+{{% notice note %}}
+When making these changes be sure to make them within an extension on the `extensions` directory, e.g.: `extensions/<my-extension>/...`
 {{% /notice %}}
 
-. Create the folder `extensions/defaultExt/modules/Accounts/LegacyHandler/Validation/Validators/`
-.. This is a best practice not a hard requirement
-.. As long as you add under the `extensions/<your-ext>/backend` or `extensions/<your-ext>/modules` it should work.
-. Within that folder create the `PhoneAsyncValidator.php`, i.e. `extensions/defaultExt/modules/Accounts/LegacyHandler/Validation/Validators/PhoneAsyncValidator.php`
-.. If you are not using the recommended path, make sure that the `namespace` follows the one you are using
-.. On our example the namespace is `namespace App\Extension\defaultExt\modules\Accounts\LegacyHandler\Validation\Validators;`
-. On `PhoneAsyncValidator.php`, add the code on the snippet on link:./#_2_3_async_validator_implementation[2.3 Async Validator implementation] section
-. Run `./bin/console cache:clear` or delete the contents of the cache folder under the root of the project
-. Re-set the correct file permissions if you need to (This will depend on your setup and the user you are using to make changes)
-
-=== 2.3 Async Validator implementation
-
-To add a `AsyncValidator` the class needs to implement the `ProcessHandlerInterface`. Plus for it to be matched with a request, it needs the following:
-
-- Set the `ProcessType` to be the same as the value that was defined on the metadata (or other), in this example it is `my-async-validator`
-
-The following snippet has sample implementation of the process handler:
+Create a PHP class that implements `ProcessHandlerInterface`. The `PROCESS_TYPE` must match the `key` from the vardef configuration.
 
 [source,php]
 ----
 <?php
 
-namespace App\Extension\defaultExt\backend\modules\Accounts\LegacyHandler\Validation\Validators;
+namespace App\Extension\defaultExt\modules\Accounts\Service;
 
-use ApiPlatform\Exception\InvalidArgumentException;
-use App\Data\LegacyHandler\PreparedStatementHandler;
+use ApiPlatform\Metadata\Exception\InvalidArgumentException;
 use App\Process\Entity\Process;
 use App\Process\Service\ProcessHandlerInterface;
-use Psr\Log\LoggerInterface;
 
 class PhoneAsyncValidator implements ProcessHandlerInterface
 {
-
     protected const MSG_OPTIONS_NOT_FOUND = 'Process options is not defined';
-    protected const MSG_VALUE_NOT_DEFINED = 'Field Value is not defined';
     protected const PROCESS_TYPE = 'my-async-validator';
-
-    public function __construct(
-        protected PreparedStatementHandler $preparedStatementHandler,
-        protected LoggerInterface $logger
-    )
-    {
-    }
 
     public function getHandlerKey(): string
     {
@@ -133,30 +119,21 @@ class PhoneAsyncValidator implements ProcessHandlerInterface
         if (empty($process->getOptions())) {
             throw new InvalidArgumentException(self::MSG_OPTIONS_NOT_FOUND);
         }
-
-        if (!isset($process->getOptions()['value'])){
-            throw new InvalidArgumentException(self::MSG_VALUE_NOT_DEFINED);
-        }
     }
 
     public function run(Process $process): void
     {
         $options = $process->getOptions();
-
         $value = $options['value'] ?? '';
 
-        $data = [
-            'errors' => []
-        ];
-
+        // Your validation logic here
         if ($value === '000-000-0000') {
-            $data['errors']['startLabelKey'] = 'LBL_PHONE_NOT_VALID';
-            $data['displayConfirmation'] = true;
-            $data['confirmationLabel'] = [
-                'LBL_PHONE_NOT_VALID'
-            ];
-            $process->setData($data);
             $process->setStatus('error');
+            $process->setData([
+                'errors' => [
+                    'startLabelKey' => 'LBL_PHONE_NOT_VALID',
+                ],
+            ]);
             return;
         }
 
@@ -165,73 +142,136 @@ class PhoneAsyncValidator implements ProcessHandlerInterface
 }
 ----
 
-Async Validators also now support confirmation modals. Just set `displayConfirmation` to true and add the `confirmationLabel` or `confirmationMessages` entries to the data array. You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
+After creating the handler:
 
-When adding a confirmation modal, be aware that proceeding despite validation errors will still submit the form with the invalid value.
+. Run `php bin/console cache:clear`
+. Re-set file permissions if needed
 
-==== 2.3.1 Process Handler implementation
+=== 2.3 Available Data in Field-Level Handlers
 
-===== 2.3.1.1 getProcessType()
+The `$process->getOptions()` method provides:
 
-This method should return the identifier of the process the handler implements. The same that is defined on the metadata logic `key` entry. In our example: `case-calculate-priority`
+[cols="1,3"]
+|===
+| Key | Description
 
-===== 2.3.1.2 requiredAuthRole()
+| `value`
+| The field value in internal format
 
-This method defines if the auth role that is required to have access to the process.
+| `inputValue`
+| The raw value from the form control
 
-- `'ROLE_USER'` means that the user needs to be logged in to have access to this process.
-- `'ROLE_ADMIN'` means that the user needs to be logged in as an admin user to have access to this process.
-- `''` means that a non-authenticated user can access the process.
+| `definition`
+| The full field definition from vardefs/viewdefs
 
-===== 2.3.1.3 getRequiredACLs()
+| `attributes`
+| All current record attributes (mapped from fields)
 
-This method defines the SuiteCRM ACLs that are required to have access to the process.
-2.2.1.3 getRequiredACLs()
-See more information link:../../../../extensions/backend/process-api/process-handler#_2_2_1_3_getrequiredacls[2.2 Process handler implementation]
+| `originalAttributes`
+| The original record attributes before edits
 
-===== 2.3.1.4 validate()
+| `params`
+| Custom parameters from the `asyncValidators` configuration
+|===
 
-This method is where we should add the code to validate the process inputs.
+=== 2.4 Response Options
 
-If the inputs aren't valid it should throw a `InvalidArgumentException`.
+==== Success
 
-===== 2.3.1.5 run()
-
-This method is where we add the code to run the logic that our ProcessHandler is supposed to do.
-
-This method **does not** return anything. Instead, it should update the `$process` argument that is passed by reference.
-
-===== 2.3.1.5.1 Available Data
-
-Using the `$process->getOptions()` method we can get the following options that were sent on the request:
-
-* value: Current field value
-* definition: Field definition from vardefs
-* attributes: All record attributes
-* params: Custom parameters from validator configuration
-
-====== Setting response result and message
-
-The following are some examples of how to set the feedback for the response.
-
-- To set the process as successful:
+Set the status to `success` to pass validation:
 
 [source,php]
 ----
-        $process->setStatus('success');
+$process->setStatus('success');
 ----
 
-- To set the process as error:
+==== Error with Labels
+
+Return an error that displays labels on the field:
 
 [source,php]
 ----
-            $process->setStatus('error');
-            $data = [
-                'errors' => [
-                    'startLabelKey' => 'LABEL_TO_SHOW_BEFORE_ICON',
-                    'icon' => 'unsubscribe', // optional icon in error message
-                    'endLabelKey' => 'LABEL_TO_SHOW_AFTER_ICON'
-                ]
-            ];
-            $process->setData($data);
+$process->setStatus('error');
+$process->setData([
+    'errors' => [
+        'startLabelKey' => 'LBL_ERROR_BEFORE_ICON',
+        'icon' => 'exclamation-triangle',    // optional
+        'endLabelKey' => 'LBL_ERROR_AFTER_ICON',
+    ],
+]);
 ----
+
+==== Error with Confirmation Modal
+
+Show a confirmation dialog. If the user clicks **Proceed**, validation passes. If the user clicks **Cancel**, validation fails silently (the save is blocked but no warning message is shown).
+
+[source,php]
+----
+$process->setStatus('error');
+$process->setData([
+    'displayConfirmation' => true,
+    'confirmationTitle' => 'LBL_CONFIRM_TITLE',
+    'confirmationLabel' => 'LBL_CONFIRM_MESSAGE',
+    'confirmationMessages' => ['LBL_ADDITIONAL_LINE_1', 'LBL_ADDITIONAL_LINE_2'],
+]);
+----
+
+[cols="1,3"]
+|===
+| Key | Description
+
+| `displayConfirmation`
+| Set to `true` to show the confirmation modal
+
+| `confirmationTitle`
+| Language key for the modal title
+
+| `confirmationLabel`
+| Language key for the main message
+
+| `confirmationMessages`
+| Array of additional language keys displayed as extra lines
+|===
+
+== 3. Process Handler Interface Reference
+
+All async validator handlers must implement `ProcessHandlerInterface`. The key methods are:
+
+[cols="1,3"]
+|===
+| Method | Description
+
+| `getProcessType()`
+| Returns the process key. Must match the `key` from the metadata configuration.
+
+| `requiredAuthRole()`
+| The authentication role required. Use `'ROLE_USER'` for logged-in users or `'ROLE_ADMIN'` for admin-only access.
+
+| `getRequiredACLs(Process $process)`
+| Defines the SuiteCRM ACLs required to run this handler. See the link:../../../../extensions/backend/process-api/process-handler[Process Handler] guide for details.
+
+| `configure(Process $process)`
+| Sets the process ID and whether it is async. For validators, always use `$process->setAsync(false)`.
+
+| `validate(Process $process)`
+| Validates the process inputs. Throw `InvalidArgumentException` if inputs are invalid.
+
+| `run(Process $process)`
+| Runs the validation logic. Set `$process->setStatus('success')` to pass or `$process->setStatus('error')` with `$process->setData([...])` to fail.
+|===
+
+== 4. Silent Validation Errors
+
+When a confirmation modal is shown and the user clicks **Cancel**, the save is blocked but the yellow `LBL_VALIDATION_ERRORS` warning is not shown. This is called a "silent" validation error.
+
+The framework handles this automatically — you do not need to set any flags in your process handler. The silent behaviour applies whenever a `displayConfirmation` modal is shown and the user cancels.
+
+{{% notice info %}}
+If the form also has non-silent errors (for example, a required field is empty), the warning will still be shown. The warning is only suppressed when _all_ errors on the form are silent.
+{{% /notice %}}
+
+== 5. Related Topics
+
+* link:../../../record-view-metadata/record-async-validators[Record-Level Async Validators] — validators that check the entire record (configured in `detailviewdefs.php`), with a complete duplicate check example
+* link:../../../../extensions/frontend/containers/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
+* link:../../../../extensions/backend/process-api/process-handler[Process Handler] — general guide for creating process handlers
