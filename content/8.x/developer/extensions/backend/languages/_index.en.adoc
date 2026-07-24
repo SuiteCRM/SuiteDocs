@@ -1,0 +1,253 @@
+---
+title: "Adding Language Labels via YAML"
+weight: 40
+---
+
+== 1. Introduction
+
+SuiteCRM 8 allows you to add or override language labels from extensions using YAML files. This is an alternative to the traditional PHP language files (`en_us.lang.php`) and is the recommended approach for extensions.
+
+YAML language files are loaded during the Symfony container compilation phase and merged into the existing language data. Labels defined in YAML take precedence over legacy PHP labels with the same key, allowing extensions to override core labels cleanly.
+
+{{% notice warning %}}
+YAML language labels are only available in the SuiteCRM 8 Angular frontend. They are **not** loaded in legacy views or legacy code. If you need labels to appear on legacy pages, use the traditional PHP language files (`en_us.lang.php`) or the legacy extension directory (`custom/Extension/application/Ext/Language/`).
+{{% /notice %}}
+
+== 2. File Placement
+
+YAML language files must be placed in a `language/` directory. The system scans several locations, so you can choose the one that best fits your use case.
+
+=== 2.1 Extension-level labels
+
+For labels that are not tied to a specific module (global app strings, dropdown lists):
+
+[source]
+----
+extensions/<your-extension>/language/<filename>.yaml
+----
+
+Example:
+
+[source]
+----
+extensions/defaultExt/language/my-labels.yaml
+----
+
+=== 2.2 Extension module-level labels
+
+For labels that belong to a specific module within your extension:
+
+[source]
+----
+extensions/<your-extension>/modules/<Module>/language/<filename>.yaml
+----
+
+Example:
+
+[source]
+----
+extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml
+----
+
+=== 2.3 Core module-level labels
+
+For core module development (not extensions):
+
+[source]
+----
+core/modules/<Module>/language/<filename>.yaml
+----
+
+=== 2.4 Core config-level labels
+
+For core development (not extensions):
+
+[source]
+----
+config/language/<filename>.yaml
+----
+
+{{% notice info %}}
+Subdirectories are also supported. Files inside nested folders under `language/` are loaded recursively. For example, `extensions/defaultExt/language/features/my-feature.yaml` will be loaded.
+{{% /notice %}}
+
+{{% notice tip %}}
+You can use any filename — the system loads all `.yaml` (and `.yml`) files in the `language/` directory. Use descriptive names that reflect the feature or purpose, e.g. `duplicate-email-validation.yaml`, `custom-dashlets.yaml`.
+{{% /notice %}}
+
+== 3. YAML File Format
+
+All YAML language files share the same structure:
+
+[source,yaml]
+----
+parameters:
+  language:
+    <locale>:
+      <key-type>:
+        <label-entries>
+----
+
+The `<locale>` is the language code (e.g. `en_us`, `es_es`, `pt_br`).
+
+There are three key types, each corresponding to a different category of labels in SuiteCRM.
+
+=== 3.1 Application strings
+
+Use the `application` key for global labels (equivalent to `$app_strings` in legacy PHP). These are available across all modules.
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_MY_CUSTOM_LABEL: 'My Custom Label'
+        LBL_CONFIRM_ACTION: 'Are you sure you want to proceed?'
+----
+
+=== 3.2 Dropdown lists
+
+Use the `lists` key for dropdown/list values (equivalent to `$app_list_strings` in legacy PHP).
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      lists:
+        my_custom_dropdown:
+          option1: 'First Option'
+          option2: 'Second Option'
+          option3: 'Third Option'
+----
+
+=== 3.3 Module strings
+
+Use the `module` key followed by the **frontend module name** for module-specific labels (equivalent to `$mod_strings` in legacy PHP).
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      module:
+        Contacts:
+          LBL_CUSTOM_FIELD: 'My Custom Field'
+          LBL_CUSTOM_PANEL: 'Additional Information'
+----
+
+{{% notice warning %}}
+The module name under the `module` key must be the **frontend module name** (e.g. `Contacts`, `AOS_Quotes`), not the legacy internal name. This is the same name you see in the URL when viewing the module in SuiteCRM 8.
+{{% /notice %}}
+
+== 4. Combining Key Types
+
+You can define multiple key types in a single YAML file:
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_DUPLICATE_EMAIL_TITLE: 'Possible Duplicate Contacts'
+        LBL_DUPLICATE_EMAIL_MESSAGE: 'The following contacts already have this email address.'
+      module:
+        Contacts:
+          LBL_EMAIL_DUPLICATE_CHECK: 'Check for duplicate emails'
+----
+
+== 5. Multiple Languages
+
+To support multiple languages, add entries for each locale. You can define them in the same file or in separate files — the system merges everything together.
+
+=== 5.1 Same file
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_GREETING: 'Hello'
+    es_es:
+      application:
+        LBL_GREETING: 'Hola'
+    pt_br:
+      application:
+        LBL_GREETING: 'Ola'
+----
+
+=== 5.2 Separate files per language
+
+You can also split languages into separate files for better organization:
+
+.`extensions/defaultExt/language/my-feature-en.yaml`
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_GREETING: 'Hello'
+----
+
+.`extensions/defaultExt/language/my-feature-es.yaml`
+[source,yaml]
+----
+parameters:
+  language:
+    es_es:
+      application:
+        LBL_GREETING: 'Hola'
+----
+
+== 6. Complete Example
+
+The following example shows a YAML language file used for a duplicate email validation feature. It is placed at `extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml`:
+
+[source,yaml]
+----
+parameters:
+  language:
+    en_us:
+      application:
+        LBL_DUPLICATE_EMAIL_TITLE: 'Possible Duplicate Contacts'
+        LBL_DUPLICATE_EMAIL_MESSAGE: 'The following contacts already have this email address. Do you still want to proceed?'
+        LBL_DUPLICATE_EMAIL_FOUND: 'Duplicate email address found'
+----
+
+{{% notice info %}}
+Even though this file is placed under the `Contacts` module directory, it uses `application` strings — the file location does not restrict which key types you can use. This example uses `application` because the labels are used in a confirmation modal that could appear in multiple contexts.
+{{% /notice %}}
+
+== 7. Override Priority
+
+YAML labels are merged on top of legacy PHP labels. If a label key exists in both the legacy PHP language file and a YAML file, the **YAML value wins**.
+
+The loading order within YAML files is:
+
+. `config/language/` — core config labels
+. `core/modules/<Module>/language/` — core module labels
+. `extensions/<your-extension>/language/` — extension-level labels
+. `extensions/<your-extension>/modules/<Module>/language/` — extension module-level labels
+
+Files loaded later override keys from files loaded earlier. This means extension labels override core labels, which is the expected behavior for customizations.
+
+{{% notice note %}}
+After adding or modifying YAML language files, you must clear the Symfony cache for the changes to take effect: `php bin/console cache:clear`
+{{% /notice %}}
+
+== 8. How It Works
+
+The YAML language system is powered by a Symfony container extension (`MetadataExtension`) that runs during the container compilation phase — not at runtime.
+
+During compilation:
+
+. The extension scans all `language/` directories across core, modules, and extensions for `.yaml` files
+. Each file is loaded by a custom `LanguageYamlFileLoader` that understands the three key types (`application`, `lists`, `module`)
+. Labels from all files are deep-merged into a single `language` container parameter, with later files overriding earlier ones
+. At runtime, the language handlers (`AppStringsHandler`, `AppListStringsHandler`, `ModStringsHandler`) inject labels from this parameter into the legacy language arrays
+
+This means YAML labels integrate seamlessly with legacy PHP labels — the frontend receives a single merged set of labels via the GraphQL API, regardless of whether they were defined in PHP or YAML.
