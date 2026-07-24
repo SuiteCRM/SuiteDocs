@@ -296,15 +296,19 @@ Boolean. When `true`, a confirmation modal is shown before calling the backend.
 
 ==== confirmationLabel
 
-Language label key for the confirmation modal header.
+Language label key for the main confirmation modal message.
+
+==== confirmationTitle
+
+Language label key for the confirmation modal title.
 
 ==== confirmationMessages
 
 Array of language label keys for additional messages in the confirmation modal.
 
-==== confirmationTitle
+==== allowEmpty
 
-You can also set `confirmationTitle` to display a custom title in the confirmation modal header.
+Boolean. When `true`, target fields can be set to empty values (clearing the field). When `false` (default), fields with empty values are skipped. This can also be returned from the backend in the response data (`$process->setData(['allowEmpty' => true, 'fieldValues' => [...]])`) — the backend value takes precedence if set.
 
 ==== selectModal
 
