@@ -7,7 +7,7 @@ weight: 10
 
 The Confirmation List Modal displays a searchable, paginated table of records inside a modal dialog. It is used when a backend process needs to show the user a list of related records — for example, duplicate contacts — and let them decide whether to proceed or cancel.
 
-The modal is typically opened from a record-level async validator (see link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators]).
+For an example of how this modal is used, see the duplicate email check in the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7).
 
 == 2. Backend Response Properties
 
@@ -133,11 +133,13 @@ When `fields` is provided:
 
 === 3.3 Link Behaviour
 
-By default, `relate` type fields in the table have their links disabled to prevent navigation away from the modal. To explicitly control link behaviour per column:
+All links in the table open the record from the modal's module in a new tab — not the related record. For example, an `account_name` column on a Contacts list will open the Contact record, not the Account. Because of this, it is best practice to set `link: false` on relate fields to avoid confusing navigation.
 
-* `['name' => 'name']` — keeps the default link behaviour (name fields open in a new tab)
+By default, `relate` type fields have their links automatically disabled. Other field types (such as `name`) keep their default link behaviour. To explicitly control link behaviour per column:
+
+* `['name' => 'name']` — keeps the default link behaviour (opens the record in a new tab)
 * `['name' => 'email1', 'link' => false]` — disables the link
-* `['name' => 'account_name', 'link' => true]` — forces the link on (opens in a new tab)
+* `['name' => 'account_name', 'link' => true]` — forces the link on (not recommended for relate fields)
 
 Fields with an explicit `link` value are not affected by the automatic relate-field link disabling.
 
@@ -211,8 +213,16 @@ The modal footer shows action buttons that control what happens when the user in
 
 When `actions` is empty or not provided, the modal shows two default buttons:
 
-* **Cancel** — dismisses the modal
-* **Proceed** — closes the modal and continues the action
+[cols="1,3"]
+|===
+| Key | Behaviour
+
+| `cancel`
+| Dismisses the modal
+
+| `proceed`
+| Closes the modal and continues the action
+|===
 
 === 5.2 Custom Actions
 
@@ -294,40 +304,27 @@ To remove a button entirely, omit it from the array. For example, to show only a
 ]
 ----
 
-=== 5.5 Built-in Action Keys
+=== 5.5 Async Actions
 
-[cols="1,3"]
-|===
-| Key | Behaviour
+When `asyncProcess` is set to `true`, the action is dispatched to the backend as an async process. The action key is submitted along with the record IDs from the currently loaded page.
 
-| `cancel`
-| Dismisses the modal
-
-| `proceed`
-| Closes the modal and continues the action
-|===
-
-=== 5.6 Async Actions
-
-When `asyncProcess` is set to `true`, the action is dispatched to the backend as an async process. The action key is submitted along with all record IDs currently in the list.
-
-The backend response can include control flags to manage the modal:
+The backend response can include control flags to manage the modal. Flags are evaluated in the order shown below. Note that `closeModal` causes an early return — if set, `dismissModal` is ignored.
 
 [cols="1,3"]
 |===
 | Flag | Description
 
-| `closeModal`
-| Close the modal
-
-| `dismissModal`
-| Dismiss the modal without close animation
+| `reload`
+| Reload the list data (refresh the table)
 
 | `callOnProceed`
 | Continue the action (e.g. proceed with save)
 
-| `reload`
-| Reload the list data (refresh the table)
+| `closeModal`
+| Close the modal (skips `dismissModal` if both are set)
+
+| `dismissModal`
+| Dismiss the modal without close animation
 |===
 
 == 6. Complete Example
