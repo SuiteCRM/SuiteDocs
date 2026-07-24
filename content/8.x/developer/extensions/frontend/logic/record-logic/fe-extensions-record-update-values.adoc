@@ -168,15 +168,19 @@ An object mapping target field names to their update configuration. Each entry c
 * `value` — A static value to set on the target field
 * `source` — The name of another field whose value should be copied to the target field
 
-If both are provided, `source` takes precedence.
+If both are provided, `source` takes precedence. However, if the source field does not exist on the record, the update for that target field is silently skipped — it does not fall back to `value`.
 
 ==== displayConfirmation
 
 Boolean. When `true`, a confirmation modal is shown before values are updated. Defaults to `false`.
 
+==== allowEmpty
+
+Boolean. When `true`, target fields can be set to empty values (clearing the field). When `false` (default), fields with empty values are skipped.
+
 ==== confirmationLabel
 
-Language label key for the confirmation modal header text.
+Language label key for the main confirmation modal message.
 
 ==== confirmationTitle
 
