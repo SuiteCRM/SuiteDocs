@@ -848,6 +848,6 @@ All async validator handlers must implement `ProcessHandlerInterface`. The key m
 == 9. Related Topics
 
 * link:../../fields/field-options/async-validator[Field-Level Async Validators] — validators that check a single field value (configured in `vardefs.php`)
-* link:../../../extensions/frontend/containers/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
+* link:../../../extensions/frontend/containers/confirmation-modal/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
 * link:../../../extensions/frontend/containers/confirmation-modal/confirmation-list-modal[Confirmation List Modal] — the modal variant that displays a searchable table of records
 * link:../../../extensions/backend/process-api/process-handler[Process Handler] — general guide for creating process handlers

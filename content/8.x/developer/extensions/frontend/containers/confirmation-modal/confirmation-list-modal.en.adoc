@@ -7,7 +7,7 @@ weight: 10
 
 The Confirmation List Modal displays a searchable, paginated table of records inside a modal dialog. It is used when a backend process needs to show the user a list of related records — for example, duplicate contacts — and let them decide whether to proceed or cancel.
 
-For an example of how this modal is used, see the duplicate email check in the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7).
+For an example of how this modal is used, see the link:../../../../../metadata/record-view-metadata/record-async-validators/#_7_complete_example_duplicate_email_check[Complete Example: Duplicate Email Check] in the Record-Level Async Validators page.
 
 == 2. Backend Response Properties
 

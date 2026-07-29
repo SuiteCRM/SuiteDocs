@@ -273,5 +273,5 @@ If the form also has non-silent errors (for example, a required field is empty),
 == 5. Related Topics
 
 * link:../../../record-view-metadata/record-async-validators[Record-Level Async Validators] — validators that check the entire record (configured in `detailviewdefs.php`), with a complete duplicate check example
-* link:../../../../extensions/frontend/containers/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
+* link:../../../../extensions/frontend/containers/confirmation-modal/confirmation-modal[Confirmation Modal] — text confirmation modal reference and configuration properties
 * link:../../../../extensions/backend/process-api/process-handler[Process Handler] — general guide for creating process handlers
