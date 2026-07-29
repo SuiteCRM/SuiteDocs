@@ -132,13 +132,13 @@ parameters:
   language:
     en_us:
       module:
-        Contacts:
+        contacts:
           LBL_CUSTOM_FIELD: 'My Custom Field'
           LBL_CUSTOM_PANEL: 'Additional Information'
 ----
 
 {{% notice warning %}}
-The module name under the `module` key must be the **frontend module name** (e.g. `Contacts`, `AOS_Quotes`), not the legacy internal name. This is the same name you see in the URL when viewing the module in SuiteCRM 8.
+The module name under the `module` key must be the **frontend module name** (e.g. `contacts`, `quotes`), not the legacy internal name. This is the same name you see in the URL when viewing the module in SuiteCRM 8.
 {{% /notice %}}
 
 == 4. Combining Key Types
@@ -154,7 +154,7 @@ parameters:
         LBL_DUPLICATE_EMAIL_TITLE: 'Possible Duplicate Contacts'
         LBL_DUPLICATE_EMAIL_MESSAGE: 'The following contacts already have this email address.'
       module:
-        Contacts:
+        contacts:
           LBL_EMAIL_DUPLICATE_CHECK: 'Check for duplicate emails'
 ----
 
