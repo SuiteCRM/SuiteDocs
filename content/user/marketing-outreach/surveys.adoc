@@ -5,7 +5,7 @@ aliases:
   - /user/core-modules/surveys
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -39,7 +39,7 @@ image:SurveysCreateSurvey.png[title="Create Survey"]
 
 === Add Questions
 
-Click btn:[NEW QUESTION] to add a question to the survey.
+Click **NEW QUESTION** to add a question to the survey.
 
 Enter the question text and select the question type from the dropdown list.
 
@@ -47,7 +47,7 @@ image:SurveysAddQuestion.png[title="Surveys Add Question"]
 
 The available question types are as follows:
 
-[cols="10,90",frame="none", grid="none"]
+[cols="10,90"]
 |===
 |*Text*|A standard text input
 |*Textbox*|A larger text input area
@@ -65,13 +65,13 @@ The available question types are as follows:
 ==== Radio Button Question Example
 image:SurveysRadioQuestion.png[title="Surveys Radio Question example"]
 
-Click btn:[ADD OPTION] to add answer options to the question.
+Click **ADD OPTION** to add answer options to the question.
 
-Remove unwanted options by clicking btn:[x]
+Remove unwanted options by clicking **x**
 
 {{% notice tip %}}Options for *Dropdown*, *Multiselect* and *Matrix* type questions are added in the same way.{{%/notice %}}
 
-Click btn:[NEW QUESTION] to add more questions in the same way.
+Click **NEW QUESTION** to add more questions in the same way.
 
 ==== Deleting and Reordering Questions
 
@@ -88,7 +88,7 @@ Click btn:[NEW QUESTION] to add more questions in the same way.
 Customise the responses for *Matrix* type questions by editing the default matrix response text here:
 image:SurveysMatrixText.png[title="Matrix question response text"]
 
-Click btn:[SAVE] to save the survey.
+Click **SAVE** to save the survey.
 
 The Detail View for the draft survey will be displayed. This overview shows all the survey questions and question types included in the survey.
 
@@ -100,7 +100,7 @@ image:SurveysDraftDetailView.png[title="Survey Detail View for draft survey"]
 
 Once completed, you can view the survey as it will be shown to participants. Select *Edit* from the *Actions* menu and then set the survey status to *Public*.
 
-Click btn:[SAVE]
+Click **SAVE**
 
 The Detail View for the survey will be displayed, now showing the URL for the survey.
 
@@ -112,7 +112,7 @@ As an example, the following screenshot shows the Demo Survey:
 
 image:SurveysDemo.png[title="Survey demo"]
 
-Responses can be submitted by clicking btn:[Submit]
+Responses can be submitted by clicking **Submit**
 
 Users will be redirected to a thank you page and the responses will be recorded. Responses can be viewed in the <<Survey Responses>> subpanel or the <<#_survey_reports, Survey Report>>.
 
@@ -176,7 +176,7 @@ The survey is attached to the campaign on the Campaign Header tab.
 
 image:SurveysCampaignHeader.png[title="Surveys Campaign Header"]
 
-Click btn:[SELECT] to select the survey from the popup.
+Click **SELECT** to select the survey from the popup.
 
 [discrete]
 === Survey Email Template
@@ -187,7 +187,7 @@ You will need to include the *Surveys URL* variable `$surveys_survey_url_display
 
 image:SurveysTemplate.png[title="Survey campaign template example"]
 
-Click btn:[SAVE] to retain your template settings.
+Click **SAVE** to retain your template settings.
 
 [discrete]
 === Campaign Status

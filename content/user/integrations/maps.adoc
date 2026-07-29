@@ -15,13 +15,13 @@ SuiteCRM includes a built-in Maps feature powered by Google Maps. It allows you 
 
 When Maps is configured, a map panel appears on the following record types, showing the relevant address on a Google Map:
 
-* *Accounts* — Billing or shipping address.
-* *Contacts* — Contact address.
-* *Leads* — Lead address.
-* *Opportunities* — Address of the associated account.
-* *Cases* — Address of the associated account.
-* *Targets* — Target address.
-* *Meetings* — Location field.
+* *Accounts*: billing or shipping address.
+* *Contacts*: contact address.
+* *Leads*: lead address.
+* *Opportunities*: address of the associated account.
+* *Cases*: address of the associated account.
+* *Targets*: target address.
+* *Meetings*: location field.
 
 == Maps module
 
@@ -32,13 +32,13 @@ The Maps module lets you search for and display records on a map based on their 
 . Navigate to *Maps* in the navigation bar and select *Create Map*.
 . Fill in the following fields:
 +
-* *Name* — A label for this map.
-* *Show on map address (centre)* — The record whose address will be used as the centre point. All results are shown within a radius of this address.
-* *Display on map* — The type of records to plot (for example, Contacts, Accounts). Only one record type can be shown per map.
-* *Distance unit* — Kilometres or miles.
-* *Show records within radius* — The search radius around the centre point.
-* *Assigned to* — Defaults to you. Change this to assign the map to another user.
-* *Description* — An optional note about the map.
+* *Name*: a label for this map.
+* *Show on map address (centre)*: the record whose address will be used as the centre point. All results are shown within a radius of this address.
+* *Display on map*: the type of records to plot (for example, Contacts, Accounts). Only one record type can be shown per map.
+* *Distance unit*: kilometres or miles.
+* *Show records within radius*: the search radius around the centre point.
+* *Assigned to*: defaults to you. Change this to assign the map to another user.
+* *Description*: an optional note about the map.
 . Click *Save*. The map renders with matching records plotted as pins.
 
 {{% notice note %}}

@@ -73,9 +73,9 @@ From the Calendar Account Detail View, click *Sync Now* to trigger an immediate 
 
 The Calendar Account Detail View shows read-only status fields updated after each sync:
 
-* *Sync Status* — Current state: In Progress, Success, Warning, or Error.
-* *Sync Message* — Details from the last sync run.
-* *Last Sync Date* — When synchronisation last completed successfully.
+* *Sync Status*: current state: In Progress, Success, Warning, or Error.
+* *Sync Message*: details from the last sync run.
+* *Last Sync Date*: when synchronisation last completed successfully.
 
 If the sync status shows an error, check *Sync Message* for details. Contact your administrator if the issue relates to OAuth configuration, the scheduler, or server connectivity.
 

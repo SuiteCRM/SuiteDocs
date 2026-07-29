@@ -20,10 +20,10 @@ AOS Settings (initial quote and invoice numbering, line item groups, and tax beh
 The Products module (also called the product catalogue) stores the items available for selection when building line items on Quotes, Invoices, and Contracts. Each Product record holds:
 
 * *Name* and *Part Number*
-* *Category* — relates to a Product Category record
-* *Cost Price* and *List Price* — List Price is the default selling price used in quotes
-* *Supplier Contact* — the point of contact at the supplier for this product
-* *Image* and *Product URL* — optional reference information
+* *Category*: relates to a Product Category record
+* *Cost Price* and *List Price*: list Price is the default selling price used in quotes
+* *Supplier Contact*: the point of contact at the supplier for this product
+* *Image* and *Product URL*: optional reference information
 
 To create a Product, navigate to the Products module and click *Create Product*.
 
@@ -43,7 +43,7 @@ See link:../pdf-templates[PDF Templates] for full details on creating templates 
 
 Navigate to the Quotes module and click *Create Quote*. The key fields are:
 
-[cols="25,75",frame="none",grid="none"]
+[cols="25,75"]
 |===
 |*Quote Number*|Assigned automatically; read-only.
 |*Title*|The name of the quote.
@@ -65,36 +65,36 @@ The line items section is where you build the detail of the quote. If line item 
 
 ==== Adding a Group
 
-Click btn:[Add Group] to create a group. Enter a *Group Name*, then add product or service lines to it.
+Click **Add Group** to create a group. Enter a *Group Name*, then add product or service lines to it.
 
 image:QuoteLineItems.png[title="Quote line items showing a group with a product line and service line"]
 
 ==== Adding a Product Line
 
-Click btn:[Add Product Line] within a group. To select a product from the catalogue, start typing in the *Product* or *Part Number* field to search, or click the arrow button next to the Part Number field to open the product selector popup.
+Click **Add Product Line** within a group. To select a product from the catalogue, start typing in the *Product* or *Part Number* field to search, or click the arrow button next to the Part Number field to open the product selector popup.
 
 When a product is selected, the *List* price and *Sale Price* populate automatically. You can adjust:
 
-* *Quantity* — the number of units
-* *Discount* — enter an amount and select *Pct* (percentage) or *Amt* (fixed amount)
-* *Tax* — VAT rate: 0%, 5%, 7.5%, 17.5%, or 20%
+* *Quantity*: the number of units
+* *Discount*: enter an amount and select *Pct* (percentage) or *Amt* (fixed amount)
+* *Tax*: VAT rate: 0%, 5%, 7.5%, 17.5%, or 20%
 
 The *Total* for the line is calculated as: (Sale Price × Quantity) + Tax.
 
 ==== Adding a Service Line
 
-Click btn:[Add Service Line] to quote for a service that is not in the product catalogue. Enter the *List* price manually. Discount and Tax fields work the same as for product lines.
+Click **Add Service Line** to quote for a service that is not in the product catalogue. Enter the *List* price manually. Discount and Tax fields work the same as for product lines.
 
 ==== Totals
 
 Each group shows a *Group Total*. Below all groups, the summary shows:
 
-* *Subtotal* — sum of all line item totals before tax (if "Add Tax to Line Total" is off in AOS Settings)
-* *Discount* — total discount across all lines
-* *Tax* — total tax across all lines
-* *Shipping* — enter a shipping cost manually
-* *Shipping Tax* — tax applied to the shipping amount
-* *Grand Total* — the final total
+* *Subtotal*: sum of all line item totals before tax (if "Add Tax to Line Total" is off in AOS Settings)
+* *Discount*: total discount across all lines
+* *Tax*: total tax across all lines
+* *Shipping*: enter a shipping cost manually
+* *Shipping Tax*: tax applied to the shipping amount
+* *Grand Total*: the final total
 
 === Sending a Quote
 
@@ -102,9 +102,9 @@ From the Quote Detail View, use the action buttons to output the quote:
 
 image:QuoteActions.png[title="Quote detail view action buttons: Print as PDF, Email PDF, Email Quotation, Convert to Invoice, Create Contract, Create Opportunity"]
 
-* *Print as PDF* — select a PDF template and download the quote as a PDF file.
-* *Email PDF* — select a PDF template, then open the Compose screen with the PDF attached and the quote's Contact pre-filled as the recipient.
-* *Email Quotation* — open the Compose screen addressed to the quote's Contact. The quote is rendered in the email body; there is no PDF attachment.
+* *Print as PDF*: select a PDF template and download the quote as a PDF file.
+* *Email PDF*: select a PDF template, then open the Compose screen with the PDF attached and the quote's Contact pre-filled as the recipient.
+* *Email Quotation*: open the Compose screen addressed to the quote's Contact. The quote is rendered in the email body; there is no PDF attachment.
 
 === Converting to an Invoice
 
@@ -126,7 +126,7 @@ Navigate to the Invoices module and click *Create Invoice*. Invoices can be crea
 
 The key fields are:
 
-[cols="25,75",frame="none",grid="none"]
+[cols="25,75"]
 |===
 |*Invoice Number*|Assigned automatically; read-only.
 |*Invoice Date*|The date the invoice was raised.
@@ -146,9 +146,9 @@ Groups and line items on Invoices work identically to Quotes. See <<line-items,L
 
 From the Invoice Detail View:
 
-* *Print as PDF* — select a template and download the invoice as a PDF.
-* *Email PDF* — select a template and open the Compose screen with the PDF attached.
-* *Email Invoice* — open the Compose screen addressed to the invoice's Contact. The invoice is rendered in the email body with no PDF attachment.
+* *Print as PDF*: select a template and download the invoice as a PDF.
+* *Email PDF*: select a template and open the Compose screen with the PDF attached.
+* *Email Invoice*: open the Compose screen addressed to the invoice's Contact. The invoice is rendered in the email body with no PDF attachment.
 
 == Contracts
 
@@ -158,7 +158,7 @@ Navigate to the Contracts module and click *Create Contract*. Contracts can also
 
 The key fields are:
 
-[cols="25,75",frame="none",grid="none"]
+[cols="25,75"]
 |===
 |*Contract Title*|The name of the contract.
 |*Reference Code*|An optional reference identifier.

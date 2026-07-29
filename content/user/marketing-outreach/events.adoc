@@ -5,7 +5,7 @@ aliases:
   - /user/advanced-modules/events
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -15,15 +15,15 @@ The Events module allows you to manage physical or virtual events — conference
 
 == Key Fields
 
-* *Name* — The name of the event. Required.
-* *Start Date / End Date* — When the event begins and ends. Required.
-* *Duration* — Automatically calculated from the start and end dates. Changing the duration adjusts the end date accordingly.
-* *Location* — A relationship to the Event Locations module (see <<Event Locations>> below).
-* *Budget* — The planned spend for the event.
-* *Email Invite Template* — The link:../email-templates[Email Template] sent to delegates when invitations are issued.
-* *Accept Redirect URL* — The web page delegates are redirected to after accepting an invitation via the link in the email template.
-* *Decline Redirect URL* — The web page delegates are redirected to after declining an invitation.
-* *Description* — Additional information about the event.
+* *Name*: the name of the event. Required.
+* *Start Date / End Date*: when the event begins and ends. Required.
+* *Duration*: automatically calculated from the start and end dates. Changing the duration adjusts the end date accordingly.
+* *Location*: a relationship to the Event Locations module (see <<Event Locations>> below).
+* *Budget*: the planned spend for the event.
+* *Email Invite Template*: the link:../email-templates[Email Template] sent to delegates when invitations are issued.
+* *Accept Redirect URL*: the web page delegates are redirected to after accepting an invitation via the link in the email template.
+* *Decline Redirect URL*: the web page delegates are redirected to after declining an invitation.
+* *Description*: additional information about the event.
 
 == Event Locations
 
@@ -64,11 +64,11 @@ image:224Select_delegates.png[title="Select Delegates"]
 
 . Select the appropriate option depending on who should be added:
 
-* *Target List* — All Targets, Leads and Contacts on the selected Target List will be added to the Event.
-* *Targets* — Select individual Targets to add.
-* *Contacts* — Select individual Contacts to add.
-* *Leads* — Select individual Leads to add.
-* *Events* — Import the delegate list from another Event.
+* *Target List*: all Targets, Leads and Contacts on the selected Target List will be added to the Event.
+* *Targets*: select individual Targets to add.
+* *Contacts*: select individual Contacts to add.
+* *Leads*: select individual Leads to add.
+* *Events*: import the delegate list from another Event.
 
 . A search pop-up will appear. Find and select the records to add.
 . The Delegates sub-panel will populate with the selected records.

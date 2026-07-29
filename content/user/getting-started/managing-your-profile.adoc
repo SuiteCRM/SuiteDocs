@@ -6,7 +6,7 @@ aliases:
   - /user/modules/themes
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -77,7 +77,7 @@ The *SuiteP* theme offers four colourways: Dawn, Day, Night, and Dusk. Select yo
 . Open your user profile and select *Edit* from the *Actions* menu.
 . Click the *Layout Options* tab.
 . Select a colourway from the *Style* drop-down. The default is *Dawn*.
-. Click btn:[SAVE].
+. Click **SAVE**.
 
 image:ThemesLayoutOptions2.png[title="Layout Options tab"]
 
@@ -86,7 +86,7 @@ The colourway is per-user and does not affect other users.
 == Resetting a Users Preferences
 
 You can reset your user preferences to the system default by clicking
-the btn:[Reset User Preferences] button at the bottom of the page.
+the **Reset User Preferences** button at the bottom of the page.
 
 image:15User_preference.png[title="Reset User Preferences"]
 
@@ -104,7 +104,7 @@ to re-login to SuiteCRM application.
 == Resetting a Users home page
 
 You can reset your home page to the system default by clicking the
-btn:[Reset home page] button at the bottom of the page. This will reset both dashlet
+**Reset home page** button at the bottom of the page. This will reset both dashlet
 and dashboard preferences/layouts to the system default.
 
 image:16Reset_homepage.png[title="Reset Homepage"]

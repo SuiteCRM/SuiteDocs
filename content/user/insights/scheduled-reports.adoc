@@ -20,7 +20,7 @@ There are two ways to create a Scheduled Report:
 
 === Fields
 
-[cols="20,80",frame="none",grid="none"]
+[cols="20,80"]
 |===
 |*Name*|A descriptive name for the scheduled report, e.g. "Weekly Pipeline Report for Managers".
 |*Status*|Active or Inactive. Only Active scheduled reports run automatically. Set to Inactive to pause delivery without deleting the record.
@@ -42,15 +42,15 @@ Select *Advanced* to enter a custom cron expression. The five fields represent m
 
 The *Email Recipients* section determines who receives the report results by email each time the scheduled report runs. Add recipients one at a time by selecting a type:
 
-[cols="20,80",frame="none",grid="none"]
+[cols="20,80"]
 |===
 |*Email*|Enter any email address directly.
 |*User*|Select a specific SuiteCRM user. The report is sent to that user's email address.
 |*Users*|Send to a group of users:
 
-* *ALL Users* — all active users in the system
-* *ALL Users in Role* — all users assigned to a selected ACL Role
-* *ALL Users in Security Group* — all users in a selected Security Group
+* *ALL Users*: all active users in the system
+* *ALL Users in Role*: all users assigned to a selected ACL Role
+* *ALL Users in Security Group*: all users in a selected Security Group
 |===
 
 Multiple recipients of different types can be added to the same scheduled report.

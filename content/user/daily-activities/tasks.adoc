@@ -13,13 +13,13 @@ SuiteCRM Tasks allow you to record, assign and track action items and to-do item
 
 == Key Fields
 
-* *Subject* — The name or description of the task. Required.
-* *Status* — Where the task stands: Not Started, In Progress, Completed, Pending Input or Deferred.
-* *Priority* — The urgency of the task: High, Medium or Low.
-* *Due Date* — When the task needs to be completed by.
-* *Start Date* — When work on the task is expected to begin.
-* *Related To* — Links the task to a parent record (Account, Contact, Opportunity, Case, etc.). The task will appear in the Activities sub-panel on that record while open, and move to the History sub-panel once closed.
-* *Contact* — Links the task to a specific Contact record.
+* *Subject*: the name or description of the task. Required.
+* *Status*: where the task stands: Not Started, In Progress, Completed, Pending Input or Deferred.
+* *Priority*: the urgency of the task: High, Medium or Low.
+* *Due Date*: when the task needs to be completed by.
+* *Start Date*: when work on the task is expected to begin.
+* *Related To*: links the task to a parent record (Account, Contact, Opportunity, Case, etc.). The task will appear in the Activities sub-panel on that record while open, and move to the History sub-panel once closed.
+* *Contact*: links the task to a specific Contact record.
 
 
 == Relationships

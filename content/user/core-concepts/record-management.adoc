@@ -5,7 +5,7 @@ aliases:
   - /user/introduction/user-interface/record-management
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -119,7 +119,7 @@ you.
 image:53Mass_update.png[title="Mass update"]
 
 Once you have populated the fields you wish to mass update, you can
-either click btn:[Update] or btn:[Cancel]. Cancelling the mass update will
+either click **Update** or **Cancel**. Cancelling the mass update will
 cancel any changes and redirect you to the List View of the module.
 Clicking update will update all selected records with the changes
 specified.
@@ -145,14 +145,14 @@ image:182Merging_records.png["Merge screen"]
 
 You can select which record is primary using the *'Set as primary'* button
 on the right of the merge view. You can move data from the duplicate
-records to the primary record using the btn:[<<] buttons. In this example,
+records to the primary record using the **<<** buttons. In this example,
 we have moved the First Name and Last Name from the duplicate record to
 the primary record.
 
 image:183Merging_records.png[title="Merge fields"]
 
 Once you have made the required changes on the merge screen, you can
-click btn:[Save Merge] or btn:[Cancel]. Clicking cancel will discard the merge
+click **Save Merge** or **Cancel**. Clicking cancel will discard the merge
 changes and will revert you to the List View for that module. Clicking
 'Save Merge' will continue the Merge process and will prompt you that the duplicate record will be deleted.
 
@@ -181,9 +181,9 @@ further steps in the Wizard.
 There are many features of the Import Wizard which make it easier for
 you to map data to CRM fields and also for future imports. These are:
 
-* *Sample .csv file for easier import of data* — Use the available sample
+* *Sample .csv file for easier import of data*: use the available sample
 .csv file as a template for import of files
-* *Retain settings from previous imports* — Save/preserve import file
+* *Retain settings from previous imports*: save/preserve import file
 properties, mappings, and duplicate check indexes from previous imports
 for ease of current data import process
 * *Ability to accept both database name and display labels of drop-down
@@ -194,12 +194,12 @@ displayed for ease of use
 import and export of data* — Full names of Users displayed for Assigned
 To and other User-related fields in exported .csv file for easier
 identification of user records
-* *Ability to auto-detect file properties in import file* — Upload import
+* *Ability to auto-detect file properties in import file*: upload import
 files without specifying file properties such as tab, comma, double and
 single quotes, date and time formats, making the process simpler and
 faster
-* *Ability to import contacts from external sources such as Google* —
-Ability to import Google Contacts for person-type modules such as
+* *Ability to import contacts from external sources such as Google*:
+ability to import Google Contacts for person-type modules such as
 Contacts, Leads, and Targets, relate SuiteCRM records to Google
 Contacts, and communicate with Google Contacts from within SuiteCRM
 

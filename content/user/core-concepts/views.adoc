@@ -5,7 +5,7 @@ aliases:
   - /user/introduction/user-interface/views
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -87,9 +87,9 @@ on the view. This allows users to update existing data and also
 add/remove data.
 
 Once you have made changes on the Edit View, you can
-click 'Save' to apply the changes or click btn:[Cancel]. Clicking either
+click 'Save' to apply the changes or click **Cancel**. Clicking either
 option will redirect you to the Detail View of the record you are
 editing.
 
-You can click the btn:[View Change Log] button to view changes to audited fields, which can be useful before making your
+You can click the **View Change Log** button to view changes to audited fields, which can be useful before making your
 intended changes.

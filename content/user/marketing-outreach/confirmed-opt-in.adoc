@@ -5,7 +5,7 @@ aliases:
   - /user/modules/Confirmed-Opt-In-Settings
   - /user/modules/confirmed-opt-in-settings
 ---
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -48,7 +48,7 @@ image:GDPREmailOptionsOptIn.png[title ="Opt In Settings"]
 
 There is no need to configure the other Opt In settings, as Opt In emails are not sent with this setting.
 
-Click btn:[SAVE]
+Click **SAVE**
 
 === Confirmed Opt In
 
@@ -62,7 +62,7 @@ Select *Automatic Opt In Email* to have this email sent automatically (e.g. on s
 The default template for these emails is the Confirmed Opt In template. You can edit this template from 
 the link:../email-templates[Email Templates] module, but note that it must contain the Opt In link.
 
-Click btn:[SAVE]
+Click **SAVE**
 
 == Email Opt In Indication 
 

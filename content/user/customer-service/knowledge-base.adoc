@@ -5,7 +5,7 @@ aliases:
   - /user/advanced-modules/knowledgebase
 ---
 
-:experimental: //// this is here to allow btn:[] syntax used below
+:experimental: //// this is here to allow **** syntax used below
 
 :imagesdir: /images/en/user
 
@@ -15,13 +15,13 @@ The Knowledge Base is a repository of articles containing solutions, FAQs and gu
 
 == Key Fields
 
-* *Article Title* — The title of the article. Should be descriptive enough to surface in subject-based searches. Required.
-* *Status* — Controls the article's visibility: Draft (work in progress), Pending (awaiting approval), Not Published (hidden from use), Published (visible to users), or Expired (no longer current).
-* *Article Text* — The full body of the article, including the solution or guidance. Articles are surfaced as suggestions when their topic or text matches a new Case subject.
-* *Resolution* — A concise summary of the solution. This text can be copied directly into the resolution field when closing a related Case.
-* *Version* — Tracks the revision number of the article.
-* *Author* — The user who wrote the article. Required.
-* *Approved By* — The user who approved the article for publication.
+* *Article Title*: the title of the article. Should be descriptive enough to surface in subject-based searches. Required.
+* *Status*: controls the article's visibility: Draft (work in progress), Pending (awaiting approval), Not Published (hidden from use), Published (visible to users), or Expired (no longer current).
+* *Article Text*: the full body of the article, including the solution or guidance. Articles are surfaced as suggestions when their topic or text matches a new Case subject.
+* *Resolution*: a concise summary of the solution. This text can be copied directly into the resolution field when closing a related Case.
+* *Version*: tracks the revision number of the article.
+* *Author*: the user who wrote the article. Required.
+* *Approved By*: the user who approved the article for publication.
 
 == Categories
 

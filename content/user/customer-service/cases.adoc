@@ -22,26 +22,26 @@ related to individual records such as Accounts, Contacts and Bugs.
 
 == Key Fields
 
-* *Subject* — A brief description of the issue. This is the required field and is the primary identifier shown in List Views and email notifications.
-* *State* — Controls whether the case is Open or Closed. Drives which Status values are available.
-* *Status* — A more granular stage within the State. Open statuses include New, Assigned, Pending Input; Closed statuses include Rejected and Closed. Administrators can customise these values using the Dropdown Editor.
-* *Priority* — The urgency of the case: P1 (Urgent), P2 (High), P3 (Medium).
-* *Account Name* — The Account the case belongs to. Linking to an Account gives you the full customer context and makes the case visible from the Account's sub-panel.
-* *Description* — The full detail of the issue as reported.
-* *Resolution* — How the issue was resolved. Completing this field helps builds a knowledge base of solutions that can be referenced for future cases.
-* *Assigned To* — The user responsible for resolving the case.
+* *Subject*: a brief description of the issue. This is the required field and is the primary identifier shown in List Views and email notifications.
+* *State*: controls whether the case is Open or Closed. Drives which Status values are available.
+* *Status*: a more granular stage within the State. Open statuses include New, Assigned, Pending Input; Closed statuses include Rejected and Closed. Administrators can customise these values using the Dropdown Editor.
+* *Priority*: the urgency of the case: P1 (Urgent), P2 (High), P3 (Medium).
+* *Account Name*: the Account the case belongs to. Linking to an Account gives you the full customer context and makes the case visible from the Account's sub-panel.
+* *Description*: the full detail of the issue as reported.
+* *Resolution*: how the issue was resolved. Completing this field helps builds a knowledge base of solutions that can be referenced for future cases.
+* *Assigned To*: the user responsible for resolving the case.
 
 
 == Relationships
 
 From a Case record you can view and manage all associated records via sub-panels:
 
-* *Contacts* — The individuals associated with this case.
-* *Account* — The organisation the case belongs to.
-* *Bugs* — Known software bugs linked to the case.
-* *Activities* — Calls, Meetings and Tasks related to resolving the case.
-* *History* — Emails and completed activities, including all update threads from the Case.
-* *Documents / Notes* — Supporting files and attachments.
+* *Contacts*: the individuals associated with this case.
+* *Account*: the organisation the case belongs to.
+* *Bugs*: known software bugs linked to the case.
+* *Activities*: Calls, Meetings and Tasks related to resolving the case.
+* *History*: emails and completed activities, including all update threads from the Case.
+* *Documents / Notes*: supporting files and attachments.
 
 {{% notice tip %}}
 SuiteCRM includes a built-in Maps feature. A map panel showing the associated account's address is available on Case records. See link:../integrations/maps[Maps] for details.
@@ -59,7 +59,7 @@ image:CaseUpdates.png[title="Case Updates tab showing a threaded exchange betwee
 
 === Adding an Update
 
-An *Update* text field appears at the bottom of the Case Edit View. Enter your update text and click btn:[Save]. SuiteCRM records the update in the thread and sends an email notification to all Contacts related to the case.
+An *Update* text field appears at the bottom of the Case Edit View. Enter your update text and click **Save**. SuiteCRM records the update in the thread and sends an email notification to all Contacts related to the case.
 
 Check *Internal Update* to record the update privately. Internal updates are visible in the Case Updates thread in SuiteCRM but are not emailed to contacts and are not visible on the customer portal, if setup.
 
