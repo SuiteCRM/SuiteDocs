@@ -26,12 +26,12 @@ A CalDAV URL points directly to a specific calendar on the server:
 https://server.example.com/dav-path/username/calendar-name/
 ----
 
-* *Protocol* — Always `https://` (or `http://` for local servers)
-* *Server* — Hostname or IP address of your CalDAV server
-* *DAV Path* — The path to the CalDAV service endpoint (varies by implementation)
-* *Username* — Your CalDAV account username
-* *Calendar Name* — The specific calendar identifier
-* *Trailing slash* — Required by most CalDAV implementations
+* *Protocol*: always `https://` (or `http://` for local servers)
+* *Server*: hostname or IP address of your CalDAV server
+* *DAV Path*: the path to the CalDAV service endpoint (varies by implementation)
+* *Username*: your CalDAV account username
+* *Calendar Name*: the specific calendar identifier
+* *Trailing slash*: required by most CalDAV implementations
 
 === Trailing Slash
 

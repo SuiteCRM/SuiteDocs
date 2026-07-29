@@ -5,7 +5,7 @@ aliases:
   - /user/introduction/user-interface/home-page
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -49,7 +49,7 @@ all of the options that are configurable for the dashlet.
 image:28Configure_dashlet.png[title="Configure dashlet"]
 
 Once you have made the required changes in the dashlet configuration
-popup, you can click btn:[Save] to apply the changes, or btn:[Cancel] if you wish
+popup, you can click **Save** to apply the changes, or **Cancel** if you wish
 to revert to the current configuration.
 
 {{% notice note %}}
@@ -71,7 +71,7 @@ dashlet columns are required. You can opt for one, two or three columns.
 image:192Add_tab.png[title="Add tab"]
 
 Once you have specified the details for the dashboard tab, you can click
-btn:[Save]. You can also click btn:[Cancel] to undo any changes. Once you have
+**Save**. You can also click **Cancel** to undo any changes. Once you have
 saved your changes, the Dashboard Tab will be added and will display on
 the tab list on the Homepage. You can then add Dashlets to your new
 dashboard tab as required.
@@ -115,7 +115,7 @@ timestamped.
 The Activity Stream is a useful tool for internal messaging within
 your organisation, where it is possible to send a message that will be
 broadcast to all users in your network. To do this type your message in
-the text field and click btn:[Post]
+the text field and click **Post**
 
 image:35Activity_post.png[title="Activity Stream post"]
 

@@ -19,7 +19,7 @@ SuiteCRM is a web-based application accessed through a browser. Your system admi
 
 == Logging into SuiteCRM
 
-Enter your *Username* and *Password* on the login page and click btn:[Log In].
+Enter your *Username* and *Password* on the login page and click **Log In**.
 
 image:login.png[title="SuiteCRM login page"]
 
@@ -27,7 +27,7 @@ If more than one language is enabled on your system, a *Language* dropdown appea
 
 == Forgot Password
 
-If you have forgotten your password, click the *Forgot Password?* link on the login page. An inline form expands asking for your *Username* and *Email Address*. Enter both and click btn:[Submit]. SuiteCRM will send a password reset email to the address associated with your account.
+If you have forgotten your password, click the *Forgot Password?* link on the login page. An inline form expands asking for your *Username* and *Email Address*. Enter both and click **Submit**. SuiteCRM will send a password reset email to the address associated with your account.
 
 If the *Forgot Password?* link is not visible, or the reset email does not arrive, contact your system administrator.
 
@@ -37,13 +37,13 @@ The first time you log in, the User Wizard guides you through setting up your pe
 
 === Welcome
 
-The Welcome step confirms you are logged in and ready to configure your account. Click btn:[Next >] to continue.
+The Welcome step confirms you are logged in and ready to configure your account. Click **Next >** to continue.
 
 === Your Information
 
 Enter your personal details. *Last Name* is required. *Email Address* is required if your system administrator has enabled password reset by email.
 
-[cols="25,75",frame="none",grid="none"]
+[cols="25,75"]
 |===
 |*First Name / Last Name*|Your display name within SuiteCRM.
 |*Email Address*|Used for system notifications and password resets.
@@ -51,7 +51,7 @@ Enter your personal details. *Last Name* is required. *Email Address* is require
 |*Primary Address*|Optional address stored on your user record.
 |===
 
-Click btn:[Next >] to continue.
+Click **Next >** to continue.
 
 === Your Locale
 
@@ -59,7 +59,7 @@ Set how dates, times, numbers, and names appear across SuiteCRM.
 
 image:user-wizard-locale.png[title="User Wizard locale settings showing time zone, date format, time format, currency, and number format fields"]
 
-[cols="25,75",frame="none",grid="none"]
+[cols="25,75"]
 |===
 |*Time Zone*|The time zone used for all dates and times in SuiteCRM.
 |*Date Format*|How dates are displayed (e.g. 31/12/2025 or 12/31/2025).
@@ -72,8 +72,8 @@ image:user-wizard-locale.png[title="User Wizard locale settings showing time zon
 |*User Language*|Your preferred display language within SuiteCRM.
 |===
 
-Click btn:[Next >] to continue.
+Click **Next >** to continue.
 
 === Finish
 
-The final step confirms your settings have been saved. Click btn:[Finish] to go to the SuiteCRM homepage.
+The final step confirms your settings have been saved. Click **Finish** to go to the SuiteCRM homepage.

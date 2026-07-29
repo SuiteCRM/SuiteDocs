@@ -6,7 +6,7 @@ aliases:
 ---
 
 :imagesdir: /images/en/user
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :toc:
 
@@ -68,7 +68,7 @@ For non-email based campaigns, this section is on the next page.
 
 image:CampaignBudget.png[title="Campaign Budget"]
 
-Click btn:[NEXT] at the top of the screen to continue.
+Click **NEXT** at the top of the screen to continue.
 
 === Target Lists
 
@@ -77,7 +77,7 @@ Any existing target lists will be listed for you to select under *Add Existing T
 
 Click on the target list name to add it to the campaign. Target lists added to the campaign will appear in the right-hand panel.
 
-To remove a target list, click btn:[rem]
+To remove a target list, click **rem**
 
 image:CampaignsTargetList.png[title="Target Lists"]
 
@@ -89,7 +89,7 @@ image:80E-mail_campaign.png[title="Target list"]
 
 Enter a name for the new list and select the type from the list. Note that you will need to have at least one 'default' type target list attached to the campaign.
 
-Click btn:[CREATE]
+Click **CREATE**
 
 === Templates
 
@@ -124,21 +124,21 @@ Tracker URLs can be used to insert a link to your organisation's website or dire
 
 image:83Campaign_template.png[title="Tracker URL"]
 
-To add your own tracker URL link, click btn:[CREATE TRACKER]
+To add your own tracker URL link, click **CREATE TRACKER**
 
 image:CampaignsCreateTracker2.png[title="Create tracker"]
 
 Specify the text to display as the link, and the URL.
 
-Click btn:[CREATE TRACKER]
+Click **CREATE TRACKER**
 
-Add your tracker(s) to the template in the same way as for a variable. Click inside the template in the desired location, then select the tracker in the drop down and click btn:[ INSERT TRACKER]
+Add your tracker(s) to the template in the same way as for a variable. Click inside the template in the desired location, then select the tracker in the drop down and click **INSERT TRACKER**
 
 ==== Opt Out Tracker URLs
 
 An Opt Out link allows the recipient to opt out of future marketing emails, and a default opt out link will be added to the template automatically. You can replace this default with your own Opt Out link text by adding a custom Opt Out Tracker.
 
-Click btn:[CREATE TRACKER]
+Click **CREATE TRACKER**
 
 image:CampaignsOptOutTracker.png[title="Create opt out tracker"]
 
@@ -146,11 +146,11 @@ Specify the text you require for your opt out link.
 
 Check the Opt-Out Link box. Note that you cannot edit the TrackerURL itself, only the link text.
 
-Add your tracker to the template in the same way as for a variable. Click inside the template in the desired location, then select the tracker in the drop down and click btn:[ INSERT TRACKER]
+Add your tracker to the template in the same way as for a variable. Click inside the template in the desired location, then select the tracker in the drop down and click **INSERT TRACKER**
 
-Once your email template is complete, click btn:[SAVE].
+Once your email template is complete, click **SAVE**.
 
-Click btn:[NEXT] at the top of the page to continue.
+Click **NEXT** at the top of the page to continue.
 
 === Marketing
 
@@ -166,7 +166,7 @@ image:CampaignsMarketing.png[title="Campaign Wizard Marketing"]
 |*Schedule Date & Time*|The campaign emails will be queued for sending at the specified time and will be sent when the *Run Nightly Mass Email Campaigns* scheduled job is next run.
 |===
 
-Once details have been completed, click btn:[NEXT] at the top of the screen to continue.
+Once details have been completed, click **NEXT** at the top of the screen to continue.
 
 === Send Email and Summary
 
@@ -192,7 +192,7 @@ Once you have ensured all sections are complete you have three options:
 * *View Details* – Shows the Detail View of the campaign you have just created.
 
 == Campaign Status and Response Tracking
-From the campaign's Detail View click btn:[VIEW STATUS]
+From the campaign's Detail View click **VIEW STATUS**
 [cols="60,40", frame = "none", grid = "none"]
 |===
 |OR, from List View, click the status icon|image:CampaignsViewStatusIcon.png[title="Status icon"]
@@ -210,16 +210,16 @@ If the campaign includes a <<Web To Person Form, Web To Person form>> you will b
 
 image:CampaignsLeadsCreated.png[title="Campaign Leads created"]
 
-These records can be added to a new target list by clicking btn:[Add to Target List] This allows you to create new, more focused campaigns based on who has responded.
+These records can be added to a new target list by clicking **Add to Target List** This allows you to create new, more focused campaigns based on who has responded.
 
 [discrete]
 === Delete Test Entries
 
-Click btn:[DELETE TEST ENTRIES] to remove any entries on the campaign status page that have been generated during testing with a 'test' type link:../target-lists[target list].
+Click **DELETE TEST ENTRIES** to remove any entries on the campaign status page that have been generated during testing with a 'test' type link:../target-lists[target list].
 
 == Campaign ROI Tracking
 
-The built-in campaign ROI tracking can be viewed from the campaign's detail or status view by clicking btn:[VIEW ROI]
+The built-in campaign ROI tracking can be viewed from the campaign's detail or status view by clicking **VIEW ROI**
 
 This page gives a graphical representation of your campaign's Return on Investment, allowing you to easily visualise how money spent on the campaign has translated into potential
 business.
@@ -231,7 +231,7 @@ image:CampaignsROIChart.png[title="Return on Investment details"]
 == Web To Person Form
 
 The *Create Person Form* feature allows you to create a web-based form which will create a
-link:../targets[Lead], link:../accounts-contacts[Contact] or link:../targets[Target] record in *SuiteCRM*
+link:../targets[Lead], link:../contacts[Contact] or link:../targets[Target] record in *SuiteCRM*
 from the information submitted on the web form. These records can be assigned to a particular user
 and are linked to a campaign so responses can be tracked.
 
@@ -251,11 +251,11 @@ image:CampaignsCreatePerson1.png[title="Create Person Form - select fields"]
 
 Drag and drop the fields you wish to include on the form into the empty form columns. You have the option of a one or two column layout. You must include any required fields (these are indicated with an asterisk* and are highlighted in the list).
 
-Click btn:[ADD ALL FIELDS] to add all available fields to the form. Clicking btn:[RESET ALL FIELDS] will remove all fields from the layout columns.
+Click **ADD ALL FIELDS** to add all available fields to the form. Clicking **RESET ALL FIELDS** will remove all fields from the layout columns.
 
 image:CampaignsCreatePerson2.png[title="Create Person Form - select fields"]
 
-Once the required fields have been added, click btn:[NEXT] to continue.
+Once the required fields have been added, click **NEXT** to continue.
 
 [discrete]
 ==== Create Person Form – Additional Information
@@ -266,9 +266,9 @@ Configure the web form's appearance by adding a header or footer and changing th
 
 *Redirect URL*: Specify a custom link to display once the form has been submitted.
 
-*Related Campaign*: You must relate the form to an existing campaign. Click btn:[SELECT] to select the campaign from the popup.
+*Related Campaign*: You must relate the form to an existing campaign. Click **SELECT** to select the campaign from the popup.
 
-Once complete, click btn:[GENERATE FORM]
+Once complete, click **GENERATE FORM**
 
 [discrete]
 ==== Create Person Form – Editor
@@ -279,7 +279,7 @@ View and edit the HTML directly by clicking the HTML link on the toolbar.
 
 image:CampaignsCreatePerson4.png[title="Web form"]
 
-Once you are happy with the appearance of your web form click btn:[SAVE WEB FORM]
+Once you are happy with the appearance of your web form click **SAVE WEB FORM**
 
 [discrete]
 ==== Save Form

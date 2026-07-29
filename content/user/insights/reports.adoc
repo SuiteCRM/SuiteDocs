@@ -17,7 +17,7 @@ The Reports module lets you run queries across any SuiteCRM module and display t
 
 Navigate to the Reports module and click *Create Report*. Fill in the report fields:
 
-[cols="25,75",frame="none",grid="none"]
+[cols="25,75"]
 |===
 |*Name*|The report name.
 |*Report Module*|The primary module the report runs against. This determines which fields and related modules are available in the field tree. Required.
@@ -33,7 +33,7 @@ Fields are added by expanding the module tree in the left panel and dragging fie
 
 Each field added to the report can be configured with the following options:
 
-[cols="20,80",frame="none",grid="none"]
+[cols="20,80"]
 |===
 |*Display*|Whether this field appears as a column in the report output. Set to No to use a field for sorting or grouping without showing it.
 |*Link*|Makes the field value a clickable link to that record's Detail View.
@@ -53,17 +53,17 @@ Fields are dragged into the *Conditions* section from the same module tree. Each
 
 Each row configures:
 
-[cols="20,80",frame="none",grid="none"]
+[cols="20,80"]
 |===
 |*Operator*|The comparison to apply: Equal To, Not Equal To, Greater Than, Less Than, Greater Than or Equal To, Less Than or Equal To, Contains, Starts With, Ends With.
 |*Value Type*|How the comparison value is specified:
 
-* *Value* — a static value entered directly
-* *Field* — compare against another field on the same record
-* *Date* — a calculated date offset (e.g. today minus 7 days), defined by a number, a period (minutes/hours/days/weeks/months), and +/− direction
-* *Multi* — match any one of a selected set of values
-* *Period* — a named date range (e.g. the last 30 days)
-* *Current User* — automatically filters to the ID of the currently logged-in user; useful for "my records" reports
+* *Value*: a static value entered directly
+* *Field*: compare against another field on the same record
+* *Date*: a calculated date offset (e.g. today minus 7 days), defined by a number, a period (minutes/hours/days/weeks/months), and +/− direction
+* *Multi*: match any one of a selected set of values
+* *Period*: a named date range (e.g. the last 30 days)
+* *Current User*: automatically filters to the ID of the currently logged-in user; useful for "my records" reports
 
 |*AND / OR*|Logic operator joining this condition to the next row.
 |===
@@ -74,7 +74,7 @@ Use the *Drop parenthesis* button to add parentheses around groups of conditions
 
 Click *Add chart* below the Conditions section to add a chart to the report. Multiple charts can be added.
 
-[cols="20,80",frame="none",grid="none"]
+[cols="20,80"]
 |===
 |*Title*|The chart title, shown on the Detail View and in chart dashlets.
 |*Type*|Bar, Line, Pie, Radar, Stacked Bar, or Grouped Bar.
@@ -88,9 +88,9 @@ Charts appear below the results table on the Report Detail View. The *Charts per
 
 From the Report Detail View, in addition to Edit, Duplicate, and Delete, three output actions are available:
 
-* *Export* — downloads the report results as a CSV file.
-* *Download PDF* — downloads the results as a PDF, including any charts.
-* *Add To Target List* — adds every record returned by the report to a Target List (Prospect List) for use in a Campaign.
+* *Export*: downloads the report results as a CSV file.
+* *Download PDF*: downloads the results as a PDF, including any charts.
+* *Add To Target List*: adds every record returned by the report to a Target List (Prospect List) for use in a Campaign.
 
 Export and Add To Target List are subject to the user's export permissions.
 

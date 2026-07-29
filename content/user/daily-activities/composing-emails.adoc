@@ -5,7 +5,7 @@ aliases:
   - /user/core-modules/emails
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -124,7 +124,7 @@ the message has been sent.
 |image:264EmailsAddFilesbutton.png[title="Add Files button"]|*Attach Files*| Use this button to browse for and attach
 an *external* file to the email.
 |image:265EmailsAddDocumentsbutton.png[title="Add Documents button"]|*Attach Documents*|Use this button to attach
-a *SuiteCRM Document* to the email. Search for the required Document in the popup and click btn:[SELECT] to attach it.
+a *SuiteCRM Document* to the email. Search for the required Document in the popup and click **SELECT** to attach it.
 |image:266EmailsSaveDraftbutton.png[title="Save Draft button"]|*Save Draft*|Drafts can be viewed
 by changing the folder in *List* view.
 |image:267EmailsDiscardbutton.png[title="Discard button"]|*Discard*|Discards the draft email without sending.
@@ -157,7 +157,7 @@ On importing, a dialog will open allowing you to select which record to relate t
 image:268EmailsImportDialog.png[title="Import emails"]
 
 First select the module type from the drop-down.  Next, use the search arrow button to find and select the relevant record,
-or begin typing the name into the field and select the required record from the auto-complete list. Click the btn:[OK] button.
+or begin typing the name into the field and select the required record from the auto-complete list. Click the **OK** button.
 
 Note that if you are bulk importing mail, all emails will be related to the record selected here. If you need to relate mail
 to different records you will need to import these individually.

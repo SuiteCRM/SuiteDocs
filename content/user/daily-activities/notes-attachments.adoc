@@ -13,12 +13,12 @@ The Notes module allows you to keep a record of comments, observations or explan
 
 == Key Fields
 
-* *Subject* — A brief title for the note. Required.
-* *Related To* — Links the note to a parent record (Account, Contact, Lead, Opportunity, Case, Bug and others). Once linked, the note appears in the History sub-panel on that record.
-* *Contact* — Links the note to a specific Contact record, independently of the Related To field.
-* *Description* — The body text of the note.
-* *Attachment* — A single file can be uploaded and stored with the note. Supported for any file type.
-* *Portal Flag* — When checked, the note and its attachment are visible to portal users who have access to the related Case via the Customer Portal.
+* *Subject*: a brief title for the note. Required.
+* *Related To*: links the note to a parent record (Account, Contact, Lead, Opportunity, Case, Bug and others). Once linked, the note appears in the History sub-panel on that record.
+* *Contact*: links the note to a specific Contact record, independently of the Related To field.
+* *Description*: the body text of the note.
+* *Attachment*: a single file can be uploaded and stored with the note. Supported for any file type.
+* *Portal Flag*: when checked, the note and its attachment are visible to portal users who have access to the related Case via the Customer Portal.
 
 
 == Relationships

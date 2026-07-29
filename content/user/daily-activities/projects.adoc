@@ -13,13 +13,13 @@ The Projects module allows you to arrange and track your organisation's projects
 
 == Key Fields
 
-* *Name* — The project name. Required.
-* *Status* — The overall state of the project: Draft, In Review or Published.
-* *Start Date / End Date* — The planned start and end dates for the project. Both are required.
-* *Priority* — The importance of the project: Low, Medium or High.
-* *Description* — A summary of the project's purpose and scope.
-* *Override Business Hours* — When checked, business hours rules are not applied when calculating project task durations.
-* *Total Estimated Effort / Total Actual Effort* — Read-only totals calculated from all project tasks, showing planned versus actual hours spent.
+* *Name*: the project name. Required.
+* *Status*: the overall state of the project: Draft, In Review or Published.
+* *Start Date / End Date*: the planned start and end dates for the project. Both are required.
+* *Priority*: the importance of the project: Low, Medium or High.
+* *Description*: a summary of the project's purpose and scope.
+* *Override Business Hours*: when checked, business hours rules are not applied when calculating project task durations.
+* *Total Estimated Effort / Total Actual Effort*: read-only totals calculated from all project tasks, showing planned versus actual hours spent.
 
 
 == Relationships

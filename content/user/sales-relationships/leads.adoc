@@ -5,7 +5,7 @@ aliases:
   - /user/core-modules/leads
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -22,24 +22,24 @@ buy.
 
 == Key Fields
 
-* *Lead Source* — Records how the lead was acquired: Web Site, Trade Show, Word of Mouth, Cold Call, Campaign and so on. Important for measuring the effectiveness of marketing channels.
-* *Status* — Tracks where the lead is in the qualification process: New, Assigned, In Process, Converted, Recycled or Dead.
-* *Account Name* — The company the lead works for. This is a plain text field on a Lead (unlike on a Contact, where it is a relationship to an Account record). It becomes a full Account relationship on conversion.
-* *Title / Department* — The lead's role and team within their organisation.
-* *Referred By* — Records who referred the lead to you.
-* *Do Not Call / Email Opt Out* — Compliance flags that carry over when the lead is converted to a Contact.
-* *Campaign* — Links the lead to the campaign that generated it, feeding campaign ROI reporting.
-* *Website* — The company website of the lead. Carried over to the Account when the lead is converted.
+* *Lead Source*: records how the lead was acquired: Web Site, Trade Show, Word of Mouth, Cold Call, Campaign and so on. Important for measuring the effectiveness of marketing channels.
+* *Status*: tracks where the lead is in the qualification process: New, Assigned, In Process, Converted, Recycled or Dead.
+* *Account Name*: the company the lead works for. This is a plain text field on a Lead (unlike on a Contact, where it is a relationship to an Account record). It becomes a full Account relationship on conversion.
+* *Title / Department*: the lead's role and team within their organisation.
+* *Referred By*: records who referred the lead to you.
+* *Do Not Call / Email Opt Out*: compliance flags that carry over when the lead is converted to a Contact.
+* *Campaign*: links the lead to the campaign that generated it, feeding campaign ROI reporting.
+* *Website*: the company website of the lead. Carried over to the Account when the lead is converted.
 
 
 == Relationships
 
 From a Lead record you can view and manage related records via sub-panels:
 
-* *Activities* — Calls, Meetings, Tasks and Emails logged against the lead.
-* *History* — Archived emails and completed activities.
-* *Documents* — Files attached to the lead.
-* *Campaigns* — The campaign the lead originated from.
+* *Activities*: Calls, Meetings, Tasks and Emails logged against the lead.
+* *History*: archived emails and completed activities.
+* *Documents*: files attached to the lead.
+* *Campaigns*: the campaign the lead originated from.
 
 {{% notice tip %}}
 SuiteCRM includes a built-in Maps feature. A map panel showing the Lead's address is available on Lead records. See link:../integrations/maps[Maps] for details.
@@ -101,7 +101,7 @@ Contacts/Accounts and Opportunities.
 
 image:72Convert_lead_options.png[title="Lead Conversion"]
 
-After you have completed the relevant sections click btn:[Save] to
+After you have completed the relevant sections click **Save** to
 confirm the changes.
 
 == Duplicate Record Check
@@ -113,6 +113,6 @@ found.
 image:73Duplicate_record_check.png[title="Duplicate Record Check"]
 
 If you find that the duplicate warning is not valid and you still wish
-to create a new record, then click btn:[Create]. Otherwise if you
+to create a new record, then click **Create**. Otherwise if you
 decide that the warning is correct and the record does already exist in
 the CRM then you should the *'select'* button.

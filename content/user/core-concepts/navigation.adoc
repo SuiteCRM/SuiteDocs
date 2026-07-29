@@ -5,7 +5,7 @@ aliases:
   - /user/introduction/user-interface/navigation-elements
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -110,8 +110,8 @@ image:67Managing_notifications.png[title="Notification List"]
 
 From here you can:
 
-* *Click a notification* — Navigate directly to the related record (Call or Meeting).
-* *Click the x icon* — Dismiss and clear that individual notification.
+* *Click a notification*: navigate directly to the related record (Call or Meeting).
+* *Click the x icon*: dismiss and clear that individual notification.
 
 If no unread notifications exist, no count is shown.
 

@@ -5,7 +5,7 @@ aliases:
   - /user/introduction/user-interface/search
 ---
 
-:experimental:   ////this is here to allow btn:[]syntax used below
+:experimental:   ////this is here to allow ****syntax used below
 
 :imagesdir: /images/en/user
 
@@ -85,7 +85,7 @@ image:195Search_my_items.png[title="Search my items"]
 Once a user has searched for a record, the search will be saved. This
 means that you can navigate to records and other modules within the CRM
 but the search will not be cleared. If you wish to clear your search,
-you can click btn:[Clear] and then click btn:[Search]. This will clear any saved
+you can click **Clear** and then click **Search**. This will clear any saved
 searches and return to the default result set for that module.
 
 {{% notice note %}}

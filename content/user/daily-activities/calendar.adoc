@@ -19,11 +19,11 @@ image:CalendarWeekView.png[title="Calendar week view"]
 
 Use the view buttons at the top of the calendar to switch between:
 
-* *Day* — hourly time slots for a single day
-* *Week* — hourly time slots across seven days (the default view)
-* *Month* — a full month grid
-* *Year* — a full year overview
-* *Shared Week* / *Shared Month* — your calendar and selected colleagues' calendars displayed together (see <<Shared Calendars>>)
+* *Day*: hourly time slots for a single day
+* *Week*: hourly time slots across seven days (the default view)
+* *Month*: a full month grid
+* *Year*: a full year overview
+* *Shared Week* / *Shared Month*: your calendar and selected colleagues' calendars displayed together (see <<Shared Calendars>>)
 
 Use the *Previous* and *Next* arrows to move between periods, or click *Today* to return to the current date. Click the calendar icon to jump to a specific date.
 
@@ -31,15 +31,15 @@ Use the *Previous* and *Next* arrows to move between periods, or click *Today* t
 
 === Click a Time Slot
 
-Click any empty time slot in Day or Week view to open a quick-create dialog. Select *Meeting* or *Call*, fill in the subject and duration, and click btn:[SAVE]. To add invitees or set recurrence, use the *Invitees* or *Recurrence* tabs before saving, or open the full form by clicking *Full Form*.
+Click any empty time slot in Day or Week view to open a quick-create dialog. Select *Meeting* or *Call*, fill in the subject and duration, and click **SAVE**. To add invitees or set recurrence, use the *Invitees* or *Recurrence* tabs before saving, or open the full form by clicking *Full Form*.
 
 === From the Sidebar or Module Menu
 
 The Calendar sidebar and module menu provide direct links to create activities:
 
-* *Schedule Meeting* — opens the Meetings Edit View
-* *Schedule Call* — opens the Calls Edit View
-* *Create Task* — opens the Tasks Edit View
+* *Schedule Meeting*: opens the Meetings Edit View
+* *Schedule Call*: opens the Calls Edit View
+* *Create Task*: opens the Tasks Edit View
 
 Activities created from the calendar are identical to those created in their own modules. See link:../calls-meetings[Calls and Meetings] and link:../tasks[Tasks] for full field details.
 
@@ -53,10 +53,10 @@ Activities created from the calendar are identical to those created in their own
 
 Meetings and Calls can be set to repeat on a schedule. Open the *Recurrence* tab when creating or editing an activity to configure:
 
-* *Repeat type* — Daily, Weekly, Monthly, or Yearly
-* *Interval* — how often the recurrence repeats (e.g. every 2 weeks)
-* *Days of the week* — for weekly recurrences, which days the activity falls on
-* *End* — after a set number of occurrences or by a specific date
+* *Repeat type*: daily, Weekly, Monthly, or Yearly
+* *Interval*: how often the recurrence repeats (e.g. every 2 weeks)
+* *Days of the week*: for weekly recurrences, which days the activity falls on
+* *End*: after a set number of occurrences or by a specific date
 
 When editing a recurring activity, you can choose to update only the selected occurrence or all future occurrences.
 
@@ -78,12 +78,12 @@ image:CalendarSettings.png[title="Calendar settings"]
 
 === Display
 
-* *Display time slots* — when on, Day and Week views show an hourly grid; when off, they show a simplified list of events
-* *Day starts at / Day ends at* — set the working hours visible in Day and Week views (default 08:00–19:00)
-* *Show Calls* — include or hide Calls from the calendar
-* *Show Tasks* — include or hide Tasks from the calendar
-* *Show completed activities* — include or hide activities with a Completed status
-* *Display shared calendars separately* — show each user's calendar in its own section, or merge all into one
+* *Display time slots*: when on, Day and Week views show an hourly grid; when off, they show a simplified list of events
+* *Day starts at / Day ends at*: set the working hours visible in Day and Week views (default 08:00–19:00)
+* *Show Calls*: include or hide Calls from the calendar
+* *Show Tasks*: include or hide Tasks from the calendar
+* *Show completed activities*: include or hide activities with a Completed status
+* *Display shared calendars separately*: show each user's calendar in its own section, or merge all into one
 
 === Colours
 

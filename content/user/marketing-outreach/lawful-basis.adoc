@@ -18,9 +18,9 @@ The Lawful Basis feature allows you to track the legal basis for which a busines
 
 The feature adds three auditable fields to Contact, Lead, and Target records:
 
-* *Lawful Basis* — the legal ground for processing the person's data (for example: Consent, Contract, Legal Obligation, Vital Interests, Public Task, Legitimate Interests).
-* *Lawful Basis Source* — how the lawful basis was established (for example: Website, Email, Phone).
-* *Date Reviewed* — the date the lawful basis was last confirmed or updated.
+* *Lawful Basis*: the legal ground for processing the person's data (for example: Consent, Contract, Legal Obligation, Vital Interests, Public Task, Legitimate Interests).
+* *Lawful Basis Source*: how the lawful basis was established (for example: Website, Email, Phone).
+* *Date Reviewed*: the date the lawful basis was last confirmed or updated.
 
 To add these fields to the Edit or Detail view of a module, go to *Admin* → *Studio* → select the module → *Edit View* or *Detail View*, and drag the fields into the layout.
 
@@ -34,7 +34,7 @@ image:LawfulBasisChangeLog.png[title="Lawful Basis Change Log"]
 
 === Individual Record
 
-Open the record and select *Edit* from the *Actions* menu. Update the Lawful Basis fields and click btn:[SAVE].
+Open the record and select *Edit* from the *Actions* menu. Update the Lawful Basis fields and click **SAVE**.
 
 === Mass Update
 
@@ -44,7 +44,7 @@ To update multiple records at once:
 . Select the checkboxes for the records you want to update.
 . Select *Mass Update* from the *Bulk Action* drop-down.
 . Scroll to the bottom of the page to find the Lawful Basis fields.
-. Set the required values and click btn:[Update].
+. Set the required values and click **Update**.
 
 == Updating Lawful Basis Automatically
 

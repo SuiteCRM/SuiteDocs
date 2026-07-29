@@ -17,12 +17,12 @@ image:AdminPanelOpenEmployee.png[title="Employees in the user menu"]
 
 == Key Fields
 
-* *First Name / Last Name* — The employee's name.
-* *Title* — The employee's job title.
-* *Department* — The team or department the employee belongs to.
-* *Email Address* — The employee's work email address.
-* *Phone* — Office, mobile or other contact numbers.
-* *Reports To* — Links to another employee record to model the reporting hierarchy.
+* *First Name / Last Name*: the employee's name.
+* *Title*: the employee's job title.
+* *Department*: the team or department the employee belongs to.
+* *Email Address*: the employee's work email address.
+* *Phone*: office, mobile or other contact numbers.
+* *Reports To*: links to another employee record to model the reporting hierarchy.
 
 == Finding Employees
 

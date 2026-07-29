@@ -25,13 +25,13 @@ Two-Factor Authentication is enabled on a per-user basis. If you cannot see the 
 . Check the *Two Factor Authentication* checkbox.
 +
 image:TwoFactorAuth.png[title="Two Factor Authentication setting in user profile"]
-. Click btn:[SAVE].
+. Click **SAVE**.
 
 == Logging In with Two-Factor Authentication
 
 After enabling 2FA, each time you log in you will be prompted to enter a verification code after entering your username and password.
 
-The code will be sent to your account's primary email address. Enter the code and click btn:[VERIFY] to complete the login.
+The code will be sent to your account's primary email address. Enter the code and click **VERIFY** to complete the login.
 
 image:TwoFactorAuthCodeSent.png[title="Two Factor Authentication code prompt"]
 
@@ -43,7 +43,7 @@ If you do not receive the code, check your spam folder. If you have lost access 
 
 . Open your user profile and select *Edit* from the *Actions* menu.
 . Uncheck the *Two Factor Authentication* checkbox.
-. Click btn:[SAVE].
+. Click **SAVE**.
 
 == Email Template
 

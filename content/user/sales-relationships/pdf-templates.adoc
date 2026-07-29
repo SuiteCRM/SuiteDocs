@@ -18,11 +18,11 @@ The PDF Templates module lets you create reusable document templates for generat
 . Navigate to the PDF Templates module and click *Create PDF Template*.
 . Fill in the template fields (see below).
 . Build the template body using the WYSIWYG editor.
-. Click btn:[Save].
+. Click **Save**.
 
 === Template Fields
 
-[cols="20,80",frame="none",grid="none"]
+[cols="20,80"]
 |===
 |*Name*|The name of the template.
 |*Type*|The module this template applies to: Quotes, Invoices, Contracts, Accounts, Contacts, or Leads. Only templates matching the module type will appear when generating a PDF from a record.
@@ -41,7 +41,7 @@ image:InsertFields.png[title="PDF template edit view showing the Insert Fields r
 
 . In the first dropdown, select the module to pull data from — either the template's own module (e.g. Quotes) or a related module (e.g. Accounts on a Quote template).
 . In the second dropdown, select the field. The variable name populates the text field to the right.
-. Place your cursor in the body at the insertion point, then click btn:[Insert].
+. Place your cursor in the body at the insertion point, then click **Insert**.
 
 Variables follow the format `$moduledirectory_fieldname` — for example, `$aos_invoices_number` inserts the invoice number, and `$aos_quotes_billing_account` inserts the billing account name from a Quote.
 
@@ -58,7 +58,7 @@ The *Header* and *Footer* fields below the body accept the same WYSIWYG markup a
 
 Six margin fields control the page layout (all values in millimetres):
 
-[cols="30,70",frame="none",grid="none"]
+[cols="30,70"]
 |===
 |*Margin Left / Right*|15 mm default
 |*Margin Top / Bottom*|16 mm default
@@ -85,10 +85,10 @@ From the list view, select the records you want, then choose *Print as PDF* from
 
 From the PDF Templates list view you can:
 
-* *Search* — use link:../../core-concepts/searching[Search or Advanced Search] to filter templates
-* *Export* — select records and use the bulk action menu to export
-* *Mass update* — edit or delete multiple templates at once using link:../../core-concepts/record-management[Mass Update]
-* *Duplicate* — open a template's action menu and click *Duplicate* to create a copy as the basis for a new template
-* *View Change Log* — track changes to a template's fields from the Detail View
+* *Search*: use link:../../core-concepts/searching[Search or Advanced Search] to filter templates
+* *Export*: select records and use the bulk action menu to export
+* *Mass update*: edit or delete multiple templates at once using link:../../core-concepts/record-management[Mass Update]
+* *Duplicate*: open a template's action menu and click *Duplicate* to create a copy as the basis for a new template
+* *View Change Log*: track changes to a template's fields from the Detail View
 
 ---

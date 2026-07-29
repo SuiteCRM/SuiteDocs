@@ -13,15 +13,15 @@ The Documents module is a repository for files associated with your CRM records.
 
 == Key Fields
 
-* *Document Name* — The display name of the document. Required.
-* *Filename* — The actual file to upload. Required. Supported for any file type.
-* *Active Date* — The date from which the document is considered effective. Required.
-* *Expiration Date* — The date after which the document is no longer current. Useful for contracts, policies or time-limited materials.
-* *Category / Subcategory* — Classifies the document for browsing and filtering across the module.
-* *Status* — The document's current state: Active, Draft, FAQ, For Review or Obsolete.
-* *Revision* — The version number of the document. Each upload creates a new Document Revision record, preserving version history.
-* *Is Template / Template Type* — Marks the document as a reusable template, available for use with PDF Templates or mail merge operations.
-* *Doc Type* — For documents hosted externally in Google Drive, Box or a similar service, this identifies the provider and links to the external file rather than uploading a local copy.
+* *Document Name*: the display name of the document. Required.
+* *Filename*: the actual file to upload. Required. Supported for any file type.
+* *Active Date*: the date from which the document is considered effective. Required.
+* *Expiration Date*: the date after which the document is no longer current. Useful for contracts, policies or time-limited materials.
+* *Category / Subcategory*: classifies the document for browsing and filtering across the module.
+* *Status*: the document's current state: Active, Draft, FAQ, For Review or Obsolete.
+* *Revision*: the version number of the document. Each upload creates a new Document Revision record, preserving version history.
+* *Is Template / Template Type*: marks the document as a reusable template, available for use with PDF Templates or mail merge operations.
+* *Doc Type*: for documents hosted externally in Google Drive, Box or a similar service, this identifies the provider and links to the external file rather than uploading a local copy.
 
 
 == Document Revisions

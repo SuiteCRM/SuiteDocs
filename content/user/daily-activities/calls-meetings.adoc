@@ -16,20 +16,20 @@ The Calls module allows you to schedule and log a record of inbound and outbound
 
 === Key Fields
 
-* *Direction* — Whether the call is Inbound or Outbound.
-* *Status* — Planned (upcoming), Held (completed), or Not Held (cancelled).
-* *Date & Time / Duration* — When the call starts and how long it runs (hours and minutes).
-* *Related To* — Links the call to a parent record such as an Account, Contact, Lead, Opportunity or Case. This determines which record's History sub-panel the call appears in.
-* *Reminders* — Popup and email reminders can be set to alert invitees before the call starts.
-* *Repeat Type* — Calls can be set to recur Daily, Weekly, Monthly or Yearly, with configurable interval, day-of-week, and end conditions (repeat until date or fixed number of occurrences).
+* *Direction*: whether the call is Inbound or Outbound.
+* *Status*: planned (upcoming), Held (completed), or Not Held (cancelled).
+* *Date & Time / Duration*: when the call starts and how long it runs (hours and minutes).
+* *Related To*: links the call to a parent record such as an Account, Contact, Lead, Opportunity or Case. This determines which record's History sub-panel the call appears in.
+* *Reminders*: popup and email reminders can be set to alert invitees before the call starts.
+* *Repeat Type*: calls can be set to recur Daily, Weekly, Monthly or Yearly, with configurable interval, day-of-week, and end conditions (repeat until date or fixed number of occurrences).
 
 
 === Relationships
 
 From a Call record you can view and manage:
 
-* *Invitees* — Users, Contacts and Leads added as participants. Invitees can be emailed directly from the record.
-* *Related record* — The Account, Contact, Opportunity, Case or other record the call is logged against.
+* *Invitees*: users, Contacts and Leads added as participants. Invitees can be emailed directly from the record.
+* *Related record*: the Account, Contact, Opportunity, Case or other record the call is logged against.
 
 For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
 
@@ -98,22 +98,22 @@ The Meetings module allows you to create a record of any meeting you have been i
 
 === Key Fields
 
-* *Status* — Planned (upcoming), Held (completed), or Not Held (cancelled).
-* *Location* — The venue or address where the meeting takes place.
-* *Date & Time / Duration* — When the meeting starts and how long it runs.
-* *Related To* — Links the meeting to a parent record. This determines which record's History sub-panel the meeting appears in.
-* *Type* — Identifies whether this is a standard meeting or one run through an external conferencing tool (WebEx, GoToMeeting etc.).
-* *Password / Join URL* — For virtual meetings, these store the access credentials and joining link for attendees.
-* *Reminders* — Popup and email reminders can be set to alert invitees before the meeting starts.
-* *Repeat Type* — Meetings can be set to recur Daily, Weekly, Monthly or Yearly, with configurable interval, day-of-week, and end conditions.
+* *Status*: planned (upcoming), Held (completed), or Not Held (cancelled).
+* *Location*: the venue or address where the meeting takes place.
+* *Date & Time / Duration*: when the meeting starts and how long it runs.
+* *Related To*: links the meeting to a parent record. This determines which record's History sub-panel the meeting appears in.
+* *Type*: identifies whether this is a standard meeting or one run through an external conferencing tool (WebEx, GoToMeeting etc.).
+* *Password / Join URL*: for virtual meetings, these store the access credentials and joining link for attendees.
+* *Reminders*: popup and email reminders can be set to alert invitees before the meeting starts.
+* *Repeat Type*: meetings can be set to recur Daily, Weekly, Monthly or Yearly, with configurable interval, day-of-week, and end conditions.
 
 
 === Relationships
 
 From a Meeting record you can view and manage:
 
-* *Invitees* — Users, Contacts and Leads added as participants.
-* *Related record* — The Account, Contact, Opportunity, Case or other record the meeting is logged against.
+* *Invitees*: users, Contacts and Leads added as participants.
+* *Related record*: the Account, Contact, Opportunity, Case or other record the meeting is logged against.
 
 {{% notice tip %}}
 SuiteCRM includes a built-in Maps feature. A map panel showing the Location field is available on Meeting records. See link:../integrations/maps[Maps] for details.
