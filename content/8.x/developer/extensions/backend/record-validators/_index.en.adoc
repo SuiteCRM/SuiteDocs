@@ -1,0 +1,272 @@
+---
+title: "Record Validators"
+weight: 30
+---
+
+== 1. Introduction
+
+Record Validators are backend classes that run custom validation logic before record save operations. They allow you to enforce business rules, restrict access, or reject invalid data at the API level before the record is persisted.
+
+Validators are similar in purpose to link:../save-handlers[Save Handlers], but instead of transforming data they act as gatekeepers — a validator either allows the operation to proceed or throws an exception to block it.
+
+== 2. How It Works
+
+The validation system has three components:
+
+[cols="1,3"]
+|===
+| Component | Role
+
+| `RecordValidatorInterface`
+| The interface that all validators implement
+
+| `RecordValidatorRegistry`
+| Collects all registered validators and provides them filtered by module and mode
+
+| `RecordValidatorRunner`
+| Iterates through the applicable validators and calls each one in order
+|===
+
+When a record is saved via the GraphQL API, the `RecordHandler` determines whether the operation is a `create` or `edit` and passes the record and bean to the `RecordValidatorRunner`. The runner retrieves all applicable validators (both global and module-specific) for the current mode and calls `validate()` on each one in order. If any validator throws an exception, the save is aborted.
+
+== 3. The RecordValidatorInterface
+
+Every record validator must implement `RecordValidatorInterface`:
+
+[source,php]
+----
+<?php
+
+namespace App\Data\Service\Record\RecordValidators;
+
+use App\Data\Entity\Record;
+use SugarBean;
+
+interface RecordValidatorInterface
+{
+    public function getKey(): string;
+    public function getModule(): string;
+    public function getOrder(): int;
+    public function getModes(): array;
+    public function validate(Record $record, SugarBean $bean): void;
+}
+----
+
+=== 3.1 Interface Methods
+
+[cols="1,1,3"]
+|===
+| Method | Return Type | Description
+
+| `getKey()`
+| `string`
+| A unique identifier for this validator (e.g. `'users-admin-only-save'`)
+
+| `getModule()`
+| `string`
+| The module this validator applies to (e.g. `'Contacts'`). Return `'default'` for a global validator that runs on all modules.
+
+| `getOrder()`
+| `int`
+| Execution priority. Lower values run first. Validators with the same order run in registration order.
+
+| `getModes()`
+| `string[]`
+| The operation modes where this validator should run. See link:./#_32_modes[Modes].
+
+| `validate()`
+| `void`
+| The validation logic. Receives the API `Record` entity and the legacy `SugarBean`. Throw `AccessDeniedHttpException` to block the operation.
+|===
+
+=== 3.2 Modes
+
+The following modes are available:
+
+[cols="1,3"]
+|===
+| Mode | When it runs
+
+| `save`
+| Shorthand — matches both `create` and `edit` operations
+
+| `create`
+| Only when a new record is being created
+
+| `edit`
+| Only when an existing record is being updated
+|===
+
+A validator can declare multiple modes. For example, `['save']` runs on both create and edit, while `['create']` runs only on new records.
+
+== 4. Creating a Record Validator
+
+=== 4.1 In an Extension
+
+Create a PHP class in your extension that implements `RecordValidatorInterface`:
+
+[source,php]
+----
+<?php
+
+namespace App\Extension\defaultExt\modules\Contacts\Service\Record\Validators;
+
+use App\Data\Entity\Record;
+use App\Data\Service\Record\RecordValidators\RecordValidatorInterface;
+use SugarBean;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
+class ContactsEmailRequiredValidator implements RecordValidatorInterface
+{
+    public function getKey(): string
+    {
+        return 'contacts-email-required';
+    }
+
+    public function getModule(): string
+    {
+        return 'Contacts';
+    }
+
+    public function getOrder(): int
+    {
+        return 0;
+    }
+
+    public function getModes(): array
+    {
+        return ['save'];
+    }
+
+    public function validate(Record $record, SugarBean $bean): void
+    {
+        $attributes = $record->getAttributes() ?? [];
+        $email = $attributes['email1'] ?? '';
+
+        if (empty($email)) {
+            throw new AccessDeniedHttpException('An email address is required');
+        }
+    }
+}
+----
+
+No additional configuration is needed. The framework auto-discovers all classes that implement `RecordValidatorInterface` and registers them via the `record.validators.record` service tag.
+
+=== 4.2 File Placement
+
+[cols="1,2"]
+|===
+| Scope | Path
+
+| Extension (module-specific)
+| `extensions/<ext>/modules/<Module>/Service/Record/Validators/`
+
+| Extension (global)
+| `extensions/<ext>/backend/Service/Record/Validators/`
+|===
+
+The core codebase also contains validators in `core/modules/<Module>/Service/Record/Validators/` (module-specific) and `core/backend/Data/Service/Record/RecordValidators/` (global). These paths are maintained by the SuiteCRM development team and should not be modified directly. However, they are useful as a reference for existing validator implementations.
+
+== 5. Global vs Module-Specific Validators
+
+When `getModule()` returns a specific module name (e.g. `'Contacts'`), the validator only runs for that module. When it returns `'default'`, the validator runs for every module.
+
+At runtime, both global (`default`) and module-specific validators are merged and executed in order. For example, when saving a Contact:
+
+. All validators where `getModule()` returns `'default'` are collected
+. All validators where `getModule()` returns `'Contacts'` are collected
+. Both sets are merged and ordered by `getOrder()`
+. Each validator's `validate()` is called in sequence
+
+If any validator throws an exception, execution stops immediately — subsequent validators are not called.
+
+== 6. Complete Example: Admin-Only Save
+
+This example restricts saving User records so that only administrators can create users, and non-admin users can only edit their own profile:
+
+[source,php]
+----
+<?php
+
+namespace App\Module\Users\Service\Record\Validators;
+
+use App\Data\Entity\Record;
+use App\Data\Service\Record\RecordValidators\RecordValidatorInterface;
+use App\Engine\LegacyHandler\LegacyHandler;
+use App\Engine\LegacyHandler\LegacyScopeState;
+use SugarBean;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
+class UsersSaveValidator extends LegacyHandler implements RecordValidatorInterface
+{
+    public const HANDLER_KEY = 'users-admin-only-save-handler';
+
+    public function __construct(
+        string $projectDir,
+        string $legacyDir,
+        string $legacySessionName,
+        string $defaultSessionName,
+        LegacyScopeState $legacyScopeState,
+        RequestStack $session
+    ) {
+        parent::__construct($projectDir, $legacyDir, $legacySessionName, $defaultSessionName, $legacyScopeState, $session);
+    }
+
+    public function getHandlerKey(): string
+    {
+        return self::HANDLER_KEY;
+    }
+
+    public function getKey(): string
+    {
+        return 'users-admin-only-save';
+    }
+
+    public function getModule(): string
+    {
+        return 'Users';
+    }
+
+    public function getOrder(): int
+    {
+        return 0;
+    }
+
+    public function getModes(): array
+    {
+        return ['save'];
+    }
+
+    public function validate(Record $record, SugarBean $bean): void
+    {
+        $this->init();
+
+        global $current_user;
+
+        // Admins can always save
+        if (is_admin($current_user)) {
+            $this->close();
+            return;
+        }
+
+        // Non-admins can only edit their own profile
+        $isUpdate = !empty($bean->id) && empty($bean->new_with_id);
+        if ($isUpdate && $bean->id === $current_user->id) {
+            $this->close();
+            return;
+        }
+
+        $this->close();
+        throw new AccessDeniedHttpException('Not authorized to save user records');
+    }
+}
+----
+
+Key points from this example:
+
+* The class extends `LegacyHandler` because it uses legacy globals and functions (`$current_user`, `is_admin()`). The `init()` and `close()` calls ensure the legacy scope is properly set up and torn down.
+* The mode `['save']` covers both creating new users and editing existing ones
+* The validator uses early returns for allowed cases and throws at the end for denied cases
+* `$bean->new_with_id` is checked to distinguish genuine updates from records created with a pre-set ID
+* `close()` is called before every return and before throwing, to ensure the legacy scope is properly torn down
