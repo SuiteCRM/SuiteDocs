@@ -403,51 +403,62 @@ All files are created in the `extensions/defaultExt` extension:
 extensions/defaultExt/
 ├── modules/
 │   └── Contacts/
-│       └── Service/
-│           ├── DuplicateEmailValidationHandler.php   # Process handler
-│           └── DuplicateEmailPresetHandler.php        # Preset data handler
-public/legacy/
-├── custom/
-│   └── modules/
-│       └── Contacts/
-│           └── metadata/
-│               └── detailviewdefs.php                 # Viewdef configuration
-└── include/
-    └── language/
-        └── en_us.lang.php                             # Language labels (or custom/)
+│       ├── Service/
+│       │   ├── DuplicateEmailValidationHandler.php       # Process handler
+│       │   ├── DuplicateEmailPresetHandler.php            # Preset data handler
+│       │   └── ViewDefinitions/
+│       │       └── ContactAsyncValidatorsConfigMapper.php # ViewConfigMapper
+│       └── language/
+│           └── duplicate-email-validation.yaml            # Language labels
 ----
 
 === 7.3 Viewdef Configuration
 
-Add the `asyncValidators` entry inside the `DetailView` key of the Contacts `detailviewdefs.php`.
+Use a `ViewConfigMapper` to add the `asyncValidators` entry programmatically. This is the recommended approach for extensions, as it avoids modifying or duplicating the module's metadata files.
 
-If you do not already have a custom `detailviewdefs.php`, copy the core one:
-
-. Copy `public/legacy/modules/Contacts/metadata/detailviewdefs.php` to `public/legacy/custom/modules/Contacts/metadata/detailviewdefs.php`
-. Add the `asyncValidators` key inside the `DetailView` array
+Create the file `extensions/defaultExt/modules/Contacts/Service/ViewDefinitions/ContactAsyncValidatorsConfigMapper.php`:
 
 [source,php]
 ----
 <?php
 
-$viewdefs['Contacts'] = array(
-    'DetailView' => array(
-        'templateMeta' => array( /* ... existing config ... */ ),
-        'panels' => array( /* ... existing panels ... */ ),
+namespace App\Extension\defaultExt\modules\Contacts\Service\ViewDefinitions;
 
-        // Add this block
-        'asyncValidators' => array(
-            'duplicate-email' => array(
-                'key' => 'validate-contact-duplicate-email',
-            ),
-        ),
-    ),
-);
+use App\ViewDefinitions\LegacyHandler\ViewConfigMapperInterface;
+
+class ContactAsyncValidatorsConfigMapper implements ViewConfigMapperInterface
+{
+    public function getKey(): string
+    {
+        return 'contact-async-validators';
+    }
+
+    public function getView(): string
+    {
+        return 'record';
+    }
+
+    public function getModule(): string
+    {
+        return 'Contacts';
+    }
+
+    public function map(array $viewDefs): array
+    {
+        $viewDefs['asyncValidators'] = $viewDefs['asyncValidators'] ?? [];
+
+        $viewDefs['asyncValidators']['duplicate-email'] = [
+            'key' => 'validate-contact-duplicate-email',
+        ];
+
+        return $viewDefs;
+    }
+}
 ----
 
 The `key` value (`validate-contact-duplicate-email`) must match the `PROCESS_TYPE` constant in the process handler.
 
-Alternatively, you can use a `ViewConfigMapper` to add the validator programmatically without modifying the metadata file — see link:./#_2_1_alternative_using_a_viewconfigmapper[Section 2.1].
+The mapper is auto-discovered — implementing `ViewConfigMapperInterface` is sufficient. For more details on ViewConfigMappers, see link:../../customizing-metadata/#view-config-mappers[Customizing View Metadata — View Config Mappers].
 
 === 7.4 Process Handler
 
@@ -748,11 +759,9 @@ Key points:
 
 === 7.6 Language Labels
 
-Add the language labels used by the modal. There are two ways to add labels: via the legacy language extension directory, or via a YAML file in your extension.
+Add the language labels used by the modal via a YAML file in the extension.
 
-==== Extension Language YAML
-
-Add the labels via a YAML file in your extension (e.g. `extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml`).
+Create the file `extensions/defaultExt/modules/Contacts/language/duplicate-email-validation.yaml`:
 
 Since the modal is rendered in a shared UI context, use the `application` key so the labels are available regardless of which module is active:
 
@@ -767,7 +776,7 @@ parameters:
         LBL_DUPLICATE_EMAIL_FOUND: 'Duplicate email address found'
 ----
 
-To add module-level labels (`mod_strings`) instead, use the `module` key with the module name:
+To add module-level labels (`mod_strings`) instead, use the `module` key with the frontend module name (lowercase):
 
 [source,yaml]
 ----
@@ -775,31 +784,17 @@ parameters:
   language:
     en_us:
       module:
-        Contacts:
+        contacts:
           LBL_DUPLICATE_EMAIL_TITLE: 'Possible Duplicate Contacts'
 ----
 
 For full documentation on the YAML language system — including file placement, all key types, multiple language support, and override priority — see link:../../../extensions/backend/languages[Adding Language Labels via YAML].
-
-==== Legacy Language Extension
-
-Alternatively, add to the global app strings file (e.g. `public/legacy/include/language/en_us.lang.php`) or via the legacy extension directory (e.g. `public/legacy/custom/Extension/application/Ext/Language/en_us.duplicate_email.php`):
-
-[source,php]
-----
-<?php
-
-$app_strings['LBL_DUPLICATE_EMAIL_TITLE'] = 'Possible Duplicate Contacts';
-$app_strings['LBL_DUPLICATE_EMAIL_MESSAGE'] = 'The following contacts already have this email address. Do you still want to proceed?';
-$app_strings['LBL_DUPLICATE_EMAIL_FOUND'] = 'Duplicate email address found';
-----
 
 === 7.7 Clear Cache and Rebuild
 
 After creating all files:
 
 . Run `php bin/console cache:clear`
-. Run **Repair and Rebuild** from the Admin menu (to pick up the viewdef changes)
 . Re-set file permissions if needed (depends on your setup)
 
 === 7.8 How It Works
