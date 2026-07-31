@@ -133,13 +133,13 @@ When `fields` is provided:
 
 === 3.3 Link Behaviour
 
-All links in the table open the record from the modal's module in a new tab — not the related record. For example, an `account_name` column on a Contacts list will open the Contact record, not the Account. Because of this, it is best practice to set `link: false` on relate fields to avoid confusing navigation.
+All links in the table open in a new tab. Non-relate fields (such as `name`) link to the row's record from the modal's module. Relate fields (such as `account_name`) link to their corresponding related record. For example, on a Contacts list, clicking a `name` column opens the Contact, while clicking an `account_name` column opens the Account.
 
-By default, `relate` type fields have their links automatically disabled. Other field types (such as `name`) keep their default link behaviour. To explicitly control link behaviour per column:
+By default, `relate` type fields have their links automatically disabled to keep the modal focused on the primary records. Other field types (such as `name`) keep their default link behaviour. To explicitly control link behaviour per column:
 
-* `['name' => 'name']` — keeps the default link behaviour (opens the record in a new tab)
+* `['name' => 'name']` — keeps the default link behaviour (opens the Contact record in a new tab)
 * `['name' => 'email1', 'link' => false]` — disables the link
-* `['name' => 'account_name', 'link' => true]` — forces the link on (not recommended for relate fields)
+* `['name' => 'account_name', 'link' => true]` — enables the link (opens the related Account in a new tab)
 
 Fields with an explicit `link` value are not affected by the automatic relate-field link disabling.
 
