@@ -39,7 +39,7 @@ A new configuration option `disable_v4_api_query_where` has been added. This opt
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control ] | https://github.com/SuiteCRM/SuiteCRM-Core/security/advisories/GHSA-mjjw-75gv-j5g5[GitHub Advisory] | Reporter: prakhar0x01
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control ] | https://github.com/SuiteCRM/SuiteCRM-Core/security/advisories/GHSA-7qwx-m7r8-fc9f[GitHub Advisory] | Reporter: MichaelPasternak1337
 
-* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61653[CVE-2026-61653: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pqq6-v2mj-hrm2[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61648[CVE-2026-61648: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pqq6-v2mj-hrm2[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61649[CVE-2026-61649: SSRF Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-r665-27q3-wvg8[GitHub Advisory] | Reporter: morimori-dev
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61650[CVE-2026-61650: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-qmh9-m7g7-pxxp[GitHub Advisory] | Reporter: larlarua
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61651[CVE-2026-61651: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-7cj5-pc2f-9xgv[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
@@ -55,6 +55,7 @@ A new configuration option `disable_v4_api_query_where` has been added. This opt
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rc6r-hwhg-7pfg[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-j2r4-r4wh-339v[GitHub Advisory] | Reporter: Yash Shendge (GitHub: ashrexon)
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63111[CVE-2026-63111: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-gx3x-3f4c-cjmx[GitHub Advisory] | Reporter: Pedro J. Núñez-Cacho Fuentes (tunelko / blogs.tunelko.com)
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63213[CVE-2026-63213: Path Traversal] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-wfvr-mpq2-257w[GitHub Advisory] | Reporter: Khương Anh (@leduckhuong)
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63214[CVE-2026-63214: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-gjgm-wrr6-hrmp[GitHub Advisory] | Reporter: radoi-teodor
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63215[CVE-2026-63215: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pmhw-r27f-w92m[GitHub Advisory] | Reporter: Furkan KARAARSLAN https://www.linkedin.com/in/furkan-k/
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63217[CVE-2026-63217: IDOR Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-m5xj-rrwv-g3q3[GitHub Advisory] | Reporter: geo-chen
@@ -98,21 +99,35 @@ A new configuration option `disable_v4_api_query_where` has been added. This opt
 * https://github.com/SuiteCRM/SuiteCRM/pull/10838[PR #10838] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10594[#10594]: Bad relationship definitions filling the suitecrm logs
 * https://github.com/SuiteCRM/SuiteCRM/pull/10826[PR #10826] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10825[#10825]: Truncated value when saving large values in workflow and report conditions
 * https://github.com/SuiteCRM/SuiteCRM/pull/10870[PR #10870] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10023[#10023]: Email Folders Don't Select
-* https://github.com/SuiteCRM/SuiteCRM/pull/10870[PR #10870] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10023[#10023]: Email Folders Don't Select
 * https://github.com/SuiteCRM/SuiteCRM/pull/10875[PR #10875] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10874[#10874]: 'Associated user' field in OAuth Clients and Tokens lists does not link correctly
 * https://github.com/SuiteCRM/SuiteCRM/pull/10869[PR #10869] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10763[#10763]: SMTP credentials wrong after changing a field in outbound email settings
 * https://github.com/SuiteCRM/SuiteCRM/pull/10860[PR #10860] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/10859[#10859]: Auth window loses connection to the opener when requesting an OAuth token
 * Fix https://github.com/SuiteCRM/SuiteCRM/issues/3855[#3855] - Update PDF Template Samples
 * Fix https://github.com/SuiteCRM/SuiteCRM/issues/7687[#7687] - update sample pdf loader to ignore invalid files
-* Fix IMAP issue affecting users in certain timezone where Emails were not importing correctly
+* Fix issue in Email automatic import scheduler where Emails from certain timezones were not importing correctly.
+** Mostly affected Emails where the difference in timezone made the original Email fall on a different day
 
-== Upgrade Process Improvements
+==== icon:level-up-alt[] Upgrade Process Improvements
 
 We have added support for pre-upgrade migrations. This allows to have migrations (for example, to update data or configuration) run before the upgrade process begins.
 
-== icon:code[] Developer Improvements
+==== icon:code[] Developer Improvements
 
+* *Backend Record Validators* — A new extension point that allows developers to add custom validation logic before record save operations. Validators can block saves by throwing exceptions, enabling enforcement of business rules and access restrictions at the API level. See: link:../../../developer/extensions/backend/record-validators/[Backend Record Validators]
 
+* *Record-Level Async Validators* — A new metadata-driven system for running server-side validation when a record is saved. Async validators can display confirmation modals, list modals, or block the save entirely based on backend logic. See: link:../../../developer/metadata/record-view-metadata/record-async-validators/[Record-Level Async Validators]
+
+* *Confirmation List Modal* — A new modal type that displays a searchable, paginated table of records inside a dialog. Used when a backend process needs to show the user a list of related records and let them decide whether to proceed or cancel. See: link:../../../developer/extensions/frontend/containers/confirmation-modal/confirmation-list-modal/[Confirmation List Modal]
+
+* *Record Logic* — New record-level logic rules in view metadata. Record Logic can update multiple fields at once based on cross-field conditions, autofill fields from related records, or trigger backend calculations. See: link:../../../developer/extensions/frontend/logic/record-logic/[Adding Custom Record Logic]
+
+==== icon:book[] Documentation Updates
+
+* *Customizing View Metadata* — A new guide covering the full metadata extension pipeline, including all four mapper types (Vardef Config Mappers, Field Definition Mappers, View Config Mappers, and View Definition Mappers), with a pipeline diagram, comparison table, and examples for each approach. See: link:../../../developer/metadata/customizing-metadata/[Customizing View Metadata]
+
+* *Confirmation Modals* — New documentation covering both the standard Confirmation Modal and the Confirmation List Modal. See: link:../../../developer/extensions/frontend/containers/confirmation-modal/[Confirmation Modals]
+
+* *YAML Language Labels* — Extensions can now define language labels using YAML files, as an alternative to PHP language files. Supports application strings, list strings, and module strings. See: link:../../../developer/extensions/backend/languages/[Adding Language Labels via YAML]
 
 === icon:heart[] Community
 
@@ -120,11 +135,11 @@ SuiteCRM is built with and for its community — thank you to everyone who repor
 
 _Special thanks to the following contributors for their contributions to this release:_
 
-{{% ghcontributors SinergiaCRM timo-ecm2 pstevens71 rpeshnegi ctucker1984 hjdeheer kingfisher77 likhobory ramezquitao likhobory %}}
+{{% ghcontributors SinergiaCRM timo-ecm2 pstevens71 rpeshnegi ctucker1984 communig8-public pgorod hjdeheer kingfisher77 ramezquitao likhobory %}}
 
 _Special thanks to everyone who reported the security issues addressed in this release!_
 
-{{% ghcontributors MichaelPasternak1337 tuannm-1876 morimori-dev larlarua mosaa404 TristanInSec EntroVyx AdrianJunge ashrexon tunelko radoi-teodor furkan1x337 geo-chen amwhoi voraci0us usmonkhudoyorov adilkhan7546 TA-MU-TA prakhar0x01 %}}
+{{% ghcontributors MichaelPasternak1337 tuannm-1876 morimori-dev larlarua mosaa404 TristanInSec EntroVyx AdrianJunge ashrexon tunelko leduckhuong radoi-teodor furkan1x337 geo-chen amwhoi voraci0us usmonkhudoyorov adilkhan7546 TA-MU-TA prakhar0x01 %}}
 
 Visit https://suitecrm.com/releases/[Releases] for the appropriate upgrade package for your installation.
 
