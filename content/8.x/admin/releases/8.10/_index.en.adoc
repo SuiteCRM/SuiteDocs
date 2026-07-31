@@ -62,7 +62,7 @@ A new configuration option `disable_v4_api_query_where` has been added. This opt
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63218[CVE-2026-63218: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-v624-ccrf-9v97[GitHub Advisory] | Reporter: Yash Shendge (GitHub: ashrexon)
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4fhr-x4wr-fwqg[GitHub Advisory] | Reporter: Anonymous
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: LFI to RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-cx24-rr7r-mxrg[GitHub Advisory] | Reporter: amwhoi
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-239h-ffjr-v957[GitHub Advisory] | Reporter: isch1zo
+* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-239h-ffjr-v957[GitHub Advisory] | Reporter: Ahmed Alshammari (isch1zo)
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-2hv5-wj8h-mv8m[GitHub Advisory] | Reporter: AdrianJunge
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4773-c8fh-3rww[GitHub Advisory] | Reporter: MichaelPasternak1337
 * CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-22rh-qc6x-cvgw[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
@@ -135,11 +135,11 @@ SuiteCRM is built with and for its community — thank you to everyone who repor
 
 _Special thanks to the following contributors for their contributions to this release:_
 
-{{% ghcontributors SinergiaCRM timo-ecm2 pstevens71 rpeshnegi ctucker1984 communig8-public pgorod hjdeheer kingfisher77 ramezquitao likhobory %}}
+{{% ghcontributors BastianHammer SinergiaCRM timo-ecm2 pstevens71 rpeshnegi ctucker1984 communig8-public pgorod hjdeheer kingfisher77 ramezquitao likhobory LoLei dtosun61 %}}
 
 _Special thanks to everyone who reported the security issues addressed in this release!_
 
-{{% ghcontributors MichaelPasternak1337 tuannm-1876 morimori-dev larlarua mosaa404 TristanInSec EntroVyx AdrianJunge ashrexon tunelko leduckhuong radoi-teodor furkan1x337 geo-chen amwhoi voraci0us usmonkhudoyorov adilkhan7546 TA-MU-TA prakhar0x01 %}}
+{{% ghcontributors MichaelPasternak1337 tuannm-1876 morimori-dev larlarua mosaa404 TristanInSec EntroVyx AdrianJunge ashrexon tunelko leduckhuong radoi-teodor furkan1x337 geo-chen amwhoi voraci0us usmonkhudoyorov adilkhan7546 TA-MU-TA prakhar0x01 Shaon-Xis wooseokdotkim tikket1 isch1zo f3nrir77%}} Nagarajan Selvaraj Paulmony
 
 Visit https://suitecrm.com/releases/[Releases] for the appropriate upgrade package for your installation.
 
