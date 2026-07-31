@@ -1,11 +1,13 @@
 ---
-title: "Record Validators"
+title: "Backend Record Validators"
 weight: 30
 ---
 
 == 1. Introduction
 
-Record Validators are backend classes that run custom validation logic before record save operations. They allow you to enforce business rules, restrict access, or reject invalid data at the API level before the record is persisted.
+Backend Record Validators are server-side classes that run custom validation logic during the backend save operation, after the record data has been submitted via the API. They execute synchronously within the save flow — if a validator rejects the operation, the save is aborted and an error is returned to the frontend.
+
+This is different from link:../../../../metadata/record-view-metadata/record-async-validators/[Record-Level Async Validators], which run before the save is submitted and can display confirmation modals or list modals to the user. Backend Record Validators have no UI interaction — they simply allow or block the save.
 
 Validators are similar in purpose to link:../save-handlers[Save Handlers], but instead of transforming data they act as gatekeepers — a validator either allows the operation to proceed or throws an exception to block it.
 
