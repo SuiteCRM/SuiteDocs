@@ -1,6 +1,6 @@
 
 ---
-title: "Guia del Usuário"
+title: "Guía del Usuario"
 chapter: true
 weight: 10
 pre: "<b>1. </b>"
