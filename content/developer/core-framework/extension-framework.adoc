@@ -54,7 +54,7 @@ sections to the administration panel.
 
 |EntryPointRegistry |entry_point_registry.ext.php |application |Used to
 add new entry points to SuiteCRM. See the chapter on
-link:../entry-points/[Entry Points].
+link:../../integration-api/entry-points/[Entry Points].
 
 |Extensions |extensions.ext.php |application |Used to add new extension
 types.
@@ -65,7 +65,7 @@ update or delete entries in the access control lists for files.
 |Language |N/A (the language extensions are treated specially and, as such, 
 aren’t compiled to a single file)  |  |Used to add, update
 or delete language strings for both modules and app strings. See the
-chapter on link:../language-strings[Language Strings].
+chapter on link:../../extending-ui/language-strings[Language Strings].
 
 |Layoutdefs |layoutdefs.ext.php |  |Used to add, update or delete
 subpanel definitions for a module.
@@ -86,7 +86,7 @@ for each module.
 
 |ScheduledTasks |scheduledtasks.ext.php |Schedulers |Used to add new
 scheduled tasks. See the chapter on
-link:../scheduled-tasks/[Scheduled Tasks].
+link:../../extending-app/scheduled-tasks/[Scheduled Tasks].
 
 |UserPage |userpage.ext.php |Users |Unused
 

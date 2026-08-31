@@ -7,7 +7,7 @@ aliases:
 :experimental:
 
 {{% notice info %}}
-This guide applies to migrations to SuiteCRM 8.7.0 and later. If you are migrating to a version between 8.2.0 and 8.6.x, see the link:older-versions/8.2.0-legacy-migration[Migration guide for 8.2.0–8.6.x].
+This guide applies to migrations to SuiteCRM 8.7.0 and later. If you are migrating to a version between 8.2.0 and 8.6.x, see the link:../older-versions/8.2.0-legacy-migration[Migration guide for 8.2.0–8.6.x].
 {{% /notice %}}
 
 {{% notice note %}}
@@ -77,7 +77,7 @@ If your instance has customisations, ensure your custom code complies with the m
 ./bin/console suitecrm:app:upgrade-finalize
 ----
 
-See link:../upgrading/troubleshooting/metadata-merge[Metadata Merge Modes] for options to control how view metadata customisations are handled during this step.
+See link:../../upgrading/troubleshooting/metadata-merge[Metadata Merge Modes] for options to control how view metadata customisations are handled during this step.
 
 == 8. Re-set permissions
 

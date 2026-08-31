@@ -19,7 +19,7 @@ On this page, when it is stated 7.12.x+ it refers to any version greater or equa
 {{% /notice %}}
 
 . Before running the migration, please make sure your system **complies with the new version compatibility matrix**.
-** Check the link:../../compatibility-matrix[Compatibility Matrix] for complete information on compatible versions.
+** Check the link:../../../compatibility-matrix[Compatibility Matrix] for complete information on compatible versions.
 
 . It is recommended that you run the **migration process in a development instance and test**. Only after testing, deploying the upgraded version on to a production instance
 
@@ -78,7 +78,7 @@ Set the permissions on the files in a way that the command line user has enough 
 
 * `session_dir`: you should update your session dir to `''`. After migration you can re-configure the system to use a different `session_dir`
 ** Please note that the SuiteCRM 8 configuration for the `session_dir` is different.
-** See the link:../../configuration/sessions-configuration[Session Configuration] for more details.
+** See the link:../../../configuration/sessions-configuration[Session Configuration] for more details.
 
 * `site_url`: you should update your site_url
 ** You should update this value to be the address you are currently using to migrate and test the SuiteCRM 8.x migration

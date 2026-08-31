@@ -26,11 +26,11 @@ The list below describes each setting and links to the relevant documentation.
 ** Create, edit, activate, and deactivate user accounts, and set user type and access.
 * link:../../../../admin/administration-panel/roles-and-security-groups[Role Management]
 ** Define what users can see and do across each module using the role access matrix.
-* link:../../../../user/modules/passwordmanagement[Password Management]
+* Password Management
 ** Set password security rules, automatic password generation, and Two-Factor Authentication.
-* link:../../../../developer/api/developer-setup-guide/configure-authentication[OAuth2 Clients and Tokens]
+* link:../../../../developer/integration-api/v8/authentication[OAuth2 Clients and Tokens]
 ** Create and manage the API clients and the access tokens issued to them for authenticating with the SuiteCRM V8 REST API.
-* link:../../../../developer/api/developer-setup-guide/configure-authentication[OAuth Keys]
+* link:../../../../developer/integration-api/v8/authentication[OAuth Keys]
 ** Manage the OAuth keys (client ID and secret) used to authenticate external applications with the SuiteCRM V8 REST API.
 * link:../../../../admin/administration-panel/roles-and-security-groups[Security Suite Group Management]
 ** Create and manage groups of users to control which records each team can see.

@@ -17,17 +17,17 @@ SuiteCRM provides a migration pack that allows you to move an existing SugarCRM 
 |SuiteCRM 7.6.6
 |===
 
-After completing the migration to 7.6.6, upgrade to the current SuiteCRM 7 release using the standard link:../upgrading[upgrade process].
+After completing the migration to 7.6.6, upgrade to the current SuiteCRM 7 release using the standard link:../../upgrading[upgrade process].
 
 == Before you start
 
 Complete the same preparation steps as for a standard upgrade:
 
 * Back up your SugarCRM CE files and database — this is your only recovery option if something goes wrong
-* Confirm your PHP version, database, and web server are supported by SuiteCRM 7.6.6 — check the link:../compatibility-matrix[Compatibility Matrix]
+* Confirm your PHP version, database, and web server are supported by SuiteCRM 7.6.6 — check the link:../../compatibility-matrix[Compatibility Matrix]
 * Test the migration on a copy of your production environment before running it on production
 * Review your customisations — any code changes made directly to SugarCRM CE core files will need to be re-applied after migration using SuiteCRM's upgrade-safe `/custom` directory approach
-* Configure PHP limits as per the link:../upgrading/before-you-upgrade[Before You Upgrade] checklist
+* Configure PHP limits as per the link:../../upgrading/before-you-upgrade[Before You Upgrade] checklist
 
 == Download the migration pack
 
@@ -49,7 +49,7 @@ The migration pack is applied via the SugarCRM CE Upgrade Wizard, not the SuiteC
 . Navigate to menu:Admin[Repair] and run *Rebuild Relationships* and *Rebuild Extensions*.
 . Review your customisations and re-implement any that were lost.
 . Verify data integrity — check key modules (Accounts, Contacts, Opportunities) for completeness.
-. Upgrade to the current SuiteCRM 7 release following the link:../upgrading[upgrading guide].
+. Upgrade to the current SuiteCRM 7 release following the link:../../upgrading[upgrading guide].
 
 {{% notice info %}}
 The migration pack brings your instance to SuiteCRM 7.6.6 only. It is strongly recommended to upgrade to the latest 7.x release promptly to benefit from security fixes and current support.

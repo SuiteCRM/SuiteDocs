@@ -26,7 +26,7 @@ Resolve known issues before upgrading. Starting from an unhealthy state makes it
 
 When one part of your stack is upgraded, others often need to move with it. Take time to think through the full scope before starting:
 
-* Choose your target SuiteCRM version. Check the link:../compatibility-matrix[Compatibility Matrix] to confirm your PHP, database, and web server are supported.
+* Choose your target SuiteCRM version. Check the link:../../compatibility-matrix[Compatibility Matrix] to confirm your PHP, database, and web server are supported.
 * Ensure your PHP version has sufficient remaining support life — check link:https://www.php.net/supported-versions.php[php.net/supported-versions].
 * Decide whether to take this opportunity to improve your infrastructure: moving to a newer server, separating the database tier, adopting containers or virtual machines, or working from a `git` repository for better change management.
 

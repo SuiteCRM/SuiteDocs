@@ -32,7 +32,7 @@ image:Campaign-Edit.png[Campaigns Create View]
 |*End Date*|This is a representative date and does not determine the end of the sending process for the campaign.
 |*Description*|Optional Description for the Campaign.
 |*Suppression Lists*| Suppression Lists will exclude certain targets from your Campaign. If a Suppression List (By Id) is not added on creation, one will be created / added automatically. To see more information
-on Suppression Lists see link:../../../../user/core-modules//target-lists/#_target_list_types[here.]
+on Suppression Lists see link:../../../../user/marketing-outreach/target-lists/#_target_list_types[here.]
 |*Target Lists*| Lists of potential Targets that your campaign will send to.
 |===
 

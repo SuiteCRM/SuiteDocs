@@ -42,7 +42,7 @@ From a Lead record you can view and manage related records via sub-panels:
 * *Campaigns*: the campaign the lead originated from.
 
 {{% notice tip %}}
-SuiteCRM includes a built-in Maps feature. A map panel showing the Lead's address is available on Lead records. See link:../integrations/maps[Maps] for details.
+SuiteCRM includes a built-in Maps feature. A map panel showing the Lead's address is available on Lead records. See link:../../integrations/maps[Maps] for details.
 {{% /notice %}}
 
 For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].

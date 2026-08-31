@@ -10,7 +10,7 @@ aliases:
 `Api`::
   Contains the V8 API layer, built on JSON API specification. Includes
   core framework and versioned API controllers. See
-  link:../api/api-8[V8 API documentation] for usage.
+  link:../../integration-api/v8/[V8 API documentation] for usage.
 `cache`::
   Contains cache files used by SuiteCRM including compiled Smarty
   templates, grouped vardefs, and minified JavaScript. Some modules and
@@ -18,7 +18,7 @@ aliases:
 `custom`::
   Contains user and developer customisations to SuiteCRM. Customisations
   placed here are preserved across upgrades. See
-  link:../core-framework/extensions[Extensions] for the recommended
+  link:../../core-framework/extension-framework[Extensions] for the recommended
   structure.
 `data`::
   Stores the classes and files used to work with SugarBeans and their
@@ -32,7 +32,7 @@ aliases:
 `lib`::
   Internal libraries and utilities used by SuiteCRM, including the Robo
   build/CLI tooling, search integration, PDF handling, and logging
-  utilities. See link:../getting-started/cli-tools[CLI Tools] for
+  utilities. See link:../cli-tools[CLI Tools] for
   available Robo commands.
 `metadata`::
   Stores relationship metadata for the various stock SuiteCRM modules.
@@ -51,7 +51,7 @@ aliases:
   integrations use the V8 API in `Api/`.
 `tests`::
   The test suite. Contains unit, acceptance and API tests run via Robo
-  commands. See link:../getting-started/cli-tools[CLI Tools].
+  commands. See link:../cli-tools[CLI Tools].
 `themes`::
   Code, data and images for the bundled SuiteCRM themes.
 `upload`::

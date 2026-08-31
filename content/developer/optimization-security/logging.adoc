@@ -88,4 +88,4 @@ use whatever level you prefer. I prefer the most verbose level -
 
 The log file, by default, is called `suitecrm.log` and resides in your installation's root directory. 
 
-But you can change log settings through the UI, under link:../../admin/administration-panel/system/#_logger_settings[Admin / System settings / Logger Settings].
+But you can change log settings through the UI, under link:../../../admin/administration-panel/system/#_logger_settings[Admin / System settings / Logger Settings].

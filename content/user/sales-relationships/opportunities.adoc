@@ -40,7 +40,7 @@ From an Opportunity record you can view and manage all associated records via su
 * *Quotes / Contracts*: transactional records generated from the opportunity. See link:../quotes-invoices-contracts[Quotes, Invoices & Contracts].
 
 {{% notice tip %}}
-SuiteCRM includes a built-in Maps feature. A map panel showing the associated account's address is available on Opportunity records. See link:../integrations/maps[Maps] for details.
+SuiteCRM includes a built-in Maps feature. A map panel showing the associated account's address is available on Opportunity records. See link:../../integrations/maps[Maps] for details.
 {{% /notice %}}
 
 For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].

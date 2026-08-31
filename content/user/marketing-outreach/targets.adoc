@@ -28,7 +28,7 @@ Targets are individuals used as recipients of marketing campaigns where your org
 Targets can be added to link:../target-lists[Target Lists], which are then attached to Campaigns. From a Target record you can view related campaign activity and history.
 
 {{% notice tip %}}
-SuiteCRM includes a built-in Maps feature. A map panel showing the Target's address is available on Target records. See link:../integrations/maps[Maps] for details.
+SuiteCRM includes a built-in Maps feature. A map panel showing the Target's address is available on Target records. See link:../../integrations/maps[Maps] for details.
 {{% /notice %}}
 
 For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships & Subpanels].
