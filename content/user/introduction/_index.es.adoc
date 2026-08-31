@@ -21,7 +21,7 @@ En cuanto a la Comunidad de SuiteCRM, proporcionan pruebas, reportes y correccio
 
 
 SuiteCRM es un fork del popular
-https://es.wikipedia.org/wiki/Customer_relationship_management[Gestor de Relaciones con el Cliente] (CRM por sus siglas en inglés) https://en.wikipedia.org/wiki/SugarCRM[SugarCRM], desarrollado y mantenido por SalesAgility. Es una alternativa gratuita de Código Abierto. Fue lanzado el 21 de octubre de 2013 como la versión 7.0. La última versión estable al momento de la publicación de esta Guía del usuario es SuiteCRM 7.10.1.
+https://es.wikipedia.org/wiki/Customer_relationship_management[Gestor de Relaciones con el Cliente] (CRM por sus siglas en inglés) https://en.wikipedia.org/wiki/SugarCRM[SugarCRM], desarrollado y mantenido por SuiteCRM Ltd. Es una alternativa gratuita de Código Abierto. Fue lanzado el 21 de octubre de 2013 como la versión 7.0. La última versión estable al momento de la publicación de esta Guía del usuario es SuiteCRM 7.10.1.
 
 
 
@@ -40,18 +40,18 @@ Existe además, un directorio de extensiones donde están disponibles mejoras ta
 El proyecto mantiene https://suitecrmondemand.com/[SuiteCRM:OnDemand], una instalación de Software As A Service para usuarios que buscan una implementación rápida y servicio libre de mantenimiento.
 
 
-No habrá software con licencias privativas como parte del proyecto administrado por SalesAgility. Todo el código es libre. Todo el código está disponible para su descarga gratuita. No hay una agenda oculta para cobrar por el acceso al software. SuiteCRM es, y siempre será, libre y de código abierto. No habrá pago por versiones.
+No habrá software con licencias privativas como parte del proyecto administrado por SuiteCRM Ltd. Todo el código es libre. Todo el código está disponible para su descarga gratuita. No hay una agenda oculta para cobrar por el acceso al software. SuiteCRM es, y siempre será, libre y de código abierto. No habrá pago por versiones.
 
 
-== ¿Quién es SalesAgility?
+== ¿Quién es SuiteCRM Ltd?
 
 
-SalesAgility es una Consultora de código abierto acreditada por ISO centrada en sistemas CRM (Gestor de Relaciones con el CLiente). Fue una de las primeras empresas en adoptar SugarCRM Community Edition. SalesAgility son los creadores y mantenedores detrás del fork de SugarCRM, SuiteCRM.
+SuiteCRM Ltd es una Consultora de código abierto acreditada por ISO centrada en sistemas CRM (Gestor de Relaciones con el CLiente). Fue una de las primeras empresas en adoptar SugarCRM Community Edition. SuiteCRM Ltd son los creadores y mantenedores detrás del fork de SugarCRM, SuiteCRM.
 
-SalesAgility ha implementado más de 300 proyectos SuiteCRM y SugarCRM, y es conocida por su conocimiento y experiencia de clase mundial en el rubro de los CRM de Código Abierto. Sus clientes incluyen gobiernos, empresas pequeñas, medianas y grandes en todo el mundo.
+SuiteCRM Ltd ha implementado más de 300 proyectos SuiteCRM y SugarCRM, y es conocida por su conocimiento y experiencia de clase mundial en el rubro de los CRM de Código Abierto. Sus clientes incluyen gobiernos, empresas pequeñas, medianas y grandes en todo el mundo.
 
 
-SalesAgility tiene misión clara:
+SuiteCRM Ltd tiene misión clara:
 
 [quote]
 Nuestro objetivo es innovar y proporcionar soluciones SuiteCRM y SugarCRM avanzados junto con el servicio al cliente líder de la industria.

@@ -17,7 +17,7 @@ _Released 02/03/2022_
 === icon:box-open[] Assets
 
 * https://suitecrm.com/suitecrm-8/#SCRM8_download[Download]
-* https://github.com/salesagility/SuiteCRM-Core[Github]
+* https://github.com/SuiteCRM/SuiteCRM-Core[Github]
 
 ===  icon:check[] Release Notes
 
@@ -38,17 +38,17 @@ to help avoid a potential timeout / long upgrade.
 
 ==== icon:bug[] Bug Fixes
 
-* PR: https://github.com/salesagility/SuiteCRM/pull/9478[9478] - Update Github Templates
-* PR: https://github.com/salesagility/SuiteCRM/pull/9507[9507] - Add getters to SearchResultsController
-* PR: https://github.com/salesagility/SuiteCRM/pull/9479[9479] - Fix https://github.com/salesagility/SuiteCRM/issues/2857[2857] - No Dynamic Refreshing in Dashboards
-* PR: https://github.com/salesagility/SuiteCRM/pull/9509[9509] - Fix https://github.com/salesagility/SuiteCRM/issues/9508[9508] - Legacy Search Fields are incorrect size.
-* PR: https://github.com/salesagility/SuiteCRM/pull/9481[9481] - Fix https://github.com/salesagility/SuiteCRM/issues/9480[9480] - Slow to get Imap Mailbox with Mass Record Amounts
-* PR: https://github.com/salesagility/SuiteCRM/pull/9518[9518] - Fix https://github.com/salesagility/SuiteCRM/issues/4075[4075] - No way to add Email Signature after adding Email Template
-* PR: https://github.com/salesagility/SuiteCRM/pull/9521[9521] - Fix https://github.com/salesagility/SuiteCRM/issues/9427[9427] - Adding missing help popup help strings in Studio
-* PR: https://github.com/salesagility/SuiteCRM/pull/9525[9525] - Fix https://github.com/salesagility/SuiteCRM/issues/9468[9468] - Adding Security Suite subpanels to new custom modules
-* PR: https://github.com/salesagility/SuiteCRM/pull/9452[9452] - Fix https://github.com/salesagility/SuiteCRM/issues/9451[9451] - Missing duplicate merge filter options in Studio
-* PR: https://github.com/salesagility/SuiteCRM/pull/9446[9446] - Fix https://github.com/salesagility/SuiteCRM/issues/9445[9445] - More than 10 tabs in a views enters in a loop
-* PR: https://github.com/salesagility/SuiteCRM/pull/8492[8492] - Fix https://github.com/salesagility/SuiteCRM/issues/8366[8366] - V8 API Filtering W/ OR Operator Chained Conditions
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9478[9478] - Update Github Templates
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9507[9507] - Add getters to SearchResultsController
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9479[9479] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/2857[2857] - No Dynamic Refreshing in Dashboards
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9509[9509] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9508[9508] - Legacy Search Fields are incorrect size.
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9481[9481] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9480[9480] - Slow to get Imap Mailbox with Mass Record Amounts
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9518[9518] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/4075[4075] - No way to add Email Signature after adding Email Template
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9521[9521] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9427[9427] - Adding missing help popup help strings in Studio
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9525[9525] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9468[9468] - Adding Security Suite subpanels to new custom modules
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9452[9452] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9451[9451] - Missing duplicate merge filter options in Studio
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9446[9446] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9445[9445] - More than 10 tabs in a views enters in a loop
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/8492[8492] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/8366[8366] - V8 API Filtering W/ OR Operator Chained Conditions
 
 === icon:heart[] Community
 
@@ -56,9 +56,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 marks our biggest SuiteCRM upgrade to date and we are very excited to be sharing it with you. In the coming months, we will continue to enhance SuiteCRM 8 with new features and issue fixes. For more information regarding this, please see our link:https://suitecrm.com/suitecrm-roadmap/[Road Map] which will provide further information on what can be expected from future releases.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 _Special thanks to the following members for their contributions and participation in this release!_
 
@@ -81,7 +81,7 @@ _Released 28/01/2022_
 === icon:box-open[] Assets
 
 * https://suitecrm.com/suitecrm-8/#SCRM8_download[Download]
-* https://github.com/salesagility/SuiteCRM-Core[Github]
+* https://github.com/SuiteCRM/SuiteCRM-Core[Github]
 
 ===  icon:check[] Release Notes
 
@@ -94,7 +94,7 @@ _Released 27/01/2022_
 === icon:box-open[] Assets
 
 * https://suitecrm.com/suitecrm-8/#SCRM8_download[Download]
-* https://github.com/salesagility/SuiteCRM-Core[Github]
+* https://github.com/SuiteCRM/SuiteCRM-Core[Github]
 
 ===  icon:check[] Release Notes
 
@@ -110,19 +110,19 @@ _Released 27/01/2022_
 
 ==== icon:star[] Enhancements & Bug Fixes
 
-* PR: https://github.com/salesagility/SuiteCRM/pull/9434[9434] - Fix #9434 - Cron notion unit tests fails
-* PR: https://github.com/salesagility/SuiteCRM/pull/9420[9420] - Fix https://github.com/salesagility/SuiteCRM/issues/8525[#8525], https://github.com/salesagility/SuiteCRM/issues/8309[#8309] Bulk Action button missing and delete button showing for users with no delete access
-* PR: https://github.com/salesagility/SuiteCRM/pull/9398[9398] - Fix #9398 - Consistently store dropdowns in $app_list_strings
-* PR: https://github.com/salesagility/SuiteCRM/pull/9407[9407] - Fix https://github.com/salesagility/SuiteCRM/issues/9406[#9406] - Validation displayed static message isn't correct
-* PR: https://github.com/salesagility/SuiteCRM/pull/9353[9353] - Fix https://github.com/salesagility/SuiteCRM/issues/9271[#9271] - Primary Email property is kept after adding an Email address field
-* PR: https://github.com/salesagility/SuiteCRM/pull/9410[9410] - Fix https://github.com/salesagility/SuiteCRM/issues/9378[#9378] - Filter by Email1 Field Through the API
-* PR: https://github.com/salesagility/SuiteCRM/pull/9312[9312] - Fix #9312 - Declaring object within StudioClass to remove Strict Warnings
-* PR: https://github.com/salesagility/SuiteCRM/pull/9387[9387] - Fix #9387 - Clean Historic and Failed Schedulers
-* PR: https://github.com/salesagility/SuiteCRM/pull/9401[9401] - Fix https://github.com/salesagility/SuiteCRM/issues/9380[#9380] - Date action in workflow fails to save
-* PR: https://github.com/salesagility/SuiteCRM/pull/9409[9409] - Fix https://github.com/salesagility/SuiteCRM/issues/9408[#9408] - Emails can't be deleted from inline edit
-* PR: https://github.com/salesagility/SuiteCRM/pull/9418[9418] - Fix https://github.com/salesagility/SuiteCRM/issues/8948[#8948] - Make Project Tasks Importable.
-* PR: https://github.com/salesagility/SuiteCRM/pull/8428[8428] - Fix https://github.com/salesagility/SuiteCRM/issues/8155[#8155] - Remove Unused PDF Settings
-* PR: https://github.com/salesagility/SuiteCRM/pull/9455[9455] - Fix #9455 - Popup metadata override removed when filtered
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9434[9434] - Fix #9434 - Cron notion unit tests fails
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9420[9420] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/8525[#8525], https://github.com/SuiteCRM/SuiteCRM/issues/8309[#8309] Bulk Action button missing and delete button showing for users with no delete access
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9398[9398] - Fix #9398 - Consistently store dropdowns in $app_list_strings
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9407[9407] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9406[#9406] - Validation displayed static message isn't correct
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9353[9353] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9271[#9271] - Primary Email property is kept after adding an Email address field
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9410[9410] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9378[#9378] - Filter by Email1 Field Through the API
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9312[9312] - Fix #9312 - Declaring object within StudioClass to remove Strict Warnings
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9387[9387] - Fix #9387 - Clean Historic and Failed Schedulers
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9401[9401] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9380[#9380] - Date action in workflow fails to save
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9409[9409] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9408[#9408] - Emails can't be deleted from inline edit
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9418[9418] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/8948[#8948] - Make Project Tasks Importable.
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/8428[8428] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/8155[#8155] - Remove Unused PDF Settings
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9455[9455] - Fix #9455 - Popup metadata override removed when filtered
 
 
 ==== icon:star[] Styling
@@ -149,9 +149,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 marks our biggest SuiteCRM upgrade to date and we are very excited to be sharing it with you. In the coming months, we will continue to enhance SuiteCRM 8 with new features and issue fixes. For more information regarding this, please see our link:https://suitecrm.com/suitecrm-roadmap/[Road Map] which will provide further information on what can be expected from future releases.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 _Special thanks to the following members for their contributions and participation in this release!_
 
@@ -174,7 +174,7 @@ _Released 17/12/2021_
 === icon:box-open[] Assets
 
 * https://suitecrm.com/suitecrm-8/#SCRM8_download[Download]
-* https://github.com/salesagility/SuiteCRM-Core[Github]
+* https://github.com/SuiteCRM/SuiteCRM-Core[Github]
 
 ===  icon:check[] Release Notes
 
@@ -189,15 +189,15 @@ _Released 17/12/2021_
 
 ==== icon:star[] Enhancements & Bug Fixes
 
-* PR: https://github.com/salesagility/SuiteCRM/pull/9384[9348] - Fix https://github.com/salesagility/SuiteCRM/issues/9382[#9382] - Outbound Emails editview Unsupported operand types fatal in php 8
-* PR: https://github.com/salesagility/SuiteCRM/pull/9379[9379] - Fix https://github.com/salesagility/SuiteCRM/issues/9374[#9374] - OAuth password creation Unsupported operand types fatal in php8
-* PR: https://github.com/salesagility/SuiteCRM/pull/9087[9087] - Fix #9087 - Allow changing text colors when composing an email
-* PR: https://github.com/salesagility/SuiteCRM/pull/9377[9377] - Fix https://github.com/salesagility/SuiteCRM/issues/9376[#9376] - Allow Workflows to run on imported records
-* PR: https://github.com/salesagility/SuiteCRM/pull/9030[9030] - Fix #9030 - Campaign Email settings removes Email Settings
-* PR: https://github.com/salesagility/SuiteCRM/pull/9395[9359] - Fix https://github.com/salesagility/SuiteCRM/issues/9383[9383] -  Unsupported each function in php8.
-* PR: https://github.com/salesagility/SuiteCRM/pull/9393[9393] - Fix email message modal buttons
-* Fix https://github.com/salesagility/SuiteCRM-Core/issues/42[42] - [8-Subpanels-Bug] Activities & History subpanels do not show create actions
-* Fix https://github.com/salesagility/SuiteCRM-Core/issues/41[41] - SuiteCRM 8 install - Port not properly set
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9384[9348] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9382[#9382] - Outbound Emails editview Unsupported operand types fatal in php 8
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9379[9379] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9374[#9374] - OAuth password creation Unsupported operand types fatal in php8
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9087[9087] - Fix #9087 - Allow changing text colors when composing an email
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9377[9377] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9376[#9376] - Allow Workflows to run on imported records
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9030[9030] - Fix #9030 - Campaign Email settings removes Email Settings
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9395[9359] - Fix https://github.com/SuiteCRM/SuiteCRM/issues/9383[9383] -  Unsupported each function in php8.
+* PR: https://github.com/SuiteCRM/SuiteCRM/pull/9393[9393] - Fix email message modal buttons
+* Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/42[42] - [8-Subpanels-Bug] Activities & History subpanels do not show create actions
+* Fix https://github.com/SuiteCRM/SuiteCRM-Core/issues/41[41] - SuiteCRM 8 install - Port not properly set
 
 ==== icon:star[] Styling
 
@@ -283,9 +283,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 marks our biggest SuiteCRM upgrade to date and we are very excited to be sharing it with you. In the coming months, we will continue to enhance SuiteCRM 8 with new features and issue fixes. For more information regarding this, please see our link:https://suitecrm.com/suitecrm-roadmap/[Road Map] which will provide further information on what can be expected from future releases.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 _Special thanks to the following members for their contributions and participation in this release!_
 
@@ -308,7 +308,7 @@ _Released 23/11/2021_
 === icon:box-open[] Assets
 
 * https://suitecrm.com/suitecrm-8/#SCRM8_download[Download]
-* https://github.com/salesagility/SuiteCRM-Core[Github]
+* https://github.com/SuiteCRM/SuiteCRM-Core[Github]
 
 ===  icon:check[] Release Notes
 
@@ -424,9 +424,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 marks our biggest SuiteCRM upgrade to date and we are very excited to be sharing it with you. In the coming months, we will continue to enhance SuiteCRM 8 with new features and issue fixes. For more information regarding this, please see our link:https://suitecrm.com/suitecrm-roadmap/[Road Map] which will provide further information on what can be expected from future releases.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue]. Before raising an issue please be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 Please link:https://suitecrm.com/download[visit the official website] to find the appropriate upgrade package.
 
@@ -441,7 +441,7 @@ _Released 29/09/2021_
 === icon:box-open[] Assets
 
 * https://suitecrm.com/suitecrm-8/#SCRM8_download[Download]
-* https://github.com/salesagility/SuiteCRM-Core[Github]
+* https://github.com/SuiteCRM/SuiteCRM-Core[Github]
 
 ===  icon:check[] Release Notes
 
@@ -520,9 +520,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 is still in active development and all current releases are not yet production ready, so be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues] before getting involved.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 Please link:https://suitecrm.com/download[visit the official website] to find the appropriate upgrade package.
 
@@ -539,8 +539,8 @@ _Released 19/08/2021_
 We would recommend downloading the pre-built package(s) from https://sourceforge.net/projects/suitecrm/files/pre-release/SuiteCRM-8.0.0-beta.3.zip/download[*SuiteCRM-8.0.0-beta.3.zip* (zip)] which contains the SuiteCRM instance with pre-built and downloaded requirements.
 Below are the zips of the raw source code.
 
-* https://github.com/salesagility/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.3.zip[*Source code* (zip)]
-* https://github.com/salesagility/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.3.tar.gz[*Source code* (tar.gz)]
+* https://github.com/SuiteCRM/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.3.zip[*Source code* (zip)]
+* https://github.com/SuiteCRM/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.3.tar.gz[*Source code* (tar.gz)]
 
 
 ===  icon:check[] Release Notes
@@ -629,9 +629,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 is still in active development and all current releases are not yet production ready, so be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues] before getting involved.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 Please link:https://suitecrm.com/download[visit the official website] to find the appropriate upgrade package.
 
@@ -648,8 +648,8 @@ _Released 20/05/2021_
 We would recommend to download the pre-built package(s) from https://sourceforge.net/projects/suitecrm/files/pre-release/SuiteCRM-8.0.0-beta.2.zip/download[*SuiteCRM-8.0.0-beta.2.zip* (zip)] which contains the SuiteCRM instance with pre-built and downloaded requirements.
 Below are the zips of the raw source code.
 
-* https://github.com/salesagility/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.2.zip[*Source code* (zip)]
-* https://github.com/salesagility/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.2.tar.gz[*Source code* (tar.gz)]
+* https://github.com/SuiteCRM/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.2.zip[*Source code* (zip)]
+* https://github.com/SuiteCRM/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.2.tar.gz[*Source code* (tar.gz)]
 
 
 ===  icon:check[] Release Notes
@@ -709,9 +709,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 is still in active development and all current releases are not yet production ready, so be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues] before getting involved.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/development-install-guide/[here].
 
 Please link:https://suitecrm.com/download[visit the official website] to find the appropriate upgrade package.
 
@@ -725,8 +725,8 @@ _Released 01/04/2021_
 
 === icon:box-open[] Assets
 
-* https://github.com/salesagility/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.1.zip[*Source code* (zip)]
-* https://github.com/salesagility/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.1.tar.gz[*Source code* (tar.gz)]
+* https://github.com/SuiteCRM/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.1.zip[*Source code* (zip)]
+* https://github.com/SuiteCRM/SuiteCRM-Core/archive/refs/tags/v8.0.0-beta.1.tar.gz[*Source code* (tar.gz)]
 
 ===  icon:check[] Release Notes
 
@@ -804,9 +804,9 @@ We would love to have you feedback and input to help make SuiteCRM 8 Great for e
 
 SuiteCRM 8 is still in active development and all current releases are not yet production ready, so be sure to check the link:https://docs.suitecrm.com/8.x/admin/releases/[Release Notes and list of Known Issues] before getting involved.
 
-If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue].
+If you have found an issue you think we should know about, or have a suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue].
 
-If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers will be coming soon so stay tuned.
+If you want to get involved or submit a Fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit An PR] - More detail for developers will be coming soon so stay tuned.
 
 Please link:https://suitecrm.com/download[visit the official website] to find the appropriate upgrade package.
 

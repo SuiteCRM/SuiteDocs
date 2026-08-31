@@ -57,7 +57,7 @@ Your proposed change is now up for evaluation by the members of the Community in
 SuiteCRM Documentation site. They will receive an e-mail notification as soon as you finish your proposal.
 
 You can check the status of every Pull Request, and participate in any discussion 
-about them by visiting https://github.com/salesagility/SuiteDocs/pulls[this list^].
+about them by visiting https://github.com/SuiteCRM/SuiteDocs/pulls[this list^].
 
 Every small contribution matters! Thanks for helping out. 
 

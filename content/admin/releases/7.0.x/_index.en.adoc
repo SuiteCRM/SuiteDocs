@@ -15,9 +15,9 @@ _Released Jan 20, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.0.2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.0.2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.0.2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.0.2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -60,9 +60,9 @@ _Released Nov 25, 2013_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.0.1.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.0.1.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.0.1.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.0.1.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes

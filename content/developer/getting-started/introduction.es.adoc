@@ -13,7 +13,7 @@ que contaba con una versión open source llamada Community Edition junto a varia
 Sin embargo, y de forma inesperada, SugarCRM no incluyó en el release de la version 7 la version Community Edition y además, informó
 que solo brindaría soporte limitado a las anteriores versiones abiertas.
 
-Es entonces que SalesAgility genera un Fork sobre SugarCRM Community Edition para crear SuiteCRM, desarrollándose sober las
+Es entonces que SuiteCRM Ltd genera un Fork sobre SugarCRM Community Edition para crear SuiteCRM, desarrollándose sober las
 fortalezas del antiguo SugarCRM pero extendiendo y añadiendo funcionalidades integradas con nuevos plugins de código abierto.
 
 == Acerca de ésta guía
@@ -55,7 +55,7 @@ se adapte a sus requerimientos.
 ==== GitHub
 
 SuiteCRM también está disponible vía http://github.com[GitHub] en
-https://github.com/salesagility/SuiteCRM[github.com/salesagility/SuiteCRM].
+https://github.com/SuiteCRM/SuiteCRM[github.com/SuiteCRM/SuiteCRM].
 Cada versión de SuiteCRM está taggeada, de forma que fácilmente pueda descargar la versión que usted precise.
 
 == Ajustes Iniciales

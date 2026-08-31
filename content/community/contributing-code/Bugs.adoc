@@ -100,9 +100,9 @@ Request for each issue you fix – *do not* combine multiple bugfixes into
 one Pull Request.
 
 * Ensure that in your Pull Request that the base fork is
-*salesagility/SuiteCRM* and base branch is `hotfix`.
+*SuiteCRM/SuiteCRM* and base branch is `hotfix`.
 For SuiteCRM 8 ensure that the base fork is
-*salesagility/SuiteCRM-Core* and the base branch is `hotfix`.
+*SuiteCRM/SuiteCRM-Core* and the base branch is `hotfix`.
 with the head fork being *your repository* and a base branch of your unique bugfix branch e.g. _bugfix_1234_
 
 * We will automatically reject any Pull Requests made to the wrong
@@ -110,7 +110,7 @@ branch!
 
 === CLA Check
 
-If you have not signed our https://cla.suitecrm.com/salesagility/SuiteCRM[CLA] (Contributor License Agreement) then your Pull Request will fail a check
+If you have not signed our https://cla.suitecrm.com/SuiteCRM/SuiteCRM[CLA] (Contributor License Agreement) then your Pull Request will fail a check
 and won't be able to be merged into the project. You will only be required to sign
 this once.
 

@@ -49,6 +49,6 @@ Your proposed Issue is now up handed over to the members of the Community in cha
 SuiteCRM Documentation site. They will receive an e-mail notification as soon as you finish your Issue.
 
 You can check the status of every Issue, and participate in any discussion 
-about them by visiting https://github.com/salesagility/SuiteDocs/issues[this list^].
+about them by visiting https://github.com/SuiteCRM/SuiteDocs/issues[this list^].
 
 Every small contribution matters! Thanks for helping out. 

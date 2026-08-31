@@ -32,7 +32,7 @@ Please go through the link:../../../admin/installation-guide/webserver-setup-gui
 
 Assuming you want to install a development environment from the source files, the next step is to actually retrieve the source code for the version you want to use
 
-You can download a zip or directly checkout using git from the link:https://github.com/salesagility/SuiteCRM-Core[SuiteCRM-Core] repo on github
+You can download a zip or directly checkout using git from the link:https://github.com/SuiteCRM/SuiteCRM-Core[SuiteCRM-Core] repo on github
 
 === 2.2 Copy the files to your webserver root
 

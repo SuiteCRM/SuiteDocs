@@ -55,7 +55,7 @@ hugo version
 
 [source,shell]
 ----
-git clone https://github.com/salesagility/SuiteDocs.git
+git clone https://github.com/SuiteCRM/SuiteDocs.git
 
 cd SuiteDocs
 
