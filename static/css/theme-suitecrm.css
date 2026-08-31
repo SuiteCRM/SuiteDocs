@@ -103,6 +103,33 @@ a:hover {
    color: var(--MAIN-LINK-HOVER-color);
 }
 
+/* In-body content links are otherwise too close in colour to the body
+   text to read as clickable. Underline them, but leave navigational link
+   lists (the "Table of Contents" children shortcode) and heading text
+   (wrapped in a.header-icon-link by header-link.html so the whole heading
+   is a clickable permalink) in their original, unmarked style.
+   learn.js adds a "highlight" class to nearly every in-body link on load
+   (#body a.highlight in hugo-theme.css sets text-decoration:none with an
+   extra class in its selector), so that variant must be matched here too
+   or it wins on specificity regardless of source order. hugo-theme.css
+   also has explicit #body a.highlight:hover/:focus rules turning the
+   underline back off, so those states need matching overrides too. */
+#body-inner a,
+#body-inner a.highlight,
+#body-inner a.highlight:hover,
+#body-inner a.highlight:focus {
+   text-decoration: underline;
+}
+
+#body-inner .children a,
+#body-inner .children a.highlight,
+#body-inner .anchor,
+#body-inner .anchor.highlight,
+#body-inner a.header-icon-link,
+#body-inner a.header-icon-link.highlight {
+   text-decoration: none;
+}
+
 table {
 	border-top:1px solid #D8D8D8;
 	border-bottom:1px solid #D8D8D8;
