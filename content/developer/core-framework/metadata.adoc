@@ -195,7 +195,7 @@ values. Values most commonly used are:
 `label`::
   The language key for this label. If the language key is not recognised
   then this value will be used instead (see the
-  link:../language-strings/[chapter on language]).
+  link:../../extending-ui/language-strings/[chapter on language]).
 `displayParams`::
   An array used to pass extra arguments for the field display. For the
   options and how they are used you can have a look into the appropriate

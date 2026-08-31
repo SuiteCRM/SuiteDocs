@@ -58,7 +58,7 @@ From a Contact record you can view and manage all associated records via sub-pan
 |===
 
 {{% notice note %}}
-SuiteCRM includes a built-in Maps feature. A map panel showing the Contact's address can be displayed on Contact records. See link:../integrations/maps[Maps] for details.
+SuiteCRM includes a built-in Maps feature. A map panel showing the Contact's address can be displayed on Contact records. See link:../../integrations/maps[Maps] for details.
 {{% /notice %}}
 
 == Working with Contacts

@@ -41,7 +41,7 @@ as `Accounts` or `MyNewFile`).
 Visit the product's website to download the 
 https://suitecrm.com/download/[SuiteCRM installer].
 
-In the Administration guide you will find link:../../admin/installation-guide/downloading-installing/[Installation instructions].
+In the Administration guide you will find link:../../../admin/installation-guide/downloading-installing/[Installation instructions].
 
 [discrete]
 ==== GitHub
@@ -65,7 +65,7 @@ SuiteCRM will cache various files that it processes, such as Smarty
 templates. Developer mode will turn off some of the caching so that
 changes to files will be seen immediately (though this isn’t always the
 case - as is the case with
-link:../extension-framework/[extensions]). This can be enabled
+link:../../core-framework/extension-framework/[extensions]). This can be enabled
 either through the config file or via the General settings page inside
 admin.
 
@@ -76,7 +76,7 @@ The default log level of SuiteCRM is `fatal`. This is a good default for
 production instances but you may want to increase the log level to
 `info` or `debug`. This will make the log output more verbose so, should
 anything go wrong, you’ll have something to refer to. See the
-link:../logging/[chapter on logging] for more
+link:../../optimization-security/logging/[chapter on logging] for more
 information.
 
 [discrete]

@@ -10,7 +10,7 @@ Complete every item on this page before running an upgrade, regardless of which 
 
 Confirm that your current PHP version, database, and web server are supported by the target SuiteCRM version.
 
-link:../compatibility-matrix[View the Compatibility Matrix]
+link:../../compatibility-matrix[View the Compatibility Matrix]
 
 If your stack needs updating, plan that work separately and complete it before upgrading SuiteCRM.
 

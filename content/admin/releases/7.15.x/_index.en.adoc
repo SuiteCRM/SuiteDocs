@@ -232,7 +232,7 @@ To learn more about setting up Calendar integration and the configuration option
 
 image:oauth-code-grant-popup-authorize.png[OAuth Code Grant Popup Authorize]
 
-To learn more information on what an Auth Code Grant is and how to set it up, please refer to the link:../../../developer/api/developer-setup-guide/configure-authentication#_authorization_code_grant[OAuth Authorization Code Grant Type] documentation.
+To learn more information on what an Auth Code Grant is and how to set it up, please refer to the link:../../../developer/integration-api/v8/authentication#_4_authorization_code_grant[OAuth Authorization Code Grant Type] documentation.
 
 ==== icon:book[] Documentation Updates
 
@@ -242,12 +242,12 @@ New or updated guides are available for:
 * Sending Email Invitation for:
 ** link:../../../user/core-modules/calls#_sending_call_email_invitations[Calls]
 ** link:../../../user/core-modules/meetings#_sending_meeting_email_invitations[Meetings]
-* link:../../../user/calendar-sync/[Calendar Sync]
-* link:../../../user/calendar-sync/user-guide[Setting up your Calendar]
-* link:../../../user/calendar-sync/caldav-guide/[User Calendar CalDav Setup Guide]
+* link:../../../user/integrations/calendar-sync/[Calendar Sync]
+* link:../../../user/integrations/calendar-sync/[Setting up your Calendar]
+* link:../../../user/integrations/caldav-guide/[User Calendar CalDav Setup Guide]
 * link:../../../admin/administration-panel/calendar-sync[Calendar Configuration]
 * link:../../../user/core-modules/surveys#_view_survey[Surveys]
-* link:../../../developer/api/developer-setup-guide/configure-authentication#_authorization_code_grant[OAuth Authorization Code Grant Type]
+* link:../../../developer/integration-api/v8/authentication#_4_authorization_code_grant[OAuth Authorization Code Grant Type]
 
 === icon:heart[] Community
 

@@ -360,5 +360,5 @@ Click btn:[SEND QUEUED CAMPAIGN EMAILS] to send them immediately without waiting
 
 If inbound email accounts are not synchronising correctly, use the *Sync Inbound Email Accounts* tool to reconnect accounts via IMAP and correct synchronisation problems.
 
-See link:sync-inbound-email-accounts[Sync Inbound Email Accounts] for details.
+See link:../sync-inbound-email-accounts[Sync Inbound Email Accounts] for details.
 

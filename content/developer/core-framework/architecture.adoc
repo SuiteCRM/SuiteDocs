@@ -152,13 +152,13 @@ modules/<Module>/metadata/searchdefs.php
 
 `SugarView` reads these definitions, fetches the Bean data, and passes both to a Smarty template which produces the final HTML. Custom JavaScript and CSS are served from the `themes/` directory (SuiteP theme).
 
-The full view layer is covered in link:../../../extending-ui/views[Views], link:../../../extending-ui/controllers[Controllers], and link:../../../extending-ui/template-overrides[Template Overrides].
+The full view layer is covered in link:../../extending-ui/views[Views], link:../../extending-ui/controllers[Controllers], and link:../../extending-ui/template-overrides[Template Overrides].
 
 == API Layer
 
 SuiteCRM 7 exposes two APIs:
 
-* **V8 API** (recommended) — A JSON:API compliant REST API introduced to align with SuiteCRM 8. See link:../../../integration-api/v8/[V8 API].
-* **V4.1 API** (legacy) — The original SOAP/REST API inherited from SugarCRM. See link:../../../integration-api/v4/[V4.1 API].
+* **V8 API** (recommended) — A JSON:API compliant REST API introduced to align with SuiteCRM 8. See link:../../integration-api/v8/[V8 API].
+* **V4.1 API** (legacy) — The original SOAP/REST API inherited from SugarCRM. See link:../../integration-api/v4/[V4.1 API].
 
-Custom lightweight endpoints can also be registered as link:../../../integration-api/entry-points[Entry Points] for webhooks, file streams, and similar use cases.
+Custom lightweight endpoints can also be registered as link:../../integration-api/entry-points[Entry Points] for webhooks, file streams, and similar use cases.

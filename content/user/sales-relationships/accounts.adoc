@@ -55,7 +55,7 @@ From an Account record you can view and manage all associated records via sub-pa
 |===
 
 {{% notice note %}}
-SuiteCRM includes a built-in Maps feature. A map panel showing the billing or shipping address can be displayed on Account records. See link:../integrations/maps[Maps] for details.
+SuiteCRM includes a built-in Maps feature. A map panel showing the billing or shipping address can be displayed on Account records. See link:../../integrations/maps[Maps] for details.
 {{% /notice %}}
 
 == Working with Accounts
