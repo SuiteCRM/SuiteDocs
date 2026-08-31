@@ -46,7 +46,7 @@ Now check Hugo is operational with
 
 Go to some appropriate directory, and use this command to create the SuiteDocs subtree and download everything:
 
-`git clone https://github.com/salesagility/SuiteDocs.git`
+`git clone https://github.com/SuiteCRM/SuiteDocs.git`
 
 `cd SuiteDocs`
 

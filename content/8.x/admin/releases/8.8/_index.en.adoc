@@ -113,7 +113,7 @@ _Released 30 January 2025_
 
 === icon:box-open[] Assets
 
-* https://github.com/salesagility/SuiteCRM-Core/releases/tag/v8.8.0[GitHub - Download]
+* https://github.com/SuiteCRM/SuiteCRM-Core/releases/tag/v8.8.0[GitHub - Download]
 * link:../../installation-guide/downloading-installing[SuiteCRM 8 Install Guide]
 * link:../../upgrading[SuiteCRM 8 Upgrade Guide]
 
@@ -260,20 +260,20 @@ There are now 3 different types of `triggeringStatus`:
 
 ==== icon:bug[] Bug Fixes
 
-* Fixed: Subpanel not showing correctly on first load: https://github.com/salesagility/SuiteCRM-Core/issues/511[#511]
-* Fixed: Error field "amount" - SuiteCRM v. 8.5.1: https://github.com/salesagility/SuiteCRM-Core/issues/478[#478]
-* Fixed: Reorder modules from User profile does not change the order in navigation bar: https://github.com/salesagility/SuiteCRM-Core/issues/585[#585]
-* Fixed: Update scripts deletes files with no warning: https://github.com/salesagility/SuiteCRM-Core/issues/475[#475]
-* Fixed: Special character in database password creates issues: https://github.com/salesagility/SuiteCRM-Core/issues/553[#533]
-* Fixed: $addr creating unnecessary logs: https://github.com/salesagility/SuiteCRM-Core/issues/577[#577]
-* Fixed: Error on Email Detail View: https://github.com/salesagility/SuiteCRM-Core/issues/537[#537]
-* Fixed: Accented character (diacritic) displayed incorrectly: https://github.com/salesagility/SuiteCRM-Core/issues/542[#542]
-* Fixed: Accented letters displayed incorrectly: https://github.com/salesagility/SuiteCRM-Core/issues/583[#583]
-* Fixed: TextArea areas show data in html encoded: https://github.com/salesagility/SuiteCRM-Core/issues/589[#589]
-* Fixed: Views Incorrectly Encode UTF Characters as HTML Entities: https://github.com/salesagility/SuiteCRM-Core/issues/274[#274]
-* Fixed: Bug with the number field in case filters: https://github.com/salesagility/SuiteCRM-Core/issues/572[#572]
-* Fixed: Checkbox taking a while to respond with large data set: https://github.com/salesagility/SuiteCRM-Core/issues/597[#597]
-* Fixed: Update New Accounts per Month Chart: https://github.com/salesagility/SuiteCRM-Core/issues/75[#75]
+* Fixed: Subpanel not showing correctly on first load: https://github.com/SuiteCRM/SuiteCRM-Core/issues/511[#511]
+* Fixed: Error field "amount" - SuiteCRM v. 8.5.1: https://github.com/SuiteCRM/SuiteCRM-Core/issues/478[#478]
+* Fixed: Reorder modules from User profile does not change the order in navigation bar: https://github.com/SuiteCRM/SuiteCRM-Core/issues/585[#585]
+* Fixed: Update scripts deletes files with no warning: https://github.com/SuiteCRM/SuiteCRM-Core/issues/475[#475]
+* Fixed: Special character in database password creates issues: https://github.com/SuiteCRM/SuiteCRM-Core/issues/553[#533]
+* Fixed: $addr creating unnecessary logs: https://github.com/SuiteCRM/SuiteCRM-Core/issues/577[#577]
+* Fixed: Error on Email Detail View: https://github.com/SuiteCRM/SuiteCRM-Core/issues/537[#537]
+* Fixed: Accented character (diacritic) displayed incorrectly: https://github.com/SuiteCRM/SuiteCRM-Core/issues/542[#542]
+* Fixed: Accented letters displayed incorrectly: https://github.com/SuiteCRM/SuiteCRM-Core/issues/583[#583]
+* Fixed: TextArea areas show data in html encoded: https://github.com/SuiteCRM/SuiteCRM-Core/issues/589[#589]
+* Fixed: Views Incorrectly Encode UTF Characters as HTML Entities: https://github.com/SuiteCRM/SuiteCRM-Core/issues/274[#274]
+* Fixed: Bug with the number field in case filters: https://github.com/SuiteCRM/SuiteCRM-Core/issues/572[#572]
+* Fixed: Checkbox taking a while to respond with large data set: https://github.com/SuiteCRM/SuiteCRM-Core/issues/597[#597]
+* Fixed: Update New Accounts per Month Chart: https://github.com/SuiteCRM/SuiteCRM-Core/issues/75[#75]
 
 === icon:heart[] Community
 
@@ -283,9 +283,9 @@ _Special thanks to the following members for their contributions and participati
 
 {{% ghcontributors julibo likhobory GoryMoon cvillarongace  tdelsoglio abuzarfaris pgorod jschoder-ryl AlexMyddleware LoLei mraspor fmarsico70 isalos395 vladaman desarrollador20 %}}
 
-If you have found an issue you think we should know about, or have suggestion/feedback, please link:https://github.com/salesagility/SuiteCRM-Core/issues[Submit An Issue].
+If you have found an issue you think we should know about, or have suggestion/feedback, please link:https://github.com/SuiteCRM/SuiteCRM-Core/issues[Submit An Issue].
 
-If you want to get involved and submit a fix, fork the repo and when ready please link:https://github.com/salesagility/SuiteCRM-Core/pulls[Submit A PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/installation-guide/[here].
+If you want to get involved and submit a fix, fork the repo and when ready please link:https://github.com/SuiteCRM/SuiteCRM-Core/pulls[Submit A PR] - More detail for developers can be found link:https://docs.suitecrm.com/8.x/developer/installation-guide/[here].
 
 Please https://suitecrm.com/releases/[visit the official website] to find the appropriate upgrade package.
 

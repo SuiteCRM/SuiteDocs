@@ -15,16 +15,16 @@ _Released Aug 20, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.4.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.4.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.4.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.4.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
 
 This is a bug-fix release.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.2.4[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.2.4[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -38,9 +38,9 @@ _Released Aug 7, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.3.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.3.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.3.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.3.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -55,9 +55,9 @@ _Released May 20, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -74,9 +74,9 @@ _Released this Mar 11, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.1.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.1.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.1.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.1.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -108,7 +108,7 @@ code* (tar.gz)]
 * Icons now output directly to the page so they can pickup on the page styles and do not need to load the css for each icon.
 * Moved calendar screensize check to cal.js so it only loads on the calendar module.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.2.1[here] or https://suitecrm.com/download[click here] to find the
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.2.1[here] or https://suitecrm.com/download[click here] to find the
 appropriate upgrade.
 
 '''
@@ -119,9 +119,9 @@ _Released Mar 2, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -166,9 +166,9 @@ _Released Feb 9, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2beta3.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2beta3.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2beta3.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2beta3.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -185,9 +185,9 @@ _Released Dec 9, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2beta2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2beta2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2beta2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2beta2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -204,9 +204,9 @@ _Released Oct 31, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.2beta.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2beta.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.2beta.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.2beta.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes

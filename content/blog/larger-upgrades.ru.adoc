@@ -167,4 +167,4 @@ image:upgrading-strategies.png[Диаграмма стратегий обнов�
 
 Пожалуйста, сообщайте на https://community.suitecrm.com[форуме^] о любых обнаруженных проблемах.
 Если вы обнаружили ошибку в программном обеспечении, и вы не нашли её описания на форуме, пожалуйста, заведите соответствующий тикет в
-нашем https://github.com/salesagility/SuiteCRM/issues[Github-репозитории^].
+нашем https://github.com/SuiteCRM/SuiteCRM/issues[Github-репозитории^].

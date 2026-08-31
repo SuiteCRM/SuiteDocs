@@ -6,9 +6,9 @@ Weight: 40
 :imagesdir: /images/en/community
 
 
-Check out awaiting pull requests on our SuiteCRM repo https://github.com/salesagility/SuiteCRM/pulls[here].
+Check out awaiting pull requests on our SuiteCRM repo https://github.com/SuiteCRM/SuiteCRM/pulls[here].
 
-Select a pull request that is ready to test e.g. https://github.com/salesagility/SuiteCRM/pull/6612
+Select a pull request that is ready to test e.g. https://github.com/SuiteCRM/SuiteCRM/pull/6612
 
 Obtain the author's repo. e.g. https://github.com/jack7anderson7/SuiteCRM
 and the branch specific to the PR e.g. issue-6611

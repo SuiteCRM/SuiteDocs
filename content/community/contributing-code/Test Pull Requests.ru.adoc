@@ -14,10 +14,10 @@ ifdef::env-github[:imagesdir: ../../../static/images/ru/community]
 
 
 Перейдите по 
-link:https://github.com/salesagility/SuiteCRM/pulls[этой] ссылке для просмотра перечня доступных запросов.
+link:https://github.com/SuiteCRM/SuiteCRM/pulls[этой] ссылке для просмотра перечня доступных запросов.
 
 
-Выберите запрос (pull request, далее - PR), который вы бы хотели протестировать, например:  https://github.com/salesagility/SuiteCRM/pull/6612
+Выберите запрос (pull request, далее - PR), который вы бы хотели протестировать, например:  https://github.com/SuiteCRM/SuiteCRM/pull/6612
 
 Обратите внимание на название репозитория автора PR и на ветку, содержащую необходимый PR, в данном случае на ветку *issue-6611*, эта информация необходима для дальнейшего слияния веток.
 

@@ -15,9 +15,9 @@ _Released Oct 22, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.3.2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3.2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.3.2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3.2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -68,7 +68,7 @@ code* (tar.gz)]
 * Skip .git folder on file system checks
 * Fixed #403 - Dashlets dialog issues on Chrome.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.3.2[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.3.2[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -81,9 +81,9 @@ _Released Aug 25, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.3.1.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3.1.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.3.1.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3.1.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -122,7 +122,7 @@ code* (tar.gz)]
 * Fixed #354 - Inline editing breaking module builder Vardefs.
 * Fixed #279, Fixed #300 - Addresses issues with scrolling on toolbox and panels sections of Studio.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.3.1[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.3.1[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -134,9 +134,9 @@ _Released Aug 14, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.3.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.3.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -159,7 +159,7 @@ code* (tar.gz)]
 * Numerous workflow enhancements e.g is null, contains etc.
 * Numerous reports enhancements e.g date periods, dashlet improvements.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.3[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.3[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -171,9 +171,9 @@ _Released Aug 7, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.3beta3.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3beta3.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.3beta3.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3beta3.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -188,9 +188,9 @@ _Released Jun 5, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.3-beta.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3-beta.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.3-beta.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.3-beta.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes

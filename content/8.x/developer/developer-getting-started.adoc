@@ -19,7 +19,7 @@ Alternatively you can setup an environment directly from the source code, withou
 
 === 1.1 (recommended) Setting up using the development package
 
-. Download the dev package from github, e.g.: `SuiteCRM-8.3.0-dev.zip`, see the dev package in the link:https://github.com/salesagility/SuiteCRM-Core/releases/latest[Latest GitHub Release]
+. Download the dev package from github, e.g.: `SuiteCRM-8.3.0-dev.zip`, see the dev package in the link:https://github.com/SuiteCRM/SuiteCRM-Core/releases/latest[Latest GitHub Release]
 . Install SuiteCRM using the link:../../admin/installation-guide/downloading-installing/[Downloading & Installing] guide from the admin section
 . Setup the frontend extension using the link:./extensions/frontend/older/8x-fe-extensions-getting-started[Getting started with frontend extension development]
 

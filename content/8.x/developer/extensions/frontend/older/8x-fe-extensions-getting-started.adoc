@@ -131,8 +131,8 @@ $extensions['defaultExt'] = [
     'extension_uri' =>  'https://suitecrm.com',
     'description' => 'An example Extension template or for simple instance customisations',
     'version' =>  '1.0.0',
-    'author' =>  'SalesAgility',
-    'author_uri' =>  'https://www.salesagility.com',
+    'author' =>  'SuiteCRM Ltd',
+    'author_uri' =>  'https://www.suitecrm.com',
     'license' =>  'GPL3'
 ];
 

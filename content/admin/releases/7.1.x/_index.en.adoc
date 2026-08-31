@@ -15,9 +15,9 @@ _Released Aug 7, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.8.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.8.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.8.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.8.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -33,9 +33,9 @@ _Released May 20, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.7.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.7.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.7.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.7.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -54,9 +54,9 @@ _Released Mar 11, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.6.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.6.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.6.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.6.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -88,9 +88,9 @@ _Released Jan 19, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.5.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.5.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.5.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.5.tar.gz[*Source
 code* (tar.gz)]
 
 
@@ -137,9 +137,9 @@ _Released this Sep 25, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.4.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.4.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.4.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.4.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -170,9 +170,9 @@ _Released Aug 13, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.3.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.3.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.3.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.3.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -206,9 +206,9 @@ _Released Jul 7, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -279,9 +279,9 @@ _Released Apr 7, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.1.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.1.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.1.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.1.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -308,9 +308,9 @@ _Released Apr 1, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -359,9 +359,9 @@ _Released this Mar 28, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1RC2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1RC2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1RC2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1RC2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -379,9 +379,9 @@ _Released Mar 24, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1RC.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1RC.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1RC.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1RC.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -397,9 +397,9 @@ _Released Mar 14, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1beta2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1beta2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1beta2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1beta2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -417,9 +417,9 @@ _Released Feb 4, 2014_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.1beta.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1beta.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.1beta.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.1beta.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes

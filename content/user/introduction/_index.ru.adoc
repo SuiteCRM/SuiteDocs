@@ -13,7 +13,7 @@ Weight: 10
 
 Добро пожаловать в SuiteCRM, систему управления взаимоотношениями с клиентами (Customer Relationship Management System, CRM-систему), основанную на открытом исходном коде. 
 
-SuiteCRM - это бесплатный форк популярной CRM-системы link:https://ru.wikipedia.org/wiki/SugarCRM[SugarCRM^]. Автор системы - компания SalesAgility. Первая версия системы за номером 7.0 была выпущена 21 октября 2013 года на базе бесплатной версии SugarCRM Community Edition 6.5.16. В систему были добавлены как серия модулей собственной разработки, так и несколько бесплатных модулей сторонних разработчиков.
+SuiteCRM - это бесплатный форк популярной CRM-системы link:https://ru.wikipedia.org/wiki/SugarCRM[SugarCRM^]. Автор системы - компания SuiteCRM Ltd. Первая версия системы за номером 7.0 была выпущена 21 октября 2013 года на базе бесплатной версии SugarCRM Community Edition 6.5.16. В систему были добавлены как серия модулей собственной разработки, так и несколько бесплатных модулей сторонних разработчиков.
 Система имеет открытый код и распространяется под лицензией AGPL версии 3.
 
  
@@ -30,15 +30,15 @@ SuiteCRM активно поддерживается сообществом, и,
 
 SugarCRM Inc. с самых первых своих версий и вплоть до 6 версии параллельно выпускала как бесплатную версию системы (Community Edition), так и коммерческие версии (Professional, Enterprise, Ultimate). В коммерческих версиях было большее количество модулей, нежели в Community Edition. Начиная с версии 6.5 компания фактически прекратила развитие бесплатной версии, исправляя лишь найденные ошибки. С 7-й версии компания SugarCRM стала выпускать только коммерческие версии системы. 
 
-Компания SalesAgility активно разрабатывала модули для SugarCRM Community Edition. Особенностью большей части разработанных SalesAgility модулей было то, что они были крайне похожи на модули, которые были в коммерческих версиях SugarCRM, но которых не было в Community Edition. 
+Компания SuiteCRM Ltd активно разрабатывала модули для SugarCRM Community Edition. Особенностью большей части разработанных SuiteCRM Ltd модулей было то, что они были крайне похожи на модули, которые были в коммерческих версиях SugarCRM, но которых не было в Community Edition. 
 
-В 2013 году SalesAgility выпускает http://www.opennet.ru/opennews/art.shtml?num=38670[первую версию^] SuiteCRM, основанную на последней версии Community Edition и дополнительных модулях, по большей части собственной разработки. Эти модули делают SuiteCRM очень близкой по функциональности к коммерческой версии SugarCRM Professional 6.5.x. SalesAgility позиционирует свою систему как бесплатную альтернативу платной версии SugarCRM Professional. 
+В 2013 году SuiteCRM Ltd выпускает http://www.opennet.ru/opennews/art.shtml?num=38670[первую версию^] SuiteCRM, основанную на последней версии Community Edition и дополнительных модулях, по большей части собственной разработки. Эти модули делают SuiteCRM очень близкой по функциональности к коммерческой версии SugarCRM Professional 6.5.x. SuiteCRM Ltd позиционирует свою систему как бесплатную альтернативу платной версии SugarCRM Professional. 
 
-В апреле 2014 года компания SugarCRM Inc. http://www.opennet.ru/opennews/art.shtml?num=39640[официально объявляет^] о прекращении разработки версии Community Edition. SalesAgility со своим SuiteCRM решает занять вакантное место продолжателя бесплатной версии, объявляя о том, что их система останется всегда бесплатной и с открытым кодом. 
+В апреле 2014 года компания SugarCRM Inc. http://www.opennet.ru/opennews/art.shtml?num=39640[официально объявляет^] о прекращении разработки версии Community Edition. SuiteCRM Ltd со своим SuiteCRM решает занять вакантное место продолжателя бесплатной версии, объявляя о том, что их система останется всегда бесплатной и с открытым кодом. 
 
 Кроме модулей, унаследованных от SugarCRM Community Edition, в первый выпуск системы был добавлен следующий функционал:
 
-Дополнительные модули SuiteCRM от SalesAgility: ::
+Дополнительные модули SuiteCRM от SuiteCRM Ltd: ::
 
 *	Advanced OpenTheme (Тема оформления)   
 *	Advanced OpenSales (Продажи)  
@@ -86,9 +86,9 @@ link:../introduction/user-interface[Описание пользовательс�
 
 * https://community.suitecrm.com[Официальный форум^]
 
-* https://github.com/salesagility/SuiteCRM[Исходный код SuiteCRM^]
+* https://github.com/SuiteCRM/SuiteCRM[Исходный код SuiteCRM^]
 
-* https://github.com/salesagility/SuiteDocs[Исходный текст данного руководства в формате AsciiDoc^]
+* https://github.com/SuiteCRM/SuiteDocs[Исходный текст данного руководства в формате AsciiDoc^]
 
 * https://community.suitecrm.com/t/topic/11657[Обсуждение русификации^]
 

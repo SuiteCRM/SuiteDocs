@@ -15,9 +15,9 @@ _Released Nov 23, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.4.3.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4.3.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.4.3.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4.3.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -40,7 +40,7 @@ reminded about the Meeting/Call.
 In addition to the Reminder Meetings functionality, there have also been
 many bug-fixes implemented in SuiteCRM 7.4.3.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.4.3[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.4.3[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -57,16 +57,16 @@ _Released Nov 10, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.4.1.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4.1.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.4.1.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4.1.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
 
 This is a bug fix release for SuiteCRM 7.4 release.
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.4.1[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.4.1[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -78,9 +78,9 @@ _Released Oct 30, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.4.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.4.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -88,7 +88,7 @@ code* (tar.gz)]
 This release bring many enhancements - Favourites, Knowledge Base,
 Improved PHP Compatibility and More..
 
-Download https://github.com/salesagility/SuiteCRM/releases/tag/v7.4[here] from the SuiteCRM GitHub Repository or
+Download https://github.com/SuiteCRM/SuiteCRM/releases/tag/v7.4[here] from the SuiteCRM GitHub Repository or
 https://suitecrm.com/download[visit the official website] to find the
 appropriate upgrade.
 
@@ -100,9 +100,9 @@ _Released Oct 19, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.4-rc.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4-rc.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.4-rc.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4-rc.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -120,9 +120,9 @@ _Released Oct 12, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.4-beta.2.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4-beta.2.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.4-beta.2.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4-beta.2.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
@@ -139,9 +139,9 @@ _Released Oct 5, 2015_
 
 === Assets
 
-* https://github.com/salesagility/SuiteCRM/archive/v7.4-beta.zip[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4-beta.zip[*Source
 code* (zip)]
-* https://github.com/salesagility/SuiteCRM/archive/v7.4-beta.tar.gz[*Source
+* https://github.com/SuiteCRM/SuiteCRM/archive/v7.4-beta.tar.gz[*Source
 code* (tar.gz)]
 
 === Release Notes
