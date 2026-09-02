@@ -47,9 +47,9 @@
               <div class="sticky-spacer">
                 <div id="top-bar">
                 {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
-                  {{ $File := .File }}
                   {{ $Site := .Site }}
-                  {{with $File.Path }}
+                  {{ with .File }}
+                  {{ $File := . }}
                   <div id="top-github-link" style="margin-left: 5px;">
                     <a class="github-link"  title='{{T "Issue-for-page"}}' href="{{ $Site.Params.issueURL }}title=Issue%20about%20Page%20{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}&labels=page-specific&assignee=pgorod" target="blank">
                       <i class="fas fa-exclamation-circle"></i>

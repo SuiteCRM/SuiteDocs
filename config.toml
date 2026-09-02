@@ -21,8 +21,8 @@ ignoreErrors = ["error-remote-getjson"]
   showVisitedLinks = true
   themeVariant = "suitecrm"
 
-  sidebarAnnouncementText = "NEED DEDICATED SUPPORT?<br>Check out your options"
-  sidebarAnnouncementUrl  = "https://suitecrm.com/enterprise/support-plans/"
+  sidebarAnnouncementText = "NEED PROFESSIONAL SUPPORT?<br>Check out your options"
+  sidebarAnnouncementUrl  = "https://suitecrm.com/services/"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
