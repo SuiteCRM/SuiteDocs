@@ -1,0 +1,33 @@
+---
+title: "Targets"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/targets
+
+= Targets
+
+Targets are individuals used as recipients of marketing campaigns where your organisation has limited information about them — typically acquired from purchased email lists or gathered at trade shows. Unlike Leads and Contacts, Targets are not tracked in depth and can be reused across campaigns or deleted without impact to other CRM data.
+
+== Key Fields
+
+* *First Name / Last Name*: the target's name.
+* *Account Name*: the company the target works for. This is a plain text field, not a relationship to an Account record.
+* *Title / Department*: the target's role within their organisation.
+* *Email Address*: the primary email address used for campaign delivery.
+* *Do Not Call / Email Opt Out*: compliance flags that prevent the target from being contacted by phone or email.
+* *Lead Source*: how the target was acquired: Trade Show, Purchased List, Web Site and so on.
+* *Campaign*: the campaign this target is associated with.
+* *Tracker Key*: an auto-generated identifier used internally by the campaign engine to attribute opens, clicks and other responses back to this target.
+
+== Relationships
+
+Targets can be added to link:../target-lists[Target Lists], which are then attached to Campaigns. From a Target's Detail View you can view related campaign activity and history in its sub-panels.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating and importing, see link:../../core-concepts/record-management[Record Management].
+
+{{% notice tip %}}
+When importing Targets, at the final step of the Import Wizard you will be given an option to add all imported Targets to a Target List of your choice.
+{{% /notice %}}

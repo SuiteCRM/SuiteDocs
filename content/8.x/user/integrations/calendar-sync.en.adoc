@@ -1,0 +1,83 @@
+---
+title: "Calendar Sync"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/integrations/calendar-sync
+
+= Calendar Sync
+
+Calendar Sync connects SuiteCRM to an external calendar (Google Calendar or a CalDAV server) so that your meetings synchronise bidirectionally — updates in SuiteCRM appear in your external calendar, and updates in your external calendar appear in SuiteCRM.
+
+Each user manages their own connection through the Calendar Accounts module.
+
+== Prerequisites
+
+Before creating a Calendar Account, confirm the following:
+
+*For Google Calendar:*
+
+* Your administrator must have configured an External OAuth Provider from the Admin panel.
+* You must create an External OAuth Connection from your user profile. Select the Google provider your administrator set up.
+
+If the OAuth Provider is not available, contact your administrator before continuing.
+
+*For CalDAV:*
+
+* You will need your CalDAV server URL, username, and password. See link:../caldav-guide[CalDAV Provider Guide] to find the correct URL for your server.
+
+*For all providers:*
+
+* The SuiteCRM scheduler must be running and the *Calendar Accounts Sync* job must be active in the Admin panel. Without this, only manual sync is available. Contact your administrator if you are unsure.
+
+== Setting Up Google Calendar
+
+. From the Navigation Bar, hover over your username in the top-right corner of the screen and click *Edit Profile*.
+. Navigate to *External OAuth Connections* and create a connection using the Google provider. Save it.
+. Navigate to the *Calendar Accounts* module and click *Create Calendar Account*.
+. Enter a *Name* (for example, "My Google Calendar").
+. Set *Calendar Source* to *Google Calendar*.
+. Select your OAuth Connection from the list.
+. Click *Authenticate*. A popup opens the Google authorisation screen.
+. Sign in to your Google account and click *Allow*.
+. The popup closes automatically when authorisation is complete.
+. Click *Save*.
+
+{{% notice note %}}
+Your browser must allow popups from your SuiteCRM domain for the Google authorisation flow to work. If the popup is blocked, enable popups for SuiteCRM and try again.
+{{% /notice %}}
+
+== Setting Up CalDAV
+
+. Navigate to the *Calendar Accounts* module and click *Create Calendar Account*.
+. Enter a *Name* (for example, "My Nextcloud Calendar").
+. Set *Calendar Source* to *CalDAV*.
+. Enter your *Server URL*, *Username*, and *Password*.
++
+If you are unsure of the correct URL, see link:../caldav-guide[CalDAV Provider Guide].
+. Click *Save*.
+
+== Testing the Connection
+
+After saving a Calendar Account, re-open it in Edit View. A *Test Connection* button appears. Click it to verify the connection, then click *Save* again to record the test result.
+
+The *Test Successful* field on the Detail View shows whether the last test passed.
+
+== Manual Sync
+
+From the Calendar Account Detail View, click *Sync Now* to trigger an immediate synchronisation without waiting for the next scheduled run. Use this after making changes or to confirm the connection is working.
+
+== Sync Status
+
+The Calendar Account Detail View shows read-only status fields updated after each sync:
+
+* *Sync Status*: current state: In Progress, Success, Warning, or Error.
+* *Sync Message*: details from the last sync run.
+* *Last Sync Date*: when synchronisation last completed successfully.
+
+If the sync status shows an error, check *Sync Message* for details. Contact your administrator if the issue relates to OAuth configuration, the scheduler, or server connectivity.
+
+== Administrator Resources
+
+For global sync settings, scheduler configuration, and advanced troubleshooting, see the link:../../../../admin/administration-panel/administration-panel[Administration Panel] overview.
+

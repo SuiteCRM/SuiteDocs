@@ -1,0 +1,64 @@
+---
+title: "Accounts"
+weight: 15
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/accounts
+
+== Overview
+
+The Accounts module is the central hub from which you build relationships with most other records in SuiteCRM. An Account typically represents a company your organisation works with — a sales prospect, customer, supplier, or reseller — and lets you track every interaction with that company in one place. From an Account you can link to Contacts, Leads, Opportunities, Cases, and activities such as Calls, Meetings, and Emails.
+
+== Key Fields
+
+[cols="25,75"]
+|===
+|*Field*|*Description*
+
+|*Name*|The company name. This is the only required field.
+|*Office Phone*|The main contact number for the company.
+|*Website*|The company's web address.
+|*Billing / Shipping Address*|Separate address fields for billing and shipping. Both can be stored independently where they differ.
+|*Type*|Classifies the account: Analyst, Competitor, Customer, Integrator, Investor, Partner, Press, Prospect, Reseller, or Other.
+|*Industry*|The sector the account operates in, for example Technology, Finance, or Healthcare.
+|*Annual Revenue / Employees*|Company profiling fields useful for segmentation and reporting.
+|*Rating*|A freeform field for recording your assessment of the account, for example Hot, Warm, or Cold.
+|*Member Of*|Links this account to a parent Account. Use this to model corporate hierarchies where a subsidiary belongs to a larger organisation. The parent account's Member Organisations sub-panel then lists all accounts beneath it.
+|*Assigned To*|The SuiteCRM user responsible for the account.
+|===
+
+== Relationships
+
+From an Account record you can view and manage all associated records via the Relationships section:
+
+[cols="30,70"]
+|===
+|*Sub-panel*|*Contains*
+
+|*Activities*|Calls, Meetings, Tasks, and Emails logged against the account. Completed items move to the History sub-panel.
+|*History*|Completed activities and archived emails associated with the account.
+|*Contacts*|The individuals who work at or represent the account.
+|*Leads*|Leads associated with the account.
+|*Opportunities*|Open and historical deals associated with the account.
+|*Cases*|Support tickets raised by or on behalf of the account.
+|*Documents*|Files attached to the account.
+|*Campaigns*|Email campaigns the account has been sent, showing how it has responded.
+|*Member Organisations*|Child accounts linked via the Member Of field.
+|*Quotes*|Quotes raised for the account.
+|*Invoices*|Invoices raised for the account.
+|*Contracts*|Contracts held with the account.
+|===
+
+== Working with Accounts
+
+* *Building account hierarchies*: use the Member Of field to nest accounts under a parent. This is useful for group structures, franchises, or any organisation with subsidiaries — the parent record's Member Organisations sub-panel gives you a view of the whole corporate family.
+* *Printing an account as PDF*: from the Account Detail View, open the *Actions* drop-down and select *Print as PDF* to generate a PDF using one of your organisation's PDF templates. See link:../pdf-templates[PDF Templates] for how these are set up.
+* *Adding accounts to a target list*: from the Accounts List View, select the records you want and use *Add To Target List* from the *Bulk Action* drop-down. See link:../../marketing-outreach/target-lists[Target Lists] for how to manage the resulting list.
+
+* *Creating accounts from leads*: when a Lead is qualified and converted, SuiteCRM can create a related Account automatically. See link:../leads[Leads] for how conversion works.
+
+== Where to Go Next
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging, and importing, see link:../../core-concepts/record-management[Record Management].

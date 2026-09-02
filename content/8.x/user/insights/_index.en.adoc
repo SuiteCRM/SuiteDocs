@@ -1,6 +1,6 @@
 ---
-title: "Sales & Relationships"
-weight: 40
+title: "Insights"
+weight: 70
 ---
 
 === Table of Contents

@@ -1,0 +1,41 @@
+---
+title: "Bugs"
+weight: 15
+---
+
+:imagesdir: /images/en/8.x/user/customer-service/bugs
+
+= Bugs
+
+The Bugs module allows you to record and track software defects and feature requests. Bugs can be linked to Cases, Contacts, Accounts, and a product Release, giving you full traceability from a customer support request through to the fix.
+
+{{% notice note %}}
+The Bugs module may be hidden by default depending on your configuration. Contact your administrator if you cannot see it in the navigation bar.
+{{% /notice %}}
+
+== Key Fields
+
+* *Subject*: a short description of the bug. This is a required field and the primary identifier shown in the List View.
+* *Status*: where the bug is in its lifecycle: New, Assigned, Pending, Rejected, or Closed.
+* *Priority*: the urgency of the bug: Urgent, High, Medium, or Low.
+* *Type*: whether this is a Defect or a Feature request.
+* *Source*: where the bug was discovered: Internal, Forum, or Web.
+* *Found In Release*: the product release version in which the bug was identified. Links to a Release record.
+* *Fixed In Release*: the product release version in which the bug was resolved. Links to a Release record.
+* *Description*: a full description of the problem.
+* *Resolution*: how the bug was resolved: Accepted, Duplicate, Fixed, Invalid, Later, or Out of Date.
+
+== Relationships
+
+From a Bug Detail View you can view and manage all associated records via sub-panels:
+
+* *Cases*: support tickets that reported or are related to this bug.
+* *Contacts*: individuals who reported or are affected by the bug.
+* *Accounts*: organisations associated with this bug.
+* *Activities*: Calls, Meetings, and Tasks related to investigating or resolving the bug.
+* *History*: archived emails and completed activities.
+* *Documents*: supporting files such as screenshots, logs, or test cases.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging, and importing, see link:../../core-concepts/record-management[Record Management].

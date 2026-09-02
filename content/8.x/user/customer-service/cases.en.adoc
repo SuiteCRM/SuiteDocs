@@ -1,0 +1,50 @@
+---
+title: "Cases"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/customer-service/cases
+
+= Cases
+
+Cases are used to record interactions with customers when they ask for help or advice, for example in a sales or support function. A Case can be created, updated as a user works on it, assigned to a colleague, and closed when resolved. At each stage of the Case, the assigned user can track and update the incoming and outgoing conversation thread so a clear record of what has occurred is kept in SuiteCRM. Cases can be related to other records such as Accounts, Contacts, and Bugs.
+
+== Key Fields
+
+* *Subject*: a brief description of the issue. This is a required field and is the primary identifier shown in the List View and in email notifications.
+* *State*: controls whether the case is Open or Closed. Drives which Status values are available.
+* *Status*: a more granular stage within the State. Open statuses include New, Assigned, Pending Input; Closed statuses include Rejected and Closed. Administrators can customise these values.
+* *Priority*: the urgency of the case: P1 (Urgent), P2 (High), P3 (Medium).
+* *Account Name*: the Account the case belongs to. Linking to an Account gives you the full customer context and makes the case visible from the Account's Cases sub-panel.
+* *Description*: the full detail of the issue as reported.
+* *Resolution*: how the issue was resolved. Completing this field helps build a knowledge base of solutions that can be referenced for future cases.
+* *Assigned To*: the user responsible for resolving the case.
+
+== Relationships
+
+From a Case Detail View you can view and manage all associated records via sub-panels:
+
+* *Contacts*: the individuals associated with this case.
+* *Account*: the organisation the case belongs to.
+* *Bugs*: known software bugs linked to the case.
+* *Activities*: Calls, Meetings, and Tasks related to resolving the case.
+* *History*: emails and completed activities, including all update threads from the Case.
+* *Documents / Notes*: supporting files and attachments.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging, and importing, see link:../../core-concepts/record-management[Record Management].
+
+== Case Updates
+
+The *Case Updates* tab on the Case Detail View shows a chronological, threaded log of all activity on the case, including updates posted by SuiteCRM users and responses from contacts.
+
+=== Adding an Update
+
+An *Update* text field is available on the Case Updates tab. Enter your update text and click *Save*. SuiteCRM records the update in the thread and sends an email notification to all Contacts related to the case.
+
+Check *Internal Update* to record the update privately. Internal updates are visible in the Case Updates thread in SuiteCRM but are not emailed to contacts and are not visible on the customer portal, if set up.
+
+=== Creating Cases from Inbound Email
+
+Cases can be created automatically from inbound email using a group email account.

@@ -1,0 +1,92 @@
+---
+title: "Security Groups"
+weight: 20
+---
+
+= Security Groups
+
+Security Groups allow administrators to restrict access to records in SuiteCRM to specific teams of users. When Security Groups are configured, users only see records that belong to a group they are a member of.
+
+For administrator setup and configuration of Security Groups, see the Security Groups section of the link:https://docs.suitecrm.com/8.x/admin/administration-panel/administration-panel/[Administration Panel] page of the Admin Guide.
+
+{{% notice note %}}
+The advanced SecuritySuite options are available with the https://store.suitecrm.com/addons/securitysuite[SecuritySuite^] add-on.
+{{% /notice %}}
+
+== How Security Groups Work
+
+*Roles* define what a user can do with a record (view, edit, delete, export, etc.). *Security Groups* define which records a user can see. The two work together:
+
+. A role is created and assigned access levels (Owner, Group, All, or None) for each module action.
+. The role is attached to a security group.
+. Users are added to the security group.
+. Records are assigned to the security group — users in that group can then access those records according to the role settings.
+
+== Group Inheritance
+
+Once groups are set up, new records automatically inherit groups based on the SecuritySuite configuration. By default:
+
+* A new record inherits the groups of the user who created it.
+* A new record inherits the groups of the user it is assigned to.
+* A related record (for example, a Call created for a Contact) inherits the groups from its parent record.
+
+== Example: A Typical Hierarchy Setup
+
+This example shows how to configure Security Groups for a company with two sales teams and a manager hierarchy.
+
+=== The Scenario
+
+A company has two sales teams: East and West. Jill (the owner) should see all records. Will manages East Sales and Sarah manages West Sales — each should see all records within their own team. The remaining sales reps should only see their own records.
+
+=== Set Up the Groups
+
+. Create a group called *East Sales* and add Will and the East sales reps.
+. Create a group called *West Sales* and add Sarah and the West sales reps.
+
+=== Set Up the Roles
+
+. Create a role called *Everything* and set all rights to *All*. Assign this role directly to Jill's user account.
+. Create a role called *Group Only* and set all rights to *Group*. Assign this role directly to Will and Sarah.
+. Create a role called *Owner Only* and set all rights to *Owner*. Assign this role to the East Sales and West Sales groups.
+
+=== Assign Records to Groups
+
+. Go to the Leads List View and search for the leads that belong to the East Sales team.
+. Select the relevant leads, then use *Mass Assign* in the *Bulk Action* menu to assign them to the *East Sales* group.
+. Repeat for the West Sales team.
+
+{{% notice note %}}
+Going forward, new records will automatically inherit the appropriate groups based on the SecuritySuite inheritance settings. For existing data already in the system, use Mass Assign from the List View to assign groups in bulk.
+{{% /notice %}}
+
+=== Check the Settings
+
+In the Group Inheritance Rules panel (Admin → SecuritySuite Settings), the default settings — *Inherit from Created By User*, *Inherit from Assigned To User*, and *Inherit from Parent Record* — will work correctly for this scenario.
+
+One key setting to review is *Strict Rights*. With the configuration above, you will generally want to uncheck *Strict Rights* so that group assignment works as described.
+
+== Advanced Options
+
+The following options are available in *Admin* → *SecuritySuite Settings*.
+
+*Additive Rights* — the user gets the greatest rights of all roles assigned to them or their groups.
+
+*Strict Rights* — if a user is a member of several groups, only the rights from the group assigned to the current record are applied.
+
+*New User Group Popup* — when creating a new user, a popup will appear to assign the user to a group.
+
+*User Role Precedence* — if a role is assigned directly to a user, it takes precedence over any group roles.
+
+*Filter User List* — non-admin users can only assign records to users who are in the same group(s).
+
+*Use Creator Group Select* — when a user who belongs to more than one group creates a record, a panel appears allowing them to select which group(s) to associate with the new record.
+
+*Inherit from Created By User* — the record inherits all groups assigned to the user who created it.
+
+*Inherit from Assigned To User* — the record inherits all groups of the assigned user. Other groups on the record are not removed.
+
+*Inherit from Parent Record* — the record inherits groups from its parent (for example, a Case created for a Contact inherits the Contact's groups).
+
+*Default Groups for New Records* — set groups that are automatically attached whenever a record of a specific module type is created.
+
+*Inbound email account* — limits the inbound email accounts visible in the email client to those belonging to the same group as the current user.
