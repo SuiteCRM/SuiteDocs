@@ -18,24 +18,31 @@ weight: 40
 :sectnumlevels: 2
 //
 
+{{% notice info %}}
+В разделе описываются настройки SAML для SuiteCRM версий 8+.
+{{% /notice %}}
+
 == Введение
 
 Аутентификация LDAP использует  Symfony Security component authenticators for LDAP.
 SuiteCRM расширяет некоторые сервисы Symfony. Таким образом, большая часть настроек будет аналогична настройкам Symfony.
 
-{{% notice note %}}
-На данный момент устаревшие настройки LDAP игнорируются. Поддержка устаревших настроек планируется в будущем.
-{{% /notice %}}
+Имейте в виду, что подключение SuiteCRM к провайдеру LDAP будет зависеть от:
+* используемого провайдера LDAP
+* настроек провайдера LDAP
 
-== Особенности настройки LDAP в SuiteCRM 8.x
+В этой документации описываются параметры LDAP, доступные в SuiteCRM.
+Это *НЕ* руководство по настройке LDAP.
+
+== Примечание к устаревшей конфигурации
 
 Прежде чем приступить к настройке LDAP, обратите внимание на следующее:
 
-* Настройки, описанные в этом разделе:
-** Не учитываются при входе в систему с использованием API v4 или v8.
-** Не используются в устаревшей конфигурации.
-** Настройки LDAP, указанные через графический интерфейс (menu:Администрирование[Управление паролями]), не учитываются.
-* Настройки LDAP, указанные через графический интерфейс,  используются только устаревшим API v4.
+* Конфигурация, описанная в этом разделе:
+** Не используется при входе в систему с использованием API v4 или v8.
+** Не считывает данные из устаревших настроек.
+** Используется для входа в систему с использованием LDAP
+* Настройки LDAP, указанные через графический интерфейс (menu:Администрирование[Управление паролями]),  используются только устаревшим API v4.
 
 Для использования LDAP в SuiteCRM 8.x необходимо прописать соответствующие настройки в файле `.env.local` (как описано ниже) и, если вы хотите использовать API v4 с LDAP, настройте LDAP, используя графический интерфейс (menu:Администрирование[Управление паролями]). 
 
@@ -48,15 +55,22 @@ SuiteCRM расширяет некоторые сервисы Symfony. Таки�
 AUTH_TYPE=ldap
 ----
 
-== Настройка аутентификации
+{{% notice note %}}
+После внесения изменений в файл `.env.local` в корневой папке приложения обязательно выполните команду `./bin/console cache:clear`, либо в графическом интерфейсе выполните *Быстрое восстановление* из меню администратора *(Администрирование > Восстановление)*.
+{{% /notice %}}
+
+== Настройка подключения
 
 SuiteCRM предоставляет доступ к некоторым параметрам Symfony LDAP, указывая стандартные значения этих параметров в файле `.env`.
 Файл `.env` содержит значения по умолчанию для всех доступных переменных системы. Если вы хотите переопределить те или иные значения - укажите новые значения параметров в файле `.env.local`.
 
+*Параметры LDAP, указанные в файле .env по умолчанию*
+
 [source,bash]
 ----
 ###> LDAP CONFIG ###
-LDAP_HOST=''
+LDAP_CONNECTION_STRING=~ # available from 8.7.0
+LDAP_HOST=~
 LDAP_PORT=389
 LDAP_ENCRYPTION=tls
 LDAP_PROTOCOL_VERSION=3
@@ -65,6 +79,47 @@ LDAP_DN_STRING=''
 LDAP_QUERY_STRING=''
 LDAP_SEARCH_DN=''
 LDAP_SEARCH_PASSWORD=''
+
+# All the following options are available from 8.7.0
+# ldap debug logs go to php error log
+LDAP_CONNECTION_OPTION_DEBUG_LEVEL=~
+LDAP_CONNECTION_OPTION_API_INFO=~
+LDAP_CONNECTION_OPTION_DEREF=~
+LDAP_CONNECTION_OPTION_SIZELIMIT=~
+LDAP_CONNECTION_OPTION_TIMELIMIT=~
+LDAP_CONNECTION_OPTION_RESTART=~
+LDAP_CONNECTION_OPTION_SERVER_CONTROLS=~
+LDAP_CONNECTION_OPTION_CLIENT_CONTROLS=~
+LDAP_CONNECTION_OPTION_API_FEATURE_INFO=~
+LDAP_CONNECTION_OPTION_HOST_NAME=~
+LDAP_CONNECTION_OPTION_ERROR_NUMBER=~
+LDAP_CONNECTION_OPTION_ERROR_STRING=~
+LDAP_CONNECTION_OPTION_MATCHED_DN=~
+
+LDAP_CONNECTION_OPTION_TIMEOUT=~
+LDAP_CONNECTION_OPTION_NETWORK_TIMEOUT=~
+LDAP_CONNECTION_OPTION_X_TLS_CACERTDIR=~
+LDAP_CONNECTION_OPTION_X_TLS_CACERTFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_CERTFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRL_ALL=~
+LDAP_CONNECTION_OPTION_X_TLS_CRL_NONE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRL_PEER=~
+LDAP_CONNECTION_OPTION_X_TLS_KEYFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_REQUIRE_CERT=~
+LDAP_CONNECTION_OPTION_X_TLS_PROTOCOL_MIN=~
+LDAP_CONNECTION_OPTION_X_TLS_CIPHER_SUITE=~
+LDAP_CONNECTION_OPTION_X_TLS_RANDOM_FILE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRLFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_PACKAGE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRLCHECK=~
+LDAP_CONNECTION_OPTION_X_TLS_DHFILE=~
+LDAP_CONNECTION_OPTION_X_SASL_MECH=~
+LDAP_CONNECTION_OPTION_X_SASL_REALM=~
+LDAP_CONNECTION_OPTION_X_SASL_AUTHCID=~
+LDAP_CONNECTION_OPTION_X_SASL_AUTHZID=~
+LDAP_CONNECTION_OPTION_X_KEEPALIVE_IDLE=~
+LDAP_CONNECTION_OPTION_X_KEEPALIVE_PROBES=~
+LDAP_CONNECTION_OPTION_X_KEEPALIVE_INTERVAL=~
 ###< LDAP CONFIG ###
 ----
 
@@ -72,7 +127,7 @@ LDAP_SEARCH_PASSWORD=''
 
 LDAP_HOST:: Название сервера LDAP.
 
-LDAP_PORT:: Порт сервера LDAP.
+LDAP_PORT:: Порт сервера LDAP (например - 389).
 
 LDAP_ENCRYPTION:: Тип шифрования, используемый для подключения к LDAP: `none`, `tls` или `ssl`.
 
@@ -85,37 +140,67 @@ LDAP_SEARCH_DN:: DN пользователя, которое будет испо
 
 LDAP_SEARCH_PASSWORD:: Пароль пользователя, используемого в LDAP_SEARCH_DN.
 
-[discrete]
-=== Пример:
+=== Параметры подключения
 
-[source,bash]
-----
-###> LDAP CONFIG ###
-LDAP_HOST=ldap
-LDAP_ENCRYPTION=none
-LDAP_DN_STRING='cn={username},dc=example,dc=org'
-###< LDAP CONFIG ###
-----
+*Все перечисленные ниже параметры доступны в SuiteCRM 8.7.0*
 
-== Использование собственной аутентификации
+Эти параметры соответствуют параметрам, используемым в
+https://www.php.net/manual/ru/function.ldap-set-option.php[ldap_set_option^] PHP.
 
-Даже при использовании LDAP система позволяет использовать собственную аутентификацию с использованием пароля, установленного в SuiteCRM для указанного пользователя.
 
-Если в настройках пользователя параметр `external_auth_only` (см. соответствующее поле таблицы `users` в базе данных) установлен в значение *1* (или *true*), вход в систему завершится ошибкой, если указанный пароль не совпадает с паролем в LDAP, или если возникнут какие-либо другие проблемы с аутентификацией по LDAP.
-
-С другой стороны, если у пользователя параметр `external_auth_only` установлен в значение *0* (или *false*) и аутентификация по LDAP не удалась, система попытается пройти аутентификацию, используя учётные данные  SuiteCRM.
+* LDAP_CONNECTION_OPTION_DEBUG_LEVEL
+** Укажите `LDAP_CONNECTION_OPTION_DEBUG_LEVEL=7` для максимального уровня ведения журнала
+**  Отладочная информация регистрируется в журнале ошибок PHP.
+* LDAP_CONNECTION_OPTION_API_INFO
+* LDAP_CONNECTION_OPTION_DEREF
+* LDAP_CONNECTION_OPTION_SIZELIMIT
+* LDAP_CONNECTION_OPTION_TIMELIMIT
+* LDAP_CONNECTION_OPTION_RESTART
+* LDAP_CONNECTION_OPTION_SERVER_CONTROLS
+* LDAP_CONNECTION_OPTION_CLIENT_CONTROLS
+* LDAP_CONNECTION_OPTION_API_FEATURE_INFO
+* LDAP_CONNECTION_OPTION_HOST_NAME
+* LDAP_CONNECTION_OPTION_ERROR_NUMBER
+* LDAP_CONNECTION_OPTION_ERROR_STRING
+* LDAP_CONNECTION_OPTION_MATCHED_DN
+* LDAP_CONNECTION_OPTION_TIMEOUT
+* LDAP_CONNECTION_OPTION_NETWORK_TIMEOUT
+* LDAP_CONNECTION_OPTION_X_TLS_CACERTDIR
+* LDAP_CONNECTION_OPTION_X_TLS_CACERTFILE
+* LDAP_CONNECTION_OPTION_X_TLS_CERTFILE
+* LDAP_CONNECTION_OPTION_X_TLS_CRL_ALL
+* LDAP_CONNECTION_OPTION_X_TLS_CRL_NONE
+* LDAP_CONNECTION_OPTION_X_TLS_CRL_PEER
+* LDAP_CONNECTION_OPTION_X_TLS_KEYFILE
+* LDAP_CONNECTION_OPTION_X_TLS_REQUIRE_CERT
+* LDAP_CONNECTION_OPTION_X_TLS_PROTOCOL_MIN
+* LDAP_CONNECTION_OPTION_X_TLS_CIPHER_SUITE
+* LDAP_CONNECTION_OPTION_X_TLS_RANDOM_FILE
+* LDAP_CONNECTION_OPTION_X_TLS_CRLFILE
+* LDAP_CONNECTION_OPTION_X_TLS_PACKAGE
+* LDAP_CONNECTION_OPTION_X_TLS_CRLCHECK
+* LDAP_CONNECTION_OPTION_X_TLS_DHFILE
+* LDAP_CONNECTION_OPTION_X_SASL_MECH
+* LDAP_CONNECTION_OPTION_X_SASL_REALM
+* LDAP_CONNECTION_OPTION_X_SASL_AUTHCID
+* LDAP_CONNECTION_OPTION_X_SASL_AUTHZID
+* LDAP_CONNECTION_OPTION_X_KEEPALIVE_IDLE
+* LDAP_CONNECTION_OPTION_X_KEEPALIVE_PROBES
+* LDAP_CONNECTION_OPTION_X_KEEPALIVE_INTERVAL
 
 == Настройка автоматического создания пользователя
 
 По умолчанию автоматическое создание пользователей для LDAP отключено.
 
-*Если этот параметр отключён*, то вы сможете аутентифицировать пользователя с помощью LDAP только в том случае, *если он перед этим был создан в SuiteCRM.*
+*Если этот параметр отключён*, то вы сможете аутентифицировать пользователей с помощью LDAP только в том случае, *если они перед этим были создан в SuiteCRM.*
 
 Включённый параметр *LDAP_AUTO_CREATE* автоматически создаст пользователя из LDAP, если он ещё не существует в SuiteCRM.
 
 {{% notice note %}}
 Обратите внимание, что у созданного таким образом пользователя не будет установлен пароль в SuiteCRM, а параметр `external_auth_only` будет установлен в значение *1* (или true).
 {{% /notice %}}
+
+=== Включение автоматического создания пользователя
 
 Для включения автоматического создания пользователя LDAP в файле `.env.local` пропишите следующее:
 
@@ -127,6 +212,8 @@ LDAP_AUTO_CREATE=enabled
 При включении автоматического создания пользователя вам также необходимо прописать параметры, необходимые для поиска пользователя в LDAP.
 
 Как и для других уже рассмотренных параметров, для автоматического создания пользователя файл `.env` содержит значения по умолчанию, которые вы можете переопределить:
+
+*Параметры LDAP, указанные в файле .env по умолчанию*
 
 [source,bash]
 ----
@@ -141,7 +228,7 @@ LDAP_PROVIDER_FILTER=''
 ###< LDAP AUTO CREATE CONFIG ###
 ----
 
-=== Описание параметров
+==== Описание параметров
 
 LDAP_PROVIDER_BASE_DN:: Базовое (корневая) `DN`, используемое для поиска пользователей.
 
@@ -153,47 +240,26 @@ LDAP_PROVIDER_SEARCH_DN:: `DN` другого пользователя, кото
 
 LDAP_PROVIDER_SEARCH_PASSWORD:: Пароль для пользователя, используемого в параметре *LDAP_PROVIDER_SEARCH_DN*.
 
-== Дополнительные поля LDAP
+=== Сопоставление полей пользователя
 
-Настройки дополнительных полей используются для получения дополнительных атрибутов/полей из LDAP. Полученные значения могут быть использованы для заполнения параметров создаваемой записи нового пользователя.
+Автоматическое создание пользователя позволяет определять учётные данные, которые будут прописаны в БД SuiteCRM на основе атрибутов из LDAP.
 
-Настройки дополнительных полей НЕ прописываются в файле `.env`. Это делается через переопределение параметров  контейнера.
+==== Описание параметров
 
-Настройки  для дополнительных полей по умолчанию прописываются в файле `config/services/ldap/ldap.yaml`.
-
-Для переопределения настроек необходимо скопировать указанный выше файл в папку `extensions`, прописав аналогичный путь до файла, например: `extensions/<your-package>/config/services/ldap/ldap.yaml`.
-
-[source,yaml]
-----
-parameters:
-  ldap.autocreate.extra_fields_map:
-
-  ldap.extra_fields: [ ]
-
-----
-
-где:
-
-ldap.extra_fields:: Массив строк с ключом атрибутов/полей записи LDAP для извлечения (см. пример ниже).
+ldap.extra_fields:: Массив строк для извлечения с ключом атрибутов/полей записи LDAP (см. пример ниже).
 
 ldap.autocreate.extra_fields_map:: Способ сопоставления полей LDAP с полями пользователя (см. пример ниже).
 
+==== Дополнительные поля LDAP
+
+Настройки дополнительных полей НЕ прописываются в файле `.env`. Это делается через переопределение параметров контейнера.
+
+Настройки для дополнительных полей по умолчанию прописываются в файле `config/services/ldap/ldap.yaml`.
+
+Для переопределения настроек необходимо скопировать указанный выше файл в папку `extensions`, прописав аналогичный путь до файла: `extensions/<your-package>/config/services/ldap/ldap.yaml`.
+
 [discrete]
 === Пример:
-
-Настройки в файле *.env.local*
-
-[source,bash]
-----
-###> LDAP AUTO CREATE CONFIG ###
-LDAP_PROVIDER_BASE_DN='dc=example,dc=org'
-LDAP_PROVIDER_UID_KEY='cn'
-LDAP_PROVIDER_SEARCH_DN='cn=admin,dc=example,dc=org'
-LDAP_PROVIDER_SEARCH_PASSWORD='admin'
-###< LDAP AUTO CREATE CONFIG ###
-----
-
-Настройки в файле *extensions/<your-package>/config/services/ldap/ldap.yaml*
 
 [source,yaml]
 ----
@@ -205,45 +271,22 @@ parameters:
     email: email1
 ----
 
-== Использование секретов в Symfony
+== Использование собственной аутентификации
 
-Одна из замечательных особенностей использования пакетов и настроек Symfony заключается в том, что мы можем использовать весь потенциал возможностей, предлагаемых фреймфорком Symfony.
-Одна из таких возможностей - секреты (см. https://symfony.com/doc/current/configuration/secrets.html[описание^] в официальной документации)
+Возможность входа в SuiteCRM с использованием собственного логина будет зависеть от значения параметра `external_auth_only`, прописанного в профиле пользователя:
 
-Секреты Symfony позволяют нам безопасно хранить все *конфиденциальные* значения, зашифрованные в хранилище (vault). Кроме того, эти значения также могут быть определены для отдельного окружения.
+Если в настройках пользователя параметр `external_auth_only` установлен в значение *1* (или *true*), пользователь не сможет войти в систему, используя учётные данные SuiteCRM.
 
-В нашем случае это может быть использовано для хранения сертификатов и закрытых ключей, к которым мы бы не хотели иметь легкий доступ.
+С другой стороны, если для `external_auth_only` установлено значение *0* (или *false*), пользователь сможет попытаться войти в систему, при условии, что у него установлен пароль в SuiteCRM.
 
-Для добавления секретов сначала выполните действия, описанные в документе link:https://symfony.com/doc/current/configuration/secrets.html[Symfony's documentation: How to Keep Sensitive Information Secret^].
+^_Параметр{sp}должен{sp}отображаться{sp}на{sp}закладке{sp}«Дополнительно»{sp}в{sp}профиле{sp}пользователя{sp}при{sp}условии,{sp}что{sp}настроена{sp}SAML-аутентификация,{sp}см.{sp}также{sp}соответствующее{sp}поле{sp}таблицы{sp}«users»{sp}в{sp}базе{sp}данных._^
 
-[discrete]
-==== Пример:
+== Использование секретов Symfony
 
-После выполнения действий, необходимых для добавления секретов, вы можете изменить конфигурацию LDAP таким образом, чтобы некоторые настройки сохранялись в секретах. Следующие шаги могут быть использованы в качестве примера:
+Рассмотрите возможность использования секретов Symfony для хранения конфиденциальной информации, такой как сертификаты, открытые/закрытые ключи и т. д.
 
- . *Добавьте секрет для закрытого ключа LDAP*
-+
-Из корневой папки системы выполните команду `php bin/console secrets:set LDAP_SEARCH_PASSWORD` и после приглашения укажите необходимое значение.
-+
- . *<<Очистка кеша Symfony,Очистите кеш  Symfony>>*
-
-== Очистка кеша Symfony 
-
-После внесения любых изменений в файлы `.env` и `ldap.yaml`  необходимо очистить кеш Symfony.
-
-Из корневой папки системы выполните: 
-
-[source,bash]
-----
-bin/console cache:clear
-----
-
-Либо удалите содержимое папки `/<path-to-your-suite8-project>/cache`.
-
-{{% notice note %}}
-Apache / php должны иметь доступ на чтение и запись в папку `/<path-to-your-suite8-project>/cache`. +
-Это не относится к папке `/<path-to-your-suite8-project>/public/legacy/cache` - не удаляйте её содержимое.
-{{% /notice %}}
+Дополнительная информация описана в разделе
+link:../using-symfony-secrets[Использование секретов Symfony].
 
 
 == Дополнительная информация

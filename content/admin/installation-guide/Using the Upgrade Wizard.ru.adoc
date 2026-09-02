@@ -24,7 +24,7 @@ ifdef::env-github[:btn:]
 
 {{% notice info %}}
 Это страница содержит описание для SuiteCRM 7.x. Описание для SuiteCRM 8.x находится
-link:../../../8.x/admin/installation-guide/upgrading[здесь].
+link:../../../8.x/admin/upgrading[здесь].
 {{% /notice %}}
 
 Перед обновлением убедитесь, что файл *_config.php_*, расположенный в корневой папке системы, доступен для записи.
@@ -37,7 +37,7 @@ link:../../../8.x/admin/installation-guide/upgrading[здесь].
 
 *Для обновления системы при помощи мастера обновления выполните следующее:*
 
- .	Загрузите файл обновления с сайта SuiteCRM: https://suitecrm.com/upgrade-suitecrm
+ .	Загрузите пакет обновления с https://suitecrm.com/releases[официального сайта] SuiteCRM либо из https://github.com/SuiteCRM/SuiteCRM/releases[репозитория GitHub].
  .	Войдите в обновляемую систему под учётной записью администратора и в панели администрирования перейдите в раздел *_Мастер обновления_*.
 + 
 image:image1.png[Мастер обновления-страница приветствия]

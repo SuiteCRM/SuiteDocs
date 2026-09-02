@@ -1,5 +1,5 @@
 ---
-title: Установка и обновление SuiteCRM
+title: Установка SuiteCRM
 weight: 10
 ---
 
@@ -13,6 +13,22 @@ link:https://suitecrm.com[SuiteCRM] - это отмеченное награда
 Мы стремимся к тому, чтобы стать наиболее распространенной корпоративной CRM с открытым исходным кодом в мире, предоставляя пользователям полный контроль над своими данными и давая возможность свободно владеть и настраивать своё бизнес-решение.
 
 Узнать больше о SuiteCRM 8 вы можете посетив страницу link:https://suitecrm.com/suitecrm-8-public-demo/[онлайн-демонстрации^].
+
+== Установка и обновление SuiteCRM 8+
+
+{{% notice info %}}
+Этот раздел документации относится к SuiteCRM 8+. +
+Описание установки SuiteCRM 7+ находится
+link:../../../admin/installation-guide/downloading-installing[здесь]. +
+Описание обновления SuiteCRM 7+ находится 
+and link:../../../admin/installation-guide/upgrading[здесь].
+{{% /notice %}}
+
+[discrete]
+=== link:downloading-installing[Описание установки SuiteCRM 8]
+
+[discrete]
+=== link:../upgrading/general-info[Описание обновления SuiteCRM 8]
 
 == Примечания к релизу
 

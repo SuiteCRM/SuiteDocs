@@ -1,0 +1,136 @@
+---
+Title: Хранение данных в AWS S3
+weight: 40
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+
+:toc:
+:toc-title: Оглавление
+:toclevels: 2
+
+//
+:sectnums:
+:sectnumlevels: 1
+//
+
+//:imagesdir: /images/ru/
+
+{{% notice info %}}
+Описание актуально для SuiteCRM версий 8.9.0+ 
+{{% /notice %}}
+
+
+В этом описании мы настроим *private.documents.storage* для хранения файлов в AWS S3.
+
+== Предварительные требования
+
+* Контейнер AWS S3 создан и доступен.
+* Доступны ключ доступа и секрет AWS.
+* Настроены SuiteCRM с Symfony VichUploader и Flysystem.
+
+== Настройка учётных данных AWS
+
+В файл *.env.local* добавьте учётные данные AWS:
+
+[source,ini]
+----
+AWS_S3_ACCESS_KEY=your_aws_access_key
+AWS_S3_ACCESS_SECRET=your_aws_secret_key
+----
+
+== Настройка экземпляра AWS S3
+
+В файл *.env.local* добавьте настройку экземпляраAWS S3:
+
+[source,json]
+----
+AWS_S3_INSTANCES='{
+   "main": {
+       "region": "your-aws-region",
+       "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+       "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+   }
+}'
+----
+
+== Настройка хранилища Flysystem
+
+* Установите переменную *MEDIA_FLY_SYSTEM_STORAGES* в значение *private.documents.storage*:
+
+{{% notice note %}}
+В следующем примере *aws.s3.client.main* в параметре *client* должно соответствовать ключу, указанному в *AWS_S3_INSTANCES*.
+{{% /notice %}}
+
+
+[source,json]
+----
+MEDIA_FLY_SYSTEM_STORAGES='{
+   "private.documents.storage": {
+       "adapter": "aws",
+"options": {
+"client": "aws.s3.client.main",
+           "bucket": "your-s3-bucket-name"
+       }
+   }
+}'
+----
+
+* Замените *your-s3-bucket-name* на название соответствующего бакета.
+
+
+== Очистка кеша
+
+После обновления переменных окружения очистите кеш Symfony:
+
+[source,shell]
+----
+php bin/console cache:clear
+----
+
+
+== Проверка настроек
+
+Файлы, загружаемые в  *private.documents.storage*, теперь будут храниться в AWS S3. Вы можете проверить это, загрузив документ и убедившись, что он отображается в бакете AWS S3 по ожидаемому пути.
+
+
+== Примечания
+
+* По умолчанию хранилище *private.documents.storage* — локальное. Вышеописанные шаги перенастраивают его на использование AWS S3.
+* Другие хранилища можно настроить аналогичным образом, обновив их ключи в *MEDIA_FLY_SYSTEM_STORAGES*.
+* В рабочем экземпляре SuiteCRM в целях безопасности используйте секреты Symfony.
+
+
+== Использование секретов Symfony
+
+Секреты Symfony позволяют безопасно хранить конфиденциальные настройки (например, ключи API, пароли и т. д.) за пределами кодовой базы. +
+Вместо размещения секретов в .env-файлах, используйте хранилище секретов Symfony, которое шифрует значения и исключает их из системы контроля версий.
+
+Для безопасной работы с конфиденциальными данными (например, ключами доступа или строками подключения) в  переменных окружения можно использовать ссылки на секреты Symfony.
+
+Пример использования секретов:
+[source,json]
+----
+AWS_S3_INSTANCES='{
+  "main": {
+    "region": "eu-west-1",
+    "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+    "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+  }
+}'
+----
+
+Для установки секрета выполните команду:
+
+[source,bash]
+----
+php bin/console secrets:set AZURE_BLOB_CONNECTION_STRING
+----
+
+Затем обратитесь к секрету в JSON-настройках, используя *%env(SECRET_NAME)%*.
+
+{{% notice note %}}
+При использовании секретов в JSON всегда заключайте ссылку в двойные кавычки.
+{{% /notice %}}

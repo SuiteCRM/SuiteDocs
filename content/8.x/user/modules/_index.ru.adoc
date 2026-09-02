@@ -1,0 +1,12 @@
+---
+Title: "Модули SuiteCRM 8"
+Weight: 65
+chapter: true
+---
+:author: likhobory
+:email: likhobory@mail.ru
+
+== Основные модули
+
+=== Оглавление
+{{% children depth="3" showhidden="true" %}}

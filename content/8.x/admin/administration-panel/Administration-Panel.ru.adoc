@@ -1,6 +1,6 @@
 ---
-title: Панель администратора
-weight: 10
+title: Обзор панели администратора
+weight: 20
 ---
 
 :author: likhobory
@@ -11,7 +11,7 @@ weight: 10
 //:sectnumlevels: 2
 //
 
-:experimental:
+//:experimental:
 
 :imagesdir: /images/ru/8.x/admin/administration-panel
 
@@ -60,8 +60,9 @@ image:image1.png[Панель администратора SuiteCRM]
 ** Настройки PDF
 ** {adm-search}[Выбор поискового движка]
 ** {adm-search}elasticsearch[Настройка Elasticsearch]
-** {adm-system}#_планировщик[Планировщик]
+//** {adm-system}#_планировщик[Планировщик] // ver. 7.x
 ** {adm-system}#_темы[Темы]
+** link:../schedulers/[Планировщик]
 
 [discrete]
 === Настройка модулей
@@ -114,7 +115,7 @@ image:image1.png[Панель администратора SuiteCRM]
 ** {adm-google-maps}#_результаты_геокодирования[Результаты геокодирования]
 ** {adm-google-maps}#_тестирование_геокодирования[Тестирование геокодирования]
 ** {adm-google-maps}#_геокодирование_адресов[Геокодирование адресов]
-** {adm-google-maps}#_кэш_адресов[Кеш адресов]
+** {adm-google-maps}#_кеш_адресов[Кеш адресов]
 
 == Выпадающее меню панели администратора
 

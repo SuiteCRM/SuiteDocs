@@ -1,0 +1,10 @@
+---
+title: "Панель администратора"
+weight: 30
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+=== Содержание
+{{% children depth="1" showhidden="false" %}}

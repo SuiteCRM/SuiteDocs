@@ -1,0 +1,331 @@
+---
+Title: Настройка хранилища файлов
+weight: 50
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+
+:toc:
+:toc-title: Оглавление
+:toclevels: 2
+
+//
+:sectnums:
+:sectnumlevels: 2
+//
+
+//:imagesdir: /images/ru/
+
+{{% notice info %}}
+В разделе описана настройка хранилища файлов в SuiteCRM версий 8.9.0+ 
+{{% /notice %}}
+
+
+== Введение
+
+Новый механизм хранения файлов для загрузки и выгрузки данных использует достаточно гибкую систему хранения. Настройка управляется переменными окружения (см. файлы *.env* и *.env.local*), что позволяет легко переключаться между локальным и удалёнными хранилищами (AWS S3 и Azure Blob).
+
+== Обзор хранилища файлов
+
+=== Используемые пакеты Symfony
+
+* *VichUploaderBundle*: обрабатывает загрузку файлов и сопоставление файлов с сущностями Doctrine.
+* *LeagueFlysystemBundle*: Интегрирует абстракцию файловой системы Flysystem, поддерживая различные системы хранения (локальные, S3, Azure и т. д.).
+* *DoctrineBundle*: Управляет взаимодействием с базой данных для мультимедийных метаданных.
+* *ApiPlatform*: Предоставляет медиаобъекты как ресурсы API.
+
+=== Типы хранилищ
+
+Предлагается несколько типов хранилищ, каждый из которых соответствует определённому варианту использования:
+
+archived.documents.storage::
+Хранение архивных документов, обычно используемых для долговременного хранения или выполнения требований нормативных документов. +
+Используется: *ArchivedDocumentMediaObject*
+
+private.documents.storage::
+Хранение личных документов. Доступ ограничен авторизованными пользователями. +
+Используется: *PrivateDocumentMediaObject*
+
+private.images.storage::
+Хранение личных изображений, доступно только авторизованным пользователям. +
+Используется: *PrivateImageMediaObject*
+
+public.images.storage::
+Хранение изображений, предназначенных для публичного доступа (например, аватары пользователей, публичные галереи). +
+Используется: *PublicImageMediaObject*
+
+public.documents.storage::
+Хранение документов, к которым возможен публичный доступ (например, загружаемые ресурсы). +
+Используется: *PublicDocumentMediaObject*
+
+Хранилища (локальное, AWS S3, Azure Blob) настраиваются через переменные окружения.
+
+Каждое хранилище настраивается через переменную окружения `MEDIA_FLY_SYSTEM_STORAGES` как JSON-объект с указанием адаптера (*local*, *aws*, *azure*) и параметров (например, бакет или контейнер).
+
+=== Замечания по настройке
+
+* При использовании секретов в JSON всегда заключайте ссылку в двойные кавычки.
+* Настройки хранилища установлены в оптимальные значения по умолчанию, поэтому изменяйте их только в том случае, если вы уверены в своих действиях.
+* Сопоставление между классами сущностей и хранилищами определяется в YAML-файлах сопоставления VichUploader в каталоге *config/vich_uploader/*.
+* Подробнее см. примеры настроек в разделах *.env* и *.env.local*, а также файлы настроек пакетов в каталоге *config/packages/*.
+
+== Стандартные настройки
+
+=== Настройка Flysystem
+
+Файл *config/packages/flysystem.php* объединяет хранилища по умолчанию и хранилища, заданные в переменных окружения:
+
+* Хранилища по умолчанию используют адаптер local и хранят файлы в каталогах проекта.
+* Пользовательские хранилища можно определить через переменную MEDIA_FLY_SYSTEM_STORAGES для использования с AWS S3 или Azure Blob.
+* Эти настройки передаются в расширение flysystem.
+
+=== Настройка VichUploader
+
+Файл *config/packages/vich_uploader.php*:
+
+* Читает определения клиентов AWS и Azure из переменных окружения.
+* Создает определения сервисов для каждого клиента.
+* Задает сопоставления для каждого типа медиаобъекта, например:
+** *archived_documents_media_object* → *archived.documents.storage*
+** *private_documents_media_object* → *private.documents.storage*
+** *private_images_media_object* → *private.images.storage*
+** *public_images_media_object* → *public.images.storage*
+** *public_documents_media_object* → *public.documents.storage*
+* Для каждого сопоставления указываются префикс URI, целевой каталог для загрузки, настройки именования файлов и настройки именования каталогов.
+
+== Переменные окружения хранилища 
+
+=== MEDIA_FLY_SYSTEM_STORAGES
+
+Назначение::
+Определяет серверные части хранилища для Flysystem, сопоставляя логические имена хранилищ с адаптерами (локальными, AWS S3, Azure Blob и т. д.).
+
+Настройка::
+Задаётся как строка JSON, сопоставляющая ключи хранилища с настройками адаптеров.
+
+По умолчанию:
+[source,json]
+----
+{
+  "private.documents.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/uploads/documents"
+    }
+  },
+  "archived.documents.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/uploads/archived"
+    }
+  },
+  "private.images.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/uploads/images"
+    }
+  },
+  "public.images.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/public/media-upload/images"
+    }
+  },
+  "public.documents.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/public/media-upload/documents"
+    }
+  }
+}
+----
+
+Пример:
+[source,json]
+----
+MEDIA_FLY_SYSTEM_STORAGES='{
+  "private.documents.storage": {
+    "adapter": "aws",
+    "options": {
+      "client": "aws.s3.client.main",
+      "bucket": "your-bucket"
+    }
+  },
+  "private.images.storage": {
+    "adapter": "azure",
+    "options": {
+      "client": "azure.blob.client.main",
+      "container": "your-blob-container"
+    }
+  }
+}'
+----
+
+=== MEDIA_UPLOADER_MAPPINGS
+
+Назначение::
+Определяет правила сопоставления для VichUploader, которые связывают поля сущностей с хранилищами и стратегиями именования.
+
+Настройка::
+Задаётся в виде строки JSON, которая сопоставляет имена с объектами настройки.
+
+По умолчанию:
+[source,json]
+----
+{
+  "archived_documents_media_object": {
+    "uri_prefix": "/media/archived",
+    "upload_destination": "archived.documents.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "private_documents_media_object": {
+    "uri_prefix": "/media/documents",
+    "upload_destination": "private.documents.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "private_images_media_object": {
+    "uri_prefix": "/media/images",
+    "upload_destination": "private.images.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "public_images_media_object": {
+    "uri_prefix": "/media-upload/images",
+    "upload_destination": "public.images.storage",
+    "namer": "Vich\\UploaderBundle\\Naming\\SmartUniqueNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "public_documents_media_object": {
+    "uri_prefix": "/media-upload/documents",
+    "upload_destination": "public.documents.storage",
+    "namer": "Vich\\UploaderBundle\\Naming\\SmartUniqueNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  }
+}
+----
+
+Пример:
+[source,json]
+----
+MEDIA_UPLOADER_MAPPINGS='{
+  "private_documents_media_object": {
+    "uri_prefix": "/media/documents",
+    "upload_destination": "private.documents.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer"
+  }
+}'
+----
+
+=== AWS_S3_INSTANCES
+
+Назначение::
+Настраивает клиентские экземпляры AWS S3 для использования в качестве серверных частей хранилищ.
+
+Настройка::
+Задаётся как строка JSON, сопоставляющая имена экземпляров с учётными данными AWS и регионом.
+
+По умолчанию:
+[source,json]
+----
+{}
+----
+
+Пример:
+[source,json]
+----
+AWS_S3_INSTANCES='{
+  "main": {
+    "region": "eu-west-1",
+    "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+    "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+  }
+}'
+----
+
+=== AZURE_BLOB_INSTANCES
+
+Назначение::
+Настраивает клиентские экземпляры хранилища Azure Blob Storage для использования в качестве серверных частей хранилища.
+
+Настройка::
+Задаётся как строка JSON, сопоставляющая имена экземпляров со строками подключения.
+
+По умолчанию:
+[source,json]
+----
+{}
+----
+
+Пример:
+[source,json]
+----
+AZURE_BLOB_INSTANCES='{
+  "main": {
+    "connection_string": "DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net"
+  }
+}'
+----
+
+=== Использование секретов Symfony
+
+Для безопасной работы с конфиденциальными данными (например, ключами доступа или строками подключения) в  переменных окружения можно использовать ссылки на секреты Symfony.
+
+Пример использования секретов:
+[source,json]
+----
+AWS_S3_INSTANCES='{
+  "main": {
+    "region": "eu-west-1",
+    "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+    "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+  }
+}'
+----
+
+Для установки секрета выполните следующие команды:
+
+[source,bash]
+----
+php bin/console secrets:set AWS_S3_ACCESS_KEY
+php bin/console secrets:set AWS_S3_ACCESS_SECRET
+----
+
+Затем обратитесь к секрету в JSON-настройках, используя *%env(SECRET_NAME)%*.
+
+{{% notice note %}}
+При использовании секретов в JSON всегда заключайте ссылку в двойные кавычки.
+{{% /notice %}}

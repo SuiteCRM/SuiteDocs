@@ -1,0 +1,118 @@
+---
+Title: Хранение данных в Azure Blob Storage
+weight: 30
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+
+:toc:
+:toc-title: Оглавление
+:toclevels: 2
+
+//
+:sectnums:
+:sectnumlevels: 1
+//
+
+//:imagesdir: /images/ru/
+
+{{% notice info %}}
+Описание актуально для SuiteCRM версий 8.9.0+ 
+{{% /notice %}}
+
+
+В этом описании мы настроим *private.documents.storage* для хранения файлов в Azure Blob Storage.
+
+== Предварительные требования
+
+* Созданы учётная запись и контейнер Azure Blob Storage.
+* Доступна строка подключения к Azure.
+* Настроены SuiteCRM с VichUploader и Flysystem.
+
+== Настройка экземпляра BLOB-объекта Azure
+
+В файл *.env.local* добавьте настройку экземпляра Azure Blob:
+
+[source,json]
+----
+AZURE_BLOB_INSTANCES='{
+  "main": {
+    "connection_string": "DefaultEndpointsProtocol=https;AccountName=YOUR_ACCOUNT;AccountKey=YOUR_KEY;EndpointSuffix=core.windows.net"
+  }
+}'
+----
+
+== Настройка хранилища Flysystem
+
+* Установите переменную *MEDIA_FLY_SYSTEM_STORAGES* в значение *private.documents.storage*:
+
+{{% notice note %}}
+В следующем примере *azure.blob.client.main* в параметре *client* должно соответствовать ключу, указанному в *AZURE_BLOB_INSTANCES*.
+{{% /notice %}}
+
+
+[source,json]
+----
+MEDIA_FLY_SYSTEM_STORAGES='{
+  "private.documents.storage": {
+    "adapter": "azure",
+"options": {
+"client": "azure.blob.client.main",
+      "container": "YOUR_CONTAINER_NAME"
+    }
+  }
+}'
+----
+
+* Замените *YOUR_CONTAINER_NAME* на название вашего контейнера Azure Blob.
+
+== Очистка кеша
+
+После обновления переменных окружения очистите кеш Symfony:
+
+[source,shell]
+----
+php bin/console cache:clear
+----
+
+== Проверка конфигурации
+
+Файлы, загружаемые в  *private.documents.storage*, теперь будут храниться в Azure Blob Storage. Вы можете проверить это, загрузив документ и убедившись, что он отображается в контейнере Azure.
+
+== Примечания
+
+* По умолчанию хранилище *private.documents.storage* — локальное. Вышеописанные шаги перенастраивают его на использование Azure.
+* Другие хранилища можно настроить аналогичным образом, обновив их ключи в *MEDIA_FLY_SYSTEM_STORAGES*.
+* В рабочем экземпляре SuiteCRM в целях безопасности используйте секреты Symfony.
+
+== Использование секретов Symfony
+
+Секреты Symfony позволяют безопасно хранить конфиденциальные настройки (например, ключи API, пароли и т. д.) за пределами кодовой базы. +
+Вместо размещения секретов в .env-файлах, используйте хранилище секретов Symfony, которое шифрует значения и исключает их из системы контроля версий.
+
+Для безопасной работы с конфиденциальными данными (например, ключами доступа или строками подключения) в  переменных окружения можно использовать ссылки на секреты Symfony.
+
+Пример использования секретов:
+[source,json]
+----
+AZURE_BLOB_INSTANCES='{
+  "main": {
+    "connection_string": "%env(AZURE_BLOB_CONNECTION_STRING)%",
+  }
+}'
+----
+
+Для установки секрета выполните команду:
+
+[source,bash]
+----
+php bin/console secrets:set AZURE_BLOB_CONNECTION_STRING
+----
+
+Затем обратитесь к секрету в JSON-настройках, используя *%env(SECRET_NAME)%*.
+
+{{% notice note %}}
+При использовании секретов в JSON всегда заключайте ссылку в двойные кавычки.
+{{% /notice %}}

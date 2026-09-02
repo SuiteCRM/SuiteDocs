@@ -113,4 +113,3 @@ In SuiteCRM 8.8 angular version has been updated to v18. This brought some chang
 
 
 
-

@@ -1,6 +1,6 @@
 ---
 Title: Синхронизация с календарём Google
-Weight: 65
+Weight: 80
 ---
 
 :author: likhobory
@@ -20,7 +20,10 @@ ifdef::env-github[:imagesdir: ../../../static/images/ru/admin/GoogleAPI]
 ifdef::env-github[:btn:]
 
 {{% notice info %}}
-Синхронизация с календарём Google доступна в версии 7.11 и выше.
+Раздел актуален только для версий 7.11-7.14. +
+Для версий 7.15+ ознакомьтесь с разделом
+link:../calendar-sync/[Синхронизация календаря]. +
+При обновлении с версий 7.11-7.14 все существующие настройки синхронизации будут автоматически перенесены. 
 {{% /notice %}}
 
 SuiteCRM может синхронизировать link:../../../user/core-modules/meetings[Встречи] с https://ru.wikipedia.org/wiki/Google_Календарь[календарём Google^]. 
