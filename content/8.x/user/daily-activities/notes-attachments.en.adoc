@@ -1,6 +1,6 @@
 ---
 title: "Notes & Attachments"
-weight: 30
+weight: 80
 ---
 
 :imagesdir: /images/en/8.x/user/daily-activities

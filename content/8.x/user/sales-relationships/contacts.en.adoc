@@ -1,0 +1,66 @@
+---
+title: "Contacts"
+weight: 17
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/contacts
+
+== Overview
+
+A Contact is an individual person, typically associated with an Account (organisation) or an Opportunity. For example, if Techco is the Account, then John Smith, Sales Manager at Techco, is the Contact. The Contacts module stores all information relating to these individuals and provides a single place to view every interaction — calls, meetings, emails, cases, and campaigns — associated with that person.
+
+Contacts are usually created directly, converted from a Lead once qualified, or created automatically during Lead conversion.
+
+== Key Fields
+
+[cols="25,75"]
+|===
+|*Field*|*Description*
+
+|*First Name / Last Name*|The contact's name. Last Name is required.
+|*Account Name*|Links the Contact to their organisation. Populating this field creates a relationship with the Account record and causes the Contact to appear in the Account's Contacts sub-panel.
+|*Job Title / Department*|The Contact's role and team within their organisation.
+|*Office Phone / Mobile*|Primary contact numbers for the individual.
+|*Email Address*|Used for email communications, campaign sending, and system notifications.
+|*Reports To*|Links to another Contact record, allowing you to model a reporting hierarchy within an organisation.
+|*Lead Source*|Records how the Contact was acquired: Cold Call, Existing Customer, Self Generated, Employee, Partner, Public Relations, Direct Mail, Conference, Trade Show, Web Site, Word of Mouth, Email, Campaign, or Other. Useful for campaign attribution and reporting.
+|*Do Not Call*|Marks this Contact as someone who should not be contacted by phone. SuiteCRM respects this flag in calling workflows.
+|*Email Opt Out*|Marks this Contact as having opted out of email communications. SuiteCRM will not send campaign emails to a Contact with this flag set.
+|*Campaign*|Records which campaign this Contact is associated with, if any.
+|*Opportunity Role*|When a Contact is linked to an Opportunity, this field records their role in the deal, for example Decision Maker, Evaluator, or Influencer. Set from the Opportunity's Contacts sub-panel.
+|*Assigned To*|The SuiteCRM user responsible for this Contact.
+|===
+
+== Relationships
+
+From a Contact record you can view and manage all associated records via the Relationships section:
+
+[cols="30,70"]
+|===
+|*Sub-panel*|*Contains*
+
+|*Activities*|Calls, Meetings, Tasks, and Emails logged against the Contact. Completed items move to the History sub-panel.
+|*History*|Completed activities and archived emails associated with the Contact.
+|*Opportunities*|Deals the Contact is involved in.
+|*Cases*|Support tickets associated with the Contact.
+|*Documents*|Files attached to the Contact.
+|*Leads*|Leads associated with the Contact.
+|*Direct Reports*|Other Contacts who report to this Contact, based on their Reports To field.
+|*Campaigns*|Campaigns the Contact has been included in, showing how they have responded.
+|*Quotes*|Quotes associated with the Contact.
+|*Invoices*|Invoices associated with the Contact.
+|*Contracts*|Contracts associated with the Contact.
+|===
+
+== Working with Contacts
+
+* *Importing a vCard*: create a new Contact by importing a vCard (`.vcf`) file. Select *Import vCard* from the Contacts module menu and upload the file. SuiteCRM will pre-populate the Contact fields from the vCard data.
++
+* *Creating a portal user*: if your SuiteCRM instance has the customer portal enabled, a Contact can be given portal access directly from their Detail View. See your administrator for portal configuration details.
+* *Creating contacts from leads*: when a Lead is qualified and converted, SuiteCRM can create a related Contact automatically. See link:../leads[Leads] for how conversion works.
+
+== Where to Go Next
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging, and importing, see link:../../core-concepts/record-management[Record Management].

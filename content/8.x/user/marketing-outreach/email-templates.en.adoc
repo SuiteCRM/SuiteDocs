@@ -1,0 +1,46 @@
+---
+title: "Email Templates"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/email-templates
+
+= Email Templates
+
+== Overview
+
+Email templates are used to send standardised responses and notifications by email. Adding variables allows you to personalise these communications and include additional relevant information such as order details.
+
+Email templates can be viewed and created from the *Email Templates* module. Navigate to it using the top navigation bar, then use the module menu to create a new template or the List View to browse existing ones. Templates can also be created directly from the Workflows and Campaigns modules.
+
+{{% notice tip %}}
+The editor used for creating and editing email templates can be selected in your link:../../getting-started/managing-your-profile/#_personal_email_account_settings[user profile email settings], where you can choose between Direct HTML and TinyMCE.
+{{% /notice %}}
+
+There are a number of default *System* templates which are created on install. These are used to send out system notifications such as new passwords or case updates. These can be viewed and edited here alongside user-generated templates. Templates created here can also be used in Workflows and link:../campaigns-overview[Campaigns], as well as for system notifications.
+
+Click a template name in the List View to view it. To edit an existing template, click the *Pencil* icon beside the template name, or open the template and select *Edit* from the *Actions* menu.
+
+== Creating an Email Template
+
+Select *Create Email Template* from the module menu. This form will also appear if you choose to create a template from within another module, such as Workflows.
+
+Select *Email*, *Campaign* or *System* depending on the intended use for the template. *System* templates are used to send system generated notifications such as case updates.
+
+=== Body
+
+Use the editor toolbar to format the body of the template. Depending on which editor is configured in your profile settings, this will be either a Direct HTML field or the TinyMCE rich text editor.
+
+=== Adding Variables
+
+To add a variable, select the appropriate module and field name from the drop-down lists, then click *Insert* to add the variable at the cursor position. Variables can be added to the subject line as well as the body of the email template.
+
+For more on inserting and parsing variables, see link:../../daily-activities/emails/email-compose/#_variable_injection[Variable Injection].
+
+=== Attachments
+
+Attach an external file or an existing SuiteCRM Document to the template. Further items can be attached in the same way. Any attached files will be sent to all recipients of the template.
+
+=== Security Groups
+
+Restrict access to a template by selecting a Security Group.

@@ -1,0 +1,127 @@
+---
+title: "Surveys"
+weight: 60
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/surveys
+
+= Surveys
+
+== Overview
+
+The Surveys module allows you to create a web-based survey with a variety of question-type options. The responses received are stored in SuiteCRM and can be viewed on a per-respondent basis or as a detailed summary report using charts where appropriate.
+
+Surveys can be sent as part of a link:../campaigns-overview[Campaign].
+
+== Create Survey
+
+Navigate to the Surveys module using the top navigation bar, then select *Create Survey* from the module menu.
+
+*Name:* enter the title of the survey to be displayed to users.
+
+*Status:*
+
+* *Draft*: survey in preparation, not yet ready to publish and seek responses.
+* *Public*: once ready, setting the survey status to *Public* will generate a URL link for the survey. The survey can be viewed and completed and any responses submitted will be recorded. Note that once responses have been received, the survey questions cannot be edited.
+* *Closed*: a closed survey will not accept any further responses. Users navigating to the survey link will see a message informing them that the survey is now closed.
+
+*Description:* note that this description is internal only — it will not be displayed to users as part of the survey.
+
+=== Add Questions
+
+Click *New Question* to add a question to the survey.
+
+Enter the question text and select the question type from the drop-down list. The available question types are as follows:
+
+[cols="10,90"]
+|===
+|*Text*|A standard text input
+|*Textbox*|A larger text input area
+|*Checkbox*|Displays a single checkbox alongside the question.
+|*Radio*|Specify a number of answer options to choose from, with radio buttons. Only one answer can be selected.
+|*Dropdown*|Specify a number of answer options to choose from, in a drop-down list. Only one answer can be selected.
+|*Multiselect*|Similar to a drop-down list, but one or more answers can be selected.
+|*Matrix*|For each option specified, the user will be able to answer "Satisfied", "Neither Satisfied nor Dissatisfied" or "Dissatisfied". These responses can also be customised — see below.
+|*DateTime*|A date/time picker will be displayed for the user to select a date and time.
+|*Date*|A date picker will be displayed for the user to select a date.
+|*Scale*|A 1-10 scale will be displayed. Users can select one number on the scale in response to the question.
+|*Rating*|A five-star rating widget will be displayed. Users can select 0 to 5 stars in response to the question.
+|===
+
+For *Dropdown*, *Multiselect* and *Radio* type questions, click *Add Option* to add answer options to the question, and remove unwanted options by clicking the *x* beside them. Options for *Matrix* type questions are added in the same way.
+
+Click *New Question* to add more questions in the same way. Questions can be reordered (moved up or down) or deleted using the action buttons beside each question.
+
+=== Further Options
+
+*Submit:* edit the text for the survey's Submit button here, if desired.
+
+You can also customise the default response text shown for *Matrix* type questions.
+
+Click *Save* to save the survey. The Detail View for the draft survey will then be displayed, showing all the survey questions and question types included in the survey.
+
+{{% notice note %}}
+The URL field is blank on a draft survey. This field displays the CRM-generated URL link for the survey once the survey status has been set to *Public*.
+{{% /notice %}}
+
+== View Survey
+
+Once completed, you can view the survey as it will be shown to participants. Select *Edit* from the *Actions* menu and set the survey status to *Public*, then click *Save*.
+
+The Detail View for the survey will be displayed, now showing the URL for the survey. Click the URL to view the survey in your browser.
+
+Responses can be submitted by clicking *Submit*. Users will then be redirected to a thank you page and the responses will be recorded.
+
+{{% notice warning %}}
+Once responses have been received, survey questions cannot be edited.
+{{% /notice %}}
+
+{{% notice tip %}}
+The logo displayed above the survey is the current logo set for your SuiteCRM instance.
+{{% /notice %}}
+
+== Edit Survey
+
+From the List View, click the *Pencil* icon beside the survey name to open it in *Edit* mode. From the Detail View, select *Edit* from the *Actions* menu.
+
+{{% notice note %}}
+Questions can only be edited in Draft surveys, or in Public surveys which have not yet received responses.
+{{% /notice %}}
+
+== Survey Responses
+
+The Survey Responses sub-panel, found on the Detail View for the survey, shows the individual responses received from each respondent. Click a respondent's name to view their responses.
+
+The Survey Responses sub-panel can also be accessed from the Campaign Status page for a link:../campaigns-overview[campaign].
+
+== Survey Reports
+
+Survey responses can also be viewed as a Survey Report, showing a summary of all the responses by question. Charts are used where appropriate to display the data. Individual responses cannot be viewed from the Survey Report — to view a particular respondent's answers, use the survey's <<Survey Responses>> sub-panel instead.
+
+Select *View Survey Reports* from the *Actions* menu on the survey's Detail View to open the report.
+
+== Survey Campaign
+
+{{% notice note %}}
+The following section covers Survey-specific campaign settings only. See link:../campaigns-overview[Campaigns] for detailed instructions on setting up a campaign.
+{{% /notice %}}
+
+Surveys can be sent out as part of a campaign, which will track and record the survey responses received from each recipient.
+
+From the Campaigns module, select *Create Campaign* from the module menu, then select *Survey* to launch the Survey Campaign Wizard.
+
+=== Campaign Header
+
+The survey is attached to the campaign on the Campaign Header tab. Click *Select* to choose the survey from the pop-up.
+
+=== Survey Email Template
+
+Create or edit an existing template for the survey. Survey variables are available from the drop-down list.
+
+You will need to include the Surveys URL variable `$surveys_survey_url_display` in your template. This will include a unique link to the survey so that individual responses can be tracked.
+
+Click *Save* to retain your template settings.
+
+=== Campaign Status
+
+On the Campaign Status page, the Survey Responses sub-panel can be expanded to view survey responses from individual respondents. Click a respondent's name to view the responses.

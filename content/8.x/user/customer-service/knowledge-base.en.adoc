@@ -1,0 +1,32 @@
+---
+title: "Knowledge Base"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/user/customer-service/knowledge-base
+
+= Knowledge Base
+
+The Knowledge Base is a repository of articles containing solutions, FAQs, and guidance for handling common support queries. When a new Case is created, SuiteCRM automatically compares the case subject against existing Knowledge Base articles and suggests relevant matches, helping support staff resolve issues more quickly without duplicating effort.
+
+== Key Fields
+
+* *Article Title*: the title of the article. Should be descriptive enough to surface in subject-based searches. Required.
+* *Status*: controls the article's visibility: Draft (work in progress), Pending (awaiting approval), Not Published (hidden from use), Published (visible to users), or Expired (no longer current).
+* *Article Text*: the full body of the article, including the solution or guidance. Articles are surfaced as suggestions when their topic or text matches a new Case subject.
+* *Resolution*: a concise summary of the solution. This text can be copied directly into the resolution field when closing a related Case.
+* *Version*: tracks the revision number of the article.
+* *Author*: the user who wrote the article. Required.
+* *Approved By*: the user who approved the article for publication.
+
+== Categories
+
+With a large number of articles, they can be organised into categories using the *Knowledge Base Categories* module. When creating a category, enter a name and description. Once saved, articles are added to a category from the *Knowledge Base Articles* sub-panel on the Category record.
+
+== Relationships
+
+Knowledge Base articles are automatically surfaced as suggestions on new Case records where the subject matches article content. Articles can also be linked manually from a Case record's sub-panel.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating, and merging, see link:../../core-concepts/record-management[Record Management].

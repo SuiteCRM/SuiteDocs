@@ -1,0 +1,56 @@
+---
+title: "Leads"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/leads
+
+== Overview
+
+A Lead is an unqualified contact, usually generated from a marketing activity — for example, someone who filled out a form on your website or was met at a trade show, where it is not yet known whether they have buying authority.
+
+Once a Lead is qualified, it can be converted into a Contact (who the person is), an Account (where they work), and an Opportunity (what they might buy).
+
+== Key Fields
+
+* *Lead Source*: records how the Lead was acquired, for example Website, Trade Show, Word of Mouth, Cold Call, or Campaign. Useful for measuring the effectiveness of marketing channels.
+* *Status*: tracks where the Lead is in the qualification process: New, Assigned, In Process, Converted, Recycled, or Dead.
+* *Account Name*: the company the Lead works for. This is a plain text field on a Lead — unlike on a Contact, where it is a relationship to an Account record — and becomes a full Account relationship on conversion.
+* *Title / Department*: the Lead's role and team within their organisation.
+* *Referred By*: records who referred the Lead to you.
+* *Do Not Call / Email Opt Out*: compliance flags that carry over when the Lead is converted to a Contact.
+* *Campaign*: links the Lead to the campaign that generated it, feeding campaign ROI reporting.
+* *Website*: the company website of the Lead. Carried over to the Account when the Lead is converted.
+
+== Relationships
+
+From a Lead record you can view and manage related records via the Relationships section:
+
+* *Activities*: Calls, Meetings, Tasks, and Emails logged against the Lead.
+* *History*: archived emails and completed activities.
+* *Documents*: files attached to the Lead.
+* *Campaigns*: the campaign the Lead originated from.
+
+For information on working with sub-panels and relationships, see link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+For standard record operations including searching, editing, duplicating, merging, and importing, see link:../../core-concepts/record-management[Record Management].
+
+== Converting a Lead
+
+Once enough information has been gathered about a Lead, it can be converted into a Contact, Account, and Opportunity.
+
+. Open the Lead's Detail View.
+. Select *Convert Lead* from the *Actions* drop-down.
+. On the Convert Lead screen, work through each section in turn — Contact, Account, and Opportunity. Fields are pre-populated from the Lead's data where possible; fill in the remaining relevant fields for each.
+. For each section, you can either create a new record or, if a matching record already exists, deselect the *Create* option and select an existing record instead.
+. Click *Save* to complete the conversion.
+
+=== Duplicate Record Check
+
+When converting a Lead, SuiteCRM automatically checks for duplicate records and displays a warning if a matching record is found. If the warning is not valid and you still wish to create a new record, click *Create*. If the record already exists, select it instead.
+
+== Where to Go Next
+
+For details on converting a Lead into an Account and Contact, see link:../accounts[Accounts] and link:../contacts[Contacts].
+
+For details on the resulting sales pipeline record, see link:../opportunities[Opportunities].

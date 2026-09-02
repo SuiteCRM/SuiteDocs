@@ -1,0 +1,178 @@
+---
+title: "Quotes, Invoices & Contracts"
+weight: 25
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/quotes-invoices-contracts
+
+== Overview
+
+The Quotes, Invoices, and Contracts modules support the post-opportunity sales process — from preparing a Quote for a prospect, through issuing an Invoice, to managing an ongoing Contract. All three modules share the same line items structure for recording products and services.
+
+AOS Settings (initial quote and invoice numbering, line item groups, and tax behaviour) are configured by an administrator. See link:../../../../admin/administration-panel/advanced-openadmin[AOS Settings].
+
+== Products
+
+The Products module (also called the product catalogue) stores the items available for selection when building line items on Quotes, Invoices, and Contracts. Each Product record holds:
+
+* *Name* and *Part Number*
+* *Category*: relates to a Product Category record
+* *Cost Price* and *List Price*: List Price is the default selling price used in quotes
+* *Supplier Contact*: the point of contact at the supplier for this product
+* *Image* and *Product URL*: optional reference information
+
+To create a Product, navigate to the Products module and select *Create Product* from the module menu.
+
+== Product Categories
+
+Product Categories let you organise Products into a hierarchy. Each category can have a Parent Category, or can be marked as *Is Parent Category* to indicate it is a top-level category, in which case no Parent Category can be set.
+
+== PDF Templates
+
+The PDF Templates module lets you create reusable document templates for generating PDFs from Quotes, Invoices, Contracts, Accounts, Contacts, and Leads. Templates support dynamic field insertion, line item tables, headers, footers, and page margins.
+
+See link:../pdf-templates[PDF Templates] for full details on creating templates and generating PDF documents.
+
+== Quotes
+
+=== Creating a Quote
+
+Navigate to the Quotes module and select *Create Quote* from the module menu. The key fields are:
+
+[cols="25,75"]
+|===
+|*Quote Number*|Assigned automatically; read-only.
+|*Title*|The name of the quote.
+|*Quote Stage*|The current stage of the quote: Draft, Negotiation, Delivered, On Hold, Confirmed, Closed Accepted, Closed Lost, or Closed Dead.
+|*Valid Until*|The expiry date of the quote.
+|*Approval Status*|Whether the quote has been approved: Approved or Not Approved.
+|*Approval Issues*|Free-text field to describe any approval issues.
+|*Invoice Status*|Whether the quote has been invoiced: Not Invoiced or Invoiced. Set automatically when the quote is converted to an Invoice.
+|*Payment Terms*|Net 15 or Net 30.
+|*Account*|The billing account. Selecting an Account automatically populates the Billing Address and Shipping Address fields from the Account record.
+|*Contact*|The billing contact.
+|*Opportunity*|An optional link to a related Opportunity.
+|===
+
+[[line-items]]
+=== Line Items
+
+The line items section is where you build the detail of the quote. If line item groups are enabled in AOS Settings, you can organise line items into named groups, each with its own group subtotal.
+
+==== Adding a Group
+
+Select *Add Group* to create a group. Enter a *Group Name*, then add product or service lines to it.
+
+==== Adding a Product Line
+
+Select *Add Product Line* within a group. To select a product from the catalogue, start typing in the *Product* or *Part Number* field to search, or use the selector icon next to the Part Number field to open the product selector pop-up.
+
+When a product is selected, the *List* price and *Sale Price* populate automatically. You can adjust:
+
+* *Quantity*: the number of units
+* *Discount*: enter an amount and select *Pct* (percentage) or *Amt* (fixed amount)
+* *Tax*: VAT rate, for example 0%, 5%, 7.5%, 17.5%, or 20%
+
+The *Total* for the line is calculated as: (Sale Price × Quantity) + Tax.
+
+==== Adding a Service Line
+
+Select *Add Service Line* to quote for a service that is not in the product catalogue. Enter the *List* price manually. Discount and Tax fields work the same as for product lines.
+
+==== Totals
+
+Each group shows a *Group Total*. Below all groups, the summary shows:
+
+* *Subtotal*: sum of all line item totals before tax, if "Add Tax to Line Total" is off in AOS Settings
+* *Discount*: total discount across all lines
+* *Tax*: total tax across all lines
+* *Shipping*: enter a shipping cost manually
+* *Shipping Tax*: tax applied to the shipping amount
+* *Grand Total*: the final total
+
+=== Sending a Quote
+
+From the Quote Detail View, use the *Actions* drop-down to output the quote:
+
+* *Print as PDF*: select a PDF template and download the quote as a PDF file.
+* *Email PDF*: select a PDF template, then open the compose screen with the PDF attached and the quote's Contact pre-filled as the recipient.
+* *Email Quotation*: open the compose screen addressed to the quote's Contact. The quote is rendered in the email body; there is no PDF attachment.
+
+=== Converting to an Invoice
+
+Select *Convert to Invoice* from the Quote Detail View's *Actions* drop-down. SuiteCRM opens the Invoice Edit View with all fields and line items copied from the quote. Save the Invoice to confirm the conversion. The Quote's *Invoice Status* field is set to *Invoiced* automatically.
+
+=== Creating a Contract from a Quote
+
+Select *Create Contract* from the Quote Detail View's *Actions* drop-down. SuiteCRM opens the Contract Edit View with fields and line items copied from the quote. Save the Contract to confirm.
+
+=== Creating an Opportunity from a Quote
+
+Select *Create Opportunity* from the Quote Detail View's *Actions* drop-down to create a new Opportunity linked to the quote.
+
+== Invoices
+
+=== Creating an Invoice
+
+Navigate to the Invoices module and select *Create Invoice* from the module menu. Invoices can be created independently or by converting a Quote (see <<Converting to an Invoice>>).
+
+The key fields are:
+
+[cols="25,75"]
+|===
+|*Invoice Number*|Assigned automatically; read-only.
+|*Invoice Date*|The date the invoice was raised.
+|*Due Date*|The payment due date.
+|*Status*|Paid, Unpaid, or Cancelled.
+|*Payment Terms*|Net 15 or Net 30.
+|*Account*|The billing account. Selecting an Account populates the Billing Address and Shipping Address.
+|*Contact*|The billing contact.
+|*Opportunity*|An optional link to a related Opportunity.
+|===
+
+=== Line Items
+
+Groups and line items on Invoices work identically to Quotes. See <<line-items,Line Items>>.
+
+=== Sending an Invoice
+
+From the Invoice Detail View's *Actions* drop-down:
+
+* *Print as PDF*: select a template and download the invoice as a PDF.
+* *Email PDF*: select a template and open the compose screen with the PDF attached.
+* *Email Invoice*: open the compose screen addressed to the invoice's Contact. The invoice is rendered in the email body with no PDF attachment.
+
+== Contracts
+
+=== Creating a Contract
+
+Navigate to the Contracts module and select *Create Contract* from the module menu. Contracts can also be created from a Quote using *Create Contract* (see <<Creating a Contract from a Quote>>).
+
+The key fields are:
+
+[cols="25,75"]
+|===
+|*Contract Title*|The name of the contract.
+|*Reference Code*|An optional reference identifier.
+|*Status*|Not Started, In Progress, or Signed.
+|*Contract Type*|An admin-configured drop-down for categorising the contract.
+|*Account*|The account the contract is with.
+|*Contact*|The primary contact for the contract.
+|*Opportunity*|An optional link to a related Opportunity.
+|*Contract Manager*|The user responsible for the contract. The renewal reminder call is assigned to this person.
+|*Start Date*|The contract start date.
+|*End Date*|The contract end date.
+|*Customer Signed Date*|The date the customer signed the contract.
+|*Company Signed Date*|The date your company signed the contract.
+|*Renewal Reminder Date*|Populated automatically when End Date is set, based on the Renewal Reminder Period in AOS Settings. Can be edited manually.
+|===
+
+=== Renewal Reminders
+
+When a Contract is saved with a Renewal Reminder Date set, SuiteCRM automatically creates a Planned Call named "[Contract Title] Contract Renewal Reminder", scheduled for the Renewal Reminder Date and assigned to the Contract Manager. The call is related to the contract's Account.
+
+If the Renewal Reminder Date changes, the call is updated. If the contract is deleted, the call is deleted.
+
+=== Line Items
+
+Groups and line items on Contracts work identically to Quotes. See <<line-items,Line Items>>.
