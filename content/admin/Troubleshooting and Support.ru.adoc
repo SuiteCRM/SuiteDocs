@@ -1,6 +1,6 @@
 ---
 Title: Устранение неполадок и техническая поддержка
-Weight: 20
+Weight: 80
 ---
 
 :author: likhobory

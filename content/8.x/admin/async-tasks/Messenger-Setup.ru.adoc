@@ -219,7 +219,7 @@ link:../../../../admin/administration-panel/system/#_восстановлени�
 
 Если по какой-либо причине *таблица не была создана*, вы можете создать ее вручную, выполнив команду:
 
-[источник, bash]
+[source, bash]
 ----
 php bin/console messenger:setup-transports
 ----

@@ -152,7 +152,7 @@ link:../admin-setup#_выбор_стратегии_разрешения_конф
 
 Для просмотра ошибок синхронизации выполните команду:
 
-[console]
+[source,bash]
 ----
 grep -E "error|failed" suitecrm.log | grep -E "CalendarSync|CalendarProvider" | tail -50
 ----

@@ -1,6 +1,6 @@
 ---
 Title: Таблица совместимости
-Weight: 60
+Weight: 90
 ---
 
 :author: likhobory
