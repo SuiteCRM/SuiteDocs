@@ -1,0 +1,28 @@
+---
+title: Guía de instalación
+weight: 10
+---
+
+== Introducción
+
+link:https://suitecrm.com[SuiteCRM] es la galardonada aplicación de software de gestión de relaciones con clientes (CRM) de código abierto y lista para el uso empresarial.
+
+Nuestra visión es ser el CRM empresarial de código abierto más adoptado del mundo, dando a los usuarios control total sobre sus datos y libertad para poseer y personalizar su solución de negocio.
+
+Descubre más sobre SuiteCRM 8 y prueba la demo en línea link:https://suitecrm.com/suitecrm-8-public-demo/[aquí]
+
+== Instalación y actualización
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7:
+haz clic link:../../../admin/installation-guide/downloading-installing[aquí] para la instalación
+y link:../../../admin/installation-guide/upgrading[aquí] para la actualización.
+{{% /notice %}}
+
+Para instalar SuiteCRM 8, empieza link:../../admin/installation-guide/downloading-installing[aquí]
+
+Para actualizar SuiteCRM 8, empieza link:../../admin/upgrading/general-info[aquí]
+
+== Notas de la versión
+
+Consulta las últimas notas de la versión de SuiteCRM link:../releases[aquí].

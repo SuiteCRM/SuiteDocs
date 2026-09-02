@@ -1,0 +1,100 @@
+---
+title: "Upgrade Wizard"
+weight: 20
+aliases:
+  - /es/admin/installation-guide/using-the-upgrade-wizard/
+---
+:experimental:
+
+El Upgrade Wizard ofrece un proceso de actualización guiado desde el navegador, accesible directamente desde el panel de Administración de SuiteCRM.
+
+{{% notice warning %}}
+Antes de continuar, asegúrese de haber completado todos los pasos de la página link:../before-you-upgrade[Antes de Actualizar], incluida la copia de seguridad de su instancia y la configuración de los límites de PHP.
+{{% /notice %}}
+
+== Cuándo usar el Upgrade Wizard
+
+El Upgrade Wizard es adecuado para la mayoría de las actualizaciones estándar. Considere usar la link:../cli-upgrade[Actualización por CLI] en su lugar si:
+
+* Alguna tabla de su base de datos tiene más de ~10.000 registros
+* El asistente ha excedido el tiempo de espera anteriormente en su servidor
+* Su entorno de hospedaje tiene límites de tiempo de espera restrictivos en PHP o en el servidor web
+
+== Ejecución del Upgrade Wizard
+
+=== Paso 1: Acceder al Upgrade Wizard
+
+. Inicie sesión como administrador.
+. Vaya a menu:Administración[Asistente de Actualizaciones].
+
+=== Paso 2: Comprobación del Sistema
+
+El asistente ejecuta una comprobación automática de su entorno. Informará de cualquier problema con los permisos de archivos, la conectividad de la base de datos o la configuración del servidor.
+
+* Si se informa de algún problema, resuélvalo antes de continuar.
+* Si todas las comprobaciones se superan correctamente, haga clic en btn:[Next].
+
+=== Paso 3: Subir el paquete de actualización
+
+. Haga clic en btn:[Choose File] y seleccione el ZIP de actualización que descargó de la página de versiones de SuiteCRM.
+. Haga clic en btn:[Upload Upgrade].
+
+El sistema subirá y validará el paquete. Si es necesario, use btn:[Delete Package] para eliminarlo y subir un archivo diferente.
+
+Una vez que el paquete aparezca en la lista, haga clic en btn:[Next].
+
+=== Paso 4: Comprobación previa (preflight)
+
+El asistente comprueba el paquete de actualización frente a su instalación actual.
+
+* Si el paquete de actualización incluye cambios en el esquema SQL, aparecerán un enlace *Show Schema Change Script* y un desplegable *Database Update Method*. Estos solo se muestran cuando hay consultas de esquema que ejecutar; la mayoría de las actualizaciones estándar no los mostrarán.
+** Si son visibles, deje el método de actualización de base de datos establecido en *Run SQL* a menos que tenga intención de ejecutar las consultas manualmente.
+* Haga clic en btn:[Recheck] para volver a ejecutar la comprobación previa si es necesario.
+* Haga clic en btn:[Next] para continuar.
+
+=== Paso 5: Realizar la actualización
+
+El asistente aplica la actualización. SuiteCRM copia los archivos nuevos y ejecuta las actualizaciones de base de datos necesarias.
+
+Puede hacer clic en *Show* para revisar la lista de archivos copiados y cualquier consulta que se haya omitido.
+
+Haga clic en btn:[Next] para continuar.
+
+=== Paso 6: Confirmar diseños (si procede)
+
+Este paso solo aparece si su instalación tiene diseños de módulos personalizados mediante Studio, *y* la actualización incluye cambios en los campos o posiciones predeterminados de esos diseños.
+
+El asistente realiza una combinación a tres bandas: compara su diseño personalizado, el diseño predeterminado antiguo y el diseño predeterminado nuevo, y combina las diferencias.
+
+La página Confirmar Diseños enumera cada diseño de módulo afectado. De forma predeterminada, todos están seleccionados para la combinación.
+
+* Desmarque un módulo si desea conservar su personalización actual tal cual y omitir la combinación para ese diseño.
+* Haga clic en btn:[Next] para aplicar las combinaciones seleccionadas.
+
+=== Paso 7: Finalización
+
+La página de informe (Debrief) confirma que la actualización se ha completado.
+
+* Si se omitió algún archivo (por haber desmarcado los módulos correspondientes en pasos anteriores), extráigalo manualmente del ZIP de actualización y combínelo en su directorio de instalación.
+* Si eligió ejecutar el SQL manualmente, hágalo ahora.
+
+Haga clic en btn:[Done]. SuiteCRM volverá a la página de Inicio.
+
+== Pasos posteriores a la actualización
+
+Una vez que el asistente termine, ejecute una reparación para asegurarse de que todas las cachés, relaciones y extensiones se reconstruyan correctamente:
+
+. Vaya a menu:Administración[Reparación].
+. Ejecute *Reconstruir Relaciones*.
+. Ejecute *Reconstruir Extensiones*.
+. Vuelva a activar la caché de opcode si la había desactivado antes de la actualización.
+
+== Solución de problemas
+
+Si la actualización falla o produce resultados inesperados, consulte el log de actualización:
+
+----
+<suitecrm-root>/upgradeWizard.log
+----
+
+Consulte también link:../troubleshooting/logs[Logs] y link:../troubleshooting/known-issues[Problemas Conocidos].

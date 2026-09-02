@@ -1,0 +1,188 @@
+---
+title: "Presupuestos, Facturas y Contratos"
+weight: 40
+aliases:
+  - /es/user/advanced-modules/sales
+---
+
+:experimental:
+:imagesdir: /images/en/user/sales-relationships/quotes-invoices-contracts
+:toc:
+
+= Presupuestos, Facturas y Contratos
+
+Los módulos de Presupuestos, Facturas y Contratos dan soporte al proceso de ventas posterior a la oportunidad — desde la preparación de un Presupuesto para un cliente potencial, pasando por la emisión de una Factura, hasta la gestión de un Contrato en curso. Los tres módulos comparten la misma estructura de líneas de detalle para registrar productos y servicios.
+
+La Configuración de AOS (numeración inicial de presupuestos y facturas, grupos de líneas de detalle y comportamiento de impuestos) la configura un administrador en *Admin* → link:../../../admin/administration-panel/advanced-openadmin[Configuración de AOS].
+
+== Productos
+
+El módulo de Productos (también llamado catálogo de productos) almacena los artículos disponibles para su selección al crear las líneas de detalle en Presupuestos, Facturas y Contratos. Cada registro de Producto contiene:
+
+* *Nombre* y *Número de Parte*
+* *Categoría*: se relaciona con un registro de Categoría de Producto
+* *Precio de Coste* y *Precio de Lista*: el Precio de Lista es el precio de venta predeterminado utilizado en los presupuestos
+* *Contacto de Proveedor*: el punto de contacto en el proveedor para este producto
+* *Imagen* y *URL del Producto*: información de referencia opcional
+
+Para crear un Producto, navegue al módulo Productos y haga clic en *Create Product*.
+
+== Categorías de Producto
+
+Las Categorías de Producto le permiten organizar los Productos en una jerarquía. Cada categoría puede tener una Categoría Padre, o puede marcarse como *Es una categoría padre* para indicar que es una categoría de nivel superior (en cuyo caso no se puede establecer ninguna Categoría Padre).
+
+== Formatos PDF
+
+El módulo de Formatos PDF le permite crear plantillas de documento reutilizables para generar PDF a partir de Presupuestos, Facturas, Contratos, Cuentas, Contactos y Clientes Potenciales. Los formatos admiten la inserción dinámica de campos, tablas de líneas de detalle, cabeceras, pies de página y márgenes de página.
+
+Consulte link:../pdf-templates[Formatos PDF] para conocer todos los detalles sobre la creación de formatos y la generación de documentos PDF.
+
+== Presupuestos
+
+=== Crear un Presupuesto
+
+Navegue al módulo Presupuestos y haga clic en *Create Quote*. Los campos clave son:
+
+[cols="25,75"]
+|===
+|*Número de Presupuesto*|Se asigna automáticamente; de solo lectura.
+|*Título*|El nombre del presupuesto.
+|*Etapa del Presupuesto*|La etapa actual del presupuesto: Borrador, Negociación, Entregado, En Espera, Confirmado, Cerrado Aceptado, Cerrado Perdido o Cerrado Muerto.
+|*Válido Hasta*|La fecha de caducidad del presupuesto.
+|*Estado de Aprobación*|Si el presupuesto ha sido aprobado: Aprobado o No Aprobado.
+|*Incidencias de Aprobación*|Campo de texto libre para describir cualquier incidencia de aprobación.
+|*Estado de Factura*|Si el presupuesto ha sido facturado: No Facturado o Facturado. Se establece automáticamente cuando el presupuesto se convierte en una Factura.
+|*Términos de Pago*|Net 15 o Net 30.
+|*Cuenta*|La cuenta de facturación. Al seleccionar una Cuenta se rellenan automáticamente los campos Dirección de Facturación y Dirección de Envío a partir del registro de Cuenta.
+|*Contacto*|El contacto de facturación.
+|*Oportunidad*|Un enlace opcional a una Oportunidad relacionada.
+|===
+
+[[line-items]]
+=== Líneas de Detalle
+
+La sección de líneas de detalle es donde se construye el detalle del presupuesto. Si los grupos de líneas de detalle están habilitados en la Configuración de AOS, puede organizar las líneas de detalle en grupos con nombre — cada uno con su propio subtotal de grupo.
+
+==== Añadir un Grupo
+
+Haga clic en **Add Group** para crear un grupo. Introduzca un *Nombre de Grupo* y, a continuación, añada líneas de producto o servicio a él.
+
+image:QuoteLineItems.png[title="Líneas de detalle de un presupuesto mostrando un grupo con una línea de producto y una línea de servicio"]
+
+==== Añadir una Línea de Producto
+
+Haga clic en **Add Product Line** dentro de un grupo. Para seleccionar un producto del catálogo, empiece a escribir en el campo *Product* o *Part Number* para buscar, o haga clic en el botón de flecha junto al campo Part Number para abrir la ventana emergente del selector de productos.
+
+Cuando se selecciona un producto, los precios *List* y *Sale Price* se rellenan automáticamente. Puede ajustar:
+
+* *Quantity*: el número de unidades
+* *Discount*: introduzca un importe y seleccione *Pct* (porcentaje) o *Amt* (importe fijo)
+* *Tax*: tipo de IVA: 0%, 5%, 7,5%, 17,5% o 20%
+
+El *Total* de la línea se calcula como: (Sale Price × Quantity) + Tax.
+
+==== Añadir una Línea de Servicio
+
+Haga clic en **Add Service Line** para presupuestar un servicio que no está en el catálogo de productos. Introduzca el precio *List* manualmente. Los campos Discount y Tax funcionan igual que en las líneas de producto.
+
+==== Totales
+
+Cada grupo muestra un *Group Total*. Debajo de todos los grupos, el resumen muestra:
+
+* *Subtotal*: suma de todos los totales de línea de detalle antes de impuestos (si "Add Tax to Line Total" está desactivado en la Configuración de AOS)
+* *Discount*: descuento total en todas las líneas
+* *Tax*: impuesto total en todas las líneas
+* *Shipping*: introduzca un coste de envío manualmente
+* *Shipping Tax*: impuesto aplicado al importe de envío
+* *Grand Total*: el total final
+
+=== Enviar un Presupuesto
+
+Desde la Vista de Detalle del Presupuesto, utilice los botones de acción para generar la salida del presupuesto:
+
+image:QuoteActions.png[title="Botones de acción de la vista de detalle del presupuesto: Print as PDF, Email PDF, Email Quotation, Convert to Invoice, Create Contract, Create Opportunity"]
+
+* *Print as PDF*: seleccione un formato PDF y descargue el presupuesto como un archivo PDF.
+* *Email PDF*: seleccione un formato PDF y, a continuación, abra la pantalla de Redacción con el PDF adjunto y el Contacto del presupuesto rellenado previamente como destinatario.
+* *Email Quotation*: abra la pantalla de Redacción dirigida al Contacto del presupuesto. El presupuesto se muestra en el cuerpo del correo; no hay ningún archivo PDF adjunto.
+
+=== Convertir a Factura
+
+Haga clic en *Convert to Invoice* en la Vista de Detalle del Presupuesto. SuiteCRM abre la Vista de Edición de Factura con todos los campos y líneas de detalle copiados del presupuesto. Guarde la Factura para confirmar la conversión. El campo *Invoice Status* del Presupuesto se establece automáticamente en *Invoiced*.
+
+=== Crear un Contrato a partir de un Presupuesto
+
+Haga clic en *Create Contract* en la Vista de Detalle del Presupuesto. SuiteCRM abre la Vista de Edición de Contrato con los campos y líneas de detalle copiados del presupuesto. Guarde el Contrato para confirmar.
+
+=== Crear una Oportunidad a partir de un Presupuesto
+
+Haga clic en *Create Opportunity* en la Vista de Detalle del Presupuesto para crear una nueva Oportunidad vinculada al presupuesto.
+
+== Facturas
+
+=== Crear una Factura
+
+Navegue al módulo Facturas y haga clic en *Create Invoice*. Las Facturas pueden crearse de forma independiente o convirtiendo un Presupuesto (consulte <<Convertir a Factura>>).
+
+Los campos clave son:
+
+[cols="25,75"]
+|===
+|*Número de Factura*|Se asigna automáticamente; de solo lectura.
+|*Fecha de Factura*|La fecha en que se emitió la factura.
+|*Fecha de Vencimiento*|La fecha de vencimiento del pago.
+|*Estado*|Pagada, Impagada o Cancelada.
+|*Términos de Pago*|Net 15 o Net 30.
+|*Cuenta*|La cuenta de facturación. Al seleccionar una Cuenta se rellenan la Dirección de Facturación y la Dirección de Envío.
+|*Contacto*|El contacto de facturación.
+|*Oportunidad*|Un enlace opcional a una Oportunidad relacionada.
+|===
+
+=== Líneas de Detalle
+
+Los grupos y líneas de detalle en las Facturas funcionan de forma idéntica a los Presupuestos. Consulte <<line-items,Líneas de Detalle>>.
+
+=== Enviar una Factura
+
+Desde la Vista de Detalle de la Factura:
+
+* *Print as PDF*: seleccione un formato y descargue la factura como PDF.
+* *Email PDF*: seleccione un formato y abra la pantalla de Redacción con el PDF adjunto.
+* *Email Invoice*: abra la pantalla de Redacción dirigida al Contacto de la factura. La factura se muestra en el cuerpo del correo sin ningún archivo PDF adjunto.
+
+== Contratos
+
+=== Crear un Contrato
+
+Navegue al módulo Contratos y haga clic en *Create Contract*. Los Contratos también pueden crearse a partir de un Presupuesto mediante *Create Contract* (consulte <<Crear un Contrato a partir de un Presupuesto>>).
+
+Los campos clave son:
+
+[cols="25,75"]
+|===
+|*Título del Contrato*|El nombre del contrato.
+|*Código de Referencia*|Un identificador de referencia opcional.
+|*Estado*|No Iniciado, En Progreso o Firmado.
+|*Tipo de Contrato*|Una lista desplegable configurada por un administrador para clasificar el contrato.
+|*Cuenta*|La cuenta con la que se establece el contrato.
+|*Contacto*|El contacto principal del contrato.
+|*Oportunidad*|Un enlace opcional a una Oportunidad relacionada.
+|*Administrador de Contratos*|El usuario responsable del contrato. La llamada recordatoria de renovación se asigna a esta persona.
+|*Fecha de Inicio*|La fecha de inicio del contrato.
+|*Fecha de Finalización*|La fecha de finalización del contrato.
+|*Fecha de Firma del Cliente*|La fecha en que el cliente firmó el contrato.
+|*Fecha de Firma de la Compañía*|La fecha en que su empresa firmó el contrato.
+|*Fecha de Recordatorio de Renovación*|Se rellena automáticamente cuando se establece la Fecha de Finalización, según el Periodo de Recordatorio de Renovación en la Configuración de AOS. Puede editarse manualmente.
+|===
+
+=== Recordatorios de Renovación
+
+Cuando se guarda un Contrato con una Fecha de Recordatorio de Renovación establecida, SuiteCRM crea automáticamente una Llamada Planificada denominada "[Título del Contrato] Recordatorio de Renovación de Contrato", programada para la Fecha de Recordatorio de Renovación y asignada al Administrador de Contratos. La llamada está relacionada con la Cuenta del contrato.
+
+Si cambia la Fecha de Recordatorio de Renovación, la llamada se actualiza. Si se elimina el contrato, se elimina la llamada.
+
+=== Líneas de Detalle
+
+Los grupos y líneas de detalle en los Contratos funcionan de forma idéntica a los Presupuestos. Consulte <<line-items,Líneas de Detalle>>.
+
+---

@@ -1,0 +1,83 @@
+---
+Title: Google Maps
+Weight: 60
+---
+
+
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/user
+
+
+= Google Maps
+
+Esta sección le permite configurar los ajustes para integrar SuiteCRM con Google Maps.
+
+== Configuración de Google Maps
+
+Antes de empezar a trabajar con los mapas, debe obtener una clave API y guardarla en el sistema.
+Para ello, en el panel de Administración, en la subsección *Google services*
+-> *Setting up Google maps*, haga clic en el enlace *Get API key*, siga los pasos
+solicitados para obtener la clave y guárdela en la configuración de los mapas.
+
+La descripción de los ajustes principales de los mapas se presenta en detalle
+en la propia interfaz del sistema, por lo que estos parámetros no se describen aquí.
+
+image:Googleconfig.png[Configuración de Google Maps]
+
+Puede encontrar una descripción detallada de la API de Google Maps en https://developers.google.com/maps/[Google Maps].
+
+
+== Geocodificación de direcciones
+
+Cuando se selecciona esta sección,
+comienza inmediatamente la asignación automática de coordenadas geográficas a las direcciones del sistema.
+
+{{%notice tip%}}
+Si únicamente necesita *ver* los resultados de una geocodificación realizada anteriormente,
+utilice el módulo *Geocoding results*.
+{{%/notice%}}
+
+Dependiendo del tamaño de la base de datos y de la velocidad de procesamiento de datos,
+el proceso puede tardar bastante tiempo.
+Al finalizar la geocodificación, se mostrarán los resultados, por ejemplo:
+
+image:GoogleMaps(2).png[Geocodificación de direcciones]
+
+{{%notice note%}}
+Si Google no utiliza una *cuenta* Premium, Google Maps impone un
+límite en la determinación de coordenadas equivalente a 2500 solicitudes por día
+por dirección IP; puede encontrar información detallada en
+link:https://developers.google.com/maps/documentation/geocoding/usage-limits[los límites de uso de la API de Geocodificación de Google Maps^].
+Para evitar consultas repetidas, todos los resultados de geocodificación se almacenan en caché en el sistema, tal y como se describe en la sección siguiente.
+{{%/notice%}}
+
+Para realizar la geocodificación automática de las direcciones del sistema, se recomienda
+configurar la tarea correspondiente en el CRON añadiendo la URL `./index.php?module=jjwg_Maps&entryPoint=jjwg_Maps&cron=1`
+a la tarea del scheduler, y ejecutarla en el momento adecuado.
+
+image:SetupGeocode.png[Configuración de geocodificación automática en el Scheduler]
+
+
+Para obtener más información sobre cómo configurar una tarea, consulte el
+link:../system/#_scheduler[Scheduler].
+
+Si es necesario geocodificar direcciones con utilidades de terceros,
+puede exportar las direcciones desde los módulos correspondientes. Al finalizar la geocodificación,
+importe las direcciones actualizadas a través del módulo *Address cache*.
+
+Si necesita borrar la caché de módulos concretos, utilice el enlace *Reset* en
+la parte derecha de la tabla. Si necesita borrar toda la caché, utilice el enlace
+correspondiente en la parte inferior de la página.
+
+== Geocoding results
+
+Esta opción muestra los resultados anteriores de la opción *Geocoding addresses*.
+
+== Geocoding Testing
+
+Este módulo está diseñado para obtener rápidamente las coordenadas geográficas de la dirección introducida.
+
+== Address Cache
+
+Este módulo está destinado a visualizar, modificar e importar datos en la caché de direcciones geocodificadas.

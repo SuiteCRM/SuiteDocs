@@ -1,0 +1,39 @@
+---
+title: "Logs de Actualización"
+weight: 10
+---
+
+Cuando una actualización falla o produce resultados inesperados, estos archivos de log son el primer lugar donde buscar.
+
+== upgradeWizard.log
+
+El log principal de actualización. Lo escriben tanto el Upgrade Wizard como los métodos de actualización por CLI.
+
+----
+<suitecrm-root>/upgradeWizard.log
+----
+
+Este archivo registra cada paso del proceso de actualización y captura los errores encontrados durante las operaciones de archivos y los cambios de base de datos. Consúltelo primero ante cualquier mensaje de fallo.
+
+== suitecrm.log
+
+El log principal de la aplicación SuiteCRM. Puede contener errores relacionados con la aplicación ya actualizada que surgen después de finalizar la actualización en lugar de durante esta.
+
+----
+<suitecrm-root>/suitecrm.log
+----
+
+== Log de la actualización por CLI
+
+Al usar la link:../../cli-upgrade[actualización por CLI], usted especifica la ruta del archivo de log como argumento. Consulte la ruta que proporcionó al comando.
+
+Para el método `robo`, se trata del argumento `<logFile>`. Para `silentUpgrade.php`, es el segundo argumento pasado al script.
+
+== Aumentar el nivel de detalle del log
+
+Si los logs estándar no contienen suficiente detalle, puede aumentar temporalmente el nivel de log de SuiteCRM:
+
+. Vaya a menu:Administración[Herramienta de Diagnóstico] o edite `config.php` directamente.
+. Establezca `logger_level` en `debug`.
+. Vuelva a ejecutar la operación que está investigando.
+. Restablezca `logger_level` a su valor anterior (`fatal` o `error`) después, para evitar un crecimiento excesivo del log.

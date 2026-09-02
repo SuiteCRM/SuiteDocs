@@ -1,0 +1,122 @@
+---
+title: "Guía de configuración del servidor web"
+weight: 21
+---
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7, haz clic link:../../../../developer/introduction[aquí].
+{{% /notice %}}
+
+== 1. Introducción
+
+Esta guía contiene los pasos necesarios para configurar un servidor web para instalar SuiteCRM 8+
+
+{{% notice note %}}
+La siguiente documentación usará como configuración base una pila LAMP: Linux, Apache, MySql y php. Sin embargo, la mayoría de los pasos pueden aplicarse a otros servidores web y bases de datos
+{{% /notice %}}
+
+== 2. Instalar el software necesario
+
+Instala la versión adecuada para tu plataforma de lo siguiente:
+
+* servidor web: `apache`
+* `php`
+* base de datos: `mysql` o `mariadb`
+
+{{% notice info %}}
+Consulta la link:../../compatibility-matrix/[Matriz de compatibilidad] para asegurarte de que tienes las versiones correctas del software necesario.
+Hay otras dependencias de software en la matriz de compatibilidad, en la sección `Additional requirements for Development`,
+aunque esas son las necesarias para un entorno de desarrollo.
+{{% /notice %}}
+
+Al instalar SuiteCRM desde el paquete instalable preconstruido en zip, **no** necesitas instalar las dependencias de desarrollo, concretamente: node, angular cli, yarn/npm.
+
+El paquete instalable preconstruido de SuiteCRM 8 en zip incluye los archivos de frontend preconstruidos en `public/dist` y todas las librerías necesarias en vendors.
+
+=== Recursos útiles
+
+Sobre cómo instalar una pila LAMP de desarrollo en Ubuntu:
+
+* link:https://www.digitalocean.com/community/tutorials/how-to-install-php-7-4-and-set-up-a-local-development-environment-on-ubuntu-20-04[DigitalOcean - Tutorial sobre cómo instalar un entorno de desarrollo LAMP,window=_blank]
+
+
+== 3. Instalar los módulos de php necesarios
+
+Instala en tu servidor los módulos de php necesarios:
+
+* cli
+* curl
+* common
+* intl
+* json
+* gd
+* mbstring
+* mysqli
+* pdo_mysql
+* openssl
+* soap
+* xml
+* zip
+* imap (opcional)
+* ldap (opcional)
+
+=== Recursos útiles
+
+Consulta la sección `Recursos útiles` de link:#_2_install_required_software[Instalar el software necesario] para instrucciones sobre cómo instalar los módulos de php
+
+== 4. Configurar las reescrituras de URL
+
+Para que las rutas de la api funcionen, debes permitir las reescrituras de URL.
+
+* Todas las llamadas a la api de SuiteCRM-Core dependen de esto (llamadas a `api/graphql`); si las reescrituras no están permitidas, obtendrás un `404` al llamar a la api.
+
+En el servidor web `apache`, esto se puede lograr activando mod-rewrite y configurando el vhost.
+
+{{% notice note %}}
+Se recomienda encarecidamente actualizar la raíz web o configurar el vhost para que apunte a la carpeta `public` dentro de la carpeta de SuiteCRM. Si la raíz web apunta a la carpeta de SuiteCRM en lugar de a la carpeta public, todos los archivos dentro de la carpeta de SuiteCRM podrían quedar expuestos a la web.
+{{% /notice %}}
+
+
+Actualiza la configuración de tu vhost para añadir lo siguiente:
+
+[source,xml]
+----
+<VirtualHost *:80>
+
+    DocumentRoot /<path-to-suite>/public
+    <Directory /<path-to-suite>/public>
+        AllowOverride All
+        Order Allow,Deny
+        Allow from All
+    </Directory>
+
+</VirtualHost>
+----
+
+
+=== Recursos útiles:
+
+* link:https://symfony.com/doc/current/setup/web_server_configuration.html#apache-with-mod-php-php-cgi[Documentación de Symfony sobre cómo configurar el servidor web (apache y otros),window=_blank]
+* link:https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite[DigitalOcean - Tutorial sobre cómo configurar mod_write (apache),window=_blank]
+** Ten en cuenta que de lo anterior solo necesitarías:
+*** Sección 1: cómo activar Mod_Rewrites
+*** Cómo permitir cambios en el archivo .htaccess:
+
+== 5. Configurar error_reporting de php
+
+Asegúrate de que las notices no se tengan en cuenta en `error_handling`. Para ello, puedes actualizar la entrada de manejo de errores en `php.ini`
+
+[source,ini]
+----
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
+----
+
+
+=== Recursos útiles
+
+Consulta la sección `Recursos útiles` de link:#_2_install_required_software[Instalar el software necesario] para saber dónde encontrar `php.ini`
+
+
+== 6. (opcional) Rendimiento
+
+Para más información sobre la optimización del rendimiento, consulta la link:../performance/[Guía de configuración de rendimiento]

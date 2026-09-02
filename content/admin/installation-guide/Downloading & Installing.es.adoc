@@ -1,0 +1,79 @@
+---
+title: "Descarga e instalación"
+weight: 20
+---
+
+:experimental:
+
+= Descarga e instalación
+
+Esta guía cubre la configuración inicial de SuiteCRM 7, desde la obtención del código fuente hasta la finalización del asistente de instalación basado en web.
+
+== 1. Requisitos previos
+
+Antes de comenzar, asegúrese de que el entorno de su servidor cumple los requisitos mínimos.
+
+{{% notice info %}}
+Para consultar la lista completa de bases de datos y servidores web compatibles, consulte la link:../../compatibility-matrix[Matriz de compatibilidad].
+{{% /notice %}}
+
+== 2. Descarga de SuiteCRM
+
+La forma preferida de instalar SuiteCRM es descargando el paquete zip oficial desde el sitio web de SuiteCRM.
+
+1. Vaya a la https://suitecrm.com/download[página oficial de descargas^].
+2. Descargue la última versión estable de SuiteCRM 7.
+3. Suba el archivo `.zip` al directorio raíz de su servidor web (por ejemplo, `/var/www/html/`).
+4. Descomprima el archivo:
+[source,bash]
+----
+unzip SuiteCRM-7.x.x.zip -d suitecrm
+----
+
+== 3. Configuración de permisos
+
+SuiteCRM requiere permisos de archivo específicos para permitir que el servidor web escriba en los directorios de caché, metadatos y carga.
+
+{{% notice warning %}}
+Unos permisos incorrectos son la causa número uno de fallos de instalación y de errores de "pantalla blanca de la muerte".
+{{% /notice %}}
+
+Ejecute los siguientes comandos desde el directorio raíz de SuiteCRM (sustituya `www-data` por el usuario específico de su servidor web, por ejemplo, `apache`):
+
+[source,bash]
+----
+sudo chown -R www-data:www-data .
+sudo chmod -R 755 .
+sudo chmod -R 775 cache custom modules themes data upload config_override.php
+----
+
+== 4. Ejecución del instalador web
+
+Una vez configurados los archivos y los permisos, vaya a la URL de su SuiteCRM en un navegador: `http://your-domain.com/install.php`
+
+1. **License Agreement:** lea la Licencia Pública General Affero de GNU y haga clic en btn:[I Accept].
+2. **System Check:** el instalador comprobará su configuración de PHP y los permisos.
+* Si algún elemento aparece marcado en **rojo**, debe resolverlo antes de continuar.
+3. **Database Configuration:**
+* **Host:** normalmente `localhost`.
+* **Database Name:** indique el nombre de una base de datos vacía que haya creado.
+* **User/Password:** indique credenciales con privilegios completos sobre esa base de datos.
+4. **Site Configuration:**
+* Cree su nombre de usuario y contraseña de **Admin**.
+* Introduzca su **Site URL** (asegúrese de que coincide con la forma en que los usuarios accederán al CRM).
+5. **Finish:** haga clic en btn:[Install].
+
+{{% notice tip %}}
+En la pantalla final se le mostrará un comando de **Crontab**. **Cópielo inmediatamente.** Lo necesitará para el siguiente paso de la configuración.
+{{% /notice %}}
+
+== 5. Tarea posterior a la instalación: Cron
+
+Para que SuiteCRM funcione correctamente (Workflows, Emails, Schedulers), debe añadir la entrada de Cron a su servidor.
+
+1. Abra su crontab: `crontab -e -u www-data`
+2. Añada la línea copiada desde el instalador (normalmente):
+[source,bash]
+----
+* * * * * cd /var/www/html; php -f cron.php > /dev/null 2>&1
+----

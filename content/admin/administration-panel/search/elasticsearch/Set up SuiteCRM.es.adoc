@@ -1,0 +1,58 @@
+---
+title: Configurar la integración de Elasticsearch
+weight: 3
+---
+
+{{% notice info %}}
+Esta mejora solo está disponible en SuiteCRM a partir de la versión 7.11.
+{{% /notice %}}
+
+:imagesdir: /images/en/admin/ElasticSearch
+:experimental:
+
+== Configurar la conexión de Elasticsearch
+
+Vaya al panel de administración, desplácese hasta la configuración de Búsqueda y abra la página de configuración de **Búsqueda elástica**.
+Marque la casilla **Permitir Búsqueda Elástica** y rellene los campos de host, usuario y contraseña.
+Deje los campos de usuario y contraseña en blanco si tiene el acceso anónimo habilitado.
+
+{{% notice note %}}
+Si ejecuta tanto SuiteCRM como Elasticsearch mediante Docker, el nombre de host debe ser el nombre del contenedor de Elasticsearch.
+{{% /notice %}}
+
+image:ElasticsearchSearchSetting.png["Configurar Elasticsearch"]
+
+Puede usar btn:[Prueba de conexión] para comprobar si la configuración actual funciona correctamente.
+
+Cuando esté satisfecho con su configuración, pulse btn:[Save].
+
+== Indexación inicial
+
+Después de guardar, realice una indexación completa abriendo de nuevo la página de configuración de Búsqueda elástica y pulsando ahora btn:[Programar la indexación completa]. Esta tarea comienza a ejecutarse en menos de un minuto, siempre que el crontab esté configurado correctamente.
+
+== Cambiar el motor de búsqueda a Elasticsearch
+
+Ahora vaya a la configuración de Búsqueda y establezca `Elasticsearch Engine` como motor de búsqueda.
+Puede personalizar los módulos que se utilizan para la indexación en la sección de módulos.
+
+image:SearchSettingsForElasticsearch.png["Configurar los ajustes de búsqueda"]
+
+== Configurar la tarea programada
+
+Los datos de Elasticsearch se actualizan cada vez que se crea, modifica, elimina o importa un registro. No obstante, una tarea programada mantiene los datos de Elasticsearch sincronizados con la base de datos de SuiteCRM.
+
+Vaya al panel de administración y abra Scheduler. Compruebe si ya existe una tarea con un nombre similar a "Perform Elasticsearch index" (Realizar indexación de Elasticsearch).
+
+Si no existe dicha tarea, haga clic en "Create Scheduler" (Crear planificador) en el panel lateral.
+
+* En el desplegable de Jobs, seleccione "Elasticsearch indexer" (Creador de índices de Elasticsearch)
+* En Job Name, introduzca un título de su elección, por ejemplo "Perform Elasticsearch index"
+* En Interval, especifique la frecuencia con la que debe ejecutarse la tarea. Una frecuencia de aproximadamente una vez al día debería ser suficiente. Para que la tarea se ejecute a las 4 de la madrugada, haga clic en "Advanced Options" e introduzca 0 en min y 4 en hrs, dejando date, mo y day tal como están.
+* pulse btn:[Save].
+
+Dado que la indexación AOD Lucene ya no se utilizará, edite las siguientes entradas en la lista de Scheduler, establezca el estado como "inactive" y pulse btn:[Save]:
+
+* Perform Lucene Index
+* Optimise AOD Index
+
+Asegúrese de haber configurado correctamente el crontab, tal como se describe al final de la página de Schedulers.

@@ -1,0 +1,132 @@
+---
+title: "Página de Inicio y Paneles"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts
+
+= Página de Inicio y Paneles
+
+La Página de Inicio es la primera página que se le muestra tras iniciar sesión. Tiene varios elementos que pueden utilizarse y configurarse, como los Dashlets y los Dashboards.
+
+== Dashlets
+
+Los Dashlets son secciones configurables por el usuario que se muestran en la Página de Inicio y le ofrecen una vista rápida de sus registros y actividad inmediatamente después de iniciar sesión. Puede pensar en los Dashlets como widgets — cada uno muestra un conjunto de información concreto de un vistazo. Esto resulta útil, ya que reduce el número de clics necesarios para ver y gestionar datos.
+
+Al añadir Dashlets, la ventana emergente Añadir Dashlets está organizada en cuatro pestañas:
+
+* *Módulos:* muestra Dashlets para cada uno de los módulos existentes en su instancia de SuiteCRM, como Contactos o Cuentas. Estos le permiten añadir registros específicos de un módulo directamente en su Página de Inicio.
+* *Gráficos:* contiene una selección de Dashlets de gráficos disponibles de serie, que le ofrecen un resumen visual de sus datos.
+* *Herramientas:* contiene una serie de Dashlets de utilidad. Dos especialmente útiles son JotPad y Flujo de Actividad, ambos descritos en las secciones siguientes.
+* *Web:* le permite incrustar páginas web externas o contenido directamente en un Dashlet de su Página de Inicio.
+
+image:add-dashlets.png[Ventana emergente Añadir Dashlets mostrando varias pestañas]
+
+=== Añadir Dashlets
+
+Para añadir un Dashlet, haga clic en el botón *Añadir Dashlets* del desplegable *Acciones* de la Página de Inicio. Se abrirá la ventana emergente _Añadir Dashlets_, que le permite elegir entre una serie de Dashlets disponibles de serie.
+
+Simplemente haga clic en el nombre de un Dashlet para añadirlo a su Página de Inicio. La ventana emergente permanecerá abierta tras cada selección, lo que le permite añadir varios Dashlets de una vez. Una vez que haya añadido todos los Dashlets que necesite, cierre la ventana emergente para volver a su Página de Inicio.
+
+=== Eliminar Dashlets
+
+Para eliminar un Dashlet, haga clic en el icono *X* de la esquina superior derecha del Dashlet que desea eliminar. Esto lo eliminará inmediatamente de su Página de Inicio. Si cambia de opinión, puede volver a añadirlo en cualquier momento mediante la ventana emergente _Añadir Dashlets_.
+
+=== Modificar Dashlets
+
+Para modificar un Dashlet, haga clic en el icono de *Engranaje* del Dashlet que desea configurar. Se abrirá una ventana emergente de configuración con todas las opciones disponibles para ese Dashlet. Las opciones se dividen en dos secciones: *General* y *Filtros*.
+
+image:dashlet-configuration.png[Ventana emergente de configuración del Dashlet mostrando las secciones General y Filtros]
+
+*General:*
+
+* *Título:* edite el nombre para mostrar del Dashlet tal como aparece en su Página de Inicio.
+* *Filas a Mostrar:* establezca el número de registros que se muestran en el Dashlet a la vez.
+* *Actualización Automática:* configure con qué frecuencia el Dashlet actualiza automáticamente sus datos. Por defecto está establecido en _No actualizar automáticamente_.
+* *Mostrar Columnas / Ocultar Columnas:* seleccione qué columnas son visibles dentro del Dashlet. Las columnas pueden moverse entre las listas _Mostrar_ y _Ocultar_, y las flechas arriba/abajo le permiten reordenar las columnas mostradas.
+
+*Filtros:*
+
+* *Solo Mis Elementos:* cuando está marcado, el Dashlet solo mostrará los registros asignados a usted.
+* *Asunto:* filtra los registros por una palabra clave concreta del asunto.
+* *Prioridad:* filtra por prioridad de la tarea: Alta, Media o Baja. Pueden seleccionarse varios valores.
+* *Estado:* filtra por estado de la tarea, como No Iniciada, En Progreso o Completada. Pueden seleccionarse varios valores.
+* *Fecha de Creación:* filtra los registros según la fecha en que fueron creados.
+* *Fecha de Inicio / Fecha Límite:* filtra los registros por su rango de fecha de inicio o de fecha límite.
+* *Asignado A:* filtra los registros por el usuario al que están asignados.
+
+Una vez realizados los cambios, haga clic en *Guardar* para aplicarlos, o en *Cancelar* para descartar los cambios y conservar la configuración actual.
+
+{{% notice note %}}
+Algunos Dashlets requieren que se recargue la Página de Inicio para que los cambios surtan efecto.
+{{% /notice %}}
+
+{{% notice note %}}
+Las columnas y filtros disponibles en la configuración de un Dashlet variarán según el módulo con el que esté asociado, y pueden ser configurados por un administrador del sistema.
+{{% /notice %}}
+
+=== Reorganizar Dashlets
+
+Los Dashlets pueden reorganizarse libremente en su Página de Inicio arrastrándolos y soltándolos en la posición que prefiera. Esto le permite priorizar la información más relevante para su función y su forma de trabajar.
+
+== JotPad
+
+JotPad es un Dashlet sencillo de tipo bloc de notas que puede añadirse a su Página de Inicio a través de la pestaña *Herramientas* al añadir Dashlets. Ofrece un área de texto libre en la que puede anotar notas, recordatorios o cualquier información que quiera tener fácilmente accesible.
+
+image:jotpad-dashlet.png[Dashlet JotPad en la Página de Inicio]
+
+Algunos aspectos clave que conviene conocer sobre JotPad:
+
+* *Persistente:* cualquier nota que guarde en JotPad se conservará entre sesiones, por lo que sus notas seguirán ahí la próxima vez que inicie sesión.
+* *Personal:* las notas de JotPad se guardan únicamente en su cuenta de usuario y no son visibles para otros usuarios.
+* *Editable:* puede actualizar o sobrescribir sus notas en cualquier momento simplemente escribiendo en el área de JotPad.
+* *Varias instancias:* puede añadir más de un Dashlet de JotPad a su Página de Inicio si lo necesita, por ejemplo, para mantener distintas categorías de notas separadas entre distintas pestañas de Dashboard.
+
+JotPad resulta especialmente útil para llevar el control de recordatorios rápidos o información temporal sin tener que salir de SuiteCRM ni cambiar a una aplicación externa.
+
+== Flujo de Actividad
+
+El Flujo de Actividad es una excelente forma de hacer seguimiento de las interacciones de sus compañeros con SuiteCRM. Funciona de forma similar a un feed de redes sociales, mostrando un registro en tiempo real de la actividad en toda su organización.
+
+Por defecto, el Flujo de Actividad muestra las actualizaciones recientes de los módulos _Contactos, Clientes Potenciales, Oportunidades y Casos_.
+
+image:activity-stream.png[Dashlet Flujo de Actividad mostrando un feed de actualizaciones]
+
+=== Ver y Responder a las Actualizaciones
+
+El Flujo de Actividad se muestra como un feed de publicaciones, cada una de las cuales indica qué acción se realizó, quién la realizó y cuándo. Puede responder a cualquier actualización haciendo clic en el enlace *Responder* situado a la derecha de la publicación. Su respuesta aparecerá debajo de la publicación original con una marca de tiempo, lo que facilita seguir el hilo de una conversación.
+
+image:activity-stream-reply.png[Publicación del Flujo de Actividad con enlace Responder]
+
+=== Eliminar Publicaciones
+
+Si necesita eliminar una de sus propias publicaciones del Flujo de Actividad, puede hacerlo haciendo clic en el enlace *Eliminar* de la publicación. Esto la eliminará del feed para todos los usuarios.
+
+=== Publicar un Mensaje
+
+El Flujo de Actividad también puede utilizarse como herramienta de mensajería interna, permitiéndole difundir un mensaje a todos los usuarios de su organización. Para publicar un mensaje, simplemente escriba en el campo de texto situado en la parte superior del Flujo de Actividad y haga clic en *Publicar*. Sus compañeros podrán ver su mensaje y responder mediante el enlace *Responder*, y su respuesta aparecerá debajo de su publicación junto con una marca de tiempo.
+
+== Dashboards
+
+Los Dashboards son páginas con pestañas en su Página de Inicio que albergan sus Dashlets, permitiéndole organizarlos en agrupaciones lógicas. Puede pensar en los Dashboards como contenedores de sus Dashlets. Son configurables por usuario, lo que significa que cualquier cambio que realice solo afectará a su propia vista.
+
+=== Añadir un Dashboard
+
+Para añadir un nuevo Dashboard, haga clic en el botón *Añadir Pestaña* del desplegable *Acciones* de la Página de Inicio.
+
+Se abrirá la ventana emergente _Añadir Pestaña_, donde podrá especificar lo siguiente:
+
+* *Nombre:* introduzca un nombre para su nueva pestaña de Dashboard.
+* *Columnas:* elija cuántas columnas de Dashlets mostrará el Dashboard. Puede optar por una, dos o tres columnas.
+
+Una vez rellenados los datos, haga clic en *Añadir Pestaña* para crear el Dashboard, o en *Cancelar* para descartar los cambios. La nueva pestaña aparecerá entonces en la lista de pestañas de su Página de Inicio, lista para que la rellene con Dashlets.
+
+=== Eliminar un Dashboard
+
+Para eliminar un Dashboard, haga clic en *Editar Pestañas* en el desplegable *Acciones* de la Página de Inicio. Haga clic en el icono *-* junto a la pestaña que desea eliminar. Se le pedirá que confirme la eliminación antes de que se elimine la pestaña. Esta acción solo afecta a su propio Dashboard y no repercutirá en ningún otro usuario.
+
+image:edit-dashboard-tabs.png[Ventana emergente Editar Pestañas mostrando las pestañas de Dashboard con iconos de eliminación]
+
+{{% notice note %}}
+La pestaña de Dashboard SuiteCRM es la pestaña predeterminada y no se puede eliminar. No obstante, puede configurar qué Dashlets se muestran en ella.
+{{% /notice %}}

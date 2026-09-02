@@ -1,0 +1,32 @@
+
+---
+Title: Acuerdo de Colaborador
+---
+
+== ¿Dónde puedo encontrar el Acuerdo de Colaborador?
+
+Puedes encontrar el acuerdo de colaborador
+https://cla.suitecrm.com/SuiteCRM/SuiteCRM[aquí].
+
+== ¿Qué es el Acuerdo de Colaborador?
+
+El Acuerdo de Colaborador es un documento que establece el acuerdo de
+licencia entre tú (el desarrollador) y nosotros (SuiteCRM Ltd) para cualquier
+contribución realizada al proyecto SuiteCRM.
+
+== ¿Por qué necesito firmarlo?
+
+Queremos que SuiteCRM sea el proyecto de CRM de código abierto más grande, mejor
+y a más largo plazo disponible a nivel mundial, así que necesitamos proteger el proyecto:
+
+* El Acuerdo de Colaborador protege al proyecto y desvía la responsabilidad hacia
+el colaborador.
+* Esto significa que cualquier acción legal por contribuciones realizadas al
+proyecto se dirige contra el Colaborador y no contra el Proyecto.
+* El Acuerdo de Colaborador solo necesita firmarse una vez para todas las pull
+requests y contribuciones relacionadas con el proyecto SuiteCRM.
+
+== ¿Qué sigue?
+
+Se te notificará por correo electrónico si tu pull request/contribución es
+aceptada e incluida en el proyecto SuiteCRM.

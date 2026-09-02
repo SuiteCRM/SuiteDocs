@@ -1,0 +1,78 @@
+---
+title: "Solución de Problemas y Soporte"
+weight: 80
+---
+
+= Solución de Problemas y Soporte
+
+== Herramientas de Diagnóstico
+
+SuiteCRM 7 incluye utilidades integradas que le ayudan a recopilar datos técnicos antes de solicitar soporte externo.
+
+=== Reparación y Reconstrucción Rápida
+El primer paso para casi cualquier incidencia. Sincroniza el esquema de la base de datos con los archivos de metadatos y limpia las definiciones almacenadas en caché. Se encuentra en **Admin > Reparar**.
+
+=== Herramienta de Diagnóstico
+Se encuentra en **Admin > Herramienta de Diagnóstico**. Utilícela para empaquetar su `config.php`, el `phpinfo` y el esquema de la base de datos. Este paquete es esencial cuando el soporte técnico lo solicita para entender su entorno sin necesidad de acceso directo al servidor.
+
+=== Supervisión de Registros
+* **Registro de SuiteCRM:** visible en la parte inferior de la página de Admin o a través del sistema de archivos en `/suitecrm.log`.
+* **Registros de errores de PHP:** normalmente gestionados por su servidor web (Apache/Nginx). Contienen los detalles técnicos que hay detrás de bloqueos del sistema o errores de "pantalla en blanco".
+
+== El Mapa de Soluciones Rápidas
+
+Cuando se produce un problema en SuiteCRM 7, suele estar relacionado con una de tres áreas: **permisos**, **procesos en segundo plano (Cron)** o **sincronización de base de datos/metadatos**. Utilice las siguientes guías para diagnosticar y resolver los problemas administrativos más comunes.
+
+Identifique su síntoma para encontrar la guía de resolución correspondiente.
+
+[cols="1,1,1", options="header"]
+|===
+|Si observa... |Posible causa |Acción inmediata
+
+|**Una "pantalla blanca de la muerte" (WSOD)**
+|Error fatal de PHP o problema de permisos
+|Revise los **Registros del Sistema** y ejecute **Reparación y Reconstrucción Rápida**.
+
+|**Diseños rotos o CSS ausente**
+|Problemas de caché o permisos
+|Compruebe los **Permisos de Archivos** y ejecute **Reparación y Reconstrucción Rápida**.
+
+|**Flujos de trabajo/Campañas que no se envían**
+|Fallo del Scheduler o del Cron
+|Revise los **Schedulers** y el **Crontab** de su servidor.
+
+|**Campos ausentes en la interfaz**
+|Metadatos desincronizados
+|Ejecute **Reparación y Reconstrucción Rápida**.
+
+|**Los usuarios no pueden acceder a los módulos nuevos**
+|Roles desactualizados
+|Ejecute **Reparar Roles**.
+
+|**Errores de base de datos tras una actualización**
+|Desajuste en el esquema de tablas
+|Ejecute **Reparación y Reconstrucción Rápida** y desplácese hasta el final para **Ejecutar** los cambios.
+|===
+
+== Soporte Profesional y Comunitario
+
+Si los pasos de autoservicio anteriores no resuelven el problema, puede recurrir a los siguientes recursos.
+
+=== Foros de la Comunidad SuiteCRM
+El foro oficial de la comunidad es una amplia base de conocimiento. Al publicar, incluya siempre su versión de PHP, su versión de SuiteCRM y las entradas de registro pertinentes.
+
+* **Visite:** https://community.suitecrm.com[Foros de la Comunidad SuiteCRM]
+
+=== Soporte Profesional Oficial
+Para tiempos de respuesta garantizados y soporte experto por parte de los autores y mantenedores, considere contratar el soporte oficial de SuiteCRM proporcionado por **SuiteCRM Ltd**. Ofrece asesoramiento personalizado y experiencia técnica fiable y continua.
+
+* **Visite:** https://suitecrm.com/enterprise/support-services/[Servicios de Soporte de SuiteCRM]
+
+=== Reporte de Errores
+Si ha identificado un error reproducible en el código base, repórtelo a través del repositorio oficial de GitHub correspondiente.
+
+* **SuiteCRM 7 (Legado/Hotfix):** https://github.com/SuiteCRM/SuiteCRM/issues
+
+{{% notice info %}}
+No utilice GitHub para preguntas generales de tipo "cómo hacer"; resérvelas para los foros de la comunidad, de modo que los desarrolladores puedan centrarse en incidencias a nivel de código.
+{{% /notice %}}

@@ -38,12 +38,11 @@ of `installation-guide/downloading-installing.adoc`.
 For translations, we keep the English file name (that's how Hugo gets the fact that these are 
 translated versions of the same thing) but add a language code before the `.adoc` extension.
 
-So these are all translations of the same file (English, Spanish, Russian):
+So these are all translations of the same file (English, Russian):
 
 [source]
 ----
 requirements.adoc
-requirements.es.adoc
 requirements.ru.adoc
 ----
 Note that we could have used `requirements.en.adoc` for the English version, but we don't do that. 

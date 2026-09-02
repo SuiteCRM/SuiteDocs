@@ -1,0 +1,117 @@
+---
+title: "Navegación"
+weight: 10
+aliases:
+  - /es/user/introduction/user-interface/navigation-elements
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+= Elementos de Navegación
+
+La capacidad de ver y navegar fácilmente por las áreas del CRM es clave para
+mejorar la productividad y la adopción por parte de los usuarios. SuiteCRM tiene una interfaz clara con
+varios elementos que trataremos en esta sección.
+
+== Menú de navegación superior
+
+El menú de navegación superior es el menú principal que los usuarios utilizarán para navegar hasta
+los módulos y así crear y gestionar registros. El diseño estándar del menú de navegación
+superior es una lista de 10 módulos. El orden de este menú
+lo determina el orden de los módulos en Admin → Mostrar Módulos y
+Subpaneles. El menú de navegación superior tiene seis elementos. Estos son:
+
+* *Nombre del CRM* – es el nombre del CRM especificado durante la
+instalación. Por defecto es SuiteCRM.
+* *Menú de Módulos* – según la preferencia del usuario, se mostrará una lista de los módulos o de grupos predefinidos de módulos.
+Esto permite a los usuarios navegar hasta los módulos dentro del CRM.
+* *Creación Rápida* – la creación rápida permite crear rápidamente
+registros de los módulos clave desde cualquier lugar del CRM.
+* *Búsqueda Global/de Texto Completo* – permite a los usuarios buscar
+registros/datos en todo el CRM.
+* *Alertas* – muestra el número de notificaciones de escritorio que aún no ha leído. Haga clic en el icono de la campana para ver y gestionar las notificaciones pendientes. Consulte <<Alertas>> más abajo para más detalles.
+* *Menú de usuario* – muestra el nombre del usuario que ha iniciado
+sesión actualmente. Hay un menú desplegable que da acceso a los usuarios a Empleados,
+a su perfil, a la página Acerca de y a un enlace para cerrar sesión.
+
+image:/images/es/user/17Navigation_menu.png[title="Menú de Navegación Superior"]
+
+Para ver un módulo, puede hacer clic en el nombre del módulo. Si ha elegido agrupar los módulos,
+primero deberá pasar el cursor sobre el nombre del grupo y seleccionar el módulo de la lista.
+Tras seleccionar el módulo, se le dirigirá a la Vista de Lista de ese módulo.
+Para más detalles sobre las vistas, consulte la sección link:../views[Vistas] de esta guía de usuario.
+
+Al pasar el cursor sobre el nombre de un módulo aparecerá un menú desplegable. Este menú
+desplegable muestra las Acciones y los Vistos Recientemente para ese
+módulo.
+
+image:/images/es/user/18Dropdown_menu.png[title="Menú Desplegable"]
+
+Puede editar los registros que se muestran en la sección Vistos Recientemente del
+menú desplegable haciendo clic en el icono de lápiz. Esto le dirigirá a la
+Vista de Edición de ese registro.
+
+image:/images/es/user/19Recently_viewed.png[title="Editar Vistos Recientemente"]
+
+SuiteCRM también dispone de una estructura de navegación por pestañas agrupadas. Los usuarios pueden
+configurar esta opción en sus preferencias de usuario. Para más detalles sobre cómo modificar
+las preferencias de usuario, consulte la sección link:../../getting-started/managing-your-profile[Gestionar Su Perfil]
+de esta guía de usuario.
+
+image:20.png[title="Pestañas Agrupadas"]
+
+El menú de navegación por pestañas agrupadas permite al usuario agrupar
+módulos dentro de una pestaña, como la pestaña de Ventas.
+
+image:/images/es/user/21Grouped_tab.png[title="Pestaña Agrupada"]
+
+== Creación Rápida
+
+Puede hacer clic en el icono de 'crear' en el menú de navegación superior para acceder a las
+opciones de Creación Rápida. Se trata de una lista de los módulos más utilizados, que
+permite crear nuevos registros en dichos módulos desde cualquier ubicación.
+
+image:/images/es/user/22Quick_create.png[title="Creación Rápida"]
+
+== Barra Lateral
+
+La barra lateral forma parte del tema responsivo y es una opción
+configurable por el usuario. La barra lateral se puede expandir y contraer haciendo clic en el
+botón resaltado a continuación.
+
+image:/images/es/user/23Sidebar.png[title="Barra Lateral"]
+
+=== Acciones
+
+Muestra las Acciones para el módulo que está viendo actualmente. Por
+ejemplo, si está viendo el módulo Cuentas, las acciones que se muestran son: Crear Cuenta, Ver Cuentas, Importar Cuentas. Esto
+le proporciona acceso con un solo clic a las acciones del módulo.
+
+=== Vistos Recientemente
+
+Esta sección muestra los últimos 10 registros que ha visto. Esto deja un
+rastro de navegación para que los registros vistos anteriormente puedan consultarse rápida y
+fácilmente desde la barra lateral. También existe la opción de hacer clic en el
+icono de lápiz, que le llevará directamente a la Vista de Edición del
+registro.
+
+== Alertas
+
+El icono de campana en la barra de navegación superior muestra un contador de notificaciones de escritorio pendientes: alertas de próximas Llamadas y Reuniones que tienen recordatorios emergentes configurados.
+
+image:66Managing_notifications.png[title="Contador de Notificaciones"]
+
+Haga clic en el icono de campana para abrir la lista de notificaciones.
+
+image:67Managing_notifications.png[title="Lista de Notificaciones"]
+
+Desde aquí puede:
+
+* *Hacer clic en una notificación*: navegar directamente al registro relacionado (Llamada o Reunión).
+* *Hacer clic en el icono x*: descartar y eliminar esa notificación individual.
+
+Si no hay notificaciones sin leer, no se mostrará ningún contador.
+
+Para habilitar o deshabilitar las notificaciones de escritorio en su navegador, consulte el ajuste link:../../getting-started/managing-your-profile/#_desktop_notifications[Notificaciones de Escritorio] en la pestaña Avanzado de su perfil.

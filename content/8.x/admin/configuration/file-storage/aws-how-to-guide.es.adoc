@@ -1,0 +1,108 @@
+---
+Title: Cómo almacenar en AWS S3
+weight: 40
+---
+
+:imagesdir: /images/en/user
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM Versión 8.9.0+
+{{% /notice %}}
+
+
+== Cómo almacenar en AWS S3
+
+En este ejemplo configuraremos `private.documents.storage` para utilizar AWS S3 como almacenamiento de archivos.
+
+=== Requisitos previos
+
+* Un bucket de AWS S3 creado y accesible.
+* Clave de acceso y secreto de AWS.
+* La aplicación se ejecuta con integración de Symfony y Flysystem.
+
+=== Paso 1: Establecer las credenciales de AWS
+
+Edite su archivo `.env.local` y añada sus credenciales de AWS:
+
+[source,ini]
+----
+AWS_S3_ACCESS_KEY=your_aws_access_key
+AWS_S3_ACCESS_SECRET=your_aws_secret_key
+----
+
+=== Paso 2: Definir la instancia de AWS S3
+
+Añada la configuración de la instancia de AWS S3 en `.env.local`:
+
+[source,ini]
+----
+AWS_S3_INSTANCES='{
+   "main": {
+       "region": "your-aws-region",
+       "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+       "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+   }
+}'
+----
+
+=== Paso 3: Configurar el almacenamiento de Flysystem
+
+Establezca la variable `MEDIA_FLY_SYSTEM_STORAGES` para utilizar AWS en `private.documents.storage`:
+
+Nota: en el siguiente ejemplo, `main` de `aws.s3.client.main` en la opción `client` debe coincidir con la clave definida en `AWS_S3_INSTANCES`.
+
+[source,ini]
+----
+MEDIA_FLY_SYSTEM_STORAGES='{
+   "private.documents.storage": {
+       "adapter": "aws",
+       "options": {
+           "client": "aws.s3.client.main",
+           "bucket": "your-s3-bucket-name"
+       }
+   }
+}'
+----
+
+=== Paso 4: Verificar la configuración
+
+* Asegúrese de que el archivo `config/packages/flysystem.php` esté presente y no haya sido sobrescrito.
+* El almacenamiento se combinará con los valores predeterminados y será utilizado por la aplicación.
+
+=== Paso 5: Probar la subida de archivos
+
+* Suba un archivo utilizando la aplicación.
+* Confirme que el archivo aparece en su bucket de AWS S3 en la ruta esperada.
+
+=== Referencias
+
+* Consulte `.env`, `.env.local` y `config/packages/flysystem.php` para más detalles.
+
+== Uso de Symfony Secrets
+
+Symfony Secrets le permite almacenar de forma segura valores de configuración sensibles (como claves de API, contraseñas, etc.) fuera de su código fuente. En lugar de colocar los secrets en archivos `.env`, se utiliza la bóveda de Symfony Secrets, que cifra los valores y los mantiene fuera del control de versiones.
+
+Puede hacer referencia a los Symfony Secrets en estas variables de entorno para datos sensibles (como claves de acceso o cadenas de conexión).
+
+Ejemplo utilizando secrets:
+[source,json]
+----
+AWS_S3_INSTANCES='{
+  "main": {
+    "region": "eu-west-1",
+    "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+    "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+  }
+}'
+----
+
+Para establecer un secret:
+[source,bash]
+----
+php bin/console secrets:set AWS_S3_ACCESS_KEY
+php bin/console secrets:set AWS_S3_ACCESS_SECRET
+----
+
+A continuación, haga referencia al secret en su configuración JSON utilizando `%env(SECRET_NAME)%`.
+
+NOTA: Al utilizar secrets en JSON, envuelva siempre la referencia entre comillas dobles.

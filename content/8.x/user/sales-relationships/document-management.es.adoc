@@ -1,0 +1,105 @@
+---
+title: "Gestión de Documentos"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/
+
+== Resumen
+
+El módulo de Documentos sirve como un repositorio centralizado de archivos emitidos por clientes e internos.
+
+Suba, revise y consulte documentos mientras los vincula a registros relacionados en todo SuiteCRM.
+
+== Acciones de Documentos
+
+Acceda a las acciones de Documentos desde el menú del módulo:
+
+* *Create Document* – Abre un formulario para crear un nuevo registro de Documento.
+* *View Documents* – Le redirige a la Vista de Lista para buscar y listar registros de Documento.
+
+image:document-listview.png[Vista de Lista de Documentos]
+
+== Crear un Documento
+
+Navegue al módulo Documentos y seleccione "Create Document" en el menú Actions.
+
+image:document-edit.png[Vista de Creación de Documento]
+
+=== Resumen de Campos
+
+* *Archivo* - El archivo del documento a subir
+* *Estado* - Estado del documento (Activo, Borrador, FAQ, Caducado, Pendiente, En Revisión)
+* *Nombre del Documento* - Nombre descriptivo del documento
+* *Revisión* - Número de revisión actual (comienza en 1, se incrementa automáticamente)
+* *Tipo de Documento* - Categoría de tipo (Combinación de Correspondencia, EULA, NDA, Acuerdo de Licencia)
+* *Plantilla* - Activar si el documento sirve como plantilla
+* *Fecha de Publicación* - Cuándo el documento pasa a estar disponible
+* *Fecha de Caducidad* - Cuándo caduca el documento
+* *Categoría* - Categoría principal (Marketing, Ventas, Base de Conocimiento)
+* *Subcategoría* - Clasificación secundaria (Material de Marketing, Folletos de Producto, FAQ)
+* *Asignado A* - Usuario responsable del documento
+
+ℹ️ El campo Revisión tiene una validación que solo permite números y decimales.
+
+=== Subir un Archivo
+
+Arrastre y suelte su archivo en el área de subida, o haga clic en "Upload" para buscarlo. El nombre del documento se rellena automáticamente a partir del nombre del archivo.
+
+=== Guardar un Documento
+
+Haga clic en "Save" después de introducir los datos y subir su archivo. SuiteCRM crea automáticamente la primera revisión con el archivo subido.
+
+== Gestionar Revisiones de Documentos
+
+Actualice los documentos creando nuevas revisiones.
+
+=== Resumen de Campos
+
+* *Nombre del Documento* - Nombre del Documento relacionado
+* *Última Revisión* - El número de la última revisión del documento
+* *Revisión* - Revisión a la que se va a actualizar
+* *Archivo* - El archivo del documento a subir para la nueva revisión
+* *Registro de Cambios* - Descripción de los cambios realizados en esta revisión
+
+ℹ️ El campo Revisión tiene una validación que solo permite números y decimales.
+
+=== Crear una Nueva Revisión
+
+Puede crear revisiones de dos formas:
+
+*Desde el widget de Revisiones de Documentos:*
+
+image:document-revisions-subpanel.png[Widget de Revisiones de Documentos]
+
+Acceda al widget desde la Vista de Detalle del Documento y haga clic en "Add Revision" dentro del menú de acciones para subir un nuevo archivo y especificar el número de revisión.
+
+*Desde la Vista de Edición del Documento:*
+
+Suba un nuevo archivo y guarde. Si el campo de revisión no se modifica, se incrementa automáticamente en 1. Los números de revisión personalizados pueden introducirse manualmente antes de guardar.
+
+=== Eliminar una Revisión
+
+Para eliminar una revisión, haga clic en el icono de papelera junto a la revisión en el widget de Revisiones de Documentos. No es posible eliminar la revisión activa actual.
+
+Para eliminar la revisión activa, primero cree una nueva revisión y, a continuación, elimine la anterior.
+
+== Descargar un Documento o una Revisión de Documento
+
+Para descargar un Documento o el archivo asociado a una Revisión de Documento, haga clic en el enlace del nombre del archivo en la Vista de Detalle del Documento o en el subpanel de Revisiones de Documentos. El archivo se descargará a su dispositivo.
+
+== Relacionar con Otros Registros
+
+Los Documentos pueden relacionarse con otros registros mediante los subpaneles de Documentos. Por ejemplo, puede relacionar un Documento con una Cuenta, un Contacto, un Cliente Potencial, etc. Para relacionar un Documento con otro registro, navegue a la Vista de Detalle del registro, desplácese hasta el subpanel Documentos y haga clic en "Select" para elegir un documento existente o en "Create" para crear uno nuevo.
+
+== Adjuntar un Documento a un Correo Electrónico
+
+Para obtener información sobre cómo adjuntar un Documento a un Correo Electrónico, consulte la sección link:../../daily-activities/emails/email-compose[Redactar Correos Electrónicos].
+
+== Configuración
+
+=== Tipo de Almacenamiento
+
+Tanto los Documentos como las Revisiones de Documentos utilizan `private-documents` como tipo de almacenamiento predeterminado. Estos campos deben utilizar el mismo tipo de almacenamiento para garantizar un correcto funcionamiento.
+
+ℹ️ Cambiar el tipo de almacenamiento de solo uno de estos campos no es compatible y puede causar problemas con el acceso a documentos y la gestión de revisiones.

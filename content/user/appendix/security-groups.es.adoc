@@ -1,0 +1,98 @@
+---
+title: "Grupos de Seguridad"
+weight: 20
+aliases:
+  - /es/user/security-suite-groups
+---
+
+:imagesdir: /images/en/user
+:experimental:
+:toc:
+
+= Grupos de Seguridad
+
+Los Grupos de Seguridad permiten a los administradores restringir el acceso a los registros de *SuiteCRM* a equipos concretos de usuarios. Cuando los Grupos de Seguridad están configurados, los usuarios solo ven los registros que pertenecen a un grupo del que son miembros.
+
+Para la configuración por parte del administrador de los Grupos de Seguridad, consulte la sección link:../../../admin/administration-panel/roles-and-security-groups[Roles y Grupos de Seguridad] de la Guía de Administración.
+
+{{% notice note %}}
+Las opciones avanzadas de SecuritySuite están disponibles con el complemento https://store.suitecrm.com/addons/securitysuite[SecuritySuite^].
+{{% /notice %}}
+
+== Cómo Funcionan los Grupos de Seguridad
+
+Los *Roles* definen qué puede hacer un usuario con un registro (ver, editar, eliminar, exportar, etc.). Los *Grupos de Seguridad* definen qué registros puede ver un usuario. Ambos funcionan conjuntamente:
+
+. Se crea un rol y se le asignan niveles de acceso (Propietario, Grupo, Todos o Ninguno) para cada acción de módulo.
+. El rol se asocia a un grupo de seguridad.
+. Se añaden usuarios al grupo de seguridad.
+. Los registros se asignan al grupo de seguridad — los usuarios de ese grupo pueden entonces acceder a esos registros según la configuración del rol.
+
+== Herencia de Grupos
+
+Una vez configurados los grupos, los nuevos registros heredan automáticamente los grupos según la configuración de SecuritySuite. Por defecto:
+
+* Un nuevo registro hereda los grupos del usuario que lo creó.
+* Un nuevo registro hereda los grupos del usuario al que está asignado.
+* Un registro relacionado (por ejemplo, una Llamada creada para un Contacto) hereda los grupos de su registro principal.
+
+== Ejemplo: Configuración de una Jerarquía Típica
+
+Este ejemplo muestra cómo configurar Grupos de Seguridad para una empresa con dos equipos de ventas y una jerarquía de responsables.
+
+=== El Escenario
+
+Una empresa tiene dos equipos de ventas: Este y Oeste. Jill (la propietaria) debe ver todos los registros. Will gestiona Ventas Este y Sarah gestiona Ventas Oeste — cada uno debe ver todos los registros dentro de su propio equipo. El resto de los comerciales solo deben ver sus propios registros.
+
+=== Configurar los Grupos
+
+. Cree un grupo llamado *Ventas Este* y añada a Will y a los comerciales del equipo Este.
+. Cree un grupo llamado *Ventas Oeste* y añada a Sarah y a los comerciales del equipo Oeste.
+
+=== Configurar los Roles
+
+. Cree un rol llamado *Todo* y establezca todos los permisos en *Todos*. Asigne este rol directamente a la cuenta de usuario de Jill.
+. Cree un rol llamado *Solo Grupo* y establezca todos los permisos en *Grupo*. Asigne este rol directamente a Will y a Sarah.
+. Cree un rol llamado *Solo Propietario* y establezca todos los permisos en *Propietario*. Asigne este rol a los grupos Ventas Este y Ventas Oeste.
+
+=== Asignar Registros a los Grupos
+
+. Vaya a la Vista de Lista de Clientes Potenciales y busque los clientes potenciales que pertenecen al equipo Ventas Este.
+. Seleccione los clientes potenciales correspondientes y utilice *Asignación Masiva* en el menú *Acción Masiva* para asignarlos al grupo *Ventas Este*.
+. Repita el proceso para el equipo Ventas Oeste.
+
+{{% notice note %}}
+A partir de ahora, los nuevos registros heredarán automáticamente los grupos correspondientes según la configuración de herencia de SecuritySuite. Para los datos ya existentes en el sistema, utilice Asignación Masiva desde la Vista de Lista para asignar grupos de forma masiva.
+{{% /notice %}}
+
+=== Comprobar la Configuración
+
+En el panel de Reglas de Herencia de Grupos (Admin → Configuración de SecuritySuite), la configuración por defecto — *Heredar del Usuario Creador*, *Heredar del Usuario Asignado* y *Heredar del Registro Principal* — funcionará correctamente para este escenario.
+
+Un ajuste clave que conviene revisar es *Permisos Estrictos*. Con la configuración anterior, normalmente querrá desmarcar *Permisos Estrictos* para que la asignación de grupos funcione tal y como se ha descrito.
+
+== Opciones Avanzadas
+
+Las siguientes opciones están disponibles en *Admin* → *Configuración de SecuritySuite*.
+
+*Permisos Aditivos* — el usuario obtiene los mayores permisos de todos los roles que tenga asignados, ya sea a él o a sus grupos.
+
+*Permisos Estrictos* — si un usuario pertenece a varios grupos, solo se aplican los permisos del grupo asignado al registro actual.
+
+*Ventana Emergente de Nuevo Grupo de Usuario* — al crear un nuevo usuario, aparecerá una ventana emergente para asignar el usuario a un grupo.
+
+*Precedencia de Rol de Usuario* — si un rol se asigna directamente a un usuario, este tiene prioridad sobre los roles de grupo.
+
+*Filtrar Lista de Usuarios* — los usuarios no administradores solo pueden asignar registros a usuarios que pertenezcan a sus mismos grupos.
+
+*Usar Selección de Grupo del Creador* — cuando un usuario que pertenece a más de un grupo crea un registro, aparece un panel que le permite seleccionar el grupo o grupos que se asociarán al nuevo registro.
+
+*Heredar del Usuario Creador* — el registro hereda todos los grupos asignados al usuario que lo creó.
+
+*Heredar del Usuario Asignado* — el registro hereda todos los grupos del usuario asignado. No se eliminan los demás grupos del registro.
+
+*Heredar del Registro Principal* — el registro hereda los grupos de su registro principal (por ejemplo, un Caso creado para un Contacto hereda los grupos del Contacto).
+
+*Grupos por Defecto para Nuevos Registros* — establece grupos que se asocian automáticamente cada vez que se crea un registro de un tipo de módulo concreto.
+
+*Cuenta de correo entrante* — limita las cuentas de correo entrante visibles en el cliente de correo a las que pertenecen al mismo grupo que el usuario actual.

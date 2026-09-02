@@ -1,0 +1,144 @@
+---
+title: Directrices de Documentación
+weight: 50
+---
+
+:toc:
+
+Para una explicación completa de cómo trabajar en nuestros archivos de Documentación, necesitas familiarizarte
+con Hugo (nuestro motor de renderizado), Learn (nuestro tema de Hugo) y Asciidoc (el estilo de marcado que usamos).
+
+Las explicaciones a continuación son simplemente una lista breve de la sintaxis más usada, y algunas recomendaciones
+sobre convenciones de nomenclatura y otras reglas que seguimos, por coherencia y otras razones prácticas.
+
+== Colocación de archivos
+
+La mayoría de las veces, los archivos que querrás editar estarán en el directorio `content`. Ahí es donde encuentras
+las secciones principales de la guía: *Usuario*, *Desarrollador*, *Administrador*, *Comunidad* y *Blog Técnico*.
+
+Puedes crear nuevos directorios dentro de estos, según convenga para las subsecciones, y puedes crear nuevos archivos.
+Deberías entender la forma en que link:https://gohugo.io/content-management/organization/[Hugo utiliza
+los directorios y la ubicación de los archivos] para generar el contenido. Actualmente no usamos los *Page Bundles*
+de Hugo, aunque planeamos usarlos en el futuro.
+
+== Nomenclatura de archivos
+
+Tanto para los nombres de directorios como para los de archivos, usamos los títulos de página tal como aparecen
+en el front-matter, pero solo en minúsculas y sin espacios ni caracteres especiales.
+
+Básicamente, intentamos emular la forma en que Hugo produce el contenido final en el directorio `public`, de modo que
+no haya mucha diferencia entre el origen y el contenido renderizado. Hemos comprobado que esto suele facilitar
+la gestión del contenido.
+
+Así, una página en el directorio `Installation Guide` titulada `Downloading & Installing` puede tener un nombre de
+archivo `installation-guide/downloading-installing.adoc`.
+
+=== Nomenclatura de archivos traducidos
+
+Para las traducciones, mantenemos el nombre del archivo en inglés (así es como Hugo sabe que son versiones
+traducidas de lo mismo), pero añadimos un código de idioma antes de la extensión `.adoc`.
+
+Así, estas son todas traducciones del mismo archivo (inglés, ruso):
+
+[source]
+----
+requirements.adoc
+requirements.ru.adoc
+----
+Ten en cuenta que podríamos haber usado `requirements.en.adoc` para la versión en inglés, pero no lo hacemos.
+Mantenemos el idioma predeterminado (inglés) sin ningún código de idioma.
+
+== Front-matter y códigos especiales
+
+Cada archivo de contenido en Asciidoc empieza con una sección llamada *Front-matter*:
+
+[source]
+----
+---
+title: Documentation Guidelines
+weight: 50
+---
+----
+Aunque hay link:https://gohugo.io/content-management/front-matter/[muchas cosas] que se pueden
+definir aquí, solo requerimos las propiedades `title` y `weight`.
+
+El `weight` define la posición en la tabla de contenidos, es decir, el orden dentro de la sección a la que
+pertenece la página. Usamos incrementos de 10 para el `weight`, de modo que si queremos insertar una página nueva entre
+otras dos ya existentes, sea más fácil encontrar un número disponible. Así que los numeramos 10, 20, 30, etc.,
+en lugar de simplemente 1, 2, 3, etc.
+
+Algunos de los *códigos especiales* que se pueden usar al principio del archivo, después del front-matter:
+
+- Dibujar botones con un aspecto gráfico especial:
+
+[source]
+----
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+Example sentence indicating you can press a btn:[Save] on the user interface.
+----
+
+- Establecer el directorio base de imágenes que se usará en todo el archivo:
+
+[source]
+----
+:imagesdir: /images/en/admin
+----
+Para las imágenes, este directorio debe especificarse como una ruta absoluta (empezando
+con `/`), no relativa como `../../images`. Ten en cuenta que esta directriz es solo para las imágenes,
+no aplica a los enlaces a páginas, que deben ser relativos.
+
+- Incluir una *tabla de contenidos* generada automáticamente de las secciones dentro de este archivo: https://learn.netlify.com/en/shortcodes/children/
+
+[source]
+----
+:toc:
+----
+- Incluir una *tabla de contenidos* generada automáticamente de las páginas en los niveles de directorio inferiores a la página actual,
+para usar en páginas que tienen un subdirectorio. (Este es un shortcode proporcionado por link:https://learn.netlify.com/en/shortcodes/children/[nuestro tema^]).
+
+[source]
+----
+{{%/* children depth="3" showhidden="true" */%}}
+----
+- Incluir una *lista de contribuidores de GitHub* generada automáticamente (para las páginas de *Notas de la Versión*). Puedes
+listar un número indefinido de contribuidores. (Este es un shortcode
+link:https://github.com/SuiteCRM/SuiteDocs/blob/master/layouts/shortcodes/ghcontributors.html[definido en nuestro propio sitio^]),
+y puede servir de ejemplo si quieres crear otros).
+
+[source]
+----
+{{%/* ghcontributors username1 username2 */%}}
+----
+
+== Contenido
+
+En el contenido de texto normal, seguimos estas reglas:
+
+- Cortar las líneas aproximadamente en la columna 80. Asciidoc ignora estos saltos de línea. Los usamos para facilitar
+la edición del código fuente en una consola típica de 80 caracteres de ancho.
+
+- rodear rutas, nombres de archivo, nombres de variables y otras expresiones que puedan ser útiles de copiar y pegar
+con comillas invertidas:
+
+
+[source]
+----text
+Source mark-up to allow easy copy of a path `/some/path` into your editor.
+----
+
+== Referencias
+
+- Usa enlaces normales de Asciidoc para navegar entre archivos.
+
+- Para las páginas, usa siempre enlaces relativos siempre que sea posible. Esto es esencial para que las páginas traducidas puedan usar
+la misma navegación que las páginas en inglés. Así que tus enlaces se verán así:
+
+[source]
+----text
+Here is a link:../../admin/my-page.adoc[link for you to click!].
+----
+Usa la cantidad mínima de `..` necesaria, y al retroceder por directorios con `..`,
+nunca vayas más arriba del directorio `content`; esto nunca es necesario.
+
+- Para las imágenes, usa `:imagesdir:` como se explicó anteriormente, y luego usa un enlace sin ruta.

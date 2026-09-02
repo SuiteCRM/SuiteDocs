@@ -1,0 +1,31 @@
+---
+title: "Migración desde SuiteCRM 7"
+weight: 25
+aliases:
+  - /es/8.x/admin/legacy-migration/
+---
+:experimental:
+
+Esta sección cubre la migración de una instancia existente de SuiteCRM 7 a SuiteCRM 8. Esto es una migración, no una actualización — implica configurar un nuevo entorno de SuiteCRM 8 y trasladar los datos de SuiteCRM 7 a este.
+
+{{% notice info %}}
+**¿Actualizando dentro de SuiteCRM 8?** Si ya está en SuiteCRM 8 y desea pasar a una versión 8.x más reciente, consulte link:../upgrading[Actualización de SuiteCRM 8].
+{{% /notice %}}
+
+== Requisitos de versión
+
+Antes de migrar, su instancia de SuiteCRM 7 debe estar en la última versión 7.14.x. Actualice completamente su instancia de SuiteCRM 7 antes de comenzar este proceso.
+
+Consulte la link:../compatibility-matrix[Matriz de Compatibilidad] para confirmar que el entorno de su servidor es compatible con la versión de destino de SuiteCRM 8.
+
+== Guías de migración
+
+* link:before-you-migrate[Antes de Migrar] — pasos de preparación, copia de seguridad y comprobaciones del entorno
+* link:running-the-migration[Ejecutar la Migración] — comandos de migración paso a paso
+* link:troubleshooting/[Resolución de Problemas] — registros, depuración y problemas comunes
+
+== Guías de migración antiguas
+
+Si está migrando a una versión entre 8.2.0 y 8.6.x, consulte la link:older-versions/8.2.0-legacy-migration[Guía de migración para 8.2.0–8.6.x].
+
+{{% children depth="2" showhidden="false" %}}

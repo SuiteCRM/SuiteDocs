@@ -1,0 +1,22 @@
+---
+Title: Configuración de la limitación de intentos de inicio de sesión
+weight: 30
+---
+
+:imagesdir: /images/en/user
+
+== Valores predeterminados
+
+De forma predeterminada, SuiteCRM tiene habilitada la limitación de intentos de inicio de sesión, que se activa tras `3` intentos fallidos.
+
+Si el usuario no consigue iniciar sesión ese número de veces seguidas, se mostrará un mensaje explicando que se ha alcanzado el número máximo de intentos.
+El usuario deberá esperar al menos un minuto antes de poder volver a intentar iniciar sesión.
+
+== Configurar el número máximo de intentos
+
+El número de intentos se configura mediante la propiedad `.env` `LOGIN_THROTTLING_MAX_ATTEMPTS`, que puede modificarse en el archivo `.env.local`.
+
+== Más configuraciones y personalizaciones
+
+SuiteCRM utiliza el mecanismo de limitación de intentos de inicio de sesión de Symfony.
+Para más opciones y formas de configurarlo, consulte la sección link:https://symfony.com/doc/current/security.html#limiting-login-attempts[Symfony Security - Limiting Login Attempts]

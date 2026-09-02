@@ -1,0 +1,93 @@
+---
+title: "Política de Seguridad"
+weight: 2
+---
+
+= Política de Seguridad
+
+En SuiteCRM Ltd estamos comprometidos con la seguridad de nuestro software y los datos de nuestros usuarios. Nos tomamos en serio todos los reportes de vulnerabilidades de seguridad y agradecemos los esfuerzos de los investigadores que nos ayudan a mantener una plataforma segura. La divulgación responsable es la base de una comunidad de seguridad sana, y damos la bienvenida a los investigadores que nos reportan incidencias en privado antes de hacerlas públicas.
+
+{{% notice warning %}}
+**Por favor, no reveles públicamente errores de seguridad** (incluyendo redes sociales, los foros, o incidencias públicas de GitHub) hasta que hayan sido gestionados y corregidos por el equipo de seguridad.
+{{% /notice %}}
+
+== Versiones compatibles
+
+Los reportes de vulnerabilidades solo deben enviarse para versiones del software con soporte activo.
+
+{{% notice info %}}
+Consulta la página link:../supported-versions[Versiones Compatibles] para ver la lista actual de versiones que reciben actualizaciones de seguridad.
+{{% /notice %}}
+
+== Alcance
+
+Lo siguiente está dentro del alcance de los reportes de vulnerabilidades:
+
+* El código de la aplicación principal de SuiteCRM 7 y SuiteCRM 8+.
+* La autenticación, autorización y gestión de sesiones.
+* Vulnerabilidades de exposición de datos o inyección (por ejemplo, inyección SQL, XSS, CSRF).
+
+Lo siguiente está **fuera de alcance**:
+
+* Complementos, temas o integraciones de terceros no mantenidos por SuiteCRM Ltd.
+* Vulnerabilidades en infraestructura autoalojada o decisiones de configuración tomadas por el administrador del sitio.
+* Incidencias solo reproducibles en versiones sin soporte.
+* Vulnerabilidades teóricas sin una prueba de concepto funcional.
+
+== Reportar una vulnerabilidad
+
+Si has descubierto un riesgo de seguridad en SuiteCRM, **repórtalo a través de GitHub Security Advisories**. Este es nuestro método preferido, ya que es la forma más segura y eficiente para que nuestro equipo haga seguimiento y resuelva las vulnerabilidades.
+
+* **SuiteCRM 7 y SuiteCRM 8+:** Si la incidencia existe en ambas versiones o solo en SuiteCRM 7, por favor https://github.com/SuiteCRM/SuiteCRM/security[repórtala en el repositorio de SuiteCRM^].
+* **Solo SuiteCRM 8:** Si la incidencia existe únicamente en SuiteCRM 8+, por favor https://github.com/SuiteCRM/SuiteCRM-Core/security[repórtala en el repositorio de SuiteCRM-Core^].
+
+{{% notice tip %}}
+**Al reportar, proporciona una descripción detallada del fallo**, incluyendo cómo se puede desencadenar y qué impacto tiene. Para evitar que información sensible se haga pública cuando se publique un CVE, por favor **adjunta cualquier material de Prueba de Concepto (PoC) como comentario en el advisory** en lugar de incluirlo en la descripción principal.
+{{% /notice %}}
+
+Si no puedes usar GitHub, como último recurso puedes enviar tu reporte por correo electrónico al Equipo de Seguridad a **security@suitecrm.com**.
+
+== Criterios de un reporte válido
+
+Para ayudar a nuestro equipo a evaluar tu reporte rápidamente, asegúrate de que cumpla los siguientes criterios:
+
+[cols="1,3", options="header"]
+|===
+| Criterio | Requisito
+
+| **Alcance**
+| Incluye una sola incidencia por reporte.
+
+| **Verificación**
+| La incidencia debe haber sido verificada por quien la reporta antes de enviarla.
+
+| **Reproducción**
+| Proporciona instrucciones claras, paso a paso, para reproducir la incidencia, o un script de PoC funcional.
+
+| **Datos de versión**
+| Especifica la versión exacta de SuiteCRM y el entorno (por ejemplo, versión de PHP, sistema operativo) donde se encontró la incidencia.
+
+| **Estado de soporte**
+| La versión reportada debe estar entre nuestras versiones con soporte activo.
+|===
+
+== Respuesta y resolución
+
+=== Primera respuesta
+Tu reporte se confirmará en un plazo de **72 horas** durante la semana laboral (de lunes a viernes), excluyendo los festivos nacionales del Reino Unido.
+
+=== Evaluación
+Los reportes se priorizan según una evaluación inicial de la gravedad. El tiempo para evaluar por completo un reporte depende de su complejidad y de la calidad de la documentación proporcionada. Nuestro objetivo es completar una evaluación inicial en un plazo de **21 días** tras la confirmación.
+
+Una vez completada la evaluación, se notificará a quien reportó:
+
+1. La calificación de **gravedad** y **prioridad** asignada.
+2. El plan previsto para publicar una corrección.
+
+Si se determina que un reporte no es válido o está fuera de alcance, se notificará a quien lo reportó y se le dará la opción de crear una incidencia pública estándar si procede.
+
+=== Resolución
+Las incidencias de seguridad se resuelven según su impacto. El tiempo hasta la resolución varía según la complejidad de la corrección y el ciclo de versiones. Se notificará a quien reportó la incidencia una vez que la corrección se haya fusionado y se haya programado una fecha de publicación.
+
+=== Crédito y reconocimiento
+Estamos agradecidos a los investigadores que ayudan a mantener SuiteCRM seguro. A menos que prefieras permanecer en el anonimato, quienes reporten vulnerabilidades válidas y dentro de alcance recibirán crédito por su nombre en las notas de la versión que incluya la corrección.

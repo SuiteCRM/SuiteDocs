@@ -1,0 +1,326 @@
+---
+Title: Studio
+weight: 55
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+=== Introducción
+
+Las herramientas de Studio le permiten personalizar la información mostrada en los
+módulos y cómo se muestra.
+
+Para acceder a Studio, inicie sesión como usuario Administrador. En la esquina superior derecha de la pantalla encontrará un menú con un icono de figura de perfil. Haga clic en este icono y, a continuación, seleccione "Admin". Desplácese hacia abajo en la página y haga clic en "Studio".
+
+Al abrir Studio, se mostrará una lista con todos los módulos que
+se pueden personalizar. Haga clic para seleccionar el módulo requerido.
+
+image:StudioModuleList.png["Lista de módulos de Studio"]
+
+Para cada módulo hay varios componentes que se pueden editar.
+
+image:StudioModuleComponents.png["Componentes de módulo de Studio"]
+
+*Labels:* Ver/editar las etiquetas de los campos y el nombre del módulo
+
+*Fields:* Ver/editar las propiedades de los campos y añadir campos nuevos
+
+*Relationships:* Ver/editar/añadir relaciones entre módulos
+
+*Layouts:* Personalizar las vistas de edición/detalle/lista y filtro
+
+*Subpanels:* Establecer qué columnas se muestran en los subpaneles del módulo
+
+=== Labels
+
+Al seleccionar el componente Labels se muestran todas las etiquetas de campo del módulo. Los cambios en las etiquetas
+se reflejarán en las vistas del módulo.
+
+Haga clic y escriba para realizar los cambios necesarios en las etiquetas y, a continuación, haga clic en
+btn:[SAVE & DEPLOY].
+
+Aparecerá un mensaje de confirmación una vez guardados los cambios. Ahora debería poder
+ver los cambios en las etiquetas al navegar al módulo.
+
+image:StudioEditLabels.png["Studio - editar etiquetas del módulo"]
+
+Al hacer clic en btn:[CHANGE MODULE NAME] podrá cambiar la etiqueta del
+propio módulo. Consulte la sección
+link:../developer-tools/#_rename_modules[Renombrar Módulos] de la documentación de
+Herramientas de Desarrollador para más detalles.
+
+=== Fields
+
+Al seleccionar el componente Fields se muestran todos los campos disponibles del módulo,
+con su etiqueta de visualización y su tipo de dato.
+
+image:StudioFields.png["studio - lista de campos del módulo"]
+
+==== Añadir un Campo
+
+Puede añadir un campo personalizado al módulo seleccionado haciendo clic en btn:[ADD FIELD].
+
+image:StudioFieldsAddField.png["studio - añadir campo"]
+
+Introduzca los datos del nuevo campo. Según el tipo de dato seleccionado para el campo, se pueden establecer algunas o todas
+las siguientes propiedades para el campo:
+
+[cols = "20, 80", frame = "none", grid = "none"]
+|===
+|*Data Type:*|El tipo que seleccione determina qué tipo de caracteres se pueden introducir
+en el campo. Por ejemplo, solo se pueden introducir números enteros en
+campos de tipo de dato Integer.
+|*Field Name:*|El nombre del campo debe ser alfanumérico y no debe contener espacios. Los guiones bajos
+son válidos.
+|*Display Label*|La etiqueta que se mostrará junto al campo en las vistas.
+|*System Label:*|Esta etiqueta se usa para referirse al campo en el código.
+|*Help Text:*| Texto explicativo opcional que se muestra temporalmente cuando el
+usuario pasa el cursor sobre el campo.
+|*Comment Text:*|Esto solo es visible en Studio y Module Builder, como una
+descripción para uso del administrador.
+|*Default Value:*|El campo tendrá el valor establecido aquí a menos que el usuario introduzca un nuevo valor.
+|*Max Size:*|El número máximo de caracteres que se pueden introducir en el campo.
+|*Mass Update:*|Habilita la función de Actualización Masiva para este campo.
+|*Required Field:*|Si es necesario o no introducir un valor en el campo antes de que se pueda guardar un registro
+que lo contenga.
+|*Audit:*|Si se selecciona esta opción, los cambios realizados en el valor del campo pueden rastrearse desde el
+Registro de Cambios del registro.
+|*Inline Edit:*|Si el campo se puede editar en línea o no, cuando esta opción está habilitada
+en los link:../system/#_user_interface[Ajustes del Sistema].
+|*Importable:*|Seleccione una opción para permitir, no permitir o exigir
+que el campo se importe al usar el Asistente de Importación.
+|*DuplicateMerge:*|Seleccione una opción para habilitar o deshabilitar las funciones de Combinar Duplicados
+y Buscar Duplicados.
+|===
+
+
+==== Tipos de Campo
+
+Studio incluye de serie muchos tipos diferentes de campos que se pueden crear en SuiteCRM.
+
+Los siguientes tipos de datos están disponibles al crear campos en Studio:
+
+[cols = "20, 80", frame = "none", grid = "none"]
+|===
+|*Data Types*|*Description*
+|*Address*|Crea campos para calle, ciudad, código postal, estado/provincia y país. +
+Los campos de dirección personalizados no se pueden agrupar como los campos de dirección estándar (p. ej. dirección de facturación)
+|*Checkbox*|Crea una casilla de verificación para campos de datos con una acción Sí/No
+|*Currency*|Crea un campo para introducir un valor monetario. El sistema crea automáticamente un desplegable con el tipo de moneda si el campo aún no existe en ese módulo
+|*Date*|Crea un campo para introducir una fecha. Incluye un botón para una ventana emergente de calendario
+|*DateTime*|Crea un campo para introducir la fecha y la hora. Incluye un botón con icono de Calendario para elegir una fecha mediante la ventana emergente de calendario, así como una lista desplegable para seleccionar la hora
+|*Decimal*|Crea un campo para almacenar un número redondeado a una precisión decimal especificada. SuiteCRM almacena la representación exacta del número en la base de datos (p. ej. para una precisión de 2: 2.539 se almacena como 2.60)
+|*DropDown*|Crea un campo al que se puede asociar una lista desplegable de valores
+|*DynamicDropdown*|Crea una lista desplegable desde la que puede relacionar un único registro procedente de varios módulos.
+|*Flex Relate*|Para especificar una relación de uno a muchos con otro módulo, pero permitiendo la vinculación con varios tipos de módulos. Por ejemplo, las Notas usan un Flex Relate para poder relacionarse con Cuentas, Contactos, Iniciativas, etc. Solo se permite un campo de tipo Flex Relate por módulo, lo que explica por qué no puede añadir otro campo de este tipo a los módulos de Cuentas, Llamadas, Reuniones, Notas y Tareas.
+|*Float*|Crea un campo para almacenar un número redondeado a una precisión decimal especificada. SuiteCRM almacena el valor de forma distinta según la plataforma de base de datos sobre la que se ejecute SuiteCRM
+|*HTML*|Crea texto estático con formato HTML para mostrar en las vistas de registro
+|*IFrame*|Crea un campo para almacenar una URL que se mostrará en un iFrame en las vistas de registro. Esta URL también se puede generar dinámicamente a partir de datos de otros campos.
+|*Image*|Crea un campo de imagen para subir una imagen que se mostrará en un registro
+|*Integer*|Crea un campo para especificar números positivos o negativos sin decimales
+|*Multiselect*|Crea una lista desplegable de valores en la que se pueden seleccionar varios valores a la vez
+|*Phone*|Crea un campo para introducir un número de teléfono
+|*Radio*|Crea un botón de opción para que el usuario seleccione un valor de una lista desplegable
+|*Relate*|Crea un campo para asociar un registro con el registro de otro módulo mediante una relación unidireccional. Puede añadir varios campos Relate a un módulo. +
+Los campos Relate y las relaciones personalizadas son independientes entre sí. Los cambios realizados en uno no se reflejan en el otro. Los campos Relate se pueden añadir a un informe, pero no se puede acceder a los datos del registro relacionado en el informe. Para acceder a los datos del registro relacionado en un informe deberá crear una relación personalizada
+|*TextArea*|Crea un área de texto abierta para varias líneas de texto
+|*URL*|Crea un campo para almacenar una URL y mostrarla como un enlace en el que se puede hacer clic. Esta URL también se puede generar dinámicamente a partir de datos de otros campos.
+|*TextField*|Crea un campo para una sola línea de texto
+|===
+
+==== Añadir un Campo de Tipo Desplegable
+
+Al añadir un campo de tipo DropDown, deberá especificar además la
+lista desplegable. Esta contiene los elementos que se mostrarán en el desplegable.
+image:StudioFieldsAddDropDown5.png["studio - añadir un campo desplegable"]
+
+Puede seleccionar una lista desplegable existente si procede, o hacer clic en btn:[ADD] para crear
+una nueva.
+
+image:StudioFieldsAddDropDown2.png["studio - añadir un campo desplegable"]
+
+Para cada elemento a incluir en la lista, introduzca:
+
+[cols = "20, 80", frame = "none", grid = "none"]
+|===
+|*Item Name*|Se usa para referirse al elemento del desplegable en el código; debe ser alfanumérico, empezar
+por una letra y no contener espacios.
+|*Display Name*|El texto mostrado al usuario. Puede contener espacios y caracteres especiales
+|===
+
+Haga clic en btn:[ADD] para añadir cada nueva entrada.
+
+Para añadir un elemento en blanco, haga clic en btn:[ADD] sin introducir ningún valor en Item Name ni en Display Label.
+No es posible añadir un nombre en blanco con una etiqueta que no lo esté.
+
+Opcionalmente, la lista se puede ordenar alfabéticamente por la Display Label haciendo clic en el botón
+btn:[SORT] correspondiente. Si desea establecer un elemento por defecto, este no es el lugar para configurarlo; en su lugar, busque una
+opción de "valor por defecto" en los ajustes del campo que vaya a usar este desplegable.
+
+Haga clic en btn:[SAVE] para guardar la nueva lista desplegable y volver a las propiedades del campo.
+
+Los elementos de la lista desplegable que haya creado ahora serán visibles. Si lo desea, puede seleccionar
+un valor por defecto para el desplegable.
+
+image:StudioFieldsAddDropDown4.png["studio - añadir un campo desplegable"]
+
+==== Editar un Campo
+
+Haga clic en un campo para ver sus propiedades. Estas se pueden editar de la misma forma que se ha detallado
+anteriormente para añadir un campo nuevo.
+
+==== Eliminar un Campo
+
+Solo se pueden eliminar mediante Studio los campos que se hayan creado en Studio. Los campos principales no se pueden eliminar.
+
+Seleccione el campo que desee eliminar y haga clic en btn:[DELETE]. Aparecerá un mensaje de advertencia pidiéndole que
+confirme la eliminación, ya que tanto el campo como cualquier dato relacionado con el campo personalizado se eliminarán de la
+base de datos, y el campo dejará de aparecer en cualquier vista del módulo.
+
+image:StudioFieldsDeleteField.png["studio - eliminar campo"]
+
+=== Relationships
+
+Una relación representa un vínculo bidireccional entre dos módulos. Al seleccionar el componente Relationships
+se muestran todas las relaciones entre el módulo actualmente seleccionado
+y otros módulos desplegados.
+
+image:StudioRelationships.png["studio - relaciones del módulo"]
+
+Haga clic en una relación para ver sus propiedades.
+
+Haga clic en btn:[ADD RELATIONSHIP] para añadir una nueva relación para el módulo seleccionado.
+
+image:StudioAddRelationship.png["studio - añadir relación"]
+
+El *Primary Module* (Módulo Primario) se establecerá como el módulo actualmente seleccionado.
+
+Especifique el tipo de relación:
+
+*One to One*
+
+Con una relación Uno a Uno, cada registro del módulo primario puede tener solo un registro relacionado en
+el módulo relacionado, y viceversa. Este tipo de relación añadirá un campo relate a ambos
+módulos.
+
+*One to Many*
+
+Con una relación Uno a Muchos, los registros del módulo primario pueden estar relacionados con uno o más registros
+del módulo relacionado, pero cada registro del módulo relacionado solo está relacionado con un registro del módulo primario.
+Esto añadirá un campo relate a los registros del módulo relacionado, pero el módulo primario mostrará
+un subpanel donde se pueden añadir varios registros del módulo relacionado.
+
+*Many to Many*
+
+Con una relación Muchos a Muchos, los registros del módulo primario pueden estar relacionados con uno o más registros
+del módulo relacionado, y viceversa. Los registros de ambos módulos contendrán un subpanel para los registros relacionados.
+
+Seleccione el *Related Module* (Módulo Relacionado) en el desplegable.
+
+Donde existan subpaneles, se pueden seleccionar las vistas de subpanel de los módulos.
+
+Haga clic en btn:[SAVE AND DEPLOY] para guardar la relación.
+
+=== Layouts
+
+Los diseños se pueden editar en Studio para personalizar las vistas del módulo que se muestran a los usuarios.
+
+==== Edit View
+
+La vista de edición se muestra al editar un registro o al crear uno nuevo.
+
+image:StudioEditView.png["studio - vista de edición"]
+
+El diseño actual se muestra en el panel principal, en el lado derecho.
+Los campos no utilizados se muestran en la lista del lado izquierdo.
+
+{{% notice tip%}}Seleccione *Sync to Detail View* si desea que cualquier cambio realizado en los campos o en su ubicación
+se aplique automáticamente a la Vista de Detalle correspondiente. Tenga en cuenta que
+no se pueden realizar cambios de diseño en la Vista de Detalle cuando esta opción está activada. {{%/notice%}}
+
+*Añadir Campos*
+
+Los campos se pueden añadir a la vista como una nueva fila dentro de un panel (sección) existente,
+o añadiendo un nuevo panel.
+
+Arrastre y suelte el elemento *New Row* o *New Panel* en la ubicación deseada del diseño
+en el lado derecho.
+
+image:StudioEditViewAddPanel.png["studio - añadir panel a la vista"]
+
+Si ha añadido un nuevo panel, puede renombrarlo haciendo clic en el icono de lápiz.
+Esto abrirá la vista de edición de la etiqueta del panel. Edite la etiqueta y haga clic en btn:[SAVE]
+para volver al diseño.
+
+image:StudioEditViewRenamePanel.png["studio - renombrar panel"]
+
+Se creará automáticamente una nueva fila con dos columnas.
+
+Arrastre y suelte los campos requeridos en la nueva fila. Al hacer clic en el botón + el campo se extenderá
+a ambas columnas.
+
+Haga clic en btn:[SAVE AND DEPLOY] para guardar los cambios de diseño. Estos deberían ser visibles ahora
+al navegar a la vista de edición del módulo.
+
+*Eliminar Campos*
+
+Elimine campos, filas o paneles del diseño arrastrándolos al área de eliminación en el lado izquierdo.
+
+Haga clic en btn:[SAVE AND DEPLOY] para guardar los cambios de diseño.
+
+==== Detail View
+
+La Vista de Detalle es una vista de solo lectura, que se muestra al abrir un registro.
+
+El diseño de la Vista de Detalle se puede editar exactamente igual que la Vista de Edición. Tenga en cuenta que si tiene
+seleccionada *Sync to Detail View* en la Vista de Edición, no podrá realizar cambios en la Vista de Detalle.
+
+==== List View
+
+La Vista de Lista se muestra al abrir un módulo, y lista todos los registros de ese módulo.
+
+Aquí puede personalizar qué campos se muestran en la vista de lista y en qué orden se muestran.
+
+[cols = "20, 80", frame = "none", grid = "none"]
+|===
+|*Default*| Los campos de esta columna se mostrarán por defecto en la vista de lista. Reordénelos arrastrando y soltando
+los nombres de los campos.
+|*Available*|Los campos de esta columna están disponibles para que los usuarios los añadan a la vista de lista usando el botón
+de Selector de Columnas de la vista de lista.
+|*Hidden*|Estos campos están ocultos para los usuarios y no se pueden añadir a la vista.
+|===
+
+Arrastre y suelte los campos del módulo entre las columnas para personalizar la vista de lista.
+
+=== Subpanels
+
+Use esta sección para personalizar qué campos se muestran en un subpanel concreto.
+
+Seleccione el subpanel. Los campos mostrados en la columna Default se mostrarán en el subpanel. Arrastre y
+suelte los campos requeridos entre las dos columnas.
+
+Haga clic en btn:[SAVE & DEPLOY]
+
+image:StudioSubpanels2.png["studio - subpaneles"]
+
+=== Exportar Personalizaciones
+
+Puede exportar las personalizaciones de módulos que haya realizado en Studio, y cargarlas en otra
+instancia de SuiteCRM mediante link:/admin/administration-panel/developer-tools#_module_loader[Module Loader]
+
+image:StudioExportCustomisations.png["Personalizaciones de Studio"]
+
+Introduzca un nombre para el paquete, y opcionalmente los datos de autor y descripción.
+
+Seleccione el módulo o módulos que contengan las personalizaciones que desee exportar.
+Solo aparecerán para seleccionar los módulos que contengan personalizaciones.
+
+Haga clic en btn:[EXPORT]. Esto creará y descargará un archivo .zip con las personalizaciones del módulo.
+Use link:/admin/administration-panel/developer-tools#_module_loader[Module Loader] para cargar e instalar
+las personalizaciones en otra instancia de SuiteCRM.
+
+

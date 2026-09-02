@@ -1,0 +1,7 @@
+---
+title: "Configuración del almacenamiento de archivos"
+weight: 20
+---
+
+=== Tabla de contenidos
+{{% children depth="1" showhidden="false" %}}

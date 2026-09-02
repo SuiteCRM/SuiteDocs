@@ -1,0 +1,102 @@
+---
+title: Versiones Compatibles
+weight: 1
+---
+
+:experimental:
+
+== Versiones Compatibles
+
+Cada versión de SuiteCRM recibe soporte durante un período predefinido de tiempo después de su lanzamiento estable inicial. Durante este período, los errores e incidencias de seguridad reportados se corrigen y se publican en versiones de mantenimiento regulares.
+
+Las versiones **ESR (Extended Support Release)** tienen una ventana de soporte más larga. Una vez finalizado el soporte activo, reciben correcciones solo de seguridad según sea necesario. Las versiones no ESR no tienen un período de solo seguridad.
+
+
+== Versiones actualmente compatibles
+
+
+[cols="1,1,1,1"]
+|===
+| Versión | Lanzamiento inicial | Soporte activo hasta | Soporte de seguridad hasta
+
+| 7.15 ESR
+| Diciembre 2025
+| Diciembre 2027
+| Marzo 2028
+
+| 8.10
+| Abril 2026
+| -
+| -
+
+|===
+
+== Versiones al final de su vida útil
+
+Las versiones listadas aquí ya no reciben correcciones de errores ni actualizaciones de seguridad. Si estás usando una versión al final de su vida útil, te recomendamos encarecidamente actualizar a una versión actualmente compatible.
+
+[cols="1,1,1,1"]
+|===
+| Versión | Lanzamiento inicial | Soporte activo hasta | Soporte de seguridad hasta
+
+| 8.9
+| Septiembre 2025
+| Abril 2026
+| -
+
+| 8.8
+| Enero 2025
+| Septiembre 2025
+| -
+
+| 8.7
+| Octubre 2024
+| Enero 2025
+| -
+
+| 8.6
+| Abril 2024
+| Octubre 2024
+| -
+
+| 8.5
+| Diciembre 2023
+| Abril 2024
+| -
+
+| 8.4
+| Agosto 2023
+| Diciembre 2023
+| -
+
+| 8.3
+| Mayo 2023
+| Agosto 2023
+| -
+
+| 8.2
+| Octubre 2022
+| Mayo 2023
+| -
+
+| 7.14 ESR
+| Agosto 2023
+| Octubre 2025
+| Marzo 2026
+
+| 7.13
+| Diciembre 2022
+| Agosto 2023
+| -
+
+| 7.12 ESR
+| Octubre 2021
+| Agosto 2023
+| Noviembre 2023
+
+|===
+
+
+== Hoja de ruta
+
+Consulta la página link:https://suitecrm.com/suitecrm-roadmap/[Hoja de ruta] en el sitio web suitecrm.com para más información sobre el calendario de versiones.

@@ -1,0 +1,39 @@
+---
+title: "Migrar a SuiteCRM 8"
+weight: 20
+---
+:experimental:
+
+SuiteCRM 8 tiene una arquitectura fundamentalmente distinta a la de SuiteCRM 7 — introduce una capa de aplicación Symfony y un frontend basado en Angular, con su código de SuiteCRM 7 ejecutándose dentro de esta como una capa heredada (legacy). Debido a esto, pasar de la versión 7 a la 8 es una migración y no una actualización: el proceso implica una nueva instalación de SuiteCRM 8, no un parche aplicado a su instancia existente.
+
+== Qué implica esto para su instancia
+
+* su código y datos de SuiteCRM 7 se conservan — se trasladan a la estructura de carpetas de SuiteCRM 8 y pasan a formar la capa `legacy`
+* la migración se realiza mediante un paquete de migración específico, distinto de los paquetes de actualización estándar
+* todos los comandos de migración se ejecutan desde la línea de comandos contra la nueva instancia de SuiteCRM 8
+
+== Requisitos previos
+
+Antes de iniciar la migración, su instancia de SuiteCRM 7 debe estar en la **última versión 7.x**. El paquete de migración se genera para una versión mínima 7.x específica — compruebe el nombre del paquete de migración en la página de descargas para confirmar la versión necesaria (por ejemplo, `8.7.0 Upgrade from 7.14.x` requiere la versión 7.14.x).
+
+Si su instancia no está en la versión requerida, link:../../upgrading[actualícela] antes de continuar.
+
+{{% notice warning %}}
+No intente realizar la migración hasta que su instancia de SuiteCRM 7 esté en la versión requerida. Ejecutar la migración desde una versión 7.x anterior fallará o producirá un resultado inestable.
+{{% /notice %}}
+
+Complete también lo siguiente antes de empezar:
+
+* realice una copia de seguridad de los archivos y la base de datos de SuiteCRM 7
+* pruebe la migración completa en un entorno de desarrollo antes de ejecutarla en producción
+* audite sus personalizaciones — la migración puede eliminar archivos que no sean del núcleo de la carpeta `public/legacy/`. Consulte link:../../upgrading/large-or-complex-upgrades[Actualizaciones Grandes o Complejas] para obtener orientación sobre cómo auditar las personalizaciones
+* revise la compatibilidad de sus complementos con SuiteCRM 8 antes de migrar
+* confirme que su servidor cumple los requisitos de compatibilidad de SuiteCRM 8 — consulte la link:../../../8.x/admin/compatibility-matrix[Matriz de Compatibilidad de SuiteCRM 8]
+
+== Guía de migración
+
+El proceso completo de migración está documentado en la guía de administración de SuiteCRM 8:
+
+link:../../../8.x/admin/migration[SuiteCRM 8 — Guía de Migración]
+
+Esa guía cubre la descarga del paquete de migración, la copia de su instancia de SuiteCRM 7, la ejecución de los comandos de migración, el restablecimiento de permisos y las comprobaciones posteriores a la migración.

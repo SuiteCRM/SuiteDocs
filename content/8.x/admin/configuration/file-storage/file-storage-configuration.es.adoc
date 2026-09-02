@@ -1,0 +1,317 @@
+---
+Title: Referencia de configuración del almacenamiento de archivos
+weight: 50
+---
+
+:imagesdir: /images/en/user
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM Versión 8.9.0+
+{{% /notice %}}
+
+== 1. Introducción
+
+El nuevo mecanismo de almacenamiento multimedia utiliza un sistema de almacenamiento de archivos flexible, gestionado mediante variables de entorno, para manejar las subidas y descargas de contenido multimedia. La configuración se gestiona mediante variables de entorno (véase `.env` y `.env.local`), lo que permite cambiar sin problemas entre almacenamiento local, AWS S3 y Azure Blob Storage.
+
+== 2. Resumen del almacenamiento multimedia
+
+=== Bundles de Symfony utilizados
+
+* *VichUploaderBundle*: gestiona las subidas de archivos y la asignación de archivos a entidades de Doctrine.
+* *LeagueFlysystemBundle*: integra la abstracción del sistema de archivos Flysystem, con soporte para múltiples backends de almacenamiento (local, S3, Azure, etc.).
+* *DoctrineBundle*: gestiona las interacciones con la base de datos para los metadatos multimedia.
+* *ApiPlatform*: expone los objetos multimedia como recursos de la API.
+
+=== Tipos de almacenamiento (almacenamientos de objetos multimedia)
+
+El sistema define varios tipos de almacenamiento, cada uno asignado a un caso de uso y backend específicos:
+
+* `private.documents.storage`::
+Para almacenar documentos privados. El acceso está restringido a usuarios autorizados.
+Utilizado por: `PrivateDocumentMediaObject`
+
+* `archived.documents.storage`::
+Para almacenar documentos archivados, normalmente para retención a largo plazo o cumplimiento normativo.
+Utilizado por: `ArchivedDocumentMediaObject`
+
+* `private.images.storage`::
+Para almacenar imágenes privadas, accesibles solo a usuarios autorizados.
+Utilizado por: `PrivateImageMediaObject`
+
+* `public.images.storage`::
+Para almacenar imágenes destinadas a acceso público (p. ej., avatares de usuario, galerías públicas).
+Utilizado por: `PublicImageMediaObject`
+
+* `public.documents.storage`::
+Para almacenar documentos que pueden accederse públicamente (p. ej., recursos descargables).
+Utilizado por: `PublicDocumentMediaObject`
+
+Los backends de almacenamiento (local, AWS S3, Azure Blob) se configuran mediante variables de entorno.
+
+Cada almacenamiento se configura en la variable de entorno `MEDIA_FLY_SYSTEM_STORAGES` como un objeto JSON, especificando el adaptador (`local`, `aws`, `azure`) y las opciones (como el bucket o contenedor).
+
+=== Notas de configuración
+
+* Al utilizar secrets en JSON, envuelva siempre la referencia entre comillas dobles.
+* La configuración de almacenamiento se combina con valores predeterminados razonables, por lo que solo necesita sobrescribir lo que desee cambiar.
+* La asignación entre las clases de entidad y los almacenamientos se define en los archivos YAML de asignación de VichUploader, en `config/vich_uploader/`.
+* Para más detalles, consulte los ejemplos de configuración en `.env` y `.env.local`, y los archivos de configuración de los bundles en `config/packages/`.
+
+== 3. Configuración base/predeterminada
+
+=== Configuración de Flysystem
+
+El archivo `config/packages/flysystem.php` combina los almacenamientos predeterminados y los definidos por el entorno:
+
+- Los almacenamientos predeterminados utilizan el adaptador `local` y almacenan los archivos en directorios del proyecto.
+- Se pueden definir almacenamientos personalizados mediante `MEDIA_FLY_SYSTEM_STORAGES` para AWS S3 o Azure Blob.
+- La configuración se inyecta en la extensión `flysystem`.
+
+
+=== Configuración de VichUploader
+
+El archivo `config/packages/vich_uploader.php`:
+
+- Lee las definiciones de clientes de AWS y Azure de las variables de entorno.
+- Configura las definiciones de servicio para cada cliente.
+- Define las asignaciones para cada tipo de objeto multimedia, p. ej.:
+  * `archived_documents_media_object` → `archived.documents.storage`
+  * `private_documents_media_object` → `private.documents.storage`
+  * `private_images_media_object` → `private.images.storage`
+  * `public_images_media_object` → `public.images.storage`
+  * `public_documents_media_object` → `public.documents.storage`
+- Cada asignación especifica el prefijo URI, el destino de la subida, el nombrador de archivos y el nombrador de directorios.
+
+== 4. Variables de entorno de almacenamiento multimedia
+
+=== MEDIA_FLY_SYSTEM_STORAGES
+
+Objetivo::
+Define los backends de almacenamiento para Flysystem, asignando nombres de almacenamiento lógicos a adaptadores (local, AWS S3, Azure Blob, etc).
+
+Configuración::
+Se establece como una cadena JSON que asigna claves de almacenamiento a configuraciones de adaptador.
+
+Valor predeterminado::
+[source,json]
+----
+{
+  "private.documents.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/uploads/documents"
+    }
+  },
+  "archived.documents.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/uploads/archived"
+    }
+  },
+  "private.images.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/uploads/images"
+    }
+  },
+  "public.images.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/public/media-upload/images"
+    }
+  },
+  "public.documents.storage": {
+    "adapter": "local",
+    "options": {
+      "directory": "%kernel.project_dir%/public/media-upload/documents"
+    }
+  }
+}
+----
+
+Ejemplo de sobrescritura:
+[source,json]
+----
+MEDIA_FLY_SYSTEM_STORAGES='{
+  "private.documents.storage": {
+    "adapter": "aws",
+    "options": {
+      "client": "aws.s3.client.main",
+      "bucket": "your-bucket"
+    }
+  },
+  "private.images.storage": {
+    "adapter": "azure",
+    "options": {
+      "client": "azure.blob.client.main",
+      "container": "your-blob-container"
+    }
+  }
+}'
+----
+
+=== MEDIA_UPLOADER_MAPPINGS
+
+Objetivo::
+Define las asignaciones de VichUploader, asociando los campos de entidad con los destinos de almacenamiento y las estrategias de nomenclatura.
+
+Configuración::
+Se establece como una cadena JSON que asigna nombres de asignación a objetos de configuración.
+
+Valor predeterminado::
+[source,json]
+----
+{
+  "archived_documents_media_object": {
+    "uri_prefix": "/media/archived",
+    "upload_destination": "archived.documents.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "private_documents_media_object": {
+    "uri_prefix": "/media/documents",
+    "upload_destination": "private.documents.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "private_images_media_object": {
+    "uri_prefix": "/media/images",
+    "upload_destination": "private.images.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "public_images_media_object": {
+    "uri_prefix": "/media-upload/images",
+    "upload_destination": "public.images.storage",
+    "namer": "Vich\\UploaderBundle\\Naming\\SmartUniqueNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  },
+  "public_documents_media_object": {
+    "uri_prefix": "/media-upload/documents",
+    "upload_destination": "public.documents.storage",
+    "namer": "Vich\\UploaderBundle\\Naming\\SmartUniqueNamer",
+    "directory_namer": {
+      "service": "Vich\\UploaderBundle\\Naming\\CurrentDateTimeDirectoryNamer",
+      "options": {
+        "date_time_format": "Y/m",
+        "date_time_property": "dateEntered"
+      }
+    }
+  }
+}
+----
+
+Ejemplo de sobrescritura:
+[source,json]
+----
+MEDIA_UPLOADER_MAPPINGS='{
+  "private_documents_media_object": {
+    "uri_prefix": "/media/documents",
+    "upload_destination": "private.documents.storage",
+    "namer": "App\\MediaObjects\\Services\\UuidMediaObjectFileNamer"
+  }
+}'
+----
+
+=== AWS_S3_INSTANCES
+
+Objetivo::
+Configura las instancias de cliente de AWS S3 para su uso como backends de almacenamiento.
+
+Configuración::
+Se establece como una cadena JSON que asigna nombres de instancia a credenciales y región de AWS.
+
+Valor predeterminado::
+[source,json]
+----
+{}
+----
+
+Ejemplo:
+[source,json]
+----
+AWS_S3_INSTANCES='{
+  "main": {
+    "region": "eu-west-1",
+    "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+    "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+  }
+}'
+----
+
+=== AZURE_BLOB_INSTANCES
+
+Objetivo::
+Configura las instancias de cliente de Azure Blob Storage para su uso como backends de almacenamiento.
+
+Configuración::
+Se establece como una cadena JSON que asigna nombres de instancia a cadenas de conexión.
+
+Valor predeterminado::
+[source,json]
+----
+{}
+----
+
+Ejemplo:
+[source,json]
+----
+AZURE_BLOB_INSTANCES='{
+  "main": {
+    "connection_string": "DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net"
+  }
+}'
+----
+
+=== 7. Uso de Symfony Secrets
+
+Puede hacer referencia a los Symfony Secrets en estas variables de entorno para datos sensibles (como claves de acceso o cadenas de conexión).
+
+Ejemplo utilizando secrets:
+[source,json]
+----
+AWS_S3_INSTANCES='{
+  "main": {
+    "region": "eu-west-1",
+    "access_key": "%env(AWS_S3_ACCESS_KEY)%",
+    "access_secret": "%env(AWS_S3_ACCESS_SECRET)%"
+  }
+}'
+----
+
+Para establecer un secret:
+[source,bash]
+----
+php bin/console secrets:set AWS_S3_ACCESS_KEY
+php bin/console secrets:set AWS_S3_ACCESS_SECRET
+----
+
+A continuación, haga referencia al secret en su configuración JSON utilizando `%env(SECRET_NAME)%`.
+
+NOTA: Al utilizar secrets en JSON, envuelva siempre la referencia entre comillas dobles.
+
+

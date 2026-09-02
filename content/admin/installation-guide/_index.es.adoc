@@ -1,8 +1,7 @@
 ---
-title: Instalar SuiteCRM
+title: Guía de instalación
 weight: 10
 ---
 
-Este Guía no está todavía traducido al castellano. 
-
-Puede seguir el link:/admin/installation-guide/[Guía en Inglés].
+=== Tabla de contenidos
+{{% children depth="2" showhidden="false" showhidden="true" %}}

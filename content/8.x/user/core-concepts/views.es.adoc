@@ -1,0 +1,140 @@
+---
+title: "Vistas"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts
+
+= Vistas
+
+Al trabajar dentro de SuiteCRM, encontrará distintas vistas según lo que esté haciendo en cada momento. Cada vista está estructurada para presentar la información de la forma más útil para esa etapa del proceso de gestión de registros. Hay tres vistas principales:
+
+* Vista de Lista
+* Vista de Detalle
+* Vista de Edición
+
+Todas estas vistas tienen finalidades concretas que se describen en los siguientes subapartados.
+
+== Vista de Lista
+
+La Vista de Lista es la vista predeterminada que se le presenta al navegar a cualquier módulo. Muestra todos los registros de ese módulo en formato de tabla, permitiéndole buscar y gestionar registros de un vistazo. Será diferente para cada módulo, ya que cada módulo contiene campos distintos, pero tendrá la misma estructura independientemente del módulo que esté viendo.
+
+image:list-view.png[Vista de Lista mostrando registros en formato de tabla]
+
+La Vista de Lista ofrece una serie de acciones y funciones útiles, como el filtrado y la ordenación, que se describen en las siguientes secciones.
+
+=== Filtro
+
+En la parte superior de la lista hay disponible un panel de filtro que le permite buscar y filtrar registros dentro del módulo. Consulte la página link:../searching[Búsqueda] para más detalles sobre su funcionamiento.
+
+=== Ordenar Registros
+
+Al hacer clic en el encabezado de una columna, la lista de registros se ordenará por esa columna en orden ascendente o descendente, siempre que la ordenación esté habilitada para ese campo.
+
+=== Ver un Registro
+
+Al hacer clic en cualquier valor con hipervínculo accederá a la _Vista de Detalle_ de ese registro. Tenga en cuenta que hacer clic en un número de teléfono intentará marcarlo, y hacer clic en una dirección de correo electrónico abrirá la ventana emergente de redacción de correo.
+
+=== Panel de Insights
+
+Algunos módulos incluyen un panel de _Insights_ a la derecha de la lista de registros. Este panel ofrece gráficos visuales rápidos que resumen los datos clave de ese módulo. El panel de _Insights_ puede activarse o desactivarse según su preferencia.
+
+image:list-view-insights-panel.png[Panel de Insights mostrado a la derecha de la Vista de Lista]
+
+Los gráficos disponibles varían según el módulo. Por ejemplo, el módulo Cuentas muestra las cuentas nuevas creadas, desglosadas por mes.
+
+Es importante destacar que los gráficos del panel de _Insights_ respetarán cualquier filtro que haya aplicado a la Vista de Lista, de forma que los datos mostrados se actualizarán para reflejar sus criterios de búsqueda actuales.
+
+=== Selector de Columnas
+
+La _Vista de Lista_ incluye un selector de columnas que le permite controlar qué columnas se muestran. Se trata de un ajuste personal y no afectará a la vista de otros usuarios.
+
+image:column-chooser-button.png[Icono del Selector de Columnas en el encabezado de la Vista de Lista]
+
+Para añadir o eliminar columnas:
+
+. Haga clic en el icono *Selector de Columnas* en el área superior derecha del encabezado de la Vista de Lista.
+. Aparecerá un panel mostrando las columnas mostradas actualmente y las disponibles para añadir.
+. Seleccione las columnas que desea mostrar y anule la selección de las que desea ocultar arrastrando y soltando el nombre de la columna.
+. Haga clic en *Guardar* para aplicar los cambios.
+
+image:column-chooser-panel.png[Panel del Selector de Columnas mostrando las columnas disponibles y mostradas]
+
+Las columnas elegidas se conservarán la próxima vez que visite el módulo.
+
+=== Información Adicional del Registro
+
+Cuando un registro tiene más datos de los que se pueden mostrar en las columnas visibles, verá un *icono de tres puntos (⋮)* a la izquierda de la fila del registro. Al hacer clic en este icono se mostrará una pequeña ventana emergente con la información de campo adicional de ese registro que no es visible en las columnas actuales de la Vista de Lista. Esto le permite ver rápidamente detalles adicionales sin necesidad de abrir el registro completo.
+
+image:record-additional-info.png[Ventana emergente del icono de tres puntos mostrando información adicional del registro]
+
+=== Acciones Masivas
+
+La Vista de Lista también le permite realizar acciones sobre varios registros a la vez mediante el desplegable *Acción Masiva*.
+
+image:bulk-action-dropdown.png[Desplegable Acción Masiva en la Vista de Lista]
+
+Para usarlo, primero seleccione los registros sobre los que desea actuar marcando la casilla situada a la izquierda de cada registro y, a continuación, elija la acción deseada en el desplegable. Las acciones masivas más habituales son:
+
+* *Eliminar:* elimina de forma permanente los registros seleccionados del módulo.
+* *Actualización Masiva:* le permite actualizar un campo concreto o un conjunto de campos en todos los registros seleccionados en una sola acción, ahorrando un tiempo considerable al realizar cambios generalizados.
+* *Combinar:* le permite combinar registros duplicados en un único registro principal. Selecciona un registro principal y los datos duplicados se combinan con él. Una vez guardado, los registros duplicados se eliminan y todos los datos e historial asociados se consolidan en el registro principal.
+* *Exportar:* exporta los registros seleccionados a un archivo CSV, que después puede abrirse en una aplicación de hoja de cálculo como Microsoft Excel. Esto resulta útil para generar informes o compartir datos fuera de SuiteCRM.
+
+{{% notice note %}}
+Los campos disponibles para la Actualización Masiva, y si la combinación de duplicados está habilitada, pueden ser configurados por un administrador del sistema.
+{{% /notice %}}
+
+== Vista de Detalle
+
+La Vista de Detalle se presenta al abrir y ver un registro individual. Muestra toda la información asociada a ese registro, organizada en pestañas o paneles para mantener los datos estructurados y fáciles de consultar con un desplazamiento mínimo.
+
+image:detail-view.png[Vista de Detalle mostrando la información completa de un registro]
+
+Desde la Vista de Detalle, las siguientes acciones estándar están disponibles para la mayoría de los módulos a través del desplegable *Acciones*:
+
+* *Buscar Duplicados:* ejecuta una comprobación de duplicados utilizando la funcionalidad de detección de duplicados incorporada en el sistema, ayudándole a identificar y combinar posibles registros duplicados.
+* *Ver Registro de Cambios:* muestra un registro de los cambios realizados en los campos auditados del registro, permitiéndole hacer seguimiento de qué se cambió, quién lo hizo y cuándo.
+* *Duplicar:* crea una copia del registro actual, precargada con los mismos datos. Es útil al crear varios registros similares.
+* *Eliminar:* elimina el registro actual. Se le redirigirá a la Vista de Lista tras la eliminación.
+
+Se puede hacer clic en cualquier campo con hipervínculo dentro de la Vista de Detalle para navegar directamente al registro relacionado.
+
+{{% notice note %}}
+Para configurar qué campos están auditados, o para ajustar la configuración de detección de duplicados, póngase en contacto con su administrador del sistema.
+{{% /notice %}}
+
+{{% notice note %}}
+Las acciones disponibles dependerán de sus permisos de usuario. Si no ve una acción que necesita, póngase en contacto con su administrador del sistema.
+{{% /notice %}}
+
+=== Marcar un Registro como Favorito
+
+Los registros pueden marcarse como favoritos haciendo clic en el icono de *Estrella* del registro. Esto facilita encontrar el registro más adelante mediante el filtro *Mis Favoritos* del panel de búsqueda del módulo, como se describe en la página link:../searching[Búsqueda]. Se trata de un ajuste personal y no afectará a otros usuarios.
+
+image:favourite-star-icon.png[Icono de Estrella para marcar un registro como favorito]
+
+=== Panel de Insights
+
+Algunos módulos incluyen un panel de _Insights_ dentro de la Vista de Detalle, accesible haciendo clic en el botón *Insights* de la parte superior derecha del registro. Este panel ofrece una instantánea del historial de interacciones y la actividad clave relacionada con el registro, sin necesidad de desplazarse por los subpaneles.
+
+Tomando el módulo _Contactos_ como ejemplo, el panel de Insights muestra lo siguiente:
+
+* *Última Interacción:* un resumen en la parte superior del panel que muestra cuándo tuvo lugar la interacción más reciente con el Contacto y de qué tipo fue. Por ejemplo, «_Su última interacción fue un correo el 30/07/2025 15:16._»
+* *Cronología:* un feed cronológico de las actividades asociadas al Contacto, mostrado en orden cronológico inverso. Cada entrada muestra el tipo de actividad (indicado mediante un icono), el asunto o título, el usuario que la realizó, y la fecha y hora. Los tipos de actividad que se muestran en la cronología pueden incluir correos, llamadas, reuniones, tareas y documentos.
+
+image:detail-view-insights-panel.png[Panel de Insights en la Vista de Detalle mostrando la última interacción y la cronología]
+
+Los datos mostrados en el panel de Insights variarán según el módulo que esté viendo, pero está diseñado para mostrar de forma rápida la información de relación y actividad más relevante, sin necesidad de salir del registro.
+
+== Vista de Edición
+
+La Vista de Edición se presenta al editar un registro existente. Muestra todos los campos editables de ese registro, permitiéndole actualizar los datos existentes o añadir nueva información según sea necesario. Cuando esté viendo un registro en la Vista de Detalle, puede abrir la Vista de Edición haciendo clic en el *icono de Lápiz* o en el botón *Editar*. Una vez realizados los cambios, haga clic en *Guardar* para aplicarlos. Al hacer clic en *Cancelar* se descartarán los cambios sin guardar. Ambas acciones le devolverán a la Vista de Detalle del registro que estaba editando.
+
+Antes de realizar cambios, puede hacer clic en *Ver Registro de Cambios* para revisar las ediciones anteriores realizadas en los campos auditados del registro. Esto resulta útil para conocer el historial de un registro antes de actualizarlo.
+
+image:edit-view.png[Vista de Edición mostrando los campos editables de un registro]
+
+{{% notice note %}}
+Los campos y el diseño mostrados en todas las Vistas pueden ser personalizados por un administrador del sistema a través de Studio para adaptarse a las necesidades específicas de su organización.
+{{% /notice %}}

@@ -1,0 +1,33 @@
+---
+title: "Empleados"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/getting-started
+
+= Empleados
+
+El módulo Empleados es un directorio interno de todo el personal de su organización. Todos los usuarios del sistema creados por un administrador se listan automáticamente como empleados. También puede añadir empleados que no sean usuarios del sistema, por ejemplo, personal que necesita aparecer en el directorio pero no dispone de acceso a SuiteCRM.
+
+Puede acceder a la Vista de Lista de Empleados pasando el cursor sobre el icono de usuario en la esquina superior derecha de la barra de navegación y seleccionando *Employees*.
+
+image:user-menu.png[Menú de usuario mostrando la opción Employees]
+
+{{% notice note %}}
+La Vista de Lista de Empleados utiliza la interfaz moderna de SuiteCRM. Al abrir un registro de empleado individual se presenta la interfaz clásica, integrada dentro de la estructura principal de la aplicación, en lugar de la Vista de Detalle moderna utilizada por la mayoría de los demás módulos.
+{{% /notice %}}
+
+== Campos Clave
+
+* *Nombre / Apellidos*: el nombre del empleado.
+* *Puesto*: el cargo del empleado.
+* *Departamento*: el equipo o departamento al que pertenece el empleado.
+* *Dirección de Correo Electrónico*: la dirección de correo electrónico de trabajo del empleado.
+* *Teléfono*: números de contacto de oficina, móvil u otros.
+* *Informa A*: enlaza con otro registro de empleado para modelar la jerarquía de reporte.
+
+== Buscar Empleados
+
+Utilice la barra de búsqueda en la Vista de Lista de Empleados para encontrar personal por nombre, puesto, departamento u otros campos. Puede usar la Búsqueda Avanzada para un filtrado más preciso.
+
+Para conocer las operaciones estándar sobre registros, incluidas la búsqueda, edición y exportación, consulte link:../../core-concepts/record-management[Gestión de Registros].

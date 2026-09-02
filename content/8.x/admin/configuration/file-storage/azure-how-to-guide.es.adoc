@@ -1,0 +1,99 @@
+---
+Title: Cómo almacenar en Azure Blob Storage
+weight: 30
+---
+
+:imagesdir: /images/en/user
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM Versión 8.9.0+
+{{% /notice %}}
+
+== Cómo almacenar en Azure Blob Storage
+
+En este ejemplo configuraremos `private.documents.storage` para utilizar Azure Blob Storage como almacenamiento de archivos.
+
+=== Requisitos previos
+
+* Una cuenta y un contenedor de Azure Blob Storage creados.
+* Cadena de conexión de Azure disponible.
+* Backend de SuiteCRM con VichUploader y Flysystem configurados.
+
+=== 1. Definir la instancia de Azure Blob
+
+Edite su archivo `.env.local` (o el archivo de entorno correspondiente) y añada la configuración de su instancia de Azure Blob:
+
+[source,json]
+----
+AZURE_BLOB_INSTANCES='{
+  "main": {
+    "connection_string": "DefaultEndpointsProtocol=https;AccountName=YOUR_ACCOUNT;AccountKey=YOUR_KEY;EndpointSuffix=core.windows.net"
+  }
+}'
+----
+
+=== 2. Configurar el almacenamiento de Flysystem
+
+Establezca la variable `MEDIA_FLY_SYSTEM_STORAGES` para utilizar Azure en `private.documents.storage`:
+
+Nota: en el siguiente ejemplo, `main` de `azure.blob.client.main` en la opción `client` debe coincidir con la clave definida en `AZURE_BLOB_INSTANCES`.
+
+[source,json]
+----
+MEDIA_FLY_SYSTEM_STORAGES='{
+  "private.documents.storage": {
+    "adapter": "azure",
+    "options": {
+      "client": "azure.blob.client.main",
+      "container": "YOUR_CONTAINER_NAME"
+    }
+  }
+}'
+----
+
+* Sustituya `YOUR_CONTAINER_NAME` por el nombre de su contenedor de Azure Blob.
+
+=== 3. Limpiar la caché y reiniciar
+
+Después de actualizar las variables de entorno, limpie la caché de Symfony y reinicie su aplicación:
+
+[source,shell]
+----
+php bin/console cache:clear
+----
+
+=== 4. Verificar la configuración
+
+Las subidas para `private.documents.storage` ahora utilizarán Azure Blob Storage. Puede probarlo subiendo un documento y confirmando que aparece en su contenedor de Azure.
+
+=== Notas
+
+* El almacenamiento predeterminado para `private.documents.storage` es local. Los pasos anteriores lo sobrescriben para utilizar Azure.
+* Puede configurar otros almacenamientos de forma similar actualizando sus claves correspondientes en `MEDIA_FLY_SYSTEM_STORAGES`.
+* Para producción, utilice la gestión de secrets para los valores sensibles.
+
+== Uso de Symfony Secrets
+
+Symfony Secrets le permite almacenar de forma segura valores de configuración sensibles (como claves de API, contraseñas, etc.) fuera de su código fuente. En lugar de colocar los secrets en archivos `.env`, se utiliza la bóveda de Symfony Secrets, que cifra los valores y los mantiene fuera del control de versiones.
+
+Puede hacer referencia a los Symfony Secrets en estas variables de entorno para datos sensibles (como claves de acceso o cadenas de conexión).
+
+Ejemplo utilizando secrets:
+[source,json]
+----
+AZURE_BLOB_INSTANCES='{
+  "main": {
+    "connection_string": "%env(AZURE_BLOB_CONNECTION_STRING)%",
+  }
+}'
+----
+
+Para establecer un secret:
+[source,bash]
+----
+php bin/console secrets:set AZURE_BLOB_CONNECTION_STRING
+----
+
+A continuación, haga referencia al secret en su configuración JSON utilizando `%env(SECRET_NAME)%`.
+
+NOTA: Al utilizar secrets en JSON, envuelva siempre la referencia entre comillas dobles.

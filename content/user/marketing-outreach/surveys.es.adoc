@@ -1,0 +1,197 @@
+---
+title: "Encuestas"
+weight: 60
+aliases:
+  - /es/user/core-modules/surveys
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Encuestas
+
+== Descripción General
+
+El módulo *Encuestas* le permite crear una encuesta basada en web con diversas opciones de tipo de pregunta. Las respuestas recibidas se almacenan en *SuiteCRM* y pueden consultarse por cada encuestado o como un informe resumen detallado utilizando gráficos cuando corresponda.
+
+Las encuestas pueden enviarse como parte de una link:../campaigns-overview[Campaña].
+
+== Crear Encuesta
+
+Para crear una nueva encuesta, seleccione *Crear Encuesta* en la barra lateral o en el menú desplegable del módulo *Encuestas*.
+image:SurveysSideBar.png[title="Barra lateral de Encuestas"]
+
+
+image:SurveysCreateSurvey.png[title="Crear Encuesta"]
+
+*Nombre:* Introduzca el título de la encuesta que se mostrará a los usuarios.
+
+*Estado:*
+
+* *Borrador*: la encuesta está en preparación, aún no lista para publicarse y recibir respuestas.
+* *Pública*: una vez lista, al establecer el estado de la encuesta como *Pública* se generará un enlace URL para la encuesta. La encuesta podrá verse y completarse, y las respuestas enviadas quedarán registradas. Tenga en cuenta que, una vez recibidas respuestas, las preguntas de la encuesta no podrán editarse.
+* *Cerrada*: una encuesta *Cerrada* no aceptará más respuestas. Los usuarios que accedan al enlace de la encuesta verán un mensaje informándoles de que la encuesta está cerrada.
+
+*Descripción:* tenga en cuenta que esta descripción es solo interna: no se mostrará a los usuarios como parte de la encuesta.
+
+=== Añadir Preguntas
+
+Haga clic en **NUEVA PREGUNTA** para añadir una pregunta a la encuesta.
+
+Introduzca el texto de la pregunta y seleccione el tipo de pregunta en la lista desplegable.
+
+image:SurveysAddQuestion.png[title="Añadir Pregunta en Encuestas"]
+
+Los tipos de pregunta disponibles son los siguientes:
+
+[cols="10,90"]
+|===
+|*Texto*|Un campo de texto estándar.
+|*Área de Texto*|Un área de texto más amplia.
+|*Casilla de Verificación*|Muestra una única casilla de verificación junto a la pregunta.
+|*Opción Única*|Especifique varias opciones de respuesta a elegir, con botones de opción. Solo puede seleccionarse una respuesta.
+|*Desplegable*|Especifique varias opciones de respuesta a elegir, en una lista desplegable. Solo puede seleccionarse una respuesta.
+|*Selección Múltiple*|Similar a una lista desplegable, pero puede seleccionarse una o varias respuestas.
+|*Matriz*|Para cada opción especificada, el usuario podrá responder *"Satisfecho"*, *"Ni Satisfecho ni Insatisfecho"* o *"Insatisfecho"*. Estas respuestas también pueden personalizarse; véase más abajo.
+|*Fecha y Hora*|Se mostrará un selector de Fecha/Hora para que el usuario elija una fecha y una hora.
+|*Fecha*|Se mostrará un selector de Fecha/Hora para que el usuario elija una fecha.
+|*Escala*|Se mostrará una escala del 1 al 10. Los usuarios podrán seleccionar un número de la escala en respuesta a la pregunta.
+|*Valoración*|Se mostrará un widget de valoración de cinco estrellas. Los usuarios podrán seleccionar de 0 a 5 estrellas en respuesta a la pregunta.
+|===
+
+==== Ejemplo de Pregunta de Opción Única
+image:SurveysRadioQuestion.png[title="Ejemplo de pregunta de opción única en Encuestas"]
+
+Haga clic en **AÑADIR OPCIÓN** para añadir opciones de respuesta a la pregunta.
+
+Elimine las opciones no deseadas haciendo clic en **x**
+
+{{% notice tip %}}Las opciones para las preguntas de tipo *Desplegable*, *Selección Múltiple* y *Matriz* se añaden de la misma forma.{{%/notice %}}
+
+Haga clic en **NUEVA PREGUNTA** para añadir más preguntas de la misma forma.
+
+==== Eliminar y Reordenar Preguntas
+
+[cols="30,70",frame="none", grid="none"]
+|===
+|image:SurveysQActionButtons.png[title="Botones de acción de pregunta de encuesta"]
+|Las preguntas pueden reordenarse (moverse hacia arriba o hacia abajo) o eliminarse mediante los botones de Acciones situados a la derecha de las preguntas.
+|===
+
+=== Más Opciones
+
+*Enviar:* edite aquí el texto del botón de Enviar de la encuesta, si lo desea.
+
+Personalice las respuestas de las preguntas de tipo *Matriz* editando aquí el texto de respuesta predeterminado de la matriz:
+image:SurveysMatrixText.png[title="Texto de respuesta de pregunta de matriz"]
+
+Haga clic en **GUARDAR** para guardar la encuesta.
+
+Se mostrará la Vista de Detalle de la encuesta en borrador. Este resumen muestra todas las preguntas y tipos de pregunta incluidos en la encuesta.
+
+image:SurveysDraftDetailView.png[title="Vista de Detalle de la encuesta en borrador"]
+
+{{%notice note%}}Tenga en cuenta que el campo URL está vacío: este campo mostrará el enlace URL generado por el CRM para la encuesta una vez que el estado de la encuesta se haya establecido como Pública. {{% /notice %}}
+
+== Ver Encuesta
+
+Una vez completada, puede ver la encuesta tal y como se mostrará a los participantes. Seleccione *Editar* en el menú *Acciones* y a continuación establezca el estado de la encuesta como *Pública*.
+
+Haga clic en **GUARDAR**
+
+Se mostrará la Vista de Detalle de la encuesta, ahora con la URL de la encuesta visible.
+
+image:SurveysPublicDetailView.png[title="Vista de Detalle de la encuesta pública"]
+
+Haga clic en la URL para ver la encuesta en su navegador.
+
+Como ejemplo, la siguiente captura de pantalla muestra la Encuesta de Demostración:
+
+image:SurveysDemo.png[title="Demostración de encuesta"]
+
+Las respuestas pueden enviarse haciendo clic en **Enviar**
+
+Los usuarios serán redirigidos a una página de agradecimiento y las respuestas quedarán registradas. Las respuestas pueden consultarse en el subpanel <<Respuestas de la Encuesta>> o en el <<Informe de Encuesta>>.
+
+{{% notice warning %}}
+Una vez recibidas respuestas, las preguntas de la encuesta no pueden editarse.
+{{%/notice %}}
+
+{{% notice tip %}}
+El logotipo mostrado sobre la encuesta es el logotipo actual configurado para su instancia de *SuiteCRM*, que puede establecerse en *Configuración del Sistema* en el panel de *Admin*.
+{{%/notice %}}
+
+== Editar Encuesta
+
+Desde la vista de *Lista*, haga clic en el icono del lápiz junto al nombre de la encuesta para abrirla en modo *Edición*.
+
+Desde la vista de *Detalle*, seleccione *Editar* en el menú *Acciones*.
+
+{{% notice note%}}Las preguntas solo pueden editarse en encuestas en *Borrador* o en encuestas *Públicas* que aún no hayan recibido respuestas.
+{{%/notice%}}
+
+== Respuestas de la Encuesta
+
+El subpanel Respuestas de la Encuesta muestra las respuestas individuales recibidas de cada encuestado. El subpanel se encuentra en la Vista de Detalle de la encuesta. También se puede acceder al subpanel Respuestas de la Encuesta desde la página de Estado de la Campaña de una link:../campaigns-overview[campaña].
+
+image:SurveyResponses.png[title="Subpanel de Respuestas de la Encuesta"]
+
+Haga clic en el nombre de un encuestado para ver sus respuestas.
+
+image:SurveysResponsesDetail.png[title="Respuestas de la Encuesta para el encuestado seleccionado"]
+
+== Informe de Encuesta
+
+Las respuestas de la encuesta también pueden consultarse como un Informe de Encuesta, que muestra un resumen de todas las respuestas por pregunta. Se utilizan gráficos cuando corresponde para mostrar los datos.
+
+Las respuestas individuales no pueden consultarse desde el Informe de Encuesta. Si desea ver las respuestas de un encuestado concreto, puede consultarlas en el subpanel <<Respuestas de la Encuesta>> de la encuesta, como se ha mostrado anteriormente.
+
+[frame="none", grid="none"]
+|===
+|Seleccione *Ver Informes de Encuesta* en el menú *Acciones*.
+|image:SurveysActionsMenu.png[title="Menú de Acciones de Encuestas"]
+|===
+Se abrirá el Informe de Encuesta mostrando un resumen de todas las respuestas para cada pregunta.
+
+Como ejemplo, el Informe de Encuesta de la Encuesta de Demostración anterior podría contener el siguiente resumen para la pregunta 2:
+image:SurveysDemoReport.png[title="Detalle del Informe de Encuesta"]
+
+== Campaña con Encuesta
+
+{{%notice note%}}La siguiente sección proporciona información únicamente sobre los ajustes de campaña específicos para *Encuestas*; consulte la documentación de link:../campaigns-overview[Campañas] para instrucciones más detalladas sobre cómo configurar una campaña.{{%/notice%}}
+
+Las encuestas pueden enviarse como parte de una campaña, que hará seguimiento y registrará las respuestas de la encuesta recibidas de cada destinatario.
+
+Desde el módulo *Campañas*, seleccione *Crear Campaña* en la barra lateral. Seleccione *Encuesta* para iniciar el Asistente de Campaña con Encuesta.
+
+image:CampaignTypes.png[title="Tipos de campaña"]
+
+[discrete]
+=== Encabezado de la Campaña
+
+La encuesta se asocia a la campaña en la pestaña Encabezado de la Campaña.
+
+image:SurveysCampaignHeader.png[title="Encabezado de la Campaña en Encuestas"]
+
+Haga clic en **SELECCIONAR** para seleccionar la encuesta en la ventana emergente.
+
+[discrete]
+=== Plantilla de Email de la Encuesta
+
+Cree o edite una plantilla existente para la encuesta. Las variables de la encuesta están disponibles en la lista desplegable.
+
+Deberá incluir la variable *URL de Encuestas* `$surveys_survey_url_display` en su plantilla. Esta incluirá un enlace único a la encuesta para que puedan rastrearse las respuestas individuales.
+
+image:SurveysTemplate.png[title="Ejemplo de plantilla de campaña con encuesta"]
+
+Haga clic en **GUARDAR** para conservar los ajustes de su plantilla.
+
+[discrete]
+=== Estado de la Campaña
+
+En la página de *Estado de la Campaña*, el subpanel *Respuestas de la Encuesta* puede desplegarse para ver las respuestas de la encuesta de cada encuestado. Haga clic en el nombre de un encuestado para ver sus respuestas.
+
+image:SurveyResponses.png[title="Subpanel de Respuestas de la Encuesta"]

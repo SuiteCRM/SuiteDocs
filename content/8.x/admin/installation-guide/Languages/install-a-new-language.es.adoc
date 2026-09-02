@@ -1,0 +1,49 @@
+---
+Title: "Instalar nuevos idiomas"
+Weight: 50
+---
+
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/8.x/admin/install-guide/
+
+{{% notice note %}}
+Si no vas a añadir un nuevo idioma a SuiteCRM, sino que vas a actualizar un idioma
+ya instalado, asegúrate de empezar siguiendo la guía correspondiente
+link:../update-a-language-pack/[Actualizar paquetes de idioma].
+{{% /notice %}}
+
+== Descargar un paquete de idioma
+
+. Elige entre https://sourceforge.net/projects/suitecrmtranslations/files/[Paquetes de idioma estables de SuiteCRM^]
+o https://crowdin.com/project/suitecrmtranslations[Últimas compilaciones de paquetes de idioma de SuiteCRM^]
+
+. Elige tu versión e idioma
+. Descarga el archivo ZIP
+
+== Pasos de instalación
+
+. Inicia sesión en inglés
+image:1.png[1.png] +
+. Ve a 'Admin / Module Loader'
+image:2.png[2.png] image:3.png[3.png] +
+. Sube e instala el nuevo paquete de idioma (archivo zip)
+image:4.png[4.png] +
+image:5.png[5.png] +
+. Haz clic en btn:[Upload] para enviar el archivo al servidor
+image:6.png[6.png] +
+. Haz clic en btn:[Install] y confirma para aplicar los cambios
+image:7.png[7.png] +
+image:8.png[8.png] +
+image:9.png[9.png] +
+. Ve a 'Admin / Repair / Quick Repair and Rebuild
+image:2.png[2.png] +
+image:10.png[10.png] +
+image:11.png[11.png] +
+image:12.png[12.png] +
+. Cierra sesión
+image:13.png[13.png] +
+. Inicia sesión con tu nuevo idioma
+image:14.png[14.png]
+
+

@@ -1,0 +1,265 @@
+---
+Title: Guía de configuración para administradores
+Weight: 82
+---
+
+:imagesdir: /images/en/admin/calendar-sync
+
+:toc:
+
+== Descripción general
+
+Como administrador, configura los ajustes globales de sincronización que se aplican a todos los usuarios. Esto incluye la frecuencia de sincronización, los controles de rendimiento, las estrategias de resolución de conflictos y la configuración del scheduler.
+
+Los usuarios gestionan sus propias conexiones de calendario a través del módulo Calendar Accounts, pero la configuración que usted establece aquí determina cómo se comporta la sincronización en todo el sistema.
+
+== Acceder a la configuración de sincronización de calendario
+
+1. Inicie sesión como administrador
+2. Navegue hasta el panel de *Administration*
+3. Localice la opción *Calendar Sync Settings* en el menú de administración
+4. Haga clic para acceder a la interfaz de configuración
+
+image:calendar-sync-settings.png[Calendar Sync Settings]
+image:calendar-sync-settings_2.png[Calendar Sync Settings 2]
+
+La página de configuración muestra tanto las opciones de configuración como información actual sobre el estado de la sincronización.
+
+== Información de estado de la sincronización
+
+La página de configuración muestra el estado de la sincronización en tiempo real:
+
+* **Scheduler Status**: indica si el scheduler de sincronización de calendario está *Enabled* o *Disabled*
+* **Last Scheduled Run**: la marca de tiempo de la última sincronización automática
+* **Last Manual Run**: la marca de tiempo de la última sincronización activada por un administrador
+
+Estos indicadores de estado le ayudan a verificar que la sincronización se está ejecutando como se espera y a solucionar problemas de temporización.
+
+image:calendar-sync-settings.png[Calendar Sync Settings]
+
+== Límites de sincronización
+
+Estos ajustes controlan el uso de recursos durante la sincronización.
+
+=== Accounts per Sync
+
+Número máximo de Calendar Accounts que se procesan por ejecución del scheduler (controla el tamaño del lote).
+
+* **Valor por defecto**: 30
+* **Rango**: 1-200
+* **Impacto**: valores más altos procesan más cuentas por ejecución, pero utilizan más recursos
+
+=== Operations per Account
+
+Número máximo de operaciones de evento (crear/actualizar/eliminar) por cuenta y por ejecución de sincronización.
+
+* **Valor por defecto**: 100
+* **Rango**: 1-1000
+* **Impacto**: limita cuántos cambios se procesan por cuenta para evitar tiempos de espera agotados
+
+== Configuración avanzada
+
+Estos ajustes determinan el intervalo de tiempo para la sincronización. Los eventos fuera de este intervalo se ignoran.
+
+=== Past Days
+
+Sincronizar los datos del calendario de los últimos X días.
+
+* **Rango**: 0-365 días
+* **Valor por defecto**: 30 días
+* **Recomendación**:
+  - 30 días para historial reciente
+  - 0 para sincronizar solo los eventos de hoy y futuros
+  - 90 días o más si necesita un análisis de eventos históricos
+
+=== Future Days
+
+Sincronizar los datos del calendario de los próximos X días.
+
+* **Rango**: 1-730 días
+* **Valor por defecto**: 90 días
+* **Recomendación**:
+  - 90 días (3 meses) para una planificación estándar
+  - 180-365 días (6-12 meses) para una planificación a largo plazo
+
+Los valores más altos tienen un impacto mínimo en el rendimiento.
+
+== Estrategia de resolución de conflictos
+
+Esta opción determina cómo gestionar los eventos modificados tanto en SuiteCRM como en el calendario externo entre ejecuciones de sincronización.
+
+[cols="1,3"]
+|===
+|Opción |Descripción
+
+|*Most Recent Change Wins* (recomendado)
+|La versión con la marca de tiempo de modificación más reciente sobrescribe a la otra
+
+|*External Calendar Priority*
+|Los cambios del calendario externo siempre tienen prioridad sobre los cambios de SuiteCRM
+
+|*SuiteCRM Priority*
+|Los cambios de SuiteCRM siempre tienen prioridad sobre los cambios del calendario externo
+|===
+
+=== Elegir la estrategia adecuada
+
+La mejor estrategia depende de cómo su equipo utiliza el sistema:
+
+==== Escenario: ediciones simultáneas
+
+A las 14:00, usted cambia la hora de una reunión de las 15:00 a las 16:00 en SuiteCRM. A las 14:05, un compañero cambia la misma reunión de las 15:00 a las 17:00 en Google Calendar. La sincronización se ejecuta a las 14:10.
+
+* *Most Recent Change Wins*: la reunión queda a las 17:00 (gana el cambio del compañero de las 14:05)
+* *External Calendar Priority*: la reunión queda a las 17:00 (el calendario externo siempre gana)
+* *SuiteCRM Priority*: la reunión queda a las 16:00 (SuiteCRM siempre gana)
+
+==== Escenario: ediciones desde el calendario móvil
+
+Su equipo ajusta con frecuencia las horas de las reuniones en dispositivos móviles usando sus aplicaciones de calendario.
+
+* *Recomendado*: External Calendar Priority: garantiza que las ediciones móviles nunca se sobrescriban
+* *No recomendado*: SuiteCRM Priority: las ediciones móviles se perderían
+
+==== Escenario: planificación del equipo de ventas
+
+Su equipo de ventas planifica todas las reuniones en SuiteCRM, y el calendario externo se utiliza principalmente para consultarlas.
+
+* *Recomendado*: SuiteCRM Priority: garantiza que el CRM sea la fuente de verdad
+* *Alternativa*: Most Recent Change Wins: permite flexibilidad, pero requiere estar atento
+
+== External Calendar Name
+
+Personaliza el nombre de calendario que se muestra en los sistemas de calendario externos cuando SuiteCRM crea o sincroniza eventos.
+
+* **Valor por defecto**: "SuiteCRM"
+
+Para personalizar este ajuste, añada lo siguiente a su `config_override.php`:
+
+[source,php]
+----
+$sugar_config['calendar_sync']['external_calendar_name'] = 'My Company CRM';
+----
+
+{{% notice note %}}
+Este ajuste solo afecta a cómo aparece el calendario en el sistema externo. No cambia el nombre del calendario dentro de SuiteCRM.
+{{% /notice %}}
+
+image:calendar-sync-settings_2.png[Calendar Sync Settings - Logic Hooks and Immediate Sync]
+
+== Control de Logic Hooks
+
+=== Enable Calendar Sync Logic Hooks
+
+Cuando está habilitado, la sincronización de calendario se activa automáticamente cuando se guardan o eliminan reuniones en SuiteCRM. Cuando está deshabilitado, la sincronización solo se produce mediante el scheduler o de forma manual.
+
+* **Valor por defecto**: Disabled
+* **Recomendación**: habilítelo para obtener sincronización en tiempo real; deshabilítelo si prefiere la sincronización solo por lotes
+
+Para habilitar los logic hooks, marque la opción *Enable Calendar Sync Logic Hooks* en la página Calendar Sync Settings.
+
+Alternativamente, añada lo siguiente a su `config_override.php`:
+
+[source,php]
+----
+$sugar_config['calendar_sync']['enable_calendar_sync_logic_hooks'] = true;
+----
+
+**Impacto de habilitar los logic hooks:**
+
+* Los cambios en las reuniones de SuiteCRM activan la sincronización inmediata con el calendario externo
+* Proporciona una sincronización casi en tiempo real
+* Puede afectar al rendimiento durante operaciones masivas de reuniones
+* Funciona además de la sincronización programada
+
+== Sincronización inmediata
+
+Fuerza una sincronización inmediata para todos los usuarios con conexiones de calendario activas, independientemente del estado del scheduler.
+
+=== Sync All Users Now
+
+1. Navegue hasta Calendar Sync Settings
+2. Desplácese hasta la sección *Immediate Synchronization* al final de la página
+3. Haga clic en el botón *Sync All Users Now*
+
+{{% notice warning %}}
+Esto activa la sincronización para todos los usuarios con cuentas de calendario activas. Puede afectar temporalmente al rendimiento del sistema en instalaciones con muchos usuarios.
+{{% /notice %}}
+
+**Cuándo usar la sincronización manual:**
+
+* Después de cambiar la configuración global de sincronización
+* Después de una actualización o migración del sistema
+* Al solucionar problemas de sincronización
+* Para forzar una sincronización inmediata sin esperar al scheduler
+
+== Configuración del Scheduler
+
+La tarea del scheduler Calendar Accounts Sync controla la frecuencia de la sincronización automática.
+
+=== Configurar la frecuencia de sincronización
+
+1. Vaya a *Administration* > *Scheduler*
+2. Busque la tarea *Calendar Accounts Sync* (anteriormente llamada *Google Sync Calendars* en versiones heredadas)
+3. Edite la tarea para configurar:
+   * **Status**: Active o Inactive
+   * **Interval**: con qué frecuencia se ejecuta la tarea (por ejemplo, "As often as possible")
+   * **Range**: fechas de inicio y fin de la tarea (normalmente, fecha de inicio hasta "perpetual" para que no tenga fin)
+
+image:scheduler-job.png[Calendar Accounts Sync Scheduler Job]
+
+**Configuración recomendada:**
+
+* **Interval**: "As often as possible" para una sincronización casi en tiempo real
+* **Status**: Active (la sincronización no se ejecutará automáticamente si está inactiva)
+* **Range**: fecha de inicio hasta perpetual (sin fecha de fin)
+
+Para la configuración general del scheduler y de cron, consulte link:/admin/administration-panel/system#_scheduler[Scheduler] en la documentación de System.
+
+=== Verificar que el Scheduler se está ejecutando
+
+Para confirmar que el scheduler funciona correctamente:
+
+1. Compruebe que el *Scheduler Status* en Calendar Sync Settings muestra "Enabled"
+2. Verifique que la marca de tiempo de *Last Scheduled Run* se actualiza después de cada intervalo
+3. Revise el registro de SuiteCRM en busca de entradas con prefijos específicos de clase (por ejemplo, `[CalendarSync]`, `[CalendarSyncOrchestrator]`, `[GoogleCalendarProvider]`); esto requiere un nivel de registro adecuado, como `info` o `debug`
+
+Si el scheduler no se está ejecutando, consulte link:/admin/administration-panel/system#_scheduler[Configuración del Scheduler] para configurar la tarea cron.
+
+== Opciones de configuración adicionales
+
+Los siguientes ajustes avanzados se configuran en `config_override.php` en lugar de a través de la interfaz.
+
+=== Comportamiento de eliminación
+
+Por defecto, las eliminaciones se sincronizan en ambas direcciones. Puede controlar la sincronización de eliminaciones para proteger los datos en escenarios específicos:
+
+[source,php]
+----
+// Añadir a config_override.php
+
+// Controla si las eliminaciones en SuiteCRM también eliminan eventos en el calendario externo
+$sugar_config['calendar_sync']['allow_external_event_deletion'] = true;  // Por defecto: true
+
+// Controla si las eliminaciones en el calendario externo también eliminan reuniones en SuiteCRM
+$sugar_config['calendar_sync']['allow_internal_event_deletion'] = true;  // Por defecto: true
+----
+
+**Cuándo cambiar los valores por defecto:**
+
+* Establezca `allow_external_event_deletion` en `false` para preservar los eventos del calendario externo cuando se eliminan reuniones de SuiteCRM
+* Establezca `allow_internal_event_deletion` en `false` para preservar las reuniones de SuiteCRM cuando se eliminan eventos del calendario externo
+* Ambos pueden establecerse en `false` para un comportamiento de sincronización unidireccional en el que las eliminaciones nunca se propagan
+
+{{% notice warning %}}
+Deshabilitar la sincronización de eliminaciones puede provocar eventos huérfanos que existen en un sistema pero no en el otro. Considere sus políticas de retención de datos antes de modificar estos ajustes.
+{{% /notice %}}
+
+== Próximos pasos
+
+Después de configurar los ajustes de administrador:
+
+* Revise la link:/user/integrations/calendar-sync[Guía de usuario] para comprender la experiencia del usuario
+* Consulte la link:/user/integrations/caldav-guide[Guía del proveedor CalDAV] si sus usuarios van a conectarse a servidores CalDAV
+* Revise link:/admin/administration-panel/calendar-sync/understanding-sync-troubleshooting[Comprender la sincronización y solución de problemas] para obtener información de diagnóstico
+* Consulte link:/admin/administration-panel/calendar-sync/advanced-migration[Temas avanzados y migración] para la referencia completa de configuración

@@ -1,0 +1,37 @@
+---
+Title: "Traducir SuiteCRM"
+Weight: 70
+aliases:
+  - /es/community/contributing-to-docs/contributing-to-translation/
+---
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/community
+
+== Crowdin y SuiteCRM
+
+=== Crowdin es una plataforma en línea para traducir aplicaciones y páginas web.
+
+El proyecto de traducción de SuiteCRM utiliza Crowdin para configurar un entorno de traducción colaborativo. Aquí puedes traducir a tu idioma y descargar cualquier paquete de idioma listo para instalar en SuiteCRM. Todo lo que necesitas es un navegador, sin instalación, sin configuración.
+
+==== SuiteCRM se traduce en dos proyectos relacionados y necesitas unirte a ambos:
+
+[cols=2*,options=header]
+|===
+|A- Archivos de idioma principales
+|B- ¿Usas Joomla?
+
+|· SuiteCRM core - (última versión):  https://crowdin.com/project/suitecrmtranslations
+|Si usas Joomla, también deberías unirte y traducir este proyecto: +
+· Advanced OpenPortal (integración SuiteCRM/Joomla): https://crowdin.com/project/suitecrm-advanced-openportal
+|===
+
+=== Cómo traducir
+
+1- Haz clic https://crowdin.com/project/suitecrmtranslations[aquí] para ir al sitio de Crowdin
+
+2- Crea una cuenta y elige un idioma para unirte.
+
+image:29Crowdin.png[Crowdin]
+
+=== Empieza a traducir: https://crowdin.com/project/suitecrmtranslations

@@ -1,0 +1,140 @@
+---
+title: "Formato PDF"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships
+
+
+= Formato PDF
+
+El módulo de Formatos PDF le permite crear plantillas de documento personalizables para sus registros de SuiteCRM.
+
+Estas plantillas pueden utilizarse para generar documentos PDF o correos electrónicos, rellenando automáticamente los datos de SuiteCRM durante el proceso de combinación.
+
+Esta funcionalidad resulta especialmente útil para crear documentos coherentes y profesionales, como presupuestos, facturas, contratos y otra correspondencia comercial.
+
+== Crear el Formato PDF
+
+**Para crear un formato PDF:**
+
+. Navegue al módulo Formatos PDF
+. Haga clic en *Create PDF Template* en el menú del módulo
+. Rellene los siguientes campos:
+
+Formato PDF::
+El nombre del formato que se está creando.
+
+Asignado a::
+El usuario al que se asignará este formato.
+
+Tipo::
+El tipo de documento que se creará a partir de este formato.
++
+De forma predeterminada, el sistema ofrece opciones de formato para: Cuentas, Presupuestos, Facturas, Contratos, Contactos y Clientes Potenciales.
+
+{{% notice note %}}
+Al añadir un nuevo elemento a la lista desplegable *_pdf_template_type_dom_*, el nombre de la
+clave que se añada debe coincidir con el nombre del módulo. En el siguiente ejemplo,
+se añade el elemento *Prospects* a la lista. +
+La información detallada sobre cómo añadir un nuevo elemento a la lista desplegable se describe en la
+página de Herramientas para Desarrolladores.
+{{% /notice %}}
+
+image:add-to-pdf-template-type.png[Añadir un nuevo elemento a la lista desplegable]
+
+Cargar Muestra::
+El sistema dispone de varias opciones de plantillas ya preparadas, si es necesario.
+
+Activo ::
+Una opción que determina si el formato actual se ofrecerá en la
+lista de formatos al crear un documento (véase la sección siguiente, Crear Documentos PDF a partir de un Formato).
+
+Tamaño de Página / Orientación::
+Si es necesario, seleccione el tamaño y la orientación de la página del formato.
+El valor predeterminado es tamaño A4 y orientación vertical.
+
+Insertar en un Campo::
+Esta opción le permite añadir la variable necesaria al formato,
+que posteriormente (durante el proceso de creación de un documento basado en el formato)
+se sustituirá por los datos necesarios de SuiteCRM.
+Para insertar una variable: :::
+
+* En el primer desplegable, seleccione el módulo del que desea obtener la información.
+* En el segundo desplegable, seleccione el nombre del campo del módulo seleccionado;
+a continuación, aparecerá en el campo correspondiente el nombre de la variable correspondiente al campo seleccionado.
+* En el texto del formato, indique el lugar donde debe añadirse la variable seleccionada y haga clic en el botón `Insert`
+
+La siguiente imagen muestra un ejemplo de la adición de la variable *$aos_invoices_number*,
+que, al crear el documento a partir del formato actual,
+se sustituirá automáticamente por el número de factura.
+
+image:pdf-invoice-number.png[Insertar campo en el formato]
+
+Si es necesario añadir datos en el formato, por ejemplo,
+una lista de partidas en el Presupuesto o la Factura,
+dichos datos deben organizarse en una tabla:
+
+image:QPD.png[Insertar tabla en el formato]
+
+== Crear Cabeceras y Pies de Página
+
+En la parte inferior de la vista de creación y edición del formato hay dos campos que le permiten personalizar la cabecera y el pie de página del formato actual:
+
+image:page-no-and-date.png[Crear cabeceras y pies de página]
+
+Los pies de página pueden utilizar variables especiales:
+
+* *{PAGENO}*, muestra el número de página actual.
+* *{DATE D.m.Y}*, muestra la fecha actual en el formato requerido.
+
+== Establecer los Parámetros de Página
+
+Debajo de la cabecera y el pie de página hay varios campos que le permiten
+personalizar distintos parámetros de página, como el tamaño de los
+márgenes desde los bordes de la página para los campos de cabecera y pie de página:
+
+image:margins.png[Establecer los parámetros de página]
+
+== Crear Documentos PDF a partir de un Formato
+
+* Al crear un documento PDF para los módulos Cuentas, Presupuestos, Facturas, Contratos, Contactos y Clientes Potenciales, utilice el elemento de menú
+*Print as PDF* en el menú de acciones de la Vista de Detalle del módulo correspondiente:
+
+image:pdf-contact.png[Crear documentos PDF a partir de un formato]
+
+Tras seleccionar esta opción en el menú de acciones, aparecerá una lista con todos los Formatos PDF creados.
+
+image:pdf-selection.png[Seleccionar un formato de la lista]
+
+Una vez seleccionado el formato, se generará un documento PDF a partir del formato elegido y de los datos del registro, y se descargará.
+
+También se crea en el sistema un registro de Nota con el documento PDF generado adjunto, y el nombre de la nota coincide con el del documento PDF generado.
+
+=== Generación Masiva de PDF
+
+Si necesita crear varios documentos similares para varios registros del módulo a la vez,
+seleccione los registros necesarios en la vista de lista y utilice a continuación *Print as PDF* en el menú de acciones masivas:
+
+image:multiple-pdf-selection-contacts.png[Crear varios documentos PDF a partir de un formato]
+
+Esto creará un único documento PDF combinado con todos los registros seleccionados, y el nombre del documento PDF generado coincidirá con el nombre del registro de Formato PDF.
+
+Se creará un registro de Nota individual para cada registro seleccionado con el documento PDF generado adjunto, y el nombre de la nota coincidirá con el del documento PDF generado, con el registro seleccionado como registro relacionado.
+
+* Al crear un documento PDF para Presupuestos, Facturas o Contratos, también está disponible el elemento *Email PDF*.
+** Esto creará un correo electrónico con el documento PDF adjunto y generado a partir del registro seleccionado.
+** También se crea en el sistema un registro de Nota con el documento PDF generado adjunto.
+
+== Gestionar Formatos PDF
+
+En el módulo puede realizar las siguientes acciones: ::
+
+* Buscar Formatos: utilice link:../../core-concepts/searching[Filtros o filtros avanzados] en la vista de lista del módulo.
+* link:../../core-concepts/record-management/#_exporting_records[Exportar] formatos; para ello, seleccione los registros necesarios en la lista.
+* Para editar o eliminar información sobre varios formatos a la vez, utilice link:../../core-concepts/record-management/#_mass_updating_records[Actualización masiva].
+* Para ver información detallada sobre el formato, haga clic en el nombre del formato en la vista de lista.
+* Para editar datos, haga clic en el botón `Edit`, o directamente en la vista de lista, haga clic en el botón situado a la izquierda del registro que se va a editar. También puede realizar una Edición Rápida.
+* Para duplicar un formato, en el menú de acciones seleccione el botón `Duplicate`. La duplicación es una forma cómoda de crear rápidamente registros similares; puede modificar la información duplicada para crear un nuevo formato.
+* Para eliminar un formato, haga clic en el botón `Delete`.
+* Puede realizar un seguimiento de los cambios en la información introducida; para ello, seleccione el botón `View Change Log` en la vista de detalle. Si es necesario cambiar la lista de campos controlados en el registro, hágalo estableciendo el parámetro *Audit* en el campo correspondiente.

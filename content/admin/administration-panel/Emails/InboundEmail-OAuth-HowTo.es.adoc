@@ -1,0 +1,328 @@
+---
+Title: Cómo configurar Correo Saliente o Entrante con OAuth
+weight: 30
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Introducción
+
+Esta guía explica cómo configurar conexiones de correo entrante y saliente utilizando un Proveedor OAuth previamente
+configurado.
+
+Como ejemplo utilizaremos una cuenta de Microsoft, aunque los pasos deberían ser similares para otros proveedores.
+
+En esta guía configuraremos una cuenta personal utilizando un Proveedor OAuth de grupo. Los proveedores OAuth de
+grupo están pensados para ser utilizados por muchos usuarios del sistema.
+
+Como administrador puede crear tres tipos de registros:
+
+. Personal
+.. Solo son accesibles por el usuario que los creó.
+.. Los registros personales están pensados para configurar el acceso a cuentas personales, como
+'john.doe@example-inc.onmicrosoft.com'.
+.. La configuración de estas cuentas solo es accesible para el propietario de la cuenta y los administradores del
+sistema.
+. Grupo
+.. Registros que serán utilizados por muchos usuarios.
+.. Los registros de grupo están pensados para cuentas de un dominio que van a ser utilizadas por varios usuarios;
+por ejemplo, todos los miembros del equipo de soporte tendrían acceso a `support@example-inc.onmicrosoft.com`.
+. Rebote (solo en Correo Entrante)
+.. Registros pensados únicamente para leer los correos de rebote de Campañas.
+
+{{% notice warning %}}
+Asegúrese de utilizar el mismo tipo de Proveedor OAuth que el tipo de cuenta que está configurando. Por ejemplo, use
+un Proveedor OAuth de Grupo para configurar una Cuenta de Correo Entrante/Saliente de Grupo.
+{{% /notice %}}
+
+{{% notice note %}}
+Si todavía no ha configurado el Proveedor OAuth o no sabe cómo hacerlo, consulte
+link:../microsoft-oauth-provider-howto[la guía sobre cómo configurar un Proveedor OAuth de Microsoft].
+{{% /notice %}}
+
+
+== 2. Crear una Conexión OAuth
+
+Inicie sesión en su instancia de SuiteCRM.
+
+En el menú global de la barra de navegación, haga clic en "Perfil".
+image:suitecrm-profile-link.png[suitecrm-profile-link.png]
+
+En su "Perfil", haga clic en la entrada del menú lateral "Conexión OAuth Externa".
+image:suitecrm-oauth-connection-menu-link.png[suitecrm-oauth-connection-menu-link.png]
+
+Esto debería llevarle a la vista de lista del módulo "Conexiones OAuth Externas".
+
+image:suitecrm-external-oauth-connection-list-view.png[suitecrm-external-oauth-connection-list-view.png]
+
+Este módulo es el que mantiene la referencia de todas las Conexiones OAuth existentes. Almacena los tokens generados
+tras la autenticación.
+
+Vamos a crear una nueva Conexión OAuth Personal. Haga clic en "Conexión OAuth Personal".
+
+image:suitecrm-new-personal-oauth-connection-link.png[suitecrm-new-personal-oauth-connection-link.png]
+
+Esto debería llevarle a la vista de creación.
+
+image:suitecrm-oauth-connection-create-blank.png[suitecrm-oauth-connection-create-blank.png]
+
+Añada un nombre significativo a su conexión; puede ser el nombre de usuario de su cuenta, o algo que le ayude a
+identificar y diferenciar la conexión de otras conexiones existentes.
+
+image:suitecrm-oauth-connection-name-field.png[suitecrm-oauth-connection-name-field.png]
+
+Ahora, en el campo "Proveedor", seleccione el Proveedor OAuth de Microsoft que creó anteriormente.
+
+image:suitecrm-oauth-connection-provider-field.png[suitecrm-oauth-connection-provider-field.png]
+
+Tras seleccionar el proveedor, es momento de autenticarse; haga clic en el botón "Autenticar".
+
+image:suitecrm-oauth-connection-authenticate.png[suitecrm-oauth-connection-authenticate.png]
+
+Al hacer clic en el botón debería aparecer una ventana emergente con la página de autenticación de Microsoft.
+
+image:microsoft-authenticate-popup.png[microsoft-authenticate-popup.png]
+
+Tras completar todos los pasos de autenticación en la ventana emergente, esta debería cerrarse y los campos del
+registro de Conexión OAuth Externa deberían quedar rellenados.
+
+{{% notice warning %}}
+No almacene ni comparta ninguno de los tokens. Funcionan casi como contraseñas. Son información sensible.
+{{% /notice %}}
+
+
+image:suitecrm-oauth-connection-configured.png[suitecrm-oauth-connection-configured.png]
+
+
+Ahora *guarde* su registro.
+
+image:suitecrm-save-button.png[suitecrm-save-button.png]
+
+
+== 3. Configurar una Cuenta de Correo
+
+=== 3.1 Cuenta de Correo Entrante
+
+Ahora es momento de crear una Cuenta de Correo Entrante. Haga clic en el enlace del menú lateral "Cuentas de Correo
+Entrante".
+
+image:suitecrm-inbound-email-accounts-menu-link.png[suitecrm-inbound-email-accounts-menu-link.png]
+
+Esto debería llevarle a la vista de lista del módulo Correos Entrantes.
+
+image:suitecrm-inbound-email-accounts-listview.png[suitecrm-inbound-email-accounts-listview.png]
+
+Vamos a crear una nueva Cuenta de Correo Entrante Personal. Haga clic en "Nueva Cuenta de Correo Entrante Personal".
+
+
+image:suitecrm-new-inbound-email-account-link.png[suitecrm-new-inbound-email-account-link.png]
+
+Esto debería llevarle a la vista de creación.
+
+image:suitecrm-inbound-email-create-blank.png[suitecrm-inbound-email-create-blank.png]
+
+Añada un nombre significativo a su cuenta entrante; puede ser el nombre de usuario de su cuenta, o algo que le
+ayude a identificar y diferenciar esta cuenta de correo entrante de otras cuentas existentes.
+
+image:suitecrm-oauth-connection-name-field.png[suitecrm-oauth-connection-name-field.png]
+
+Seleccione el tipo "OAuth" en el campo Tipo de Autenticación.
+
+image:suitecrm-inbound-email-auth-type-field.png[suitecrm-inbound-email-auth-type-field.png]
+
+Al seleccionar el tipo OAuth, debería aparecer el campo "Conexión OAuth Externa". Haga clic en la flecha para
+seleccionar la Conexión OAuth que creó anteriormente.
+
+{{% notice warning %}}
+Las Cuentas de Correo Entrante de Grupo deben vincularse a registros de Conexión OAuth Externa de Grupo. Si se
+vinculan a registros de Conexión OAuth Externa Personal pueden producirse errores.
+{{% /notice %}}
+
+image:suitecrm-inbound-email-external-oauth-connection-field.png[suitecrm-inbound-email-external-oauth-connection-field.png]
+
+Al hacer clic en el botón de flecha debería abrirse una ventana emergente donde puede seleccionar la Conexión OAuth
+que creamos anteriormente.
+
+image:suitecrm-oauth-connection-select-popup.png[suitecrm-oauth-connection-select-popup.png]
+
+Introduzca el nombre de usuario de su cuenta. Debe ser el mismo que utilizó para crear la Conexión OAuth.
+
+image:suitecrm-inbound-email-username-field.png[suitecrm-inbound-email-username-field.png]
+
+Introduzca la dirección del servidor de su cuenta. Por ejemplo, para Microsoft sería `outlook.office365.com`.
+
+{{% notice note %}}
+Aquí utilizamos una cuenta de Microsoft como ejemplo. Sin embargo, debe indicar la dirección del servidor que esté
+utilizando.
+{{% /notice %}}
+
+image:suitecrm-inbound-email-server-field.png[suitecrm-inbound-email-server-field.png]
+
+Según la configuración de su servidor, active SSL y establezca el puerto. Por ejemplo, para Microsoft debe activar
+la casilla "Usar SSL", lo que cambiará el puerto a "993", que es el valor predeterminado.
+
+{{% notice note %}}
+Aquí utilizamos una cuenta de Microsoft como ejemplo. Sin embargo, debe indicar el puerto del servidor que esté
+utilizando.
+{{% /notice %}}
+
+image:suitecrm-inbound-email-port-field.png[suitecrm-inbound-email-port-field.png]
+
+El campo `Email Body Filtering Search Type` (Tipo de búsqueda de filtrado del cuerpo del correo) permite al usuario
+elegir entre buscar utilizando una palabra o una búsqueda de varias palabras.
+
+image:suitecrm-inbound-email-filter-type.png[suitecrm-inbound-email-filter-type.png]
+
+Ahora establezca los valores de las carpetas. Haga clic en el botón "Seleccionar" junto a cada carpeta para abrir la
+ventana emergente que le mostrará los valores disponibles.
+
+{{% notice warning %}}
+No intente rellenar estos campos antes de establecer los siguientes campos: `External OAuth Connection`, `User
+Name`, `Mail Server Address`, `Mail Server Port`, `Use SSL`. De lo contrario, solo verá un desplegable vacío en la
+ventana emergente.
+{{% /notice %}}
+
+image:suitecrm-inbound-email-monitored-folders.png[suitecrm-inbound-email-monitored-folders.png]
+
+*Para Microsoft*: el siguiente es un ejemplo de cómo deberían verse los campos tras configurarlos:
+
+image:suitecrm-inbound-email-folders-configured.png[suitecrm-inbound-email-folders-configured.png]
+
+A continuación, establezca los valores del resto de campos. El siguiente es un ejemplo de una cuenta completamente
+configurada, excepto por el campo "Cuenta de Correo Saliente", cuya configuración queda fuera del alcance de esta
+guía.
+
+image:suitecrm-inbound-email-fully-configured.png[suitecrm-inbound-email-fully-configured.png]
+
+Ahora *guarde* su registro.
+
+image:suitecrm-save-button.png[suitecrm-save-button.png]
+
+=== 3.2 Cuenta de Correo Saliente
+
+Ahora es momento de crear una Cuenta de Correo Saliente. Haga clic en el enlace del menú lateral "Cuentas de Correo
+Saliente".
+
+image:suitecrm-outbound-email-button.png[Cuentas de Correo Saliente]
+
+Esto debería llevarle a la vista de lista del módulo Correos Salientes.
+
+image:suitecrm-outbound-email-listview.png[Vista de lista de Correo Saliente]
+
+Desde aquí, seleccione "Nueva Cuenta de Correo Saliente Personal".
+
+image:suitecrm-outbound-email-new.png[Crear nueva Cuenta de Correo Saliente]
+
+Esto debería llevarle a la siguiente vista:
+
+image:suitecrm-outbound-create-view.png[Vista de creación de Correo Saliente]
+
+Añada un nombre significativo a su cuenta saliente; puede ser el nombre de usuario de su cuenta, o algo que le
+ayude a identificar y diferenciar esta cuenta de correo saliente de otras cuentas existentes.
+
+A continuación, seleccione el tipo "OAuth" en el campo Tipo de Autenticación.
+
+image:suitecrm-inbound-email-auth-type-field.png[suitecrm-inbound-email-auth-type-field.png]
+
+Los 3 tipos diferentes de Tipo de Autenticación son:
+
+. Sin Autenticación
+.. Este es el tipo predeterminado; no requiere ninguna autenticación. Está pensado para utilizarse cuando se
+emplea un servidor que no requiere autenticación, como un servidor SMTP local.
+. Autenticación Básica
+.. Este es el tipo que se debe utilizar cuando se emplea un servidor que requiere autenticación básica, como un
+servidor SMTP local o un servidor que no admite OAuth.
+. OAuth
+.. Este es el tipo que se debe utilizar cuando se emplea un servidor compatible con la autenticación OAuth, como
+las cuentas de Microsoft o Google.
+
+Al seleccionar el tipo OAuth, debería aparecer el campo "Conexión OAuth Externa". Haga clic en la flecha para
+seleccionar la Conexión OAuth que creó anteriormente.
+
+image:suitecrm-inbound-email-external-oauth-connection-field.png[suitecrm-inbound-email-external-oauth-connection-field.png]
+
+{{% notice warning %}}
+Las Cuentas de Correo Saliente de Grupo deben vincularse a registros de Conexión OAuth Externa de Grupo. Si se
+vinculan a registros de Conexión OAuth Externa Personal pueden producirse errores.
+{{% /notice %}}
+
+Al hacer clic en el botón de flecha debería abrirse una ventana emergente donde puede seleccionar la Conexión OAuth
+que creamos anteriormente.
+
+image:suitecrm-outbound-email-connection-popup.png[Ventana emergente de Conexión de Correo Saliente]
+
+Introduzca el nombre de usuario de su cuenta. Debe ser el mismo que utilizó para crear la Conexión OAuth.
+
+Introduzca la dirección del servidor de su cuenta. Por ejemplo, para Microsoft sería `smtp-mail.outlook.com`.
+
+image:suitecrm-outbound-server-field.png[Campo de servidor de Correo Saliente]
+
+Según la configuración de su servidor, active SSL/TLS y establezca el puerto.
+
+image:suitecrm-outbound-port-field.png[Campo de puerto de Correo Saliente]
+
+A continuación, deberá rellenar el resto de campos, como "Nombre De", "Dirección De" y "Dirección de Respuesta".
+
+Ahora *guarde* su registro.
+
+== 4. Configurar el Correo Entrante para que se muestre en el módulo Correos Electrónicos
+
+Para que la cuenta configurada se muestre en el módulo de correos, debe ir a su perfil y seleccionarla como una de
+las cuentas que se mostrarán.
+
+En el menú global de la barra de navegación, haga clic en "Perfil".
+image:suitecrm-profile-link.png[suitecrm-profile-link.png]
+
+Esto debería llevarle a la página de perfil.
+
+image:suitecrm-user-profile.png[suitecrm-user-profile.png]
+
+Desplácese hasta el final de la página y haga clic en el botón "Configuración".
+
+image:suitecrm-settings-button.png[suitecrm-settings-button.png]
+
+Esto debería abrir una ventana modal con una sección "Gestión de Carpetas" al final. En esta sección, seleccione las
+cuentas que deben mostrarse en su módulo Correos Electrónicos.
+
+Es posible seleccionar varias cuentas.
+
+image:suitecrm-profile-folder-management.png[suitecrm-profile-folder-management.png]
+
+Haga clic en "Hecho".
+
+image:suitecrm-done-button.png[suitecrm-done-button.png]
+
+Ahora *guarde* su perfil.
+
+image:suitecrm-save-button.png[suitecrm-save-button.png]
+
+Con esto, su cuenta de Correo Entrante ya estaría configurada.
+
+== 5. Acceder a la cuenta configurada en el módulo Correos Electrónicos
+
+
+En el menú, haga clic en el enlace del módulo "Correos Electrónicos".
+
+image:suitecrm-navbar-emails-link.png[suitecrm-navbar-emails-link.png]
+
+En el menú, haga clic en el enlace del módulo "Correos Electrónicos".
+
+image:suitecrm-email-list-example-1.png[suitecrm-email-list-example-1.png]
+
+Dependiendo del número de Correos Entrantes que tenga configurados, el que acaba de configurar puede no ser el que
+se muestre de forma predeterminada.
+
+Para cambiar a la Cuenta de Correo Entrante que acaba de configurar, haga clic en el botón de bandeja de entrada
+actual, situado en la parte superior derecha.
+
+image:suitecrm-emails-current-inbox-button.png[suitecrm-emails-current-inbox-button.png]
+
+Debería aparecer una ventana modal con las Cuentas de Correo Entrante que ha configurado en la Gestión de Carpetas
+de su perfil.
+
+image:suitecrm-current-inbox-selection.png[suitecrm-current-inbox-selection.png]
+
+Dentro de la ventana modal, haga clic en la Cuenta de Correo Entrante que acaba de configurar. Esto debería
+recargar la página y mostrar el Correo Entrante que configuró.
+
+image:suitecrm-configured-email-list-example.png[suitecrm-configured-email-list-example.png]

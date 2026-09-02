@@ -1,0 +1,64 @@
+---
+title: "Actualización de SuiteCRM 8"
+weight: 20
+aliases:
+  - /es/8.x/admin/upgrading/general-info/
+---
+:experimental:
+
+Esta sección cubre la actualización entre versiones de SuiteCRM 8.x. El proceso de actualización utiliza la herramienta de línea de comandos `bin/console` y aplica el paquete de la versión de destino a su instalación existente.
+
+{{% notice info %}}
+**¿Migrando desde SuiteCRM 7?** Pasar de SuiteCRM 7 a SuiteCRM 8 es una migración, no una actualización, y requiere pasos diferentes. Consulte link:../migration[Migración desde SuiteCRM 7].
+{{% /notice %}}
+
+== Antes de comenzar
+
+Revise la página link:before-you-upgrade[Antes de Actualizar] antes de hacer cualquier otra cosa. Cubre copias de seguridad, comprobaciones de compatibilidad, requisitos de APP_ENV y permisos de archivos.
+
+== Acciones requeridas
+
+Algunas versiones requieren una acción manual antes o después de actualizar. Compruebe la siguiente tabla para ver si hay pasos que se apliquen a su versión de destino.
+
+[cols="1,2,3,2", options="header"]
+|===
+|Versión |Tipo |Acción requerida |Notas de la versión
+
+|8.7.0
+|Cambio de configuración
+|Si existe una configuración SAML existente, deberá actualizarse antes de la actualización.
+|link:../releases/8.7/[Notas de la versión 8.7]
+|===
+
+== Rutas de actualización
+
+Actualice siempre a través de los pasos de versión compatibles. No omita versiones — consulte las notas de la versión de cada versión por la que pase.
+
+* Actualización de 8.2.x a la última versión: 8.2.x → Actual
+* Actualización de RC / 8.0.x / 8.1.x a la última versión: RC/8.0/8.1 → 8.2.x → Actual
+* Actualización de Beta a la última versión: Beta → RC/8.0.x/8.1.x → 8.2.x → Actual
+
+[cols="1,2", options="header"]
+|===
+|Versión de partida |Guía
+
+|RC / 8.0.x / 8.1.x → 8.2.x, y después 8.2.x → actual
+|link:running-the-upgrade[Ejecutar la Actualización]
+
+|8.0.x → 8.1.x
+|link:older-versions/upgrading-80-to-81-versions[Actualización de 8.0.x a 8.1.x]
+
+|Beta → RC
+|link:older-versions/upgrading-rc-versions[Actualización de versiones RC]
+|===
+
+== Restricciones de actualización
+
+* Si está en cualquier versión entre 8.0.x y 8.1.x y desea actualizar a 8.3.x o posterior, primero debe actualizar a 8.2.x.
+* Hubo un error al actualizar a la versión 8.3.1, resuelto en 8.4.0. Consulte link:troubleshooting/known-issues[Problemas Conocidos] para más detalles.
+
+== Compatibilidad
+
+Antes de descargar un paquete de actualización, verifique que su versión de PHP, base de datos y servidor web sean compatibles con la versión de destino. Consulte la link:../compatibility-matrix[Matriz de Compatibilidad].
+
+{{% children depth="2" showhidden="false" %}}

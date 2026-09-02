@@ -1,0 +1,173 @@
+---
+title: "Ejecutar el instalador desde la interfaz web"
+weight: 23
+---
+
+:imagesdir: /images/en/8.x/admin/install-guide
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7, haz clic link:../../../../developer/introduction[aquí].
+{{% /notice %}}
+
+== 1. Introducción
+
+Esta página explica cómo usar el instalador de interfaz web (UI) para SuiteCRM.
+
+{{% notice note %}}
+Antes de seguir los pasos de esta página, consulta la guía link:../downloading-installing/[Descarga e instalación].
+{{% /notice %}}
+
+== 2. Página de comprobación previa a la instalación
+
+Aquí verás la página Pre Install Check.
+
+image:SuiteCRM8-PreInstall-1.png[Página de comprobación previa de SuiteCRM 8 - 1]
+
+image:SuiteCRM8-PreInstall-2.png[Página de comprobación previa de SuiteCRM 8 - 2]
+
+=== 2.1 Advertencias/Errores de la comprobación previa
+
+Cada comprobación mostrará `OK` si no hay problemas, o lo siguiente:
+
+image:SuiteCRM8-PreInstall-Error.png[SuiteCRM8-PreInstall-Error]
+
+Si una comprobación obligatoria falla, se mostrará una pequeña etiqueta de error junto con información sobre por qué no se ha superado la comprobación.
+
+Una vez realizados los cambios necesarios para cumplir los requisitos de la comprobación, selecciona el botón `RECHECK` que se muestra para volver a ejecutarla.
+
+=== 2.2 Configuración de cron
+
+image:SuiteCRM8-PreInstall-2.png[Página de comprobación previa de SuiteCRM 8 - 2]
+
+También hay instrucciones sobre cómo configurar crontab. **Estos pasos deben seguirse ÚNICAMENTE DESPUÉS de completar la instalación**
+
+== 3. Instalar mediante la página de instalación
+
+Si todas las comprobaciones se superan en la página de comprobación previa, selecciona el botón `Proceed` y serás redirigido a
+`https://<your-suite-crm-instance-path>/#/install`
+
+=== 3.1 Configurar la configuración básica del sistema
+
+El siguiente paso es añadir la configuración básica del sistema para que este funcione.
+
+image:web-ui-install-configuration.png[web-ui-install-configuration.png]
+
+{{% notice note %}}
+En esta página, aparte de `Ignore system check warnings`, todos los campos son obligatorios y deben tener un valor establecido.
+{{% /notice %}}
+
+En esta pestaña encontrarás las siguientes configuraciones:
+
+==== 3.1.1 URL DE LA INSTANCIA DE SUITECRM
+
+image:web-ui-install-url.png[web-ui-install-url.png]
+
+En el campo anterior se rellenará previamente la url actual. Sin embargo, si no es correcta, deberías establecer la url
+donde se encuentra tu instancia de SuiteCRM. Algunos ejemplos:
+
+* `https://example-domain.com`
+* `https://localhost`
+* `https://crm.example-domain.com`
+
+**Consejo: ** puedes simplemente copiar la url de la barra de direcciones de tu navegador
+
+==== 3.1.2 Usuario de base de datos de SuiteCRM
+
+image:web-ui-install-db-user.png[web-ui-install-db-user.png]
+
+En el campo anterior debes establecer el nombre de usuario para acceder a tu base de datos.
+
+{{% notice note %}}
+Asegúrate de que el usuario de base de datos que especifiques tenga permisos para crear y escribir en la base de datos de SuiteCRM.
+{{% /notice %}}
+
+==== 3.1.3 Contraseña del usuario de base de datos de SuiteCRM
+
+image:web-ui-install-db-user-password.png[web-ui-install-db-user-password.png]
+
+En el campo anterior debes establecer la contraseña para acceder a tu base de datos.
+
+
+==== 3.1.4 Nombre del host
+
+image:web-ui-install-db-host.png[web-ui-install-db-host.png]
+
+En el campo anterior debes establecer el host de tu base de datos.
+
+{{% notice note %}}
+En algunos sistemas, al usar `localhost`, doctrine intentará usar una conexión por socket. Sin embargo, la conexión por socket no está soportada por el momento, por lo que en estos casos puede ser mejor probar con la ip, p. ej. `127.0.0.1`
+{{% /notice %}}
+
+==== 3.1.5 Nombre de la base de datos
+
+image:web-ui-install-db-name.png[web-ui-install-db-name.png]
+
+En el campo anterior debes establecer el nombre que quieres para las bases de datos que se crearán en tu host durante el proceso de instalación, p. ej. `suite`, `suitecrm` u otro nombre de base de datos válido.
+
+==== 3.1.6 Puerto de la base de datos
+
+image:web-ui-install-db-port.png[web-ui-install-db-port.png]
+
+El campo anterior está establecido al puerto por defecto utilizado en los motores de base de datos `mysql` y `mariadb`. Solo deberías cambiarlo si tu host de base de datos usa un puerto diferente.
+
+==== 3.1.7 PRECARGAR LA BASE DE DATOS CON DATOS DE DEMOSTRACIÓN
+
+image:web-ui-install-demo-data.png[web-ui-install-demo-data.png]
+
+En el campo anterior puedes establecer si, durante el proceso de instalación, quieres precargar tu base de datos con datos de demostración.
+
+==== 3.1.8 Nombre del administrador de la aplicación SuiteCRM
+
+image:web-ui-install-admin-username.png[web-ui-install-admin-username.png]
+
+En el campo anterior puedes establecer el nombre de usuario del administrador de tu instancia de SuiteCRM, p. ej. `admin` (este valor
+se rellenará previamente) o cualquier otro nombre de usuario que quieras darle.
+
+==== 3.1.9 Contraseña del usuario administrador de SuiteCRM
+
+image:web-ui-install-admin-password.png[web-ui-install-admin-password.png]
+
+En el campo anterior puedes establecer la contraseña del usuario administrador de tu instancia de SuiteCRM.
+
+=== 3.2 Ignorar advertencias de instalación
+
+image:web-ui-install-ignore-warnings.png[web-ui-install-ignore-warnings.png]
+
+Antes de ejecutar el proceso de instalación, SuiteCRM va a comprobar algunos requisitos del sistema, como el `tamaño máximo de subida de archivos` o el `límite de memoria`. Algunas de estas comprobaciones son opcionales, es decir, puedes instalar el sistema sin cumplirlas.
+Si quieres continuar con la instalación aunque haya advertencias, puedes marcar la casilla `Ignore System Check Warnings`
+
+=== 3.3 Ejecutar la instalación
+
+Después de aceptar la licencia y establecer los valores correctos para todas las configuraciones, puedes hacer clic en `Proceed`.
+
+Esto activará el proceso de instalación.
+Como se ha explicado antes, el proceso de instalación comprobará primero algunos requisitos del sistema.
+
+Si hay errores durante la validación, el proceso de instalación se detendrá y se abrirá una ventana modal con una descripción de las comprobaciones que han fallado.
+
+Si todas las comprobaciones se superan, el sistema continuará con el proceso de instalación. Durante el proceso de instalación verás un indicador de carga en la página. Este proceso puede tardar algún tiempo.
+
+Cuando el proceso de instalación finalice, serás redirigido a la página de inicio de sesión.
+
+
+=== 3.4 Comprobar las configuraciones
+
+Comprueba que las siguientes configuraciones sean correctas
+
+*1* - Configuración heredada en `public/legacy/config.php`
+
+* `site_url`:
+** si tu vhost *no* apunta al directorio `public` dentro de la carpeta raíz de SuiteCRM 8, deberías añadir `/public` a tu host actual
+*** p. ej. si tu dirección es algo como `https://your-host/crm/public`,
+
+*2* - `.htaccess` en `public/legacy/.htaccess`
+
+* `RewriteBase`
+** Si tu vhost apunta al directorio `legacy` dentro de la carpeta raíz de SuiteCRM 8, entonces el valor correcto es `RewriteBase /legacy`
+** En caso contrario, debes anteponer la ruta hasta la carpeta `public`.
+*** p. ej. si tu dirección es algo como `https://your-host/crm/public`, entonces el valor correcto es `RewriteBase /crm/public/legacy`
+
+
+=== 3.5  Acceder a la aplicación
+
+Intenta iniciar sesión en tu instancia

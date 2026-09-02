@@ -1,0 +1,89 @@
+---
+Title: Advanced OpenAdmin
+weight: 70
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+== Configuración de AOS
+
+El conjunto de módulos Advanced OpenSales le permite
+gestionar los procesos de venta posteriores a la Oportunidad, como la Cotización, la Facturación
+y la contratación recurrente.
+
+image:AdminAOSSettings.png[Configuración de Advanced OpenSales]
+
+Puede personalizar los siguientes ajustes dentro de la Configuración de AOS:
+
+* *Período de Recordatorio de Renovación*: define con cuántos días de antelación a la Fecha de Fin del Contrato debe crearse una llamada de recordatorio.
+* *Número Inicial de Factura*: permite a los usuarios establecer el número de factura inicial. Por ejemplo, 20001.
+* *Número Inicial de Cotización*: permite a los usuarios establecer el número de cotización inicial. Por ejemplo, 456.
+* *Habilitar Grupos de Items de Línea*: si se selecciona, los usuarios podrán agrupar los elementos de línea en grupos. Si no se selecciona, no podrá utilizar la funcionalidad de Grupos de AOS.
+{{% notice note %}}
+La opción Habilitar Grupos de Items de Línea debe
+seleccionarse antes de utilizar AOS. Es difícil migrar desde/hacia grupos
+una vez que se han creado Cotizaciones/Facturas.
+{{% /notice %}}
+* *Agregar Impuesto al Total de Línea*: si se selecciona, el impuesto se añadirá al Total de Línea en los elementos de línea. Si no se selecciona, el Total de Línea no incluirá el impuesto.
+
+Una vez configurado, haga clic en btn:[Guardar] para aplicar su Configuración de AOS.
+
+== Configuración de AOD
+
+Habilite o deshabilite aquí la búsqueda global de texto completo de *SuiteCRM*.
+
+image:AdminAODSettings.png[Configuración de Advanced OpenDiscovery]
+
+La búsqueda global de texto completo está impulsada por el framework de búsqueda Zend Lucene.
+La búsqueda funciona de forma muy similar a la búsqueda global estándar, pero ofrece la funcionalidad adicional
+de buscar texto dentro de documentos y otros archivos, en comparación con la búsqueda a nivel de registro
+que ofrece la búsqueda global estándar.
+
+Consulte la documentación de link:../../../user/introduction/user-interface/search[Búsqueda] en la guía de
+usuario para obtener más información sobre cómo realizar búsquedas en *SuiteCRM*.
+
+== Configuración de AOP
+
+Advanced OpenPortal (AOP) extiende el módulo link:../../../user/customer-service/cases[Casos] para admitir un portal orientado al cliente y la creación y actualización de casos por correo electrónico. Configúrelo aquí.
+
+image:AdminAOPSettings.png[title="Configuración de Advanced OpenPortal"]
+
+[cols="30,70",frame="none",grid="none"]
+|===
+|*Habilitar AOP*|Habilita o deshabilita la funcionalidad de Advanced OpenPortal en todo SuiteCRM.
+|*Habilitar Portal*|Indica si el portal Joomla orientado al cliente está activo.
+|*URL de Joomla*|La URL del sitio del portal Joomla conectado.
+|*Nombre de Remitente de Soporte*|El nombre utilizado en el campo Remitente de todas las notificaciones por correo electrónico relacionadas con el portal que se envían a los contactos.
+|*Dirección de Remitente de Soporte*|La dirección de correo electrónico utilizada en el campo Remitente de los correos relacionados con el portal.
+|*Método de Distribución de Casos*|Cómo se asignan automáticamente los casos creados a partir del correo entrante o del portal. Opciones: Usuario único (asignar a un usuario especificado), Round Robin por Rol, Round Robin por Grupo de Seguridad.
+|*Plantillas de Correo Electrónico*|Seleccione las plantillas de correo electrónico utilizadas para: bienvenida a un nuevo usuario del portal, notificación de caso al contacto, confirmación de creación de caso y notificación de cierre de caso. Las plantillas se gestionan en el módulo link:../../../user/marketing-outreach/email-templates[Plantillas de Correo Electrónico].
+|===
+
+=== Configuración del Portal
+
+El componente del portal Joomla puede descargarse desde la página https://suitecrm.com/resources/suitecrm-joomla-portal-plug-in/[SuiteCRM Joomla Portal Plug-in^]. Instálelo mediante el Administrador de Extensiones de Joomla y, a continuación, configure la URL de SuiteCRM y un nombre de usuario y contraseña válidos de SuiteCRM en *Components → advancedopen-portal* dentro de Joomla.
+
+Una vez configurado, se pueden añadir dos elementos de menú a su portal Joomla:
+
+* *List Cases*: muestra una lista de todos los casos que el contacto ha registrado, con filtros por Estado y búsqueda por palabra clave
+* *New Case*: permite a los contactos crear casos en SuiteCRM desde el portal
+
+=== Creación de Usuarios del Portal
+
+Para dar a un Contacto acceso al portal, abra el registro del Contacto en SuiteCRM y haga clic en *Create Portal User* (o búsquelo en el menú de acciones si los menús de acciones están habilitados). Esto crea una cuenta de Joomla para el contacto y le envía por correo electrónico sus credenciales de acceso al portal.
+
+
+== Horario Laboral
+
+Especifique aquí el horario laboral.
+
+Estos ajustes determinarán cuándo se ejecutarán los flujos de trabajo configurados para ejecutarse
+'Solo en el Scheduler' y se utilizarán cuando la opción "Considerar días laborables" esté habilitada en los
+registros de link:../../../user/core-modules/projects[Proyecto].
+
+image:AdminBusinessHours.png[Horario Laboral]
+

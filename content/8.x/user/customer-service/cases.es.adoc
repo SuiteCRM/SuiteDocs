@@ -1,0 +1,50 @@
+---
+title: "Casos"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/customer-service/cases
+
+= Casos
+
+Los Casos se utilizan para registrar las interacciones con los clientes cuando estos solicitan ayuda o asesoramiento, por ejemplo, en una función de ventas o soporte. Un Caso puede crearse, actualizarse a medida que un usuario trabaja en él, asignarse a un compañero y cerrarse una vez resuelto. En cada etapa del Caso, el usuario asignado puede hacer seguimiento y actualizar el hilo de la conversación entrante y saliente, de forma que en SuiteCRM se mantenga un registro claro de lo ocurrido. Los Casos pueden relacionarse con otros registros, como Cuentas, Contactos y Bugs.
+
+== Campos Clave
+
+* *Asunto*: una breve descripción de la incidencia. Es un campo obligatorio y el identificador principal que se muestra en la Vista de Lista y en las notificaciones por correo electrónico.
+* *Fase*: controla si el caso está Abierto o Cerrado. Determina qué valores de Estado están disponibles.
+* *Estado*: una etapa más detallada dentro de la Fase. Los estados de Abierto incluyen Nuevo, Asignado, Pendiente de Información; los estados de Cerrado incluyen Rechazado y Cerrado. Los administradores pueden personalizar estos valores.
+* *Prioridad*: la urgencia del caso: P1 (Urgente), P2 (Alta), P3 (Media).
+* *Nombre de la Cuenta*: la Cuenta a la que pertenece el caso. Vincularlo a una Cuenta le proporciona el contexto completo del cliente y hace que el caso sea visible desde el subpanel Casos de la Cuenta.
+* *Descripción*: el detalle completo de la incidencia tal como se reportó.
+* *Resolución*: cómo se resolvió la incidencia. Rellenar este campo ayuda a crear una base de conocimiento de soluciones que puede consultarse para futuros casos.
+* *Asignado A*: el usuario responsable de resolver el caso.
+
+== Relaciones
+
+Desde la Vista de Detalle de un Caso puede ver y gestionar todos los registros asociados mediante subpaneles:
+
+* *Contactos*: las personas asociadas a este caso.
+* *Cuenta*: la organización a la que pertenece el caso.
+* *Bugs*: bugs de software conocidos vinculados al caso.
+* *Actividades*: Llamadas, Reuniones y Tareas relacionadas con la resolución del caso.
+* *Historial*: correos y actividades completadas, incluyendo todos los hilos de actualización del Caso.
+* *Documentos / Notas*: archivos y adjuntos de apoyo.
+
+Para obtener información sobre el trabajo con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación, combinación e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].
+
+== Actualizaciones del Caso
+
+La pestaña *Actualizaciones del Caso* de la Vista de Detalle del Caso muestra un registro cronológico y en formato de hilo de toda la actividad del caso, incluyendo las actualizaciones publicadas por los usuarios de SuiteCRM y las respuestas de los contactos.
+
+=== Añadir una Actualización
+
+En la pestaña Actualizaciones del Caso hay disponible un campo de texto *Actualización*. Introduzca el texto de su actualización y haga clic en *Guardar*. SuiteCRM registra la actualización en el hilo y envía una notificación por correo electrónico a todos los Contactos relacionados con el caso.
+
+Marque *Actualización Interna* para registrar la actualización de forma privada. Las actualizaciones internas son visibles en el hilo de Actualizaciones del Caso dentro de SuiteCRM, pero no se envían por correo a los contactos ni son visibles en el portal de clientes, si está configurado.
+
+=== Crear Casos a partir de Correo Entrante
+
+Los Casos pueden crearse automáticamente a partir de correo entrante utilizando una cuenta de correo de grupo.

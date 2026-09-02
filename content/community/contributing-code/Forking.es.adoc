@@ -1,0 +1,55 @@
+---
+Title: Hacer un Fork de SuiteCRM
+Weight: 30
+---
+
+== Guía Rápida para Hacer un Fork de SuiteCRM
+
+=== Haz un fork del repositorio de SuiteCRM
+
+Puedes hacer esto completamente desde el sitio web de GitHub. Consulta
+https://help.github.com/articles/fork-a-repo/[Forking Git] para aprender cómo.
+
+=== Configura Git en tu máquina local
+
+Sigue la guía elaborada por
+https://help.github.com/articles/set-up-git/[GitHub], que proporciona
+instrucciones detalladas sobre cómo configurar git y conectarte a GitHub desde
+tu máquina local.
+
+=== Clona tu repositorio en tu máquina local
+
+Con git configurado y tu fork de GitHub creado, ahora podemos clonar el repositorio
+git en nuestra máquina local. Cambia al directorio en el que quieras hacer
+esto, y ejecuta este comando para clonar el repositorio de SuiteCRM (
+sustituyendo username por tu nombre de usuario en GitHub)
+
+`git clone git@github.com:username/SuiteCRM.git`
+
+Ahora que hemos clonado el repositorio localmente, a continuación necesitamos configurar
+los repositorios remotos que este repositorio referenciará. Por defecto, git crea el
+remoto origin, que apunta al fork que creaste en
+github (https://github.com/username/SuiteCRM). Sin embargo, para
+mantenerte al día con los cambios del repositorio padre
+(https://github.com/SuiteCRM/SuiteCRM), querrás configurar
+también el remoto upstream. Así se hace:
+
+`cd SuiteCRM` +
+`git remote add upstream git@github.com:SuiteCRM/SuiteCRM.git` +
+`git fetch upstream` +
+
+Ahora, cada vez que quieras actualizar tu rama con fork, es un proceso sencillo.
+Solo cambia a la rama que quieras actualizar desde upstream (por
+ejemplo, la rama master) y luego ejecuta los siguientes comandos:
+
+`git checkout master` +
+`git fetch upstream` +
+`git merge upstream/master` +
+`git push origin master` +
+
+Estos comandos descargarán los últimos cambios del repositorio upstream
+(https://github.com/SuiteCRM/SuiteCRM) a tu repositorio local, luego
+fusionarán los cambios en la rama master de tu clon local, y finalmente
+subirán esos cambios de vuelta al repositorio de tu fork en Github. Esto es
+clave para mantener actualizadas tus ramas master, hotfix y develop tras una versión menor
+y mayor.

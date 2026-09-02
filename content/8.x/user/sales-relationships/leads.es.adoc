@@ -1,0 +1,56 @@
+---
+title: "Clientes Potenciales"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/leads
+
+== Resumen
+
+Un Cliente Potencial es un contacto no cualificado, generalmente generado a partir de una actividad de marketing — por ejemplo, alguien que rellenó un formulario en su sitio web o al que se conoció en una feria comercial, y del que aún no se sabe si tiene capacidad de compra.
+
+Una vez que un Cliente Potencial se cualifica, puede convertirse en un Contacto (quién es la persona), una Cuenta (dónde trabaja) y una Oportunidad (qué podría comprar).
+
+== Campos Clave
+
+* *Primer Medio de Contacto*: registra cómo se captó al Cliente Potencial, por ejemplo Sitio Web, Feria Comercial, Boca a Boca, Llamada en Frío o Campaña. Útil para medir la eficacia de los canales de marketing.
+* *Estado*: indica en qué punto del proceso de cualificación se encuentra el Cliente Potencial: Nuevo, Asignado, En Proceso, Convertido, Reciclado o Muerto.
+* *Nombre de Cuenta*: la empresa para la que trabaja el Cliente Potencial. Este es un campo de texto libre en un Cliente Potencial — a diferencia de en un Contacto, donde es una relación con un registro de Cuenta — y se convierte en una relación completa con una Cuenta al realizar la conversión.
+* *Puesto / Departamento*: el rol del Cliente Potencial y su equipo dentro de su organización.
+* *Referido Por*: registra quién le remitió al Cliente Potencial.
+* *No Llamar / Rehusar Email*: indicadores de cumplimiento normativo que se conservan al convertir el Cliente Potencial en un Contacto.
+* *Campaña*: vincula el Cliente Potencial a la campaña que lo generó, alimentando los informes de ROI de campañas.
+* *Página Web*: el sitio web de la empresa del Cliente Potencial. Se traslada a la Cuenta cuando se convierte el Cliente Potencial.
+
+== Relaciones
+
+Desde un registro de Cliente Potencial puede ver y gestionar los registros relacionados mediante la sección de Relaciones:
+
+* *Actividades*: Llamadas, Reuniones, Tareas y Correos registrados contra el Cliente Potencial.
+* *Historial*: correos archivados y actividades completadas.
+* *Documentos*: archivos adjuntos al Cliente Potencial.
+* *Campañas*: la campaña de la que se originó el Cliente Potencial.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación, fusión e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].
+
+== Convertir un Cliente Potencial
+
+Una vez que se ha recopilado suficiente información sobre un Cliente Potencial, puede convertirse en un Contacto, una Cuenta y una Oportunidad.
+
+. Abra la Vista de Detalle del Cliente Potencial.
+. Seleccione *Convert Lead* en el desplegable *Actions*.
+. En la pantalla de conversión, recorra cada sección por turno — Contact, Account y Opportunity. Los campos se rellenan previamente con los datos del Cliente Potencial cuando es posible; complete los campos relevantes restantes de cada sección.
+. En cada sección, puede crear un nuevo registro o, si ya existe un registro coincidente, deseleccionar la opción *Create* y seleccionar en su lugar un registro existente.
+. Haga clic en *Save* para completar la conversión.
+
+=== Comprobación de Registros Duplicados
+
+Al convertir un Cliente Potencial, SuiteCRM comprueba automáticamente si existen registros duplicados y muestra un aviso si se encuentra un registro coincidente. Si el aviso no es válido y aun así desea crear un nuevo registro, haga clic en *Create*. Si el registro ya existe, selecciónelo en su lugar.
+
+== Próximos Pasos
+
+Para conocer los detalles sobre la conversión de un Cliente Potencial en una Cuenta y un Contacto, consulte link:../accounts[Cuentas] y link:../contacts[Contactos].
+
+Para conocer los detalles sobre el registro de pipeline de ventas resultante, consulte link:../opportunities[Oportunidades].

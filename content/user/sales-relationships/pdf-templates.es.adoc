@@ -1,0 +1,94 @@
+---
+title: "Formatos PDF"
+weight: 50
+aliases:
+  - /es/user/advanced-modules/pdftemplates
+---
+
+:experimental:
+:imagesdir: /images/en/user/sales-relationships/pdf-templates
+:toc:
+
+= Formatos PDF
+
+El módulo de Formatos PDF le permite crear plantillas de documento reutilizables para generar PDF a partir de registros de SuiteCRM. Los formatos admiten variables de campo dinámicas, tablas de líneas de detalle, cabeceras, pies de página y márgenes configurables. Una vez creado, un formato puede utilizarse para generar un PDF a partir de cualquier registro del tipo de módulo correspondiente.
+
+== Crear un Formato PDF
+
+. Navegue al módulo Formatos PDF y haga clic en *Create PDF Template*.
+. Rellene los campos del formato (véase más abajo).
+. Construya el cuerpo del formato utilizando el editor WYSIWYG.
+. Haga clic en **Save**.
+
+=== Campos del Formato
+
+[cols="20,80"]
+|===
+|*Nombre*|El nombre del formato.
+|*Tipo*|El módulo al que se aplica este formato: Presupuestos, Facturas, Contratos, Cuentas, Contactos o Clientes Potenciales. Solo los formatos que coincidan con el tipo de módulo aparecerán al generar un PDF desde un registro.
+|*Activo*|Cuando está habilitado, el formato aparece en el selector de formatos al generar PDF. Los formatos inactivos quedan ocultos para los usuarios.
+|*Asignado a*|El usuario asignado a este registro de formato.
+|*Load Sample*|Carga una muestra prediseñada en el cuerpo, sobrescribiendo cualquier contenido existente (primero se muestra una advertencia). Hay siete muestras disponibles: Ejemplo de Presupuesto, Ejemplo de Grupo de Presupuesto, Ejemplo de Factura, Ejemplo de Grupo de Factura, Ejemplo de Cuenta, Ejemplo de Contacto y Ejemplo de Cliente Potencial. Las muestras de Grupo de Presupuesto y Grupo de Factura muestran la estructura de la tabla de líneas de detalle para líneas de detalle agrupadas.
+|*Tamaño de Página*|A4 (predeterminado), Carta o Legal.
+|*Orientación*|Vertical (predeterminado) u Horizontal.
+|===
+
+=== Insertar Variables de Campo
+
+La fila *Insertar Campos* situada encima del editor del cuerpo inserta variables dinámicas que se sustituyen por los datos del registro cuando se genera el PDF.
+
+image:InsertFields.png[title="Vista de edición del formato PDF mostrando la fila Insertar Campos con desplegables de módulo y campo encima del editor de cuerpo WYSIWYG"]
+
+. En el primer desplegable, seleccione el módulo del que extraer los datos — el propio módulo del formato (por ejemplo, Presupuestos) o un módulo relacionado (por ejemplo, Cuentas en un formato de Presupuesto).
+. En el segundo desplegable, seleccione el campo. El nombre de la variable rellena el campo de texto a la derecha.
+. Sitúe el cursor en el cuerpo en el punto de inserción y haga clic en **Insert**.
+
+Las variables siguen el formato `$moduledirectory_fieldname` — por ejemplo, `$aos_invoices_number` inserta el número de factura, y `$aos_quotes_billing_account` inserta el nombre de la cuenta de facturación de un Presupuesto.
+
+=== Líneas de Detalle
+
+Para los formatos de Presupuesto, Factura y Contrato, los datos de las líneas de detalle (productos, cantidades, precios, totales) deben colocarse dentro de una tabla HTML en el cuerpo. Las plantillas de muestra (Ejemplo de Presupuesto, Ejemplo de Grupo de Presupuesto, Ejemplo de Factura, Ejemplo de Grupo de Factura) muestran la estructura de tabla correcta y son el punto de partida recomendado para crear formatos con líneas de detalle.
+
+=== Cabeceras, Pies de Página y Márgenes
+
+Los campos *Cabecera* y *Pie de Página* situados debajo del cuerpo aceptan el mismo marcado WYSIWYG que el cuerpo y aparecen en todas las páginas del PDF generado. Hay dos variables especiales disponibles:
+
+* `{PAGENO}` — inserta el número de página actual
+* `{DATE d.m.Y}` — inserta la fecha actual utilizando códigos de formato de fecha de PHP; por ejemplo, `{DATE Y-m-d}` produce 2025-12-31
+
+Seis campos de margen controlan el diseño de la página (todos los valores en milímetros):
+
+[cols="30,70"]
+|===
+|*Margen Izquierdo / Derecho*|15 mm predeterminado
+|*Margen Superior / Inferior*|16 mm predeterminado
+|*Margen de Cabecera / Pie de Página*|9 mm predeterminado — distancia desde el borde de la página hasta el contenido de la cabecera o el pie de página
+|===
+
+== Generar PDF
+
+=== Desde un Registro
+
+Desde la Vista de Detalle de cualquier registro, abra el menú de acciones y haga clic en *Print as PDF*. Aparece una ventana emergente del selector de formatos con todos los formatos activos para ese tipo de módulo. Seleccione un formato para generar y descargar el PDF.
+
+image:TemplateSelector.png[title="Ventana emergente del selector de formatos mostrando una lista de formatos PDF disponibles para el módulo actual"]
+
+SuiteCRM crea automáticamente un registro de Nota vinculado al registro de origen con el PDF generado adjunto.
+
+Para Presupuestos, Facturas y Contratos, *Email PDF* también está disponible en el menú de acciones. Esto abre la pantalla de Redacción con el PDF generado adjunto y el Contacto del registro rellenado previamente como destinatario. Consulte link:../quotes-invoices-contracts[Presupuestos, Facturas y Contratos] para conocer todas las opciones de envío de PDF y correo de esos módulos.
+
+=== Generación Masiva de PDF
+
+Desde la vista de lista, seleccione los registros que desee y elija *Print as PDF* en el menú de acciones masivas. Seleccione un formato en la ventana emergente. SuiteCRM genera un único PDF combinado que contiene todos los registros seleccionados y lo descarga. Se crea un registro de Nota individual con el PDF adjunto para cada registro seleccionado.
+
+== Gestionar Formatos PDF
+
+Desde la vista de lista de Formatos PDF puede:
+
+* *Buscar*: utilice link:../../core-concepts/searching[Búsqueda o Búsqueda Avanzada] para filtrar formatos
+* *Exportar*: seleccione registros y utilice el menú de acciones masivas para exportar
+* *Actualización masiva*: edite o elimine varios formatos a la vez utilizando link:../../core-concepts/record-management[Actualización Masiva]
+* *Duplicar*: abra el menú de acciones de un formato y haga clic en *Duplicate* para crear una copia como base de un nuevo formato
+* *Ver Registro de Cambios*: siga los cambios en los campos de un formato desde la Vista de Detalle
+
+---

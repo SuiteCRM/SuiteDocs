@@ -1,0 +1,141 @@
+---
+title: "Campo Imagen"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/admin/module-management/field-types
+
+= Campo Imagen
+
+== Descripción general
+
+El campo Imagen te permite mostrar imágenes dentro de los registros, que pueden subirse directamente desde tu dispositivo.
+Este tipo de campo es útil para añadir elementos visuales como fotos de producto, fotos de perfil, logotipos o cualquier otro contenido basado en imágenes a tus registros del CRM.
+
+=== Añadir un campo Imagen
+
+Los campos de tipo Imagen se pueden añadir a los módulos a través de Studio, en el panel de administración.
+
+**Para añadir un campo Imagen:**
+
+. Ve al panel de administración
+. Haz clic en *Studio*
+. Selecciona el módulo al que quieres añadir el campo de imagen
+. Haz clic en *Fields*
+. Haz clic en *Add Field*
+. Selecciona *Image* en el desplegable de tipo de dato
+. Configura los ajustes del campo (consulta Opciones de configuración a continuación)
+. Haz clic en *Save*
+
+image:add-image-field-studio.png[Añadir un campo Imagen en Studio]
+
+*Una vez guardado, deberás añadir el campo a las vistas correspondientes (por ejemplo, la Vista Detalle o la Vista de Lista) para que sea visible en el módulo.*
+
+==== Opciones de configuración
+
+Al crear o editar un campo Imagen en Studio, algunas de las opciones de configuración más importantes son:
+
+[cols="1,3", options="header"]
+|===
+|Nombre del campo |Descripción
+
+|*Field Name*
+|El nombre interno del campo. Se utiliza en la base de datos y en el código para hacer referencia al campo.
+
+|*Label*
+|El nombre visible del campo que se mostrará en las vistas y formularios.
+
+|*Storage Type*
+|Determina dónde y cómo se almacenan las imágenes subidas:
+
+* *Private Images* - Almacenadas de forma segura con acceso restringido
+* *Public Images* - Almacenadas con acceso público
+
+Consulta link:../../../../admin/configuration/file-storage/file-storage-configuration[Tipos de almacenamiento] para más información.
+
+|*Height*
+|Especifica la altura (en píxeles) a la que se mostrará la imagen en la vista del registro.
+
+Valor por defecto: ajuste de configuración `image_field_height_default`
+
+|*Width*
+|Especifica el ancho (en píxeles) al que se mostrará la imagen en la vista del registro.
+
+Valor por defecto: ajuste de configuración `image_field_width_default`
+
+|*Max Size (Bytes)*
+|Especifica el tamaño máximo de archivo (en bytes) permitido para las imágenes subidas.
+
+|*Allow Preview*
+|Cuando está activado, añade la posibilidad de previsualizar, permitiendo a los usuarios ver la imagen a tamaño completo y descargarla directamente desde el registro.
+
+NOTE: La extensión de la imagen debe estar incluida en el ajuste de configuración `allowed_preview`.
+
+|*Create Thumbnail*
+|Cuando está activado, genera automáticamente una versión en miniatura al guardar el registro. La miniatura mejora los tiempos de carga de la página y el rendimiento, mientras que la imagen a tamaño completo sigue estando accesible mediante la vista previa.
+
+|*Thumbnail Width*
+|Especifica el ancho (en píxeles) de la miniatura generada. Solo aplicable cuando *Create Thumbnail* está activado.
+
+|*Thumbnail Height*
+|Especifica la altura (en píxeles) de la miniatura generada. Solo aplicable cuando *Create Thumbnail* está activado.
+
+|*Required Field*
+|Cuando está activado, hace que el campo de imagen sea obligatorio, exigiendo a los usuarios que suban una imagen antes de guardar el registro.
+|===
+=== Subir imágenes
+
+Para subir una imagen a un campo Imagen, arrastra y suelta un archivo de imagen sobre el campo, o haz clic para abrir un explorador de archivos y seleccionar una imagen desde tu dispositivo.
+
+Una vez subida, la imagen se mostrará según los ajustes configurados.
+
+==== Formatos de imagen admitidos
+
+Los formatos admitidos por el campo de imagen se basan en el ajuste de configuración `valid_image_ext`. Por defecto, esto incluye formatos habituales como JPEG, PNG, GIF y BMP.
+
+=== Ver imágenes
+
+La forma en que se muestran las imágenes en los registros depende de tu configuración de miniaturas:
+
+* **Sin miniaturas:** Se muestra la imagen a tamaño completo, con la altura especificada en la configuración del campo.
+* **Con miniaturas:** Se muestra una versión en miniatura más pequeña, usando las dimensiones configuradas.
+
+*La imagen a tamaño completo sigue estando accesible mediante la función de vista previa cuando **Allow Preview** está activado.*
+
+=== Vista previa y descarga de imágenes
+
+Cuando la opción Allow Preview está activada para un campo Imagen, los usuarios pueden pasar el cursor sobre la imagen en el registro para mostrar opciones adicionales:
+
+* *Icono de ojo* - Haz clic para abrir y ver la imagen a tamaño completo
+* *Icono de descarga* - Haz clic para descargar la imagen directamente a tu dispositivo
+
+image:image-preview-options.png[Opciones de vista previa y descarga de imágenes]
+
+Estas opciones de vista previa y descarga solo están disponibles cuando Allow Preview está activado en la configuración del campo.
+
+=== Sustituir o eliminar imágenes
+
+Para eliminar o sustituir una imagen existente en un campo Imagen, mientras estás en modo edición, pasa el cursor sobre la imagen para mostrar el icono de aspa.
+
+Haz clic en el icono de aspa para eliminar la imagen actual, lo que te permitirá subir una nueva imagen en su lugar.
+
+=== Optimización de imágenes en las Vistas de Lista y los Subpaneles
+
+Para mejorar el rendimiento y mantener diseños ordenados, SuiteCRM optimiza automáticamente cómo se muestran las imágenes en las Vistas de Lista
+y los Subpaneles, limitando sus dimensiones máximas.
+
+image:optimized-image-listview.png[Imagen optimizada en la Vista de Lista]
+
+==== Optimización en la Vista de Lista
+
+Para las imágenes mostradas en las Vistas de Lista, las dimensiones máximas se pueden controlar mediante ajustes de configuración:
+
+* image_field_listview_height_default - Controla la altura máxima (por defecto: 60px)
+* image_field_listview_width_default - Controla el ancho máximo (por defecto: 100%)
+
+==== Optimización en los Subpaneles
+
+De forma similar, las imágenes mostradas en los Subpaneles respetan los siguientes ajustes de configuración:
+
+* image_field_subpanel_height_default - Controla la altura máxima (por defecto: 60px)
+* image_field_subpanel_width_default - Controla el ancho máximo (por defecto: 100%)

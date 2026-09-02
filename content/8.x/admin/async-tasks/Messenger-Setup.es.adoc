@@ -1,0 +1,211 @@
+---
+title: "Configuración de Messenger"
+weight: 10
+---
+
+== Configuración de Messenger
+
+{{% notice info %}}
+Esta documentación corresponde a SuiteCRM 8.10.0+
+{{% /notice %}}
+
+=== ¿Qué es el Worker de Messenger?
+
+SuiteCRM 8 utiliza Symfony Messenger para procesar tareas en segundo plano en un proceso worker independiente, manteniendo así la capacidad de respuesta del servidor web. Sin un worker en ejecución, las tareas asíncronas (migraciones manuales, exportaciones masivas, etc.) permanecerán indefinidamente en estado "Pending".
+
+Para obtener una visión general del sistema de tareas asíncronas y sus ventajas, consulte link:../[la visión general de Tareas Asíncronas].
+
+
+=== Antes de Empezar
+
+Todos los comandos del worker de Messenger de esta guía *deben* ejecutarse como el mismo usuario del sistema que ejecuta su servidor web. Los usuarios de servidor web habituales incluyen:
+
+* `www-data` (Debian/Ubuntu)
+* `apache` (RHEL/CentOS con Apache)
+* `nginx` (RHEL/CentOS con Nginx)
+
+Si el worker se ejecuta como un usuario diferente, las operaciones de archivo (cargas, almacenamiento de objetos multimedia) fallarán con errores de permisos.
+
+A lo largo de esta página, los ejemplos utilizan `www-data` como marcador de posición — sustitúyalo por el usuario real de su servidor web.
+
+=== Ejecución del Worker en Producción
+
+En producción, el worker debe ejecutarse de forma continua y reiniciarse automáticamente si se detiene. Los enfoques recomendados son:
+
+==== Opción 1: Supervisor (recomendado)
+
+Supervisor es un gestor de procesos que mantiene el worker en ejecución y lo reinicia cuando finaliza (por ejemplo, al alcanzar el límite de tiempo).
+
+Suponiendo que dispone de systemd supervisor, puede crear un archivo de configuración en `/etc/supervisor/conf.d/suitecrm-messenger.conf`:
+
+[source,ini]
+----
+[program:suitecrm-messenger]
+command=php /path/to/suitecrm/bin/console messenger:consume internal-async --time-limit=3600 --memory-limit=256M
+user=<web-server-user>
+numprocs=1
+autostart=true
+autorestart=true
+startsecs=0
+startretries=10
+process_name=%(program_name)s_%(process_num)02d
+stderr_logfile=/var/log/supervisor/suitecrm-messenger.err.log
+stdout_logfile=/var/log/supervisor/suitecrm-messenger.out.log
+----
+
+Sustituya `<web-server-user>` por el usuario de su servidor web (por ejemplo, `www-data`, `apache`, `nginx`).
+
+A continuación, recargue Supervisor:
+
+[source,bash]
+----
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start suitecrm-messenger:*
+----
+
+{{% notice note %}}
+Establezca `numprocs` en `1` a menos que haya probado y confirmado que sus tareas son seguras para ejecutarse con varios workers concurrentes. Ejecutar varios workers puede provocar un procesamiento duplicado si las tareas no están diseñadas para la concurrencia.
+{{% /notice %}}
+
+==== Opción 2: systemd
+
+Suponiendo que tiene systemd instalado, puede crear un archivo de servicio de systemd en `/etc/systemd/system/suitecrm-messenger.service`:
+
+[source,ini]
+----
+[Unit]
+Description=SuiteCRM Messenger Worker
+After=network.target
+
+[Service]
+Type=simple
+User=<web-server-user>
+Group=<web-server-user>
+ExecStart=/usr/bin/php /path/to/suitecrm/bin/console messenger:consume internal-async --time-limit=3600 --memory-limit=256M
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+----
+
+Sustituya `<web-server-user>` por el usuario de su servidor web (por ejemplo, `www-data`, `apache`, `nginx`).
+
+A continuación, habilite e inicie el servicio:
+
+[source,bash]
+----
+sudo systemctl daemon-reload
+sudo systemctl enable suitecrm-messenger
+sudo systemctl start suitecrm-messenger
+----
+
+==== Opción 3: Cron (configuraciones sencillas)
+
+Si no puede utilizar Supervisor ni systemd, puede usar cron para iniciar el worker periódicamente. El indicador `--time-limit` garantiza que los workers antiguos finalicen antes de que se inicien otros nuevos.
+
+Añada la siguiente entrada al crontab del usuario de su servidor web (por ejemplo, `sudo crontab -u www-data -e`):
+
+[source,bash]
+----
+* * * * * php /path/to/suitecrm/bin/console messenger:consume internal-async --time-limit=55 --memory-limit=256M > /dev/null 2>&1
+----
+
+Esto inicia un nuevo worker cada minuto. Cada worker se ejecuta hasta 55 segundos, garantizando que finalice antes de que se inicie el siguiente.
+
+{{% notice note %}}
+El enfoque con cron es menos eficiente que Supervisor o systemd porque existe un breve intervalo entre reinicios del worker en el que no se procesa ningún mensaje.
+{{% /notice %}}
+
+
+=== Inicio Rápido (para Desarrollo y Pruebas)
+
+Para iniciar el worker de Messenger, ejecute el siguiente comando en su servidor:
+
+[source,bash]
+----
+php bin/console messenger:consume internal-async --time-limit=3600 --memory-limit=256M
+----
+
+Esto inicia un worker que:
+
+* Escucha el transporte `internal-async` (la cola predeterminada para todas las tareas asíncronas).
+* Se detiene automáticamente después de 1 hora (`--time-limit=3600`) para evitar fugas de memoria.
+* Se detiene si el uso de memoria supera los 256 MB (`--memory-limit=256M`).
+
+=== Opciones del Comando del Worker
+
+El comando `messenger:consume` acepta varias opciones útiles:
+
+[cols="30,70"]
+|===
+| *Opción* | *Descripción*
+
+| `--time-limit=<seconds>` | Detiene el worker tras el número de segundos especificado. Recomendado para evitar fugas de memoria en procesos de larga duración.
+| `--memory-limit=<bytes>` | Detiene el worker si el uso de memoria supera este límite (por ejemplo, `256M`, `512M`).
+| `--limit=<count>` | Detiene el worker tras procesar el número de mensajes especificado.
+| `--sleep=<seconds>` | Tiempo de espera (en segundos) cuando no hay mensajes disponibles antes de volver a consultar. Por defecto: `1`.
+| `-vv` | Salida detallada — muestra cada mensaje a medida que se recibe y se procesa. Útil para depuración.
+|===
+
+=== Comprobación de que el Worker Está en Ejecución
+
+Según la opción que haya elegido, hay varias formas de comprobar si el proceso worker está activo en su sistema; una más genérica es:
+
+[source,bash]
+----
+ps aux | grep messenger:consume
+----
+
+Si el worker está en ejecución, verá un proceso que coincide con el comando `messenger:consume`. Si no aparece ningún resultado (aparte del propio comando `grep`), el worker no está en ejecución y debe iniciarse.
+
+También puede comprobar el archivo de registro de Messenger para ver la actividad reciente:
+
+----
+logs/<env>/<env>.messenger.log
+----
+
+Por ejemplo, `logs/prod/prod.messenger.log` en producción.
+
+Puede aumentar el nivel de detalle del registro estableciendo `MESSENGER_LOG_LEVEL=info` en su archivo `.env.local` (consulte la link:../configuration[Referencia de Configuración]).
+
+=== Gestión de Mensajes Fallidos
+
+Cuando un mensaje falla (por ejemplo, debido a una excepción no controlada), se traslada al *transporte de fallos*. SuiteCRM proporciona varios comandos para inspeccionar y gestionar los mensajes fallidos:
+
+[source,bash]
+----
+# Ver todos los mensajes fallidos
+php bin/console messenger:failed:show
+
+# Reintentar un mensaje fallido específico por ID
+php bin/console messenger:failed:retry <id>
+
+# Eliminar un mensaje fallido por ID
+php bin/console messenger:failed:remove <id>
+----
+
+{{% notice note %}}
+Para las tareas asíncronas (Tareas de Migración Manual, etc.), los fallos también se registran a nivel de elemento dentro de la propia tarea. Normalmente no es necesario interactuar directamente con el transporte de fallos — utilice en su lugar los botones "Retry Failed" o "Re-run" de la tarea en la interfaz.
+{{% /notice %}}
+
+=== Configuración de la Tabla de Base de Datos de Messenger
+
+Por defecto, SuiteCRM utiliza Doctrine (su base de datos existente) como transporte de mensajes — no se requiere infraestructura adicional. Esto es adecuado para la mayoría de las instalaciones de un solo servidor.
+
+La tabla `messenger_messages` necesaria *se crea automáticamente* cuando ejecuta *Admin > Repair > Quick Repair & Rebuild*. En la mayoría de los casos no es necesaria ninguna acción manual.
+
+Si por algún motivo *la tabla no se creó*, puede crearla manualmente ejecutando:
+
+[source,bash]
+----
+php bin/console messenger:setup-transports
+----
+
+Dado que SuiteCRM utiliza Symfony Messenger, también están disponibles transportes alternativos como RabbitMQ (AMQP) y Redis si necesita escalar más allá de un único servidor. Consulte la link:../configuration[Referencia de Configuración] para conocer las opciones de DSN de transporte.
+
+=== Próximos Pasos
+
+* link:../manual-migration-tasks[Tareas de Migración Manual] — aprenda a ejecutar tareas de migración de datos posteriores a la actualización
+* link:../configuration[Referencia de Configuración] — consulte todas las variables de entorno disponibles para Messenger y las tareas asíncronas

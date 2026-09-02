@@ -1,0 +1,115 @@
+---
+title: Sintaxis de búsqueda
+weight: 4
+---
+
+{{% notice info %}}
+Esta mejora solo está disponible en SuiteCRM a partir de la versión 7.11.
+{{% /notice %}}
+
+:toc:
+
+El motor de Elasticsearch de SuiteCRM utiliza el _Query String DSL_ de Elasticsearch.
+Esto permite realizar consultas de búsqueda muy avanzadas.
+
+Para una comprensión completa, consulte la
+https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl-query-string-query.html#query-string-syntax[documentación oficial]. Aquí se ofrece un resumen rápido.
+
+== Ejemplos
+
+Buscar todos los registros que tengan 'John' y 'Doe' en cualquier campo:
+
+[source]
+John AND Doe
+
+Buscar todos los registros que tengan el nombre 'John' (tenga en cuenta que esto no incluirá 'Johnny'):
+
+[source]
+name.first:John
+
+Buscar todos los registros cuyo nombre empiece por 'John':
+
+[source]
+named:John*
+
+Buscar todas las Organizaciones que tengan 'corp' en su nombre:
+
+[source]
+named:corp AND _type:Accounts
+
+== Unión de términos
+
+Por defecto, las palabras clave se combinan mediante cláusulas OR,
+lo que significa que buscar `John Doe` equivale a buscar `John OR Doe`.
+Por supuesto, los resultados que contengan tanto 'John' como 'Doe' aparecerán en primer lugar.
+
+== Boosting (impulso de relevancia)
+
+Los nombres tienen prioridad, lo que significa que si una de las palabras clave coincide con el nombre, es muy probable que el registro aparezca en primer lugar.
+
+== Comodines
+
+Por defecto, la palabra clave completa debe coincidir. Por tanto, buscar 'John' no coincidirá con alguien llamado 'Johnathan'.
+Para ello es necesario usar un carácter comodín.
+`*` puede usarse indistintamente para reemplazar cero o más caracteres.
+`?` puede usarse para reemplazar exactamente un carácter.
+
+Buscar tanto 'John' como 'Johnathan':
+
+[source]
+named:john*
+
+Buscar todos los apellidos que empiecen por 'Mc' o 'Mac':
+
+[source]
+name.last:(Mc* OR Mac*)
+
+Los comodines también pueden usarse al principio de la palabra clave, aunque esto hará que la búsqueda sea ligeramente más lenta.
+
+Buscar todos los registros cuyo apellido termine en 'Connor':
+
+[source]
+name.last:*connor
+
+== Búsqueda por módulos
+
+Puede restringir la búsqueda a uno o más módulos utilizando la palabra clave `_type` seguida del nombre del módulo.
+
+Buscar todos los Usuarios:
+
+[source]
+_type:Users
+
+== Búsqueda difusa (fuzzy)
+
+El uso de `~` convierte una palabra clave en difusa, lo que significa que realiza una búsqueda por proximidad,
+encontrando todas las coincidencias que difieran en un carácter (distancia).
+La distancia puede personalizarse añadiendo un número después de la tilde.
+
+Buscar 'MacKenzie', 'McKenzie', 'Makenzie', etc.:
+
+[source]
+MacKenzie~3
+
+== Metadatos
+
+Cada registro cuenta con los siguientes campos de metadatos que pueden buscarse:
+
+- meta.created.date
+- meta.created.user_id
+- meta.created.user_name
+- meta.modified.date
+- meta.modified.user_id
+- meta.modified.user_name
+- meta.assigned.user_id
+- meta.assigned.user_name
+
+Buscar todos los registros creados por 'John Doe':
+
+[source]
+meta.created.user_name:(John Doe)
+
+Buscar todos los registros modificados el primero de agosto:
+
+[source]
+meta.modified.date:"2018-08-01"

@@ -1,0 +1,381 @@
+
+---
+Title: Resumen de Correo Electrónico
+weight: 10
+---
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+== Correo Electrónico
+
+== Resumen de Cuentas de Correo
+
+Configurar el correo electrónico para *SuiteCRM* ofrece una amplia gama de funciones, incluyendo el envío de correos
+personales a contactos, la creación automática de casos, el envío de notificaciones de eventos mediante
+link:../../../../user/advanced-modules/workflow/[flujos de trabajo] y el envío de correos de marketing mediante
+link:../../../../user/core-modules/campaigns/[campañas].
+
+Este documento explica los diferentes tipos de cuentas de correo y cómo configurarlas. Para obtener información
+sobre cómo leer y enviar correo en SuiteCRM utilizando el módulo Correos Electrónicos, consulte la
+link:../../../../user/core-modules/emails[guía del módulo Correos Electrónicos].
+
+Dentro de *SuiteCRM* se pueden configurar varios tipos de cuentas para diferentes propósitos.
+Estas son:
+
+*Correo Saliente*
+
+El servidor de correo saliente se utiliza para enviar notificaciones automáticas por correo electrónico (como las
+notificaciones de asignación de registros) y correos enviados como acciones de
+link:../../../../user/advanced-modules/workflow/[flujos de trabajo].
+
+La configuración del correo saliente debe ser realizada por un administrador.
+
+Consulte <<Configuración de Correo Saliente>> para obtener instrucciones sobre cómo configurar la cuenta de correo
+saliente predeterminada.
+
+Además de la cuenta predeterminada, se pueden configurar otras cuentas salientes para fines específicos, como el
+envío de link:../../../../user/core-modules/campaigns/[Campañas]. Estas se pueden configurar desde el panel de
+Administración, en Cuentas Salientes. Si no se configura ninguna otra cuenta saliente, se utilizará la cuenta del
+servidor de correo saliente predeterminada.
+
+*Cuentas Personales*
+
+Una cuenta personal se utiliza para ver y enviar correo desde una cuenta de correo personal dentro del módulo
+Correos Electrónicos. Esta cuenta puede ser una cuenta de correo interna o externa.
+Los correos de las cuentas personales no se almacenan en *SuiteCRM* a menos que se importen manualmente.
+
+Las cuentas personales pueden ser configuradas por el propio usuario desde su perfil. Los administradores pueden
+configurar cuentas personales para otros usuarios.
+
+Consulte link:../../../../user/introduction/managing-user-accounts[Gestión de Cuentas de Usuario] para obtener
+instrucciones sobre cómo configurar una cuenta personal.
+
+*Cuentas de Grupo*
+
+Las cuentas de grupo se utilizan cuando varios usuarios necesitan poder ver y enviar correo desde una misma cuenta,
+por ejemplo un buzón de soporte o de ventas. Las cuentas de grupo se pueden configurar para importar correos
+automáticamente y crear link:../../../../user/core-modules/cases[Casos] a partir del correo entrante.
+
+Las cuentas de grupo deben ser configuradas por un administrador. El acceso a una cuenta de grupo debe ser concedido
+por un administrador.
+
+Configure una cuenta de grupo desde la página <<Correo Entrante>>.
+
+*Cuentas de Gestión de Rebotes*
+
+Una cuenta de Gestión de Rebotes se utiliza junto con link:../../../../user/core-modules/campaigns/[Campañas] para
+gestionar las notificaciones de correo rebotado cuando los correos no pueden entregarse. Necesitará configurar una
+cuenta de Gestión de Rebotes para poder enviar una Campaña.
+
+Las cuentas de Gestión de Rebotes deben ser configuradas por un administrador. Una vez configuradas, los usuarios
+pueden seleccionar la cuenta de gestión de rebotes al configurar una campaña.
+
+Configure una cuenta de Gestión de Rebotes desde la página <<Correo Entrante>>.
+
+== Configuración de Correo
+
+=== Configuración de Correo Saliente
+
+La configuración de correo saliente se utiliza para enviar correos de notificación del sistema, como los correos
+de restablecimiento de contraseña, las notificaciones de asignación de registros y las notificaciones por correo de
+link:../../../../user/advanced-modules/workflow/[flujos de trabajo].
+
+image:StandardEmailSettings.png[Configuración de Correo Saliente]
+
+La cuenta mostrada en Configuración de Correo pasará a ser la cuenta de correo saliente predeterminada del sistema.
+
+Puede configurar la cuenta de correo saliente predeterminada desde el panel de Administración, en Cuentas de Correo
+Saliente.
+
+[cols = "30, 70", frame = "none", grid = "none"]
+|===
+|*Permitir a los usuarios utilizar esta cuenta para el correo saliente*|Cuando esta opción está seleccionada, todos
+los usuarios podrán enviar correos utilizando esta cuenta de correo saliente, que es la misma que se utiliza para
+enviar las notificaciones y alertas del sistema. Si la opción no está seleccionada, los usuarios podrán seguir
+utilizando el servidor de correo saliente tras indicar la información de su propia cuenta.
+|*Los usuarios pueden enviar como ellos mismos*|*Solo se muestra cuando "Habilitar Comportamiento de Correo
+Heredado" está activado* || Cuando esta opción está seleccionada, todos los usuarios podrán enviar correos
+utilizando la misma cuenta de correo saliente empleada para enviar las notificaciones y alertas del sistema.
+Si la opción no está seleccionada, los usuarios podrán seguir utilizando el servidor de correo saliente tras
+indicar la información de su propia cuenta.
+|===
+
+==== Solución de problemas
+Si el mensaje de prueba no se envió correctamente, revise el archivo de registro para ver mensajes de error
+adicionales que puedan ayudar a resolver el problema.
+
+Compruebe que la configuración de puerto/protocolo es correcta y que el nombre de usuario/contraseña introducidos
+son correctos y tienen los permisos necesarios para enviar correo.
+
+=== Opciones de Correo
+
+image:EmailNotificationSettings.png[Opciones de correo]
+
+[cols = "40, 60", frame = "none", grid = "none"]
+|===
+|*Notificaciones de Asignación*| Cuando está seleccionada, se enviará un correo a los usuarios cuando se les asigne
+un registro.
+|*Enviar la notificación desde la dirección de correo del usuario que asigna*|Cuando está activada, el nombre y la
+dirección de correo del usuario que realiza la asignación se incluirán en el campo De del correo.
+Esta función puede no funcionar con servidores SMTP que no permiten enviar desde una cuenta de correo distinta a la
+de la cuenta del servidor.
+|*Habilitar Comportamiento de Correo Heredado*| Cuando está seleccionada, se mostrarán las cuentas de correo
+entrante en el desplegable "De" al redactar un correo.
+Esto también mostrará y activará la opción "Los usuarios pueden enviar como ellos mismos".
+|===
+
+==== Configuración de Suscripción (Opt In)
+
+*SuiteCRM 7.10* introduce una nueva función de *Suscripción Confirmada* que ofrece dos ajustes de suscripción para
+las direcciones de correo: *Suscripción* y *Suscripción Confirmada*.
+
+Consulte la documentación de link:../../../../user/modules/confirmed-opt-in-settings[Suscripción Confirmada] para
+obtener más información sobre estos ajustes.
+
+==== Configuración de Seguridad de Correo
+
+image:EmailSecuritySettings.png[Configuración de Seguridad de Correo]
+
+[cols = "40, 60", frame = "none", grid = "none"]
+|===
+|*Configuración de Seguridad de Correo*|Las etiquetas seleccionadas aquí se eliminarán del correo entrante y no se
+mostrarán en el módulo *Correos Electrónicos*.
+|===
+
+Haga clic en btn:[GUARDAR] para conservar la configuración.
+
+== Correo Entrante
+
+Configure cuentas de correo de grupo para supervisar el correo entrante y cuentas de gestión de rebotes para
+campañas desde su perfil.
+También puede gestionar la información de las cuentas de correo entrante personales de los usuarios desde este
+panel.
+
+image:InboundMenu.png[Barra lateral de correo entrante]
+
+=== Cuenta de Correo Personal
+
+Una cuenta de correo personal es una cuenta de correo interna o externa que se utiliza para ver y enviar correos
+personales desde el módulo Correos Electrónicos.
+
+=== Cuenta de Correo de Grupo
+
+Una cuenta de correo de grupo permite que más de un usuario acceda a una cuenta de correo concreta. Esto puede
+resultar útil, por ejemplo, para cuentas de correo de ventas o soporte. Además, las cuentas de grupo también se
+utilizan para el envío de campañas de correo. Consulte la documentación de
+link:../../../../user/core-modules/campaigns/[Campañas] para obtener más información.
+
+*SuiteCRM* también se puede configurar para importar correos automáticamente y para
+<<Crear Caso desde Correo,crear casos>> automáticamente a partir del correo.
+
+=== Configuración de Correo Entrante
+
+El protocolo de correo compatible con *SuiteCRM* es IMAP.
+
+==== Autenticación Básica
+
+image:EmailServerConfiguration.png[Configuración de Correo de Grupo]
+
+Al configurar mediante `Autenticación Básica` solo necesitará el nombre de usuario (correo electrónico) y la
+contraseña de la cuenta que está añadiendo, así como la dirección del servidor de correo.
+
+Las *Carpetas Monitorizadas* son las carpetas que se comprueban en busca de correo nuevo (no leído). Aquí deben
+indicarse los nombres de las carpetas *Bandeja de Entrada* y *Papelera*. Haga clic en btn:[SELECCIONAR] para
+conectarse al servidor de correo y seleccionar las carpetas correspondientes desde el cuadro de diálogo emergente.
+
+==== Configuración de OAuth
+
+image:OAuthServerConfiguration.png[Configuración del Servidor OAuth]
+
+Al configurar mediante OAuth necesitará el nombre de usuario (correo electrónico), la contraseña y la dirección del
+servidor de correo de la cuenta.
+
+El otro campo obligatorio es `External OAuth Connection` (Conexión OAuth externa); puede consultar cómo configurarlo
+link:../inboundemail-oauth-howto[aquí].
+
+==== Opciones de Gestión de Correo
+
+image:EmailFullSettingView.png[Opciones de Gestión de Correo]
+
+==== Importar Correos Automáticamente
+
+Marque esta casilla para importar correos automáticamente, lo que significa que se crearán registros en *SuiteCRM*
+para todos los correos entrantes. Estos correos asociados podrán consultarse después en el subpanel de Historial del
+registro correspondiente. Esta opción está seleccionada de forma predeterminada en *SuiteCRM*.
+
+El trabajo programado `Check Inbound Mailboxes` (Comprobar buzones entrantes) es el responsable de importar
+automáticamente el correo de las cuentas de correo de grupo a *SuiteCRM*. Este trabajo se ejecuta a intervalos
+regulares (según lo configurado en el módulo *Schedulers*) y comprueba todas las cuentas de correo entrante activas
+y no personales en busca de correo nuevo.
+
+Consulte más información sobre este trabajo programado y cómo configurarlo en
+link:../automatic-email-importing/[Importación Automática de Correo].
+
+
+==== Crear Caso desde Correo
+Marque esta casilla para configurar *SuiteCRM* de forma que cree un registro de
+link:../../../../user/core-modules/cases[Caso] a partir de un correo entrante.
+
+image:EmailCaseConfiguration.png[Crear Caso]
+
+Seleccione un *Método de Distribución* para especificar cómo se asignan a los usuarios los casos creados a partir
+del correo entrante.
+
+[cols="20,80"]
+|===
+|*Predeterminado del sistema*|Utilizará la link:../../../../user/advanced-modules/cases-with-portal[configuración
+predeterminada], configurable desde el panel de Administración.
+|*Usuario Único*| Introduzca un nombre de usuario o haga clic en la flecha de selección para buscar un usuario.
+Todos los casos creados automáticamente se asignarán al usuario especificado.
+image:EmailDistrubutionSU.png[Usuario Único]
+|*Turno Rotativo*| Seleccione Todos los Usuarios o un grupo de seguridad o rol existente.
+Los casos se asignarán al siguiente miembro del grupo o rol especificado.
+image:EmailDistributionRR.png[Turno Rotativo]
+|*Menos Ocupado*| Seleccione Todos los Usuarios o un grupo de seguridad o rol existente.
+Los casos se asignarán al miembro del grupo o rol especificado que tenga menos casos asignados.
+|*Aleatorio*| Seleccione Todos los Usuarios o un grupo de seguridad o rol existente.
+Los casos se asignarán de forma aleatoria a los miembros del grupo o rol especificado.
+|===
+
+*Configuración de Respuesta Automática*
+
+Si *SuiteCRM* se ha configurado para crear casos automáticamente, puede seleccionar o crear una
+link:../../../../user/core-modules/emailtemplates[plantilla de correo] para utilizarla como respuesta automática que
+notifique al remitente que se ha creado un caso. Si no se especifica ninguna plantilla aquí, no se enviará esta
+respuesta automática. image:EmailAutoReplyConfiguration.png[Nueva plantilla de Respuesta Automática para Caso]
+
+[cols="20,80", frame = "none", grid = "none"]
+|===
+|*No enviar Respuesta Automática a este Dominio*|No se enviarán respuestas automáticas al dominio especificado.
+Utilice esta opción, por ejemplo, para excluir el dominio de su empresa, de forma que sus usuarios no reciban
+mensajes de respuesta automática.
+|*Número de Respuestas Automáticas*|Este ajuste especifica el número máximo de respuestas que se enviarán a una
+dirección de correo concreta en un período de 24 horas.
+|===
+
+==== Configuración de Salida
+
+image:InboundOutboundConfiguration.png[Configuración de Responder A de Correo de Grupo]
+
+[cols="20,80", frame = "none", grid = "none"]
+|===
+|*Dirección De:*| Se utiliza como dirección de origen cuando es compatible; en caso contrario se utilizará la cuenta
+saliente del sistema (véase <<Configuración de Correo Saliente>>).
+
+|*Permitir a los usuarios enviar correos utilizando el nombre y la dirección De como dirección de respuesta:*|Cuando
+está marcada, el *Nombre De* y la *Dirección De* de esta cuenta aparecerán como opción *De* al redactar un correo
+para todos los usuarios que tengan acceso a esta cuenta de grupo.
+|===
+
+Una vez configuradas, todas las cuentas entrantes se listan en *Cuentas Entrantes* dentro del panel de
+*Administración*, desde donde se pueden editar o eliminar.
+
+=== Cuenta de Gestión de Rebotes
+
+Una Cuenta de Gestión de Rebotes se utiliza para gestionar las notificaciones de rebote de una
+link:../../../../user/core-modules/campaigns/[campaña] de correo. Las direcciones de correo rebotadas se registran
+en el estado de la campaña.
+
+Una vez creada, la cuenta de gestión de rebotes puede ser seleccionada por los usuarios al configurar una campaña.
+
+Seleccione *Nueva Cuenta de Gestión de Rebotes* desde la barra lateral.
+
+image:InboundMenu.png[Barra lateral]
+
+Introduzca los datos de configuración de la cuenta de rebotes que está configurando. Necesitará el nombre de
+usuario y la contraseña de la cuenta, además de la dirección del servidor de correo.
+Su administrador de sistemas podrá proporcionarle estos datos.
+
+El protocolo de correo compatible con *SuiteCRM* es IMAP.
+
+image:EmailBounceConfiguration.png[Configuración de la cuenta de rebotes]
+
+Las *Carpetas Monitorizadas* son las carpetas que se comprueban en busca de correo nuevo (no leído). Aquí deben
+indicarse los nombres de las carpetas *Bandeja de Entrada* y *Papelera*.
+
+Haga clic en btn:[SELECCIONAR] para conectarse al servidor de correo y seleccionar las carpetas correspondientes
+desde el cuadro de diálogo emergente.
+
+== Correo Saliente
+
+Configure cuentas de correo saliente del sistema para supervisar el correo saliente.
+También puede gestionar la información de las cuentas de correo saliente personales de los usuarios desde este
+panel.
+
+=== Cuenta de Correo del Sistema
+
+El correo del sistema permite que los usuarios de su empresa envíen correos a destinatarios fuera de los dominios
+asociados a su empresa. Esto puede resultar útil porque permite a los usuarios enviar correos a clientes y
+ofrecerles soporte.
+
+Al instalar SuiteCRM, se creará automáticamente una cuenta de correo saliente del sistema, pero puede crear su
+propia cuenta con configuraciones diferentes.
+
+Seleccione *Nueva Cuenta de Correo Saliente del Sistema* desde la barra lateral.
+
+image:NewOutboundMenu.png[Nueva Cuenta de Correo Saliente del Sistema]
+
+Necesitará el nombre de usuario de la cuenta que está añadiendo, además de la dirección del servidor de correo y el
+número de puerto de la cuenta. También puede marcar si desea utilizar autenticación SMTP.
+Si es así, necesitará la contraseña de la cuenta que está añadiendo.
+Los protocolos de correo compatibles con SuiteCRM son SMTP y SSL.
+
+image:EmailPersonalConfiguration.png[Creación de cuenta de correo del sistema]
+
+Una vez creada esta cuenta, haga clic en btn:[ENVIAR CORREO DE PRUEBA] y aparecerá una ventana emergente para
+introducir la dirección de correo a la que se enviará una notificación de prueba.
+
+image:EmailTestNotification.png[Prueba de conexión de correo]
+
+=== Cuenta de Correo Saliente Personal
+
+Las cuentas personales permiten a los usuarios enviar correos a clientes fuera de los dominios asociados a su
+empresa.
+Al instalar SuiteCRM, se recomienda crear una cuenta saliente, la cual puede configurarse con distintos ajustes.
+
+Necesitará el nombre de usuario de la cuenta que está añadiendo, además de la dirección del servidor de correo y el
+número de puerto de la cuenta. También puede marcar si desea utilizar autenticación SMTP.
+Si es así, necesitará la contraseña de la cuenta que está añadiendo.
+Los protocolos de correo compatibles con SuiteCRM son SMTP y SSL.
+
+image:EmailPersonalConfiguration.png[Creación de Cuenta Personal]
+
+Una vez creada esta cuenta, haga clic y aparecerá una ventana emergente para introducir la dirección de correo a la
+que se enviará una notificación de prueba.
+
+image:EmailTestNotification.png[Prueba de conexión de correo]
+
+
+== Configuración de Correo de Campañas
+_
+Configure aquí los siguientes ajustes adicionales para
+link:../../../../user/core-modules/campaigns/[Campañas]:
+
+* El tamaño del lote para el envío de correos de campaña
+* La ubicación de los archivos de seguimiento de campañas
+* Si se conservan o no copias de los mensajes de campaña
+
+image:EmailCampaignSettings.png[Configuración de Campañas]
+
+== Cola de Correo
+
+Los correos de campaña programados se ponen en cola aquí hasta que se ejecuta el trabajo programado que los envía.
+De forma predeterminada, este es el trabajo programado *Ejecutar Campañas de Correo Masivo Nocturnas*.
+
+Consulte la sección link:../../system/#_scheduler[Programador] para obtener más información sobre los trabajos
+programados.
+
+Haga clic en btn:[ENVIAR CORREOS DE CAMPAÑA EN COLA] para enviarlos de inmediato sin esperar a que lo haga el
+programador.
+
+== Reparación
+
+=== Sincronizar Cuentas de Correo Entrante
+
+Si las cuentas de correo entrante no se sincronizan correctamente, utilice la herramienta *Sincronizar Cuentas de
+Correo Entrante* para reconectar las cuentas mediante IMAP y corregir los problemas de sincronización.
+
+Consulte link:../sync-inbound-email-accounts[Sincronizar Cuentas de Correo Entrante] para más detalles.

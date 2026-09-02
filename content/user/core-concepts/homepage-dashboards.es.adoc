@@ -1,0 +1,129 @@
+---
+title: "Página de Inicio y Paneles"
+weight: 20
+aliases:
+  - /es/user/introduction/user-interface/home-page
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+= Página de Inicio
+
+La página de inicio es la primera página que se muestra
+después de autenticarse. La página de inicio tiene varios elementos que se pueden
+usar y configurar, como los Dashlets, los Paneles y la Barra Lateral.
+
+== Dashlets
+
+Los Dashlets son secciones configurables por el usuario que se muestran en el panel y
+le ofrecen una visión rápida de sus registros y actividad inmediatamente después de
+iniciar sesión. Esto resulta especialmente útil para los equipos de ventas y soporte,
+ya que reduce el número de clics necesarios para ver/modificar datos.
+
+Los Dashlets se pueden reorganizar dentro de cada panel arrastrándolos y soltándolos en la ubicación deseada. Puede añadir un dashlet eligiendo la opción 'Añadir Dashlets' en la pestaña Acciones.
+
+image:24Add_dashlets.png[title="Añadir Dashlets"]
+
+Al hacer clic en el enlace 'Añadir Dashlets' se abrirá la
+ventana emergente de Añadir Dashlets, que permite a los usuarios elegir entre una lista de dashlets estándar.
+
+image:/images/es/user/25Add_dashlets.png[title="Selección de Dashlet"]
+
+Para añadir uno de los dashlets, basta con hacer clic en el enlace del dashlet. Esto
+añadirá el dashlet al panel. La ventana emergente permanecerá abierta si añade
+un dashlet, para permitir a los usuarios añadir varios dashlets. Una vez que haya añadido
+los dashlets que necesite, puede cerrar la ventana emergente.
+
+image:/images/es/user/26Dashlet.png[title="Dashlet"]
+
+Puede modificar los dashlets haciendo clic en el icono de lápiz del
+dashlet deseado.
+
+image:/images/es/user/27Modify_dashlet.png[title="Modificar dashlet"]
+
+Al hacer clic en el icono de lápiz se mostrará una ventana emergente. Esta ventana emergente contendrá
+todas las opciones configurables para el dashlet.
+
+image:/images/es/user/28Configure_dashlet.png[title="Configurar dashlet"]
+
+Una vez que haya realizado los cambios necesarios en la ventana emergente de configuración del dashlet,
+puede hacer clic en **Guardar** para aplicar los cambios, o en **Cancelar** si desea
+volver a la configuración actual.
+
+{{% notice note %}}
+Algunos dashlets requieren que se recargue la página de inicio. Si un dashlet
+lo requiere, se le notificará.
+{{% /notice %}}
+
+== Paneles
+
+Los Paneles se pueden configurar por usuario y se
+pueden añadir/eliminar de forma similar a los dashlets. Para añadir una pestaña de panel, puede
+hacer clic en el enlace 'Añadir Pestaña' de la pestaña Acciones.
+
+image:/images/es/user/29Add_tab.png[title="Añadir pestaña"]
+
+Al hacer clic en el enlace 'Añadir Pestaña' se abrirá una ventana emergente que permite a los usuarios especificar un nombre para la pestaña y también
+cuántas columnas de dashlets se necesitan. Puede optar por una, dos o tres columnas.
+
+image:/images/es/user/192Add_tab.png[title="Añadir pestaña"]
+
+Una vez que haya especificado los detalles de la pestaña del panel, puede hacer clic en
+**Guardar**. También puede hacer clic en **Cancelar** para deshacer los cambios. Una vez que haya
+guardado los cambios, se añadirá la Pestaña de Panel y se mostrará en
+la lista de pestañas de la Página de Inicio. A continuación, puede añadir Dashlets a su nueva
+pestaña de panel según lo necesite.
+
+image:/images/es/user/31New_tab.png[title="Nueva pestaña"]
+
+Si desea eliminar la pestaña de panel, haga clic en el icono 'x'.
+Se le pedirá que confirme la eliminación y, a continuación, se
+eliminará la pestaña de panel únicamente de su perfil.
+
+{{% notice note %}}
+*Panel Suite*
+es la pestaña de panel estándar que no se puede eliminar. Sin embargo, puede
+configurar los dashlets que se muestran en esa pestaña de panel.
+{{% /notice %}}
+
+== Flujo de Actividad
+
+El Flujo de Actividad es una excelente forma de hacer seguimiento de las
+interacciones de sus compañeros con SuiteCRM. Por defecto, el Flujo de Actividad
+muestra las actualizaciones recientes de los módulos Oportunidades, Contactos, Clientes Potenciales y Casos.
+Los canales de Facebook y Twitter de su organización también se
+pueden incluir en los dashlets de Flujo de Actividad si se desea, y esto
+puede configurarlo un usuario Admin.
+
+image:/images/es/user/32Activity_stream.png[title="Flujo de actividad"]
+
+También puede comentar sobre una actualización dentro del Flujo de Actividad
+haciendo clic en el enlace Responder en el lado derecho de la publicación.
+
+image:/images/es/user/33Reply.png[title="Responder a una publicación"]
+
+Sus publicaciones también se pueden eliminar del Flujo de Actividad haciendo clic en
+el enlace Eliminar.
+
+image:34Delet3.png[title="Eliminar publicación"]
+
+Su comentario aparecerá debajo de la publicación original y también llevará
+una marca de tiempo.
+
+El Flujo de Actividad es una herramienta útil para la mensajería interna dentro de
+su organización, ya que permite enviar un mensaje que se
+difundirá a todos los usuarios de su red. Para hacerlo, escriba su mensaje en
+el campo de texto y haga clic en **Publicar**.
+
+image:/images/es/user/35Activity_post.png[title="Publicación en el Flujo de Actividad"]
+
+Sus compañeros verán este mensaje y podrán responder
+haciendo clic en el enlace Responder en el lado derecho de la publicación.
+
+image:/images/es/user/36Reply.png[title="Respuesta en el Flujo de Actividad"]
+
+Su respuesta aparecerá debajo de su publicación, también con una marca de tiempo.
+
+image:/images/es/user/37Reply_view.png[title="Respuesta a la publicación"]

@@ -1,0 +1,94 @@
+---
+title: "Configuración de Correo"
+weight: 10
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+= Configuración de Correo
+
+Configurar una cuenta de correo personal en *SuiteCRM* le permite ver cuentas de correo personales dentro del
+módulo link:../composing-emails[Emails].
+
+Los correos de las cuentas personales no se almacenan en la base de datos de *SuiteCRM* a menos que
+se importen manualmente. Consulte la documentación del módulo link:../composing-emails[Emails] para más información.
+
+{{% notice tip %}}
+Cada usuario puede configurar sus propias cuentas personales. Los administradores pueden configurar cuentas personales
+para otros usuarios desde la sección de Gestión de Usuarios del panel de Administración.
+{{% /notice %}}
+
+== Configuración de Correo en el Perfil de Usuario
+
+Abra el perfil de usuario y desplácese hasta el final de la pestaña principal *User Profile* para ver la configuración de correo.
+Tenga en cuenta que, si está configurando el correo de otro usuario, deberá seleccionar *Edit*
+en el menú *Actions* para ver esta configuración.
+
+image:270Emailusersettings.png[Configuración de correo del usuario]
+
+* *Email Address*: añada la dirección o direcciones de correo electrónico de su cuenta de *SuiteCRM*. Haga clic en **+** para añadir más direcciones.
+Cuando tenga más de una dirección de correo, puede indicar cuál es la dirección principal de su cuenta
+mediante el botón de opción *Primary*.
+También puede indicar qué cuenta se utilizará como cuenta de respuesta (Reply-to).
+* *Email Client*: esta opción controla qué editor se utiliza para redactar y enviar correo cuando hace clic
+en un enlace de correo en SuiteCRM, por ejemplo una dirección de correo electrónico en un registro de contacto o cuenta.
+	** *SuiteCRM Email Editor*: se utilizará el editor del módulo *Emails* de *SuiteCRM*
+	** *External Email Editor*: con el editor de correo externo seleccionado, los enlaces de correo en *SuiteCRM* se abrirán con el cliente de correo que tenga configurado para abrir enlaces `mailto://`, por ejemplo Outlook o Thunderbird
+
+* *Email Editor*: le permite establecer el editor utilizado al crear y
+editar link:../../marketing-outreach/email-templates[plantillas de correo] y también dentro del
+módulo link:../../marketing-outreach/campaigns-overview[Campaigns]. Tenga en cuenta que la opción *Email Editor* no afecta a
+la vista *Compose* del módulo *Emails* de *SuiteCRM*. Esta opción no es configurable por el usuario actualmente.
+Las opciones disponibles son *Mozaik*, *TinyMCE* y *Direct HTML*.
+
+== Añadir una Cuenta de Correo Personal
+
+Haga clic en el botón **SETTINGS** al final de la pestaña principal del perfil de usuario para añadir una cuenta de correo personal.
+
+Seleccione la pestaña Mail Accounts y haga clic en **ADD** bajo Mail Accounts para configurar su cuenta de correo entrante.
+image:271EmailsAddPersonalAccount.png[Pestaña de cuentas de correo]
+
+Complete los datos necesarios de la cuenta en el cuadro de diálogo que aparece. Necesitará el nombre de usuario y la contraseña de la cuenta que está añadiendo, así como la dirección del servidor de correo. El protocolo de correo compatible con *SuiteCRM* es IMAP. Puede que también necesite configurar el Mail Server Port si difiere del valor predeterminado de IMAP. Su administrador de sistemas debería poder facilitarle estos datos.
+
+{{% notice tip %}}
+Si su proveedor de correo utiliza verificación en dos pasos y no admite OAuth, es posible que necesite generar una contraseña de aplicación para usarla aquí en lugar de la contraseña habitual de su cuenta. Consulte link:../app-passwords[Contraseñas de Aplicación] para más información.
+{{% /notice %}}
+
+Una vez introducidos los datos, puede comprobar la configuración de su correo haciendo clic en **TEST SETTINGS** para probar la conexión con la cuenta.
+
+image:272EmailsPersonalAccountSettings.png[Configuración de correo del usuario]
+
+*Monitored Folders:* son las carpetas que se comprueban en busca de correo nuevo (sin leer). Debe indicar aquí una carpeta *Inbox* y una carpeta *Trash*. Introduzca los nombres de las carpetas o haga clic en **SELECT** para conectarse al servidor de correo y seleccionar las carpetas correspondientes en el cuadro de diálogo emergente.
+image:273EmailsMonitoredFolders.png[Seleccionar carpetas monitorizadas]
+
+*Signatures:* seleccione una firma para esta cuenta. Se añadirá automáticamente al cuerpo del correo al redactar un email desde el módulo Emails. Si desea crear una firma nueva, deberá hacerlo desde la <<Configuración de Correo del Usuario - Pestaña General, pestaña General>> y luego seleccionarla aquí. Esto anulará la configuración predeterminada de la <<Configuración de Correo del Usuario - Pestaña General, pestaña General>>.
+
+Complete la configuración de *Outgoing Email* de la cuenta de usuario.
+
+image:276EmailsAddPersonalAccount2.png[Configuración de correo saliente del usuario]
+
+Haga clic en **DONE** para guardar la configuración de la cuenta y volver a la pestaña *Mail Accounts*.
+
+image:275EmailsAccountList.png[Lista de cuentas]
+Si tiene configurada más de una cuenta, puede establecer la cuenta predeterminada que aparecerá al abrir el módulo *Emails*. Las cuentas marcadas como activas estarán disponibles para seleccionar.
+
+Edite la configuración de una cuenta de correo personal haciendo clic en el icono de lápiz de la columna Edit.
+
+
+== Configuración de Correo del Usuario - Pestaña General
+
+Existen más opciones de correo en la *pestaña General*:
+
+image:274EmailsGeneralTab.png[Pestaña General de configuración de correo del usuario]
+
+* *Check for New Mail*: aquí puede indicar un intervalo de tiempo para comprobar automáticamente si hay correo nuevo en las carpetas monitorizadas de su cuenta. La opción predeterminada es comprobar el correo manualmente, mediante el botón Check Mail en la vista de lista de Emails.
+
+* *Default Signature*: opción para indicar la firma predeterminada que se añadirá al cuerpo del correo al redactar un nuevo email. Haga clic en **CREATE** para añadir una nueva o seleccione una de la lista. Las firmas existentes se pueden editar y eliminar aquí.
+
+* *Folder management*: seleccione la carpeta o carpetas que estarán disponibles para ver desde el módulo *Emails*. Esta lista mostrará todas las carpetas monitorizadas de todas las cuentas de correo a las que tiene acceso. Utilice ctrl+clic para seleccionar más de una carpeta.
+
+Haga clic en **DONE** para guardar su configuración. Aparecerá un cuadro de diálogo de confirmación.
+
+Ahora debería poder ver sus correos en el link:../composing-emails[módulo *Emails*].

@@ -1,0 +1,46 @@
+---
+title: "Plantillas de Email"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/email-templates
+
+= Plantillas de Email
+
+== Descripción General
+
+Las plantillas de email se utilizan para enviar respuestas y notificaciones estandarizadas por correo electrónico. Añadir variables permite personalizar estas comunicaciones e incluir información adicional relevante, como los detalles de un pedido.
+
+Las plantillas de email pueden verse y crearse desde el módulo *Plantillas de Email*. Navegue hasta él utilizando la barra de navegación superior y, a continuación, utilice el menú del módulo para crear una plantilla nueva, o la Vista de Lista para consultar las ya existentes. Las plantillas también pueden crearse directamente desde los módulos de Flujos de Trabajo y Campañas.
+
+{{% notice tip %}}
+El editor utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_personal_email_account_settings[configuración de email de su perfil de usuario], donde puede elegir entre HTML Directo y TinyMCE.
+{{% /notice %}}
+
+Existen varias plantillas *de Sistema* predeterminadas que se crean durante la instalación. Se utilizan para enviar notificaciones del sistema, como nuevas contraseñas o actualizaciones de casos. Estas pueden verse y editarse aquí junto con las plantillas creadas por los usuarios. Las plantillas creadas aquí también pueden utilizarse en Flujos de Trabajo y en link:../campaigns-overview[Campañas], además de para las notificaciones del sistema.
+
+Haga clic en el nombre de una plantilla en la Vista de Lista para verla. Para editar una plantilla existente, haga clic en el icono del *Lápiz* situado junto al nombre de la plantilla, o abra la plantilla y seleccione *Editar* en el menú *Acciones*.
+
+== Crear una Plantilla de Email
+
+Seleccione *Crear Plantilla de Email* en el menú del módulo. Este formulario también aparecerá si decide crear una plantilla desde otro módulo, como Flujos de Trabajo.
+
+Seleccione *Email*, *Campaña* o *Sistema* según el uso que vaya a dar a la plantilla. Las plantillas de *Sistema* se utilizan para enviar notificaciones generadas por el sistema, como actualizaciones de casos.
+
+=== Cuerpo
+
+Utilice la barra de herramientas del editor para dar formato al cuerpo de la plantilla. Según el editor configurado en la información de su perfil, este será un campo de HTML Directo o el editor de texto enriquecido TinyMCE.
+
+=== Añadir Variables
+
+Para añadir una variable, seleccione el módulo y el nombre de campo correspondientes en las listas desplegables y, a continuación, haga clic en *Insertar* para añadir la variable en la posición del cursor. Las variables pueden añadirse tanto en la línea de asunto como en el cuerpo de la plantilla de email.
+
+Para más información sobre cómo insertar y procesar variables, consulte link:../../daily-activities/emails/email-compose/#_variable_injection[Inserción de Variables].
+
+=== Adjuntos
+
+Adjunte un archivo externo o un Documento de SuiteCRM existente a la plantilla. Se pueden adjuntar más elementos de la misma forma. Los archivos adjuntos se enviarán a todos los destinatarios de la plantilla.
+
+=== Grupos de Seguridad
+
+Restrinja el acceso a una plantilla seleccionando un Grupo de Seguridad.

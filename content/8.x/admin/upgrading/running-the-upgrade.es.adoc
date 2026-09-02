@@ -1,0 +1,76 @@
+---
+Title: Ejecutar la Actualización
+weight: 30
+aliases:
+  - /es/8.x/admin/upgrading/upgrading-82x-versions/
+---
+
+{{% notice note %}}
+Esta sección solo se aplica al actualizar a una versión 8.2.x o posterior.
+{{% /notice %}}
+
+{{% notice warning %}}
+Si su versión de SuiteCRM es inferior a 8.2.x, consulte la siguiente guía link:../general-info#_version_steps[Pasos de Versión de Actualización]
+{{% /notice %}}
+
+== 1. Descargue el paquete de la nueva versión
+
+
+*1.1.* Descargue el paquete instalable de la versión de destino de SuiteCRM 8 desde https://suitecrm.com/download/
+
+* La actualización entre dos versiones 8.x **se realiza utilizando el paquete de la versión a la que desea actualizar**, por ejemplo, para actualizar de *8.2.x a 8.6.0* utilice *SuiteCRM-8.6.0.zip* como paquete de actualización.
+
+*1.2.* Cree la siguiente carpeta en su instancia actual:
+
+* `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
+
+*1.3.* Coloque el paquete en la carpeta `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
+
+== 2. Ejecutar la Actualización
+
+*2.1.* ⚠️ Vuelva a establecer los permisos correctos.
+
+*2.2.* Ejecute el comando de actualización
+
+En la raíz de su instancia de SuiteCRM 8 ejecute: `./bin/console suitecrm:app:upgrade -t "<version>"`,
+donde `<version>` es el nombre del paquete de SuiteCRM 8 que ha descargado, es decir, `SuiteCRM-8.6.0`:
+
+[source, bash]
+----
+./bin/console suitecrm:app:upgrade -t SuiteCRM-8.6.0
+----
+
+*2.3.* ⚠️ Vuelva a establecer los permisos correctos.
+
+*2.4.* Ejecute el comando posterior a la actualización
+
+En la raíz de su instancia de SuiteCRM 8 ejecute: `./bin/console suitecrm:app:upgrade-finalize -t "<version>"`, es decir:
+
+[source, bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -t SuiteCRM-8.6.0
+----
+
+*2.5.* ⚠️ Vuelva a establecer los permisos correctos.
+
+== 3. (Opcional) Reinicie el servidor para restablecer/limpiar la caché a nivel de php
+
+Si utiliza `opcache`, `apcu` u otras cachés de php, es posible que deba reiniciar su servidor web para que el nuevo código surta efecto.
+
+== 4. Abra su instancia
+
+Si todos los pasos anteriores se completaron como se esperaba, debería poder iniciar sesión en su instancia.
+
+== 5. Compruebe si hay Tareas de Migración Manual
+
+Algunas actualizaciones incluyen tareas de migración de datos que deben ejecutarse manualmente después de la actualización. Estas tareas convierten los datos existentes a nuevos formatos y se ejecutan en segundo plano usando el worker de Messenger.
+
+*5.1.* Vaya a *Admin* → *Migraciones* y compruebe si hay tareas con estado "Pendiente".
+
+*5.2.* Si hay tareas pendientes, asegúrese de que el worker de Messenger esté en ejecución antes de iniciarlas. Consulte link:../../async-tasks/messenger-setup[Configuración de Messenger] para más instrucciones.
+
+*5.3.* Siga las instrucciones de la página link:../../async-tasks/manual-migration-tasks[Tareas de Migración Manual] para ejecutar y supervisar las tareas.
+
+{{% notice info %}}
+Las Tareas de Migración Manual se introdujeron en SuiteCRM 8.10.0. Si está actualizando a una versión anterior a 8.10.0, puede omitir este paso.
+{{% /notice %}}

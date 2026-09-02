@@ -1,0 +1,97 @@
+---
+title: "Búsqueda"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts
+
+= Búsqueda
+
+La búsqueda es una parte fundamental del trabajo dentro de SuiteCRM, ya que le permite localizar rápidamente los registros que necesita en conjuntos de datos que pueden llegar a ser muy grandes. SuiteCRM ofrece dos formas principales de buscar registros: la Búsqueda Global y la Búsqueda de Módulo.
+
+== Búsqueda Global
+
+La Búsqueda Global le permite buscar registros en varios módulos de su instancia de SuiteCRM desde una única barra de búsqueda, sin necesidad de navegar a cada módulo individualmente. Está disponible en la Barra de Navegación Superior de cualquier página.
+
+image:global-search-bar.png[Barra de búsqueda global en la navegación superior]
+
+Para realizar una búsqueda global, escriba el término de búsqueda en la barra de búsqueda y pulse *Intro* en su teclado o haga clic en el icono de la *Lupa*. SuiteCRM devolverá los registros coincidentes agrupados por módulo, para que pueda ver de un vistazo los resultados de Contactos, Cuentas y otros módulos a la vez. Al hacer clic en cualquier resultado accederá directamente a ese registro.
+
+La página de resultados de búsqueda también ofrece dos opciones útiles para refinar lo que se muestra:
+
+* *Resultados por módulo:* controla cuántos registros se muestran por módulo en los resultados. El valor predeterminado es 10, pero puede ajustarse según sea necesario.
+* *Módulos:* le permite filtrar los resultados a módulos concretos, de forma que pueda centrar la búsqueda en las áreas más relevantes.
+
+image:global-search-results.png[Página de resultados de la búsqueda global agrupados por módulo]
+
+{{% notice note %}}
+Los módulos incluidos en los resultados de la Búsqueda Global pueden ser configurados por un administrador del sistema.
+{{% /notice %}}
+
+== Búsqueda de Módulo
+
+La Búsqueda de Módulo está disponible en todos los módulos de SuiteCRM y le permite filtrar y encontrar registros dentro de ese módulo concreto. Se accede a ella desde la Vista de Lista de cualquier módulo, donde se muestra un panel de filtro de búsqueda en la parte superior de la lista de registros.
+
+image:module-search-panel.png[Panel de filtro de búsqueda de módulo en una Vista de Lista]
+
+=== Uso de la Búsqueda de Módulo
+
+Para buscar dentro de un módulo, introduzca sus criterios en los campos correspondientes del panel de filtro y haga clic en *Buscar*. La Vista de Lista se actualizará para mostrar únicamente los registros que coincidan con sus criterios.
+
+Algunos aspectos útiles que conviene conocer al usar la Búsqueda de Módulo:
+
+* *La búsqueda es persistente:* una vez realizada una búsqueda, los criterios del filtro se conservarán aunque salga del módulo y vuelva a él. Esto significa que no perderá los resultados de su búsqueda al entrar en un registro y volver a la lista.
+* *Borrar una búsqueda:* para borrar la búsqueda actual y volver a la lista completa de registros, haga clic en el botón *Borrar* del panel de filtro y, a continuación, en *Buscar*.
+* *Mis Elementos:* la mayoría de los módulos incluyen una opción Mis Elementos en el filtro. Al habilitarla, los resultados se restringirán a los registros asignados a su cuenta de usuario, lo cual resulta útil para ver rápidamente su propia carga de trabajo.
+* *Mis Favoritos:* la mayoría de los módulos también incluyen una opción Mis Favoritos. Al habilitarla, los resultados se restringirán a los registros que haya marcado como favoritos. Los registros pueden marcarse como favoritos haciendo clic en el icono de *Estrella* del registro.
+
+{{% notice note %}}
+Los campos disponibles en el filtro de búsqueda de módulo se configuran por módulo y pueden ser modificados por un administrador del sistema a través de Studio. Si necesita que se añadan campos adicionales al filtro de búsqueda de un módulo concreto, hable con su administrador del sistema.
+{{% /notice %}}
+
+=== Guardar y Cargar Búsquedas
+
+Si realiza búsquedas habitualmente con los mismos criterios, puede guardar su filtro para reutilizarlo fácilmente. Una vez configurados los criterios del filtro, haga clic en *Guardar Búsqueda* y asígnele un nombre. Sus búsquedas guardadas estarán entonces disponibles en el desplegable *Mis Filtros* del panel de búsqueda, lo que le permitirá cargarlas rápidamente en cualquier momento sin necesidad de volver a introducir los criterios manualmente.
+
+image:save-search.png[Botón Guardar Búsqueda en el panel de filtro]
+
+Para cargar una búsqueda guardada, selecciónela en el desplegable *Mis Filtros*. Esto devolverá los resultados que coincidan con los criterios especificados en la búsqueda guardada.
+
+image:my-filters-dropdown.png[Desplegable Mis Filtros mostrando búsquedas guardadas]
+
+== Filtros Rápidos
+
+Los Filtros Rápidos le ofrecen acceso con un solo clic a sus filtros guardados de uso más frecuente directamente desde la Vista de Lista, sin necesidad de abrir el panel de filtro cada vez.
+
+image:quick-filter-demo-docs.gif[Demostración de los Filtros Rápidos]
+
+=== Crear un Filtro Rápido
+
+. Vaya a la Vista de Lista del módulo y haga clic en el botón *Filtro*.
+. Rellene los criterios de su filtro.
+. Asigne un nombre al filtro, marque la casilla *Filtro Rápido* y haga clic en *Guardar*.
+
+Su nuevo Filtro Rápido aparecerá como un botón junto al panel de filtro. Haga clic en él para aplicar ese filtro al instante. Haga clic en la *X* del botón, o haga clic en él de nuevo, para eliminarlo.
+
+=== Uso de los Filtros Rápidos
+
+Cuando se selecciona un Filtro Rápido, este queda resaltado y los resultados se actualizan en consecuencia.
+
+image:Will-Selected.png[Filtro Rápido seleccionado]
+
+Si existen más Filtros Rápidos de los que se pueden mostrar en línea, los filtros restantes se agrupan en un desplegable *Mis Filtros*.
+
+image:My-Filters-Highlighted.png[Desplegable Mis Filtros]
+
+Para cambiar entre filtros, simplemente seleccione el que desee y los resultados se actualizarán.
+
+{{% notice note %}}
+El número de Filtros Rápidos mostrados antes de agruparse en un desplegable, y su comportamiento en distintos tamaños de pantalla, pueden ser configurados por un desarrollador. Consulte link:../../../developer/configuration/quick-filters/[Configuración de los Filtros Rápidos].
+{{% /notice %}}
+
+== Uso de Comodines en la Búsqueda
+
+Los comodines pueden utilizarse tanto en la Búsqueda Global como en la Búsqueda de Módulo para ampliar sus resultados cuando no conoce el texto completo o exacto que está buscando. El signo de porcentaje ( % ) se utiliza como carácter comodín y actúa como marcador de posición que puede representar cualquier número de caracteres. Por ejemplo:
+
+* Buscar `%smith` devolverá los registros en los que el campo termine en «smith», como «John Smith».
+* Buscar `%smith%` devolverá cualquier registro en el que el campo contenga «smith» en cualquier parte del texto.

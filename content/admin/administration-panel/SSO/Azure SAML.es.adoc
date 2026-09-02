@@ -1,0 +1,160 @@
+---
+Title: Inicio de Sesión Único SAML de Azure
+weight: 60
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin/sso
+
+
+:toc:
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM Versión 7.x;
+para consultar la documentación sobre el mismo tema para la Versión 8+,
+haga clic link:../../../../8.x/admin/configuration/saml/[aquí].
+{{% /notice %}}
+
+== Inicio de Sesión Único SAML de Azure
+
+SuiteCRM puede utilizar un proveedor de identidad de terceros, como Microsoft Azure Active Directory, y el protocolo
+SAML para lograr la autenticación de inicio de sesión único. Después puede utilizar Azure AD para controlar quién
+tiene acceso a SuiteCRM y habilitar el inicio de sesión automático.
+
+*Consideraciones*
+
+- Recomendamos utilizar la última versión de SuiteCRM 7.x para beneficiarse de las últimas mejoras y correcciones.
+- El usuario debe existir tanto en Azure AD como en SuiteCRM para que el inicio de sesión se realice correctamente.
+- Los nombres de usuario en SuiteCRM 7.x deben coincidir con la dirección de correo electrónico en Azure. Si ha
+utilizado nombres de usuario abreviados o acortados, deberá cambiarlos por direcciones de correo electrónico de
+antemano.
+
+== 1. Configurar la APP en Azure
+El primer paso consiste en crear una nueva Aplicación Empresarial en Azure.
+Esta aplicación define cómo interactuará Azure, como Proveedor de Identidad (IdP), con su instancia de SuiteCRM.
+Al hacerlo, también obtendrá los valores y el certificado necesarios para configurar SuiteCRM.
+Las aplicaciones SAML en Azure son únicas para cada instancia, ya que la URL del CRM se verifica como parte del
+proceso de inicio de sesión.
+Si se necesita SAML para varios entornos de staging, pruebas o producción, se necesitará una nueva aplicación para
+cada uno.
+
+=== 1.1. Crear la nueva aplicación
+
+Inicie sesión en Microsoft Azure y navegue a la sección 'Azure Active Directory' utilizando el icono de la página
+de inicio.
+
+En el menú de la izquierda, seleccione 'Aplicaciones empresariales'.
+
+image:suitecrm-sso-azure-side-menu.png[Menú lateral de Azure para SuiteCRM SSO]
+
+En el menú superior, seleccione 'Nueva aplicación'.
+
+image:suitecrm-sso-azure-top-menu.png[Menú superior de Azure para SuiteCRM SSO]
+
+En el menú superior, seleccione 'Crear su propia aplicación'.
+
+Se abrirá una nueva ventana lateral, que puede utilizar para crear su aplicación.
+
+. Introduzca un nombre descriptivo, como 'Autenticación SAML de SuiteCRM'.
+
+. Elija 'Integrar cualquier otra aplicación que no encuentre en la galería (Non-gallery)'.
+
+. Haga clic en Crear y, tras un breve retraso, se le llevará a la 'Información general de la aplicación'.
+
+image:suitecrm-sso-azure-create-new-application.png[Ventana lateral de nueva aplicación de Azure para SuiteCRM SSO]
+
+=== 1.2. Configurar la nueva aplicación
+
+En el menú de la izquierda, seleccione 'Inicio de sesión único' dentro de la categoría Administrar.
+
+image:suitecrm-sso-azure-application-side-menu.png[Menú lateral de la aplicación de Azure para SuiteCRM SSO]
+
+Seleccione SAML entre las opciones disponibles.
+
+image:suitecrm-sso-azure-application-protocol-select.png[Selección de protocolo de la aplicación de Azure para SuiteCRM SSO]
+
+Haga clic en el icono de lápiz para editar la Configuración Básica de SAML.
+
+image:suitecrm-sso-azure-application-saml-configuration.png[Configuración SAML de la aplicación de Azure para SuiteCRM SSO]
+
+SuiteCRM utiliza el mismo valor para el ID de Entidad, la URL de ACS y la URL de Inicio de Sesión.
+
+El valor debe ser la URL de su SuiteCRM con el siguiente formato:
+
+*{URL del CRM}/index.php?action=Login&module=Users*
+
+Por ejemplo: https://demo.suiteondemand.com/index.php?action=Login&module=Users
+
+. En la sección Identificador (ID de Entidad), introduzca la URL de su SuiteCRM tal como la preparó en el paso
+anterior.
+
+. En la sección URL de Respuesta (Assertion Consumer Service URL), introduzca la URL de su SuiteCRM tal como la
+preparó en el paso anterior.
+
+. En la sección URL de Inicio de Sesión (Opcional), introduzca la URL de su SuiteCRM tal como la preparó en el
+paso anterior.
+
+. Compruebe que la misma URL está presente en los tres campos y haga clic en Guardar.
+
+=== 1.3. Guardar los ajustes necesarios para más adelante
+
+Desplácese hasta la sección de Certificados SAML y descargue el Certificado (Base64) y guárdelo para más adelante.
+
+Desplácese más abajo y guarde la URL de Inicio de Sesión y la URL de Cierre de Sesión; de nuevo, guárdelas para más
+adelante.
+
+image:suitecrm-sso-azure-application-saml-settings.png[Configuración SAML de la aplicación de Azure para SuiteCRM SSO]
+
+
+== 2. Añadir usuarios a la APP en Azure
+Antes de que sus usuarios puedan iniciar sesión en SuiteCRM utilizando SSO con Azure, deben añadirse a la aplicación
+recién creada.
+Los usuarios se pueden añadir individualmente o en grupos, según cómo esté configurado su Azure Active Directory.
+Solo los usuarios que se hayan añadido a la aplicación 'Autenticación SAML de SuiteCRM' podrán iniciar sesión.
+
+Desde su nueva Aplicación Empresarial:
+
+. En el menú de la izquierda, seleccione 'Usuarios y grupos'.
+
+image:suitecrm-sso-azure-application-users-groups.png[Usuarios y Grupos de la aplicación de Azure para SuiteCRM SSO]
+
+. En el menú superior, seleccione 'añadir usuario/grupo'.
+
+Ahora puede asignar usuarios o grupos a su aplicación 'Autenticación SAML de SuiteCRM'.
+
+== 3. Configurar SAML en SuiteCRM
+Antes de terminar de configurar sus usuarios en SuiteCRM, primero debe habilitar SAML. Una vez completado este
+paso, sus usuarios ya no podrán iniciar sesión de la forma habitual y deberán utilizar SSO.
+
+=== 3.1. Habilitar SAML
+
+Inicie sesión en SuiteCRM como administrador.
+
+Vaya a Admin -> Gestión de Contraseñas.
+
+image:suitecrm-sso-suitecrm-saml-configuration.png[Habilitar SAML en SuiteCRM SSO]
+
+Seleccione Habilitar Autenticación SAML.
+
+En la sección Autenticación SAML, añada la siguiente información:
+
+. URL de Inicio de Sesión: pegue el valor de la URL de Inicio de Sesión obtenida de Azure.
+. URL de SLO: pegue el valor de la URL de Cierre de Sesión obtenida de Azure.
+. Certificado X.509: pegue el contenido del Certificado Base64 obtenido de Azure.
+
+Guarde los cambios.
+
+=== 3.2. Habilitar SAML para sus usuarios
+
+Una vez que SuiteCRM se ha configurado para utilizar SAML, puede configurar a sus usuarios individuales para que
+inicien sesión mediante SAML.
+Debe completar este paso para cada usuario que vaya a iniciar sesión utilizando SSO.
+
+. Cree o edite un Usuario del CRM existente, estableciendo su nombre de usuario para que coincida con la dirección
+de correo electrónico en Azure.
+. Habilite el Inicio de Sesión SAML para ese usuario, accediendo a la pestaña Avanzado y marcando SAML2Authenticate.
+. Puede que desee configurar y asignar los Roles y Grupos de Seguridad necesarios para el usuario en esta etapa,
+antes de que inicie sesión por primera vez.
+
+image:suitecrm-sso-suitecrm-user-enable-saml.png[Habilitar SAML para usuarios en SuiteCRM SSO]

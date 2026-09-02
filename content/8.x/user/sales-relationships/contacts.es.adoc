@@ -1,0 +1,66 @@
+---
+title: "Contactos"
+weight: 17
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/contacts
+
+== Resumen
+
+Un Contacto es una persona individual, normalmente asociada a una Cuenta (organización) o a una Oportunidad. Por ejemplo, si Techco es la Cuenta, entonces John Smith, Director Comercial de Techco, es el Contacto. El módulo de Contactos almacena toda la información relativa a estas personas y ofrece un único lugar donde ver cada interacción — llamadas, reuniones, correos, casos y campañas — asociada a esa persona.
+
+Los Contactos se crean normalmente de forma directa, se convierten a partir de un Cliente Potencial una vez cualificado, o se crean automáticamente durante la conversión de un Cliente Potencial.
+
+== Campos Clave
+
+[cols="25,75"]
+|===
+|*Campo*|*Descripción*
+
+|*Nombre / Apellidos*|El nombre del contacto. Apellidos es obligatorio.
+|*Nombre de Cuenta*|Vincula el Contacto con su organización. Rellenar este campo crea una relación con el registro de Cuenta y hace que el Contacto aparezca en el subpanel Contactos de la Cuenta.
+|*Puesto de Trabajo / Departamento*|El rol del Contacto y su equipo dentro de su organización.
+|*Teléfono de Oficina / Móvil*|Números de contacto principales de la persona.
+|*Dirección de Correo*|Se utiliza para comunicaciones por correo, envío de campañas y notificaciones del sistema.
+|*Informa A*|Se vincula a otro registro de Contacto, permitiendo modelar una jerarquía de informes dentro de una organización.
+|*Primer Medio de Contacto*|Registra cómo se captó al Contacto: Llamada en Frío, Cliente Existente, Autogenerado, Empleado, Partner, Relaciones Públicas, Correo Directo, Conferencia, Feria Comercial, Sitio Web, Boca a Boca, Email, Campaña u Otro. Útil para la atribución e informes de campañas.
+|*No Llamar*|Marca este Contacto como alguien que no debe ser contactado por teléfono. SuiteCRM respeta este indicador en los flujos de trabajo de llamadas.
+|*Rehusar Email*|Marca este Contacto como que ha rehusado las comunicaciones por correo. SuiteCRM no enviará correos de campaña a un Contacto con este indicador activado.
+|*Campaña*|Registra con qué campaña está asociado este Contacto, si la hay.
+|*Rol en Oportunidad*|Cuando un Contacto está vinculado a una Oportunidad, este campo registra su rol en el negocio, por ejemplo Responsable de Decisión, Evaluador o Influenciador. Se establece desde el subpanel Contactos de la Oportunidad.
+|*Asignado A*|El usuario de SuiteCRM responsable de este Contacto.
+|===
+
+== Relaciones
+
+Desde un registro de Contacto puede ver y gestionar todos los registros asociados mediante la sección de Relaciones:
+
+[cols="30,70"]
+|===
+|*Subpanel*|*Contiene*
+
+|*Actividades*|Llamadas, Reuniones, Tareas y Correos registrados contra el Contacto. Los elementos completados pasan al subpanel Historial.
+|*Historial*|Actividades completadas y correos archivados asociados al Contacto.
+|*Oportunidades*|Negocios en los que participa el Contacto.
+|*Casos*|Incidencias de soporte asociadas al Contacto.
+|*Documentos*|Archivos adjuntos al Contacto.
+|*Clientes Potenciales*|Clientes potenciales asociados al Contacto.
+|*Direct Reports*|Otros Contactos que informan a este Contacto, según su campo Informa A.
+|*Campañas*|Campañas en las que se ha incluido al Contacto, mostrando cómo ha respondido.
+|*Presupuestos*|Presupuestos asociados al Contacto.
+|*Facturas*|Facturas asociadas al Contacto.
+|*Contratos*|Contratos asociados al Contacto.
+|===
+
+== Trabajar con Contactos
+
+* *Importar una vCard*: cree un nuevo Contacto importando un archivo vCard (`.vcf`). Seleccione *Import vCard* en el menú del módulo Contactos y suba el archivo. SuiteCRM rellenará previamente los campos del Contacto a partir de los datos de la vCard.
++
+* *Crear un usuario de portal*: si su instancia de SuiteCRM tiene habilitado el portal de clientes, se puede conceder acceso al portal a un Contacto directamente desde su Vista de Detalle. Consulte a su administrador para conocer los detalles de configuración del portal.
+* *Crear contactos a partir de clientes potenciales*: cuando un Cliente Potencial se cualifica y se convierte, SuiteCRM puede crear automáticamente un Contacto relacionado. Consulte link:../leads[Clientes Potenciales] para saber cómo funciona la conversión.
+
+== Próximos Pasos
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación, fusión e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].

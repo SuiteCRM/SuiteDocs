@@ -1,0 +1,11 @@
+
+---
+Title: Licencia
+Weight: 30
+---
+
+:imagesdir: /images/en/user
+
+SuiteCRM se publica bajo la
+http://en.wikipedia.org/wiki/Affero_General_Public_License[AGPL versión
+3].

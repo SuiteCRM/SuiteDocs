@@ -1,0 +1,156 @@
+---
+title: "Guía de Proveedores CalDAV"
+weight: 20
+aliases:
+  - /es/user/calendar-sync/caldav-guide
+---
+
+:toc:
+
+= Guía de Proveedores CalDAV
+
+Esta guía le ayuda a encontrar y verificar la URL de CalDAV de su servidor de calendario. Utilícela junto con link:../calendar-sync[Sincronización de Calendario] al configurar una Cuenta de Calendario CalDAV.
+
+== Qué es CalDAV
+
+CalDAV (Calendar Distributed Authoring and Versioning) es un protocolo estándar abierto para acceder y sincronizar calendarios a través de internet. Cuenta con amplio soporte en servidores de calendario autoalojados y en la nube.
+
+== Comprender las URL de CalDAV
+
+=== Estructura de la URL
+
+Una URL de CalDAV apunta directamente a un calendario específico en el servidor:
+
+[source]
+----
+https://server.example.com/dav-path/username/calendar-name/
+----
+
+* *Protocolo*: siempre `https://` (o `http://` para servidores locales)
+* *Servidor*: nombre de host o dirección IP de su servidor CalDAV
+* *Ruta DAV*: la ruta al punto de acceso del servicio CalDAV (varía según la implementación)
+* *Nombre de Usuario*: el nombre de usuario de su cuenta CalDAV
+* *Nombre del Calendario*: el identificador específico del calendario
+* *Barra final*: requerida por la mayoría de las implementaciones de CalDAV
+
+=== Barra Final
+
+La mayoría de los servidores CalDAV requieren que la URL termine con una barra final. Sin ella, puede ver errores de "Calendar not found" o "Invalid URL".
+
+*Correcto:*
+[source]
+----
+https://caldav.example.com/dav/calendars/john/personal/
+----
+
+*Incorrecto:*
+[source]
+----
+https://caldav.example.com/dav/calendars/john/personal
+----
+
+=== Números de Puerto
+
+Algunos servidores se ejecutan en puertos no estándar. Incluya el puerto en la URL cuando sea necesario:
+
+[source]
+----
+http://localhost:5232/username/calendar/
+----
+
+== Patrones Comunes de URL
+
+Patrones de URL estándar para proveedores de CalDAV populares. Sustituya los marcadores de posición por sus valores reales.
+
+[cols="1,2,3"]
+|===
+|Proveedor |Patrón de URL |Notas
+
+|*Nextcloud*
+|`https://your-nextcloud.com/remote.php/dav/calendars/USERNAME/CALENDAR_NAME/`
+|USERNAME es su nombre de usuario de Nextcloud; CALENDAR_NAME es el ID interno del calendario (visible en la configuración de calendarios de Nextcloud)
+
+|*Fastmail*
+|`https://caldav.fastmail.com/dav/principals/user/EMAIL/`
+|Utilice su dirección de correo completa de Fastmail como nombre de usuario
+
+|*Radicale*
+|`http://localhost:5232/USERNAME/CALENDAR_NAME/`
+|El puerto predeterminado es 5232; sustitúyalo por el nombre de host de su servidor si no se ejecuta localmente
+
+|*SOGo*
+|`https://sogo.example.com/SOGo/dav/USERNAME/Calendar/CALENDAR_ID/`
+|Sustituya por el nombre de host de su servidor SOGo; CALENDAR_ID es visible en la configuración de calendarios de SOGo
+
+|*Apple iCloud*
+|Consulte la configuración de su calendario de iCloud
+|Apple iCloud CalDAV requiere una contraseña específica de aplicación; la URL se proporciona en la configuración de la cuenta de iCloud, en "Set Up CalDAV"
+|===
+
+Estos patrones son puntos de partida. Verifique el formato exacto de la URL con la documentación de su proveedor.
+
+== Encontrar su URL de CalDAV
+
+Si su proveedor no aparece en la lista anterior, utilice estos pasos generales de localización:
+
+. *Consulte la documentación del proveedor* — La mayoría de los servidores CalDAV documentan su estructura de URL en guías de configuración o artículos de ayuda.
+. *Contacte con su administrador* — Si utiliza un servidor alojado por la empresa, pregunte a su equipo de TI la URL correcta.
+. *Utilice un cliente CalDAV de escritorio* — Configure la misma cuenta en Thunderbird, el Calendario de macOS o GNOME Evolution e inspeccione la configuración de la conexión para ver el formato de la URL.
+. *Pruebe el autodescubrimiento de CalDAV* — Algunos servidores admiten el autodescubrimiento en `https://your-server/.well-known/caldav`.
+
+== Resolución de Problemas
+
+=== "Calendar not found" o "Invalid URL"
+
+*Causas:*
+
+* Estructura de URL de CalDAV incorrecta
+* Falta la barra final
+* Nombre o identificador de calendario incorrecto
+* El calendario se ha eliminado o renombrado
+
+*Soluciones:*
+
+* Verifique que la URL termina con una barra final: `https://server/path/calendar/`
+* Compruebe que el nombre del calendario coincide exactamente (sensible a mayúsculas en algunos servidores)
+* Inicie sesión en la interfaz web de CalDAV y confirme que el calendario existe
+* Vuelva a copiar la URL desde la página de configuración de su proveedor
+
+=== "Authentication failed" o "Invalid credentials"
+
+*Causas:*
+
+* Nombre de usuario o contraseña incorrectos
+* Discrepancia en el formato del nombre de usuario (dirección de correo frente a nombre de usuario)
+* Autenticación de dos factores habilitada sin una contraseña específica de aplicación
+* Cuenta bloqueada o deshabilitada
+
+*Soluciones:*
+
+* Verifique el formato del nombre de usuario — algunos proveedores requieren su dirección de correo completa
+* Cree una contraseña específica de aplicación en la configuración de seguridad de su proveedor y utilícela en lugar de su contraseña principal
+* Compruebe que su cuenta CalDAV está activa y no bloqueada
+
+== Buenas Prácticas de Seguridad
+
+=== Utilizar Contraseñas de Aplicación
+
+Cuando estén disponibles, utilice contraseñas específicas de aplicación en lugar de la contraseña principal de su cuenta. Las contraseñas de aplicación:
+
+* Limitan el alcance únicamente al acceso al calendario
+* Pueden revocarse sin cambiar su contraseña principal
+* Proporcionan un mejor registro de auditoría de seguridad
+* Son compatibles con cuentas que tienen habilitada la autenticación de dos factores
+
+=== Utilizar HTTPS
+
+Utilice siempre HTTPS para las conexiones CalDAV con el fin de proteger sus credenciales y datos de calendario en tránsito. Para servidores autoalojados, utilice Let's Encrypt para obtener un certificado SSL gratuito.
+
+== Próximos Pasos
+
+* Vuelva a link:../calendar-sync[Sincronización de Calendario] para completar la configuración de su Cuenta de Calendario.
+* Para el comportamiento de sincronización y la resolución de problemas avanzada, consulte link:/admin/administration-panel/calendar-sync/understanding-sync-troubleshooting[Comprender la Sincronización y la Resolución de Problemas].
+
+{{% notice note %}}
+Si encuentra un problema de conexión CalDAV no cubierto aquí, consulte la documentación de su proveedor o contacte con su equipo de soporte para obtener asistencia específica del proveedor.
+{{% /notice %}}

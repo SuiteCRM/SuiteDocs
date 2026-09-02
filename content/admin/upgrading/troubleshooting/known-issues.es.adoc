@@ -1,0 +1,85 @@
+---
+title: "Problemas Conocidos"
+weight: 20
+---
+:experimental:
+
+== La aplicación no carga tras una actualización por CLI
+
+**Síntoma:** La aplicación devuelve errores o una página en blanco inmediatamente después de una actualización por CLI.
+
+**Causa:** Los archivos escritos durante la actualización pertenecen al usuario que ejecutó el comando (a menudo `root`), no al usuario del servidor web. Apache o Nginx no pueden leerlos ni escribirlos.
+
+**Solución:** Restablezca la propiedad y los permisos de los archivos:
+
+[source,bash]
+----
+chown -R www-data:www-data /path/to/suitecrm
+find /path/to/suitecrm -type d -exec chmod 755 {} \;
+find /path/to/suitecrm -type f -exec chmod 644 {} \;
+----
+
+Ajuste `www-data:www-data` para que coincida con el usuario y el grupo de su servidor web.
+
+== El Upgrade Wizard excede el tiempo de espera antes de finalizar
+
+**Síntoma:** El navegador devuelve un error de tiempo de espera durante el paso de realización de la actualización (Commit).
+
+**Causa:** El proceso de actualización superó el `max_execution_time` de PHP o el tiempo de espera de solicitud del servidor web.
+
+**Solución:** Elija una de estas opciones:
+
+* Aumente los tiempos de espera de PHP y del servidor web (consulte link:../../before-you-upgrade[Antes de Actualizar]) y vuelva a intentarlo con el asistente.
+* Cambie a la link:../../cli-upgrade[Actualización por CLI], que no está sujeta a los tiempos de espera del servidor web.
+
+== Las etiquetas o cadenas de texto no se actualizan tras la actualización
+
+**Síntoma:** Parte del texto de la interfaz sigue mostrando etiquetas antiguas o ausentes después de completar la actualización.
+
+**Solución:**
+
+. Vaya a menu:Administración[Reparación].
+. Ejecute *Reparación y Reconstrucción Rápida*.
+. Borre la caché de su navegador y recargue la página.
+
+Si las etiquetas siguen faltando después de una reparación, consulte `upgradeWizard.log` en busca de errores durante la fase de copia de archivos.
+
+== El Upgrade Wizard se queda bloqueado en la pantalla de procesamiento o no inicia una nueva actualización
+
+**Síntoma:** El Upgrade Wizard muestra un indicador de procesamiento giratorio y no avanza, o bien, tras una actualización anterior (correcta o fallida), el asistente vuelve inmediatamente a un estado de procesamiento o de actualización a medias en lugar de a la pantalla de inicio.
+
+**Causa:** El asistente registra su progreso en `cache/upgrades/temp/upgrade_progress.php`. Si una actualización se bloqueó, excedió el tiempo de espera o se completó pero dejó ese archivo, el asistente lo lee al cargar e intenta reanudar la ejecución anterior, incluido volver a mostrar el indicador de procesamiento. Las variables de sesión almacenadas junto a él agravan este comportamiento.
+
+**Solución:**
+
+. Cierre sesión en SuiteCRM.
+. En el servidor, elimine el directorio temporal de actualización y la caché de persistencia:
++
+[source,bash]
+----
+rm -rf /path/to/suitecrm/cache/upgrades/temp/
+rm -f /path/to/suitecrm/cache/modules/UpgradeWizard/_persistence.php
+----
+. Si desea volver a ejecutar el mismo paquete de actualización, deje el ZIP en su sitio. Si desea un estado completamente limpio, elimine también el paquete subido:
++
+[source,bash]
+----
+rm -rf /path/to/suitecrm/upload/upgrades/patch/
+----
+. Vuelva a iniciar sesión y vaya a menu:Administración[Asistente de Actualizaciones]. El asistente comenzará de nuevo desde el principio.
+
+{{% notice info %}}
+Si la actualización anterior se completó por completo antes de quedarse bloqueada, confírmelo consultando `upgradeWizard.log`; a continuación, vaya a menu:Administración[Reparación] y ejecute *Reparación y Reconstrucción Rápida*, *Reconstruir Relaciones* y *Reparar Roles* antes de intentar otra actualización.
+{{% /notice %}}
+
+{{% notice tip %}}
+Si la actualización anterior solo falló parcialmente pero llegó a completarse, ejecute también *Reconstruir archivo .htaccess* y *Reconstruir Archivo de Configuración* desde menu:Administración[Reparación] para asegurarse de que esos archivos se actualizaron correctamente.
+{{% /notice %}}
+
+== Las personalizaciones se sobrescriben tras la actualización
+
+**Síntoma:** Los cambios que realizó en el comportamiento o los diseños de los módulos han desaparecido tras la actualización.
+
+**Causa:** Las personalizaciones almacenadas en archivos del núcleo (en lugar de en el directorio `/custom`) se sobrescriben cuando la actualización reemplaza esos archivos.
+
+**Solución:** Restaure sus personalizaciones a partir de su copia de seguridad previa a la actualización y vuelva a implementarlas de una forma segura para futuras actualizaciones usando el directorio `/custom`, Studio o Logic Hooks. Consulte la Guía del Desarrollador para conocer los patrones de personalización seguros frente a actualizaciones.

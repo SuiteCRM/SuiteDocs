@@ -1,0 +1,48 @@
+---
+title: "Oportunidades"
+weight: 30
+aliases:
+  - /es/user/core-modules/opportunities
+---
+
+:imagesdir: /images/en/user
+
+= Oportunidades
+
+Una Oportunidad es un cliente potencial de Ventas cualificado con una probabilidad razonable de
+que se pueda hacer negocio con su empresa. Se ha establecido que
+tiene capacidad de compra y ha entrado en el ciclo de compra. Este
+módulo le permite seguir sus Oportunidades a lo largo del Pipeline
+de Ventas hasta que el negocio se marca como "Cerrado Perdido" o "Cerrado Ganado".
+
+== Campos Clave
+
+* *Nombre de Cuenta*: la Cuenta (organización) con la que está asociada esta oportunidad. Vincular la oportunidad a una cuenta la conecta con toda la demás actividad de esa cuenta.
+* *Importe*: el valor esperado del negocio. Admite varias monedas; SuiteCRM almacena tanto el importe en la moneda original como un equivalente en USD para informes entre monedas.
+* *Fecha de Cierre*: la fecha esperada en la que se cerrará el negocio. Campo obligatorio. Se utiliza en la previsión e informes del pipeline.
+* *Etapa de Venta*: dónde se encuentra la oportunidad en su pipeline de ventas: Prospección, Cualificación, Análisis de Necesidades, Propuesta de Valor, Id. Responsables de Decisión, Análisis de Percepción, Propuesta/Cotización de Precio, Negociación/Revisión, Cerrado Ganado o Cerrado Perdido.
+* *Probabilidad*: se establece automáticamente según la Etapa de Venta, pero puede sobrescribirse. Representa la probabilidad de que el negocio se cierre y se utiliza en cálculos ponderados del pipeline.
+* *Tipo*: clasifica el negocio como Nuevo Negocio o Negocio Existente.
+* *Primer Medio de Contacto*: cómo se generó la oportunidad, por ejemplo Llamada en Frío, Email, Partner o Feria Comercial.
+* *Campaña*: vincula la oportunidad a la campaña que influyó en ella, para el seguimiento del ROI.
+* *Siguiente Paso*: un campo de texto libre para registrar la acción inmediata siguiente necesaria para avanzar el negocio.
+
+
+== Relaciones
+
+Desde un registro de Oportunidad puede ver y gestionar todos los registros asociados mediante subpaneles:
+
+* *Cuenta*: la organización con la que está asociada la oportunidad.
+* *Contactos*: las personas implicadas en la decisión de compra.
+* *Actividades*: Llamadas, Reuniones, Tareas y Correos registrados contra la oportunidad.
+* *Historial*: correos archivados y actividades completadas.
+* *Documentos*: propuestas, contratos y archivos de apoyo.
+* *Presupuestos / Contratos*: registros transaccionales generados a partir de la oportunidad. Consulte link:../quotes-invoices-contracts[Presupuestos, Facturas y Contratos].
+
+{{% notice tip %}}
+SuiteCRM incluye una función de Mapas integrada. Se puede consultar un panel de mapa con la dirección de la cuenta asociada en los registros de Oportunidad. Consulte link:../../integrations/maps[Mapas] para más información.
+{{% /notice %}}
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación, fusión e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].

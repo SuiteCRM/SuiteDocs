@@ -1,0 +1,48 @@
+---
+title: "Introducción"
+weight: 10
+---
+
+= Introducción
+
+== Acerca de Esta Guía
+
+Esta guía está dirigida a los usuarios finales de SuiteCRM. Proporciona orientación sobre cómo navegar por SuiteCRM, gestionar registros y llevar a cabo las tareas diarias que necesitará realizar en su función.
+
+{{% notice note %}}
+Esta guía cubre SuiteCRM 8.x. Si no está seguro de qué versión utiliza su organización, haga clic en **su nombre** en la sección superior derecha del menú de navegación y seleccione **Acerca de**. El número de versión se muestra debajo del logotipo de SuiteCRM.
+{{% /notice %}}
+
+Dos cosas que debe tener en cuenta antes de empezar:
+
+* *Su sistema puede tener un aspecto distinto al de las capturas de pantalla:* los administradores pueden ocultar módulos que no utilice, renombrar campos, añadir campos y reorganizar las pantallas. Si algo descrito en esta guía no aparece en su sistema, lo más probable es que se haya desactivado o renombrado, no que no esté disponible.
+* *Esta guía no cubre la administración ni el desarrollo:* la configuración de usuarios, del sistema y su ampliación mediante código se tratan en la link:../../../admin/[Guía del Administrador] y la link:../../../../../8.x/developer/[Guía del Desarrollador] (disponible solo en inglés).
+
+En el link:../../appendix/glossary[Glosario] encontrará un glosario con los términos y definiciones clave utilizados en esta guía.
+
+== ¿Qué es SuiteCRM?
+
+SuiteCRM es un sistema de Gestión de Relaciones con Clientes (CRM) de código abierto. Ayuda a su organización a gestionar todas sus interacciones y relaciones con clientes, posibles clientes y socios en un único lugar central. En lugar de depender de hojas de cálculo dispersas, bandejas de entrada de correo electrónico y notas individuales, SuiteCRM ofrece a sus equipos una vista única y compartida de los datos de sus clientes, de modo que todos trabajen con la misma información actualizada.
+
+Todo lo descrito en esta guía forma parte del propio SuiteCRM. No existen planes de pago con funciones adicionales: si un módulo no está disponible para usted, es porque un administrador lo ha desactivado, no porque deba adquirirse por separado.
+
+=== Cómo se Organiza SuiteCRM
+
+Es importante comprender la diferencia entre un *registro* y un *módulo*:
+
+* *Registro:* una entrada individual, como un único Contacto, una Cuenta, una Oportunidad o una Nota. Cada registro tiene su propia página, donde puede ver sus detalles y todo lo relacionado con él.
+* *Módulo:* un conjunto de registros del mismo tipo. El módulo Contactos contiene sus registros de contactos, el módulo Cuentas contiene sus organizaciones, y así sucesivamente. Cada módulo dispone de una Vista de Lista para buscar y trabajar con muchos registros a la vez, y una Vista de Detalle para consultar uno en profundidad.
+
+Los registros están vinculados entre sí, lo que hace que un CRM sea más útil que una hoja de cálculo. Un Contacto pertenece a una Cuenta, una Oportunidad se relaciona con ambos, y cualquier Llamada, Reunión, Correo, Nota o Documento que registre queda asociado a los registros a los que se refiere.
+
+=== ¿Qué le permite hacer SuiteCRM?
+
+* *Gestionar organizaciones y personas:* almacene toda la información sobre las empresas y personas con las que trabaja su organización, incluyendo datos de contacto, direcciones y sus propias categorías. Cada Llamada, Correo, Reunión, Nota y Documento queda asociado al registro, de modo que cualquier persona de su equipo puede ver el historial completo en un único lugar.
+* *Realizar el seguimiento de las ventas desde la consulta inicial hasta el cierre:* capture y cualifique clientes potenciales, conviértalos en contactos y Oportunidades, y gestiónelos a través de su proceso de venta. Cree Presupuestos a partir de un catálogo de los productos y servicios que ofrece, conviértalos en Facturas y realice el seguimiento de los Contratos a lo largo de su ciclo de renovación.
+* *Gestionar la atención al cliente:* registre consultas de soporte, quejas y solicitudes de servicio como Casos, asígnelos a agentes y realice un seguimiento del tiempo que tardan en resolverse. Los Casos pueden crearse automáticamente a partir de correos entrantes, y una Base de Conocimiento le permite publicar respuestas a preguntas frecuentes.
+* *Ejecutar campañas:* envíe Campañas de correo de marketing y transaccionales, segmente a los destinatarios en Listas Objetivo y controle las tasas de apertura, clics y rebotes.
+* *Planificar su jornada:* mantenga llamadas, reuniones, tareas y eventos en un único calendario, consulte la disponibilidad de sus compañeros y reciba avisos cuando le inviten o venza un recordatorio.
+* *Generar documentos a partir de sus datos:* diseñe una plantilla una sola vez y deje que SuiteCRM la rellene, generando presupuestos, facturas, contratos y cartas personalizados con los datos extraídos de los registros vinculados.
+* *Automatizar tareas rutinarias:* los flujos de trabajo pueden asignar nuevos registros a la persona adecuada, escalar Casos, avisarle de oportunidades de alto valor y actualizar campos, sin que nadie tenga que acordarse de hacerlo.
+* *Generar informes sobre sus datos:* cree informes de cualquier módulo con filtros, agrupaciones y gráficos, guárdelos para reutilizarlos y prográmelos por correo electrónico. Añádalos a los paneles de su página de inicio.
+* *Encontrar cosas rápidamente:* busque en todos los módulos a la vez, filtre cualquier lista con múltiples criterios, guarde los filtros que utilice con frecuencia y marque como favoritos los registros a los que vuelve con regularidad.

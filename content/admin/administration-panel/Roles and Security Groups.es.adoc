@@ -1,0 +1,252 @@
+---
+Title: Roles y Grupos de Seguridad
+weight: 25
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+= Roles y Grupos de Seguridad
+
+Los ajustes de Roles y Grupos de Seguridad se gestionan desde la sección *Usuarios* del *Panel de Administración*.
+
+Estos ajustes le permiten restringir el acceso a datos sensibles en *SuiteCRM*
+a equipos (grupos) específicos. Hay muchas opciones que le permiten configurarlo
+según sus necesidades exactas, y varias opciones de asignación automática
+para garantizar que sus usuarios siempre puedan acceder a los datos que
+necesitan.
+
+Los *Grupos de Seguridad* le permiten definir grupos de usuarios con derechos de acceso específicos
+definidos por los roles asignados al grupo. Los grupos también se pueden usar para asignar registros a equipos
+de usuarios.
+
+Los *Roles* se usan para definir los derechos de acceso a los módulos y determinar qué puede
+hacer un usuario con un registro una vez que tiene acceso a él.
+
+Hay 3 pasos clave para configurar los Grupos correctamente.
+
+1.  Cree un *grupo* para cada equipo de usuarios y añada los usuarios correspondientes
+al grupo.
+2.  Cree un *rol* y seleccione los niveles de acceso adecuados. Asigne ese rol a cada grupo.
+3.  Añada los grupos a los registros de su instancia de SuiteCRM. Puede usar la
+opción de Asignación Masiva en la Vista de Lista para hacerlo. A partir de entonces los grupos se
+heredarán automáticamente según sus ajustes de SecuritySuite. También puede
+usar logic hooks, workflow, o hacer una inserción directa en la base de datos
+en la tabla securitygroups_records si se trata de una configuración inicial puntual.
+
+{{%notice info%}}Hay disponibles ajustes y funcionalidades avanzadas adicionales de grupos de seguridad con
+la compra del complemento https://store.suitecrm.com/addons/securitysuite[SecuritySuite^]{{%/notice%}}
+
+== Gestión de Roles
+
+Cree un rol para definir el acceso a los módulos y las funciones que los usuarios podrán
+realizar sobre los registros dentro de esos módulos. El rol puede asignarse después a grupos de seguridad
+o a usuarios individuales según corresponda.
+
+=== Crear Rol
+
+Seleccione Gestión de Roles y, a continuación, Crear Rol desde la barra lateral de Gestión de Roles.
+
+image:RolesSidebar.png["Barra lateral de Roles"]
+
+Introduzca un nombre y una descripción para el rol que está creando y haga clic en btn:[SAVE]
+
+image:RolesCreateRole.png["Crear Nuevo Rol"]
+
+Una vez creado el rol, se mostrará la matriz de roles, con todas las
+opciones de acceso configurables para cada módulo.
+
+image:RolesMatrix.png["Roles - matriz de acceso"]
+
+Haga clic en una celda para cambiar el ajuste de acceso. Tenga en cuenta que puede cambiar el ajuste
+de una columna completa haciendo clic en el encabezado de la columna.
+
+image:RolesSetModuleAccess.png["Roles - matriz de acceso"]
+
+Use la columna *Access* (Acceso) para determinar si los usuarios pueden acceder a cada módulo:
+
+[cols="20,80",frame="none", grid="none"]
+|===
+|*Enabled*| Los usuarios tienen acceso a este módulo
+|*Disabled*| Los usuarios no podrán ver registros de este módulo.
+|===
+
+Use las columnas *Delete*, *Edit*, *Export*, *Import*, *List*, *Mass Update* y *View*
+para determinar las funciones disponibles sobre los registros para los usuarios:
+
+[cols="20,80",frame="none", grid="none"]
+|===
+|*Group* |Da a los usuarios acceso a todos los registros asignados a miembros del mismo
+grupo.
+|*Owner* |Da a los usuarios acceso únicamente a sus propios registros.
+|*None* |Los usuarios no tendrán acceso a esta función para este módulo.
+|===
+
+Haga clic en btn:[SAVE]. Una vez guardado, los derechos de acceso se codifican con colores para facilitar su lectura.
+
+{{%notice tip%}}Si sus usuarios normalmente solo deben ver sus propios registros,
+entonces el rol que asignaría a su grupo debería configurarse con derechos
+*Owner*. Un responsable que forme parte del mismo grupo, pero que deba
+poder ver todos los registros del grupo, debería tener un rol asignado directamente a su registro
+de usuario que otorgue acceso *Group*. {{%/notice%}}
+
+==== Añadir Usuario o Grupo
+
+Asigne el rol a un grupo o a un usuario individual según proceda, usando los subpaneles debajo
+de la matriz.
+
+=== Lista de Roles
+
+Seleccione Lista de Roles en la barra lateral para ver todos los roles y sus descripciones.
+
+image:RolesListRoles.png["Lista de Roles"]
+
+Haga clic en el nombre del rol para ver y editar los ajustes de acceso.
+
+Haga clic en el icono de lápiz para editar el nombre y/o la descripción del rol.
+
+=== Lista de Roles por Usuario
+
+Seleccione un nombre de usuario de la lista para mostrar la matriz de acceso del usuario tal como la definen todos los
+roles aplicados a ese usuario.
+
+image:RolesListByUser.png["Lista de Roles por Usuario"]
+
+== Gestión de Security Suite
+
+Seleccione *Gestión de Security Suite* en el panel de Administración para ver los grupos existentes o crear uno
+nuevo.
+
+=== Crear Grupo
+
+Cree un grupo para definir grupos de usuarios con derechos de acceso específicos que se
+definen mediante los roles asignados al grupo. Los grupos también se pueden usar para asignar registros en el CRM.
+
+Seleccione *Gestión de Security Suite* y, a continuación, *Crear un Grupo de Seguridad* en la barra lateral.
+
+image:SecurityGroupsSidebar.png[title="Barra lateral de Grupos de Seguridad"]
+
+image:SecurityGroupsCreateGroup.png[title="Crear Grupo"]
+
+Introduzca un nombre y, opcionalmente, una descripción para el grupo.
+
+*Not Inheritable* (No heredable) Si este campo está marcado, el grupo no se asignará automáticamente a
+ningún registro. Esto puede ser útil, por ejemplo, para crear grupos destinados a asignar roles.
+
+Haga clic en btn:[SAVE]
+
+Aparecerá la vista de detalle del grupo recién creado.
+
+==== Añadir Usuarios y Roles
+
+Añada usuarios y roles al grupo según sea necesario, usando los subpaneles.
+
+image:SecurityGroupsCreateGroup2.png[title="Crear Grupo"]
+
+En este ejemplo, Chris y Sarah son
+miembros del grupo y se ha aplicado el rol *Owner Only*, por lo que los ajustes del rol *Owner Only*
+se aplicarán tanto a Chris como a Sarah.
+
+=== Ver Grupos de Seguridad
+
+Seleccione *Grupos de Seguridad* en la barra lateral para ver todos los grupos de seguridad.
+
+Haga clic en el nombre del grupo para editar los usuarios y roles asignados al grupo, y en el icono de lápiz
+para editar el nombre y/o la descripción del grupo.
+
+image:SecurityGroupsList.png["Lista de Grupos de Seguridad"]
+
+== Configuración de Security Suite
+
+Los Administradores del Sistema de SuiteCRM pueden configurar numerosas opciones avanzadas para
+Security Suite. Esto le permite controlar diversos derechos de acceso,
+la herencia de registros, filtros y más.
+
+image:SecurityGroupsConfigure.png[title="Gestión de Grupos de Seguridad: Configuración"]
+
+[discrete]
+==== Additive Rights (Derechos aditivos)
+
+El usuario obtiene los derechos más amplios de todos los roles asignados al usuario o a su(s)
+grupo(s)
+
+[discrete]
+==== Strict Rights (Derechos estrictos)
+
+Si un usuario es miembro de varios grupos, solo se usan los derechos correspondientes
+del grupo asignado al registro actual.
+
+[discrete]
+==== New User Group Popup (Ventana emergente de grupo para nuevos usuarios)
+
+Si está marcado, se abrirá una ventana emergente de Grupos de Seguridad al crear un nuevo usuario,
+que le permitirá añadir el usuario a uno o varios grupos de seguridad
+
+[discrete]
+==== User Role Precedence (Precedencia de rol de usuario)
+
+Si algún rol se asigna directamente a un usuario, ese rol tendrá
+precedencia sobre cualquier rol de grupo.
+
+[discrete]
+==== Filter User List (Filtrar lista de usuarios)
+
+Con esta opción seleccionada, los usuarios no administradores solo pueden asignar registros a usuarios que estén en el mismo grupo o grupos
+
+[discrete]
+==== Use Creator Group Select (Usar selección de grupo del creador)
+
+Añade un panel a la pantalla de creación de registros si un usuario es miembro de
+más de un grupo heredable, permitiendo al usuario seleccionar uno o varios
+grupos (a los que el usuario pertenece) que deben asociarse al registro
+recién creado. Si un usuario está en un solo grupo, se aplicarán en su lugar las
+reglas de herencia normales.
+
+{{% notice note %}}
+El nuevo registro seguirá heredando del usuario Asignado a o del
+registro Padre si estas opciones están establecidas. Este ajuste solo anula el
+ajuste de Creado por.
+{{% /notice %}}
+
+[discrete]
+==== Inherit from Created By User (Heredar del usuario creador)
+
+El registro heredará todos los grupos asignados al usuario que lo creó.
+
+[discrete]
+==== Inherit from Assigned To User (Heredar del usuario asignado)
+
+El registro heredará todos los grupos del usuario asignado al registro.
+{{% notice note %}}Los demás grupos asignados al registro NO se eliminarán.{{% /notice %}}
+
+[discrete]
+==== Inherit from Parent Record (Heredar del registro padre)
+
+Por ejemplo, si se crea un caso para un contacto, el caso heredará los grupos
+asociados a ese contacto.
+
+[discrete]
+==== Inbound email account (Cuenta de correo entrante)
+
+Restringe las cuentas de correo entrante en el cliente de correo para que solo se muestren las
+que pertenecen al mismo grupo que el usuario actual.
+
+[discrete]
+==== Default Groups for New Records (Grupos por defecto para nuevos registros)
+
+Establezca los grupos que deben asignarse siempre al crear un registro de un módulo específico.
+Por ejemplo, puede establecer un grupo para que se asigne a todos los registros de Cuentas recién creados.
+
+== Más Información
+
+{{% notice tip %}}Para más ayuda e información sobre cómo configurar roles y grupos de seguridad,
+consulte un link:/user/appendix/security-groups/#_example_a_typical_hierarchy_setup[Ejemplo de una Configuración Típica] y este
+https://www.youtube.com/watch?v=B7u--perz2A[vídeo de introducción^]
+{{% /notice %}}
+
+
+
+

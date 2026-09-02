@@ -1,0 +1,35 @@
+---
+title: "Tareas"
+weight: 50
+aliases:
+  - /es/user/core-modules/tasks
+---
+
+:imagesdir: /images/en/user
+
+= Tareas
+
+Las Tareas de SuiteCRM le permiten registrar, asignar y hacer seguimiento de acciones pendientes y elementos por hacer. Las Tareas pueden relacionarse con otros registros para que las acciones pendientes sean visibles desde la Cuenta, Contacto, Oportunidad o Caso correspondiente.
+
+== Campos clave
+
+* *Subject*: el nombre o la descripción de la tarea. Obligatorio.
+* *Status*: en qué punto se encuentra la tarea: Not Started, En Progreso, Completada, Pending Input o Aplazada.
+* *Priority*: la urgencia de la tarea: High, Medium o Low.
+* *Due Date*: la fecha límite para completar la tarea.
+* *Start Date*: cuándo se espera que empiece el trabajo en la tarea.
+* *Related to*: relaciona la tarea con un registro superior (Cuenta, Contacto, Oportunidad, Caso, etc.). La tarea aparecerá en el subpanel de Activities de ese registro mientras esté abierta, y pasará al subpanel de Historial una vez cerrada.
+* *Contact*: relaciona la tarea con un registro de Contacto específico.
+
+
+== Relaciones
+
+Las Tareas aparecen en el subpanel *Activities* del registro al que están vinculadas. Las tareas completadas o cerradas pasan al subpanel *Historial*.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de los registros, como la búsqueda, edición, duplicación e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].
+
+== Cierre de una tarea
+
+Para marcar una tarea como finalizada, haga clic en el icono *x* en la vista de lista de Tareas, o haga clic en *Close* en la vista de detalle de la Tarea. También puede usar *Close and Create New* para abrir inmediatamente un nuevo formulario de Tarea, algo útil cuando completar una acción da lugar directamente a la siguiente.

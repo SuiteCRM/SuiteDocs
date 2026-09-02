@@ -1,0 +1,82 @@
+---
+title: "Eventos"
+weight: 70
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/events
+
+= Eventos
+
+El módulo Eventos le permite gestionar eventos físicos o virtuales — conferencias, seminarios, webinars o cualquier tipo de reunión — capturando los detalles del evento, registrando la ubicación de la sede y gestionando las invitaciones y la asistencia de los delegados. El módulo consta de dos componentes: *Ubicaciones* (para la información de la sede) y *Eventos* (para el propio evento y sus delegados).
+
+== Campos Clave
+
+* *Nombre*: el nombre del evento. Obligatorio.
+* *Fecha de Inicio / Fecha de Fin*: cuándo comienza y termina el evento. Obligatorio.
+* *Duración*: calculada automáticamente a partir de las fechas de inicio y fin. Al cambiar la duración se ajusta la fecha de fin en consecuencia.
+* *Ubicación*: una relación con el módulo Ubicaciones de Eventos (véase <<Ubicaciones de Eventos>> a continuación).
+* *Presupuesto*: el gasto previsto para el evento.
+* *Plantilla de Invitación por Email*: la link:../email-templates[Plantilla de Email] que se envía a los delegados cuando se emiten las invitaciones.
+* *URL de Redirección al Aceptar*: la página web a la que son redirigidos los delegados tras aceptar una invitación mediante el enlace de la plantilla de email.
+* *URL de Redirección al Rechazar*: la página web a la que son redirigidos los delegados tras rechazar una invitación.
+* *Descripción*: información adicional sobre el evento.
+
+== Ubicaciones de Eventos
+
+El módulo Ubicaciones recoge los detalles de la sede para los eventos. Para crear una ubicación:
+
+. Navegue hasta el módulo Ubicaciones utilizando la barra de navegación superior y seleccione *Crear Ubicación* en el menú del módulo.
+. Introduzca los detalles de la sede en la Vista de Edición. Los campos obligatorios están marcados con un asterisco rojo.
+. Haga clic en *Guardar*.
+
+== Crear Eventos
+
+. Navegue hasta el módulo Eventos utilizando la barra de navegación superior y seleccione *Crear Evento* en el menú del módulo.
+. Introduzca los detalles del evento en la Vista de Edición. Los campos obligatorios están marcados con un asterisco rojo.
+. Haga clic en *Guardar*.
+
+== Añadir Delegados
+
+. Vaya a la Vista Detallada del Evento.
+. Abra el subpanel *Delegados*.
+. Haga clic en *Seleccionar Delegados*. Aparecerá una lista de opciones.
+. Seleccione la opción adecuada según quién deba añadirse:
++
+* *Lista de Público Objetivo*: se añadirán al Evento todos los registros de Público Objetivo, Clientes Potenciales y Contactos de la lista de público objetivo seleccionada.
+* *Público Objetivo*: seleccione registros de Público Objetivo individuales para añadir.
+* *Contactos*: seleccione Contactos individuales para añadir.
+* *Clientes Potenciales*: seleccione Clientes Potenciales individuales para añadir.
+* *Eventos*: importe la lista de delegados de otro Evento.
+
+. Aparecerá una ventana emergente de búsqueda. Busque y seleccione los registros a añadir.
+. El subpanel Delegados se completará con los registros seleccionados.
+
+Para más información sobre cómo trabajar con subpaneles, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+== Enviar Invitaciones a los Delegados
+
+. Vaya al subpanel Delegados.
+. Elija la acción *Enviar Invitaciones*.
+. Esto envía la Plantilla de Invitación por Email a todos los delegados cuyo estado sea *No Invitado*.
+. Una vez enviada, el estado de cada delegado se actualiza automáticamente a *Invitado*.
+. Al elegir *Reenviar Invitaciones* se envían invitaciones a todos los delegados que aún no hayan respondido.
+
+== Gestionar la Aceptación de los Delegados
+
+. Vaya al subpanel Delegados.
+. Seleccione los delegados cuyo estado de aceptación necesita actualizarse.
+. Elija la acción *Gestionar Aceptaciones*.
+. Seleccione el estado adecuado en la lista.
+. El estado de aceptación de los delegados se actualizará en consecuencia.
+
+{{% notice note %}}
+El estado de aceptación se actualiza automáticamente si el delegado hace clic en el enlace de aceptación de la invitación por email.
+{{% /notice %}}
+
+== Actualizar la Asistencia de los Delegados
+
+. Vaya al subpanel Delegados.
+. Seleccione los delegados cuyo estado de asistencia necesita actualizarse.
+. Elija la acción *Gestionar Delegados*.
+. Seleccione el estado adecuado: Invitado, No Invitado, Asistió o No Asistió.
+. El estado de los delegados se actualizará en consecuencia.

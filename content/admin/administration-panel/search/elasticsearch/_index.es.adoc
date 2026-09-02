@@ -1,0 +1,11 @@
+---
+title: Elasticsearch
+weight: 10
+---
+
+{{% notice info %}}
+Esta mejora solo está disponible en SuiteCRM a partir de la versión 7.11.
+{{% /notice %}}
+
+== Tabla de contenidos
+{{% children depth="3" showhidden="true" %}}

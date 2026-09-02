@@ -1,0 +1,173 @@
+---
+Title: Opciones de Configuración Avanzada
+Weight: 30
+---
+
+
+:toc:
+
+:imagesdir: /images/en/user
+
+
+= Opciones de Configuración Avanzada
+
+Un administrador del sistema que tenga acceso a los archivos instalados por SuiteCRM dispone de opciones adicionales de configuración del sistema descritas en esta sección.
+
+== Bloqueo del Update Wizard, Module Builder y copias de seguridad de archivos
+
+Si, como administrador del sistema, gestiona varias copias de SuiteCRM,
+puede mantener el control total sobre los sistemas prohibiendo que todos los usuarios
+con derechos administrativos realicen cambios en el sistema.
+(Cabe señalar aquí que no se debe confundir al administrador del sistema, que
+tiene acceso a la base de datos y a los archivos del sistema, con el usuario de SuiteCRM que
+tiene derechos administrativos). Para hacer esto, puede bloquear el acceso de los usuarios al
+Update Wizard, al **Constructor de Módulos**, y también impedir la creación de copias de seguridad de los archivos del sistema.
+
+Para ello, en el archivo `config.php` establezca el siguiente parámetro:
+
+[source,php]
+['admin_access_control'] => true
+
+== Control de carga de módulos
+
+Para garantizar que los usuarios del sistema que tienen derechos administrativos
+(pero que no tienen acceso al archivo de configuración `config.php`)
+no puedan cargar módulos ajenos al sistema, puede limitar
+la carga de archivos al ámbito de una carpeta específica que usted controle.
+Esto le permitirá controlar todos los módulos cargados en el sistema.
+
+
+Para controlar la carga de módulos, haga lo siguiente:
+
+En el archivo `config.php` establezca los siguientes parámetros:
+
+[source,php]
+'use_common_ml_dir'=>'true',
+'common_ml_dir'=>'ml_directory',
+
+Donde *ml_directory* es el nombre de la carpeta desde la que se cargarán los módulos.
+
+== Limitación de recursos del sistema
+
+De forma predeterminada, cualquier llamada a la base de datos que requiera más de 1000 consultas se cancela.
+Para la importación, exportación, sincronización, y al trabajar en el panel de administración,
+el número máximo de solicitudes es de 50 000. De esta forma, todos los procesos que consumen
+demasiados recursos del sistema se interrumpen. Puede cambiar estos valores según
+lo desee, especificando los valores de las variables
+`default_limit` y `special_query_limit` en el archivo `config.php`.
+
+== Configuración de permisos del sistema de archivos en Linux
+
+Si el sistema se ejecuta en un equipo con Linux,
+en `config.php` puede cambiar el propietario de los archivos del sistema, así como
+controlar el acceso a todos los archivos y carpetas del sistema, estableciendo los permisos de usuario y de grupo.
+
+El siguiente ejemplo muestra los permisos de lectura, escritura y ejecución para el usuario y el grupo Apache:
+
+[source,php]
+----
+'default_permissions' => array(
+'dir_mode' => 02770,
+'file_mode' => 0660,
+'chown' => 'apache',
+'chgrp' => 'apache',),
+----
+
+Para el parámetro `dir_mode` puede establecer el valor `1528`,
+que es el equivalente decimal del valor octal `02770`. Para el parámetro
+`file_mode` puede establecer el valor `432`, que es el equivalente decimal del valor octal `0660`.
+
+== Cambio de la ubicación de la carpeta de descargas
+
+Todos los archivos descargados por el sistema se almacenan en una carpeta de descargas especial. Su ubicación se define mediante la variable
+`upload_dir` en el archivo `config.php`. De forma predeterminada, se trata de la carpeta upload,
+ubicada en la carpeta de instalación del sistema.
+Si es necesario, su ubicación se puede cambiar; para ello, en la variable `upload_dir` establezca la
+ruta absoluta a la nueva ubicación de la carpeta de descargas.
+
+{{% notice note %}}
+No olvide copiar todos los archivos de la antigua carpeta de descargas a la nueva.
+{{% /notice %}}
+
+La nueva carpeta debe tener permisos de escritura para el usuario que ejecuta el servidor web.
+
+== Cambio de la ubicación de la carpeta de caché
+
+El sistema utiliza activamente el almacenamiento en caché de datos, lo que mejora enormemente su rendimiento.
+Se utiliza una carpeta especial para almacenar los datos en caché (plantillas compiladas, datos de correo electrónico, etc.)
+y su tamaño puede ser bastante grande. De forma predeterminada, se trata de la carpeta cache, ubicada en la carpeta de instalación del sistema.
+Si es necesario, su ubicación se puede cambiar; para ello, en la variable
+`cache_dir`, ubicada en el archivo `config.php`, establezca la ruta absoluta a la nueva
+ubicación de la carpeta de caché. Al mismo tiempo, el enlace que apunta a la nueva carpeta de caché
+debe colocarse en el mismo lugar de la carpeta de caché.
+Esto es necesario para proporcionar acceso a algunos archivos del sistema almacenados en caché.
+La nueva carpeta debe tener permisos de escritura para el usuario que ejecuta el servidor web.
+
+== Visualización permanente de los Filtros Avanzados en los formularios de lista
+
+En la versión 7.8 de SuiteCRM, se introdujo una visualización más compacta en lugar de la funcionalidad de Búsqueda Básica y Avanzada
+link:../../user/introduction/user-interface/search/[de filtros].
+Si aún necesita una visualización permanente de los campos de filtro en la parte superior del formulario de lista
+para determinados módulos (como ocurría en versiones anteriores del sistema), añada la matriz correspondiente
+siguiendo el ejemplo (para los módulos *Cuentas*, *Usuarios* y *Empleados*)
+en el archivo `config.php`:
+
+[source,php]
+'enable_legacy_search' =>
+  array (
+    0 => 'Accounts',
+    1 => 'Users',
+    2 => 'Employees',  ),
+
+o bien las líneas correspondientes en el archivo `config_override.php`, ejemplo:
+
+[source,php]
+$sugar_config['enable_legacy_search'][] = 'Accounts';
+$sugar_config['enable_legacy_search'][] = 'Users';
+$sugar_config['enable_legacy_search'][] = 'Employees';
+
+
+== Subpaneles: reemplazar el menú desplegable por botones
+
+Si es necesario, puede mostrar las funciones de un subpanel concreto
+no en forma de elementos de menú desplegable, sino en forma de botones.
+La siguiente imagen muestra un ejemplo de un subpanel estándar
+*Measures* y un subpanel modificado *history* en el módulo *Pre-contacts*:
+
+image:measures-subpanel.png[Reemplazo del menú desplegable por botones]
+
+Para modificar el subpanel *history*, haga lo siguiente:
+
+ . Cree un archivo `custom/Extension/modules/Leads/Ext/Layoutdefs/myCustomization.php`
+ . Añádale la siguiente línea:
+
+[source,php]
+$layout_defs['Leads']['subpanel_setup']['history']['flat'] = 1;
+
+[start=3]
+ . Ejecute link:../administration-panel/system/#_repair[Reparación y Reconstrucción Rápida].
+
+== Edición rápida de listas desplegables personalizadas
+
+Si necesita editar las listas desplegables creadas en el
+link:../administration-panel/developer-tools/#_dropdown_editor[Editor de Listas Desplegables],
+esto se puede hacer tanto con la ayuda del editor
+como mediante la edición directa del archivo php, lo cual puede ser útil al editar grandes cantidades de datos.
+Por ejemplo, se muestra un archivo que contiene valores en inglés; deberá editar el archivo `/custom/include/language/en_us.lang.php`
+
+[source, php]
+----
+<? php
+$ GLOBALS ['app_list_strings'] ['planet_list'] = array (
+  'mars' => 'MARS',
+  'jupiter' => 'JUPITER',
+);
+$ GLOBALS ['app_list_strings'] ['satellite_list'] = array (
+  'mars_deimos' => 'DEIMOS',
+  'mars_phobos' => 'PHOBOS',
+  'jupiter_io' => 'IO',
+  'jupiter_europe' => 'EUROPE',
+  'jupiter_ganymede' => 'GANYMEDE',
+  'jupiter_callisto' => 'CALLISTO',
+);
+----

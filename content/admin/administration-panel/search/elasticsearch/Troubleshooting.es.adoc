@@ -1,0 +1,24 @@
+---
+title: Solución de problemas
+weight: 5
+---
+
+{{% notice info %}}
+Esta mejora solo está disponible en SuiteCRM a partir de la versión 7.11.
+{{% /notice %}}
+
+Para facilitar el proceso de solución de problemas de la extensión de Elasticsearch, se utiliza un archivo independiente que ofrece
+un registro muy detallado y específico: `search_index.log`. Esto se debe principalmente a que los procesos de indexación se ejecutan en
+segundo plano, donde resultan difíciles de depurar. Las llamadas de registro se redirigen al registro estándar, filtradas según
+el nivel de registro configurado.
+
+Además de revisar los registros, puede intentar ejecutar la búsqueda o la indexación desde la línea de comandos usando las
+link:../command-line-tools[herramientas de línea de comandos]. Dada la gran cantidad de información que muestra la consola, esto debería ayudarle a acotar
+el problema.
+
+Por último, al habilitar el *modo desarrollador* en la configuración de administración, se mostrará una página de excepción detallada si se produce un error
+en algún momento durante el proceso de búsqueda.
+
+:imagesdir: /images/en/admin/ElasticSearch
+
+image:ErrorPage.png[Ejemplo de una página de error detallada]

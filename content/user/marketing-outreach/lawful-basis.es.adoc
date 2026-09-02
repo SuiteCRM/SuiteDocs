@@ -1,0 +1,73 @@
+---
+title: "Base Legal"
+weight: 60
+aliases:
+  - /es/user/modules/LawfulBasis
+  - /es/user/modules/lawfulbasis
+---
+
+:experimental:
+:imagesdir: /images/en/user
+:toc:
+
+= Base Legal
+
+La función Base Legal permite hacer seguimiento de la base jurídica por la que una empresa tiene permiso para almacenar y procesar la información de una persona. Está diseñada principalmente para el cumplimiento del RGPD, pero es lo suficientemente genérica como para utilizarse con otros fines.
+
+== Campos de Base Legal
+
+La función añade tres campos auditables a los registros de Contacto, Cliente Potencial y Público Objetivo:
+
+* *Base Legal*: el fundamento jurídico para procesar los datos de la persona (por ejemplo: Consentimiento, Contrato, Obligación Legal, Intereses Vitales, Misión de Interés Público, Intereses Legítimos).
+* *Origen de la Base Legal*: cómo se estableció la base legal (por ejemplo: Sitio Web, Email, Teléfono).
+* *Fecha de Revisión*: la fecha en que se confirmó o actualizó por última vez la base legal.
+
+Para añadir estos campos a la vista de Edición o de Detalle de un módulo, vaya a *Admin* → *Studio* → seleccione el módulo → *Vista de Edición* o *Vista de Detalle*, y arrastre los campos al diseño.
+
+image:LawfulBasisStudio.png[title="Añadir los campos de Base Legal en Studio"]
+
+Puede hacer seguimiento de los cambios en estos campos mediante la acción *Ver Registro de Cambios* de un registro.
+
+image:LawfulBasisChangeLog.png[title="Registro de Cambios de Base Legal"]
+
+== Actualizar la Base Legal Manualmente
+
+=== Registro Individual
+
+Abra el registro y seleccione *Editar* en el menú *Acciones*. Actualice los campos de Base Legal y haga clic en **GUARDAR**.
+
+=== Actualización Masiva
+
+Para actualizar varios registros a la vez:
+
+. Vaya a la Vista de Lista de Contactos, Clientes Potenciales o Público Objetivo.
+. Seleccione las casillas de los registros que desea actualizar.
+. Seleccione *Actualización Masiva* en el desplegable *Acción Masiva*.
+. Desplácese hasta el final de la página para encontrar los campos de Base Legal.
+. Establezca los valores requeridos y haga clic en **Actualizar**.
+
+== Actualizar la Base Legal Automáticamente
+
+=== Mediante Formulario Web a Cliente Potencial
+
+Cuando la *Adhesión Confirmada* está configurada en *Admin* → *Configuración de Email*, cualquier Formulario Web a Persona creado en el módulo Campañas actualizará automáticamente los campos de Base Legal de los nuevos registros al enviarse el formulario:
+
+* *Base Legal:* Consentimiento
+* *Origen de la Base Legal:* Sitio Web
+* *Fecha de Revisión:* la fecha en que se hizo clic en el enlace de autorización
+
+=== Mediante Email de Adhesión Confirmada
+
+Cuando un contacto, cliente potencial o registro de público objetivo completa la confirmación de un email de Adhesión Confirmada, sus campos de Base Legal se actualizan automáticamente:
+
+* *Base Legal:* Consentimiento
+* *Origen de la Base Legal:* Email
+* *Fecha de Revisión:* la fecha en que se hizo clic en el enlace
+
+Para enviar un email de Adhesión Confirmada manualmente:
+
+. Vaya a la Vista de Lista de Contactos, Clientes Potenciales o Público Objetivo.
+. Seleccione las casillas de los registros que desea actualizar.
+. Seleccione *Enviar Email de Confirmación de Autorización* en el desplegable *Acción Masiva*.
+
+Consulte link:../confirmed-opt-in[Adhesión Confirmada] para más información sobre cómo configurar esta función.

@@ -1,0 +1,297 @@
+---
+title: "Referencia de Configuración"
+weight: 20
+---
+
+== Referencia de Configuración
+
+{{% notice info %}}
+Esta documentación corresponde a SuiteCRM 8.10.0+
+{{% /notice %}}
+
+Esta página enumera todas las variables de entorno y opciones de configuración del sistema relacionadas con Symfony Messenger y las tareas asíncronas. Las variables de entorno se establecen en el archivo `.env.local` situado en la raíz de su instalación de SuiteCRM. Las opciones de configuración del sistema se establecen en `config.php` (en el directorio `public/legacy/`).
+
+{{% notice note %}}
+Nunca edite el archivo `.env` directamente — se sobrescribe durante las actualizaciones. Cree o edite siempre `.env.local` para sobrescribir valores. El archivo `.env.local` tiene prioridad sobre `.env`.
+{{% /notice %}}
+
+=== DSN de Transporte
+
+Estas variables controlan qué broker de mensajes utiliza SuiteCRM para encolar las tareas en segundo plano.
+
+==== MESSENGER_INTERNAL_ASYNC_TRANSPORT_DSN
+
+La cadena de conexión para la cola principal de tareas asíncronas.
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `doctrine://default?queue_name=internal_async`
+| *Ubicación* | `.env.local`
+|===
+
+El valor por defecto utiliza Doctrine (su base de datos existente) como broker de mensajes. Los mensajes se almacenan en la tabla `messenger_messages` con el nombre de cola `internal_async`. Esta es la configuración recomendada y probada, adecuada para la mayoría de las instalaciones.
+
+Dado que SuiteCRM utiliza Symfony Messenger, también están disponibles transportes alternativos como AMQP (RabbitMQ), Redis y otros. Para más información sobre todos los transportes compatibles, consulte la https://symfony.com/doc/current/messenger.html#transport-configuration[documentación de transporte de Symfony Messenger].
+
+[cols="15,45,40"]
+|===
+| *Tipo* | *Formato del DSN* | *Notas*
+
+| Doctrine | `doctrine://default?queue_name=<name>` | *Por defecto.* Utiliza su base de datos existente. No requiere infraestructura adicional.
+| AMQP | `amqp://user:pass@host:5672/%2f/<queue>` | RabbitMQ. Para configuraciones de alto rendimiento o distribuidas.
+| Redis | `redis://host:6379/messages` | Cola basada en Redis. Rápida, en memoria.
+|===
+
+Ejemplo — cambiar a RabbitMQ:
+
+[source,bash]
+----
+MESSENGER_INTERNAL_ASYNC_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/suitecrm_async
+----
+
+==== MESSENGER_INTERNAL_FAILURE_TRANSPORT_DSN
+
+La cadena de conexión para la cola de fallos. Los mensajes fallidos se trasladan aquí para su posterior inspección y reintento.
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `doctrine://default?queue_name=failed`
+| *Ubicación* | `.env.local`
+|===
+
+Esto debería utilizar generalmente el mismo tipo de broker que el transporte principal.
+
+=== Registro (Logging)
+
+==== MESSENGER_LOG_LEVEL
+
+Controla el nivel de detalle del archivo de registro de Messenger.
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `error`
+| *Ubicación* | `.env.local`
+|===
+
+Valores válidos (de menos a más detallado): `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`, `debug`.
+
+Establézcalo en `info` para ver cada mensaje a medida que se envía y se consume — útil para verificar que el worker está en ejecución:
+
+[source,bash]
+----
+MESSENGER_LOG_LEVEL=info
+----
+
+==== MESSENGER_LOG_FILE_NAME
+
+Sobrescribe el nombre de archivo de registro predeterminado para los registros de Messenger.
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `<env>.messenger.log` (por ejemplo, `prod.messenger.log`)
+| *Ubicación* | `.env.local`
+|===
+
+Ejemplo:
+
+[source,bash]
+----
+MESSENGER_LOG_FILE_NAME=my_messenger.log
+----
+
+El archivo de registro se escribe en el directorio de registros (por defecto: `logs/<env>/`). Puede cambiar el directorio de registros con `LOG_DIR`.
+
+=== Configuración Avanzada de Transporte
+
+Estas variables son para configuraciones avanzadas en las que necesita transportes adicionales además de la cola `internal-async` predeterminada.
+
+==== MESSENGER_TRANSPORTS
+
+Defina transportes adicionales de Messenger como un objeto JSON. Los transportes personalizados se combinan con los valores predeterminados integrados (`internal-async`, `failed`, `notifier-sync`).
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `{}` (vacío — solo transportes integrados)
+| *Ubicación* | `.env.local`
+|===
+
+Cada entrada de transporte puede ser una simple cadena DSN o un objeto de configuración completo:
+
+[source,bash]
+----
+MESSENGER_TRANSPORTS='{
+    "report-export": "doctrine://default?queue_name=report_export",
+    "high-priority": {
+        "dsn": "amqp://guest:guest@rabbitmq:5672/%2f/high_priority",
+        "options": {
+            "auto_setup": true
+        },
+        "serializer": "messenger.transport.symfony_serializer"
+    }
+}'
+----
+
+**Campos del objeto de transporte:**
+
+[cols="20,80"]
+|===
+| *Campo* | *Descripción*
+
+| `dsn` | (obligatorio) La cadena de conexión del transporte.
+| `options` | (opcional) Opciones específicas del transporte que se pasan al driver del broker.
+| `serializer` | (opcional) ID del servicio de serializador personalizado. Utilice un nombre de clase totalmente cualificado para usar un serializador personalizado de una extensión.
+|===
+
+{{% notice warning %}}
+Los nombres de transporte personalizados deben ser únicos y no deben coincidir con los nombres integrados (`internal-async`, `failed`, `notifier-sync`). Si utiliza el mismo nombre que un transporte integrado, su configuración lo sobrescribirá.
+{{% /notice %}}
+
+==== MESSENGER_ROUTING
+
+Sobrescribe o amplía el enrutamiento de las clases de mensaje a los transportes. Esto controla qué transporte procesa cada tipo de mensaje.
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `{}` (vacío — utiliza el enrutamiento integrado)
+| *Ubicación* | `.env.local`
+|===
+
+El enrutamiento integrado es el siguiente:
+
+[cols="55,45"]
+|===
+| *Clase de Mensaje* | *Transporte*
+
+| `App\AsyncTask\Message\AsyncTaskRun` | `internal-async`
+| `App\AsyncTask\Message\AsyncTaskCompleted` | `internal-async`
+| `App\AsyncTask\Message\AsyncTaskProgressed` | `internal-async`
+| `App\AsyncTask\Message\AsyncTaskFailure` | `internal-async`
+| `App\Notifier\Message\Notification` | `notifier-sync`
+|===
+
+Las entradas personalizadas se combinan con las predeterminadas. Para enrutar una clase de mensaje personalizada a un transporte personalizado:
+
+[source,bash]
+----
+MESSENGER_ROUTING='{
+    "App\Extension\myExt\Message\MyCustomMessage": "report-export"
+}'
+----
+
+{{% notice note %}}
+Los mensajes de tareas asíncronas (`AsyncTaskRun`, `AsyncTaskCompleted`, etc.) deberían permanecer generalmente en `internal-async`. Solo sobrescriba esto si comprende las implicaciones — el sistema de tareas asíncronas espera que todos los mensajes de tareas estén en el mismo transporte para una correcta gestión del ciclo de vida.
+{{% /notice %}}
+
+==== MESSENGER_SERIALIZER
+
+Sobrescribe la configuración del serializador de mensajes global.
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | Serializador de Symfony con formato JSON
+| *Ubicación* | `.env.local`
+|===
+
+La configuración predeterminada es la siguiente:
+
+[source,bash]
+----
+MESSENGER_SERIALIZER='{
+    "default_serializer": "messenger.transport.symfony_serializer",
+    "symfony_serializer": {
+        "format": "json",
+        "context": {}
+    }
+}'
+----
+
+Generalmente no es necesario cambiar esto. Los serializadores por transporte (establecidos mediante `MESSENGER_TRANSPORTS`) tienen prioridad sobre el serializador global.
+
+=== Enrutamiento de Tareas Asíncronas
+
+==== ASYNC_TASK_ROUTES
+
+Enruta manejadores de tareas asíncronas específicos a transportes específicos. Esto le permite separar distintos tipos de trabajo en segundo plano en colas diferentes (por ejemplo, enviar exportaciones PDF pesadas a un transporte dedicado con más recursos).
+
+[cols="20,80"]
+|===
+| *Valor por defecto* | `{}` (vacío — todas las tareas utilizan el enrutamiento predeterminado de Messenger)
+| *Ubicación* | `.env.local`
+|===
+
+El valor es un objeto JSON con dos secciones:
+
+* *modules* — enruta tareas por módulo y clave de manejador (lo más específico).
+* *default* — enruta tareas por clave de manejador con independencia del módulo (alternativa por defecto).
+
+Las rutas específicas de módulo tienen prioridad sobre las predeterminadas.
+
+[source,bash]
+----
+ASYNC_TASK_ROUTES='{
+    "modules": {
+        "accounts": {
+            "print-pdf": "report-export",
+            "export": "report-export"
+        }
+    },
+    "default": {
+        "print-pdf": "report-export"
+    }
+}'
+----
+
+En este ejemplo:
+
+* Las exportaciones PDF y CSV del módulo de Cuentas van al transporte `report-export`.
+* Las exportaciones PDF de *cualquier otro módulo* también van a `report-export` (a través de la sección `default`).
+* El resto de tareas utilizan el transporte estándar `internal-async`.
+
+{{% notice note %}}
+Los nombres de transporte utilizados aquí (por ejemplo, `report-export`) deben estar definidos, ya sea como transporte integrado o mediante `MESSENGER_TRANSPORTS`. Si una ruta hace referencia a un transporte que no existe, el mensaje no podrá enviarse.
+{{% /notice %}}
+
+=== Configuración del Sistema (config.php)
+
+Estos ajustes se encuentran en el archivo `config.php` (ubicado en `public/legacy/` o en la raíz de SuiteCRM, según su configuración). Controlan el tamaño de los lotes para el procesamiento de tareas asíncronas.
+
+==== Ajustes de Tamaño de Lote
+
+[cols="45,10,45"]
+|===
+| *Ajuste* | *Valor por defecto* | *Descripción*
+
+| `max_migration_items_to_queue_per_run` | `50` | Número máximo de elementos a encolar por lote durante la fase de encolado de las Tareas de Migración Manual.
+| `max_migration_items_to_process_per_run` | `20` | Número máximo de elementos a procesar por lote durante la fase de procesamiento de las Tareas de Migración Manual.
+| `max_processes_items_to_queue_per_run` | `50` | Número máximo de elementos a encolar por lote durante la fase de encolado de las tareas asíncronas basadas en procesos (exportaciones masivas, etc.).
+| `max_processes_items_to_process_per_run` | `20` | Número máximo de elementos a procesar por lote durante la fase de procesamiento de las tareas asíncronas basadas en procesos.
+|===
+
+Los valores más bajos reducen el uso de memoria por lote, pero aumentan el número de lotes (y el tiempo total de procesamiento). Los valores más altos procesan más rápido, pero utilizan más memoria.
+
+Para cambiar un valor, añada o edite la entrada en `config_override.php`:
+
+[source,php]
+----
+$sugar_config['max_migration_items_to_process_per_run'] = 50;
+----
+
+=== Resumen de Todas las Variables
+
+[cols="40,30,30"]
+|===
+| *Variable* | *Valor por defecto* | *Archivo*
+
+| `MESSENGER_INTERNAL_ASYNC_TRANSPORT_DSN` | `doctrine://default?queue_name=internal_async` | `.env.local`
+| `MESSENGER_INTERNAL_FAILURE_TRANSPORT_DSN` | `doctrine://default?queue_name=failed` | `.env.local`
+| `MESSENGER_LOG_LEVEL` | `error` | `.env.local`
+| `MESSENGER_LOG_FILE_NAME` | `<env>.messenger.log` | `.env.local`
+| `MESSENGER_TRANSPORTS` | `{}` | `.env.local`
+| `MESSENGER_ROUTING` | `{}` | `.env.local`
+| `MESSENGER_SERIALIZER` | `{}` | `.env.local`
+| `ASYNC_TASK_ROUTES` | `{}` | `.env.local`
+| `max_migration_items_to_queue_per_run` | `50` | `config.php`
+| `max_migration_items_to_process_per_run` | `20` | `config.php`
+| `max_processes_items_to_queue_per_run` | `50` | `config.php`
+| `max_processes_items_to_process_per_run` | `20` | `config.php`
+|===

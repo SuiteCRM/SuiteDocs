@@ -1,0 +1,22 @@
+---
+title: "Navegación"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts
+
+= Navegación
+
+El menú de navegación superior es el menú principal que utilizará para navegar hasta los módulos y así crear y gestionar registros.
+
+image:top-navigation-menu.png[Menú de navegación superior de SuiteCRM]
+
+El menú de navegación superior tiene los siguientes elementos:
+
+* *Botón de Inicio:* le devuelve a su Página de Inicio.
+* *Módulos:* según su preferencia de usuario, los módulos se mostrarán en la barra de navegación de forma individual o agrupados en filtros de menú de módulos, como Ventas, Marketing o Soporte. Independientemente de cómo se muestren, puede acceder a los registros del módulo y crearlos de la misma forma.
+* *Acciones Rápidas:* el icono + le permite crear rápidamente tipos de registro concretos. No todos los módulos están disponibles mediante este método, solo puede crearse así un conjunto seleccionado de tipos de registro de uso común. No obstante, si ya se encuentra dentro de un módulo, por ejemplo, viendo la Vista de Lista de Documentos, el icono + también incluirá la opción de crear un nuevo registro para ese módulo.
+* *Vistos Recientemente:* el icono de reloj le permite ver los registros a los que ha accedido recientemente, dejando un rastro de navegación para que los registros vistos anteriormente puedan consultarse rápidamente.
+* *Búsqueda Global:* le permite buscar registros y datos en todo SuiteCRM.
+* *Campana de Notificaciones:* muestra el número de notificaciones que aún no ha leído.
+* *Menú de Usuario:* muestra el nombre de usuario del usuario que ha iniciado sesión actualmente. El menú desplegable le da acceso a su Perfil de Usuario, a Empleados, al Foro de la Comunidad, a la página Acerca de y a un enlace para cerrar sesión.

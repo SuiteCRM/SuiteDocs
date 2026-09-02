@@ -1,0 +1,82 @@
+---
+title: "Sincronización de Calendario"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/integrations/calendar-sync
+
+= Sincronización de Calendario
+
+Calendar Sync conecta SuiteCRM con un calendario externo (Google Calendar o un servidor CalDAV) para que sus reuniones se sincronicen de forma bidireccional — las actualizaciones en SuiteCRM aparecen en su calendario externo, y las actualizaciones en su calendario externo aparecen en SuiteCRM.
+
+Cada usuario gestiona su propia conexión a través del módulo Calendar Accounts.
+
+== Requisitos Previos
+
+Antes de crear una Calendar Account, confirme lo siguiente:
+
+*Para Google Calendar:*
+
+* Su administrador debe haber configurado un External OAuth Provider desde el panel de Admin.
+* Debe crear una External OAuth Connection desde su perfil de usuario. Seleccione el proveedor de Google que haya configurado su administrador.
+
+Si el OAuth Provider no está disponible, contacte con su administrador antes de continuar.
+
+*Para CalDAV:*
+
+* Necesitará la URL, el nombre de usuario y la contraseña de su servidor CalDAV. Consulte link:../caldav-guide[Guía de Proveedores CalDAV] para encontrar la URL correcta para su servidor.
+
+*Para todos los proveedores:*
+
+* El scheduler de SuiteCRM debe estar en ejecución y el job *Calendar Accounts Sync* debe estar activo en el panel de Admin. Sin esto, solo estará disponible la sincronización manual. Contacte con su administrador si no está seguro.
+
+== Configurar Google Calendar
+
+. En la Barra de Navegación, pase el ratón sobre su nombre de usuario en la esquina superior derecha de la pantalla y haga clic en *Edit Profile*.
+. Navegue hasta *External OAuth Connections* y cree una conexión utilizando el proveedor de Google. Guárdela.
+. Navegue hasta el módulo *Calendar Accounts* y haga clic en *Create Calendar Account*.
+. Introduzca un *Name* (por ejemplo, "My Google Calendar").
+. Establezca *Calendar Source* en *Google Calendar*.
+. Seleccione su OAuth Connection de la lista.
+. Haga clic en *Authenticate*. Se abre una ventana emergente con la pantalla de autorización de Google.
+. Inicie sesión en su cuenta de Google y haga clic en *Allow*.
+. La ventana emergente se cierra automáticamente cuando se completa la autorización.
+. Haga clic en *Save*.
+
+{{% notice note %}}
+Su navegador debe permitir ventanas emergentes desde su dominio de SuiteCRM para que funcione el flujo de autorización de Google. Si la ventana emergente se bloquea, habilite las ventanas emergentes para SuiteCRM e inténtelo de nuevo.
+{{% /notice %}}
+
+== Configurar CalDAV
+
+. Navegue hasta el módulo *Calendar Accounts* y haga clic en *Create Calendar Account*.
+. Introduzca un *Name* (por ejemplo, "My Nextcloud Calendar").
+. Establezca *Calendar Source* en *CalDAV*.
+. Introduzca su *Server URL*, *Username* y *Password*.
++
+Si no está seguro de la URL correcta, consulte link:../caldav-guide[Guía de Proveedores CalDAV].
+. Haga clic en *Save*.
+
+== Probar la Conexión
+
+Después de guardar una Calendar Account, vuelva a abrirla en la Vista de Edición. Aparecerá un botón *Test Connection*. Haga clic en él para verificar la conexión y, a continuación, haga clic en *Save* de nuevo para registrar el resultado de la prueba.
+
+El campo *Test Successful* en la Vista de Detalle muestra si la última prueba se superó correctamente.
+
+== Sincronización Manual
+
+Desde la Vista de Detalle de la Calendar Account, haga clic en *Sync Now* para iniciar una sincronización inmediata sin esperar a la siguiente ejecución programada. Utilícelo después de realizar cambios o para confirmar que la conexión funciona.
+
+== Estado de Sincronización
+
+La Vista de Detalle de la Calendar Account muestra campos de estado de solo lectura que se actualizan después de cada sincronización:
+
+* *Sync Status*: estado actual: In Progress, Success, Warning o Error.
+* *Sync Message*: detalles de la última ejecución de sincronización.
+* *Last Sync Date*: cuándo se completó correctamente la última sincronización.
+
+Si el estado de sincronización muestra un error, consulte *Sync Message* para más detalles. Contacte con su administrador si el problema está relacionado con la configuración de OAuth, el scheduler o la conectividad del servidor.
+
+== Recursos para Administradores
+
+Para la configuración global de sincronización, la configuración del scheduler y la resolución de problemas avanzada, consulte el resumen del link:../../../../admin/administration-panel/administration-panel[Panel de Administración].

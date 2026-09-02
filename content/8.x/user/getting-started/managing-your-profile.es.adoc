@@ -1,0 +1,92 @@
+---
+title: "Gestionar Su Perfil"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/user/getting-started
+
+= Gestionar Su Perfil
+
+Existen muchas opciones de configuración disponibles una vez que ha iniciado sesión en SuiteCRM. Puede ver y modificar sus preferencias pasando el cursor sobre el icono de usuario en la sección superior derecha del menú de navegación y haciendo clic en *Edit Profile*.
+
+image:user-menu.png[Menú de usuario mostrando la opción Edit Profile]
+
+== Pestaña Perfil de Usuario
+
+Una vez que haya hecho clic para acceder a sus preferencias, se le llevará a la pestaña *User Profile*, que ofrece una vista general de sus credenciales, como nombre de usuario, nombre, apellidos y puesto. Aquí también puede introducir su información de empleado y actualizar la configuración de su correo electrónico.
+
+image:user-profile-tab.png[Pestaña User Profile]
+
+== Configuración de la Cuenta de Correo Personal
+
+Configurar una cuenta de correo personal en SuiteCRM le permite ver cuentas de correo personales dentro del módulo *Emails*.
+
+image:email-settings.png[Configuración de la cuenta de correo personal]
+
+* *Email Address:* añada la(s) dirección(es) de correo electrónico de su cuenta de SuiteCRM. Haga clic en *+* para añadir más direcciones. Cuando tenga más de una dirección de correo electrónico, puede especificar cuál es la dirección principal utilizando el botón de opción _Primary_. También puede especificar qué cuenta utilizar como cuenta de _Reply-to_.
+* *Email Client:* este ajuste controla qué editor se utiliza para redactar y enviar correo cuando hace clic en un enlace de correo electrónico en SuiteCRM, por ejemplo una dirección de correo electrónico en un registro de Contacto o de Cuenta.
+** *SuiteCRM Email Editor*: se utilizará el editor del módulo _Emails_ de SuiteCRM.
+** *External Email Editor:* los enlaces de correo en SuiteCRM se abrirán con el cliente de correo que tenga configurado para abrir enlaces mailto://, por ejemplo Outlook o Thunderbird.
+* *Editor:* esto le permite establecer el editor utilizado al crear y editar plantillas de correo electrónico y dentro del módulo _Campaigns_. Las opciones disponibles son Direct HTML y TinyMCE.
+* *Settings:* hay ajustes adicionales para el correo. Puede acceder a ellos haciendo clic en el botón *Settings*:
+** *Check for New Mail*: especifique un intervalo de tiempo para comprobar automáticamente si hay correo nuevo en las carpetas monitorizadas de su cuenta. El ajuste predeterminado es comprobar el correo manualmente utilizando el botón *Check Mail* en la Vista de Lista de _Emails_.
+** *Default Signature*: especifique la firma predeterminada que se añadirá al cuerpo del correo cuando se redacte uno nuevo. Haga clic en *Create* para añadir una nueva o seleccione una de la lista. Las firmas existentes pueden editarse y eliminarse aquí.
+** *Folder Management*: seleccione la(s) carpeta(s) que estarán disponibles para ver desde el módulo _Emails_. Esta lista mostrará todas las carpetas monitorizadas de todas las cuentas de correo a las que tenga acceso. Utilice Ctrl+clic para seleccionar más de una carpeta.
+
+Haga clic en *Done* para guardar su configuración. Aparecerá un cuadro de diálogo de confirmación.
+
+== Pestaña Contraseña
+
+Al hacer clic en la pestaña *Password* podrá cambiar la contraseña de su cuenta de usuario. Para cambiar su contraseña, deberá especificar la contraseña actual, una nueva contraseña y confirmar la nueva contraseña. Se recomienda que las contraseñas sean seguras.
+
+image:password-tab.png[Pestaña Password]
+
+== Pestaña Avanzado
+
+La pestaña *Advanced* le permite modificar las preferencias de usuario que estableció durante el proceso del Asistente de Usuario. Esto le brinda la posibilidad de cambiar cualquiera de sus preferencias de usuario si hubo algún error o si necesita modificarlas en una fecha posterior.
+
+image:advanced-tab.png[Pestaña Advanced]
+
+== Autenticación de Dos Factores
+
+La pestaña *Two-Factor Authentication* muestra el estado actual de su configuración de 2FA. Para conocer las instrucciones completas de configuración, inicio de sesión y códigos de recuperación, consulte la página link:../two-factor-authentication/[Autenticación de Dos Factores].
+
+== Opciones de Diseño
+
+La pestaña *Layout Options* le permite personalizar la apariencia y el comportamiento de su interfaz de SuiteCRM. Los cambios realizados aquí son específicos de su cuenta de usuario y no afectarán a ningún otro usuario.
+
+image:layout-options-tab.png[Pestaña Layout Options]
+
+Están disponibles los siguientes ajustes:
+
+* *Style:* seleccione el tema visual que desea utilizar para su interfaz de SuiteCRM. El tema disponible es Dawn.
+* *Module Menu Filters:* cuando está habilitado, los módulos mostrados en la barra de navegación reflejarán la configuración de pestañas de grupo establecida por su administrador del sistema, permitiéndole navegar por los módulos agrupados. Cuando está deshabilitado, todos los módulos se listarán individualmente en la barra de navegación independientemente de cualquier configuración de pestañas de grupo.
+* *Select Modules for Navigation Bar:* este ajuste le permite controlar qué módulos aparecen en su Barra de Navegación Superior. Los módulos listados en Display Modules serán visibles en la barra de navegación, mientras que los listados en Hide Modules no lo serán. Puede mover módulos entre ambas listas utilizando los botones de flecha, y reordenar los módulos mostrados utilizando las flechas de subir y bajar. Esto resulta útil si desea priorizar los módulos que utiliza con más frecuencia y eliminar aquellos que no necesita.
+* *Sort Modules Alphabetically:* cuando está habilitado, los módulos mostrados en su barra de navegación se ordenarán alfabéticamente. Cuando está deshabilitado, los módulos aparecerán en el orden que haya especificado en el ajuste Select Modules for Navigation Bar anterior.
+* *Sub-panel Pagination Type:* controla cómo se paginan los registros dentro de los subpaneles. Las opciones disponibles son Pagination (navegación tradicional por páginas) o Load More (un estilo de desplazamiento continuo en el que se cargan registros adicionales bajo demanda). Seleccione la opción que se ajuste a su forma de trabajar preferida.
+* *List View Pagination Type:* controla cómo se paginan los registros dentro de las Vistas de Lista en todos los módulos. Al igual que con el ajuste de subpaneles, las opciones disponibles son Pagination o Load More.
+* *Pop Up Record List Pagination Type:* controla el estilo de paginación utilizado en las ventanas emergentes de selección de registros, como al vincular un registro existente a otro a través de un subpanel. Las opciones disponibles son las mismas que las anteriores.
+* *Show Collapsed Sub-panel Hint:* cuando está habilitado, se mostrará una indicación en los subpaneles colapsados para señalar que existen registros relacionados, incluso cuando el subpanel no está expandido. Este ajuste se aplica a los módulos que todavía se muestran en la vista clásica. Para los módulos que utilizan la interfaz moderna de SuiteCRM, este ajuste no tiene efecto, ya que el número de registros relacionados se muestra de forma predeterminada en la ficha del subpanel.
+* *Sub-panel Tabs:* cuando está habilitado, los subpaneles dentro de la sección de Relaciones de un registro se agrupan en pestañas en lugar de mostrarse como fichas individuales. Al igual que con el ajuste anterior, esto solo se aplica a los módulos que todavía se muestran en la vista clásica. Para los módulos que utilizan la interfaz moderna de SuiteCRM, los subpaneles se muestran como fichas individuales dentro de la cuadrícula de Relaciones y este ajuste no tiene efecto.
+
+Una vez que haya realizado sus cambios, haga clic en *Save* para aplicarlos. Sus preferencias de diseño actualizadas surtirán efecto de inmediato.
+
+{{% notice note %}}
+Algunas opciones de diseño pueden estar restringidas o preconfiguradas por su administrador del sistema y podrían no estar disponibles para que los usuarios individuales las cambien.
+{{% /notice %}}
+
+== Restablecer Sus Preferencias
+
+Puede restablecer sus preferencias de usuario a los valores predeterminados del sistema haciendo clic en el botón *Reset User Preferences* de su perfil.
+
+image:reset-preferences.png[Botón Reset User Preferences]
+
+Al hacer clic en el botón se le pedirá que confirme, con el mensaje: "Are you sure you want to reset all of your user preferences? Warning: This will also log you out of the application." A continuación puede hacer clic en *OK* o *Cancel* según corresponda. Si selecciona *OK*, se cerrará su sesión y deberá volver a iniciar sesión.
+
+== Restablecer Su Página de Inicio
+
+Puede restablecer su Página de Inicio a los valores predeterminados del sistema haciendo clic en el botón *Reset Homepage*. Esto restablecerá tanto las preferencias como los diseños de Dashlets y Dashboards a los valores predeterminados del sistema.
+
+image:reset-homepage.png[Botón Reset Homepage]
+
+Al hacer clic en el botón se le pedirá que confirme con el mensaje: "Are you sure you want to reset your Homepage?" A continuación puede hacer clic en *OK* o *Cancel* según corresponda.

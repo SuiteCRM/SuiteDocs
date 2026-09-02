@@ -1,0 +1,363 @@
+---
+title: "Campañas"
+weight: 10
+aliases:
+  - /es/8.x/user/modules/_campaigns/
+---
+
+:imagesdir: /images/en/8.x/user/modules/campaigns/
+
+= Campañas
+
+== Descripción General
+
+El módulo Campañas de SuiteCRM puede utilizarse para enviar y hacer seguimiento de distintos tipos de Emails, como de Marketing, Transaccionales y de Encuesta,
+a Objetivos seleccionados (Usuarios, Contactos, Público Objetivo, Clientes Potenciales y Cuentas).
+
+Con las herramientas de seguimiento integradas en el módulo Campañas, puede supervisar en tiempo real la respuesta que recibe de su Campaña.
+Esto le permite ver la actividad de los destinatarios de su Campaña, como quiénes han visto el email, han hecho clic en un enlace o han sido bloqueados.
+
+== Crear una Campaña
+
+Desde el módulo Campañas, seleccione "Crear Campaña" en el menú desplegable del módulo.
+
+image:Campaign-Edit.png[Vista de Creación de Campañas]
+
+=== Descripción General
+
+[cols="20,80"]
+|===
+|*Nombre*|El nombre de la Campaña.
+|*Fecha de Inicio*|Se trata de una fecha orientativa y no determina el inicio del proceso de envío de la campaña.
+|*Fecha de Fin*|Se trata de una fecha orientativa y no determina el fin del proceso de envío de la campaña.
+|*Descripción*|Descripción opcional de la Campaña.
+|*Listas de Exclusión*| Las Listas de Exclusión excluirán a determinados objetivos de su Campaña. Si no se añade una Lista de Exclusión (Por Id) en el momento de la creación, se creará / añadirá una automáticamente. Para más información
+sobre las Listas de Exclusión, consulte link:../../../../user/marketing-outreach/target-lists/#_target_list_types[aquí.]
+|*Listas de Público Objetivo*| Listas de posibles Objetivos a los que se enviará su campaña.
+|===
+
+{{% notice note %}}
+Las Listas de Público Objetivo que seleccione aquí serán las *únicas* Listas de Público Objetivo que se muestren / puedan seleccionarse en el Registro de Marketing
+{{% /notice %}}
+
+=== Presupuesto
+
+[cols="30,70"]
+|===
+|*Presupuesto*|El presupuesto de la Campaña.
+|*Coste Esperado*|El coste esperado de la Campaña.
+|*Coste Real*|El coste real de la Campaña.
+|*Ingresos Esperados*|Los ingresos esperados de la Campaña.
+|*Objetivo*| El objetivo de la Campaña.
+|*Impresiones*| Cuántas impresiones ha tenido la Campaña.
+|===
+
+== Gráficos de la Campaña
+
+image:Campaign-Charts.png[Gráficos de la Campaña]
+
+Dentro de las Perspectivas (Insights) de Campañas hay dos gráficos *nuevos*.
+
+=== Respuesta de la Campaña por Actividad del Destinatario
+
+[cols="30,70"]
+|===
+|*Enviados/Intentados*|El número de Emails enviados.
+|*Mensaje Visto*|De los emails enviados, cuáles han sido vistos.
+|*Enlace con Clic*|El número de usuarios únicos que han hecho clic en el enlace.
+|*Rehusados*|El número de objetivos que han rehusado.
+|===
+
+=== Estado de Envío de la Campaña
+
+[cols="40,60"]
+|===
+|*Cola de Mensajes*|El número de Emails actualmente en cola para enviar.
+|*Enviados/Intentados*|El número de Emails enviados.
+|*Suprimidos/Bloqueados*|De los enviados, cuáles han sido suprimidos / bloqueados.
+|*Mensajes Rebotados, Email No Válido*|El número de mensajes rebotados / rebotados por tener un email no válido.
+|*Mensajes Rebotados, Otros*|El número de mensajes rebotados por otras razones, como ser un email duplicado.
+|===
+
+== Tabla de Acciones de la Campaña
+
+Después de crear el registro de la Campaña, verá una nueva tabla de "Acciones de Campaña".
+
+image:Campaign-Actions-Table.png[Tabla de Acciones de Campañas]
+
+Esta tabla tiene cuatro acciones:
+
+[cols="20,80"]
+|===
+|*Nuevo Email de Marketing*| Esta acción creará un Registro de Email de Marketing de tipo Marketing; este registro requiere un enlace
+de baja en el cuerpo del Email. Para añadir un enlace de baja, consulte link:#_opt_out_tracker[Rastreador de Rehúse.]
+|*Nuevo Email Transaccional*|Esta acción creará un Registro de Email de Marketing de tipo Transaccional; este registro *no* debe tener
+un enlace de baja en el cuerpo del Email.
+|*Nuevo Email de Encuesta*|Esta acción creará un Registro de Email de Marketing de tipo Encuesta; este registro también debe tener un enlace de baja.
+|*Nueva Encuesta*|Esta acción creará una nueva Encuesta.
+|===
+
+== Crear un Registro de Email de Marketing
+
+image:create-email-marketing-demo.gif[Crear Email de Marketing]
+
+=== Campos del Email de Marketing
+
+*Estado*
+
+[cols="20,80"]
+|===
+|*Borrador*| * Mientras esté en borrador, el registro no comenzará a enviarse en la "Fecha de Ejecución Programada".
+
+* El registro *solo* es editable mientras está en borrador.
+
+* Los Emails de Prueba *solo* pueden enviarse mientras el registro está en borrador.
+|*Programado*| * Cuando está programado, el registro comenzará a enviar Emails en lotes (según el ajuste "Número de emails procesados/enviados por lote")
+en la "Fecha de Ejecución Programada".
+
+* Este estado se consigue seleccionando el botón "Programar".
+
+* Para volver a poner el registro en borrador, seleccione el botón "Anular Programación"; *no* puede hacerlo una vez iniciado el proceso de envío.
+|*Pausado*| * Este estado se establece al alcanzar el umbral de errores por lote (según el ajuste "Umbral de errores por lote"), o se pausará porque el Email Saliente no puede conectarse a SMTP.
+
+* Esto pausará tanto el proceso de puesta en cola como el de envío del registro hasta que se reanude (puede hacerse mediante la acción "Reanudar").
+
+* Cuando está pausado, se mostrará un banner de aviso indicando que el registro está en pausa por demasiados errores, junto con el error más reciente del último email fallido (o error de conexión SMTP).
+
+|*Envío Pendiente*| * Si el registro está "Programado" y la "Fecha de Ejecución Programada" ya ha pasado, el registro se mostrará como envío pendiente y será recogido la próxima vez que se ejecute el Planificador.
+
+* Mientras está en "envío pendiente", este registro ya no puede "anularse la programación". Para detener el proceso, seleccione el botón "Abortar".
+|*Enviando*| * Este estado se mostrará si los Emails se están / han sido puestos en cola y el proceso de envío ha comenzado.
+
+* Mientras está "enviando", este registro ya no puede "anularse la programación". Para detener el proceso, seleccione el botón "Abortar".
+|*Enviado*| * Esto se mostrará si se ha enviado / intentado enviar a todos los Objetivos.
+|*Abortado*| * Esto se mostrará si el registro fue abortado durante el proceso de envío.
+|===
+
+*Estado de la Cola*
+
+[cols="20,80"]
+|===
+|*No Iniciado*| * Esto se mostrará cuando no se haya puesto en cola ningún email desde este Registro de Email de Marketing para su envío.
+|*En Curso*| * Esto se mostrará cuando el Planificador haya recogido este Registro de Marketing y haya comenzado a poner en cola los emails a enviar.
+
+* El número de emails que pone en cola a la vez depende del ajuste "Número de emails procesados/enviados por lote".
+|*Finalizado*| * Esto se mostrará cuando todos los Emails hayan sido puestos en cola para su envío.
+
+* Tenga en cuenta que, aunque se muestre como finalizado aquí, el envío puede seguir en proceso.
+|===
+
+*De*
+
+Esta es la cuenta de Email Saliente que se utilizará para enviar.
+
+*Listas de Público Objetivo*
+
+Las Listas de Público Objetivo seleccionadas aquí serán los Objetivos a los que se enviará el Email cuando esté "Programado".
+
+*Plantilla*
+
+Puede seleccionar una plantilla de email existente para este registro y editarla tras seleccionarla, o no utilizar ninguna.
+
+*Fecha de Ejecución Programada*
+
+Esta es la fecha / hora programada en la que comenzará el proceso de envío para el Registro de Email de Marketing.
+
+*Rastreadores Habilitados*
+
+Esto sirve para habilitar los rastreadores en este Registro de Email de Marketing específicamente.
+
+Tenga en cuenta que, si los rastreadores están deshabilitados globalmente, *no* podrá habilitarlos en un registro de Email de Marketing.
+
+Consulte más información sobre los rastreadores link:#_tracker_urls[aquí].
+
+*Gestión de Duplicados*
+
+[cols="20,80"]
+|===
+|*Evitar el envío a registros duplicados*| Esto evitará el envío al mismo registro si está seleccionado en varias listas de público objetivo.
+|*Evitar el envío a registros y direcciones de email duplicados*|Esto evitará el envío dos veces a la misma dirección de email; si dos registros tienen el mismo email,
+solo se enviará a uno de ellos y el otro quedará bloqueado.
+|===
+
+*Asunto*
+
+Este será el asunto del Registro de Email de Marketing que se envía.
+
+*Cuerpo*
+
+Este será el contenido del Registro de Email de Marketing que se envía.
+
+*Cuerpo: Barra de Herramientas*
+
+image:Body-Toolbar.png[Barra de Herramientas del Cuerpo]
+
+Al pasar el cursor sobre cada botón se mostrará la función del botón (por ejemplo "Negrita", "Cursiva"...)
+
+Además de los botones estándar del editor, también encontrará:
+
+[cols="20,80"]
+|===
+|*image:Unsubscribe-Icon.png[Rehusar,width=75]*| Esto inyectará un enlace de rehúse en el cuerpo del email.
+|*image:Code-Icon.png[Código, width=75]*| Esto cambiará el editor a un editor Monaco - un campo HTML.
+|*image:Variable-Injector-Icon.png[Código, width=75]*| Esto le permitirá insertar variables marcador de posición en el email.
+|===
+
+Para más información sobre el Insertador de Variables, consulte link:../../daily-activities/emails/email-compose#_variable_injection[aquí.]
+
+== URLs de Rastreo
+
+Las URLs de rastreo pueden utilizarse para insertar un enlace al sitio web de su organización o un enlace directo a un producto nuevo que haya lanzado, por ejemplo.
+Se añade un id único al enlace para cada destinatario, lo que permite a SuiteCRM hacer seguimiento de los clics.
+
+La información recopilada puede consultarse de forma conjunta en los gráficos del registro o, de forma más individual, en los subpaneles situados debajo del registro.
+
+image:track_recipient_activity.gif[Actividad del Destinatario]
+
+Para habilitar los rastreadores globalmente, acceda a "Configuración de Email de Campañas" a través del Menú de Administración.
+
+=== Cómo añadir rastreadores
+
+Puede añadir rastreadores a su Registro de Email de Marketing añadiendo un hipervínculo a través del campo de cuerpo del Email de Campaña.
+
+image:Tracker.gif[Enlace de Rastreo]
+
+=== Rastreador de Rehúse
+
+Un enlace de Rehúse permite al destinatario darse de baja de futuros Emails de Marketing.
+
+Para añadir un rastreador de rehúse a su Registro de Email de Marketing, puede seleccionar el icono:
+
+image:Unsubscribe-Icon.png[Icono de Rehúse]
+
+Esto añadirá un enlace de baja al email.
+
+{{% notice info %}}
+Se requiere un enlace de baja tanto en un registro de Email de Marketing de tipo marketing como de tipo encuesta.
+{{% /notice %}}
+
+== Acciones del Registro de Email de Marketing
+
+=== Enviar Email de Prueba
+
+Puede enviar un email de prueba a un Usuario, a una Lista de Público Objetivo de prueba o a una Dirección de Email específica.
+
+image:send_test_entries_demo.gif[Enviar Email de Prueba]
+
+De esta forma puede ver la campaña como un destinatario y comprobar que aparece tal y como debería.
+
+Esto también debería procesar las variables en el cuerpo del email, de forma que pueda comprobar que funcionan correctamente.
+
+Las Entradas de Prueba generarán vistas y clics, etc., que pueden consultarse en los subpaneles y gráficos del registro.
+
+image:test-entries-demo.gif[Entradas de Prueba]
+
+Después de enviar emails de prueba, se mostrará un banner de aviso indicando que los datos mostrados son datos de prueba.
+
+Cambiar `test_email_limit` a través de `config.php` permite enviar más emails de prueba a la vez. El valor por defecto es 50.
+
+*No* puede enviar un email de prueba después de Programar.
+
+=== Eliminar Entradas de Prueba
+
+Esto eliminará todas las entradas de prueba creadas al enviar emails de prueba.
+
+Las entradas de prueba se eliminarán cuando el registro esté "Programado".
+
+=== Programar
+
+Esto Programará el Registro de Email de Marketing para que comience a ponerse en cola / enviarse en la Fecha de Ejecución Programada.
+
+Programar también elimina las entradas de prueba.
+
+{{% notice info %}}
+El registro *NO PUEDE* editarse / actualizarse después de programarse.
+{{% /notice %}}
+
+=== Anular Programación
+
+Una vez que el registro ha sido programado, esta acción establecerá el registro en Borrador y permitirá al usuario realizar más cambios.
+
+{{% notice info %}}
+El registro solo puede anular su programación antes de que haya comenzado el proceso de envío. Después de esta etapa, el registro debe "Abortarse" para detener el proceso.
+{{% /notice %}}
+
+=== Reanudar
+
+Esto reanudará el proceso de puesta en cola / envío si el registro ha sido pausado.
+
+Esto se mostrará si el registro ha sido pausado por alcanzar el umbral de errores o si el Email Saliente no puede conectarse a SMTP.
+
+Se mostrará un banner de aviso con el error más reciente que provocó la pausa, junto con la opción de reanudar.
+
+image:warning-banner.png[Banner de Aviso de Campañas]
+
+=== Abortar
+
+Esto detendrá el proceso de envío del registro y eliminará todo lo relativo a este registro de la cola de mensajes.
+
+== Perspectivas del Email de Marketing
+
+=== Comprobación de Estado del Email de Marketing
+
+image:Status-Check-Widget.png[Widget de Comprobación de Estado]
+
+==== Planificadores
+
+Esto mostrará el intervalo de tres planificadores relacionados con los Emails de Campaña.
+
+[cols="20,80"]
+|===
+|*Enviar Emails de Campaña*|  Con qué frecuencia se enviarán los Emails de Campaña por lotes.
+|*Poner en Cola Emails de Campaña*| Con qué frecuencia se añadirán los Emails de Campaña en lotes a la cola.
+|*Ejecutar Proceso Nocturno de Emails de Campaña Rebotados*| Con qué frecuencia se comprobarán los emails de campaña rebotados.
+|===
+
+{{% notice note %}}
+Los emails que se hayan programado para enviarse se mostrarán en el subpanel de actividad de los objetivos correspondientes.
+{{% /notice %}}
+
+
+==== Configuración de Email
+
+Esto mostrará:
+
+* Si actualmente existe un Registro de Email Entrante de tipo Rebote.
+* Si el Registro de Email Saliente seleccionado puede conectarse a SMTP.
+
+{{% notice note %}}
+Un registro de Rebote puede existir y no estar configurado correctamente; tenga esto en cuenta si tiene problemas.
+{{% /notice %}}
+
+==== Configuración
+
+Esto muestra parte de la Configuración presente en "Configuración de Email de Campañas". Para más información sobre estos ajustes, consulte link:#_campaign_settings[Configuración de Campañas.]
+
+=== Gráficos del Registro de Email de Marketing
+
+Al igual que en la Campaña principal, puede hacer seguimiento de la Actividad General del Destinatario y del Estado de Envío de cada Registro de Email de Marketing.
+
+Para más información sobre los gráficos mostrados, consulte link:#_campaign_charts[Gráficos de la Campaña.]
+
+== Subpaneles del Email de Campaña
+
+Puede consultar más información en los subpaneles situados debajo del registro, donde las respuestas se detallan a nivel de registro individual.
+
+== Configuración de Campañas
+
+Puede consultar la configuración de sus campañas a través del Menú de Administración -> "Configuración de Email de Campañas".
+
+image:Campaign-Email-Settings.png[Configuración de Email de Campañas]
+
+En esta página puede cambiar distintos ajustes de Campañas:
+
+[cols="20,80"]
+|===
+|*Número de registros de email de marketing a procesar por ejecución*| Este es el número máximo de Registros de Email de Marketing a procesar de una vez durante los Planificadores de Poner en Cola y Enviar Email de Campaña.
+|*Número de emails procesados/enviados por lote*|Este es el número máximo de Emails a poner en cola y enviar por cada ejecución del Registro de Email de Marketing.
+|*Máximo de reintentos de envío por destinatario en caso de fallo*|Este es el número máximo de veces que se reintentará enviar un email a un destinatario en caso de fallo, antes de marcarlo como fallido.
+|*Umbral de errores por lote (la campaña se pausa al alcanzarlo, 0 para deshabilitar)*|Este es el número máximo de errores permitidos por lote antes de pausar la campaña. Establecer este valor en 0 deshabilitará esta función y permitirá que las campañas continúen independientemente de los errores.
+|*Rastreadores Habilitados*| Esto sirve para habilitar / deshabilitar los rastreadores globalmente.
+|*Ubicación de los archivos de rastreo de campañas*| Esto sirve para definir la ubicación de los archivos de rastreo de campañas.
+|*Conservar copias de los mensajes de campaña*|Esto es si desea conservar copias de los Registros de Email de Marketing individuales.
+|===

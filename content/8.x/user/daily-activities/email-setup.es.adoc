@@ -1,0 +1,113 @@
+---
+title: "Configuración de la Cuenta de Correo"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities/email-setup
+
+= Configuración de la Cuenta de Correo
+
+SuiteCRM le permite configurar cuentas de correo personales de entrada y salida, lo que le permite enviar y recibir correo directamente dentro del módulo Emails. Esta sección explica cómo configurar ambos tipos de cuenta desde su perfil de usuario.
+
+{{% notice note %}}
+Los administradores del sistema también pueden configurar cuentas de correo personales en nombre de otros usuarios desde el panel de Admin.
+{{% /notice %}}
+
+{{% notice note %}}
+La configuración de las cuentas de correo saliente de todo el sistema y de las cuentas de correo de grupo (bandejas compartidas utilizadas por varios usuarios) es responsabilidad de su administrador del sistema y no se trata en esta guía.
+{{% /notice %}}
+
+== Configurar una Cuenta de Correo Personal de Salida
+
+Una cuenta de correo personal de salida le permite enviar correos desde SuiteCRM utilizando su propia dirección de correo electrónico.
+
+Para configurar una cuenta de correo personal de salida:
+
+. En la Barra de Navegación, pase el ratón sobre su nombre de usuario en la esquina superior derecha de la pantalla y haga clic en *Edit Profile*.
+. Pase el ratón sobre *Users* en la esquina superior izquierda y haga clic en *Outbound Email Accounts*.
++
+image:outbound-email-nav.png[Navegación hasta Outbound Email Accounts desde el menú Users]
+. Pase el ratón sobre *Outbound Email Accounts* en la esquina superior izquierda y haga clic en *New Personal Account*.
++
+image:new-personal-account.png[Opción New Personal Account en el menú Outbound Email Accounts]
+. La pantalla de creación se divide en tres secciones. Complete cada sección de la siguiente manera:
++
+--
+*Basic*
+
+* *Name:* un nombre descriptivo para esta cuenta, por ejemplo "Mi Correo de Trabajo".
+* *Type:* se establecerá automáticamente en Personal y no se puede cambiar.
+* *Owner:* propietario de la cuenta de correo.
+* *Auth Type:* seleccione el tipo de autenticación requerido por su servidor de correo. Las opciones incluyen No Auth, Basic Auth (nombre de usuario y contraseña) y OAuth. Si no está seguro de cuál utilizar, contacte con su administrador del sistema.
+
+*Server Configuration*
+
+* *Server:* introduzca la dirección de su servidor de correo saliente (servidor SMTP).
+* *Mail SMTP/SSL:* seleccione el protocolo de seguridad requerido por su servidor de correo, como SSL o TLS.
+* *Port:* introduzca el número de puerto utilizado por su servidor de correo saliente. El valor predeterminado es 25; sin embargo, las alternativas habituales son 465 (SSL) o 587 (TLS).
+* *Username:* se rellenará previamente con su nombre de usuario de SuiteCRM.
+
+*Outbound Configuration*
+
+* *"From" Name:* el nombre que aparecerá en el campo From al enviar correos.
+* *"From" Address:* la dirección de correo desde la que se enviarán los correos. Este campo es obligatorio.
+* *"Reply-To" Name:* el nombre que aparecerá en el campo Reply-To, si es diferente del From Name. Este campo es opcional.
+* *"Reply-To" Address:* la dirección de correo a la que se dirigirán las respuestas, si es diferente de la From Address. Este campo es opcional.
+* *Signature:* utilice el editor integrado para crear una firma de correo que se añadirá a los correos enviados desde esta cuenta. Puede dar formato a la firma utilizando la barra de herramientas proporcionada.
+--
+. Una vez introducidos todos los datos, haga clic en *Send Test Email* para verificar que la conexión funciona correctamente. Aparecerá una ventana emergente pidiéndole que introduzca una dirección de correo a la que enviar la prueba.
+. Si la prueba se realiza correctamente, haga clic en *Save* para guardar la configuración de la cuenta.
+
+{{% notice note %}}
+Si no está seguro de la configuración del servidor de correo requerida para su cuenta, contacte con su administrador del sistema o consulte la documentación proporcionada por su proveedor de correo.
+{{% /notice %}}
+
+== Configurar una Cuenta de Correo Personal de Entrada
+
+Una cuenta de correo personal de entrada le permite ver los correos de su bandeja personal dentro del módulo Emails de SuiteCRM. Los correos de una cuenta personal de entrada no se almacenan automáticamente en SuiteCRM. Deben importarse manualmente si desea registrarlos contra un registro.
+
+Para configurar una cuenta de correo personal de entrada:
+
+. En la Barra de Navegación, pase el ratón sobre su nombre de usuario en la esquina superior derecha de la pantalla y haga clic en *Edit Profile*.
+. Pase el ratón sobre *Users* en la barra de navegación superior y haga clic en *Inbound Email Accounts*.
+. Pase el ratón sobre *Inbound Email Accounts* y haga clic en *New Personal Account*.
+. La pantalla de creación se divide en tres secciones. Complete cada sección de la siguiente manera:
++
+--
+*Basic*
+
+* *Name:* un nombre descriptivo para esta cuenta, por ejemplo "Mi Correo de Trabajo".
+* *Type:* se establecerá automáticamente en Personal y no se puede cambiar.
+* *Status:* se establece en Active por defecto. Esto controla si la cuenta se supervisa activamente.
+* *Owner:* se rellenará previamente con su nombre de usuario.
+
+*Server Configuration*
+
+* *Auth Type:* seleccione el tipo de autenticación requerido por su servidor de correo. Las opciones incluyen Basic Auth (nombre de usuario y contraseña) y OAuth.
+* *Mail Server Address:* introduzca la dirección de su servidor de correo entrante (servidor IMAP).
+* *Protocol:* el protocolo se establece en IMAP y no se puede cambiar, ya que SuiteCRM utiliza IMAP para el correo entrante.
+* *Mail Server Port:* introduzca el número de puerto utilizado por su servidor de correo entrante. El valor predeterminado es 143.
+* *Use SSL:* marque esta casilla si su servidor de correo requiere una conexión SSL segura.
+* *User Name:* introduzca el nombre de usuario de su cuenta de correo, normalmente su dirección de correo completa.
+* *Password:* introduzca la contraseña de su cuenta de correo.
+* *Monitored Folders:* seleccione las carpetas de correo que SuiteCRM debe supervisar en busca de correos entrantes, normalmente su Inbox. Haga clic en *Select* para conectarse a su servidor de correo y elegir las carpetas correspondientes en la ventana emergente.
+* *Trash Folder:* seleccione la carpeta utilizada como papelera o elementos eliminados de su correo. Haga clic en *Select* para elegir entre las carpetas disponibles.
+* *Sent Folder:* seleccione la carpeta utilizada para almacenar los correos enviados. Haga clic en *Select* para elegir entre las carpetas disponibles.
+* *Connection String:* este campo es opcional. Déjelo en blanco a menos que su administrador del sistema le haya indicado que utilice una cadena de conexión específica.
+* *Email Body Filter Type:* controla cómo se busca el cuerpo del correo dentro de SuiteCRM. La configuración predeterminada es Multi Word Search, adecuada para la mayoría de los usuarios.
+
+*Outbound Configuration*
+
+* *Outbound Email Account:* seleccione la cuenta de correo de salida que se utilizará al responder a los correos recibidos en esta cuenta de entrada. Haga clic en el icono selector para buscar y vincular una cuenta de salida existente.
+* *Signature:* seleccione la firma de correo que se utilizará al redactar correos desde esta cuenta. Se utilizará la Default Signature a menos que se seleccione otra.
+* *"From" Name:* el nombre que aparecerá en el campo From al enviar correos desde esta cuenta.
+* *"From" Address:* la dirección de correo desde la que se enviarán los correos.
+* *"Reply-To" Name:* el nombre que aparecerá en el campo Reply-To, si es diferente del From Name. Este campo es opcional.
+* *"Reply-To" Address:* la dirección de correo a la que se dirigirán las respuestas, si es diferente de la From Address. Este campo es opcional.
+--
+. Una vez introducidos todos los datos del servidor, haga clic en *Test Connection Settings* en la esquina superior derecha de la pantalla para verificar que SuiteCRM puede conectarse correctamente a su servidor de correo antes de guardar.
+. Haga clic en *Save* para guardar la configuración de la cuenta.
+
+{{% notice note %}}
+Si no está seguro de la configuración del servidor de correo requerida para su cuenta, contacte con su administrador del sistema o consulte la documentación proporcionada por su proveedor de correo. Si su organización utiliza autenticación basada en OAuth, como Microsoft 365 o Google Workspace, su administrador del sistema deberá configurar la conexión OAuth antes de que pueda completar esta configuración.
+{{% /notice %}}

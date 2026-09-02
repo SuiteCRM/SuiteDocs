@@ -1,0 +1,115 @@
+---
+title: "Gestionar Su Perfil"
+weight: 30
+aliases:
+  - /es/user/introduction/managing-user-accounts
+  - /es/user/modules/themes
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Gestionar Cuentas de Usuario
+
+Existen muchas opciones de configuración disponibles para los usuarios una vez han iniciado sesión en
+el sistema. Puede ver/modificar sus preferencias haciendo clic en su
+nombre en la sección superior derecha del menú de navegación y eligiendo la opción Perfil.
+
+image:/images/es/user/11User_select.png[title="Gestionar Cuenta"]
+
+== Pestaña Perfil de Usuario
+
+Una vez haya accedido a sus preferencias, se le dirigirá a
+la pestaña 'Perfil de Usuario', que ofrece una vista general de sus credenciales, como
+Nombre de Usuario, Nombre, Apellidos, Puesto, etc.
+
+image:/images/es/user/12User_profile.png[title="Perfil de Usuario"]
+
+
+=== Configuración de la Cuenta de Correo Personal
+
+Para obtener información sobre la configuración de cuentas de correo entrante y saliente personales, consulte la página
+link:../../daily-activities/email-setup[Configuración de Correo].
+
+== Pestaña Contraseña
+
+Al hacer clic en la pestaña '*Contraseña*' tendrá la oportunidad de cambiar
+la contraseña de su cuenta de usuario, si es necesario. Para cambiar su contraseña, introduzca primero su contraseña actual y, a continuación, especifique una nueva
+contraseña y confírmela. Se recomienda que las contraseñas
+sean seguras. El requisito mínimo recomendado es un carácter en mayúscula,
+un carácter en minúscula, un carácter numérico y una
+longitud mínima de contraseña de 8 caracteres.
+
+image:/images/es/user/13Password_tab.png[title="Pestaña Contraseña"]
+
+Si ha olvidado su contraseña y no puede iniciar sesión, puede utilizar
+la funcionalidad de contraseña olvidada detallada en la
+sección link:../logging-in[Iniciar Sesión] de esta Guía del Usuario.
+
+== Pestaña Avanzado
+
+La pestaña Avanzado le ofrece las preferencias que configuró durante
+el proceso del Asistente de Usuario. Esto le permite cambiar cualquiera de
+sus preferencias de usuario, si hubo algún error o si necesita
+modificarlas en una fecha posterior.
+
+image:/images/es/user/14Advanced_tab.png[title="Pestaña Avanzado"]
+
+=== Notificaciones de Escritorio
+
+La pestaña Avanzado incluye un ajuste para habilitar las notificaciones emergentes del navegador. Cuando está habilitado, SuiteCRM mostrará alertas emergentes del navegador para las próximas Llamadas y Reuniones que tengan un recordatorio emergente configurado.
+
+image:199Enable_desktop_notifications.png[title="Habilitar Notificaciones de Escritorio"]
+
+{{% notice note %}}
+Las notificaciones de escritorio deben habilitarse por separado en cada navegador y equipo que utilice. Cuando el navegador se lo solicite, elija permitir las notificaciones para su sitio de SuiteCRM.
+{{% /notice %}}
+
+Una vez habilitadas, las notificaciones de alertas no vistas o no reconocidas se acumulan y se muestran como un contador en la barra de navegación. Consulte link:../../core-concepts/navigation/#_alerts[Alertas] para obtener más información sobre la gestión de estas notificaciones.
+
+== Opciones de Diseño
+
+El tema *SuiteP* ofrece cuatro combinaciones de color: Dawn, Day, Night y Dusk. Seleccione su combinación de color preferida en la pestaña *Opciones de Diseño* de su perfil de usuario.
+
+. Abra su perfil de usuario y seleccione *Editar* en el menú *Acciones*.
+. Haga clic en la pestaña *Opciones de Diseño*.
+. Seleccione una combinación de color en el desplegable *Estilo*. La opción predeterminada es *Dawn*.
+. Haga clic en **GUARDAR**.
+
+image:ThemesLayoutOptions2.png[title="Pestaña Opciones de Diseño"]
+
+La combinación de color es específica de cada usuario y no afecta a otros usuarios.
+
+== Restablecer las Preferencias de un Usuario
+
+Puede restablecer sus preferencias de usuario a los valores predeterminados del sistema haciendo clic en
+el botón **Restablecer Preferencias de Usuario** situado en la parte inferior de la página.
+
+image:/images/es/user/15User_preference.png[title="Restablecer Preferencias de Usuario"]
+
+Al hacer clic en el botón se le pedirá que confirme que desea restablecer sus
+preferencias de usuario, con el siguiente mensaje: _"¿Está seguro de que desea
+restablecer todas sus preferencias de usuario?"_
+
+{{% notice warning %}}
+Esto también cerrará su sesión
+en la aplicación. Puede entonces hacer clic en 'Aceptar' o 'Cancelar' para actuar
+según corresponda. Si selecciona 'Aceptar', se cerrará su sesión y deberá
+volver a iniciar sesión en la aplicación SuiteCRM.
+{{% /notice %}}
+
+== Restablecer la Página de Inicio de un Usuario
+
+Puede restablecer su página de inicio a los valores predeterminados del sistema haciendo clic en el
+botón **Restablecer página de inicio** situado en la parte inferior de la página. Esto restablecerá tanto las
+preferencias/diseños de los dashlets como los del panel a los valores predeterminados del sistema.
+
+image:/images/es/user/16Reset_homepage.png[title="Restablecer Página de Inicio"]
+
+Al hacer clic en el botón se le pedirá que confirme que desea restablecer su
+página de inicio, con el siguiente mensaje: _"¿Está seguro de que desea restablecer su
+página de inicio?"_. Puede entonces hacer clic en 'Aceptar' o 'Cancelar' para actuar
+según corresponda.

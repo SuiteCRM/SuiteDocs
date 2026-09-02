@@ -1,0 +1,17 @@
+---
+title: Desinstalar SuiteCRM
+weight: 90
+---
+
+== Desinstalar una instancia de SuiteCRM
+
+Sigue estos pasos para desinstalar tu instancia de SuiteCRM:
+
+.  Ve al directorio de tu servidor web donde se encuentra
+SuiteCRM.
+.  Elimina el directorio de SuiteCRM. En Linux, puedes usar `rm -r <suitedirectory>` si
+quieres que se te pida confirmación, o `rm -rf <suitedirectory>` si quieres eliminar el
+directorio sin confirmación.
+.  Elimina el esquema de la base de datos de SuiteCRM del servidor
+de base de datos. Por defecto es `suitecrm`, pero puede ser diferente si se ha
+renombrado durante el proceso de instalación.
