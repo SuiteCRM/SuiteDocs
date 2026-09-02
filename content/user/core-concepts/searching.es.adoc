@@ -1,0 +1,137 @@
+---
+title: "Búsqueda"
+weight: 30
+aliases:
+  - /es/user/introduction/user-interface/search
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+= Búsqueda
+
+La búsqueda es un aspecto fundamental dentro del CRM, ya que le permite definir rápidamente
+lo que desea ver. Muchos CRM manejan grandes volúmenes de datos,
+por lo que es fundamental disponer de una forma de refinar su búsqueda. En las
+siguientes subsecciones trataremos las distintas opciones de búsqueda
+disponibles.
+
+== Búsqueda Global
+
+La funcionalidad de búsqueda global de SuiteCRM es una potente herramienta que le permite
+buscar registros en todos los módulos disponibles en su sistema CRM.
+Esto significa que puede encontrar fácilmente información relacionada con sus clientes,
+clientes potenciales, oportunidades y otros registros en una sola búsqueda, sin tener
+que navegar por cada módulo individualmente.
+
+image:/images/es/user/38Search.png[title="Búsqueda Global"]
+
+Una vez que haya introducido su término de búsqueda, puede pulsar la tecla Intro o
+hacer clic en el icono de la lupa/búsqueda. Esto devolverá los registros que
+coincidan con los criterios de búsqueda y los clasificará por los módulos disponibles.
+
+Por ejemplo, si busca un cliente concreto, los resultados de la búsqueda
+mostrarán todos los registros relacionados con ese cliente, como su información
+de contacto, datos de cuenta, oportunidades, casos y más. A continuación, puede
+hacer clic en el registro correspondiente para ver sus detalles o realizar otras acciones.
+
+image:39Search.png[title="Resultados de la Búsqueda Global"]
+
+El Administrador del Sistema puede añadir módulos a la funcionalidad de búsqueda global.
+
+== Búsqueda de Texto Completo
+
+SuiteCRM tiene una opción para habilitar o deshabilitar una búsqueda global de texto completo.
+La búsqueda global de texto completo se basa en el framework de búsqueda
+http://framework.zend.com/manual/1.12/en/zend.search.lucene.overview.html[Zend
+Lucene]. La búsqueda funciona de forma muy similar a la búsqueda global
+estándar, pero ofrece la funcionalidad adicional de buscar texto
+dentro de documentos y otros archivos, en comparación con la búsqueda a nivel de registro
+que ofrece la búsqueda global estándar.
+
+{{% notice note %}}
+Los Administradores del Sistema pueden habilitar/deshabilitar la búsqueda de texto completo
+haciendo clic en el enlace Ajustes de AOD dentro del panel de administración.
+{{% /notice %}}
+
+image:169AOD_Settings.png[title="Ajustes de AOD"]
+
+Esto mostrará la opción de AOD para habilitar/deshabilitar la búsqueda de texto completo.
+
+image:170Enable_AOD.png[title="Habilitar AOD"]
+
+La búsqueda devuelve resultados ligeramente diferentes a los de la búsqueda global. Los resultados
+se devuelven ordenados por puntuación. Los registros se puntúan en función de lo bien que
+coincidan con los criterios de búsqueda proporcionados, de 0 a 100%.
+
+image:171Search_results.png[title="Búsqueda de Texto Completo"]
+
+== Búsqueda Básica de Módulo
+
+La búsqueda básica está disponible en todos los módulos del CRM. La búsqueda básica,
+por defecto, permite a los usuarios buscar por el nombre del registro.
+
+image:/images/es/user/193Search_button.png[title="Botón de Búsqueda Básica de Módulo"]
+
+image:194Search_box.png[title="Búsqueda Básica de Módulo"]
+
+La búsqueda básica también permite a los usuarios marcar la casilla 'Mis Elementos'.
+Al habilitar esta opción, solo se devolverán los registros que le estén asignados.
+
+image:/images/es/user/195Search_my_items.png[title="Buscar mis elementos"]
+
+Una vez que un usuario ha buscado un registro, la búsqueda se guarda. Esto
+significa que puede navegar a otros registros y módulos dentro del CRM
+sin que la búsqueda se elimine. Si desea borrar su búsqueda,
+puede hacer clic en **Borrar** y, a continuación, en **Buscar**. Esto eliminará cualquier búsqueda guardada
+y volverá al conjunto de resultados predeterminado para ese módulo.
+
+{{% notice note %}}
+Los Administradores del Sistema pueden modificar qué campos son buscables en
+la Búsqueda Básica desde Studio.
+{{% /notice %}}
+
+== Búsqueda Avanzada de Módulo
+
+La Búsqueda Avanzada está disponible en todos los módulos del CRM. La Búsqueda
+Avanzada le ofrece una funcionalidad de búsqueda de módulo más detallada. Por
+defecto, hay más campos disponibles a través de la Búsqueda Avanzada.
+
+image:196Advanced_search.png[title="Búsqueda Avanzada de Módulo"]
+
+Las Búsquedas Avanzadas pueden tener muchos campos y criterios específicos. Por este
+motivo, puede guardar sus criterios de búsqueda avanzada para rellenarlos
+fácilmente en el futuro.
+
+image:/images/es/user/197Save_search.png[title="Guardar búsqueda"]
+
+Para cargar una búsqueda guardada, puede seleccionarla en el desplegable 'Mis
+Filtros'. Esto devolverá los resultados que coincidan con los criterios
+especificados en la búsqueda guardada.
+
+image:/images/es/user/198Saved_search.png[title="Búsquedas guardadas"]
+
+{{% notice note %}}
+SuiteCRM también ofrece a los Administradores del Sistema la posibilidad de modificar
+qué campos son buscables en la Búsqueda Avanzada desde Studio.
+{{% /notice %}}
+
+La Búsqueda Avanzada permite a los usuarios realizar búsquedas más complejas filtrando registros
+según múltiples criterios y campos específicos.
+
+Por defecto, SuiteCRM incluye un conjunto de campos buscables para cada módulo.
+Sin embargo, el Administrador del Sistema puede modificar esta lista y añadir o eliminar
+campos según las necesidades específicas de su empresa. Por ejemplo, puede
+querer añadir campos personalizados a la lista para que los usuarios puedan buscar registros
+según criterios específicos que no estén incluidos en el conjunto predeterminado.
+
+Para modificar qué campos son buscables en la Búsqueda Avanzada, el Administrador del Sistema
+puede acceder a Studio y a la sección de Diseños del módulo. Desde allí,
+puede seleccionar el diseño de Búsqueda y añadir o eliminar campos según sea necesario. Los cambios
+realizados en el diseño de Búsqueda afectarán a las opciones de búsqueda disponibles para los usuarios
+al realizar Búsquedas Avanzadas.
+
+Al personalizar los campos que son buscables en la Búsqueda Avanzada, el Administrador
+del Sistema puede mejorar la precisión y la eficiencia de las búsquedas para los usuarios,
+lo que en última instancia se traduce en una mayor productividad y satisfacción del cliente.

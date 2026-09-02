@@ -1,0 +1,36 @@
+---
+title: "Base de Conocimiento"
+weight: 20
+aliases:
+  - /es/user/advanced-modules/knowledgebase
+---
+
+:experimental: //// this is here to allow **** syntax used below
+
+:imagesdir: /images/en/user
+
+= Base de Conocimiento
+
+La Base de Conocimiento es un repositorio de artículos que contienen soluciones, preguntas frecuentes y orientación para gestionar las consultas de soporte más habituales. Cuando se crea un Caso nuevo, SuiteCRM compara automáticamente el asunto del caso con los artículos existentes en la Base de Conocimiento y sugiere coincidencias relevantes, ayudando al personal de soporte a resolver los problemas más rápidamente sin duplicar esfuerzos.
+
+== Campos Clave
+
+* *Título del Artículo*: el título del artículo. Debe ser lo bastante descriptivo como para aparecer en búsquedas por asunto. Obligatorio.
+* *Estado*: controla la visibilidad del artículo: Borrador (en curso), Pendiente (a la espera de aprobación), No Publicado (oculto para su uso), Publicado (visible para los usuarios) o Caducado (ya no vigente).
+* *Contenido del Artículo*: el cuerpo completo del artículo, incluida la solución o la orientación. Los artículos se muestran como sugerencias cuando su tema o contenido coincide con el asunto de un Caso nuevo.
+* *Resolución*: un resumen conciso de la solución. Este texto puede copiarse directamente en el campo de resolución al cerrar un Caso relacionado.
+* *Versión*: registra el número de revisión del artículo.
+* *Autor*: el usuario que escribió el artículo. Obligatorio.
+* *Aprobado Por*: el usuario que aprobó el artículo para su publicación.
+
+== Categorías
+
+Cuando hay un gran número de artículos, estos pueden organizarse en categorías mediante el módulo *Categorías de la Base de Conocimiento*. Al crear una categoría, introduzca un nombre y una descripción. Una vez guardada, los artículos se añaden a una categoría desde el subpanel *Artículos de la Base de Conocimiento* del registro de Categoría.
+
+== Relaciones
+
+Los artículos de la Base de Conocimiento se muestran automáticamente como sugerencias en los registros de Caso nuevos cuando el asunto coincide con el contenido de un artículo. Los artículos también pueden vincularse manualmente desde el subpanel de un registro de Caso.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, detección de duplicados y combinación, consulte link:../../core-concepts/record-management[Gestión de Registros].

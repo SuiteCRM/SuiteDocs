@@ -1,0 +1,200 @@
+---
+Title: Herramientas de Desarrollo
+weight: 50
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+== Studio
+
+Las herramientas de Studio le permiten personalizar la información mostrada en los
+módulos y la forma en que se muestra.
+
+Consulte la link:../studio[guía de Studio] dedicada para obtener más
+información sobre cómo utilizar las herramientas de Studio.
+
+== Renombrar Módulos
+
+Utilice este panel para renombrar un módulo de *SuiteCRM*. Por ejemplo, puede que desee
+renombrar Cuentas como Empresas.
+
+image:RenameModules.png["Renombrar módulos"]
+
+Haga clic en el módulo que desea renombrar. Introduzca las nuevas etiquetas
+en singular y plural para el módulo y haga clic en btn:[GUARDAR].
+
+image:RenameModules2.png["Introducir las nuevas etiquetas en singular y plural"]
+
+La nueva etiqueta del módulo aparecerá ahora en los menús y encabezados de todo
+SuiteCRM.
+
+== Constructor de Módulos
+
+Utilice el Constructor de Módulos para crear módulos personalizados en SuiteCRM. El proceso para crear un módulo personalizado es el siguiente:
+
+. Cree un paquete para alojar el nuevo módulo (o módulos).
+. Cree un módulo utilizando una de las siguientes plantillas que SuiteCRM le proporciona:
++
+[cols = "20, 80", frame = "none", grid = "none"]
+|===
+| *Basic* | Esta plantilla proporciona campos básicos como ID, Fecha de Creación y Creado por. Utilice esta plantilla para crear un módulo desde cero.
+| *Company* | Esta plantilla proporciona campos específicos de organización como Nombre de la Empresa, Industria y Dirección de Facturación. Utilice esta plantilla para crear un módulo similar al módulo Cuentas.
+| *File* | Esta plantilla proporciona campos específicos de documentos como Nombre de Archivo y Tipo de Documento. Utilice esta plantilla para crear un módulo similar al módulo Documentos.
+| *Issue* | Esta plantilla proporciona campos específicos de casos e incidencias como ID, Descripción y Creado por. Utilice esta plantilla para crear un módulo similar al módulo Casos o al módulo Seguimiento de Errores.
+| *Person* | Esta plantilla proporciona campos específicos de personas como tratamiento, cargo, nombre, dirección y teléfono. Utilice esta plantilla para crear un módulo similar al módulo Contactos o al módulo Prospectos.
+| *Sale* | Esta plantilla proporciona campos específicos de oportunidades como Origen del Prospecto y Probabilidad. Utilice esta plantilla para crear un módulo similar al módulo Oportunidades.
+|===
+Además, puede configurar las siguientes opciones:
+* *Importación:* seleccione esta opción para permitir la importación de datos en el módulo.
+* *Pestaña de Navegación:* por defecto, esta opción está habilitada para crear una pestaña para el módulo en la barra de navegación superior.
++
+{{%notice note %}} Si desea ocultar módulos temporalmente, utilice <<display_modules_subpanels>> después del despliegue. Deshabilite esta opción únicamente para módulos internos que nunca se mostrarán en la interfaz de usuario. {{% /notice %}}
+
+. Cree nuevos campos de datos. También puede renombrar los campos predeterminados de la plantilla.
+. Personalice los diseños de página para la Vista de Lista, Vista de Edición, Vista de Detalle, subpaneles, formulario de búsqueda y los Dashlets de SuiteCRM.
+. Cree relaciones entre el nuevo módulo y otros módulos.
+. Guarde el paquete y distribúyalo.
+
+{{%notice tip %}} Los pasos 3-5 son opcionales y pueden realizarse en Studio después del despliegue. {{% /notice %}}
+
+=== Distribuir un Paquete
+
+Puede elegir una de las siguientes opciones para distribuir el paquete:
+
+[cols = "20, 80", frame = "none", grid = "none"]
+
+|===
+| *Deploy* | Esta opción está diseñada para instalar el módulo personalizado en su instancia local de SuiteCRM y ponerlo a disposición de los usuarios de su organización. Tras el despliegue, si es necesario, puede realizar más cambios al módulo en el Constructor de Módulos y desplegarlo de nuevo para actualizar el módulo instalado. Sin embargo, tenga en cuenta que si modifica un módulo personalizado desplegado en Studio y luego lo vuelve a desplegar desde el Constructor de Módulos, se perderán todos los cambios realizados previamente en Studio.
+| *Publish* | Esta opción está diseñada para distribuirse a usuarios o clientes específicos. El sistema crea un archivo zip que puede guardar en su equipo local. Después puede enviarlo por correo electrónico a una o varias personas, que podrán utilizar el Cargador de Módulos para subir el archivo zip a su instancia de SuiteCRM. Una vez instalado el módulo a través de Studio, puede añadir o eliminar campos y realizar otros cambios en un módulo publicado.
+| *Export* | Esta opción está diseñada para distribuirse a desarrolladores. El sistema crea un archivo zip que puede guardar en su equipo local y compartir con otras personas. Mediante el Cargador de Módulos, los desarrolladores pueden instalarlo en su instancia de SuiteCRM y personalizarlo más a fondo en el Constructor de Módulos si es necesario. El paquete solo es visible en el Constructor de Módulos y, por tanto, solo los administradores pueden acceder a él hasta que se haya desplegado.
+|===
+
+
+== Subpanel de Historial
+
+image:HistorySubpanel.png["Configuración del subpanel de historial"]
+
+== Mostrar Módulos y Subpaneles
+
+Controle qué módulos y subpaneles son visibles en *SuiteCRM* arrastrando
+y soltando módulos o subpaneles entre las columnas Mostrados y Ocultos.
+
+Esto mostrará u ocultará módulos en *SuiteCRM* para todos los usuarios. Si desea
+controlar el acceso a módulos concretos, puede hacerlo mediante la
+Gestión de Roles. Consulte link:../roles-and-security-groups[Roles y Grupos de Seguridad]
+para obtener más información.
+
+[cols = "40, 60", frame = "none", grid = "none"]
+|===
+|*Permitir a los usuarios seleccionar los módulos que aparecen en la barra de navegación* |
+Al seleccionar esta opción, los usuarios pueden personalizar qué pestañas de módulo son
+visibles desde su Configuración de Usuario.
+|===
+
+image:DisplayModulesandSubpanels.png["Mostrar Módulos y Subpaneles"]
+
+== Cargador de Módulos
+
+El Cargador de Módulos le permite instalar y gestionar módulos o complementos personalizados para su
+instancia de *SuiteCRM*.
+
+Los paquetes de módulos personalizados que se hayan creado y modificado en el Constructor de Módulos
+aparecerán en el Cargador de Módulos una vez que se hayan desplegado.
+
+Para obtener más información sobre cómo generar paquetes que puedan subirse mediante el Cargador de Módulos,
+consulte la link:../../../developer/module-installer[Guía del Desarrollador]
+
+image:ModuleLoader6.png["Cargador de Módulos"]
+
+Los módulos y paquetes que ya están instalados se muestran en el panel superior.
+El panel inferior se utiliza para subir paquetes y mostrará cualquier paquete que se
+haya subido pero que aún no esté instalado.
+
+=== Subir e Instalar un Paquete
+
+Haga clic en *Choose File* y busque el archivo .zip del paquete. Haga clic en btn:[UPLOAD]
+
+Una vez subido, los detalles del paquete aparecerán en el panel inferior, incluyendo el
+número de versión, una breve descripción y si el módulo se puede desinstalar o no.
+
+Aparecerán las opciones btn:[UNINSTALL] y btn:[DELETE PACKAGE].
+
+Haga clic en btn:[INSTALL] para instalar el módulo.
+
+image:ModuleLoader2.png["Cargador de Módulos"]
+
+En la siguiente pantalla, si no se detectan problemas con el paquete y está
+listo para instalarse, se le pedirá que haga clic en btn:[COMMIT] para completar la instalación.
+
+Si se produce algún error durante la instalación, se mostrará aquí.
+De lo contrario, al hacer clic en el enlace *Display Log* se detallarán los pasos
+realizados en el proceso de instalación.
+
+image:ModuleLoader5.png["Cargador de Módulos"]
+
+Haga clic en btn:[BACK TO MODULE LOADER] para volver a la pantalla del Cargador de Módulos, donde
+el paquete recién instalado aparecerá en la lista de extensiones instaladas.
+
+image:ModuleLoader4.png["Cargador de Módulos"]
+
+=== Desinstalar un Paquete
+
+Para que un paquete se pueda desinstalar, debe estar definido como desinstalable en el
+archivo de manifiesto del paquete. Para obtener más información sobre el archivo de manifiesto,
+consulte la link:../../../developer/module-installer[Guía del Desarrollador]
+
+Desinstale un paquete haciendo clic en los botones junto al
+nombre del paquete.
+
+Al igual que en el procedimiento de instalación, se le pedirá que
+confirme la desinstalación en la siguiente pantalla. Si el paquete añadió alguna tabla a su
+base de datos, se le preguntará si desea conservarlas, junto con los datos que contengan, por
+ejemplo, si está sustituyendo una versión anterior de un módulo por una nueva.
+
+Haga clic en btn:[COMMIT] para desinstalar el paquete.
+
+Si se produce algún error durante la desinstalación, se mostrará aquí.
+De lo contrario, al hacer clic en el enlace *Display Log* se detallará el proceso.
+
+Haga clic en btn:[BACK TO MODULE LOADER] para volver a la pantalla del Cargador de Módulos, donde
+el paquete recién instalado aparecerá en la lista de extensiones instaladas.
+
+Un módulo desinstalado se mostrará en el panel inferior, desde donde podrá
+volver a instalarse o eliminarse.
+
+image:ModuleLoader8.png["Cargador de Módulos"]
+
+== Configurar Filtros de Menú de Módulos
+
+Utilice esta sección para configurar los menús de módulos de la barra de navegación superior.
+
+image:ConfigureModuleMenuFilters.png["Configurar Filtros de Menú de Módulos"]
+
+Arrastre módulos desde la lista hasta el menú deseado, o elimine un elemento arrastrándolo hasta
+el icono de la papelera.
+Edite el nombre del menú haciendo clic en el icono del lápiz junto al nombre del módulo.
+Elimine un menú por completo haciendo clic en el icono de la papelera junto al nombre del módulo.
+
+Se puede añadir un nuevo menú personalizado haciendo clic en btn:[ADD FILTER]
+Añada elementos de menú arrastrándolos y soltándolos como antes
+
+Los cambios realizados no surtirán efecto hasta que haga clic en btn:[SAVE & DEPLOY]
+
+== Editor de Listas Desplegables
+
+El Editor de Listas Desplegables muestra todas las listas desplegables instaladas actualmente en el sistema.
+
+Haga clic en el nombre de la lista desplegable para editarla. Si no está seguro de qué lista desplegable necesita, puede resultar
+más sencillo editarla desde Studio, donde puede encontrar la lista desplegable por el nombre de su campo.
+Consulte la link:../../administration-panel/studio/#_adding_a_dropdown_field[guía de Studio] para obtener instrucciones
+completas sobre cómo añadir o editar una lista desplegable.
+
+image:StudioDropdownEditor.png["Editor de Listas Desplegables"]
+
+Por ejemplo, la lista desplegable `pdf_template_type_dom` controla qué módulos están disponibles en el campo *Type* al crear una Plantilla de PDF. Para que las Plantillas de PDF estén disponibles para un módulo adicional, añada un nuevo elemento a esta lista desplegable a través del Editor de Listas Desplegables. El *Item Name* debe coincidir exactamente con el nombre del directorio del módulo (por ejemplo, `AOS_Quotes`, `Contacts`).
+
+La lista desplegable `case_status_dom` utiliza una convención de nomenclatura compuesta: cada valor de estado debe llevar como prefijo su valor de State superior seguido de un guion bajo (por ejemplo, `Open_New`, `Open_Assigned`, `Closed_Rejected`). Los valores con el prefijo `Open_` aparecen cuando el State del caso es Abierto; los valores con el prefijo `Closed_` aparecen cuando el State es Cerrado.

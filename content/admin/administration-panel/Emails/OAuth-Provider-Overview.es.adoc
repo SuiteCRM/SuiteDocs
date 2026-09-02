@@ -1,0 +1,125 @@
+---
+Title: Resumen del Proveedor OAuth Externo
+weight: 40
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Introducción
+
+Esta guía trata de ofrecer una descripción más detallada de las configuraciones del módulo Proveedor OAuth Externo.
+
+== 2. Tipos de registros
+Como administrador puede crear dos tipos de registros:
+
+. Personal
+.. Solo son accesibles por el usuario que los creó.
+.. Los registros personales están pensados para configurar el acceso a cuentas personales en proveedores existentes,
+sin un dominio personalizado. Es decir, por ejemplo al configurar el acceso a sus cuentas `@gmail` u `@outlook`.
+Estos pueden compartir una configuración de grupo, ya que para cada uno los campos "Client Id", "Client Secret" y
+otros campos serán únicos por cuenta.
+. Grupo
+.. Registros que serán utilizados por muchos usuarios.
+.. Los registros de grupo están pensados para ser utilizados por todos los que tengan cuentas que compartan el
+mismo dominio, como `@example-inc.onmicrosoft.com`. Los campos "Client ID", "Client Secret" y el resto de campos
+serán los mismos para todas las cuentas que utilicen este dominio.
+
+
+Consulte link:../inboundemail-securitygroups[Configurar Grupos de Seguridad para Correo Entrante] para más
+información sobre las diferencias entre ambos tipos y cómo utilizarlos correctamente.
+
+== 3. Librería de Cliente OAuth2
+
+SuiteCRM utiliza el link:https://oauth2-client.thephpleague.com/[Cliente OAuth 2.0 de The PHP League].
+Utiliza el GenericProvider para todos los proveedores.
+
+== 4. Configuración básica
+
+En la configuración básica, mostrada a continuación, puede encontrar todos los campos esenciales para que el
+Proveedor OAuth funcione.
+Esto puede variar según el proveedor que vaya a utilizar, pero la mayoría de estos campos son comunes a la mayoría
+de proveedores.
+
+
+image:suitecrm-oauth-provider-base-config.png[suitecrm-oauth-provider-base-config.png]
+
+== 5. Configuraciones adicionales
+
+Estas son configuraciones adicionales que puede necesitar añadir según el proveedor. Todas las siguientes se
+combinan con cualquier valor predeterminado existente.
+
+. Parámetros Adicionales del Proveedor: son parámetros que se inyectan al proveedor al inicializarlo. Pueden
+utilizarse en todas las peticiones.
+. Tipo de concesión de la Petición de Obtención de Token: el tipo de concesión (grant) que se utiliza en la
+petición para obtener el token.
+. Opciones de la Petición de Obtención de Token: opciones adicionales que se pueden enviar en la petición para
+obtener el token.
+. Tipo de Concesión de la Petición de Renovación de Token: el tipo de concesión que se utiliza en la petición para
+renovar el token.
+. Opciones de la Petición de Renovación de Token: opciones adicionales que se pueden enviar en la petición para
+renovar el token.
+
+
+image:suitecrm-oauth-providers-extra-config.png[suitecrm-oauth-providers-extra-config.png]
+
+== 6. Configuraciones de Mapeo
+
+Estas definen cómo se mapean los campos recibidos en el token a los campos donde se almacenan en SuiteCRM.
+Todos, excepto el tipo de token, tienen valores predeterminados.
+
+En esta configuración es posible recuperar valores anidados dentro de un array. Para ello puede definir la ruta al
+campo utilizando los nombres de las claves y uniéndolas con `.`. Por ejemplo, el conector de Microsoft utiliza el
+siguiente mapeo para obtener el tipo de token `values.token_type`.
+
+image:suitecrm-oauth-provider-mapping-config.png[suitecrm-oauth-provider-mapping-config.png]
+
+== 7. Conectores
+
+Los conectores son la parte del código responsable de gestionar las peticiones al proveedor para realizar la
+autenticación.
+
+El tipo de conector Microsoft funciona de la misma manera que el tipo de conector "Genérico". La diferencia es que
+tiene varios valores predeterminados integrados. Esto le ahorra algunos pasos de configuración y facilita el proceso
+de configurar un Proveedor OAuth Externo.
+
+== 8. Formato de configuración interno
+
+Para comprender cómo y cuándo se utilizan los campos del módulo Proveedores OAuth Externos, puede ser útil entender
+la estructura interna.
+
+El siguiente fragmento de código es un ejemplo de las configuraciones sin los atajos del frontend.
+
+
+[source,php]
+----
+[
+    'type' => 'Generic',
+    'client_id' => '...',
+    'client_secret' => '....',
+    'redirect_uri' => '....',
+    'authorize_url_options' => [
+        'scope' => '...',
+    ],
+    'extra_provider_params' => [
+        'scopes' => '...',
+        'urlAuthorize' => '...',
+        'urlAccessToken' => '...',
+    ],
+    'get_token_request_grant' => 'authorization_code', // opcional
+    'get_token_request_options' => [], // opcional
+    'refresh_token_request_grant' => 'refresh_token', // opcional
+    'refresh_token_request_options' => [], // opcional
+    'token_mapping' => [ // opcional
+        'access_token' => '...',
+        'expires_in' => '...',
+        'refresh_token' => '...',
+        'token_type' => ''
+    ]
+]
+----
+
+En el ejemplo anterior se puede observar que:
+
+. `scope` se inyecta tanto en `authorize_url_options` como en `extra_provider_params`.
+. `urlAuthorize` se inyecta en `extra_provider_params`.
+. `urlAccessToken` se inyecta en `extra_provider_params`.

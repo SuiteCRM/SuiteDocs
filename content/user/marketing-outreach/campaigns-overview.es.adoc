@@ -1,0 +1,294 @@
+---
+title: "Descripción General de Campañas"
+weight: 10
+aliases:
+  - /es/user/core-modules/campaigns
+---
+
+:imagesdir: /images/en/user
+:experimental:   ////this is here to allow ****syntax used below
+
+:toc:
+
+= Campañas
+
+== Descripción General
+
+El módulo Campañas en *SuiteCRM* puede ser una herramienta de marketing y publicidad muy potente para su organización, ya que le permite crear y hacer seguimiento tanto de campañas de marketing basadas en email como no basadas en email (por ejemplo, televenta o radio) dirigidas a clientes potenciales o existentes.
+
+Con las herramientas de seguimiento integradas en el módulo Campañas puede supervisar en tiempo real la respuesta que recibe de su campaña, lo que le permite ver el Retorno de la Inversión (ROI) y muchas otras métricas útiles. Esto, a su vez, le ayuda a planificar sus actividades estratégicas de marketing y publicidad de forma eficaz, visualizando qué campañas funcionan y cuáles no.
+
+
+{{% notice note %}}
+Deberá configurar sus cuentas de correo salientes y de gestión de rebotes para poder enviar una campaña basada en email. Consulte Configuración de Email para obtener información sobre cómo hacerlo.
+
+El correo de la campaña se envía mediante un trabajo programado. Deberá asegurarse de que su planificador está configurado para ello.
+{{% /notice %}}
+
+== Crear una Campaña
+
+Desde el módulo *Campañas*, seleccione *Crear Campaña* en la barra lateral o en el menú desplegable del módulo para iniciar el *Asistente de Campañas*.
+
+image:CampaignsSidebarCreate.png[title="Crear una Campaña"]
+
+Seleccione el tipo de campaña que desea crear: *Boletín*, *Email*, link:../surveys[Encuesta] o *Campaña No Basada en Email*. Las campañas no basadas en email le permiten mantener un registro de cualquier campaña que se realice fuera de *SuiteCRM* (por ejemplo, una campaña de televenta o de radio).
+
+image:CampaignTypes.png[title="Seleccionar campaña"]
+
+{{% notice note %}}
+Tenga en cuenta que, para una campaña de tipo Encuesta, primero deberá crear la encuesta que se asociará a la campaña.
+{{% /notice %}}
+
+=== Encabezado de la Campaña
+
+La primera página del *Asistente de Campañas* es la página *Encabezado de la Campaña*.
+image:CampaignHeader.png[title="Encabezado de la Campaña"]
+
+Introduzca un nombre para la campaña aquí y establezca el estado (*Planificación*, *Activa*, *Inactiva*, *Completada*).
+
+Añada una descripción opcional.
+
+La campaña se asignará por defecto al usuario que ha iniciado sesión actualmente. Cámbielo aquí si es necesario.
+
+==== Campaña con Encuesta
+
+Para una campaña de tipo *Encuesta*, también deberá asociar la campaña a una encuesta existente. Consulte link:../surveys[Encuestas] para obtener información sobre cómo crear una encuesta.
+image:CampaignSurveyHeader.png[title="Seleccionar encuesta para la campaña"]
+
+==== Campaña No Basada en Email
+
+Para una campaña *No Basada en Email*, opcionalmente puede seleccionar el tipo de campaña.
+
+image:CampaignsNonEmailTypes.png[title="Añadir tipo para campaña no basada en email"]
+
+==== Presupuesto de la Campaña
+Desplácese hacia abajo para completar los detalles opcionales del presupuesto de la campaña. Estas cifras se utilizan en los cálculos del ROI.
+
+En las campañas no basadas en email, esta sección se encuentra en la página siguiente.
+
+image:CampaignBudget.png[title="Presupuesto de la Campaña"]
+
+Haga clic en **SIGUIENTE** en la parte superior de la pantalla para continuar.
+
+=== Listas de Público Objetivo
+
+El siguiente paso es especificar sus *Lista(s) de Público Objetivo*.
+Cualquier lista de público objetivo existente se mostrará para que la seleccione bajo *Añadir Lista de Público Objetivo Existente*.
+
+Haga clic en el nombre de la lista de público objetivo para añadirla a la campaña. Las listas de público objetivo añadidas a la campaña aparecerán en el panel de la derecha.
+
+Para eliminar una lista de público objetivo, haga clic en **rem**
+
+image:CampaignsTargetList.png[title="Listas de Público Objetivo"]
+
+==== Crear Lista de Público Objetivo
+
+Si aún no ha creado una lista de público objetivo o desea utilizar una nueva, puede crear aquí una vacía y rellenarla después de completar el resto de la configuración de la campaña. Consulte link:../target-lists[Listas de Público Objetivo] para más información sobre los tipos de listas y cómo utilizarlas.
+
+image:80E-mail_campaign.png[title="Lista de público objetivo"]
+
+Introduzca un nombre para la nueva lista y seleccione el tipo en la lista. Tenga en cuenta que necesitará al menos una lista de público objetivo de tipo 'Por Defecto' asociada a la campaña.
+
+Haga clic en **CREAR**
+
+=== Plantillas
+
+La plantilla es el mensaje que se enviará a su lista de público objetivo. Puede seleccionar o editar una plantilla de email existente, o crear una nueva aquí. Consulte la sección Plantillas de Email de la guía de usuario para más información.
+
+{{% notice tip %}}El editor de plantillas utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_user_profile_email_settings[configuración de email del perfil de usuario]. La configuración por defecto (Mozaik) es la que se muestra en las siguientes capturas de pantalla. {{% /notice %}}
+
+image:81Campaign_template.png[title="Plantilla del Asistente de Campañas"]
+
+* *Seleccionar una plantilla existente* – Puede seleccionar de una lista desplegable de Plantillas de Email existentes.
+* *Crear una plantilla nueva* – Cree una plantilla de email nueva desde cero.
+* *Copiar una plantilla existente* – Le permite seleccionar una plantilla existente y utilizarla como base para realizar modificaciones.
+
+El editor de plantillas de email al final de la página muestra el aspecto que tendrá su plantilla.
+Arrastre y suelte los distintos componentes de diseño desde el panel de la izquierda hasta el panel de visualización de la derecha, donde pueden editarse.
+
+image:Email_Template_Editor.png[title="Editor de Plantillas de Email"]
+
+Al hacer clic en un componente se mostrará el menú de edición. Este ofrece numerosas opciones adicionales que le permiten personalizar el diseño y la apariencia de su plantilla. Se puede seleccionar y dar formato al tipo de letra, cambiar colores, elegir la alineación del texto, e insertar imágenes e incluso vídeos.
+
+image:85Campaign_template.png[title="Editor WYSIWYG"]
+
+{{%notice tip%}}Inserte HTML haciendo clic en Herramientas > Código Fuente{{%/notice%}}
+
+==== Variables de Email
+
+image:84Campaign_template.png[title="Variables de email"]
+
+=== URLs de Seguimiento
+
+Las URLs de seguimiento se pueden utilizar para insertar un enlace al sitio web de su organización o un enlace directo a un nuevo producto que haya lanzado, por ejemplo. Se añade un identificador único al enlace para cada destinatario, lo que permite a *SuiteCRM* hacer seguimiento de los clics. La información recopilada puede consultarse en la página de estado de la campaña.
+
+image:83Campaign_template.png[title="URL de Seguimiento"]
+
+Para añadir su propio enlace de seguimiento, haga clic en **CREAR SEGUIMIENTO**
+
+image:CampaignsCreateTracker2.png[title="Crear seguimiento"]
+
+Especifique el texto que se mostrará como enlace, y la URL.
+
+Haga clic en **CREAR SEGUIMIENTO**
+
+Añada su(s) seguimiento(s) a la plantilla de la misma forma que para una variable. Haga clic dentro de la plantilla en la ubicación deseada, luego seleccione el seguimiento en el desplegable y haga clic en **INSERTAR SEGUIMIENTO**
+
+==== URLs de Seguimiento para Rehusar
+
+Un enlace para Rehusar permite al destinatario darse de baja de futuros correos de marketing, y se añadirá automáticamente un enlace de rehúse por defecto a la plantilla. Puede sustituir este enlace por defecto por su propio texto de enlace para rehusar añadiendo un Seguimiento de Rehúse personalizado.
+
+Haga clic en **CREAR SEGUIMIENTO**
+
+image:CampaignsOptOutTracker.png[title="Crear seguimiento de rehúse"]
+
+Especifique el texto que desea para su enlace de rehúse.
+
+Marque la casilla Enlace de Rehúse. Tenga en cuenta que no puede editar la URL de Seguimiento en sí, solo el texto del enlace.
+
+Añada su seguimiento a la plantilla de la misma forma que para una variable. Haga clic dentro de la plantilla en la ubicación deseada, luego seleccione el seguimiento en el desplegable y haga clic en **INSERTAR SEGUIMIENTO**
+
+Una vez completada su plantilla de email, haga clic en **GUARDAR**.
+
+Haga clic en **SIGUIENTE** en la parte superior de la página para continuar.
+
+=== Marketing
+
+La sección Marketing del Asistente de Campañas es donde debe especificar la configuración de email para la campaña, y establecer una programación para el envío de los correos.
+
+image:CampaignsMarketing.png[title="Marketing del Asistente de Campañas"]
+
+[cols="20,80", frame = "none", grid = "none"]
+|===
+|*Nombre de Email de Marketing*|Introduzca un nombre para esta ejecución de la campaña. Esto le permite reenviar la campaña más adelante a una lista de público objetivo distinta, o con una plantilla modificada. La campaña almacenará los detalles de estado por separado para cada registro de marketing, y estos pueden seleccionarse en la página de estado de la campaña.
+|*Cuenta de Gestión de Rebotes*|Seleccione la cuenta configurada para gestionar el correo de campaña rebotado.
+|*Cuenta de Email Saliente*|Esto se establecerá por defecto en la cuenta de correo saliente del sistema. Si dispone de otra cuenta de correo saliente...
+|*Fecha y Hora Programada*|Los correos de la campaña se pondrán en cola para su envío en el momento especificado y se enviarán cuando se ejecute a continuación el trabajo programado *Ejecutar Campañas de Email Masivo Nocturnas*.
+|===
+
+Una vez completados los detalles, haga clic en **SIGUIENTE** en la parte superior de la pantalla para continuar.
+
+=== Enviar Email y Resumen
+
+La página de Resumen incluye una lista de comprobación que indica si cada sección del Asistente de Campañas se ha completado satisfactoriamente.
+
+[cols="20,80", frame = "none", grid = "none"]
+|===
+|image:CampaignsGreenTick.png[title="Sección de campaña completada"]|Si una sección está completa, se muestra con un icono de marca de verificación verde.
+|image:CampaignsRedCross.png[title="Sección de campaña incompleta"]|Las secciones incompletas se muestran con una cruz roja. Deberán resolverse antes de poder enviar la campaña.
+|===
+
+image:CampaignsSummary.png[title="Resumen de la Campaña"]
+
+En el ejemplo anterior, la sección *Elegir Objetivos* no se ha completado correctamente, como indica el icono de cruz roja. Esto se resolvería especificando una
+lista de público objetivo de tipo 'Por Defecto' con al menos una entrada.
+
+Haga clic en cualquier entrada incompleta de la lista para navegar a la sección correspondiente.
+
+Una vez que se haya asegurado de que todas las secciones están completas, dispone de tres opciones:
+
+* *Enviar Correo a la Hora Programada* – Una vez que esté seguro de que todas las secciones de la campaña están configuradas correctamente y el estado de su campaña está establecido como *Activa*, haga clic para enviar los correos de la campaña. El correo se pondrá en cola en la hora programada y se enviará a los destinatarios cuando se ejecute a continuación el trabajo programado *Ejecutar Campañas de Email Masivo Nocturnas*.
+* *Enviar Email de Marketing como Prueba* – Si ha especificado una lista de público objetivo de tipo 'Pruebas', esto enviará la campaña únicamente a las direcciones de esa lista de prueba. De esta forma puede ver la campaña como un destinatario y comprobar que aparece tal y como debería antes de enviarla a los destinatarios reales. Las entradas de prueba generadas (vistas, clics, etc.) pueden eliminarse posteriormente desde la página <<Estado de la Campaña y Seguimiento de Respuestas,de estado de la campaña>>.
+* *Ver Detalles* – Muestra la Vista de Detalle de la campaña que acaba de crear.
+
+== Estado de la Campaña y Seguimiento de Respuestas
+Desde la Vista de Detalle de la campaña, haga clic en **VER ESTADO**
+[cols="60,40", frame = "none", grid = "none"]
+|===
+|O, desde la Vista de Lista, haga clic en el icono de estado|image:CampaignsViewStatusIcon.png[title="Icono de estado"]
+|===
+
+La página de estado de la campaña ofrece una visión general de los detalles de la campaña, así como una representación gráfica de la respuesta a su campaña. Esto incluye el número de mensajes enviados, mensajes rebotados, número de vistas, bajas y clics.
+
+image:CampaignStatus3.png[title="Estado de la campaña"]
+
+Puede consultar información detallada en los subpaneles situados debajo del gráfico, donde las respuestas se detallan a nivel de registro individual. Aquí puede ver quién ha visto su correo o ha hecho clic en un enlace, o cómo ha respondido a una encuesta, por ejemplo.
+
+image:CampaignsStatusViewedMessage.png[title="Mensajes vistos"]
+
+Si la campaña incluye un <<Formulario Web a Persona, formulario Web a Persona>>, podrá ver los detalles de cualquier cliente potencial creado a través del formulario web en el subpanel *Clientes Potenciales Creados*.
+
+image:CampaignsLeadsCreated.png[title="Clientes Potenciales creados por la Campaña"]
+
+Estos registros pueden añadirse a una nueva lista de público objetivo haciendo clic en **Añadir a Lista de Público Objetivo**. Esto le permite crear nuevas campañas, más específicas, basadas en quién ha respondido.
+
+[discrete]
+=== Eliminar Entradas de Prueba
+
+Haga clic en **ELIMINAR ENTRADAS DE PRUEBA** para eliminar las entradas de la página de estado de la campaña que se hayan generado durante las pruebas con una link:../target-lists[lista de público objetivo] de tipo 'Pruebas'.
+
+== Seguimiento del ROI de la Campaña
+
+El seguimiento del ROI integrado de la campaña puede consultarse desde la vista de detalle o de estado de la campaña haciendo clic en **VER ROI**
+
+Esta página ofrece una representación gráfica del Retorno de la Inversión de su campaña, permitiéndole visualizar fácilmente cómo el dinero invertido en la campaña se ha traducido en negocio
+potencial.
+
+image:CampaignsROIChart.png[title="Detalles del Retorno de la Inversión"]
+
+{{%notice tip%}}Añada o edite los detalles del presupuesto de la campaña haciendo clic en Lanzar Asistente y navegando después a la pestaña Encabezado de la Campaña.{{%/notice%}}
+
+== Formulario Web a Persona
+
+La función *Formulario de Creación de Persona* le permite crear un formulario basado en web que creará un
+registro de link:../targets[Cliente Potencial], link:../contacts[Contacto] o link:../targets[Público Objetivo] en *SuiteCRM*
+a partir de la información enviada en el formulario web. Estos registros pueden asignarse a un usuario concreto
+y quedan vinculados a una campaña para poder hacer seguimiento de las respuestas.
+
+{{%notice note%}}Deberá asociar su Formulario Web a Persona a una campaña existente.
+Consulte la sección <<Crear una Campaña>> para instrucciones sobre cómo hacerlo. Una campaña de tipo no basada en email es adecuada para esto.{{%/notice%}}
+
+Haga clic en *Crear Formulario de Persona* en la barra lateral, o seleccione *Crear Formulario de Persona* en el menú desplegable de *Campañas* para abrir el asistente.
+
+image:CampaignsSidebarCreateForm.png[title="Crear Formulario de Persona"]
+
+[discrete]
+=== Asistente de Creación de Formulario de Persona
+
+Seleccione el tipo de registro que desea crear a partir de la información del formulario web: *Cliente Potencial*, *Contacto* o *Público Objetivo*, en el desplegable superior. La lista de campos disponibles se actualizará automáticamente según su selección. Utilice la barra de desplazamiento para ver la lista completa de campos disponibles.
+
+image:CampaignsCreatePerson1.png[title="Crear Formulario de Persona - seleccionar campos"]
+
+Arrastre y suelte los campos que desea incluir en el formulario en las columnas vacías del formulario. Dispone de la opción de un diseño de una o dos columnas. Debe incluir los campos obligatorios (se indican con un asterisco* y aparecen resaltados en la lista).
+
+Haga clic en **AÑADIR TODOS LOS CAMPOS** para añadir todos los campos disponibles al formulario. Al hacer clic en **RESTABLECER TODOS LOS CAMPOS** se eliminarán todos los campos de las columnas de diseño.
+
+image:CampaignsCreatePerson2.png[title="Crear Formulario de Persona - seleccionar campos"]
+
+Una vez añadidos los campos requeridos, haga clic en **SIGUIENTE** para continuar.
+
+[discrete]
+==== Crear Formulario de Persona – Información Adicional
+
+image:CampaignsCreatePerson3.png[title="Información adicional"]
+
+Configure el aspecto del formulario web añadiendo un encabezado o pie de página y cambiando la etiqueta del botón de envío del formulario, si lo desea.
+
+*URL de Redirección*: especifique un enlace personalizado que se mostrará una vez enviado el formulario.
+
+*Campaña Relacionada*: debe asociar el formulario a una campaña existente. Haga clic en **SELECCIONAR** para seleccionar la campaña en la ventana emergente.
+
+Una vez completado, haga clic en **GENERAR FORMULARIO**
+
+[discrete]
+==== Crear Formulario de Persona – Editor
+
+El último paso del Asistente de Creación de Formulario de Persona le permite dar formato al formulario web que ha configurado utilizando el editor.
+Se puede seleccionar el tipo de letra, cambiar colores, elegir la alineación del texto e insertar imágenes.
+Vea y edite el HTML directamente haciendo clic en el enlace HTML de la barra de herramientas.
+
+image:CampaignsCreatePerson4.png[title="Formulario web"]
+
+Una vez que esté satisfecho con el aspecto de su formulario web, haga clic en **GUARDAR FORMULARIO WEB**
+
+[discrete]
+==== Guardar Formulario
+
+Para guardar el formulario web que acaba de generar, haga una de las dos cosas siguientes:
+
+* Haga clic en el enlace *Formulario Web a Persona* para descargar el formulario web a su carpeta de descargas *O*
+* Copie y pegue el HTML en una página web existente. Tenga en cuenta la línea que debe incluir en la sección <head> de la página web.
+
+image:CampaignsCreatePerson5.png[title="Descargar formulario"]
+
+{{%notice warning%}}Tenga en cuenta que el formulario web no se almacenará en ningún otro lugar de *SuiteCRM*. Para asegurarse de que el formulario se guarda, realice uno de los dos pasos anteriores.{{%/notice%}}

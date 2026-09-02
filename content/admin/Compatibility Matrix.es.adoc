@@ -1,0 +1,500 @@
+---
+Title: Matriz de Compatibilidad
+weight: 90
+---
+
+== Versiones
+
+=== SuiteCRM 7.15.x
+
+[[smaller-table-spacing-12]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2019+
+
+| PHP | 8.1, 8.2, 8.3, 8.4
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+| IIS | 10
+
+2+^h| Base de Datos
+
+| MariaDB | 10.6, 10.11, 11.4, 11.8
+
+| MySQL | 8.0, 8.4
+
+| SQL Server |SQL Server 2019+
+
+2+^h| Navegadores
+
+| Chrome |143+
+
+| Firefox |140, 146+
+
+| Edge |143+
+
+| Safari |26+
+|========
+
+=== SuiteCRM 7.14.x
+
+[[smaller-table-spacing-11]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2019+
+
+| PHP | 8.1, 8.2
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+| IIS | 10
+
+2+^h| Base de Datos
+
+| MariaDB | 10.4, 10.5, 10.6, 10.10, 10.11
+
+| MySQL |5.7, 8.0
+
+| SQL Server |SQL Server 2019+
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (modo de compatibilidad no soportado)
+
+| Edge |109+
+
+| Safari |16+
+|========
+
+=== SuiteCRM 7.13.x
+
+[[smaller-table-spacing-10]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2012+
+
+| PHP | 7.4, 8.0
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+| IIS |8, 8.5, 10
+
+2+^h| Base de Datos
+
+| MariaDB | 10.3, 10.4, 10.5, 10.6
+
+| MySQL |5.7, 8.0
+
+| SQL Server |SQL Server 2012+
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (modo de compatibilidad no soportado)
+
+| Edge |109+
+
+| Safari |16+
+|========
+
+=== SuiteCRM 7.12.x
+
+[[smaller-table-spacing-9]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2012+
+
+| PHP | 7.3, 7.4, 8.0
+
+2+^h| Servidor Web
+
+| Apache |2.2, 2.4
+
+| IIS |8, 8.5, 10
+
+2+^h| Base de Datos
+
+| MariaDB |10.2, 10.3, 10.4, 10.5, 10.6
+
+| MySQL |5.7, 8.0
+
+| SQL Server |SQL Server 2012+
+
+2+^h| Navegadores
+
+| Chrome |90+
+
+| Firefox |90+
+
+| IE | 11 (modo de compatibilidad no soportado)
+
+| Edge |88+
+
+| Safari |12+
+|========
+
+=== SuiteCRM 7.11.x
+
+[[smaller-table-spacing-8]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2008+
+
+| PHP | 5.6, 7.0, 7.1, 7.2, +
+7.3 (a partir de SuiteCRM 7.11.5) +
+7.4 (a partir de SuiteCRM 7.11.19)
+
+2+^h| Servidor Web
+
+| Apache |2.2, 2.4
+
+| IIS |8, 8.5
+
+2+^h| Base de Datos
+
+| MariaDB |5.5, 10, 10.1, 10.2, 10.3
+
+| MySQL |5.5, 5.6, 5.7 +
+8 (a partir de SuiteCRM 7.11.16)
+
+| SQL Server |SQL Server 2008+
+
+2+^h| Navegadores
+
+| Chrome |55+
+
+| Firefox |52+
+
+| IE | 11 (modo de compatibilidad no soportado)
+
+| Edge |26
+
+| Safari |6+
+|========
+
+=== SuiteCRM 7.10.x
+
+[[smaller-table-spacing-7]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2008+
+
+| PHP | 5.5.9, 5.6, 7.0, 7.1, 7.2, +
+7.3 (a partir de SuiteCRM 7.10.17) +
+7.4 (a partir de SuiteCRM 7.10.30)
+
+2+^h| Servidor Web
+
+| Apache |2.2, 2.4
+
+| IIS |8, 8.5
+
+2+^h| Base de Datos
+
+| MariaDB |5.5, 10, 10.1, 10.2, 10.3
+
+| MySQL |5.5, 5.6, 5.7 +
+8 (a partir de SuiteCRM 7.10.28)
+
+| SQL Server |SQL Server 2008+
+
+2+^h| Navegadores
+
+| Chrome |55+
+
+| Firefox |52+
+
+| IE | 11 (modo de compatibilidad no soportado)
+
+| Edge |26
+
+| Safari |6+
+|========
+
+=== SuiteCRM 7.9.x
+
+[[smaller-table-spacing-1]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| Windows | Windows Server 2008+
+
+| PHP | 5.5, 5.6, 7.0, 7.1
+
+2+^h| Servidor Web
+
+| Apache |2.2, 2.4
+
+| IIS |8, 8.5
+
+2+^h| Base de Datos
+
+| MariaDB |5.5, 10, 10.1
+
+| MySQL |5.5, 5.6, 5.7
+
+| SQL Server |SQL Server 2008+
+
+2+^h| Navegadores
+
+| Chrome |55+
+
+| Firefox |52+
+
+| IE | 11 (modo de compatibilidad no soportado)
+
+| Edge |26
+
+| Safari |6+
+|========
+
+=== SuiteCRM 7.8.x
+
+[[smaller-table-spacing-2]]
+[cols="1s,2",]
+|=========
+
+2+^h|Plataforma
+
+|Linux, Unix, Mac OS |Cualquier versión compatible con PHP
+
+|Windows |Windows Server 2008+
+
+|PHP |5.5, 5.6, 7.0, 7.1
+
+2+^h|Servidor Web
+
+|Apache |2.2, 2.4
+
+|IIS |8, 8.5
+
+2+^h|Base de Datos
+
+|MariaDB |5.5, 10, 10.1
+
+|MySQL |5.5, 5.6, 5.7
+
+|SQL Server |SQL Server 2008+
+
+2+^h|Navegadores
+
+|Chrome |55+
+
+|Firefox |52+
+
+|IE |11 (modo de compatibilidad no soportado)
+
+|Edge |26
+
+|Safari |6+
+|=========
+
+=== SuiteCRM 7.7.x
+
+[[smaller-table-spacing-3]]
+[cols="1s,2",]
+|====
+
+2+^h| Plataforma
+
+|Linux, Unix, Mac OS |Cualquier versión compatible con PHP
+
+|Windows |Windows Server 2008+
+
+|PHP |5.3, 5.5, 5.6, 7.0
+
+2+^h| Servidor Web
+
+|Apache |2.2, 2.4
+
+|IIS |8, 8.5
+
+2+^h| Base de Datos
+
+|MariaDB |5.5, 10, 10.1
+
+|MySQL |5.5, 5.6
+
+|SQL Server |SQL Server 2008+
+
+2+^h|Navegadores
+
+|Chrome |43+
+
+|Firefox |38+
+
+|IE |11 (modo de compatibilidad no soportado)
+
+|Edge |26
+
+|Safari |6+
+|====
+
+=== SuiteCRM 7.6.x
+
+[[smaller-table-spacing-4]]
+[cols="1s,2",]
+|====
+
+2+^h|Plataforma
+
+|Linux, Unix, Mac OS |Cualquier versión compatible con PHP
+
+|Windows |Windows Server 2008+
+
+|PHP |5.5, 5.6, 7.0
+
+2+^h|Servidor Web
+
+|Apache |2.2, 2.4
+
+|IIS |8, 8.5
+
+2+^h|Base de Datos
+
+|MariaDB |5.5, 10, 10.1
+
+|MySQL |5.5, 5.6
+
+|SQL Server |SQL Server 2008+
+
+2+^h|Navegadores
+
+|Chrome |43+
+
+|Firefox |38+
+
+|IE |11 (modo de compatibilidad no soportado)
+
+|Edge |26
+
+|Safari |6+
+|====
+
+=== SuiteCRM 7.5.x
+
+[[smaller-table-spacing-5]]
+[cols="1s,2",]
+|====
+
+2+^h|Plataforma
+
+|Linux, Unix, Mac OS |Cualquier versión compatible con PHP
+
+|Windows |Windows Server 2008+
+
+|PHP |5.5, 5.6, 7.0
+
+2+^h|Servidor Web
+
+|Apache |2.2
+
+|IIS |8, 8.5
+
+2+^h|Base de Datos
+
+|MariaDB |5.5, 10, 10.1
+
+|MySQL |5.5, 5.6
+
+|SQL Server |SQL Server 2008+
+
+2+^h|Navegadores
+
+|Chrome |43+
+
+|Firefox |38+
+
+|IE |11 (modo de compatibilidad no soportado)
+
+|Edge |26
+
+|Safari |6+
+|====
+
+=== SuiteCRM 7.4.x
+
+[[smaller-table-spacing-6]]
+[cols="1s,2",]
+|====
+
+2+^h|Plataforma
+
+|Linux, Unix, Mac OS |Cualquier versión compatible con PHP
+
+|Windows |Windows Server 2008+
+
+|PHP |5.3, 5.4, 5.5, 5.6
+
+2+^h|Servidor Web
+
+|Apache |2.0, 2.2
+
+|IIS |7.0, 7.5, 8, 8.5
+
+2+^h| Base de Datos
+
+|MariaDB |5.5, 10, 10.1
+
+|MySQL |5.1, 5.5, 5.6
+
+|SQL Server |SQL Server 2008+
+
+2+^h| Navegadores
+
+|Chrome |38+
+
+|Firefox |32+
+
+|IE |9, 10, 11 (modo de compatibilidad no soportado)
+
+|Safari |6+
+|====

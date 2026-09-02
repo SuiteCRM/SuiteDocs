@@ -1,0 +1,460 @@
+---
+Title: Matriz de Compatibilidad
+weight: 60
+---
+
+{{% notice note %}}
+La siguiente documentación corresponde a SuiteCRM Versión 8+; para ver la documentación sobre el mismo tema para la Versión 7, haga clic link:../../../admin/compatibility-matrix[aquí].
+{{% /notice %}}
+
+== Versiones
+
+=== SuiteCRM 8.10.x
+
+[[smaller-table-spacing-12]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.2, 8.3, 8.4
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.6, 10.11, 11.4, 11.8
+
+| MySQL | 8.0, 8.4
+
+2+^h| Navegadores
+
+| Chrome |143+
+
+| Firefox |140, 146+
+
+| Edge |143+
+
+| Safari |26+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^18
+| Node.js | ^20.11.1
+| yarn | ^4.10.3
+
+|========
+
+=== SuiteCRM 8.9.x
+
+[[smaller-table-spacing-11]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.1, 8.2, 8.3
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.6, 10.11, 11.4, 11.8
+
+| MySQL | 8.0, 8.4
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| Edge |109+
+
+| Safari |16+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^18
+| Node.js | ^20.11.1
+| yarn | ^4.5.0 || (8.9.2+) 4.10.3
+
+|========
+
+=== SuiteCRM 8.8.x
+
+[[smaller-table-spacing-10]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.1, 8.2, 8.3
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.5, 10.6, 10.11
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (no compatible con el modo de compatibilidad)
+
+| Edge |109+
+
+| Safari |16+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^18
+| Node.js | ^20.11.1
+| yarn | ^4.5.0
+
+|========
+
+=== SuiteCRM 8.7.x
+
+{{% notice warning %}}
+A partir de la versión 8.7, SuiteCRM no funcionará con php 7.4
+{{% /notice %}}
+
+[[smaller-table-spacing-9]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.1, 8.2
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.4, 10.5, 10.6, 10.10, 10.11
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (no compatible con el modo de compatibilidad)
+
+| Edge |109+
+
+| Safari |16+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^16
+| Node.js | ^18.10
+| yarn | ^1.22.10
+
+|========
+
+=== SuiteCRM 8.6.x
+
+{{% notice warning %}}
+SuiteCRM 8.6 es la última versión de SuiteCRM en la que se contemplará el uso de php 7.4. Actualice la versión de PHP antes de continuar con versiones posteriores a la 8.6.x
+{{% /notice %}}
+
+[[smaller-table-spacing-2]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.1, 8.2
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.4, 10.5, 10.6, 10.10, 10.11
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (no compatible con el modo de compatibilidad)
+
+| Edge |109+
+
+| Safari |16+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^16
+| Node.js | ^18
+| yarn | ^1.22.10
+
+|========
+
+=== SuiteCRM 8.5.x
+
+[[smaller-table-spacing-3]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.1, 8.2
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.4, 10.5, 10.6, 10.10, 10.11
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (no compatible con el modo de compatibilidad)
+
+| Edge |109+
+
+| Safari |16+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^16
+| Node.js | ^18
+| yarn | ^1.22.10
+
+|========
+
+=== SuiteCRM 8.4.x
+
+[[smaller-table-spacing-4]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+
+| PHP | 8.1, 8.2
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.4, 10.5, 10.6, 10.10, 10.11
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| IE | 11 (no compatible con el modo de compatibilidad)
+
+| Edge |109+
+
+| Safari |16+
+
+2+^h| Requisitos adicionales para desarrollo front-end (no necesarios en producción)
+
+| Angular CLI | ^12
+| Node.js | ^14.15.1
+| yarn | ^1.22.10
+
+|========
+
+=== SuiteCRM 8.3.x
+
+[[smaller-table-spacing-5]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+| PHP | 7.4, 8.0
+
+2+^| Requisitos adicionales para desarrollo
+
+| Angular CLI | ^12
+| Node.js | ^14.15.1
+| yarn | ^1.22.10
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB | 10.4+
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |112+
+
+| Edge (Chromium) |109+
+
+| Safari |16+
+|========
+
+=== SuiteCRM 8.2.x
+
+[[smaller-table-spacing-6]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+| PHP | 7.3, 7.4, 8.0
+
+2+^| Requisitos adicionales para desarrollo
+
+| Angular CLI | ^12
+| Node.js | ^14.15.1
+| yarn | ^1.22.10
+
+2+^h| Servidor Web
+
+| Apache | 2.4
+
+2+^h| Base de Datos
+
+| MariaDB |10.3 - 10.9
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |109+
+
+| Firefox |109+
+
+| Edge (Chromium) |109+
+
+| Safari |16+
+|========
+
+=== SuiteCRM 8.1.x
+
+[[smaller-table-spacing-7]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+| PHP | 7.3, 7.4, 8.0
+
+2+^| Requisitos adicionales para desarrollo
+
+| Angular CLI | ^12
+| Node.js | ^14.15.1
+| yarn | ^1.22.10
+
+2+^h| Servidor Web
+
+| Apache |2.2, 2.4
+
+2+^h| Base de Datos
+
+| MariaDB |10.3, 10.4, 10.5, 10.6
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |90+
+
+| Firefox |90+
+
+| Edge (Chromium) |89+
+
+| Safari |14+
+|========
+
+=== SuiteCRM 8.0.x
+
+[[smaller-table-spacing-8]]
+[cols="1s,2" ]
+|========
+
+2+^h| Plataforma
+
+| Linux, Unix, Mac OS | Cualquier versión compatible con PHP
+| PHP | 7.3, 7.4, 8.0
+
+2+^| Requisitos adicionales para desarrollo
+
+| Angular CLI | ^12
+| Node.js | ^14.15.1
+| yarn | ^1.22.10
+
+2+^h| Servidor Web
+
+| Apache |2.2, 2.4
+
+2+^h| Base de Datos
+
+| MariaDB |10.3, 10.4, 10.5, 10.6
+
+| MySQL |5.7, 8.0
+
+2+^h| Navegadores
+
+| Chrome |90+
+
+| Firefox |90+
+
+| Edge (Chromium) |89+
+
+| Safari |14+
+|========

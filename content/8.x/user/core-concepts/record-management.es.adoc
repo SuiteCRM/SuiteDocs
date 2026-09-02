@@ -1,0 +1,119 @@
+---
+title: "Gestión de Registros"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts
+
+= Gestión de Registros
+
+Esta sección trata las áreas clave de la gestión de registros en SuiteCRM, incluyendo cómo crear, editar, eliminar, actualizar de forma masiva, combinar, importar y exportar registros.
+
+== Crear Registros
+
+Los registros pueden crearse desde varias ubicaciones dentro de SuiteCRM, lo que le ofrece flexibilidad en función de dónde se encuentre en el sistema en cada momento:
+
+* *Barra de navegación superior (al pasar el cursor):* al pasar el cursor sobre el nombre de un módulo en la barra de navegación superior se mostrará un desplegable que incluye un botón *Crear* que le permite crear un nuevo registro en ese módulo.
+
+image:create-from-nav.png[Opción Crear en el desplegable de navegación del módulo]
+
+* *El icono +:* en la barra de navegación superior hay disponible un icono *+* que ofrece una forma rápida de crear ciertos tipos de registro. No todos los módulos están disponibles mediante este método, solo puede crearse así un conjunto seleccionado de tipos de registro de uso común.
+
+image:quick-create-plus-icon.png[Icono + de Acciones Rápidas en la barra de navegación superior]
+
+No obstante, si ya se encuentra dentro de un módulo, por ejemplo, viendo Documentos en la Vista de Lista, el icono *+* también incluirá la opción de crear un nuevo registro para ese módulo, independientemente de si normalmente aparecería en la lista de creación rápida.
+
+image:quick-create-in-module.png[Icono + de Acciones Rápidas mostrando la opción del módulo actual]
+
+* *Desde un subpanel:* al ver un registro en la Vista de Detalle, puede crear un nuevo registro relacionado directamente desde el subpanel correspondiente. El nuevo registro se vinculará automáticamente al registro actual.
+
+image:create-from-subpanel.png[Botón Crear dentro de un subpanel expandido]
+
+Una vez que haga clic en la opción Crear, se le mostrará la Vista de Edición de ese módulo, donde podrá introducir los datos correspondientes. Los campos marcados con un asterisco rojo (*) son obligatorios y deben completarse antes de que el registro pueda guardarse. SuiteCRM validará sus datos al guardar y le avisará si falta algún campo obligatorio o si se han introducido datos en un formato incorrecto.
+
+Una vez que haya rellenado todos los campos obligatorios, haga clic en *Guardar* para crear el registro. A continuación, se le redirigirá a la Vista de Detalle del registro recién creado.
+
+== Editar Registros
+
+Los registros pueden editarse desde la Vista de Detalle haciendo clic en el icono de *Lápiz* junto a los campos, o haciendo clic en el botón *Editar* de la esquina superior derecha.
+
+image:edit-record-buttons.png[Icono de Lápiz y botón Editar en la Vista de Detalle]
+
+Al igual que al crear registros, los campos obligatorios se marcan con un asterisco rojo (*) y se aplicará la validación al guardar. Una vez que haya realizado sus cambios, haga clic en *Guardar* para aplicarlos. Se le redirigirá a la Vista de Detalle del registro que acaba de editar.
+
+== Eliminar Registros
+
+Los registros pueden eliminarse tanto desde la Vista de Detalle como desde la Vista de Lista:
+
+* *Desde la Vista de Detalle:* seleccione *Eliminar* en el desplegable *Acciones*. Se le pedirá que confirme la eliminación antes de que se lleve a cabo. Al hacer clic en *Aceptar* se eliminará el registro de forma permanente y se le redirigirá a la Vista de Lista del módulo. Al hacer clic en *Cancelar* volverá a la Vista de Detalle sin realizar ningún cambio.
+
+image:delete-from-detail-view.png[Opción Eliminar en el desplegable Acciones de la Vista de Detalle]
+
+* *Desde la Vista de Lista:* seleccione los registros que desea eliminar mediante las casillas situadas a la izquierda de cada fila. Puede seleccionar registros individuales, todos los registros de la página actual, o todos los registros del módulo. Una vez seleccionados, elija *Eliminar* en el desplegable *Acción Masiva*. Se le pedirá que confirme la eliminación antes de que se lleve a cabo.
+
+image:delete-from-list-view.png[Desplegable Acción Masiva en la Vista de Lista con la opción Eliminar]
+
+== Actualización Masiva de Registros
+
+La Actualización Masiva le permite actualizar un campo concreto o un conjunto de campos en varios registros simultáneamente, ahorrando un tiempo considerable cuando es necesario aplicar cambios a un gran número de registros.
+
+Para actualizar registros de forma masiva, seleccione los registros que desea actualizar en la Vista de Lista mediante las casillas y, a continuación, elija *Actualización Masiva* en el desplegable *Acción Masiva*.
+
+image:mass-update-bulk-action.png[Desplegable Acción Masiva mostrando la opción Actualización Masiva]
+
+Aparecerá un panel en la parte superior de la Vista de Lista mostrando todos los campos disponibles para la actualización masiva. Rellene los campos que desea actualizar y haga clic en *Actualizar* para aplicar los cambios a todos los registros seleccionados, o en *Cancelar* para descartarlos.
+
+image:mass-update-panel.png[Panel de Actualización Masiva mostrando los campos disponibles para actualizar]
+
+{{% notice note %}}
+Los campos disponibles para la actualización masiva se configuran por módulo y pueden ser ajustados por un administrador del sistema.
+{{% /notice %}}
+
+== Combinar Registros
+
+La función Combinar le permite consolidar registros duplicados en un único registro principal, garantizando que sus datos se mantengan limpios y precisos.
+
+Para combinar registros, seleccione los registros que desea combinar en la Vista de Lista y elija *Combinar* en el desplegable *Acción Masiva*.
+
+image:merge-bulk-action.png[Desplegable Acción Masiva mostrando la opción Combinar]
+
+Alternativamente, puede iniciar una combinación desde la Vista de Detalle mediante la opción *Buscar Duplicados*, que identificará posibles registros duplicados para que los revise.
+
+image:find-duplicates-action.png[Opción Buscar Duplicados en el desplegable Acciones]
+
+Una vez en la pantalla de combinación, verá el registro principal junto con los registros duplicados. Puede utilizar el botón *Establecer como Principal* para designar qué registro debe ser el principal, y utilizar los botones de flecha para mover valores de campos concretos de los registros duplicados al registro principal, lo que le da control total sobre qué datos se conservan.
+
+image:merge-screen.png[Pantalla de combinación mostrando el registro principal y los duplicados con selección de campos]
+
+Cuando esté satisfecho con los datos combinados, haga clic en *Guardar Combinación*. Se le pedirá que confirme que los registros duplicados se eliminarán. Al hacer clic en *Aceptar* se completará la combinación y se le redirigirá a la Vista de Detalle del registro combinado. Al hacer clic en *Cancelar* se descartará la combinación y volverá a la Vista de Lista.
+
+== Importar Registros
+
+SuiteCRM incluye un Asistente de Importación que facilita la incorporación de datos al sistema desde fuentes externas, como archivos CSV. El Asistente de Importación le guía paso a paso por el proceso, con sugerencias y consejos en cada etapa.
+
+Algunos aspectos importantes que conviene tener en cuenta antes de importar:
+
+* Si va a importar datos relacionados, por ejemplo, Contactos vinculados a Cuentas, importe siempre primero los datos de Cuentas. Esto permite a SuiteCRM establecer automáticamente la relación cuando se importan los Contactos.
+* En el Asistente de Importación hay disponible una plantilla de archivo CSV de ejemplo que puede descargar y utilizar como guía para dar el formato correcto a sus datos antes de importarlos.
+* El Asistente de Importación admite la detección automática de las propiedades del archivo, como delimitadores, formatos de fecha y caracteres de comillas, lo que simplifica el proceso de carga.
+* La configuración de importación, incluidas las asignaciones de campos y la configuración de comprobación de duplicados, puede guardarse para reutilizarla en futuras importaciones.
+
+Para iniciar una importación, pase el cursor sobre el nombre del módulo en la barra de navegación superior y haga clic en *Importar*.
+
+image:import-from-nav.png[Opción Importar en el desplegable de navegación del módulo]
+
+El Asistente de Importación le guiará a continuación por la carga del archivo, la confirmación de las propiedades del archivo, la asignación de campos, la comprobación de duplicados y la finalización de la importación. Si se producen errores durante la importación, se indicarán en la pestaña *Errores* para que pueda revisarlos y corregirlos antes de volver a ejecutar la importación.
+
+== Exportar Registros
+
+Los registros pueden exportarse desde cualquier módulo en formato CSV, que después puede abrirse en aplicaciones como Microsoft Excel o LibreOffice Calc.
+
+Para exportar registros, seleccione los registros que desea exportar en la Vista de Lista mediante las casillas y, a continuación, elija *Exportar* en el desplegable *Acción Masiva*. Puede optar por exportar solo los registros seleccionados, todos los registros de la página actual, o todos los registros del módulo.
+
+image:export-bulk-action.png[Desplegable Acción Masiva mostrando la opción Exportar]
+
+El archivo CSV exportado contendrá todos los campos especificados en la lista de exportación de ese módulo, incluido el ID del registro. El ID del registro puede resultar útil si más adelante desea realizar una importación que actualice registros existentes en lugar de crear otros nuevos.
+
+{{% notice note %}}
+Al exportar valores de campos desplegables, SuiteCRM exporta el ID de base de datos subyacente en lugar de la etiqueta que se muestra. Por ejemplo, un campo de prioridad con las opciones Alta, Media y Baja puede exportarse como 1, 2 o 3 respectivamente. Tenga esto en cuenta si tiene previsto utilizar el archivo exportado para volver a importar datos.
+{{% /notice %}}

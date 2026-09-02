@@ -1,0 +1,142 @@
+---
+title: Configurar Elasticsearch
+weight: 2
+---
+
+{{% notice info %}}
+Esta mejora solo está disponible en SuiteCRM a partir de la versión 7.11.
+{{% /notice %}}
+
+:toc:
+
+{{% notice note %}}
+SuiteCRM 7.11 requiere Elasticsearch 5.6. SuiteCRM 7.12 requiere Elasticsearch 7.
+{{% /notice %}}
+
+Elasticsearch requiere Java 8 para funcionar, y solo admite `Oracle Java` y `OpenJDK`.
+
+Las formas más rápidas de tener un servidor de Elasticsearch en funcionamiento son utilizando
+la imagen oficial de Docker, o el paquete `.deb` para sistemas basados en Debian (como Ubuntu).
+
+En esta guía se asume que va a instalar Elasticsearch en una máquina Ubuntu. Consulte la
+https://www.elastic.co/guide/en/elasticsearch/reference/5.6/install-elasticsearch.html[documentación oficial]
+para conocer otras formas de instalar Elasticsearch.
+
+Esta guía le enseñará a tener un servidor de desarrollo en funcionamiento con muy poca configuración,
+ya sea instalando mediante Docker o mediante el paquete `.deb`.
+Tenga en cuenta que esta guía no es adecuada para configurar un servidor de Elasticsearch de producción.
+
+== Instalar mediante Docker (recomendado)
+
+{{% notice note %}}
+Asegúrese de que el usuario actual pertenece al grupo `docker`, o recibirá problemas de permisos.
+{{% /notice %}}
+
+Descargue la imagen:
+
+[source,bash]
+docker pull docker.elastic.co/elasticsearch/elasticsearch:5.6.10
+
+=== Iniciar con `docker run`
+
+Inicie Elasticsearch. Esto es ideal para un servidor de pruebas/desarrollo.
+
+[source,bash]
+docker run -p 9200:9200 -p 9300:9300 \
+-e "discovery.type=single-node" -e "xpack.security.enabled=false" \
+docker.elastic.co/elasticsearch/elasticsearch:5.6.10
+
+=== Iniciar con `docker-compose`
+
+Cree un nuevo archivo `docker-compose.yml` o añada la configuración de elasticsearch a su docker-compose ya existente.
+
+[source,yaml]
+----
+version: '3'
+services:
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.6.10
+        container_name: elasticsearch
+        restart: unless-stopped
+        ports:
+            - 9200:9200
+            - 9300:9300
+        environment:
+            - discovery.type=single-node
+            - xpack.security.enabled=false
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+----
+
+E inicie con:
+
+[source,bash]
+docker-compose up
+
+== Instalar mediante .deb (no recomendado)
+
+Descargue e instale la clave de firma pública:
+
+[source,bash]
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+Puede que necesite instalar el paquete `apt-transport-https` en Debian antes de continuar:
+
+[source,bash]
+sudo apt-get install apt-transport-https
+
+Guarde la definición del repositorio en `/etc/apt/sources.list.d/elastic-5.x.list`:
+
+[source,bash]
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+
+Actualice el repositorio e instale OpenJDK 11 y Elasticsearch:
+
+[source,bash]
+sudo apt-get update && sudo apt-get install openjdk-11-jre elasticsearch
+
+{{% notice note %}}
+Es posible que deba ajustar la versión de OpenJDK para que coincida con la disponible en su distribución.
+{{% /notice %}}
+
+Inicie Elasticsearch con:
+
+[source,bash]
+sudo systemctl start elasticsearch.service
+
+o en versiones antiguas de Ubuntu:
+
+[source,bash]
+/etc/init.d/elasticsearch start
+
+== Probar la instalación
+
+Compruebe si el servidor está en funcionamiento con:
+
+[source,bash]
+curl -X GET "localhost:9200/"
+
+Y debería recibir algo similar a esto:
+
+[source,json]
+----
+{
+  "name" : "B5VzMdk",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "KGoWI84GQ8SZipmDaeA7pA",
+  "version" : {
+    "number" : "5.6.10",
+    "build_hash" : "b727a60",
+    "build_date" : "2018-06-06T15:48:34.860Z",
+    "build_snapshot" : false,
+    "lucene_version" : "6.6.1"
+  },
+  "tagline" : "You Know, for Search"
+}
+----
+
+{{% notice warning %}}
+Tenga en cuenta que esta configuración no proporciona autenticación.
+Recuerde proteger su servidor de Elasticsearch antes de pasar a producción,
+o sus datos quedarán vulnerables.
+{{% /notice %}}
+

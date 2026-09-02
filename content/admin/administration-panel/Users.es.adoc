@@ -1,0 +1,209 @@
+---
+Title: Usuarios
+weight: 20
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+= Usuarios
+
+== Descripción General
+
+Esta guía documenta los ajustes de la sección Usuarios del panel de Administración.
+
+Un *usuario* representa a alguien que puede iniciar sesión en su sistema *SuiteCRM*.
+Además de la información básica (nombre, cargo, dirección, número de teléfono, etc.)
+contenida en el módulo *Empleados*, un usuario tiene un nombre de usuario y una contraseña
+que le permiten iniciar sesión en el sistema, y una dirección de correo electrónico. Cuando se crea un nuevo Usuario
+en SuiteCRM, se crea un registro de Empleado correspondiente. De igual modo, cuando se crea
+un nuevo registro de Empleado, también se crea un nuevo registro de Usuario.
+Este nuevo registro de usuario deberá editarse (si es necesario) para añadir un nombre de usuario/contraseña
+y una dirección de correo electrónico antes de que pueda usarse para iniciar sesión en *SuiteCRM*.
+
+La sección *Usuarios* del *Panel de Administración* contiene los ajustes de las cuentas de usuario
+de *SuiteCRM* y los ajustes de seguridad de acceso.
+
+{{%notice note %}}Debe tener acceso de Administrador para añadir nuevas cuentas de usuario y
+editar los ajustes de acceso. Los usuarios normales tienen acceso a los detalles de su propia cuenta de usuario
+y pueden editar los datos de dirección, establecer preferencias, configurar el correo personal y cambiar
+su contraseña.{{% /notice %}}
+
+Abra el panel de Administración seleccionando *Admin* en el desplegable de la parte
+superior derecha de la pantalla de *SuiteCRM*.
+
+image:AdminPanelOpenPanel.png["Abrir Panel de Administración"]
+
+== Gestión de Usuarios
+
+Seleccione Gestión de Usuarios para ver, editar y añadir nuevas cuentas de usuario.
+
+image:UsersAdminPanel.png["Panel de Administración de Usuarios"]
+
+image:UsersListView.png["Gestión de Usuarios - Vista de Lista"]
+
+=== Añadir Nuevo Usuario
+
+Seleccione *Crear Nuevo Usuario* en la barra lateral para añadir una nueva cuenta de usuario.
+
+image:UsersSidebarCreateNewUser.png["Barra lateral de Usuarios - crear nuevo usuario"]
+
+==== Pestaña Perfil de Usuario
+
+image:UsersCreateUser.png["Crear nuevo usuario"]
+
+En la pestaña *Perfil de Usuario*, que se muestra por defecto, introduzca el nuevo nombre de usuario, el nombre y apellidos
+del usuario y el estado de la cuenta (Activo o Inactivo).
+
+{{%notice info %}}Solo las cuentas *Activas* pueden usarse para iniciar sesión en *SuiteCRM*.
+Además, los nombres de usuario de cuentas *Inactivas* no se incluyen en las listas desplegables de nombres de usuario
+(por ejemplo, las listas de asignado a o modificado por) usadas para la búsqueda de registros.{{% /notice %}}
+
+Seleccione el Tipo de Usuario en el desplegable. Un usuario Administrador del Sistema puede
+acceder al panel de Administración y a todos los registros de *SuiteCRM*. Un usuario normal
+tiene acceso a módulos y registros en función del rol o roles que se le hayan asignado. Consulte
+link:../roles-and-security-groups[Roles y Grupos de Seguridad] para más
+información.
+
+Se puede adjuntar opcionalmente una fotografía al registro de usuario. Busque el
+archivo requerido usando el botón btn:[Choose file]. La foto se mostrará en la vista de
+detalle del registro de usuario una vez que el registro se haya guardado.
+
+==== Autenticación de Dos Factores
+
+{{%notice note %}}La Autenticación de Dos Factores está disponible a partir de la versión
+7.10 de *SuiteCRM*{{% /notice %}}
+
+La Autenticación de Dos Factores se puede habilitar por usuario. Una vez habilitada, un
+usuario deberá introducir un código recibido por correo electrónico cada vez que inicie sesión
+en *SuiteCRM*.
+
+Marque la casilla de Autenticación de Dos Factores para habilitarla.
+
+image:TwoFactorAuth.png[title = "Autenticación de Dos Factores - ajustes de usuario"]
+
+Haga clic en btn:[SAVE] para guardar los ajustes.
+
+Cuando el usuario inicie sesión, tras introducir su nombre de usuario y contraseña,
+se le pedirá que introduzca el código que se le habrá enviado por correo electrónico.
+
+image:TwoFactorAuthCodeSent.png[title="Se requiere código de Autenticación de Dos Factores"]
+
+Una vez que haya introducido el código correcto y haya hecho clic en btn:[VERIFY], podrá
+iniciar sesión en *SuiteCRM*.
+
+{{%notice tip %}}La plantilla del correo electrónico con el código de Autenticación de Dos Factores
+que se envía a los usuarios puede configurarse en *Administración de Contraseñas*{{% /notice %}}
+
+==== Información de Empleado
+
+Se puede añadir información adicional opcional sobre el usuario en el panel de Información
+de Empleado. Los cambios realizados aquí se reflejarán en el registro
+de Empleado correspondiente.
+
+==== Ajustes de Correo Electrónico
+
+También se requiere una dirección de correo electrónico para una cuenta de usuario. Esta dirección se usa
+para enviar correos generados automáticamente por el sistema, como notificaciones de workflow y
+asignaciones de registros. Se pueden añadir más cuentas usando el botón btn:[+].
+Cuando haya más de una cuenta, seleccione la cuenta que se usará como
+cuenta principal.
+
+Para más información sobre los ajustes de correo electrónico del perfil de usuario, consulte
+link:../../../user/introduction/managing-user-accounts/#_personal_email_account_settings[ajustes de correo del perfil de usuario]
+
+==== Pestaña Contraseña
+
+Establezca aquí la contraseña de un nuevo usuario, o restablezca la contraseña de un usuario existente.
+
+{{%notice note %}}La pestaña Contraseña no será visible en el registro de usuario si tiene
+habilitada la funcionalidad *Contraseñas Generadas por el Sistema*. Para habilitar/deshabilitar
+las contraseñas generadas por el sistema, consulte la sección <<#_password_management, Administración de Contraseñas>>
+de este documento.
+{{% /notice %}}
+
+image:UsersAddPassword.png[Usuario - añadir contraseña]
+
+Introduzca los datos de la nueva contraseña y haga clic en btn:[SAVE]
+
+==== Pestaña Avanzado
+
+Aquí se pueden configurar los ajustes de usuario (incluyendo los ajustes de notificaciones y recordatorios e importación),
+los ajustes de configuración regional (fecha/hora, moneda, etc.) y las opciones de Calendario para la integración
+con iCal. Todos ellos son configurables por el usuario.
+
+==== Opciones de Diseño
+
+{{%notice note %}}La pestaña Opciones de Diseño aparece a partir de la versión
+7.10 de *SuiteCRM*{{% /notice %}}
+
+La pestaña Opciones de Diseño le permite establecer las opciones de color del
+tema *SuiteP*. Estos ajustes puede configurarlos el propio usuario.
+Consulte la link:../../../user/modules/themes[documentación de Temas de usuario]
+para más información sobre estos ajustes.
+
+===== Mostrar sugerencia de subpanel colapsado
+
+Si esta función está habilitada, los subpaneles colapsados en toda la aplicación mostrarán un recuento de los registros relacionados dentro del subpanel.
+
+image:ShowCollapsedHint.png[Usuario - Mostrar sugerencia de subpanel colapsado]
+
+== Administración de Contraseñas
+
+Desde el panel de *Admin*, seleccione *Administración de Contraseñas* para abrir la página de ajustes.
+
+=== Contraseñas Generadas por el Sistema
+
+Si esta funcionalidad está habilitada, las contraseñas de las nuevas cuentas de usuario se generarán
+automáticamente y se enviarán por correo electrónico a la dirección de la cuenta del usuario.
+
+{{%notice note%}}Esto requiere tanto un servidor de correo saliente configurado
+como una dirección de correo electrónico válida en el registro del usuario{{%/notice%}}
+
+=== Ajustes de Seguridad de Contraseñas
+
+Estos son ajustes opcionales de seguridad de contraseñas para las contraseñas de usuario.
+Una vez establecidos, las contraseñas de los usuarios deberán cumplir los criterios seleccionados.
+
+image:PasswordSecuritySettings.png[title = "Ajustes de seguridad de contraseñas"]
+
+Marque las casillas para seleccionar las funciones de contraseña requeridas.
+
+Tenga en cuenta que los caracteres especiales son #$%^&*()+=-[]';,./{}|:<>?~
+
+Haga clic en btn:[Save] para guardar los ajustes.
+
+=== Restablecimiento de Contraseña por el Usuario
+
+Cuando esta funcionalidad está habilitada, los usuarios podrán restablecer sus contraseñas
+desde un enlace en la página de inicio de sesión de *SuiteCRM*.
+
+{{%notice note%}}Esto requiere tanto un servidor de correo saliente configurado
+como una dirección de correo electrónico válida en el registro del usuario{{%/notice%}}
+
+image:UsersResetPassword.png[title = "Ajustes de restablecimiento de contraseña de usuario"]
+
+=== Plantillas de Correo Electrónico
+
+Las plantillas de los correos electrónicos generados por el sistema relacionados con contraseñas se pueden editar aquí.
+Consulte la documentación de link:../../../user/core-modules/emailtemplates[Plantillas de Correo Electrónico]
+para más información sobre cómo crear y editar plantillas
+de correo electrónico.
+
+image:UsersEmailTemplates.png[title = "Ajustes de plantilla de correo de contraseña de usuario"]
+
+=== Compatibilidad con LDAP
+
+Si la Autenticación LDAP está habilitada, ninguno de los ajustes de Administración de Contraseñas
+de *SuiteCRM* se aplicará. Las contraseñas se gestionarán mediante los ajustes de LDAP.
+
+=== Autenticación SAML
+
+Si la Autenticación SAML está habilitada, ninguno de los ajustes de Administración de Contraseñas
+de *SuiteCRM* se aplicará. Las contraseñas se gestionarán mediante los ajustes de SAML.
+
+
+

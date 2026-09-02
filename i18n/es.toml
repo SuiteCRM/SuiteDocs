@@ -32,7 +32,10 @@ other = "Más"
 other = "Expándeme..."
 
 [Issue-for-page]
-other = "Discutir"
+other = "Informar de un problema sobre esta página"
+
+[Issue-for-page-short]
+other = "Incidencia"
 
 [Documentation]
 other = "Documentación"
@@ -94,9 +97,6 @@ other = "Interfaz de usuario"
 [Understand-the]
 other = "Comprende los"
 
-[CoreModules]
-other = "Módulos Centrales"
-
 [Its-open-source]
 other = "Todo es código abierto y los"
 
@@ -135,3 +135,42 @@ other = "Ediciones recientes"
 
 [DocumentationPages]
 other = "a Páginas de Documentación"
+
+[Suite7]
+other = "SuiteCRM 7"
+
+[Suite8]
+other = "SuiteCRM 8"
+
+[or]
+other = "o"
+
+[and]
+other = "y"
+
+[InstallSetUp]
+other = "Instalación y Configuración"
+
+[User-guide]
+other = "Guía de usuario"
+
+[Admin-guide]
+other = "Guía de administrador"
+
+[Dev-guide]
+other = "Guía de desarrollador"
+
+[ExtendDevelop]
+other = "Ampliar y Desarrollar"
+
+[Customise-with]
+other = "Personaliza con"
+
+[ModuleBuilder]
+other = "Generador de Módulos"
+
+[Docs]
+other = "Documentos"
+
+[CoreConcepts]
+other = "Conceptos Básicos"

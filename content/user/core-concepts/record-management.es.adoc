@@ -1,0 +1,305 @@
+---
+title: "Gestión de Registros"
+weight: 50
+aliases:
+  - /es/user/introduction/user-interface/record-management
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+
+= Gestión de Registros
+
+En esta sección trataremos todos los aspectos
+de la gestión de registros para que pueda almacenar y gestionar los datos de sus
+clientes de forma eficiente.
+
+== Crear Registros
+
+Puede crear registros dentro de cada módulo desde distintas ubicaciones de su CRM;
+
+Barra de Navegación Superior, usando el botón Crear:
+image:/images/es/user/43Create_record1.png[title="Crear Registro, método 1"]
+
+Barra de Navegación Superior, usando el nombre del Módulo:
+image:/images/es/user/44Create_record2.png[title="Crear Registro, método 2"]
+
+Barra Lateral, usando la opción Crear:
+image:/images/es/user/45Create_record_3.png[title="Crear Registro, método 3"]
+
+Una vez que haga clic en la opción de crear, se le mostrará una pantalla similar a la link:../views[Vista de Edición] que hemos
+cubierto anteriormente.
+
+Esta pantalla le permite introducir los datos correspondientes para el registro. Los campos con
+la estrella roja `*` son campos obligatorios. Se realiza una validación para que un
+registro no se pueda guardar en el CRM a menos que los datos sean válidos para los campos
+obligatorios.
+
+image:/images/es/user/46Create_contact.png[title="Creación de registro"]
+
+Una vez que haya rellenado todos los datos del registro, elija el botón Guardar, donde se le redirigirá a la Vista Detallada del registro que acaba
+de crear.
+
+== Editar Registros
+
+Puede editar registros desde distintas áreas de su CRM, de la siguiente manera;
+
+En la Vista Detallada, desde el desplegable Acciones:
+image:/images/es/user/47Edit_contact.png[title="Editar Registro, método 1"]
+
+Desde una Vista de Lista, usando el lápiz situado a la izquierda;
+image:/images/es/user/48Edit_contact.png[title="Editar Registro, método 2"]
+
+Una vez que haga clic en la opción *editar*, se le llevará a la Vista de
+Edición. Los campos con la estrella roja (*) son campos obligatorios. Se realiza
+una validación para que un registro no se pueda guardar en el CRM a menos que los datos sean
+válidos para los campos obligatorios.
+
+Una vez que haya editado/rellenado los datos del registro, puede guardar el registro y se le redirigirá a la Vista Detallada del registro que ha editado.
+
+== Eliminar Registros
+
+Puede eliminar registros dentro de los módulos tanto desde la Vista de Lista como desde la Vista
+Detallada.
+
+=== Método de eliminación desde la Vista Detallada
+
+Para eliminar un registro desde la pantalla de Vista Detallada, elija la opción Eliminar en el menú desplegable Acciones;
+image:/images/es/user/49Delete_contact.png[title="Eliminar Registros"]
+
+Al hacer clic en la opción de eliminar, recibirá una ventana emergente
+que le pedirá que confirme que desea eliminar el registro.
+
+image:/images/es/user/50Delete_contact.png[title="Confirmar eliminación"]
+
+Hacer clic en Cancelar le devolverá a la Vista Detallada del registro y no lo eliminará. Hacer clic en Aceptar
+ejecutará la eliminación del registro. Si opta por eliminar el registro, el
+registro se eliminará y se le redirigirá a la Vista de Lista
+del módulo.
+
+=== Método de eliminación desde la Vista de Lista
+
+Para eliminar registros desde la Vista de Lista, puede seleccionar registros mediante la
+casilla situada a la izquierda de la vista. Es posible
+seleccionar registros individuales o, usando la casilla del encabezado de columna, elegir las opciones 'Seleccionar esta Página' o 'Seleccionar Todo', para seleccionar todos los registros de la página o todos los registros del
+módulo.
+
+image:51ListView_deletion.png[title="Método de eliminación desde la Vista de Lista"]
+
+Una vez seleccionados los registros que desea eliminar, haga clic en el botón
+*'Eliminar'*, que mostrará una ventana emergente indicando el número de registros que se van a eliminar. Se le pedirá que confirme que desea eliminar el/los registro(s).
+
+image:/images/es/user/image59.png[title="Confirmar Eliminación"]
+
+Hacer clic en Cancelar le devolverá
+a la Vista de Lista y no los eliminará. Hacer clic en Aceptar
+ejecutará la eliminación del registro. Si opta por eliminar el registro, el
+registro se eliminará.
+
+== Actualización Masiva de Registros
+
+Puede actualizar de forma masiva los registros desde la Vista de Lista de cualquier módulo, siempre que
+esta opción esté disponible para usted.
+
+Para actualizar registros de forma masiva, debe
+seleccionar los registros en la Vista de Lista mediante la casilla situada a la izquierda y, a continuación, en el menú desplegable Acción Masiva, seleccionar la opción 'Actualización
+Masiva'.
+
+image:/images/es/user/52Mass_update_records.png[title="Actualización Masiva de Registros"]
+
+Al hacer clic en la opción de actualización masiva se mostrará una pantalla en la parte inferior
+de la Vista de Lista, en la que se listarán todos los campos que puede actualizar de forma masiva.
+
+image:/images/es/user/53Mass_update.png[title="Actualización masiva"]
+
+Una vez que haya rellenado los campos que desea actualizar de forma masiva, puede
+hacer clic en **Actualizar** o en **Cancelar**. Cancelar la actualización masiva
+cancelará cualquier cambio y le redirigirá a la Vista de Lista del módulo.
+Hacer clic en actualizar actualizará todos los registros seleccionados con los cambios
+especificados.
+
+image:54Mass_update.png[title="Actualización masiva"]
+
+== Combinar Registros
+
+Puede combinar registros desde la Vista de Lista de cualquier módulo, siempre que
+esta opción esté disponible para usted, o desde la Vista Detallada si sigue
+el proceso de 'Buscar Duplicados'.
+
+Para combinar registros, debe marcar los registros en la Vista de Lista y
+después seleccionar la opción *'Combinar'* en el menú desplegable Acción Masiva.
+
+image:/images/es/user/55Merge.png[title="Combinar"]
+
+Una vez que haya hecho clic en la opción *'Combinar'*, se le mostrará
+una pantalla de combinación. Esta mostrará el registro principal y los duplicados
+que desea combinar con ese registro principal.
+
+image:/images/es/user/182Merging_records.png["Pantalla de combinación"]
+
+Puede seleccionar qué registro es el principal utilizando el botón *'Establecer como principal'*
+a la derecha de la vista de combinación. Puede mover datos de los registros
+duplicados al registro principal utilizando los botones **<<**. En este ejemplo,
+hemos movido el Nombre y los Apellidos del registro duplicado al
+registro principal.
+
+image:183Merging_records.png[title="Combinar campos"]
+
+Una vez que haya realizado los cambios necesarios en la pantalla de combinación, puede
+hacer clic en **Guardar Combinación** o en **Cancelar**. Hacer clic en cancelar descartará los cambios
+de la combinación y le devolverá a la Vista de Lista de ese módulo. Hacer clic en
+'Guardar Combinación' continuará con el proceso de Combinación y le avisará de que el registro duplicado se eliminará.
+
+image:/images/es/user/184Save_merge.png[title="Confirmar combinación"]
+
+Puede hacer clic en *'Aceptar'* o en *'Cancelar'*. Hacer clic en Cancelar descartará los cambios
+de la combinación y le devolverá a la Vista de Lista de ese módulo. Hacer clic en
+'Aceptar' guardará la combinación y le redirigirá a la Vista Detallada del
+registro combinado.
+
+image:/images/es/user/185Saved_merge.png[title="Combinación finalizada"]
+
+Como se puede ver en el ejemplo, la combinación se ha completado correctamente.
+El Nombre y los Apellidos se han actualizado y se han conservado todos los demás datos.
+
+== Importar Registros
+
+Es posible importar datos fácilmente utilizando el sencillo Asistente de Importación
+de Usuarios de SuiteCRM. Encontrará muchas sugerencias y consejos a medida que avanza
+por el Asistente de Importación sobre los requisitos para importar datos y para
+los siguientes pasos del Asistente.
+
+=== Funciones del Asistente de Importación de Usuarios
+
+El Asistente de Importación tiene muchas funciones que facilitan
+la asignación de datos a los campos del CRM, así como las importaciones futuras. Estas son:
+
+* *Archivo .csv de ejemplo para facilitar la importación de datos*: utilice el archivo
+.csv de ejemplo disponible como plantilla para importar archivos.
+* *Conservar la configuración de importaciones anteriores*: guardar/conservar las propiedades del archivo de importación, las asignaciones y los índices de comprobación de duplicados de importaciones anteriores para facilitar el proceso de importación de datos actual.
+* *Capacidad de aceptar tanto el nombre de base de datos como las etiquetas de visualización de los elementos de campos desplegables y de selección múltiple* — se aceptan y asignan durante la importación tanto las etiquetas de campo como los nombres de base de datos, pero solo se muestran las etiquetas de campo para facilitar su uso.
+* *Capacidad de aceptar tanto nombres de usuario como nombres completos en campos de usuario durante la importación y exportación de datos* — se muestran los nombres completos de los Usuarios para los campos Asignado A y otros campos relacionados con usuarios en el archivo .csv exportado, para facilitar la identificación de los registros de usuario.
+* *Capacidad de detectar automáticamente las propiedades del archivo en el archivo de importación*: cargue archivos de importación sin especificar propiedades del archivo como tabulaciones, comas, comillas dobles y simples, y formatos de fecha y hora, lo que simplifica y agiliza el proceso.
+* *Capacidad de importar contactos desde fuentes externas como Google*: posibilidad de importar Contactos de Google para módulos de tipo persona, como Contactos, Clientes Potenciales y Públicos Objetivo, relacionar registros de SuiteCRM con Contactos de Google y comunicarse con Contactos de Google desde SuiteCRM.
+
+=== Pasos para importar datos
+
+{{% notice note %}}
+Importe siempre primero los datos de Cuentas y, a continuación, importe los Contactos y
+otros datos relacionados con las Cuentas (como Reuniones, Llamadas, Notas) para
+crear automáticamente una relación entre la Cuenta importada y los
+Contactos y registros de actividad relacionados con la Cuenta.
+{{% /notice %}}
+
+Siga los pasos indicados a continuación para importar datos de un módulo, como
+Cuentas:
+
+.  Seleccione Importar en el menú desplegable Acciones de las opciones del menú del módulo.
+.  Se mostrará el Paso 1 del proceso de importación con un enlace a una
+plantilla de archivo de importación de ejemplo.
+.  Cargue su archivo de importación en esta página usando el botón Examinar en el
+campo Seleccionar Archivo, o
+.  Opcionalmente, descargue la plantilla disponible, elimine los
+datos existentes, introduzca sus datos y cárguelos en esta página usando el botón Examinar.
+.  Haga clic en Siguiente.
+.  Se mostrará el Paso 2 (Confirmar Propiedades del Archivo de Importación).
+.  En este paso se realiza la detección automática de los datos importados.
+.  Haga clic en el botón Ver Propiedades del Archivo de Importación para verificar y cambiar
+los datos según sea necesario, si observa irregularidades en la tabla Confirmar
+Propiedades del Archivo de Importación.
+.  Haga clic en Ocultar Propiedades del Archivo de Importación para contraer el panel.
+. Haga clic en Siguiente.
+. Se mostrará el Paso 3: Confirmar Asignación de Campos.
+. La tabla de esta página muestra todos los campos del módulo que
+se pueden asignar a los datos del archivo de importación. Si el archivo contiene una
+fila de encabezado, las columnas del archivo se asignan a los campos correspondientes.
+. Compruebe que la asignación sea correcta y modifíquela si es necesario.
+. Asigne todos los campos obligatorios (indicados con un asterisco).
+. Haga clic en Siguiente.
+. Se mostrará el Paso 4: Comprobar Posibles Duplicados.
+. Siga las instrucciones de esta página.
+. El Paso 4 también ofrece la opción de guardar las propiedades del archivo de importación
+actuales, las asignaciones y los índices de comprobación de duplicados para futuras importaciones.
+. (Opcionalmente) Guarde la configuración de importación.
+. Haga clic en Importar Ahora.
+. Haga clic en la pestaña Errores para comprobar si se han producido errores en el proceso. Siga
+las instrucciones para solucionar los problemas (si los hay) y haga clic en Importar de Nuevo.
+. Se mostrará el Paso 1 del proceso de importación.
+. Siga todos los pasos del asistente hasta el Paso 5.
+. Si la importación se ha realizado correctamente, podrá ver todos los
+registros importados en el Paso 5.
+. Haga clic en Deshacer Importación si no está satisfecho con los
+registros importados,
+. O bien, haga clic en Importar de Nuevo para importar más datos.
+. O bien, haga clic en Salir para ir a la página de Vista de Lista del módulo en el que
+importó sus registros.
+
+== Edición en Línea
+
+La edición en línea le permite cambiar valores de campos directamente desde la Vista de Lista o la Vista Detallada sin abrir la Vista de Edición completa.
+
+{{% notice note %}}
+Un administrador del sistema puede habilitar o deshabilitar la edición en línea para la Vista de Lista y la Vista Detallada por separado, desde la Configuración del Sistema.
+{{% /notice %}}
+
+image:/images/es/user/186In-line_editing.png[title="Edición en Línea"]
+
+=== Vista de Lista
+
+Haga doble clic en un campo de la Vista de Lista donde se muestre el icono de lápiz para editarlo en el propio lugar.
+
+image:/images/es/user/60ListView_editing.png[title="Edición en Línea en la Vista de Lista"]
+
+Una vez que haya realizado el cambio necesario, pulse Intro o haga clic en el icono de marca de verificación para guardar. Si navega a otra página con cambios sin guardar, se le mostrará un aviso antes de descartarlos.
+
+=== Vista Detallada
+
+Haga doble clic en un campo de la Vista Detallada donde se muestre el icono de lápiz para editarlo en el propio lugar.
+
+image:/images/es/user/62DetailView_Editing.png[title="Edición en Línea en la Vista Detallada"]
+
+Una vez que haya realizado el cambio necesario, pulse Intro o haga clic en el icono de marca de verificación para guardar. Si navega a otra página con cambios sin guardar, se le mostrará un aviso antes de descartarlos.
+
+== Exportar Registros
+
+Puede exportar registros de SuiteCRM en formato .csv. Al exportar registros
+desde el CRM, se le proporcionará el archivo .csv para descargar cuando
+la exportación haya finalizado. Puede guardar y abrir este archivo en
+aplicaciones como Libre Office Calc o Microsoft Office Excel.
+
+El archivo .csv se muestra en formato tabular, con columnas y filas. Cuando
+se exportan datos del CRM, el ID del registro se incluye junto con todos los demás
+campos especificados en la lista de exportación de ese módulo. A continuación, puede
+usar el ID del registro como referencia para realizar una importación de tipo 'Crear nuevos
+registros y actualizar registros existentes', como se detalla en la sección
+<<Importar Registros>> de la guía de usuario.
+
+{{% notice note %}}
+Al exportar valores de listas desplegables, SuiteCRM exporta el
+ID asociado a cada opción y no las etiquetas de visualización. Por ejemplo,
+si una lista desplegable tiene las opciones Alta, Media y Baja con un ID
+de 1, 2 y 3, el archivo .csv mostrará las opciones de la lista desplegable como 1, 2 o
+3.
+{{% /notice %}}
+
+=== Pasos para Exportar Registros
+
+.  Seleccione los registros en la Vista de Lista de la página de inicio del módulo.
+.  Seleccione Exportar en el menú desplegable Acciones de la Vista de Lista.
+.  Para exportar todos los registros listados en la página, haga clic en Seleccionar situado
+encima de la lista de elementos y elija una de las siguientes opciones:
+.  Esta Página. Para exportar todos los registros listados en la página, seleccione esta
+opción.
+.  Todos los Registros. Para exportar todos los registros de la lista (si ocupa más de
+una página), seleccione esta opción.
+.  Se mostrará un cuadro de diálogo de Apertura de .csv.
+.  Seleccione Abrir para abrir el archivo de exportación en formato .csv, o seleccione Guardar en
+Disco para guardar el archivo .csv en su equipo local.
+.  Haga clic en Aceptar para ejecutar la operación. Si eligió abrir el archivo,
+el archivo csv se abrirá en Microsoft Excel.
+.  El archivo contiene todos los campos del módulo desde el que
+está exportando los datos.

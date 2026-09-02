@@ -1,0 +1,50 @@
+---
+title: "Autenticación de Dos Factores"
+weight: 40
+aliases:
+  - /es/user/modules/passwordmanagement
+  - /es/user/modules/PasswordManagement
+---
+
+:imagesdir: /images/en/user
+:experimental:
+:toc:
+
+= Autenticación de Dos Factores
+
+La Autenticación de Dos Factores (2FA) añade una capa adicional de seguridad a su cuenta. Una vez habilitada, deberá introducir un código de un solo uso enviado a su dirección de correo electrónico cada vez que inicie sesión en *SuiteCRM*, además de su nombre de usuario y contraseña.
+
+{{% notice note %}}
+La Autenticación de Dos Factores se habilita por usuario. Si no puede ver la opción en su perfil, póngase en contacto con su administrador del sistema.
+{{% /notice %}}
+
+== Habilitar la Autenticación de Dos Factores
+
+. Abra su perfil de usuario haciendo clic en su nombre en el menú de navegación superior derecho y seleccionando *Perfil*.
+. Seleccione *Editar* en el menú *Acciones*.
+. Marque la casilla *Autenticación de Dos Factores*.
++
+image:TwoFactorAuth.png[title="Ajuste de Autenticación de Dos Factores en el perfil de usuario"]
+. Haga clic en **GUARDAR**.
+
+== Iniciar Sesión con Autenticación de Dos Factores
+
+Después de habilitar la 2FA, cada vez que inicie sesión se le pedirá que introduzca un código de verificación tras introducir su nombre de usuario y contraseña.
+
+El código se enviará a la dirección de correo electrónico principal de su cuenta. Introduzca el código y haga clic en **VERIFICAR** para completar el inicio de sesión.
+
+image:TwoFactorAuthCodeSent.png[title="Aviso de código de Autenticación de Dos Factores"]
+
+{{% notice note %}}
+Si no recibe el código, revise su carpeta de spam. Si ha perdido el acceso a su cuenta de correo electrónico, póngase en contacto con su administrador del sistema para deshabilitar la 2FA en su cuenta.
+{{% /notice %}}
+
+== Deshabilitar la Autenticación de Dos Factores
+
+. Abra su perfil de usuario y seleccione *Editar* en el menú *Acciones*.
+. Desmarque la casilla *Autenticación de Dos Factores*.
+. Haga clic en **GUARDAR**.
+
+== Plantilla de Correo Electrónico
+
+El correo electrónico enviado a los usuarios con el código de verificación utiliza una plantilla configurable. Los administradores del sistema pueden actualizar esta plantilla desde *Admin* → *Gestión de Contraseñas*.

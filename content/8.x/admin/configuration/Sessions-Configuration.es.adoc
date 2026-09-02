@@ -1,0 +1,82 @@
+---
+Title: Configuración del directorio de sesiones
+weight: 30
+---
+
+:imagesdir: /images/en/user
+
+== Opción 1. Cambiar el directorio de sesiones en php.ini
+
+Es posible actualizar el directorio de sesiones global cambiando la directiva de PHP link:https://www.php.net/manual/en/session.configuration.php#ini.session.save-path[session.save_path] en su archivo php.ini.
+
+
+== Opción 2. Cambiar el directorio de sesiones en la configuración de SuiteCRM
+
+=== Cambiar el directorio de sesiones
+
+{{% notice note %}}
+Esto solo se aplica a las sesiones basadas en archivos
+{{% /notice %}}
+
+Esta guía explica cómo configurar las versiones de SuiteCRM 8.x para almacenar las sesiones en una carpeta diferente
+
+==== 1. Cambiar el session_dir en el legado (legacy)
+
+En `public/legacy/config.php` o `public/legacy/config_override.php`, cambie `session_dir` a la nueva ruta.
+
+A lo largo del resto de esta guía, vamos a asumir que queremos que nuestros archivos de sesión se almacenen en una carpeta `var/sessions` dentro de la carpeta de su instancia de SuiteCRM 8, como:
+* `/<path-to-your-project>/var/sessions`
+
+[source,php]
+----
+<?php
+...
+$sugar_config = array (
+...
+
+  'session_dir' => '/<path-to-your-suite8-project>/var/sessions',
+  'session_gc' =>
+  array (
+    'enable' => true,
+    'gc_probability' => 1,
+    'gc_divisor' => 100,
+  ),
+
+----
+
+==== 2. Cambiar el save_path de sesión en la configuración de SuiteCRM 8
+
+Ahora necesitamos cambiar la configuración de Symfony de SuiteCRM 8.
+Para añadirlo a la configuración de SuiteCRM 8 de forma extensible, puede añadirlo a:
+`extensions/<your-extension>/config/services/framework.yaml`
+
+Si nombra su extensión `custom`, quedaría algo así.
+`extensions/custom/config/services/framework.yaml`
+
+[source,yaml]
+----
+framework:
+  session:
+    cookie_lifetime: null
+    cookie_secure: auto
+    cookie_samesite: lax
+    gc_probability : 1
+    gc_divisor : 100
+    handler_id: session.handler.native_file
+    save_path: '%kernel.project_dir%/var/sessions'
+
+----
+
+==== 3. Limpiar la caché de Symfony
+
+Desde la carpeta raíz de su instancia, ejecute `bin/console cache:clear`
+
+[source,bash]
+----
+bin/console cache:clear
+----
+
+Si no tiene acceso al terminal, también puede eliminar el contenido de: `/<path-to-your-project>/cache`
+
+* Asegúrese de que `apache / php` **tengan acceso de escritura** a la carpeta `cache`
+* **Lo anterior no es** la carpeta de caché del legado (legacy). **No elimine** `/<path-to-your-project>/public/legacy/cache`

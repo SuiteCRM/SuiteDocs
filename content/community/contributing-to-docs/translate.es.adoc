@@ -1,0 +1,18 @@
+---
+Title: "Traducir la documentación"
+Weight: 60
+---
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/community
+
+Puedes ayudar a traducir el sitio de Documentación de SuiteCRM a tu propio idioma.
+
+Primero, aprende a link:./../simple-edit/[editar páginas].
+
+Luego, simplemente crea una página nueva con exactamente el mismo nombre que la página que estás traduciendo,
+pero añadiendo tu código de idioma antes de la extensión.
+
+Así, un archivo llamado `upgrade.adoc` se convertiría en `upgrade.es.adoc` en la traducción al español.
+
+Hay más información sobre esto en las link:../guidelines/[Directrices de Documentación].

@@ -1,0 +1,56 @@
+---
+title: "Proyectos"
+weight: 90
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities/projects
+
+= Proyectos
+
+El módulo Projects le permite organizar y hacer seguimiento de los proyectos de su organización, dividiendo el trabajo en tareas, asignando recursos y supervisando el progreso. Un proyecto puede visualizarse como un diagrama de Gantt o en una vista de cuadrícula de proyecto.
+
+== Campos Clave
+
+* *Name*: el nombre del proyecto. Obligatorio.
+* *Status*: el estado general del proyecto: Draft, In Review o Published.
+* *Start Date / End Date*: las fechas de inicio y fin previstas para el proyecto. Ambas son obligatorias.
+* *Priority*: la importancia del proyecto: Low, Medium o High.
+* *Description*: un resumen del propósito y el alcance del proyecto.
+* *Override Business Hours*: cuando está marcado, las reglas del horario laboral no se aplican al calcular la duración de las tareas del proyecto.
+* *Total Estimated Effort / Total Actual Effort*: totales de solo lectura calculados a partir de todas las tareas del proyecto, que muestran las horas previstas frente a las horas realmente invertidas.
+
+== Relaciones
+
+Los Projects pueden relacionarse con Contacts, Accounts, Opportunities, Cases y otros registros. Las asociaciones se gestionan desde los subpaneles dentro de la sección Relationships de la Vista de Detalle del proyecto.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+Para conocer las operaciones estándar de los registros, incluyendo búsqueda, edición, duplicación e importación, consulte link:../../core-concepts/record-management[Record Management].
+
+== Crear un Proyecto
+
+. En el menú del módulo, haga clic en *Create Project*.
+. Introduzca la información de los siguientes campos:
+.. *Name* — introduzca un nombre para el proyecto.
+.. *Status* — seleccione el estado del proyecto: Draft, In Review o Published.
+.. *Start Date / End Date* — seleccione las fechas de inicio y fin previstas.
+.. *Assigned To* — el usuario responsable del proyecto. Por defecto, usted mismo.
+.. *Priority* — seleccione la importancia del proyecto: Low, Medium o High.
+.. *Description* — introduzca una breve descripción del proyecto.
+. Haga clic en *Save*.
+
+Una vez guardado, se abre la Vista de Detalle del proyecto. Desde aquí puede relacionar el proyecto con Contacts, Opportunities, Cases y otros registros, y empezar a añadir Project Tasks.
+
+== Crear Tareas de Proyecto
+
+. En el subpanel *Project Tasks*, haga clic en *Create*.
+. Introduzca la información de los siguientes campos:
+.. *Name* — introduzca un nombre para la tarea.
+.. *Task ID* — un identificador numérico de la tarea dentro del proyecto.
+.. *Start Date / Finish Date* — las fechas de inicio y finalización previstas para la tarea.
+.. *Percentage Complete* — un valor de 0 a 100 que indica cuánto se ha completado de la tarea.
+.. *Priority* — la importancia de completar esta tarea.
+.. *Milestone* — marque esta casilla si completar esta tarea representa un hito clave del proyecto.
+.. *Project Name* — haga clic en el icono selector para asociar la tarea a un proyecto si aún no está establecido.
+.. *Description* — una breve descripción del trabajo requerido.
+. Haga clic en *Save*.

@@ -1,0 +1,41 @@
+---
+title: "Bugs"
+weight: 15
+---
+
+:imagesdir: /images/en/8.x/user/customer-service/bugs
+
+= Bugs
+
+El módulo Bugs le permite registrar y hacer seguimiento de defectos de software y solicitudes de funcionalidades. Los Bugs pueden vincularse a Casos, Contactos, Cuentas y una versión (Release) del producto, ofreciéndole trazabilidad completa desde una solicitud de soporte al cliente hasta la corrección.
+
+{{% notice note %}}
+El módulo Bugs puede estar oculto por defecto según su configuración. Póngase en contacto con su administrador si no puede verlo en la barra de navegación.
+{{% /notice %}}
+
+== Campos Clave
+
+* *Asunto*: una breve descripción del bug. Es un campo obligatorio y el identificador principal que se muestra en la Vista de Lista.
+* *Estado*: la etapa del ciclo de vida del bug: Nuevo, Asignado, Pendiente, Rechazado o Cerrado.
+* *Prioridad*: la urgencia del bug: Urgente, Alta, Media o Baja.
+* *Tipo*: si se trata de un Defecto o una solicitud de Funcionalidad.
+* *Fuente*: dónde se descubrió el bug: Interno, Foro o Web.
+* *Encontrado en Lanzamiento*: la versión del producto en la que se identificó el bug. Se vincula a un registro de Lanzamiento.
+* *Corregido en Lanzamiento*: la versión del producto en la que se resolvió el bug. Se vincula a un registro de Lanzamiento.
+* *Descripción*: una descripción completa del problema.
+* *Resolución*: cómo se resolvió el bug: Aceptado, Duplicado, Corregido, No Válido, Más Adelante, o Caducado.
+
+== Relaciones
+
+Desde la Vista de Detalle de un Bug puede ver y gestionar todos los registros asociados mediante subpaneles:
+
+* *Casos*: incidencias de soporte que reportaron o están relacionadas con este bug.
+* *Contactos*: personas que reportaron el bug o se ven afectadas por él.
+* *Cuentas*: organizaciones asociadas a este bug.
+* *Actividades*: Llamadas, Reuniones y Tareas relacionadas con la investigación o resolución del bug.
+* *Historial*: correos archivados y actividades completadas.
+* *Documentos*: archivos de apoyo, como capturas de pantalla, registros (logs) o casos de prueba.
+
+Para obtener información sobre el trabajo con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación, combinación e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].

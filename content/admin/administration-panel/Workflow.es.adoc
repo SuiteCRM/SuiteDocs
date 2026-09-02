@@ -1,0 +1,346 @@
+---
+title: "Flujos de Trabajo"
+weight: 240
+aliases:
+  - /es/user/advanced-modules/workflow
+---
+
+:experimental:
+
+:imagesdir: /images/en/user
+
+:toc:
+:toclevels: 4
+
+= Flujos de Trabajo
+
+*Workflows* es un módulo de SuiteCRM que permite a los usuarios crear procesos de flujo de trabajo personalizados. Históricamente este módulo se llamaba *Advanced Open Workflow (AOW)*. Permite a los usuarios activar diversas acciones del sistema en función de condiciones procedentes de cualquier módulo de SuiteCRM.
+
+== Crear un proceso de flujo de trabajo
+
+Puede crear procesos de flujo de trabajo desplazándose al módulo 'Workflow' dentro de SuiteCRM. Haga clic en el botón *'Create Workflow'* dentro de la barra de acciones para empezar a crear el proceso. El primer panel permite a los usuarios configurar el proceso de flujo de trabajo.
+
+image:106Creating_a_workflow.png[title="Creación de un flujo de trabajo"]
+
+Esto le permite especificar lo siguiente:
+
+* *Name* – cualquier nombre que desee dar al flujo de trabajo.
+* *Assigned To* - el usuario asignado del proceso de flujo de trabajo.
+* *Workflow Module* – una lista desplegable con todos los módulos que se encuentran en la instancia de SuiteCRM. Este es el módulo contra el que se ejecuta el flujo de trabajo. Por ejemplo, cuando se crea o edita una Cuenta.
+* *Status* – Activo o Inactivo. Solo se ejecutarán los procesos activos, por lo que puede usar este campo para desactivar un flujo de trabajo sin necesidad de eliminarlo.
+* *Run* – controla la forma en la que se activa el flujo de trabajo.
++
+[cols="20s,80"]
+|================================================================
+|On Save | el flujo de trabajo se ejecutará inmediatamente para un registro determinado cuando se produzca una acción de guardado en el módulo especificado.
+|On Scheduler | el flujo de trabajo se iniciará desde el trabajo del Programador *Process Workflow Tasks*, la próxima vez que se ejecute el trabajo, y se aplicará a todos los registros del módulo, restringido por la propiedad *Run on* y por las condiciones del flujo de trabajo.
+|Always | el flujo de trabajo se ejecutará en ambas situaciones descritas anteriormente.
+|================================================================
++
+* *Run On* – especifica la selección de registros para los que se ejecutará el flujo de trabajo.
++
+[cols="20s,80"]
+|================================================================
+|New Records | el flujo de trabajo solo se ejecutará para los registros nuevos que se estén creando.
+|Modified Records | el flujo de trabajo solo se ejecutará para registros que ya hayan sido creados y que se estén modificando.
+|All Records a|
+- Para los flujos de trabajo *On Save*, esto significa que el flujo de trabajo se ejecutará tanto para registros nuevos como modificados. +
+- Para los flujos de trabajo *On Scheduler*, esto significa que el flujo de trabajo recorrerá todos los registros del módulo, incluso los antiguos que no se hayan modificado.
+{{% notice tip %}}
+Al configurar flujos de trabajo *On Scheduler*, *All Records*, tenga en cuenta que podrían provocar operaciones muy largas si su módulo tiene muchos registros. Estas operaciones se ejecutarán en segundo plano, pero seguirán consumiendo recursos del servidor, por lo que es recomendable ejecutarlas fuera del horario laboral.
+{{% /notice %}}
+|================================================================
++
+* *Repeated Runs* – los flujos de trabajo llevan un registro de cada registro individual al que se han aplicado en el pasado. Esto le permite controlar si desea que las acciones del flujo de trabajo se ejecuten solo una vez por registro o repetidamente, cada vez que se vuelva a activar el flujo de trabajo.
++
+[cols="20s,80"]
+|================================================================
+|Unchecked | se impedirá que el flujo de trabajo se ejecute sobre cualquier registro que ya haya sido gestionado por el flujo de trabajo actual en el pasado.
+|Checked | el flujo de trabajo se ejecutará sobre todos los registros, independientemente de si ese registro ya ha sido gestionado por el flujo de trabajo actual en el pasado.
+{{% notice tip %}}
+Es aconsejable considerar si existen suficientes restricciones para que esto no genere ejecuciones excesivas. +
+Por ejemplo, si una de las acciones especificadas anula (o puede llegar a anular) una de las condiciones especificadas; o si el flujo de trabajo está configurado para actuar sobre registros individuales (*On Save*, *New Records*, *Modified Records*).
+{{% /notice %}}
+|================================================================
++
+* *Description* – útil para incluir una descripción del proceso, sus objetivos previstos y otras notas que aclaren de qué trata el flujo de trabajo actual.
+
+== Condiciones
+
+=== Añadir condiciones
+
+Una vez configurado, puede añadir condiciones a un proceso de flujo de trabajo utilizando el panel de condiciones. Esto le permite especificar criterios restrictivos de modo que solo los registros que cumplan todas estas condiciones se vean afectados por las acciones del flujo de trabajo.
+
+image:107Adding_conditions.png[title="Añadir condición"]
+
+Para añadir una línea de condición debe hacer clic en btn:[Add Condition]
+
+{{% notice note %}}
+Debe seleccionar su Workflow Module en el primer panel antes de añadir una línea de condición.
+{{% /notice %}}
+
+image:206Add_condition.png[title="Añadir condición"]
+
+Puede tener un número ilimitado de líneas de condición. Para añadir otra línea haga clic de nuevo en btn:[Add Condition] y aparecerá. En la línea tendrá cuatro campos: Field, Operator, Type y Value.
+
+=== Field y Operator
+
+Field es una lista desplegable que se rellena automáticamente con todos los campos que se encuentran en el Workflow Module.
+
+image:109Field_box.png[title="Cuadro de campo"]
+
+El campo seleccionado determinará las opciones disponibles para Operator y Type. Si el tipo de campo no es un número ni una fecha, los operadores disponibles serán 'Equal To' o 'Not Equal To'. Para campos numéricos y de fecha también puede elegir entre operadores lógicos adicionales: 'Less Than', 'Greater Than', 'Less Than or Equal To' o 'Greater Than or Equal To'.
+
+image:110Operator_box.png[title="Cuadro de operador"]
+
+=== Tipos de condición
+
+Puede especificar que los procesos de flujo de trabajo se activen con distintos tipos de condición. Son los siguientes:
+
+* *Value* – se utiliza para comparar directamente el Field con un valor. El tipo de valor ofrecido es dinámico según el tipo de campo del Field seleccionado. Por ejemplo, si el tipo de campo es una lista desplegable, el tipo de campo de valor será la misma lista desplegable.
+
+image:111Value_condition.png[title="Value"]
+
+* *Field* – se utiliza para activar un proceso de flujo de trabajo cuando se compara un campo con otro campo del registro.
+
+image:112Field_condition.png[title="Field"]
+
+* *Multiple* – puede seleccionarse si el Field es una lista desplegable o de selección múltiple. Esto permite a los usuarios especificar varios valores para activar el flujo de trabajo.
+
+image:113Multiple_condition.png[title="Multiple"]
+
+* *Date* – le permite especificar que el registro sea seleccionado para el flujo de trabajo después o antes de un período de tiempo desde otro campo de fecha o desde 'Now'. Por ejemplo, cuando la fecha de inicio de una llamada es 'Now + 10 minutes'. Esto solo puede utilizarse cuando el Field es un campo de fecha. El período de tiempo antes o después de la fecha puede especificarse en minutos, horas, días, semanas o meses.
+
+image:114Date_condition.png[title="Date"]
+
+=== Eliminar condiciones
+
+Puede eliminar líneas de condición haciendo clic en btn:[-] en el lado izquierdo de la condición.
+
+image:115Removing_conditions.png[title="Eliminar condiciones"]
+
+== Acciones
+
+=== Añadir acciones
+
+Las acciones se definen en el tercer panel. Estas especifican qué eventos deben producirse cuando se cumplen las condiciones. Puede añadir una acción haciendo clic en el botón btn:[Add Action].
+
+image:116Adding_actions.png[title="Añadir acción"]
+
+Esto hará que aparezca la línea de acción.
+
+image:207Action_line.png[title="Línea de acción"]
+
+Desde la línea de acción puede seleccionar Select Action y darle un Name. Las acciones disponibles son: 'Create Record', 'Modify Record' y 'Send Email'. Puede especificar un número ilimitado de acciones para cada proceso de flujo de trabajo.
+
+==== Create Record
+
+Si selecciona *'Create Record'* se le pedirá que seleccione un Record Type. Este es el tipo de módulo del registro que desea crear.
+
+image:208Create_record.png[title="Create Record"]
+
+Una vez seleccionado, puede añadir campos o relaciones a este registro utilizando los botones btn:[Add Field] y btn:[Add Relationship].
+
+image:209Add_field-relationship1.png[title="Añadir campo/relación"]
+
+Al añadir campos, la primera lista desplegable de la línea se rellenará con todos los campos de ese módulo. La segunda lista desplegable le permite especificar cómo se va a obtener el valor de ese campo. En la mayoría de los casos, las opciones son las siguientes:
+
+* *Value* – le permitirá introducir el valor directamente utilizando el mismo tipo de campo que el campo seleccionado.
+* *Field* – hará que el campo tome el mismo valor que un campo que se encuentra en el Workflow Module.
+* *Date* – solo se puede seleccionar si el campo es un campo de fecha. Le permitirá especificar el valor como un período de tiempo antes o después de otro campo de fecha o de 'Now'.
+
+image:210Adding_fields.png[title="Añadir campos"]
+
+Seleccionar el campo 'Assigned-To' también le ofrece más opciones. Además de por valor y por campo, puede asignar un usuario mediante:
+
+* *Round Robin* – seleccionará cada usuario por turnos.
+* *Least Busy* – seleccionará al usuario con menor cantidad de registros asignados para ese módulo.
+* *Random* – seleccionará un usuario al azar.
+
+Para cada una de las opciones anteriores puede elegir si desea que los usuarios se seleccionen entre todos los usuarios o entre usuarios de un rol específico. Si tiene instalado el módulo SecuritySuite, adicionalmente puede elegir que los usuarios se seleccionen entre todos los usuarios de un Grupo de Seguridad concreto o entre todos los usuarios de un grupo de seguridad concreto con un rol específico.
+
+image:121Assigned_field.png[title="Campo asignado"]
+
+Al añadir relaciones debe seleccionar el módulo relacionado en la lista desplegable y luego seleccionar el registro con el que debe relacionarse el nuevo registro.
+
+image:212Add_relationship.png[title="Añadir relación"]
+
+{{% notice note %}}
+Debe seleccionar el módulo relacionado mediante el botón de flecha; el autocompletado en el campo de texto no está desarrollado actualmente.
+{{% /notice %}}
+
+==== Modify Record
+
+Esto proporciona la misma funcionalidad que 'Create Record', pero en lugar de crear un nuevo registro, se modifica el registro que cumplió las condiciones del proceso de flujo de trabajo. Con esta acción puede modificar cualquier campo del registro o añadir una relación con otro registro. Esto se realiza de la misma manera que 'Create Record', salvo que no es necesario especificar el Record Type.
+
+==== Send Email
+
+La acción *'Send Email'* permite a los usuarios crear procesos de flujo de trabajo que enviarán un correo electrónico basado en una plantilla a determinadas personas.
+
+{{% notice note %}}
+El correo se enviará desde la cuenta de correo del sistema. No es posible enviarlo desde direcciones de correo especificadas en el perfil de usuario, ya que los flujos de trabajo a veces se ejecutan desde un trabajo del Programador sin que ningún usuario haya iniciado sesión.
+{{% /notice %}}
+
+Con esta acción existen cuatro tipos distintos de destinatario.
+
+* *Email* – enviará un correo a una dirección de correo específica. Debe especificar la dirección de correo y la plantilla de correo.
+
+image:213Send_email_to.png[title="Enviar correo"]
+
+* *Record Email* – enviará un correo a la dirección de correo principal especificada en el registro que activó el proceso de flujo de trabajo. Solo puede usarse si el registro tiene un campo de correo, como Cuentas y Contactos. Para esta opción solo necesita especificar la plantilla.
+
+image:image127.png[title="Correo del registro"]
+
+* *User* – enviará el correo a la dirección de correo de un usuario específico. Debe especificar el usuario destinatario y la plantilla del correo.
+
+image:214Send_email_to_user.png[title="User"]
+
+* *Related Field* – enviará un correo a la dirección de correo principal especificada en el registro de un módulo relacionado. En este caso debe especificar el módulo relacionado (a través de una lista desplegable) y la plantilla de correo.
+
+image:215Email_related_field.png[title="Campo relacionado"]
+
+=== Calculated Fields
+
+Si selecciona *'Calculate Fields'* en la lista desplegable de Action, se cargará la interfaz de usuario de Calculate Fields. Consulte link:../workflow-calculated-fields/[Workflow Calculated Fields] para obtener documentación detallada sobre las numerosas posibilidades de las fórmulas de campos calculados.
+
+image:216Calculate_fields.png[title="Calculate Fields"]
+
+== Auditoría de procesos
+
+Advanced OpenWorkflow permite a los usuarios auditar sus procesos. En la vista de detalle de cada registro de flujo de trabajo hay un subpanel llamado *'Processed Flows'*.
+
+image:image132.png[title="Auditoría de procesos"]
+
+Aquí se listan todos los procesos de flujo de trabajo que se han ejecutado, incluyendo detalles sobre el registro que activó el flujo, su estado y la fecha en que se creó.
+
+image:image133.png[title="Auditoría de procesos"]
+
+Puede consultar esta información a un nivel más general haciendo clic en el botón *'View Process Audit'* dentro de la barra de acciones del módulo. Esto mostrará todos los procesos que se han ejecutado para todos los registros de flujo de trabajo.
+
+== Ejemplos
+
+=== Añadir clientes a una lista de destino
+
+Este tutorial le muestra cómo crear un proceso de flujo de trabajo para añadir Cuentas que sean clientes a una lista de destino cuando el registro se crea o se modifica.
+
+==== Configuración
+
+1.  Comience desplazándose al módulo Workflow y haciendo clic en *'Create Workflow'* en la barra de acciones.
+2.  Dé a su flujo de trabajo un nombre, como 'Populate Target List'.
+3.  Seleccione *Accounts* como Workflow Module.
+4.  Asegúrese de que *Repeated Runs* NO esté seleccionado y de que el *Status* sea *Active* (esto debería estar así por defecto). Opcionalmente puede cambiar el *Assigned-To* y añadir una *Description*.
+
+==== Condiciones
+
+1.  Cree una nueva línea de condición haciendo clic en btn:[Add Condition].
+2.  Seleccione 'Type' en la lista desplegable Field.
+3.  Mantenga el Operator como 'Equals To' y el Type como 'Value'.
+4.  En la lista desplegable Value seleccione 'Customer'.
+
+Una vez completados estos pasos, el panel de condiciones debería tener este aspecto:
+
+image:134Conditions.png[title="Condiciones"]
+
+==== Acciones
+
+Cree una nueva acción haciendo clic en btn:[Add Action].
+
+1.  Seleccione 'Modify Record' en la lista desplegable Select Action.
+2.  Utilizando el campo Name, dé a la acción un nombre como 'Add to Target List'
+3.  Añada una línea de relación haciendo clic en el botón btn:[Add Relationship].
+4.  Aparecerá una lista desplegable encima del botón 'Add Relationship'. Seleccione la relación en esta lista desplegable. En este caso buscamos 'Target Lists: Prospect List'
+5.  Esto rellenará el resto de la línea. Haga clic en el botón de la *flecha* junto al campo de relación para seleccionar su lista de destino.
+
+Una vez completados estos pasos, su panel de acciones debería tener este aspecto:
+
+image:218Add_to_target_list_actions.png[title="Acciones"]
+
+=== Recordatorio de casos
+
+Este tutorial le muestra cómo crear un proceso de flujo de trabajo para notificar al usuario asignado y luego a un responsable concreto cuando un Caso abierto no se haya actualizado en dos días.
+
+==== Configuración
+
+1.  Comience desplazándose al módulo Workflow y haciendo clic en *'Create Workflow'* en la barra de acciones.
+2.  Dé a su flujo de trabajo un nombre, como 'Case Escalation'.
+3.  Seleccione Cases como Workflow Module.
+4.  Asegúrese de que Repeated Runs NO esté seleccionado y de que el Status sea Active. Opcionalmente puede cambiar el Assigned-To y añadir una Description.
+
+Una vez completados estos pasos, el primer panel debería tener este aspecto:
+
+image:136Case_Escalation.png[title="Recordatorio de caso"]
+
+==== Condiciones
+
+1.  Cree una nueva línea de condición haciendo clic en btn:[Add Condition].
+2.  Seleccione 'Date Modified' en la lista desplegable Field.
+3.  Cambie el Operator a 'Less Than or Equal To' y el Type a 'Date'
+4.  En los campos Value seleccione, en orden, 'Now', '-', '2', 'Days'.
+
+image:137Conditions.png[title="Condiciones"]
+
+Repita el paso 1. Esta vez seleccione 'Status' en la lista desplegable Field. Mantenga el Operator como 'Equals To' y cambie el Type a 'Multiple'. En el campo de selección múltiple Value, seleccione los valores que indiquen un caso abierto.
+
+image:138Conditions.png[title="Condiciones"]
+
+==== Acciones
+
+1.  Cree una nueva acción haciendo clic en el botón btn:[Add Action].
+2.  Seleccione 'Send Email' en la lista desplegable Select Action.
+3.  Dé a la acción un nombre, como 'Assigned User Reminder'
+4.  En la línea de correo, seleccione 'Related Field' en la primera lista desplegable, 'Users: Assigned To' en la segunda lista desplegable y una plantilla de correo en la tercera lista desplegable.
+
+image:219Assigned_user_reminder_actions.png[title="Acciones"]
+
+Repita los pasos 1, 2 y 3, pero cambie el nombre de esta acción a 'Manager Escalation Email'. En la línea de correo seleccione 'User' y luego seleccione al usuario que debe recibir el correo. Seleccione una plantilla de correo en la tercera lista desplegable. Cuando haya terminado, haga clic en btn:[Save] para crear su flujo de trabajo.
+
+image:220Double_action.png[title="Acciones"]
+
+=== Seguimiento de clientes potenciales web
+
+Este tutorial le muestra cómo crear un proceso de flujo de trabajo para asignar Clientes Potenciales web a un usuario concreto de un rol determinado dentro de SuiteCRM mediante round robin, y programar una llamada de seguimiento un día después de que se cree el Cliente Potencial.
+
+{{% notice note %}}
+Puede cambiar el rol Sales por cualquier rol que exista en su propio sistema.
+{{% /notice %}}
+
+==== Configuración
+
+1.  Comience desplazándose al módulo Workflow y haciendo clic en *'Create Workflow'* en la barra de acciones.
+2.  Dé a su flujo de trabajo un nombre, como 'Web Lead Assignment and Follow Up'.
+3.  Seleccione Leads como Workflow Module.
+4.  Asegúrese de que Repeated Runs NO esté seleccionado y de que el Status sea Active. Opcionalmente puede cambiar el Assigned-To y añadir una Description.
+
+image:141Set_up.png[title="Configuración"]
+
+==== Condiciones
+
+1.  Cree una nueva línea de condición haciendo clic en btn:[Add Condition].
+2.  Seleccione 'Lead Source' en la lista desplegable Field.
+3.  Mantenga el Operator como 'Equals To' y el Type como 'Value'
+4.  En la lista desplegable Value seleccione 'Web Site'
+
+image:142Conditions.png[title="Condiciones"]
+
+==== Acciones
+
+1.  Cree una nueva acción haciendo clic en btn:[Add Action].
+2.  Seleccione 'Modify Record' en la lista desplegable Select Action.
+3.  Utilizando el campo Name, dé a la acción un nombre como 'Assign to Sales'
+4.  Añada una línea de campo haciendo clic en btn:[Add Field].
+5.  Seleccione 'Assigned-To' en la nueva lista desplegable que aparece encima del botón btn:[Add Field].
+6.  Cambie la lista desplegable del medio de 'Value' a 'Round Robin'
+7.  Cambie la tercera lista desplegable de 'ALL Users' a 'ALL Users in Role'
+8.  Seleccione en la cuarta lista desplegable de la línea 'Sales'.
+
+image:221Assign_to_sales_action.png[title="Acciones"]
+
+Ahora cree una nueva acción y esta vez seleccione 'Create Record'. Dele un nombre como 'Create Follow Up Call'. En la lista desplegable Record Type seleccione 'Calls'. Añada los siguientes campos:
+
+*  'Subject' – configúrelo como 'Value' y escriba el asunto deseado.
+*  'Start Date' – configúrelo como 'Date', seleccione 'Now' + '1' 'Days'.
+*  'Assigned-To' – configúrelo como 'Field', 'Assigned-To' (vincula el usuario asignado del Cliente Potencial a la Llamada).
+
+Haga clic en btn:[Save] para crear su flujo de trabajo.
+
+image:222action.png[title="Acciones"]

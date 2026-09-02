@@ -1,0 +1,92 @@
+---
+title: "Ejecutar la Migración"
+weight: 20
+aliases:
+  - /es/8.x/admin/legacy-migration/8.7.0-legacy-migration/
+---
+:experimental:
+
+{{% notice info %}}
+Esta guía se aplica a migraciones a SuiteCRM 8.7.0 y versiones posteriores. Si está migrando a una versión entre 8.2.0 y 8.6.x, consulte la link:../older-versions/8.2.0-legacy-migration[Guía de migración para 8.2.0–8.6.x].
+{{% /notice %}}
+
+{{% notice note %}}
+Ejecute la migración únicamente si su instancia de SuiteCRM 7.x ya está en la última versión 7.14.x.
+{{% /notice %}}
+
+== 1. Descargue el paquete de migración
+
+. Descargue el paquete de migración de SuiteCRM 8 para la versión de destino (por ejemplo, `8.7.0 Upgrade from 7.14.x`) desde la link:https://suitecrm.com/upgrade-suitecrm/[página de descargas de SuiteCRM].
+. Descomprima el contenido del paquete en la carpeta de destino de SuiteCRM 8, por ejemplo, `/var/www/<SuiteCRM8-folder>`.
+. Vuelva a establecer los permisos si es necesario.
+
+== 2. Copie su instancia de SuiteCRM 7.14.x
+
+. Copie la carpeta de su instancia de SuiteCRM 7.14.x en la carpeta `public` del destino de SuiteCRM 8, por ejemplo, `/var/www/<SuiteCRM8-folder>/public/<SuiteCRM7-folder>`.
+. Cambie el nombre de la carpeta copiada a `legacy`, obteniendo `/var/www/<SuiteCRM8-folder>/public/legacy`.
+. Vuelva a establecer los permisos si es necesario.
+
+== 3. Aplique los archivos necesarios del paquete de migración
+
+A partir de SuiteCRM 8.7.x, algunas carpetas y archivos deben actualizarse manualmente antes de ejecutar los scripts de migración.
+
+. Reemplace `/var/www/<SuiteCRM8-folder>/public/legacy/vendor` por la carpeta `vendor` de `tmp/package/upgrade/legacy-migration/vendor`.
+. Reemplace `/var/www/<SuiteCRM8-folder>/public/legacy/include` por la carpeta `include` de `tmp/package/upgrade/legacy-migration/include`.
+. Reemplace `/var/www/<SuiteCRM8-folder>/public/legacy/deprecated.php` por el archivo `deprecated.php` de `tmp/package/upgrade/deprecated.php`.
+
+== 4. Establezca los permisos
+
+Establezca los permisos de forma que el usuario de línea de comandos tenga acceso de lectura y escritura a los archivos de la instancia.
+
+== 5. Ejecute el comando de preparación de la migración
+
+. Desde la raíz de su instancia de SuiteCRM 8, ejecute:
++
+[source,bash]
+----
+./bin/console suitecrm:app:setup-legacy-migration
+----
+
+. Cuando se le solicite, actualice los siguientes valores en la configuración legacy:
+** `session_dir` — configúrelo como `''`. Puede volver a configurar esto después de la migración. Consulte link:../../configuration/sessions-configuration[Configuración de Sesiones].
+** `site_url` — configúrelo con la dirección que está utilizando para acceder a esta instancia de SuiteCRM 8. Si su vhost no apunta directamente a la carpeta `public`, añada `/public` (por ejemplo, `https://your-host/crm/public`).
+
+. Cuando se le solicite, actualice el `RewriteBase` en el `.htaccess` legacy:
+** Si su vhost apunta directamente a la carpeta `public`: configure `RewriteBase /legacy`
+** En caso contrario, anteponga la ruta hasta la carpeta `public` (por ejemplo, `RewriteBase /crm/public/legacy`)
+
+== 6. Ejecute el comando de actualización
+
+Desde la raíz de su instancia de SuiteCRM 8:
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade -t SuiteCRM-8.7.0
+----
+
+Reemplace `SuiteCRM-8.7.0` con el nombre del paquete que ha descargado.
+
+== 7. Ejecute el comando posterior a la actualización
+
+{{% notice note %}}
+Si su instancia tiene personalizaciones, asegúrese de que su código personalizado cumple con la versión mínima de PHP indicada en la link:../../compatibility-matrix[Matriz de Compatibilidad].
+{{% /notice %}}
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize
+----
+
+Consulte link:../../upgrading/troubleshooting/metadata-merge[Modos de Fusión de Metadatos] para conocer las opciones que controlan cómo se gestionan las personalizaciones de metadatos de vistas durante este paso.
+
+== 8. Vuelva a establecer los permisos
+
+Si ejecutó los comandos de migración con un usuario diferente al usuario del servidor web (por ejemplo, como root), vuelva a establecer los permisos para que el servidor web pueda leer y escribir los archivos.
+
+== 9. Reinicie el servidor (opcional)
+
+Si utiliza `opcache`, `apcu` u otras cachés de PHP, reinicie su servidor web para limpiar la caché.
+
+== 10. Abra su instancia
+
+Una vez completados todos los pasos, debería poder iniciar sesión en su instancia de SuiteCRM 8.

@@ -1,0 +1,79 @@
+---
+title: "Iniciar Sesión"
+weight: 20
+aliases:
+  - /es/user/introduction/getting-started
+---
+
+:experimental:
+:imagesdir: /images/en/user/getting-started/login
+:toc:
+
+= Iniciar Sesión
+
+Esta sección cubre todo lo que necesita saber para acceder a SuiteCRM por primera vez. Le guía a través del proceso de inicio de sesión y del Asistente de Usuario que le ayuda a configurar sus preferencias personales — como el formato de fecha, la zona horaria y la moneda — la primera vez que inicia sesión.
+
+== Acceder a SuiteCRM
+
+SuiteCRM es una aplicación web a la que se accede a través de un navegador. Su administrador del sistema le proporcionará la URL, su *Nombre de Usuario* y su *Contraseña* inicial.
+
+== Iniciar sesión en SuiteCRM
+
+Introduzca su *Nombre de Usuario* y *Contraseña* en la página de inicio de sesión y haga clic en **Iniciar sesión**.
+
+image:/images/es/user/getting-started/login/login.png[title="Página de inicio de sesión de SuiteCRM"]
+
+Si su sistema tiene habilitado más de un idioma, aparecerá un desplegable de *Idioma* encima de los campos de inicio de sesión. Seleccione su idioma preferido antes de iniciar sesión.
+
+== Olvidé mi Contraseña
+
+Si ha olvidado su contraseña, haga clic en el enlace *¿Olvidó su contraseña?* de la página de inicio de sesión. Se desplegará un formulario en línea solicitando su *Nombre de Usuario* y *Dirección de Correo Electrónico*. Introduzca ambos datos y haga clic en **Enviar**. SuiteCRM enviará un correo de restablecimiento de contraseña a la dirección asociada a su cuenta.
+
+Si el enlace *¿Olvidó su contraseña?* no es visible, o el correo de restablecimiento no llega, póngase en contacto con su administrador del sistema.
+
+== El Asistente de Usuario
+
+La primera vez que inicia sesión, el Asistente de Usuario le guía a través de la configuración de sus preferencias personales. Estos ajustes se aplican únicamente a su cuenta y pueden modificarse en cualquier momento desde su link:../managing-your-profile[Perfil de Usuario].
+
+=== Bienvenida
+
+El paso de Bienvenida confirma que ha iniciado sesión y está listo para configurar su cuenta. Haga clic en **Siguiente >** para continuar.
+
+=== Su Información
+
+Introduzca sus datos personales. El campo *Apellidos* es obligatorio. La *Dirección de Correo Electrónico* es obligatoria si su administrador del sistema ha habilitado el restablecimiento de contraseña por correo electrónico.
+
+[cols="25,75"]
+|===
+|*Nombre / Apellidos*|Su nombre de visualización dentro de SuiteCRM.
+|*Dirección de Correo Electrónico*|Se utiliza para las notificaciones del sistema y los restablecimientos de contraseña.
+|*Teléfono de Oficina / Móvil*|Datos de contacto opcionales almacenados en su registro de usuario.
+|*Dirección Principal*|Dirección opcional almacenada en su registro de usuario.
+|===
+
+Haga clic en **Siguiente >** para continuar.
+
+=== Su Configuración Regional
+
+Configure cómo se muestran las fechas, horas, números y nombres en SuiteCRM.
+
+image:/images/es/user/getting-started/login/user-wizard-locale.png[title="Configuración regional del Asistente de Usuario mostrando los campos de zona horaria, formato de fecha, formato de hora, moneda y formato numérico"]
+
+[cols="25,75"]
+|===
+|*Zona Horaria*|La zona horaria utilizada para todas las fechas y horas en SuiteCRM.
+|*Formato de Fecha*|Cómo se muestran las fechas (p. ej. 31/12/2025 o 12/31/2025).
+|*Formato de Hora*|Reloj de 12 o 24 horas.
+|*Moneda*|La moneda predeterminada para todos los campos de moneda. Las opciones disponibles las configura su administrador del sistema.
+|*Dígitos Significativos de Moneda*|El número de decimales que se muestran para los valores monetarios (0–6).
+|*Símbolo Decimal*|El carácter utilizado para separar la parte decimal (p. ej. `.` o `,`).
+|*Separador de Miles*|El carácter utilizado para separar los millares (p. ej. `,` o `.`).
+|*Formato de Visualización de Nombres*|El orden en que se muestran los nombres (p. ej. Nombre Apellidos o Apellidos, Nombre).
+|*Idioma de Usuario*|Su idioma de visualización preferido dentro de SuiteCRM.
+|===
+
+Haga clic en **Siguiente >** para continuar.
+
+=== Finalizar
+
+El último paso confirma que su configuración se ha guardado. Haga clic en **Finalizar** para ir a la página de inicio de SuiteCRM.

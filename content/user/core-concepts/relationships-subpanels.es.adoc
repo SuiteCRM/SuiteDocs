@@ -1,0 +1,70 @@
+---
+title: "Relaciones y Subpaneles"
+weight: 60
+---
+
+:imagesdir: /images/en/user
+
+= Relaciones y Subpaneles
+
+Debajo del detalle principal del registro, encontrará subpaneles que muestran todos los demás registros vinculados al
+registro que está viendo actualmente. Cada subpanel muestra el nombre del módulo y los registros relacionados en formato
+de lista, ofreciéndole un resumen a simple vista de todos los datos asociados. Los subpaneles que se muestran variarán
+según el tipo de registro; por ejemplo, un registro de *Contacto* puede mostrar subpaneles para
+Actividades, Historial, Documentos, Casos y Grupos de Seguridad.
+
+== Usar los Subpaneles
+
+Cada subpanel ofrece su propio conjunto de acciones y funcionalidades:
+
+* *Crear un registro relacionado:* dentro de un subpanel, haga clic en *Crear* para crear un nuevo registro en ese módulo, que se vinculará automáticamente al registro actual.
+* *Editar un registro relacionado:* haga clic en el icono de *Lápiz* para editar un registro relacionado en línea.
+* *Vincular un registro existente:* haga clic en *Seleccionar* para buscar y vincular un registro existente de ese módulo al registro actual.
+* *Eliminar una relación:* puede eliminar el vínculo entre el registro actual y un registro relacionado haciendo clic en *Eliminar*. Tenga en cuenta que esto elimina únicamente la relación, no el registro relacionado en sí.
+
+== Cómo Funcionan las Relaciones
+
+Las relaciones en SuiteCRM definen cómo se conectan entre sí los registros de distintos módulos.
+Por ejemplo, un Contacto puede estar relacionado con una Cuenta, una Nota, una Reunión y una serie de
+correos electrónicos históricos. Estas relaciones le permiten construir una imagen completa de sus interacciones y datos en torno a
+un único registro.
+
+Las relaciones se pueden crear de dos formas:
+
+* *A través del subpanel:* dentro de cualquier subpanel, use el botón *Crear* para crear un nuevo registro relacionado
+que se vinculará automáticamente al registro actual, o el botón *Seleccionar* para buscar y
+vincular un registro existente de ese módulo.
+* *Durante la introducción de datos:* al crear o editar un registro, los campos de relación del formulario le permiten
+vincular registros de otros módulos directamente. Por ejemplo, al crear un Contacto puede especificar la
+Cuenta a la que pertenece, estableciendo la relación en el momento de la introducción de datos.
+
+{{% notice note %}}
+Los subpaneles disponibles en un registro y las relaciones configuradas entre módulos puede gestionarlos
+un administrador del sistema. Si cree que falta una relación entre dos módulos, hable con su
+administrador del sistema.
+{{% /notice %}}
+
+Los campos de relación y los subpaneles son dos caras de la misma relación. Cuando rellena un campo de relación
+en un registro, por ejemplo, vinculando un Contacto a una Cuenta, la relación se crea al guardar.
+El Contacto aparecerá entonces en el subpanel de Contactos del registro de la Cuenta, y la Cuenta se
+mostrará en el campo Nombre de Cuenta del registro de Contacto.
+
+== Campos de Relación
+
+Los campos de relación son un tipo especial de campo que se encuentra en muchos formularios de creación y edición de registros en
+SuiteCRM. Permiten vincular un registro a otro registro de un módulo diferente y son visualmente
+distintos de los campos de texto estándar: tienen un pequeño *icono selector* (flecha) a la derecha del
+campo, que abre una ventana emergente de búsqueda que le permite encontrar y seleccionar el registro que desea vincular.
+
+*Usar un Campo de Relación*
+
+Para rellenar un campo de relación:
+
+. Haga clic en el *icono selector* a la derecha del campo de relación. Aparecerá una ventana emergente de búsqueda.
+. Utilice los campos de búsqueda de la ventana emergente para encontrar el registro que desea vincular.
+. Haga clic en el nombre del registro para seleccionarlo. La ventana emergente se cerrará y el nombre del registro seleccionado se rellenará en el campo de relación.
+. Si desea borrar un campo de relación que ya se ha rellenado, haga clic en el icono *X* a la derecha para eliminar el registro vinculado.
+
+Alternativamente, si conoce el nombre del registro que desea vincular, puede empezar a escribirlo directamente
+en el campo de relación. SuiteCRM sugerirá registros coincidentes a medida que escribe, permitiéndole seleccionar
+el correcto sin necesidad de abrir la ventana emergente de búsqueda completa.

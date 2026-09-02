@@ -1,0 +1,59 @@
+---
+title: "Iniciar Sesión"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/user/getting-started
+
+= Iniciar Sesión
+
+Esta sección cubre todo lo que necesita saber para acceder a SuiteCRM por primera vez. Le guía a través del proceso de inicio de sesión y del asistente de configuración inicial que le ayuda a configurar sus preferencias personales, como el formato de fecha, la zona horaria y la moneda. Dedicar unos minutos a completar esta configuración la primera vez que inicie sesión garantizará que SuiteCRM se adapte a sus necesidades desde el principio.
+
+== Acceder a SuiteCRM
+
+SuiteCRM es una aplicación basada en web y puede accederse a ella utilizando cualquier navegador web moderno. Consulte la lista completa de navegadores compatibles en la página link:https://docs.suitecrm.com/8.x/admin/compatibility-matrix/[Matriz de Compatibilidad].
+
+== Iniciar sesión en SuiteCRM
+
+SuiteCRM le permite iniciar sesión utilizando su nombre de usuario y contraseña. Si ha olvidado su contraseña, haga clic en el enlace *Forgot Password* de la página de inicio de sesión para solicitar un correo de restablecimiento. Si el enlace Forgot Password no está disponible y no puede acceder a SuiteCRM, póngase en contacto con su administrador del sistema.
+
+image:login.png[Pantalla de inicio de sesión de SuiteCRM]
+
+== El Asistente de Usuario
+
+El Asistente de Usuario le guía a través de las opciones de configuración disponibles cuando inicia sesión por primera vez. Esto le permite seleccionar muchos formatos para los datos que se mostrarán en SuiteCRM, y estos son específicos de su cuenta de usuario. También puede establecerlos o cambiarlos más adelante en su Perfil de Usuario.
+
+=== Bienvenido a SuiteCRM
+
+El primer paso que verá es una sencilla página de bienvenida que se muestra una vez que ha iniciado sesión. Haga clic en *Next* en esta página para continuar con la configuración de sus preferencias de usuario.
+
+image:user-wizard-welcome.png[Pantalla de bienvenida del Asistente de Usuario]
+
+=== Su Información
+
+En esta pantalla puede proporcionar información sobre usted. Los campos marcados con un asterisco rojo (*) son campos obligatorios y, como tales, deben rellenarse con datos válidos antes de poder continuar.
+
+image:user-wizard-your-information.png[Pantalla de información personal del Asistente de Usuario]
+
+Una vez que haya rellenado toda la información, haga clic en *Next* para continuar con el siguiente paso.
+
+=== Su Configuración Regional
+
+En esta pantalla puede especificar sus preferencias de configuración regional:
+
+* *Time Zone:* seleccione la zona horaria que desea utilizar dentro de SuiteCRM.
+* *Date & Time Format:* seleccione el formato de fecha y hora que desea que se muestre en todos los campos de fecha y hora dentro de SuiteCRM. Hay muchas opciones de formato diferentes entre las que elegir, todas ellas específicas de su cuenta de usuario.
+* *Currency:* seleccione la moneda que desea que se muestre en todos los campos de moneda dentro de SuiteCRM. Las opciones de moneda se rellenan a partir de las opciones añadidas por su administrador del sistema. Si la moneda que necesita no aparece en la lista, póngase en contacto con su administrador del sistema.
+* *Name Format:* seleccione el formato de nombre que desea que se muestre en todos los campos de nombre dentro de SuiteCRM.
+
+image:user-wizard-your-locale.png[Pantalla de configuración regional del Asistente de Usuario]
+
+Una vez que haya especificado todas sus preferencias de configuración regional, haga clic en *Next* para continuar con el último paso.
+
+=== Paso Final
+
+El último paso del Asistente de Usuario le proporciona enlaces útiles para obtener más información y soporte desde el sitio web de SuiteCRM. Hay un botón *Back* que puede utilizar para modificar cualquier ajuste de los pasos anteriores.
+
+image:user-wizard-final-step.png[Pantalla del paso final del Asistente de Usuario]
+
+Al hacer clic en *Finish* se completará el Asistente de Usuario y se le mostrará la pantalla de Inicio.

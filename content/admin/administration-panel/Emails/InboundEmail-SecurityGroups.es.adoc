@@ -1,0 +1,65 @@
+---
+Title: Configurar Grupos de Seguridad para Correo Entrante
+weight: 50
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Introducción
+
+Esta guía explica cómo configurar la visibilidad predeterminada que se aplica al Correo Entrante y a los registros
+relacionados, así como la forma de configurar los Grupos de Seguridad.
+
+
+== 2. Visibilidad predeterminada de los Registros Personales
+
+Los módulos `Inbound Emails` (Correos Entrantes), `External OAuth Connection` (Conexión OAuth Externa) y
+`External OAuth Provider` (Proveedor OAuth Externo) permiten crear registros personales.
+
+Este tipo de registros solo son visibles para el propietario del registro y para los usuarios administradores.
+
+== 3. Visibilidad predeterminada de los Registros de Grupo
+
+=== 3.1 Correos Entrantes y Conexión OAuth Externa
+
+Al igual que ocurre con los registros personales, los usuarios administradores pueden ver todos los registros de
+grupo.
+
+Los usuarios no administradores, de forma predeterminada, no pueden ver ningún registro de grupo. Solo podrán ver
+los registros si:
+
+. Tienen un Rol con ACL definidas para el módulo, es decir, Correos Entrantes o Conexión OAuth Externa.
+. Pertenecen al Grupo de Seguridad al que también está asignado el registro de grupo.
+
+Este comportamiento difiere del comportamiento predeterminado de SuiteCRM para los Grupos de Seguridad, en el
+sentido de que, por defecto, los registros de SuiteCRM son visibles para todos, y el administrador necesita añadir
+Grupos de Seguridad para restringir la visibilidad de los registros.
+Estos dos módulos funcionan al revés, ya que sus registros están ocultos de forma predeterminada.
+
+=== 3.2 Proveedor OAuth Externo
+
+A diferencia de `Inbound Emails` y `External OAuth Connection`, los registros de grupo de `External OAuth Provider`
+son visibles de forma predeterminada. Para restringir la visibilidad es necesario definir Grupos de Seguridad y
+Roles.
+
+`External OAuth Provider` utiliza una visibilidad "abierta" porque las configuraciones del proveedor de grupo están
+pensadas para ser utilizadas por todos los usuarios que tienen una cuenta en el mismo dominio.
+Por ejemplo, al configurar un Proveedor de Microsoft para `@exampleinc.onmicrosoft.com`, cualquier usuario que tenga
+una cuenta en este dominio puede utilizar el mismo proveedor.
+
+En `Inbound Emails` y `External OAuth Connection` esto no ocurre de la misma manera. Estas son configuraciones
+específicas de una cuenta de correo, como `sales@exampleinc.onmicrosoft.com`, donde solo se quiere dar acceso de
+lectura de correos de esta cuenta a los usuarios que deban tenerlo.
+
+
+== 4. Configuración de Roles para Grupos de Seguridad
+
+Desde la perspectiva de un Rol, los registros de Grupos de Seguridad son visibles y modificables de forma
+predeterminada.
+
+En la vista de detalle de los registros de `Inbound Emails` y `External OAuth Connection` hay un subpanel para los
+Grupos de Seguridad, donde un usuario puede cambiar los grupos a los que pertenece el registro.
+
+Dado que `Inbound Emails` y `External OAuth Connection` están ocultos de forma predeterminada y dependen del Grupo
+de Seguridad al que pertenecen, puede ser buena idea restringir la visibilidad de los Grupos de Seguridad de forma
+que el subpanel solo se muestre a los usuarios administradores.

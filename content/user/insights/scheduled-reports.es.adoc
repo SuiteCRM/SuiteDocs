@@ -1,0 +1,64 @@
+---
+title: "Informes Programados"
+weight: 20
+---
+
+:experimental:
+:imagesdir: /images/en/user/insights/scheduled-reports
+:toc:
+
+= Informes Programados
+
+Los Informes Programados ejecutan un informe guardado automáticamente según un horario establecido y envían los resultados por correo a uno o varios destinatarios. Esto resulta útil para entregar actualizaciones periódicas — como un resumen diario del pipeline o un informe semanal de actividad — sin que nadie tenga que ejecutarlos manualmente.
+
+== Crear un Informe Programado
+
+Hay dos formas de crear un Informe Programado:
+
+* Desde el módulo *Scheduled Reports*, haga clic en *Create Scheduled Report*.
+* Desde la Vista de Detalle de un Informe, desplácese hasta el subpanel *Scheduled Reports* y haga clic en *Create*. El campo de informe se rellena previamente.
+
+=== Campos
+
+[cols="20,80"]
+|===
+|*Nombre*|Un nombre descriptivo para el informe programado, por ejemplo "Informe Semanal del Pipeline para Gerentes".
+|*Estado*|Activo o Inactivo. Solo los informes programados Activos se ejecutan automáticamente. Establézcalo en Inactivo para pausar la entrega sin eliminar el registro.
+|*Informe*|El informe a ejecutar y enviar. Obligatorio.
+|*Horario*|Cuándo ejecutar el informe. Consulte <<Opciones de Horario>>.
+|*Descripción*|Notas opcionales.
+|===
+
+image:ScheduledReportEdit.png[title="Vista de edición del informe programado mostrando las opciones de horario y la sección de destinatarios de correo"]
+
+[[schedule-options]]
+=== Opciones de Horario
+
+Seleccione *Daily*, *Weekly* o *Monthly* para un horario recurrente sencillo.
+
+Seleccione *Advanced* para introducir una expresión cron personalizada. Los cinco campos representan minuto, hora, día del mes, mes y día de la semana, siguiendo la sintaxis estándar de cron de Unix. Por ejemplo, `0 8 * * 1` se ejecuta todos los lunes a las 08:00. Esta opción es más adecuada para administradores o usuarios familiarizados con la notación cron.
+
+=== Destinatarios de Correo
+
+La sección *Email Recipients* determina quién recibe los resultados del informe por correo cada vez que se ejecuta el informe programado. Añada destinatarios de uno en uno seleccionando un tipo:
+
+[cols="20,80"]
+|===
+|*Email*|Introduzca cualquier dirección de correo directamente.
+|*User*|Seleccione un usuario específico de SuiteCRM. El informe se envía a la dirección de correo de ese usuario.
+|*Users*|Enviar a un grupo de usuarios:
+
+* *ALL Users*: todos los usuarios activos del sistema
+* *ALL Users in Role*: todos los usuarios asignados a un Rol de ACL seleccionado
+* *ALL Users in Security Group*: todos los usuarios de un Grupo de Seguridad seleccionado
+|===
+
+Se pueden añadir varios destinatarios de distintos tipos al mismo informe programado.
+
+== Gestionar Informes Programados
+
+* El campo *Última Ejecución* muestra la fecha y hora en que se ejecutó por última vez el informe programado. Aparece en el subpanel Scheduled Reports de la Vista de Detalle del Informe y en el propio registro del Informe Programado.
+* Para pausar la entrega temporalmente, establezca el Estado en *Inactive*.
+* Para eliminar un informe programado, abra el registro y haga clic en *Delete*. Esto no afecta al informe subyacente.
+
+---

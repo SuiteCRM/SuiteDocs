@@ -1,0 +1,36 @@
+---
+title: "Antes de Actualizar"
+weight: 10
+aliases:
+  - /es/8.x/admin/upgrading/before-start/
+---
+:experimental:
+
+Revise lo siguiente antes de ejecutar una actualización.
+
+== Compatibilidad
+
+Asegúrese de que su sistema cumple con la matriz de compatibilidad de la versión a la que va a actualizar. Consulte la link:../../compatibility-matrix[Matriz de Compatibilidad] para conocer las versiones compatibles de PHP, base de datos y servidor web.
+
+== Pruebe antes de producción
+
+Ejecute primero el proceso de actualización en una instancia de desarrollo o de pruebas. Solo despliegue en producción después de haber realizado las pruebas.
+
+== Haga una copia de seguridad de su instancia
+
+Antes de actualizar, cree una copia de seguridad tanto de los archivos de su instancia como de su base de datos.
+
+== APP_ENV
+
+Antes de ejecutar cualquier comando de actualización, asegúrese de que su instancia de SuiteCRM 8 tiene `APP_ENV` configurado como `prod` en su archivo `.env` o `.env.local`.
+
+== Archivos personalizados
+
+El proceso de actualización puede eliminar archivos o directorios que no sean del núcleo en la carpeta `root` o en la carpeta `public/legacy/`. Revise sus personalizaciones antes de actualizar.
+
+== Informe de errores
+
+Por defecto, los comandos de actualización configuran `error_reporting` en un modo menos estricto para suprimir advertencias:
+`E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING`
+
+Para aplicar un modo más estricto, añada `-vvv` a cada comando. Esto configura `error_reporting` como `E_ALL`.

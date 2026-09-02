@@ -1,0 +1,36 @@
+---
+Title: Configuración de hosts de confianza
+weight: 50
+---
+
+:imagesdir: /images/en/user
+
+== Introducción
+
+A partir de la versión 8.4.2 existe una nueva comprobación de seguridad para verificar si la cabecera host de la solicitud es válida.
+Esta comprobación se realiza al inicio de cada solicitud al backend.
+
+=== Configuración
+Esta comprobación utiliza una nueva entrada `trusted_hosts` en `public/legacy/config.php` o `public/legacy/config_override.php`, donde puede definir un array de cadenas de expresión regular para los hosts de confianza, como en el siguiente ejemplo:
+
+[source,php]
+----
+<?php
+...
+$sugar_config = array (
+...
+
+$sugar_config['trusted_hosts'] = ['^dev\.local$', '^localhost$'];
+
+...
+
+----
+
+=== Valor predeterminado/alternativo
+Si no se define ninguna entrada `trusted_hosts` en `public/legacy/config.php` o `public/legacy/config_override.php`, el sistema:
+
+* Analizará y utilizará la configuración `site_url` como una de las entradas.
+* Añadirá una entrada para `localhost`
+
+
+

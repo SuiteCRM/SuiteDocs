@@ -1,0 +1,58 @@
+---
+Title: Comportamiento del Desplegable "De" al Redactar Correo
+weight: 30
+---
+
+:imagesdir: /images/en/admin/email/
+
+== 1. Introducción
+
+En las versiones SuiteCRM 7.13.1 y 8.2.3, se ha actualizado la lista desplegable "De" que se muestra en la siguiente
+imagen.
+
+image:suitecrm-compose-from.png[suitecrm-compose-from.png]
+
+Además del nuevo estilo, el campo se comporta de forma diferente.
+
+Por defecto, ahora muestra la lista de todas las Cuentas de Correo Saliente a las que el usuario tiene acceso, lo
+que incluye las cuentas personales y las cuentas de grupo.
+
+Además de lo anterior, también mostrará el Correo del Sistema si la opción `Users may send as this account's
+identity` (Los usuarios pueden enviar con la identidad de esta cuenta) está activada en la página
+`Administración > Configuración de Correo`.
+
+
+== 2. Opción de configuración legacy_email_behaviour
+
+=== 2.1 Descripción de la opción
+
+Se ha añadido una nueva opción de configuración `legacy_email_behaviour`, que permite conservar parte del
+comportamiento heredado del desplegable "De" al redactar correo.
+
+Obtendrá la lista de "direcciones de correo de origen" que se generaba en versiones anteriores de SuiteCRM y la
+añadirá a la nueva lista generada a partir de las Cuentas de Correo Saliente.
+
+Como es posible que ya sepa, el comportamiento anterior consistía en generar la lista de direcciones de origen a
+partir de las Cuentas de Correo Entrante.
+
+
+=== 2.2 Nota sobre instancias actualizadas
+
+Las instancias recién instaladas tendrán la opción `legacy_email_behaviour` desactivada de forma predeterminada.
+
+Las instancias que se hayan actualizado desde una versión anterior de SuiteCRM tendrán la nueva opción de
+`config.php` `legacy_email_behaviour` activada, con el fin de conservar el comportamiento heredado.
+
+
+== 3. Firmas de correo
+
+La configuración de las Cuentas de Correo Saliente se ha actualizado para permitir configurar una firma de correo
+por cada cuenta de correo saliente, como se muestra en la imagen siguiente.
+Esta firma se puede definir tanto para Cuentas de Correo Saliente Personales como de Grupo.
+
+Las firmas de grupo estarán accesibles para cualquier usuario que tenga acceso al registro de la Cuenta de Correo
+Saliente.
+
+Tenga en cuenta que las firmas no admiten imágenes incrustadas, solo imágenes disponibles en una URL pública.
+
+image:suitecrm-outbound-email-signature.png[suitecrm-outbound-email-signature.png]

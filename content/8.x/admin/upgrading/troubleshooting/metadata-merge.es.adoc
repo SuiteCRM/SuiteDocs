@@ -1,0 +1,38 @@
+---
+title: "Modos de Fusión de Metadatos"
+weight: 20
+aliases:
+  - /es/8.x/admin/upgrading/additional-materials/metadata-merge/
+---
+:experimental:
+
+Durante el paso de finalización, puede controlar cómo se gestionan las personalizaciones de metadatos de vistas mediante la opción `-m` en el comando `suitecrm:app:upgrade-finalize`. El modo por defecto es `keep`.
+
+== Modo Keep (por defecto)
+
+Conserva las personalizaciones de metadatos de vista existentes y omite por completo el proceso de fusión.
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -m keep
+----
+
+== Modo Merge
+
+Intenta fusionar sus personalizaciones actuales con los nuevos metadatos de vista del núcleo para cada módulo. Los metadatos fusionados se colocan en `public/legacy/custom/<Module>/metadata`. Se guarda una copia de seguridad de las personalizaciones anteriores en la misma carpeta.
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -m merge
+----
+
+== Modo Override
+
+{{% notice warning %}}
+Este modo elimina sus archivos de personalización actuales en `public/legacy/custom/<Module>/metadata` y los sustituye por los nuevos metadatos del núcleo.
+{{% /notice %}}
+
+[source,bash]
+----
+./bin/console suitecrm:app:upgrade-finalize -m override
+----

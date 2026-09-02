@@ -1,0 +1,69 @@
+---
+title: "Plantillas de Email"
+weight: 50
+aliases:
+  - /es/user/core-modules/emailtemplates
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Plantillas de Email
+
+== Descripción General
+
+Las plantillas de email se utilizan para enviar respuestas y notificaciones estandarizadas por correo electrónico. Añadir variables permite personalizar estas comunicaciones e incluir información adicional relevante, como los detalles de un pedido.
+
+Las plantillas de email pueden verse, editarse y crearse desde el módulo *Plantillas de Email*, que se encuentra en el menú *TODOS*. Alternativamente, las plantillas pueden crearse directamente desde los módulos de flujos de trabajo y campañas.
+
+{{% notice tip %}}El editor de plantillas utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_user_profile_email_settings[configuración de email del perfil de usuario]. La configuración por defecto (Mozaik) es la que se muestra en las siguientes capturas de pantalla. {{% /notice %}}
+
+image:300EmailsTemplates.png[Plantillas de Email]
+
+Existen varias plantillas *de Sistema* predeterminadas que se crean durante la instalación.
+Se utilizan para enviar notificaciones del sistema, como nuevas contraseñas o actualizaciones de casos.
+Estas pueden verse y editarse aquí junto con las plantillas creadas por los usuarios. Las plantillas creadas
+aquí también pueden utilizarse en Flujos de Trabajo y en
+link:../campaigns-overview[Campañas], por ejemplo, además de para las notificaciones del sistema.
+
+Haga clic en el nombre de una plantilla para verla.
+
+Para editar una plantilla existente, abra la plantilla y seleccione *Editar* en el menú *Acciones*,
+o haga clic en el icono del lápiz situado a la izquierda del nombre de la plantilla. Una vez en modo *Edición*,
+la plantilla puede editarse de la misma forma que al crear una plantilla.
+
+== Crear una Plantilla de Email
+
+Seleccione *Crear Plantilla de Email* en la barra lateral. Esta vista de *Creación* también aparecerá si decide crear una plantilla desde otro módulo, como Flujos de Trabajo, por ejemplo.
+
+Seleccione *Email*, *Campaña* o *Sistema* según el uso que vaya a dar a la plantilla. Las plantillas de *Sistema* se utilizan para enviar notificaciones generadas por el sistema, como actualizaciones de casos.
+
+image:301EmailsNewTemplate.png[Nueva plantilla de email]
+
+=== Cuerpo
+
+Para añadir texto al cuerpo de la plantilla, haga clic, arrastre y suelte uno de los diseños disponibles en el panel izquierdo sobre el cuerpo. Puede añadir tantas secciones de diseño como necesite. Sobrescriba el texto de ejemplo seleccionándolo primero.
+
+=== Añadir Variables
+Para añadir una variable, seleccione el módulo y el nombre del campo correspondientes en las listas desplegables. El nombre de la variable correspondiente se mostrará en el último campo.
+
+image:302EmailsInsertVariable.png[Insertar variable de plantilla]
+
+Puede introducir esta variable manualmente, o hacer clic en **INSERTAR** para insertarla en el punto del cursor. Las variables pueden añadirse tanto en la línea de asunto como en el cuerpo de la plantilla de email.
+
+image:303EmailsInsertVariable2.png[Variable de plantilla en el asunto y el cuerpo]
+
+
+=== Adjuntos
+
+[cols="20,80",frame="none", grid="none"]
+|===
+|image:304EmailsTemplateAttachment.png[Adjuntos de plantilla]|Haga clic en **EXAMINAR** para adjuntar un archivo externo, o en **DOCUMENTO** para adjuntar un documento de *SuiteCRM* a la plantilla. Se pueden adjuntar más elementos de la misma forma. El archivo o archivos adjuntos se enviarán a todos los destinatarios de la plantilla.
+|===
+
+=== Grupos de Seguridad
+
+Restrinja el acceso a una plantilla seleccionando un Grupo de Seguridad.

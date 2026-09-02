@@ -1,0 +1,122 @@
+---
+title: "Actualización por CLI"
+weight: 30
+---
+:experimental:
+
+La actualización por CLI ejecuta el proceso de actualización desde la línea de comandos en su servidor, evitando las restricciones de tiempo de espera y tamaño de subida del servidor web. Es el método recomendado para bases de datos más grandes o si el Asistente de Actualizaciones ha agotado previamente el tiempo de espera.
+
+{{% notice warning %}}
+Antes de continuar, asegúrese de haber completado todos los pasos de la página link:../before-you-upgrade[Antes de Actualizar], incluida la copia de seguridad de su instancia.
+{{% /notice %}}
+
+== Elegir un método
+
+Hay disponibles dos métodos de CLI en función de su versión de SuiteCRM:
+
+[cols="1,1", options="header"]
+|===
+|Método |Requisito de versión
+|`robo upgrade:suite` |SuiteCRM 7.11.3 y posteriores
+|`silentUpgrade.php` |Todas las versiones 7.x
+|===
+
+Utilice el comando `robo` si su versión lo admite. El script `silentUpgrade.php` está disponible como alternativa para instalaciones más antiguas.
+
+== Método 1: comando Robo (7.11.3+)
+
+=== 1. Colocar el paquete de actualización
+
+Descargue el paquete de actualización desde la link:https://suitecrm.com/upgrade-suitecrm/[página de descargas de SuiteCRM] y cópielo en el directorio raíz de SuiteCRM.
+
+=== 2. Ejecutar la actualización
+
+Desde el directorio raíz de SuiteCRM, ejecute:
+
+[source,bash]
+----
+./vendor/bin/robo upgrade:suite <upgradeZipFile> <logFile> <pathToSuiteCRMInstance> <adminUser>
+----
+
+[cols="1,3", options="header"]
+|===
+|Argumento |Descripción
+|`upgradeZipFile` |Ruta al archivo ZIP de actualización (por ejemplo, `SuiteCRM-Upgrade-7.12.x-to-7.13.0.zip`)
+|`logFile` |Ruta y nombre del archivo de registro de salida (por ejemplo, `upgrade.log`)
+|`pathToSuiteCRMInstance` |Ruta absoluta a su instalación de SuiteCRM. Use `.` si se ejecuta desde la raíz.
+|`adminUser` |Nombre de usuario de una cuenta de administrador de SuiteCRM
+|===
+
+Ejemplo:
+
+[source,bash]
+----
+./vendor/bin/robo upgrade:suite SuiteCRM-Upgrade-7.12.x-to-7.13.0.zip upgrade.log . admin
+----
+
+== Método 2: silentUpgrade.php (todas las versiones)
+
+=== 1. Colocar el paquete de actualización
+
+Descargue el paquete de actualización y cópielo en una ubicación accesible desde su servidor. Anote la ruta completa.
+
+=== 2. Ejecutar el script
+
+[source,bash]
+----
+php -f <path-to-suitecrm>/modules/UpgradeWizard/silentUpgrade.php \
+  <upgradeZipFile> <logFile> <pathToSuiteCRMInstance> <adminUser>
+----
+
+[cols="1,3", options="header"]
+|===
+|Argumento |Descripción
+|`upgradeZipFile` |Ruta completa al archivo ZIP de actualización
+|`logFile` |Ruta completa a un archivo de registro (se creará si no existe)
+|`pathToSuiteCRMInstance` |Ruta completa al directorio de instalación de SuiteCRM
+|`adminUser` |Nombre de usuario de una cuenta de administrador de SuiteCRM
+|===
+
+Ejemplo:
+
+[source,bash]
+----
+php -f /var/www/suitecrm/modules/UpgradeWizard/silentUpgrade.php \
+  /tmp/SuiteCRM-Upgrade-7.12.x-to-7.13.0.zip \
+  /var/www/suitecrm/upgrade.log \
+  /var/www/suitecrm \
+  admin
+----
+
+[#file-permissions]
+== Permisos de archivos tras una actualización por CLI
+
+Los archivos escritos durante la actualización pertenecerán al usuario que ejecuta el comando — que a menudo es `root` en entornos de servidor. Si Apache (o su servidor web) se ejecuta como un usuario diferente, no podrá leer ni escribir esos archivos, lo que provocará un fallo en la aplicación.
+
+Una vez completada la actualización, restablezca los permisos:
+
+[source,bash]
+----
+# Ajuste user:group para que coincida con su servidor web (por ejemplo, www-data:www-data, apache:apache)
+chown -R www-data:www-data /path/to/suitecrm
+find /path/to/suitecrm -type d -exec chmod 755 {} \;
+find /path/to/suitecrm -type f -exec chmod 644 {} \;
+----
+
+== Pasos posteriores a la actualización
+
+. Restablezca los permisos de archivos como se ha descrito anteriormente.
+. Inicie sesión como Administrador y vaya a menu:Administración[Reparación].
+. Ejecute *Reconstruir Relaciones*.
+. Ejecute *Reconstruir Extensiones*.
+. Vuelva a activar la caché de opcode si la había desactivado antes de la actualización.
+
+== Solución de problemas
+
+Revise el archivo de registro que especificó en el comando para obtener detalles sobre cualquier error. El registro del asistente de actualización también se escribe en:
+
+----
+<suitecrm-root>/upgradeWizard.log
+----
+
+Consulte también link:../troubleshooting/logs[Registros] y link:../troubleshooting/known-issues[Problemas Conocidos].

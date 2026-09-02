@@ -1,65 +1,65 @@
 ---
-Title: "Editing a page"
+Title: "Editar una página"
 Weight: 10
 ---
-:experimental: ////this is here to allow btn:[]syntax used below 
+:experimental: ////this is here to allow btn:[]syntax used below
 
-:imagesdir: /images/es/community
+:imagesdir: /images/en/community
 
-== Your first simple edit
+== Tu primera edición sencilla
 
-In order to contribute to the Documentation efforts, you can edit pages directly on GitHub 
-which is the repository of our content.
+Para contribuir a los esfuerzos de Documentación, puedes editar páginas directamente en GitHub,
+que es el repositorio de nuestro contenido.
 
 {{% notice info %}}
-You need a https://github.com/join[Github user account^] to edit pages on the SuiteCRM Documentation Site. 
-If you don't have one yet, you will be given the opportunity to create one during this process.
+Necesitas una https://github.com/join[cuenta de usuario de GitHub^] para editar páginas en el sitio de Documentación de SuiteCRM.
+Si aún no tienes una, se te dará la oportunidad de crearla durante este proceso.
 {{% /notice %}}
 
-=== 1. Navigate to the place you want to edit
+=== 1. Ve al lugar que quieres editar
 
-Simply use your browser to go to the page you want to edit. You can use the menus 
-and search feature to facilitate this.
+Simplemente usa tu navegador para ir a la página que quieres editar. Puedes usar los menús
+y la función de búsqueda para facilitarlo.
 
-=== 2. Click to "Edit this page"
+=== 2. Haz clic en "Editar página"
 
-Every page on the site has an "Edit this Page" link near the top.
+Cada página del sitio tiene un enlace "Editar página" cerca de la parte superior.
 
-image:24EditThisPage.png[title="Edit this page link"]
+image:/images/es/community/24EditThisPage.png[title="Enlace de editar página"]
 
-=== 3. Make your changes
+=== 3. Haz tus cambios
 
-You are taken to GitHub where a text editor will allow you to edit the source code of the file. 
-The format used is called https://asciidoctor.org/docs/what-is-asciidoc/[Asciidoc^], 
-and looks pretty much like plain text. 
+Se te llevará a GitHub, donde un editor de texto te permitirá editar el código fuente del archivo.
+El formato que se usa se llama https://asciidoctor.org/docs/what-is-asciidoc/[Asciidoc^],
+y se parece bastante a texto plano.
 
-If you're just editing text, don't bother learning the format, just go ahead and edit it!
+Si solo estás editando texto, no te preocupes por aprender el formato, ¡adelante y edítalo!
 
-image:25GitHubEditAndSave.png[title="Edit this page link"]
+image:/images/es/community/25GitHubEditAndSave.png[title="Enlace de editar página"]
 
-In this example, we inserted the sentence highlighted in yellow, and we click the green button 
-at the bottom that is labeled btn:[Propose File Change].
+En este ejemplo, insertamos la frase resaltada en amarillo, y hacemos clic en el botón verde
+de la parte inferior, etiquetado como btn:[Propose File Change].
 
-=== 4. Propose your changes by creating a Pull Request
+=== 4. Propón tus cambios creando una Pull Request
 
-You could make additional changes to other files before proposing your change to the site maintainers. 
-But for our first simple edit we'll do it immediately.
+Podrías hacer cambios adicionales en otros archivos antes de proponer tu cambio a los mantenedores del sitio.
+Pero para nuestra primera edición sencilla lo haremos de inmediato.
 
-image:26GitHubCreatePR.png[title="Edit this page link"]
+image:/images/es/community/26GitHubCreatePR.png[title="Enlace de editar página"]
 
-In this screen, you can improve the title of your proposal, add descriptive comments, and review your changes.  
-But that is all optional - all you _really_ have to do is press a green button again, this time 
-it's labeled btn:[Create pull request].
+En esta pantalla, puedes mejorar el título de tu propuesta, añadir comentarios descriptivos y revisar tus cambios.
+Pero todo eso es opcional; lo único que _realmente_ tienes que hacer es volver a pulsar un botón verde, esta vez
+etiquetado como btn:[Create pull request].
 
-=== That's it, you're done!
+=== ¡Ya está, has terminado!
 
-Your proposed change is now up for evaluation by the members of the Community in charge of the 
-SuiteCRM Documentation site. They will receive an e-mail notification as soon as you finish your proposal.
+Tu cambio propuesto ya está listo para ser evaluado por los miembros de la Comunidad encargados del
+sitio de Documentación de SuiteCRM. Recibirán una notificación por correo electrónico en cuanto termines tu propuesta.
 
-You can check the status of every Pull Request, and participate in any discussion 
-about them by visiting https://github.com/SuiteCRM/SuiteDocs/pulls[this list^].
+Puedes comprobar el estado de cada Pull Request, y participar en cualquier debate
+sobre ellas visitando https://github.com/SuiteCRM/SuiteDocs/pulls[esta lista^].
 
-Every small contribution matters! Thanks for helping out. 
+¡Cada pequeña contribución cuenta! Gracias por colaborar.
 
-Of course, this was just a starter's guide. If you're ready to use more Asciidoc features 
-and really leverage all the power of Github, make sure you check out other tutorials. 
+Por supuesto, esto fue solo una guía inicial. Si estás listo para usar más funciones de Asciidoc
+y aprovechar realmente todo el poder de GitHub, asegúrate de consultar otros tutoriales.

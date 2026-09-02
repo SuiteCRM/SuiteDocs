@@ -1,0 +1,27 @@
+---
+title: "Problemas Conocidos"
+weight: 20
+---
+:experimental:
+
+== Errores de token CSRF después de la migración
+
+Si recibe un error `Invalid CSRF token` después de la migración, actualice la página y borre las cookies de su navegador. Esto permite al servidor generar una nueva sesión.
+
+Esto ocurre normalmente cuando se vuelve a migrar a la misma URL en la que aún están presentes cookies de sesión anteriores.
+
+== Permisos no restablecidos después de los comandos de actualización
+
+Restablezca siempre los permisos de los archivos después de ejecutar los comandos de actualización. Si los comandos se ejecutaron con un usuario diferente al del servidor web (por ejemplo, root), es posible que el servidor web no tenga acceso de lectura/escritura a los archivos recién creados.
+
+== Falta el comando suitecrm:app:setup-legacy-migration
+
+Esto normalmente significa que se está utilizando el paquete incorrecto. Asegúrese de estar utilizando el paquete de migración, no el paquete de instalación estándar de SuiteCRM 8.
+
+El nombre del paquete de migración sigue el patrón: `SuiteCRM-8.x-7.x-migration` (por ejemplo, `SuiteCRM-8.7.0-7.14.x-migration`).
+
+== Carpeta de SuiteCRM 7 o SuiteCRM 8 colocada incorrectamente
+
+El proceso de migración no se aplica sobre una instancia existente de SuiteCRM 7. En su lugar, su instancia de SuiteCRM 7 se copia en la estructura de carpetas de SuiteCRM 8.
+
+Descomprima el paquete de migración en una nueva carpeta de su servidor. Copie su instancia de SuiteCRM 7 en la subcarpeta `public` y cámbiele el nombre a `legacy`. Los comandos de migración actualizarán entonces el código legacy en su lugar como parte de la configuración de SuiteCRM 8.

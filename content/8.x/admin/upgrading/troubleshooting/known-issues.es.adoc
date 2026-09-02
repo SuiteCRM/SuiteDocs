@@ -1,0 +1,68 @@
+---
+title: "Problemas Conocidos"
+weight: 30
+aliases:
+  - /es/8.x/admin/upgrading/additional-materials/upgrading-issues/
+---
+:experimental:
+
+== Actualización de 8.0.x a 8.1.x
+
+Después de ejecutar el comando de actualización, es posible que vea:
+
+[source,bash]
+----
+Error running migrations
+
+In ClassLoader.php line 576:
+
+  Warning: include(<path>/vendor/composer/../symfony/maker-bundle/src/Event/ConsoleErrorSubscriber.php): failed to open stream: No such file or directory
+----
+
+*Solución:* vuelva a ejecutar lo siguiente desde el directorio raíz de SuiteCRM 8:
+
+[source,bash]
+----
+composer install
+----
+
+== Actualización de 8.1.0 a 8.1.1
+
+Si había actualizado previamente (por ejemplo, 8.0.2 → 8.0.4 → 8.1.1), ejecutar el comando de actualización puede producir:
+
+[source]
+----
+CRITICAL  [php] Fatal Compile Error: require(): Failed opening required '/<path>/cache/prod/ContainerZatgzYy/getConsole_ErrorListenerService.php'
+----
+
+Esto se debe a que la limpieza de la caché de Symfony se invoca inmediatamente después de limpiarla.
+
+*Solución:* vuelva a establecer los permisos y, a continuación, ejecute:
+
+[source,bash]
+----
+bin/console clear:cache
+----
+
+== Actualización a la versión 8.3.1
+
+Un error en el proceso de actualización de 8.3.1 provoca que falle si está actualizando desde una versión anterior a 8.3.0. Actualice primero a 8.3.0 y después a 8.3.1.
+
+Este problema está resuelto en 8.4.0. Si está actualizando a 8.4.0 o posterior, puede actualizar directamente desde cualquier versión 8.2.x.
+
+== Actualización de Beta 3 a la versión RC
+
+Después del comando de actualización, es posible que vea:
+
+[source,bash]
+----
+Running: clear-symfony-cache
+PHP Fatal error:  Interface 'Stringable' not found in /<path>/vendor/symfony/string/AbstractString.php on line 30
+----
+
+*Solución:* limpie la caché de Symfony desde la raíz de su instancia:
+
+[source,bash]
+----
+./bin/console cache:clear
+----

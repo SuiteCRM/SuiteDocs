@@ -1,0 +1,71 @@
+---
+title: "Reportar Incidencias"
+weight: 20
+---
+
+:experimental:
+
+== Reportar Incidencias
+
+Una incidencia es un área en la que crees que el proyecto podría mejorarse. Por ejemplo, podrías reportar un problema o error que hayas encontrado al usar el software, o una carencia en la documentación del proyecto.
+
+Al reportar incidencias a través de nuestro repositorio de GitHub, asegúrate de exponer el problema con claridad usando las plantillas de incidencias proporcionadas. Un informe de alta calidad incluye:
+
+* Un título claro y descriptivo.
+* Una descripción completa de los pasos para reproducir el comportamiento.
+* La versión o versiones de SuiteCRM en las que se encontró la incidencia.
+* Detalles del entorno (versión de PHP, versión de la base de datos, servidor web).
+* Entradas de registro relevantes de `suitecrm.log` o de tus registros de errores de PHP.
+
+Un reporte claro permite a los colaboradores y mantenedores identificar, reproducir y resolver la incidencia con facilidad.
+
+
+== Seguridad
+
+En SuiteCRM Ltd nos tomamos la seguridad muy en serio. Si crees haber encontrado una vulnerabilidad de seguridad en nuestro software, repórtala.
+
+{{% notice warning %}}
+**Por favor, no reveles públicamente errores de seguridad** hasta que hayan sido gestionados y corregidos por el equipo de seguridad.
+{{% /notice %}}
+
+Consulta nuestra link:../../security-policy[Política de Seguridad] para más detalles.
+
+== Etiquetas de GitHub
+
+Las etiquetas ayudan a la comunidad y al equipo de SuiteCRM Ltd a categorizar y priorizar el trabajo. Puedes hacer clic en las etiquetas de abajo para ver la lista actual de incidencias en GitHub.
+
+=== Etiquetas comunes de incidencias
+
+[frame=none, cols="40,60"]
+|===
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Type%3ABug[Type: Bug]]| Confirmado o muy probablemente sea un error funcional.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Priority%3ACritical[Priority: Critical]]| Incidencias que causan pérdida de datos o inutilizan por completo la aplicación.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Priority%3AImportant[Priority: Important]]| Incidencias de alto impacto que afectan a procesos de negocio principales.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Priority%3AModerate[Priority: Moderate]]| Errores estándar que tienen soluciones alternativas prácticas.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Status%3AFix%20Proposed[Status: Fix Proposed]]| Incidencias que ya tienen asociada una Pull Request en curso o una solución sugerida.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Area%3ALanguage[Area: Language]]| Incidencias relacionadas específicamente con traducciones o archivos de idioma.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/labels/Type%3ASuggestion[Type: Suggestion]]| Solicitudes de nuevas funcionalidades o mejoras. Usa el https://community.suitecrm.com/c/suggestion-box/13[buzón de sugerencias del Foro de la comunidad] para sugerencias generales y solicitudes de funcionalidades.
+|===
+
+=== Etiquetas de Pull Requests
+
+[frame=none, cols="40,60"]
+|===
+|btn:[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3AStatus%3AAssessed[Status: Assessed]]|
+Pull Requests que han sido evaluadas por un miembro del equipo principal y están listas para la revisión de código y pruebas.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3A%22Status%3A%20Requires%20Code%20Review%22[Status: Requires Code Review]]|
+Contribuciones que necesitan revisión de código antes de ser probadas.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3A%22Status%3A%20Requires%20Testing%22[Status: Requires Testing]]|
+Contribuciones que necesitan pruebas antes de pasar a Ready to Merge.
+
+|btn:[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3A%22Status%3A%20Ready%20to%20Merge%22[Status: Ready to Merge]]|
+Código que ha superado la evaluación funcional y la revisión técnica de código.
+|===

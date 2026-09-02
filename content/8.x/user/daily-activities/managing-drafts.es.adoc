@@ -1,0 +1,76 @@
+---
+title: "Gestión de Borradores"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities
+
+== Resumen
+
+SuiteCRM 8 guarda automáticamente su correo como borrador al cerrarlo, para que nunca pierda su trabajo.
+
+Los borradores se almacenan hasta que se eliminan manualmente o se envían.
+
+Los borradores se guardan al cerrar la ventana modal de redacción si alguno de los siguientes campos contiene información:
+
+* Cuerpo del correo (excluyendo la firma de correo)
+* Subject
+* Adjuntos
+
+== Gestionar Borradores
+
+=== Notificación de Borrador Guardado
+
+Cuando cierra la ventana modal de redacción y se guarda un borrador, la etiqueta "Draft has been saved." aparece brevemente en pantalla para confirmar que su correo se ha conservado.
+
+=== Botón de Borradores
+
+Cuando hay borradores guardados, aparece un botón en la esquina inferior derecha de la pantalla que muestra:
+
+* El número actual de borradores
+* `10+` si hay más de 10 borradores
+
+image:drafts-button.png[Botón de Borradores]
+
+Haga clic en este botón para ver su lista de borradores guardados.
+
+=== Lista de Borradores
+
+image:draft-list.png[Lista de Borradores]
+
+La lista de borradores muestra todos sus borradores guardados con la siguiente información para cada uno:
+
+* **Recipient**: muestra el primer registro de "To", o el registro Related To si está en la lista de To, o "No Recipients" si no se ha especificado ninguno
+* **Subject**: el inicio del asunto del correo
+* **Last Modified**: fecha en que se modificó por última vez el borrador
+
+=== Editar un Borrador
+
+Para editar un borrador, haga clic en el elemento de la lista de borradores.
+
+Al editar un borrador:
+
+* El encabezado de la ventana modal muestra "Draft" en lugar de "New Email"
+* Aparece un icono de papelera en la esquina inferior izquierda para descartar el borrador actual
+* El borrador no aparecerá en la lista de borradores mientras se está editando
+
+image:draft-edit.png[Editar un Borrador]
+
+=== Eliminar un Borrador
+
+Actualmente hay 2 formas de eliminar un borrador:
+
+* El icono de papelera que se muestra en la lista de borradores
+* El icono de papelera en la ventana modal de redacción al editar un borrador
+
+=== Descartar Todos los Borradores
+
+Haga clic en el botón "Dismiss All" en la parte superior de la lista de borradores para eliminar todos los borradores a la vez. Aparecerá una confirmación en línea (Cancel/Confirm) antes de la eliminación.
+
+ℹ️ Los borradores que se están editando en ese momento no se descartarán al usar "Dismiss All".
+
+=== Desactivar la Ventana Emergente de Borradores
+
+Para desactivar la ventana emergente de borradores, vaya a Admin > Email Settings y desactive "Enable Drafts Popup".
+
+Cuando está desactivada, los borradores se seguirán guardando, pero la ventana emergente no aparecerá al cerrar la ventana modal de redacción.

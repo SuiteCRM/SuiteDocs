@@ -1,0 +1,64 @@
+---
+title: "Cuentas"
+weight: 15
+---
+
+:imagesdir: /images/en/8.x/user/sales-relationships/accounts
+
+== Resumen
+
+El módulo de Cuentas es el eje central desde el que se construyen relaciones con la mayoría de los demás registros en SuiteCRM. Una Cuenta representa normalmente una empresa con la que su organización trabaja — un cliente potencial de ventas, cliente, proveedor o distribuidor — y le permite seguir cada interacción con esa empresa en un único lugar. Desde una Cuenta puede vincularse a Contactos, Clientes Potenciales, Oportunidades, Casos y actividades como Llamadas, Reuniones y Correos.
+
+== Campos Clave
+
+[cols="25,75"]
+|===
+|*Campo*|*Descripción*
+
+|*Nombre*|El nombre de la empresa. Es el único campo obligatorio.
+|*Teléfono de Oficina*|El número de contacto principal de la empresa.
+|*Página Web*|La dirección web de la empresa.
+|*Dirección de Facturación / Envío*|Campos de dirección independientes para facturación y envío. Ambas pueden almacenarse por separado cuando difieren.
+|*Tipo*|Clasifica la cuenta: Analista, Competidor, Cliente, Integrador, Inversor, Partner, Prensa, Cliente Potencial, Distribuidor u Otro.
+|*Industria*|El sector en el que opera la cuenta, por ejemplo Tecnología, Finanzas o Sanidad.
+|*Facturación Anual / Empleados*|Campos de perfil de empresa útiles para segmentación e informes.
+|*Calificación*|Un campo de texto libre para registrar su valoración de la cuenta, por ejemplo Caliente, Templado o Frío.
+|*Miembro De*|Vincula esta cuenta a una Cuenta principal. Utilícelo para modelar jerarquías corporativas donde una filial pertenece a una organización mayor. El subpanel Organizaciones Miembro de la cuenta principal muestra entonces todas las cuentas por debajo de ella.
+|*Asignado A*|El usuario de SuiteCRM responsable de la cuenta.
+|===
+
+== Relaciones
+
+Desde un registro de Cuenta puede ver y gestionar todos los registros asociados mediante la sección de Relaciones:
+
+[cols="30,70"]
+|===
+|*Subpanel*|*Contiene*
+
+|*Actividades*|Llamadas, Reuniones, Tareas y Correos registrados contra la cuenta. Los elementos completados pasan al subpanel Historial.
+|*Historial*|Actividades completadas y correos archivados asociados a la cuenta.
+|*Contactos*|Las personas que trabajan en la cuenta o la representan.
+|*Clientes Potenciales*|Clientes potenciales asociados a la cuenta.
+|*Oportunidades*|Negocios abiertos e históricos asociados a la cuenta.
+|*Casos*|Incidencias de soporte planteadas por o en nombre de la cuenta.
+|*Documentos*|Archivos adjuntos a la cuenta.
+|*Campañas*|Campañas de correo que se han enviado a la cuenta, mostrando cómo ha respondido.
+|*Organizaciones Miembro*|Cuentas hijas vinculadas mediante el campo Miembro De.
+|*Presupuestos*|Presupuestos generados para la cuenta.
+|*Facturas*|Facturas generadas para la cuenta.
+|*Contratos*|Contratos vigentes con la cuenta.
+|===
+
+== Trabajar con Cuentas
+
+* *Construir jerarquías de cuentas*: utilice el campo Miembro De para anidar cuentas bajo una principal. Esto resulta útil para estructuras de grupo, franquicias o cualquier organización con filiales — el subpanel Organizaciones Miembro del registro principal ofrece una vista de toda la familia corporativa.
+* *Imprimir una cuenta como PDF*: desde la Vista de Detalle de la Cuenta, abra el desplegable *Actions* y seleccione *Print as PDF* para generar un PDF utilizando uno de los formatos PDF de su organización. Consulte link:../pdf-templates[Formatos PDF] para saber cómo se configuran.
+* *Añadir cuentas a una lista de público objetivo*: desde la Vista de Lista de Cuentas, seleccione los registros que desee y utilice *Add To Target List* desde el desplegable *Bulk Action*. Consulte link:../../marketing-outreach/target-lists[Listas de Público Objetivo] para saber cómo gestionar la lista resultante.
+
+* *Crear cuentas a partir de clientes potenciales*: cuando un Cliente Potencial se cualifica y se convierte, SuiteCRM puede crear automáticamente una Cuenta relacionada. Consulte link:../leads[Clientes Potenciales] para saber cómo funciona la conversión.
+
+== Próximos Pasos
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación, fusión e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].

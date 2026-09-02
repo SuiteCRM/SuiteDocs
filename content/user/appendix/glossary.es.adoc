@@ -1,0 +1,72 @@
+---
+title: "Glosario"
+weight: 10
+aliases:
+  - /es/user/appendix-a
+---
+
+= Glosario
+
+La siguiente tabla ofrece las definiciones de los términos y conceptos clave utilizados a lo largo de esta guía.
+
+[cols="1,3", options="header"]
+|===
+|Término |Significado
+
+|Cuenta
+|Un registro que representa una empresa o entidad comercial con la que su organización mantiene una relación. Las Cuentas actúan como el eje central desde el que se conectan la mayoría de los demás registros en SuiteCRM.
+
+|Actividad
+|Un término colectivo para las interacciones basadas en el tiempo registradas en SuiteCRM, incluyendo Llamadas, Reuniones y Tareas. Las actividades asociadas a un registro se muestran en el subpanel Actividades mientras estén abiertas o próximas, y pasan al subpanel Historial una vez completadas.
+
+|Asignado A
+|El usuario responsable de gestionar o actuar sobre un registro concreto. La mayoría de los registros en SuiteCRM tienen un campo Asignado A, que puede establecerse en cualquier usuario activo del sistema.
+
+|Contacto
+|Un registro que representa a una persona individual, normalmente asociada a una Cuenta. Los Contactos son las personas con las que su organización interactúa dentro de una relación comercial.
+
+|Dashboard
+|Una página con pestañas en la pantalla de inicio de SuiteCRM que contiene uno o más Dashlets. Se pueden crear y configurar varios Dashboards por usuario para organizar la información en agrupaciones lógicas.
+
+|Dashlet
+|Un elemento configurable que se muestra en un Dashboard y que ofrece una vista rápida de los datos de un módulo o herramienta concreto. Cada usuario puede añadir, quitar, reorganizar y configurar sus propios Dashlets.
+
+|Vista de Detalle
+|La vista que se presenta al abrir un registro individual. Muestra toda la información asociada a ese registro y da acceso a los registros relacionados a través de subpaneles.
+
+|Vista de Edición
+|La vista que se presenta al crear o editar un registro. Muestra todos los campos editables de ese registro y permite introducir o actualizar datos.
+
+|Historial
+|Un subpanel presente en la mayoría de los registros que muestra las actividades completadas y las interacciones registradas asociadas a ese registro, como Llamadas, Reuniones, Tareas completadas y Emails enviados.
+
+|Vista de Lista
+|La vista predeterminada que se presenta al acceder a un módulo. Muestra todos los registros de ese módulo en formato de tabla y ofrece opciones de búsqueda, filtrado, ordenación y acciones masivas.
+
+|Módulo
+|Una sección de SuiteCRM dedicada a la gestión de un tipo concreto de datos o proceso de negocio. Algunos ejemplos son Cuentas, Contactos y Tareas. Cada módulo tiene su propia Vista de Lista, Vista de Detalle y Vista de Edición.
+
+|Registro
+|Una única entrada de datos dentro de un módulo. Por ejemplo, un registro de Contacto contiene toda la información relativa a una persona, y un registro de Cuenta contiene toda la información relativa a una cuenta.
+
+|Campo de Relación
+|Un campo de un registro que lo vincula con un registro de otro módulo, estableciendo una relación entre ambos. Por ejemplo, el campo Nombre de Cuenta de un registro de Contacto es un campo de relación que vincula el Contacto con la Cuenta asociada.
+
+|Relación
+|Un vínculo entre dos registros de módulos distintos. Las relaciones permiten ver datos conectados a lo largo del CRM, por ejemplo, ver todos los Contactos asociados a una Cuenta concreta.
+
+|Grupo de Seguridad
+|Un grupo con nombre de usuarios en SuiteCRM que controla qué registros pueden ver esos usuarios. Los grupos de seguridad se vinculan a los registros y determinan la visibilidad de los registros en todo el sistema.
+
+|Subpanel
+|Una sección dentro de la Vista de Detalle de un registro que muestra registros de un módulo relacionado. Por ejemplo, el subpanel Contactos de un registro de Cuenta muestra todos los Contactos vinculados a esa Cuenta.
+
+|Tarea
+|Un registro utilizado para hacer seguimiento de una acción pendiente que requiere finalización. Las Tareas pueden asignarse a usuarios, vincularse a otros registros y tener asignada una fecha límite y un nivel de prioridad.
+
+|Rol de Usuario
+|Asignado a los usuarios por un administrador del sistema para determinar los permisos. Los roles definen qué puede ver y hacer un usuario dentro de SuiteCRM, incluyendo a qué módulos puede acceder y qué acciones (como ver, editar o eliminar) puede realizar.
+
+|Vista
+|La forma en que se muestran los registros dentro de SuiteCRM. Las vistas principales son Vista de Lista, Vista de Detalle y Vista de Edición. El módulo Calendario dispone de su propio conjunto de vistas, entre ellas Día, Semana, Mes, Semana Compartida y Mes Compartido.
+|===

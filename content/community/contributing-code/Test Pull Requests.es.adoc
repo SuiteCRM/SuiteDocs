@@ -1,0 +1,56 @@
+---
+Title: Probar Pull Requests
+Weight: 40
+---
+
+:imagesdir: /images/en/community
+
+
+Consulta las pull requests pendientes en nuestro repositorio de SuiteCRM https://github.com/SuiteCRM/SuiteCRM/pulls[aquí].
+
+Selecciona una pull request que esté lista para probar, p. ej. https://github.com/SuiteCRM/SuiteCRM/pull/6612
+
+Obtén el repositorio del autor. P. ej. https://github.com/jack7anderson7/SuiteCRM
+y la rama específica de la PR, p. ej. issue-6611
+
+{{% notice tip %}}
+Puedes encontrar el repositorio del usuario haciendo clic en su nombre de usuario en la PR, o
+normalmente puedes usar la URL https://github.com/{username}/SuiteCRM sustituyendo
+{username} por el nombre de usuario del autor.
+{{% /notice %}}
+
+Ahora que tenemos esta información esencial, podemos descargar el código para probarlo.
+Crea una nueva rama usando la base de la PR, p. ej. hotfix, hotfix-7.10.x o develop,
+dentro del directorio de tu fork de SuiteCRM.
+Nombra la nueva rama de forma única si quieres probar muchas PRs, p. ej. testing6611
+
+`cd /name/of/your/forked/instance` +
+`git checkout -b testing6614 hotfix`
+
+Descarguemos la rama del autor en nuestra nueva rama de prueba usando el repositorio
+y el nombre de rama del autor que obtuvimos antes.
+Por ejemplo: `git pull {repositorio del autor} {rama del autor}`
+
+`git pull https://github.com/jack7anderson7/SuiteCRM.git issue-6611`
+
+A partir del comando anterior, verás los archivos que se han descargado.
+
+image:testingprs1.png[comando de terminal para hacer pull]
+
+{{% notice info %}}
+Si se te pide crear un "merge msg", normalmente puedes ignorarlo y pulsar CTL + X
+para guardar el mensaje creado automáticamente.
+{{% /notice %}}
+
+image:testingprs2.png[mensaje de merge]
+
+¡Eso es todo! Ya estás listo para probar una pull request.
+Recuerda seguir la sección "How to Test This" de la PR o usar el Bug relacionado para confirmar
+que la PR resuelve la incidencia.
+
+Si la PR resuelve la incidencia y no quedan tareas pendientes, deja
+un comentario con el texto "Assessed :+1:"
+
+image:testingprs3.png[comentario de evaluado]
+
+El comentario "Assessed" nos permite a nosotros y a otros identificar fácilmente lo que se ha probado.

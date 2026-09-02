@@ -1,0 +1,127 @@
+---
+title: "Adhesión Confirmada"
+weight: 55
+aliases:
+  - /es/user/modules/Confirmed-Opt-In-Settings
+  - /es/user/modules/confirmed-opt-in-settings
+---
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Adhesión Confirmada
+
+== Descripción General
+
+La función *Adhesión Confirmada* ofrece dos configuraciones de autorización para las direcciones de correo: *Autorizar* y *Adhesión Confirmada*.
+
+. *Autorizar* se utiliza para indicar que un Contacto, Cliente Potencial o registro de Público Objetivo ha aceptado recibir comunicaciones de marketing.
+
+. *Adhesión Confirmada* exige además que los usuarios confirmen su autorización haciendo clic en un enlace que se les envía por correo electrónico. Este correo puede configurarse para enviarse automáticamente (por ejemplo, al enviar un formulario Web a Persona) o manualmente, y la plantilla utilizada para enviarlo puede personalizarse.
+
+Una vez seleccionada la configuración de Autorizar o Adhesión Confirmada:
+
+* Aparecerá una casilla adicional de *Autorizado* en las vistas de *Detalle* y *Edición* para los campos de dirección de correo en Contactos, Clientes Potenciales y Público Objetivo.
+
+* En la Vista de Lista de estos módulos se mostrará el estado *Autorizado*, *Adhesión Confirmada* y *Confirmación Pendiente* para los registros.
+
+* Los Formularios Web a Persona incluirán automáticamente una casilla de *Autorizado*.
+
+* Los correos de campaña NO se enviarán a las direcciones de correo que no estén marcadas como *Autorizado* o *Adhesión Confirmada*, según la configuración que elija aquí.
+
+{{%notice note%}}Esta función se introdujo como una opción adicional para quienes deben cumplir con el RGPD
+en la Unión Europea, pero es lo suficientemente genérica como para poder utilizarla con otros fines. Si no necesita
+la adhesión confirmada (también conocida como doble opt-in), deje simplemente su configuración en `Autorizar`.{{%/notice%}}
+
+== Configuración de Email de Autorización
+
+Para configurar los ajustes de Autorización, abra el panel de *Admin* y seleccione *Configuración de Email*. Los ajustes de Autorización se encuentran en el panel *Opciones de Email*.
+image:GDPREmailOptions.png[title ="Configuración de Adhesión Confirmada"]
+
+=== Autorizar
+
+Seleccione *Autorizar* en el menú Configuración de Autorización.
+
+image:GDPREmailOptionsOptIn.png[title ="Configuración de Autorización"]
+
+No es necesario configurar el resto de opciones de Autorización, ya que con este ajuste no se envían correos de autorización.
+
+Haga clic en **GUARDAR**
+
+=== Adhesión Confirmada
+
+Seleccione *Adhesión Confirmada* en el menú Configuración de Autorización.
+
+image:GDPREmailOptionsConfirmed.png[title ="Configuración de Adhesión Confirmada"]
+
+Con este ajuste, se exige a los usuarios confirmar su autorización haciendo clic en un enlace que se les envía por correo electrónico.
+
+Seleccione *Email de Autorización Automático* para que este correo se envíe automáticamente (por ejemplo, al enviar un formulario Web a Cliente Potencial).
+La plantilla por defecto para estos correos es la plantilla de Adhesión Confirmada. Puede editar esta plantilla desde
+el módulo link:../email-templates[Plantillas de Email], pero tenga en cuenta que debe contener el enlace de Autorización.
+
+Haga clic en **GUARDAR**
+
+== Indicación de Autorización de Email
+
+=== Vista de Lista y de Detalle
+
+Una vez configurado *Autorizar* o *Adhesión Confirmada*, el estado de la dirección de correo de un Contacto, Cliente Potencial o registro de Público Objetivo se indica tanto en la Vista de Lista como en la Vista de Detalle mediante una marca de verificación simple o doble.
+
+image:GDPRContactsListOptIn.png[title = "Vista de Lista de Contactos con Autorización"]
+
+//image:GDPRDetailView.png[title = "Vista de Detalle de Contactos"]
+
+[cols="20,80", frame = "none", grid = "none"]
+|===
+|image:GDPRSingleGreenTick.png[title = "Autorizado en Vista de Lista"]|Las direcciones de correo que han sido autorizadas se indican con una única marca de verificación verde.
+|image:GDPRDoubleGreenTick.png[title = "Adhesión Confirmada en Vista de Lista"]|Las direcciones de correo cuya autorización ha sido confirmada se indican con una doble marca de verificación verde.
+|image:GDPRSingleGrayTick.png[title = "Pendiente en Vista de Lista"]|Las direcciones de correo pendientes de confirmación por email se indican con una única marca de verificación gris.
+|===
+
+=== Vista de Edición
+
+Una casilla de *Autorizado* indica el estado de autorización en la Vista de Edición.
+
+image:GDPREditViewOptIn.png[title="Vista de Edición"]
+
+Tenga en cuenta que, en el caso de *Adhesión Confirmada*, marcar manualmente la casilla *Autorizado* aquí dará como resultado un estado de *Confirmación Pendiente*, en lugar de *Adhesión Confirmada*.
+El usuario deberá confirmar igualmente su autorización por correo electrónico.
+
+== Enviar/Reenviar Correos de Autorización Manualmente
+
+Si tiene configurada la *Adhesión Confirmada*, los correos de confirmación pueden enviarse o reenviarse manualmente, tanto de forma masiva como individual.
+
+Para enviarlos de forma masiva, seleccione los registros a los que desea enviarlos marcando las casillas situadas a la izquierda de los registros en la Vista de Lista.
+
+image:GDPRSelectContacts.png[title="Vista de Lista, seleccionar contactos"]
+
+
+Seleccione *Enviar Email de Confirmación de Autorización* en el menú *Acción Masiva*.
+image:GDPRBulkActionMenu.png[title="Menú de Acción Masiva"]
+
+Para enviarlo a un registro individual, abra el registro de contacto y seleccione *Enviar Email de Confirmación de Autorización* en el menú *Acciones*.
+image:GDPRRecordActionsMenu.png[title="Menú de Acciones"]
+
+El correo o correos se enviarán en silencio (sin confirmación) utilizando la plantilla predefinida.
+
+== Campañas
+
+La configuración de autorización afectará a las listas de público objetivo de sus Campañas. Los correos de campaña NO se enviarán a las direcciones de correo a menos que estén *Autorizadas* o con *Adhesión Confirmada*, según la configuración que haya elegido.
+
+=== Autorización en el Formulario Web a Persona
+
+Al crear un formulario Web a Persona, se añadirá automáticamente una casilla de *Autorizado* tras el campo de dirección de correo si tiene configurado *Autorizar* o *Adhesión Confirmada*.
+
+image:GDPRCreatePersonForm.png[title="Formulario Web a Persona"]
+
+Si el usuario marca esta casilla, la dirección de correo se establecerá como *Autorizada* (o *Confirmación Pendiente* si tiene configurada la *Adhesión Confirmada*) cuando se cree el registro en *SuiteCRM*.
+
+Tenga en cuenta que si tiene configurada la *Adhesión Confirmada* y seleccionado el *Email de Autorización Automático*,
+el correo de autorización se enviará automáticamente tras el envío del formulario.
+Si el *Email de Autorización Automático* no está seleccionado, estos correos deberán enviarse manualmente (véase la sección anterior).
+
+La Adhesión Confirmada también actualiza automáticamente los campos de link:../lawful-basis[Base Legal] de los registros cuando se confirma la autorización.
+

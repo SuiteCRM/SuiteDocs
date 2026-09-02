@@ -1,0 +1,41 @@
+---
+title: "Listas de Público Objetivo"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/target-lists
+
+= Listas de Público Objetivo
+
+Las Listas de Público Objetivo agrupan a personas en conjuntos con nombre que se asocian a Campañas. Cada lista tiene un tipo que controla si sus miembros reciben la campaña, quedan excluidos de ella, o reciben únicamente correos de prueba. Una misma campaña puede tener asociadas varias listas de público objetivo de distintos tipos.
+
+== Campos Clave
+
+* *Nombre*: el nombre de la lista de público objetivo. Obligatorio.
+* *Tipo de Lista*: controla cómo se utiliza esta lista dentro de una campaña. Consulte <<Tipos de Lista de Público Objetivo>> a continuación. Obligatorio.
+* *Descripción*: notas opcionales sobre el propósito o el contenido de la lista.
+* *Nombre de Dominio*: se utiliza únicamente para el tipo Lista de Exclusión por Dominio. Introduzca un dominio (por ejemplo `competitor.com`) para excluir todas las direcciones de correo de ese dominio.
+* *Recuento de Registros*: un contador de solo lectura del número de registros que hay actualmente en la lista.
+
+== Tipos de Lista de Público Objetivo
+
+Una lista de público objetivo controla la inclusión o exclusión de sus miembros de una campaña mediante uno de los siguientes tipos:
+
+[cols="30h,70", options="header"]
+|=======
+|Tipo de Lista de Público Objetivo |Descripción
+|Por Defecto |La lista normal de objetivos a los que se pretende enviar la campaña.
+|Cabeza de Serie |Estos objetivos recibirán la campaña, pero no se registrarán en las estadísticas de la campaña en la página *Ver Estado*. Utilice este tipo para las personas que revisan y aprueban el correo de la campaña antes de que se envíe al resto de destinatarios.
+|Lista de Exclusión - Por Dominio |Los objetivos con nombres de dominio de correo incluidos en esta lista quedarán excluidos. Añada un dominio para impedir que la campaña se envíe a cualquier dirección de ese dominio.
+|Lista de Exclusión - Por Dirección de Email |Los objetivos con direcciones de correo individuales incluidas en esta lista quedarán excluidos. Un uso habitual es para las personas que han decidido no recibir correos de su empresa o de una campaña concreta.
+|Lista de Exclusión - Por Id |La exclusión se aplica vinculando registros de SuiteCRM (Contactos, Clientes Potenciales, Público Objetivo, Cuentas, Usuarios) a la lista. A diferencia de la exclusión por dirección de correo, se excluyen todas las direcciones de correo del registro vinculado. Obligatoria para las campañas de tipo Boletín, para soportar los enlaces operativos de exclusión.
+|Pruebas |La lista de quienes reciben los correos de prueba mientras aún se está trabajando en el contenido de la campaña. Utilice la acción *Eliminar Entradas de Prueba* en el registro de Email de Marketing para eliminar los resultados de prueba entre reenvíos.
+|=======
+
+== Añadir Miembros a una Lista de Público Objetivo
+
+Los miembros pueden añadirse desde la Vista Detallada de la Lista de Público Objetivo mediante los subpaneles de Contactos, Clientes Potenciales, Público Objetivo, Usuarios y Cuentas. Abra el subpanel correspondiente y utilice *Crear* o *Vincular / Desvincular* para añadir registros existentes o nuevos. Para más información sobre cómo trabajar con subpaneles, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+También puede añadir miembros de forma masiva importando un archivo y seleccionando la lista de público objetivo durante el paso final del Asistente de Importación. Consulte link:../../core-concepts/record-management/#_importing_records[Importar Registros] para conocer el procedimiento general de importación.
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición y detección de duplicados, consulte link:../../core-concepts/record-management[Gestión de Registros].

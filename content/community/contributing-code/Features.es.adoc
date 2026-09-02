@@ -1,0 +1,45 @@
+---
+Title: Aportar una Función
+weight: 80
+---
+
+Para contribuir con una función a SuiteCRM, de forma similar a proporcionar una corrección de error,
+debes crear un repositorio con fork de SuiteCRM y configurar tu entorno de git y
+desarrollo.
+
+Una vez hecho esto, crea una nueva rama desde `develop` y nómbrala de forma
+relevante al propósito de la función, p. ej. `campaign-wizard-ui`. Siguiendo nuestros
+link:../coding-standards[Estándares de Código], desarrolla la nueva función y asegúrate de que
+tu repositorio con fork se mantenga actualizado con las versiones menores/mayores. Consulta
+nuestra link:../forking[Guía Rápida
+para Hacer un Fork de SuiteCRM] para actualizar tu repositorio.
+
+Asegúrate de que tus mensajes de commit sean relevantes y descriptivos. Cuando estés listo
+para enviarlo a revisión, crea una Pull Request detallando la funcionalidad de tu función.
+
+Asegúrate de que en tu Pull Request el fork base sea
+`SuiteCRM/SuiteCRM` y la rama base sea `develop`, y que el fork de origen
+sea `tu repositorio` y la rama base sea tu rama de la función.
+
+Añade cualquier prueba PHPUnit nueva a la nueva rama de la función si es necesario, p. ej. nuevos
+módulos o clases.
+
+== Revisión de Funciones
+
+Revisaremos el código y daremos feedback dentro de la Pull Request y las
+incidencias relacionadas con tu función. Si la función va a incluirse en el
+producto principal, solicitaremos que el repositorio con fork tenga una pestaña de Issues
+para poder reportar cualquier error de nuestras pruebas. Esto también te permitirá
+corregir esas incidencias usando el siguiente formato de mensaje de commit, similar a cómo
+se envían las correcciones de errores a la rama `hotfix-7.10.x`.
+
+`git commit -m "Fixed #1436 - Reports with nested Parentheses are removing parameters"`
+
+{{% notice note %}}
+Puedes añadir una pestaña de Issues a tu repositorio con fork mediante la pestaña `Settings`.
+{{% /notice %}}
+
+Las nuevas funciones que hayan sido aceptadas y fusionadas se incluirán en la
+siguiente versión Mayor adecuada del proyecto, por ejemplo 7.10 o 7.11, que son versiones
+mayores. Las versiones menores solo incluyen correcciones de errores o funciones internas
+desarrolladas, p. ej. 7.10.5 o 7.11.2 serían versiones menores.

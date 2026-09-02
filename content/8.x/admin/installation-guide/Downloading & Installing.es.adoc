@@ -1,0 +1,106 @@
+---
+title: Descarga e instalación
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/admin/install-guide
+
+:toc:
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación sobre el mismo tema para la versión 7, haz clic link:../../../../admin/installation-guide/downloading-installing[aquí].
+{{% /notice %}}
+
+
+== 1. Configurar el servidor web
+
+El primer paso es configurar el servidor web.
+
+Sigue la link:../webserver-setup-guide/[Guía de configuración del servidor web].
+
+'''
+
+== 2. Descargar y configurar SuiteCRM
+
+=== 2.1 Comprobar la matriz de compatibilidad
+
+Asegúrate de que tu entorno cumple los requisitos del sistema indicados en link:../../compatibility-matrix/[Matriz de compatibilidad]
+
+=== 2.2 Descargar los últimos archivos de SuiteCRM
+
+A menos que quieras configurar un entorno de desarrollo, deberías descargar los paquetes instalables preconstruidos disponibles para descarga en link:https://suitecrm.com/download/[suitecrm.com,window=_blank].
+
+Consulta la link:../../releases/[página de versiones de SuiteCRM 8]
+
+=== 2.3 Copiar los archivos a la raíz de tu servidor web
+
+Después de descargar el paquete
+
+. Descomprime el paquete instalable preconstruido.
+. Copia los archivos a la raíz web de tu servidor.
+
+Para el servidor web `apache`, la raíz web suele estar en `/var/www` o `/var/www/html`
+
+{{% notice note %}}
+Ten en cuenta el `DocumentRoot` que hayas configurado en tu vhost (si usas apache). Consulta link:../webserver-setup-guide#_4_configuring_url_re_writes[Guía de configuración del servidor web - 4. Configurar las reescrituras de URL]
+{{% /notice %}}
+
+{{% notice note %}}
+Añadir los archivos a la raíz web es el método de instalación más habitual, pero puedes tener configuraciones distintas, como subdominios u otras.
+{{% /notice %}}
+
+=== 2.4 Establecer permisos
+
+Establece los permisos necesarios
+
+Si usas la terminal, puedes hacerlo ejecutando:
+
+[source,bash]
+----
+find . -type d -not -perm 2755 -exec chmod 2755 {} \;
+find . -type f -not -perm 0644 -exec chmod 0644 {} \;
+find . ! -user www-data -exec chown www-data:www-data {} \;
+chmod +x bin/console
+----
+
+Ten en cuenta que:
+
+* El nombre de usuario y de grupo (en el ejemplo anterior, `www-data`) debe sustituirse por el usuario y grupo del sistema real bajo el que se ejecuta tu servidor web. Esto varía según tu
+sistema operativo. Los usuarios de servidor web más habituales son los siguientes:
+** `www-data` (Ubuntu Linux/Apache)
+** `apache` (Linux/Apache)
+
+* Si el nombre del grupo difiere del nombre de usuario con el que se ejecuta apache, es posible que necesites `0664` en lugar de `0644`, y `2775` en lugar de `2755`
+
+=== 2.5 (opcional) Crear la base de datos
+
+Según tu configuración, es posible que debas crear la base de datos antes de continuar con el proceso de instalación.
+
+El proceso de instalación se encargará entonces de crear las tablas necesarias.
+
+'''
+
+== 3. Ejecutar el instalador
+
+A partir de SuiteCRM versión 8 y superiores, tienes dos formas de ejecutar el instalador.
+
+* link:../running-the-ui-installer/[Opción 1: instalar mediante la página de instalación]
+* link:../running-the-cli-installer/[Opción 2: instalar mediante la cli]
+
+'''
+
+== 4. Configuración posterior a la instalación
+
+Una vez que el instalador finaliza, debes configurar dos procesos en segundo plano para que SuiteCRM funcione correctamente.
+
+=== 4.1 Tarea cron (planificadores)
+
+SuiteCRM necesita una tarea cron para ejecutar las tareas programadas (workflows, comprobación de correo, generación de informes, etc.). Sin ella, estas tareas no se ejecutarán.
+
+Consulta la página link:../../administration-panel/schedulers[Planificadores] para obtener instrucciones completas sobre cómo configurar la tarea cron.
+
+=== 4.2 Worker de Messenger (tareas asíncronas)
+
+A partir de SuiteCRM 8.10, las tareas en segundo plano (como las tareas de migración manual) se procesan mediante el worker de Symfony Messenger. Sin un worker en ejecución, estas tareas permanecerán indefinidamente en estado "Pending".
+
+Consulta la guía link:../../async-tasks/messenger-setup[Configuración de Messenger] para obtener instrucciones sobre cómo configurar el worker en tu entorno.

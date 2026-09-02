@@ -3,7 +3,7 @@ Title: Выполнение обновления
 weight: 30   
 
 aliases:
-  - /8.x/admin/upgrading/upgrading-82x-versions/
+  - /ru/8.x/admin/upgrading/upgrading-82x-versions/
 ---
 
 :author: likhobory

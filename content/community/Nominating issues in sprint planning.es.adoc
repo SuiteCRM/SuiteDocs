@@ -1,0 +1,39 @@
+---
+title: "Nominar incidencias para la planificación de sprints"
+weight: 30
+---
+
+:imagesdir: /images/en/community/
+
+== Cómo Nominar Incidencias
+
+Las siguientes instrucciones te ayudarán a guiarte sobre cómo nominar tus incidencias (o las de la comunidad) que abordaremos en los sprints semanales.
+
+
+. Deja un comentario siguiendo la plantilla que hemos proporcionado. Debes seguir el formato indicado a continuación. Proporciona el enlace a la incidencia y justifica por qué te gustaría que se incluyera en nuestro sprint.
++
+
+[source]
+----
+#### Link -
+<!--- Provide a link to the issue below -->
+
+#### Context -
+<!--- How has this bug affected you? -->
+<!--- Why do you feel like this issue should be included within the next sprint, please state so below -->
+----
+
+. Ve a la incidencia de Planificación de Sprint y pega la plantilla en el cuadro de comentarios, luego complétala con tu información.
++
+
+image:31sprintplanningimage.png[title="Imagen de Planificación de Sprint"]
+
+
+. Una vez publicado el comentario, revisaremos tu solicitud y decidiremos si la incluimos en nuestro sprint.
+
+
+
+{{% notice info %}}
+Si tu incidencia no es seleccionada para nuestro sprint en una semana, puedes
+volver a publicarla en el siguiente sprint.
+{{% /notice %}}

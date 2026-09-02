@@ -1,0 +1,67 @@
+---
+title: "Tareas Asíncronas"
+weight: 30
+---
+
+{{% notice info %}}
+Esta documentación corresponde a SuiteCRM 8.10.0+
+{{% /notice %}}
+
+== Tareas Asíncronas
+
+=== Descripción General
+
+SuiteCRM 8.10 introduce un nuevo sistema de procesamiento de tareas en segundo plano basado en https://symfony.com/doc/current/messenger.html[Symfony Messenger]. Este sistema permite a SuiteCRM delegar las operaciones pesadas y de larga duración a un worker en segundo plano, de modo que ya no bloqueen la aplicación ni saturen su servidor web.
+
+Antes de las tareas asíncronas, las operaciones que afectaban a miles de registros — como las migraciones de datos tras una actualización — tenían que ejecutarse dentro de una única petición HTTP o dividirse en trabajos cron programados. Esto suponía cargas de página lentas, tiempos de espera agotados con grandes volúmenes de datos y una visibilidad limitada del progreso o de los fallos.
+
+El nuevo sistema de tareas asíncronas cambia esto de forma fundamental.
+
+=== Por Qué Es Importante
+
+==== Procesar Grandes Volúmenes Sin Tiempos de Espera Agotados
+
+Las tareas asíncronas dividen el trabajo en pequeños lotes y los procesan uno a uno en segundo plano. No hay límites de tiempo de espera de PHP, no hay presión de memoria sobre su servidor web y no hay riesgo de que un tiempo de espera del navegador interrumpa una operación de larga duración a mitad de camino.
+
+==== Seguimiento del Progreso en Tiempo Real
+
+Cada tarea asíncrona registra su progreso a medida que se ejecuta — cuántos elementos se han procesado, cuántos se completaron correctamente y cuántos fallaron. Esta información es visible en la interfaz de SuiteCRM, de modo que los administradores pueden supervisar el estado de las tareas en ejecución en cualquier momento.
+
+==== Gestión Fiable de Fallos
+
+Cuando fallan elementos individuales, el sistema registra exactamente cuáles fallaron y por qué. Los elementos fallidos pueden reintentarse sin necesidad de volver a procesar todo el lote. Si una tarea completa falla, puede volver a ejecutarse desde cero. Nada se pierde silenciosamente.
+
+==== Sin Bloqueos
+
+Los usuarios pueden seguir trabajando con normalidad en SuiteCRM mientras las tareas en segundo plano se están ejecutando. Las tareas son procesadas por un proceso worker independiente, completamente separado del servidor web que atiende las peticiones de los usuarios.
+
+==== Infraestructura Escalable
+
+La configuración predeterminada utiliza su base de datos existente como cola de mensajes — no se necesita infraestructura adicional. Dado que SuiteCRM está construido sobre Symfony Messenger, también están disponibles transportes alternativos como RabbitMQ, Redis y otros a medida que crecen sus necesidades, lo que le permite escalar workers y enrutar distintos tipos de tareas a colas dedicadas sin modificar el código de la aplicación.
+
+=== Cómo Funciona
+
+Cuando un usuario (o el sistema) inicia una tarea asíncrona, SuiteCRM coloca un mensaje en una cola. Un proceso *worker* independiente — que se ejecuta junto a su servidor web — recoge los mensajes de la cola y los ejecuta en segundo plano.
+
+El worker es un proceso PHP de larga duración iniciado mediante el comando `messenger:consume` de Symfony Messenger. Puede ser gestionado por Supervisor, systemd o cron, dependiendo de su entorno.
+
+Cada tarea asíncrona sigue un ciclo de vida de tres fases:
+
+. *Encolado (Queueing)* — El sistema busca los registros que hay que procesar y los añade a la cola por lotes.
+. *Procesamiento (Processing)* — El worker procesa cada elemento individualmente, registrando el éxito o el fallo de cada uno.
+. *Finalización (Finalizing)* — Una vez procesados todos los elementos, la tarea realiza las acciones de limpieza o resumen que correspondan.
+
+=== Qué Utiliza Tareas Asíncronas
+
+SuiteCRM 8.10 introduce las tareas asíncronas con soporte para las *Tareas de Migración Manual* — migraciones de datos posteriores a la actualización que convierten los datos existentes a los nuevos formatos (migraciones de fotos, migraciones de archivos adjuntos, migraciones de sincronización de calendario). Consulte link:./manual-migration-tasks[Tareas de Migración Manual] para más información.
+
+En futuras versiones, otras operaciones adicionales (como la generación masiva de PDF, las exportaciones CSV y otros procesos de larga duración) se trasladarán al sistema de tareas asíncronas para aprovechar las mismas ventajas.
+
+=== Primeros Pasos
+
+[cols="1,3"]
+|===
+| link:./messenger-setup[*Configuración de Messenger*] | Configure el worker en segundo plano para su entorno (Supervisor, systemd o cron).
+| link:./manual-migration-tasks[*Tareas de Migración Manual*] | Aprenda a ejecutar tareas de migración de datos posteriores a la actualización.
+| link:./configuration[*Referencia de Configuración*] | Todas las variables de entorno y ajustes disponibles para Messenger y las tareas asíncronas.
+|===

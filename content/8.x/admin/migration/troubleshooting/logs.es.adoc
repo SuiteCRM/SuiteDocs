@@ -1,0 +1,29 @@
+---
+title: "Registros y Depuración"
+weight: 10
+---
+:experimental:
+
+== Registros de migración
+
+Los comandos de migración muestran un resumen de cada paso. Para más detalle, consulte los siguientes archivos de registro:
+
+* `logs/upgrade.log` — registros generados por el proceso de migración de SuiteCRM 8.
+* `public/legacy/upgradeWizard.log` — registros de la parte legacy de la aplicación. Generado durante el paso `legacy-post-upgrade`.
+* `logs/<app-env-mode>/<app-env-mode>.log` — el registro principal de la aplicación. La ruta del archivo refleja el valor de su `APP_ENV`, por ejemplo, `logs/prod/prod.log`. Este registro normalmente contiene poca información específica de la migración.
+* `public/legacy/suitecrm.log` — el registro principal de la aplicación legacy. Puede contener entradas relacionadas con la migración junto con registros generales de la aplicación.
+
+== Modo APP_ENV
+
+En un entorno de producción, `APP_ENV` en `.env` o `.env.local` debe estar configurado como `prod`. Este modo tiene un nivel de registro alto, por lo que no se registra toda la información de depuración.
+
+Para obtener más detalle, cambie temporalmente `APP_ENV` a `qa`. Después de cambiarlo, limpie la caché de Symfony:
+
+[source,bash]
+----
+bin/console cache:clear
+----
+
+{{% notice warning %}}
+Utilice `APP_ENV=qa` únicamente de forma temporal. Vuelva a `prod` después de depurar.
+{{% /notice %}}

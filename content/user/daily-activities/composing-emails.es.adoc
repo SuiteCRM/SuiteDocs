@@ -1,0 +1,181 @@
+---
+title: "Redactar Correos"
+weight: 20
+aliases:
+  - /es/user/core-modules/emails
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Emails
+
+== Resumen
+
+El módulo *Emails* de *SuiteCRM* permite a los usuarios ver, almacenar, redactar, enviar y recibir correo
+desde su propia cuenta de correo personal o desde una bandeja compartida, por ejemplo una bandeja de Soporte o Ventas.
+Los correos se pueden importar y asociar a un registro relacionado de *SuiteCRM*, por ejemplo un Contacto o una Cuenta.
+Estos correos relacionados se pueden ver después en el subpanel de historial del registro correspondiente.
+
+{{% notice note %}}
+Necesitará configurar y tener acceso a al menos una cuenta de correo *personal* o de *grupo* para poder utilizar
+el módulo *Emails*. Consulte link:../../getting-started/managing-your-profile/#_personal_email_account_settings[Personal Email Settings]
+para obtener información sobre cómo configurar una cuenta de correo personal. Para obtener información sobre la configuración de las cuentas de
+correo de grupo, la gestión de rebotes y las cuentas de correo saliente del sistema, consulte
+la sección link:../../../admin/administration-panel/emails[Emails] de la Guía del Administrador.
+{{% /notice %}}
+
+El módulo *Emails* se encuentra en el menú *ALL* de la barra de navegación superior.
+El módulo se abre en la vista de lista, mostrando en la ventana principal todo el correo de la bandeja de entrada de la cuenta predeterminada.
+
+image:250EmailsListView.png[title="Vista de lista del módulo Emails"]
+
+[cols = "20,80",frame="none", grid="none" ]
+|===
+|image:251EmailsInboxButton.png[title="Botón indicador de la bandeja de entrada actual"]|El nombre de la bandeja de entrada actual se muestra en
+el botón situado en la parte superior derecha de la vista de lista. Utilice este botón para cambiar entre cuentas u otras
+carpetas monitorizadas.
+|image:257aEmailsUnreadMail.png[title="Correo sin leer"]|Los correos sin leer se muestran resaltados en morado.
+|image:257bEmailsAttachmentIcon.png[title="Icono de archivo adjunto de correo"]|Los archivos adjuntos se indican con un clip.
+|image:257EmailsImportedIcon.png[title="Icono de correo importado"]|Los correos que se han <<Importar Correo,importado>> en *SuiteCRM* se indican con una marca de verificación.
+|image:258EmailsFlaggedIcon.png[title="Icono de correo marcado"]|Los correos que se han marcado para seguimiento
+se indican con un signo de exclamación.
+|===
+
+Como en otros módulos de *SuiteCRM*, los correos se pueden ordenar haciendo clic en los encabezados de columna. Los filtros y la selección de
+columnas también se pueden configurar igual que en otros módulos.
+
+Las acciones principales del módulo *Emails* se encuentran en los botones de la barra de herramientas de *Emails*. Pase el ratón
+sobre estos botones para ver el texto explicativo de cada función.
+
+[cols="15,10,75",frame="none", grid="none"]
+|===
+|image:253EmailsBulkAction.png[title="Botón Bulk Action"]|*Bulk Action*|Utilice el desplegable Bulk Action para
+<<Importar Correo,importar correo>> de forma masiva, marcar correo como leído o no leído, o marcar correo para seguimiento. Se pueden
+seleccionar varios correos en la vista de lista mediante las casillas de verificación.
+|image:252EmailsComposebutton.png[title="Botón Compose Mail"]|*Compose Mail* |Abre la ventana de <<Redactar Correo, Compose>> para
+crear un mensaje nuevo.
+|image:254EmailsSettingsButton.png[title="Botón Mail Settings"]|*Settings*|Acceso directo a su perfil de usuario donde
+puede editar la link:../../getting-started/managing-your-profile/#_personal_email_account_settings[configuración de correo de su perfil de usuario].
+Añada y elimine cuentas y seleccione las carpetas que se mostrarán aquí.
+|image:255EmailsCheckForMailButton.png[title="Botón Check for Mail"]|*Check For Mail*| Para las cuentas de correo
+personales, puede comprobar si hay correo nuevo con este botón. Tenga en cuenta que, para las cuentas de correo de grupo, la comprobación
+de correo se realiza automáticamente mediante el Scheduler *Check Inbound Mailboxes*. Deberá asegurarse de que la configuración de su cron
+sea correcta para que el scheduler se ejecute. Consulte el enlace correspondiente para más información sobre los Schedulers.
+|image:256EmailsChangeFolderButton.png[title="Botón Select Folder"]|*Select Folder*|Le permite
+seleccionar qué carpeta monitorizada desea ver. Si tiene configurada más de una cuenta, también puede
+cambiar entre cuentas con este botón. Al expandir una cuenta en la lista se mostrarán todas las carpetas
+monitorizadas de esa cuenta. Seleccione la carpeta que necesite.
+|===
+
+=== Leer Correo
+
+Haga clic en el asunto de un correo para abrirlo en la vista *Detail*. Utilice el menú *Actions* para responder,
+reenviar o <<Importar Correo,importar>> el correo.
+image:269EmailsActionMenu.png[title="Menú de acciones"]
+
+=== Redactar Correo
+
+Haga clic en el botón Compose Mail o seleccione *Compose* en la *Sidebar* para abrir una nueva ventana de redacción.
+
+Los correos también se pueden redactar directamente desde un registro de *SuiteCRM* haciendo clic en la dirección de correo del registro.
+Esto abrirá la vista de redacción en el módulo *Emails*. Para los correos nuevos abiertos de esta forma, el campo *To:*
+se rellenará automáticamente y el correo quedará relacionado con el registro correspondiente.
+
+{{% notice note %}}Si ha optado por utilizar un cliente de correo externo en la link:../../getting-started/managing-your-profile/#_personal_email_account_settings[configuración de correo de su perfil de usuario], al hacer clic en una
+dirección de correo de un registro en *SuiteCRM* se abrirá un correo nuevo en el editor que haya elegido.
+{{% /notice %}}
+
+image:260Emailcompose.png[title="Redactar Correo"]
+
+* *Email Template:* seleccione una plantilla si es necesario. Consulte link:../../marketing-outreach/email-templates[Email Templates] para más información
+sobre cómo crear y editar plantillas de correo. Una vez seleccionada una plantilla, aparecerá un mensaje emergente advirtiendo de que el asunto
+y el cuerpo del correo se sustituirán por el contenido de la plantilla. Si utiliza una plantilla con
+variables, estas se rellenarán con los datos correspondientes del registro relacionado al enviar el correo. El campo *To:*
+también se rellenará automáticamente con la dirección de correo asociada al registro relacionado.
+
+// image:261EmailsAddtemplate.png[title="Adding Email template warning"]
+
+* *Related To:* para asociar el correo a un registro concreto, seleccione el módulo (por ejemplo, Accounts, Contacts, Leads)
+y haga clic en la flecha de búsqueda para buscar el registro. También puede empezar a escribir el nombre en el campo
+y seleccionar el registro correspondiente de la lista de autocompletado que aparece.
+
+* *From:* si tiene configurada más de una cuenta de correo, seleccione la cuenta desde la que desea enviar el correo.
+Los valores de *Reply To* y *From* de la cuenta seleccionada se muestran junto al campo a modo informativo.
+
+* *To:* al seleccionar un registro relacionado con una dirección de correo válida, el campo *To:* se rellenará automáticamente.
+También puede rellenar los campos *To:*, *Cc:* y *Bcc:* manualmente o mediante los botones de selección que aparecen
+al hacer clic dentro de los campos.
+
+* *Body:* si ha configurado una firma para esta cuenta en la
+link:../../getting-started/managing-your-profile/#_user_profile_email_settings[configuración de correo de su perfil de usuario], esta aparecerá
+automáticamente en el cuerpo del correo.
+
+La barra de herramientas situada en la parte inferior de la vista *Compose* tiene los siguientes botones:
+
+[cols="10,10,80",frame="none", grid="none"]
+|===
+|image:263EmailsSendMailbutton.png[title="Botón Send Mail"]|*Send Mail* |Aparecerá un mensaje de confirmación cuando
+el mensaje se haya enviado.
+|image:264EmailsAddFilesbutton.png[title="Botón Add Files"]|*Attach Files*| Utilice este botón para buscar y adjuntar
+un archivo *externo* al correo.
+|image:265EmailsAddDocumentsbutton.png[title="Botón Add Documents"]|*Attach Documents*|Utilice este botón para adjuntar
+un *Documento de SuiteCRM* al correo. Busque el documento que necesite en la ventana emergente y haga clic en **SELECT** para adjuntarlo.
+|image:266EmailsSaveDraftbutton.png[title="Botón Save Draft"]|*Save Draft*|Los borradores se pueden ver
+cambiando de carpeta en la vista *List*.
+|image:267EmailsDiscardbutton.png[title="Botón Discard"]|*Discard*|Descarta el borrador del correo sin enviarlo.
+|===
+
+=== Importar Correo
+
+El correo se puede importar a *SuiteCRM* y asociar a un registro relevante de *SuiteCRM* (por ejemplo, un registro de contacto o de cuenta).
+Esto puede resultar muy útil para mantener un historial de comunicación con un cliente, por ejemplo.
+Los correos que se han importado y relacionado con un registro en *SuiteCRM* se pueden ver desde el subpanel de historial del registro.
+
+==== Importar un Solo Correo
+
+Un correo individual se puede importar desde la vista *Detail*. Abra el correo y luego seleccione *Import* en el menú desplegable *Actions*.
+
+image:268bEmailsImport.png[title="Importar correos"]
+
+==== Importar Uno o Varios Correos
+
+Se pueden importar uno o varios correos al mismo tiempo desde la vista *List*.
+
+Seleccione el correo o correos que desea importar mediante las casillas de verificación situadas a la izquierda de la vista.
+
+Seleccione *Import* en el menú *Bulk Action*.
+
+image:268aEmailsImport.png[title="Importar correos"]
+
+Al importar, se abrirá un cuadro de diálogo que le permitirá seleccionar con qué registro relacionar el correo o correos.
+
+image:268EmailsImportDialog.png[title="Importar correos"]
+
+Primero seleccione el tipo de módulo en el desplegable. A continuación, utilice el botón de flecha de búsqueda para buscar y seleccionar el registro correspondiente,
+o empiece a escribir el nombre en el campo y seleccione el registro que necesite de la lista de autocompletado. Haga clic en el botón **OK**.
+
+Tenga en cuenta que, si importa correo de forma masiva, todos los correos se relacionarán con el registro seleccionado aquí. Si necesita relacionar correo
+con distintos registros, deberá importarlos de forma individual.
+
+*SuiteCRM* también se puede configurar para importar automáticamente los correos de las cuentas de correo de grupo.
+Consulte link:../../../admin/administration-panel/emails/email/#_group_email_account[Group Email Accounts] para más información.
+
+=== Importación Automática de Correo
+
+El Scheduler Check Inbound Mailboxes es el responsable de importar automáticamente el correo de las cuentas de correo de grupo
+a *SuiteCRM*. Este job se ejecuta a intervalos regulares (según la configuración del módulo *Schedulers*) y comprueba todas las cuentas de correo entrante
+activas y que no sean personales, en busca de correo nuevo.
+
+Consulte más información sobre este scheduler y cómo configurarlo en link:../../../admin/administration-panel/emails/automatic-email-importing/[Automatic Email Importing].
+
+=== Eliminar Correo
+
+Dado que solo los correos importados se almacenan en *SuiteCRM*, solo los registros de correo importados se pueden eliminar desde el módulo *Emails*.
+
+Para eliminar un registro de correo importado, abra el correo y seleccione Delete en el menú desplegable Actions. Tenga en cuenta que esto
+solo eliminará el registro de SuiteCRM y no el mensaje IMAP. Para eliminar correos del módulo Emails, deberá
+moverlos o eliminarlos utilizando su cliente de correo externo.

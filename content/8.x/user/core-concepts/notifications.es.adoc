@@ -1,0 +1,45 @@
+---
+title: "Notificaciones"
+weight: 70
+aliases:
+  - /es/8.x/features/notifications/notifications/
+---
+
+:imagesdir: /images/en/8.x/user/core-concepts/
+
+= Notificaciones
+
+Las notificaciones le avisan cuando le invitan a una Reunión o Llamada, y cuando vencen los recordatorios de esas actividades. Puede acceder a ellas desde la mayoría de las páginas mediante el icono de campana de la barra de navegación superior. El número de notificaciones sin leer se muestra como una insignia en el icono de la campana, y aparece un breve aviso emergente en la parte superior de la pantalla cuando llegan nuevas notificaciones.
+
+image:Notifications-Open.png[Panel de notificaciones abierto mostrando una lista de notificaciones de reuniones y llamadas]
+
+Por defecto, las notificaciones se comprueban cada minuto.
+
+{{% notice note %}}
+La frecuencia de actualización y el número máximo de notificaciones mostradas pueden ser configurados por un desarrollador. Consulte link:../../../developer/configuration/notifications/[Configuración de Notificaciones].
+{{% /notice %}}
+
+== Posponer y Descartar Notificaciones
+
+Cada notificación del panel tiene dos iconos de acción a la derecha:
+
+* *Posponer* (icono de reloj) — pospone la notificación y la elimina temporalmente del panel. Volverá a aparecer transcurrido el intervalo de posposición configurado.
+* *Descartar* (icono X) — descarta la notificación de forma permanente.
+
+image:Single-Notification.png[Panel de notificaciones mostrando notificaciones individuales con los iconos Posponer y Descartar]
+
+Para descartar todas las notificaciones visibles a la vez, haga clic en *Descartar Todo* en la parte inferior del panel.
+
+=== Configurar la Duración de la Posposición
+
+Puede establecer durante cuánto tiempo se posponen las notificaciones desde la pestaña *Avanzado* de su Perfil de Usuario.
+
+image:Notifications-User-Pref.png[Campo Establecer Posposición de Notificaciones en la pestaña Avanzado del Perfil de Usuario]
+
+{{% notice note %}}
+Su administrador del sistema también puede configurar una duración de posposición predeterminada para todo el sistema.
+{{% /notice %}}
+
+== Cargar Más
+
+Si tiene más notificaciones de las que se muestran actualmente, aparecerá un botón *Cargar Más* en la parte inferior del panel. Haga clic en él para cargar 10 notificaciones más.

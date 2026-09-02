@@ -1,0 +1,103 @@
+---
+title: "Informes"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/user/insights/reports
+
+= Informes
+
+El módulo Reports le permite ejecutar consultas sobre cualquier módulo de SuiteCRM y mostrar los resultados como una tabla, un gráfico, o ambos. Los informes se pueden guardar, compartir, incrustar en dashlets de la página de inicio, exportar y programar para su entrega automática por correo.
+
+== Crear un Informe
+
+Navegue al módulo Reports y haga clic en *Create Report*. Complete los campos del informe:
+
+[cols="25,75"]
+|===
+|*Name*|El nombre del informe.
+|*Report Module*|El módulo principal sobre el que se ejecuta el informe. Determina qué campos y módulos relacionados están disponibles en el árbol de campos. Obligatorio.
+|*Description*|Descripción opcional.
+|*Charts per row*|Cuántos paneles de gráfico se muestran uno junto a otro en la Vista de Detalle del informe. Predeterminado: 2.
+|===
+
+=== Display Fields
+
+Los campos se añaden expandiendo el árbol del módulo en el panel izquierdo y arrastrando campos a la sección *Display Fields*. Los campos de módulos relacionados también están disponibles — expanda la relación para acceder a ellos.
+
+Cada campo añadido al informe puede configurarse con las siguientes opciones:
+
+[cols="20,80"]
+|===
+|*Display*|Si este campo aparece como columna en la salida del informe. Establézcalo en No para utilizar un campo para ordenar o agrupar sin mostrarlo.
+|*Link*|Convierte el valor del campo en un enlace en el que se puede hacer clic hacia la Vista de Detalle de ese registro.
+|*Label*|Encabezado de columna personalizado. Por defecto, la etiqueta estándar del campo en el módulo.
+|*Function*|Función de agregación aplicada al agrupar: COUNT, MIN, MAX, SUM o AVG. Por ejemplo, use SUM en Opportunity Amount agrupado por Sales Stage para totalizar las oportunidades en cada etapa.
+|*Sort*|Dirección de ordenación de esta columna: Ascending o Descending.
+|*Sort Order*|Prioridad al ordenar por varios campos — 1 es la prioridad más alta.
+|*Group*|Agrupa los resultados por el valor de este campo (equivalente a GROUP BY). Se utiliza junto con Function para producir informes de resumen.
+|*Group Order*|Prioridad al agrupar por varios campos.
+|*Format*|Formato de visualización de fecha para campos de tipo date y datetime — por ejemplo, Y-m-d o d/m/Y.
+|*Total*|Total de pie de página mostrado debajo de la tabla de resultados: COUNT, SUM o AVG.
+|===
+
+=== Conditions
+
+Los campos se arrastran a la sección *Conditions* desde el mismo árbol del módulo. Cada fila de condición filtra los resultados del informe.
+
+Cada fila configura:
+
+[cols="20,80"]
+|===
+|*Operator*|La comparación a aplicar: Equal To, Not Equal To, Greater Than, Less Than, Greater Than or Equal To, Less Than or Equal To, Contains, Starts With, Ends With.
+|*Value Type*|Cómo se especifica el valor de comparación:
+
+* *Value*: un valor estático introducido directamente
+* *Field*: comparar con otro campo del mismo registro
+* *Date*: un desplazamiento de fecha calculado (por ejemplo, hoy menos 7 días), definido por un número, un periodo (minutes/hours/days/weeks/months) y una dirección +/−
+* *Multi*: coincide con cualquiera de un conjunto de valores seleccionados
+* *Period*: un rango de fechas con nombre (por ejemplo, los últimos 30 días)
+* *Current User*: filtra automáticamente por el ID del usuario que ha iniciado sesión; útil para informes de "mis registros"
+
+|*AND / OR*|Operador lógico que une esta condición con la siguiente fila.
+|===
+
+Utilice el botón *Drop parenthesis* para añadir paréntesis alrededor de grupos de condiciones, controlando cómo se evalúa la lógica AND/OR.
+
+=== Gráficos
+
+Haga clic en *Add chart* debajo de la sección Conditions para añadir un gráfico al informe. Se pueden añadir varios gráficos.
+
+[cols="20,80"]
+|===
+|*Title*|El título del gráfico, mostrado en la Vista de Detalle y en los dashlets de gráfico.
+|*Type*|Bar, Line, Pie, Radar, Stacked Bar o Grouped Bar.
+|*X Axis*|El campo de visualización a utilizar en el eje horizontal.
+|*Y Axis*|El campo de visualización a utilizar en el eje vertical.
+|===
+
+Los gráficos aparecen debajo de la tabla de resultados en la Vista de Detalle del informe. El campo *Charts per row* del informe controla cuántos se muestran uno junto a otro.
+
+== Ver los Resultados del Informe
+
+Desde la Vista de Detalle del informe, además de Edit, Duplicate y Delete, hay disponibles tres acciones de salida:
+
+* *Export*: descarga los resultados del informe como un archivo CSV.
+* *Download PDF*: descarga los resultados como un PDF, incluyendo cualquier gráfico.
+* *Add To Target List*: añade todos los registros devueltos por el informe a una Target List para su uso en una Campaign.
+
+Export y Add To Target List están sujetos a los permisos de exportación del usuario.
+
+== Dashlets de Informes
+
+Un informe puede incrustarse en su página de inicio como un dashlet:
+
+. Añada un dashlet *Reports* desde el selector de dashlets (consulte link:../../core-concepts/homepage-dashboards[Homepage and Dashboards]).
+. Haga clic en el icono de lápiz para editar el dashlet y seleccione qué informe mostrar.
+. Para mostrar solo un gráfico en lugar de la tabla completa de resultados, habilite *Only use charts* en la configuración del dashlet y seleccione el gráfico a mostrar.
+
+Se pueden añadir varios dashlets de Reports, cada uno mostrando un informe o gráfico diferente.
+
+== Informes Programados
+
+Para ejecutar un informe automáticamente y enviar los resultados por correo, consulte link:../scheduled-reports[Informes Programados].

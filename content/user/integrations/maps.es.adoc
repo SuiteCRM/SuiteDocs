@@ -1,0 +1,98 @@
+---
+title: "Mapas"
+weight: 30
+aliases:
+  - /es/user/jjw-maps
+---
+
+:imagesdir: /images/en/user
+
+= Mapas
+
+SuiteCRM incluye una función de Mapas integrada basada en Google Maps. Le permite geocodificar direcciones almacenadas en SuiteCRM y visualizarlas en mapas interactivos. Puede buscar registros dentro de un radio de cualquier dirección, colocar marcadores personalizados y dibujar áreas de mapa.
+
+== Paneles de mapa en los registros
+
+Cuando Mapas está configurado, aparece un panel de mapa en los siguientes tipos de registro, mostrando la dirección correspondiente en un Mapa de Google:
+
+* *Cuentas*: dirección de facturación o de envío.
+* *Contactos*: dirección del contacto.
+* *Clientes Potenciales*: dirección del cliente potencial.
+* *Oportunidades*: dirección de la cuenta asociada.
+* *Casos*: dirección de la cuenta asociada.
+* *Público Objetivo*: dirección del objetivo.
+* *Reuniones*: campo de ubicación.
+
+== Módulo Mapas
+
+El módulo Mapas le permite buscar y mostrar registros en un mapa según su proximidad a un punto central.
+
+=== Crear un mapa
+
+. Navegue a *Maps* en la barra de navegación y seleccione *Create Map*.
+. Rellene los siguientes campos:
++
+* *Name*: una etiqueta para este mapa.
+* *Show on map address (centre)*: el registro cuya dirección se utilizará como punto central. Todos los resultados se muestran dentro de un radio de esta dirección.
+* *Display on map*: el tipo de registros a representar (por ejemplo, Contactos, Cuentas). Solo se puede mostrar un tipo de registro por mapa.
+* *Distance unit*: kilómetros o millas.
+* *Show records within radius*: el radio de búsqueda alrededor del punto central.
+* *Assigned to*: por defecto, el usuario que crea el mapa. Cámbielo para asignar el mapa a otro usuario.
+* *Description*: una nota opcional sobre el mapa.
+. Haga clic en *Save*. El mapa se genera con los registros coincidentes representados como marcadores.
+
+{{% notice note %}}
+Los registros solo se representan si sus direcciones se han geocodificado. La geocodificación la configura su administrador. Si faltan registros en el mapa, pida a su administrador que ejecute el proceso de geocodificación.
+{{% /notice %}}
+
+=== Buscar desde una dirección personalizada
+
+Puede buscar desde una dirección que aún no esté en SuiteCRM:
+
+. En el menú del módulo Mapas, seleccione *Show records*.
+. Introduzca la dirección, elija el tipo de registro y el radio, y a continuación haga clic en *Run*.
+
+=== Añadir resultados a una Lista de Público Objetivo
+
+Después de generarse un mapa, un botón en la parte inferior de la lista de resultados le permite añadir todos los registros mostrados a una Lista de Público Objetivo. Esto resulta útil para crear una audiencia filtrada geográficamente para una campaña.
+
+=== Incrustar un mapa en un dashlet
+
+Una vista de mapa se puede incrustar en un dashlet de la página de inicio:
+
+. Utilice *Show records* para mostrar un mapa como se describe anteriormente.
+. En la parte inferior del mapa aparece un enlace *IFrame URL*. Haga clic con el botón derecho y copie la dirección del enlace.
+. Vaya a la página de inicio y haga clic en *Add Dashlet*.
+. En la pestaña *Web*, pegue la URL copiada y haga clic en *Add*.
+. En la configuración del dashlet, establezca la altura en al menos 600 píxeles para que el mapa se muestre completamente.
+
+== Marcadores
+
+Los Marcadores son pines individuales que puede colocar en cualquier lugar de un mapa, independientemente de los registros de SuiteCRM.
+
+. Navegue a *Map Markers* y seleccione *Create Marker*.
++
+También puede crear un marcador desde el subpanel *Markers* en la Vista de Detalle de un mapa existente.
+. Elija un icono de marcador de la lista y arrástrelo hasta la ubicación deseada en el mapa. Las coordenadas de latitud y longitud se establecen automáticamente a medida que arrastra.
+. Rellene los campos adicionales que desee y haga clic en *Save*.
+
+== Áreas de Mapa
+
+Las Áreas de Mapa le permiten dibujar un polígono en un mapa para destacar o definir una región.
+
+. Navegue a *Map Areas* y seleccione *Create Area*.
++
+También puede crear un área desde el subpanel *Map Areas* en la Vista de Detalle de un mapa existente.
+. Haga clic en el mapa para colocar puntos límite. Haga clic de nuevo en el primer punto para cerrar el polígono. Las coordenadas se actualizan automáticamente a medida que ajusta la forma. Utilice *Reset* para empezar de nuevo.
+. Cuando esté satisfecho, haga clic en *Use map area coordinates*.
+. Rellene los campos adicionales que desee y haga clic en *Save*.
+
+== Caché de Direcciones
+
+La geocodificación convierte direcciones de texto en coordenadas geográficas para que puedan representarse en un mapa. Para evitar volver a consultar a Google direcciones ya procesadas, SuiteCRM almacena en caché los resultados geocodificados en el módulo Address Cache.
+
+La caché se rellena automáticamente durante el proceso de geocodificación, que gestiona su administrador. Si necesita importar direcciones geocodificadas desde una fuente externa, utilice *Import* en el menú de acciones del módulo Address Cache y siga el asistente de importación.
+
+== Recursos para Administradores
+
+Para la configuración de la clave de API, la configuración de la geocodificación y la tarea del planificador que automatiza la geocodificación, consulte la link:/admin/administration-panel/google-maps[Documentación de Administración de Google Maps].

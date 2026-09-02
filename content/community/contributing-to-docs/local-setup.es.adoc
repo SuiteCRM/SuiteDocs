@@ -1,0 +1,94 @@
+---
+Title: "Configuración local para trabajar en la documentación"
+Weight: 40
+---
+
+Para contribuir a los esfuerzos de Documentación, puedes editar páginas directamente en GitHub. Pero si quieres una configuración más potente para una mejor experiencia de trabajo, puedes optar por configurar una copia local de los archivos, instalar nuestro motor de construcción Hugo, y compilar y servir el sitio localmente.
+
+{{% notice warning %}}
+Esta es una forma avanzada de editar la Documentación, solo debería usarla gente con
+las habilidades técnicas necesarias y que quiera trabajar en esta Documentación de forma extensiva.
+{{% /notice %}}
+
+== Instalar el software necesario en tu ordenador
+
+Necesitamos tener en funcionamiento los siguientes paquetes:
+
+- Git (para el control de versiones)
+- Asciidoctor (para procesar el marcado Asciidoc)
+- Hugo (motor de sitios estáticos)
+
+{{% notice info %}}
+Las siguientes instrucciones son específicas para Ubuntu de 64 bits, pero deberían ser fáciles de adaptar
+a otras distribuciones de Linux y a MacOS. También es posible una instalación en Windows.
+Consulta los enlaces al final de este artículo para instrucciones específicas para otros entornos.
+{{% /notice %}}
+
+`sudo apt-get update`
+
+`sudo apt-get install git`
+
+Aquí tienes un comando útil para descargar automáticamente la última versión de Hugo:
+
+[source, bash]
+wget https://github.com`wget -qO- https://github.com/gohugoio/hugo/releases/latest | grep -oE -m 1 '\/gohugoio\/hugo\/releases\/download\/v[0-9]+.[0-9]+.[0-9]*\/hugo_[0-9]+.[0-9]+.[0-9]*_Linux-64bit.deb'`
+
+En caso de que eso no funcione, la idea es obtener un comando parecido a este, reemplazando `0.53` por la última versión:
+`wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb`
+
+Ahora instala el paquete recién descargado; si es el único en el directorio actual, puedes hacerlo con:
+
+`sudo dpkg -i hugo*.deb`
+
+Ahora comprueba que Hugo funciona correctamente con
+
+`hugo version`
+
+Ve a un directorio adecuado, y usa este comando para crear el subárbol de SuiteDocs y descargar todo:
+
+`git clone https://github.com/SuiteCRM/SuiteDocs.git`
+
+`cd SuiteDocs`
+
+`bundle install`
+
+Eso debería detectar el Gemfile local que solicita el paquete "asciidoctor" e instalarlo. Compruébalo con:
+
+`asciidoctor --version`
+
+== Poner en marcha tu versión local del sitio
+
+¡Ya estás listo! Para compilar el sitio, simplemente puedes escribir
+
+`hugo`
+
+Pero no lo usarás muy a menudo porque basta con lanzar el servidor web local,
+y cualquier cambio pendiente se reconstruirá automáticamente:
+
+`hugo server --bind=0.0.0.0 --baseUrl=http://10.0.0.200 --navigateToChanged --enableGitInfo`
+
+Cambia ese `10.0.0.200` por tu dirección IP local.
+
+Esta será la URL que pondrás en tu navegador para navegar por el sitio web local.
+
+Mientras trabajas en el contenido, recomendamos mantener siempre una segunda ventana de terminal ejecutando el servidor,
+para poder comprobar cualquier mensaje de error, y ver cómo el servidor recoge automáticamente tus cambios y los redespliega.
+
+== Ventajas
+
+Aparte de las ventajas de colaborar en el contenido a través de GitHub, esta configuración local te permite usar todo el
+poder de Linux sobre tu contenido: hacerle `grep`, `bash`, `php`... las operaciones masivas son rápidas y sencillas.
+
+Los redespliegues rápidos y automáticos, junto con la navegación automática del navegador al contenido modificado,
+resultan extremadamente cómodos mientras se edita el contenido.
+
+Por último, todo el sitio está abierto a edición, no solo el contenido textual sino también los aspectos visuales, funcionalidades, etc.
+Tu contribución puede ser una nueva funcionalidad del sitio programada en Golang.
+
+== Enlaces útiles
+
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git[Instalar Git^]
+
+https://gohugo.io/getting-started/installing/[Instalar Hugo^]
+
+https://asciidoctor.org/docs/install-toolchain/[Instalar Asciidoctor^]

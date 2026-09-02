@@ -1,0 +1,31 @@
+---
+Title: Release
+Weight: 100
+---
+
+:experimental:
+
+:imagesdir: /images/en/user
+
+= Control de Versiones
+
+En esta sección puede gestionar la lista de versiones de sus productos. La lista de versiones se muestra en la lista desplegable al describir un nuevo
+link:../../../user/core-modules/bugs[error].
+
+Para añadir una versión a la lista:
+
+ .	En el panel de administración, vaya a *Release*.
+ .	Haga clic en el botón *Create*.
+ .	En el subpanel que aparece, introduzca la siguiente información:
+
+image:Release.png[Control de versiones]
+
+Version:: 1. Introduzca el número de versión requerido.
+Status:: 2. En la lista desplegable, seleccione el estado *Active* para que la versión se muestre en el módulo
+link:../../../user/core-modules/bugs[de errores].
+Order:: 3. Especifique la posición de la versión que se está creando en la lista de versiones.
+
+[start=4]
+ .	Para guardar la versión, haga clic en el botón btn:[*Save*].
+ .	Para guardar la versión actual y crear una nueva, haga clic en el botón btn:[*Save and Continue*].
+

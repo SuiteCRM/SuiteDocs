@@ -1,0 +1,28 @@
+---
+Title: Código de Conducta
+---
+
+== Código de Conducta de la Comunidad SuiteCRM
+
+Entendemos que, para tener una comunidad sana e inclusiva, necesitamos crear y fomentar un entorno que permita a los miembros sentirse bienvenidos y seguros, aprender unos de otros y beneficiarse todos de la plataforma. Nuestra comunidad SuiteCRM está formada por usuarios finales, administradores de sistemas, desarrolladores, partners, empleados y quienes prestan servicios para SuiteCRM, así que todos debemos poner de nuestra parte para garantizar el éxito y el bienestar de la comunidad.
+
+. **Sé considerado.** Trata a las personas con amabilidad y sé servicial. Nuestra comunidad da la bienvenida y apoya a personas de todos los orígenes e identidades, por lo que deben ser tratadas con respeto profesional. El comportamiento irrespetuoso e inaceptable incluye, entre otros:
+.. El uso de lenguaje o imágenes sexualizadas y la atención o insinuaciones sexuales no deseadas
+.. Trolling, comentarios insultantes o despectivos, y ataques personales o políticos
+.. Acoso público o privado
+.. Publicar información privada de otras personas, como una dirección física o electrónica, sin permiso explícito
+. **Sé objetivo.** Aquí tratamos principalmente cuestiones técnicas: las emociones son humanas, pero ten en cuenta que las emociones negativas no resuelven problemas técnicos. Da por hecho que las demás personas tienen las mejores intenciones.
+. **Sé responsable.** Asegúrate de que las consecuencias de tus acciones sean beneficiosas para el proyecto y la comunidad. Somos agnósticos respecto a otras comunidades, pero esperamos que los usuarios de otras comunidades sean transparentes sobre su afiliación y actúen con conciencia para no perjudicar al proyecto en beneficio propio. Los miembros también deben respetar las buenas prácticas de seguridad y buscar soluciones sólidas y mantenibles. Si conoces algún problema de seguridad en SuiteCRM, puedes escribir a mailto:security@suitecrm.com[security@suitecrm.com].
+. **Ayuda a la gente a aprender.** Damos la bienvenida a personas de todos los niveles de conocimiento. No entender las funciones básicas de SuiteCRM o no saber cómo buscar una solución es normal al principio; todos hemos pasado por ello.
+. **Sé libre de spam.** Esta es una comunidad de código abierto, no un mercado. No anuncies servicios o productos. Si eres partner, desarrollador de complementos o alguien que presta servicios de desarrollo o consultoría específicamente para SuiteCRM, puedes informar a otros sobre ello y responder a solicitudes. Sin embargo, no está permitido limitarse a hacer publicidad sin sustancia, o tus publicaciones se considerarán spam no solicitado.
+. **Haz tu parte.** Lee la documentación y busca guías o recomendaciones antes de preguntar, y ahorra tiempo a los demás.
+. **Sé paciente.** Gran parte de lo que ocurre en la comunidad proviene de personas o empresas que dedican voluntariamente su tiempo y esfuerzo al proyecto. Es posible que tu pregunta, contribución de código o sugerencia no reciba una respuesta inmediata. Da tiempo a la gente y gánate su atención siendo un buen colaborador, no insistiendo.
+. **No te limites a recibir, da también.** Uno de los principios del código abierto es participar, y por eso muchas cosas en nuestra comunidad ocurren de forma gratuita, por buena voluntad. Haz por los demás lo que los demás hacen por ti. Hay muchas formas distintas de ayudar: con código, soporte, documentación, pruebas, traducción, promoción…
+
+Nos reservamos el derecho de eliminar cualquier publicación que no cumpla estas directrices, o de expulsar a cualquiera que las infrinja repetidamente.
+
+Estas directrices se aplican tanto dentro de los espacios del proyecto como en espacios públicos cuando una persona representa al proyecto o a su comunidad. Ejemplos de representar a un proyecto o comunidad incluyen usar una dirección de correo electrónico oficial del proyecto, participar en los foros del proyecto, publicar a través de una cuenta oficial de redes sociales, o actuar como representante designado en un evento en línea o presencial.
+
+Los casos de comportamiento abusivo, acosador o de otro modo inaceptable pueden reportarse contactando con el equipo del proyecto en mailto:community@suitecrm.com[community@suitecrm.com]. Todas las quejas serán revisadas e investigadas, y darán lugar a la respuesta que se considere necesaria y apropiada según las circunstancias. El equipo del proyecto está obligado a mantener la confidencialidad respecto a la persona que reporta un incidente. Podrán publicarse por separado más detalles sobre las políticas de aplicación específicas.
+
+Estas directrices están adaptadas del http://contributor-covenant.org/[Contributor Covenant], versión 1.4, disponible http://contributor-covenant.org/version/1/4/[aquí].

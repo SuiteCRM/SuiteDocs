@@ -1,0 +1,154 @@
+---
+title: "Tareas de Migración Manual"
+weight: 30
+---
+
+{{% notice info %}}
+Antes de utilizar las Tareas de Migración Manual, asegúrese de que el worker de Symfony Messenger esté en ejecución. Consulte la guía link:../messenger-setup[Configuración de Messenger].
+{{% /notice %}}
+
+:imagesdir: /images/en/8.x/admin/manual-migration-tasks
+
+== Tareas de Migración Manual
+
+{{% notice info %}}
+Esta documentación corresponde a SuiteCRM 8.10.0+
+{{% /notice %}}
+
+=== ¿Qué son las Tareas de Migración Manual?
+
+Las Tareas de Migración Manual son trabajos de migración de datos en segundo plano que se incluyen con las actualizaciones de SuiteCRM. Cuando una actualización cambia la forma en que se almacenan los datos — por ejemplo, trasladando los archivos adjuntos a un nuevo sistema de almacenamiento — se crea automáticamente una Tarea de Migración Manual para que los datos existentes puedan convertirse cuando le resulte conveniente.
+
+Dado que estos trabajos pueden procesar miles de registros, se ejecutan en segundo plano utilizando la infraestructura de tareas asíncronas de SuiteCRM. Esto significa que no bloquean la aplicación mientras se ejecutan, y usted puede seguir utilizando SuiteCRM con normalidad mientras se lleva a cabo una migración.
+
+Puntos clave:
+
+* Las tareas de migración se crean automáticamente durante el proceso de actualización — no necesita crearlas usted mismo.
+* Cada tarea procesa los datos en lotes pequeños, de modo que no sobrecarga el servidor.
+* El progreso se registra y se muestra en tiempo real, incluyendo cuántos elementos se han procesado, cuántos se completaron correctamente y cuántos fallaron.
+* Si algunos elementos fallan, puede reintentar solo los elementos fallidos o volver a ejecutar toda la migración, según la tarea. Consulte la sección Gestión de Fallos más abajo.
+
+=== Acceso a las Tareas de Migración Manual
+
+Para acceder al módulo de Migraciones:
+
+. Inicie sesión como administrador.
+. Vaya al *Panel de Administración*.
+. En la sección *Herramientas de Administración*, seleccione *Migrations*.
+
+Esto abre la vista de lista de Migraciones, que muestra todas las tareas de migración disponibles.
+
+=== Comprender la Vista de Lista
+
+La vista de lista de Migraciones muestra las siguientes columnas:
+
+[cols="20,80"]
+|===
+| *Name* | El nombre de la tarea de migración (por ejemplo, "Migrate Notes Attachments").
+| *Status* | El estado actual de la tarea (consulte <<task-statuses>> a continuación).
+| *Phase* | La fase de procesamiento actual (Queueing, Processing o Finalizing).
+| *Progress* | Un resumen que muestra el porcentaje de finalización, los elementos completados y los elementos fallidos.
+| *Last Run* | La fecha y hora en que la tarea se ejecutó por última vez.
+| *Assigned To* | El usuario asignado a la tarea.
+|===
+
+Haga clic en el nombre de una tarea para abrir su vista de detalle.
+
+[[task-statuses]]
+=== Estados de la Tarea
+
+Una tarea de migración pasa por los siguientes estados a lo largo de su ciclo de vida:
+
+[cols="20,80"]
+|===
+| *Initial* | La tarea se ha creado pero nunca se ha ejecutado. El botón "Run Migration" está disponible.
+| *Pending* | La tarea se ha encolado y está esperando a que el worker en segundo plano la recoja.
+| *Running* | La tarea está procesando activamente elementos en segundo plano. El progreso se actualiza a medida que se completan los lotes.
+| *Completed* | Todos los elementos se han procesado correctamente. El botón "Delete" está disponible.
+| *Failed* | La tarea encontró errores. Según la tarea, pueden estar disponibles los botones "Retry Failed" y/o "Re-run".
+|===
+
+=== Ejecución de una Tarea de Migración
+
+Para ejecutar una tarea de migración por primera vez:
+
+. Abra la vista de lista de Migraciones (Panel de Administración > Herramientas de Administración > Migrations).
+. Haga clic en el nombre de la tarea para abrir la vista de detalle.
+. Haga clic en el botón *Run Migration*.
+
+[start=3]
+. Aparece un cuadro de diálogo de confirmación — haga clic en *OK* para continuar.
+
+[start=4]
+. El estado de la tarea cambia a *Pending*, y después a *Running* en cuanto el worker en segundo plano la recoge.
+
+{{% notice note %}}
+El botón "Run Migration" solo es visible cuando el estado de la tarea es "Initial". Una vez que se ha ejecutado una tarea, estarán disponibles distintas acciones según el resultado.
+{{% /notice %}}
+
+=== Supervisión del Progreso
+
+Mientras una tarea de migración está en ejecución, la vista de detalle muestra información de progreso:
+
+* *Phase* — muestra en qué fase se encuentra la tarea:
+** *Queueing* — el sistema está buscando elementos que procesar y añadiéndolos a la cola.
+** *Processing* — los elementos se están procesando por lotes.
+** *Finalizing* — se está realizando un post-procesamiento opcional (no todas las tareas tienen esta fase).
+* *Progress* — muestra un porcentaje junto con el recuento de elementos completados, fallidos y totales.
+* *Last Run* — la marca de tiempo de la ejecución más reciente.
+
+Actualice la página para ver el progreso actualizado. El campo de progreso se actualiza cada vez que se completa un lote de elementos.
+
+=== Gestión de Fallos
+
+Si algunos elementos fallan durante el procesamiento, el estado de la tarea se establece en *Completed* (si al menos algunos elementos se completaron correctamente) o *Failed* (si todos los elementos fallaron). Según la configuración de la tarea, pueden aparecer botones de acción adicionales:
+
+* *Retry Failed* — vuelve a encolar únicamente los elementos que fallaron y los procesa de nuevo. Esto resulta útil cuando los fallos se debieron a un problema temporal (por ejemplo, un bloqueo de archivo o un tiempo de espera de red agotado).
+* *Re-run* — elimina todos los elementos procesados anteriormente e inicia la migración completa desde cero. Utilice esta opción si el problema subyacente se ha solucionado y desea una ejecución limpia.
+
+{{% notice note %}}
+No todas las tareas admiten ambas acciones de recuperación. Los botones disponibles dependen de lo que haya configurado el desarrollador de la tarea.
+{{% /notice %}}
+
+=== Descartar una Tarea Completada
+
+Una vez que una tarea de migración se ha completado (o ha fallado y no desea reintentarla):
+
+. Abra la vista de detalle de la tarea.
+. Haga clic en el botón *Delete*.
+. Aparece un cuadro de diálogo de confirmación — haga clic en *OK* para continuar.
+. El registro de la tarea se elimina de la vista de lista y se limpian todos los datos de procesamiento asociados.
+
+{{% notice warning %}}
+Eliminar una tarea es permanente. El registro de la tarea se elimina de forma reversible (soft-delete) y todos los elementos de procesamiento se purgan. Si necesita volver a ejecutar la migración más adelante, la tarea tendría que volver a crearse.
+{{% /notice %}}
+
+=== Resumen del Ciclo de Vida
+
+El siguiente diagrama resume el flujo de trabajo típico del administrador para una Tarea de Migración Manual:
+
+image:migration_task_lifecycle_full.svg[Resumen del Ciclo de Vida]
+
+=== Configuración
+
+Los tamaños de lote y otras opciones de configuración se documentan en la link:../configuration[Referencia de Configuración].
+
+=== Solución de Problemas
+
+==== La tarea permanece en estado "Pending"
+
+Esto suele significar que el worker de Messenger no se está ejecutando. Consulte la guía link:../messenger-setup[Configuración de Messenger] para saber cómo iniciar y comprobar el worker.
+
+==== Los elementos están fallando
+
+Abra la vista de detalle de la tarea para comprobar los contadores de progreso. Las causas más comunes incluyen:
+
+* *Problemas de permisos de archivos* — asegúrese de que el worker se ejecuta como el usuario del servidor web.
+* *Archivos de origen faltantes* — si está migrando archivos, es posible que algunos archivos antiguos se hayan eliminado o movido.
+* *Límites de memoria* — aumente el límite de memoria de PHP o reduzca la configuración del tamaño de lote.
+
+Compruebe el log de SuiteCRM (`suitecrm.log`) y el log de errores de PHP para obtener mensajes de error detallados.
+
+==== La tarea se completó pero algunos elementos fallaron
+
+Si la tarea lo permite, utilice el botón *Retry Failed* para volver a procesar únicamente los elementos fallidos. Si el problema subyacente no puede resolverse, puede *eliminar (Delete)* la tarea y abordar los elementos fallidos manualmente si es necesario.

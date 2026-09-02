@@ -1,0 +1,138 @@
+---
+title: Índice del Panel de Administración
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/admin/administration-panel
+
+== Panel de Administración
+
+El Panel de Administración muestra todas las opciones de configuración y ajustes disponibles para personalizar y gestionar su SuiteCRM. Al seleccionar una opción, esta se resalta y se muestra una breve descripción de lo que controla.
+
+image:admin_panel.png[Panel de Administración]
+
+[NOTE]
+====
+Puede acceder directamente a cualquier panel de administración mediante el Multi-menú de Administración, sin necesidad de volver a esta página de índice cada vez. Esto le permite moverse entre los ajustes con mayor rapidez una vez que sabe dónde se encuentra cada opción.
+====
+
+image:admin-multi-menu.png[Multi-menú de Administración]
+
+La siguiente lista describe cada ajuste y enlaza con la documentación correspondiente.
+
+== Usuarios y Autenticación
+
+* link:../../../../admin/administration-panel/users[Gestión de Usuarios]
+** Cree, edite, active y desactive cuentas de usuario, y establezca el tipo de usuario y el acceso.
+* link:../../../../admin/administration-panel/roles-and-security-groups[Gestión de Roles]
+** Defina lo que los usuarios pueden ver y hacer en cada módulo mediante la matriz de acceso de roles.
+* Gestión de Contraseñas
+** Establezca las reglas de seguridad de las contraseñas, la generación automática de contraseñas y la Autenticación de Dos Factores.
+* link:../../../../developer/integration-api/v8/authentication[Clientes y Tokens OAuth2]
+** Cree y gestione los clientes de la API y los tokens de acceso emitidos para autenticarse con la API REST V8 de SuiteCRM.
+* link:../../../../developer/integration-api/v8/authentication[Claves OAuth]
+** Gestione las claves OAuth (ID de cliente y secreto) utilizadas para autenticar aplicaciones externas con la API REST V8 de SuiteCRM.
+* link:../../../../admin/administration-panel/roles-and-security-groups[Gestión de Grupos de Security Suite]
+** Cree y gestione grupos de usuarios para controlar qué registros puede ver cada equipo.
+* link:../../../../user/security-suite-groups[Ajustes de Security Suite]
+** Configure el comportamiento de los Grupos de Seguridad a nivel de sistema, como la herencia y la seguridad aditiva.
+
+== Sistema
+
+* link:../../../../admin/administration-panel/system/#_system_settings[Ajustes del Sistema]
+** Configure ajustes de interfaz a nivel de sistema, como el nombre del sistema, el logotipo y los registros mostrados por página.
+* link:../../../../admin/administration-panel/system/#_currencies[Divisas]
+** Añada y gestione las divisas disponibles en todo SuiteCRM.
+* link:../../../../admin/installation-guide/language-management[Idiomas]
+** Instale y gestione los idiomas disponibles en SuiteCRM.
+* link:../../../../admin/administration-panel/system/#_locale[Configuración Regional]
+** Establezca los formatos de fecha, hora, divisa, número y nombre a nivel de sistema.
+* Ajustes de PDF
+** Elija el motor utilizado para generar documentos PDF.
+* link:../../../../admin/administration-panel/system/#_global_search[Ajustes de Búsqueda]
+** Controle qué módulos aparecen en la búsqueda global y el orden de los resultados.
+* link:../../../../admin/administration-panel/search/elasticsearch[Elasticsearch]
+** Configure la búsqueda de texto completo mediante Elasticsearch para una búsqueda más rápida y potente.
+* link:../../../../admin/administration-panel/system/#_scheduler[Planificadores]
+** Vea, programe y gestione las tareas automáticas en segundo plano que mantienen SuiteCRM en funcionamiento.
+* Temas
+** Establezca el tema predeterminado y las opciones de apariencia de SuiteCRM.
+
+== Ajustes de Módulos
+
+* link:../../../../admin/administration-panel/system/#_activity_streams[Ajustes del Flujo de Actividad]
+** Configure lo que aparece en el feed del Flujo de Actividad.
+* link:../../../../admin/administration-panel/advanced-openadmin/#_business_hours[Horario Comercial]
+** Establezca el horario de trabajo de su organización, utilizado por los flujos de trabajo programados y los cálculos de días laborables de proyectos.
+* link:../../../../admin/administration-panel/advanced-openadmin/#_aop_settings[Ajustes del Módulo de Casos]
+** Configure los ajustes del módulo de Casos, incluida la gestión de casos y el correo entrante de casos.
+* link:../../../../admin/administration-panel/developer-tools/#_configure_module_menu_filters[Configurar Filtros del Menú de Módulos]
+** Controle qué filtros predefinidos aparecen en el menú de navegación de cada módulo.
+* Conectores
+** Conecte SuiteCRM a fuentes de datos externas.
+* link:../../../../admin/administration-panel/developer-tools/#_display_modules_and_subpanels[Mostrar Módulos y Subpaneles]
+** Controle qué módulos aparecen en la barra de navegación y qué subpaneles aparecen en los registros.
+* link:../../../../admin/administration-panel/developer-tools/#_history_subpanel[Subpanel de Historial]
+** Configure el subpanel de Historial que agrupa las actividades pasadas de un registro.
+* link:../../../../admin/administration-panel/advanced-openadmin[Ajustes del Módulo de Ventas]
+** Configure los ajustes del módulo de Ventas.
+* link:../../../../admin/administration-panel/release[Versiones]
+** Vea información sobre las versiones y actualizaciones instaladas.
+
+== Correo Electrónico
+
+* link:../../../../admin/administration-panel/emails/email/#_email_settings[Ajustes de Correo Electrónico]
+** Configure la cuenta de salida del sistema utilizada para notificaciones, restablecimiento de contraseñas y correos de flujo de trabajo.
+* link:../../../../admin/administration-panel/emails/email/#_inbound_email[Correo Entrante]
+** Configure buzones de grupo y cuentas de gestión de rebotes para recibir correo electrónico.
+* link:../../../../admin/administration-panel/emails/email/#_outbound_email[Correo Saliente]
+** Configure cuentas de salida del sistema y personales para el envío de correo electrónico.
+* link:../../../../admin/administration-panel/emails/inboundemail-oauth-howto[Conexiones OAuth Externas]
+** Almacene los tokens OAuth que utilizan las cuentas de correo para autenticarse con proveedores externos.
+* link:../../../../admin/administration-panel/emails/oauth-provider-overview[Proveedores OAuth Externos]
+** Configure las credenciales de la aplicación OAuth para cada proveedor externo.
+* link:../../../../admin/administration-panel/emails/email/#_campaign_email_settings[Ajustes de Correo de Campañas]
+** Controle el tamaño de lote y el comportamiento del envío masivo de correos de campañas.
+* link:../../../../admin/administration-panel/emails/email/#_email_queue[Cola de Correo]
+** Vea y envíe los correos de campañas salientes que están en espera en la cola.
+
+== Herramientas de Administración
+
+* link:../../../../admin/administration-panel/system/#_repair[Reparar]
+** Repare y reconstruya el sistema después de realizar cambios; el primer paso para la mayoría de los problemas.
+* link:../../../../admin/administration-panel/system/#_backups[Copias de Seguridad]
+** Realice copias de seguridad de los archivos de la aplicación SuiteCRM.
+* link:../../../../admin/administration-panel/system/#_diagnostic_tool[Herramienta de Diagnóstico]
+** Empaquete los datos de su entorno para compartirlos con el soporte técnico.
+* link:../../../../admin/administration-panel/system/#_import_wizard[Asistente de Importación]
+** Importe datos a los módulos de SuiteCRM desde un archivo CSV mediante un asistente guiado.
+* link:../../../../admin/administration-panel/developer-tools/#_module_loader[Cargador de Módulos]
+** Instale, gestione y elimine módulos y paquetes complementarios.
+
+== Herramientas de Desarrollo
+
+* link:../../../../admin/administration-panel/studio[Studio]
+** Configure los campos, diseños y relaciones de los módulos existentes.
+* link:../../../../admin/administration-panel/developer-tools[Renombrar Módulos]
+** Cambie las etiquetas de visualización de los módulos, por ejemplo, renombrando Cuentas a Organizaciones.
+* link:../../../../admin/administration-panel/developer-tools/#_module_builder[Constructor de Módulos]
+** Cree nuevos módulos personalizados a partir de un conjunto de plantillas iniciales.
+* link:../../../../admin/administration-panel/developer-tools/#_dropdown_editor[Editor de Listas Desplegables]
+** Gestione las listas de valores utilizadas en los campos de lista desplegable y selección múltiple.
+* link:../../../../user/advanced-modules/workflow[Gestor de Flujos de Trabajo]
+** Cree procesos de negocio automatizados activados por eventos de registros.
+
+== Google Suite
+
+* link:../../../../admin/administration-panel/google-sync[Ajustes de Google Calendar]
+** Configure la sincronización con Google Calendar.
+* link:../../../../admin/administration-panel/google-maps[Ajustes de Google Maps]
+** Configure la integración con Google Maps.
+* link:../../../../admin/administration-panel/google-maps[Recuentos Geocodificados]
+** Vea el número de registros que han sido geocodificados.
+* link:../../../../admin/administration-panel/google-maps[Prueba de Geocodificación]
+** Pruebe la configuración de geocodificación.
+* link:../../../../admin/administration-panel/google-maps[Geocodificar Direcciones]
+** Geocodifique los registros de direcciones existentes.
+* link:../../../../admin/administration-panel/google-maps[Caché de Direcciones]
+** Gestione la caché de direcciones geocodificadas.

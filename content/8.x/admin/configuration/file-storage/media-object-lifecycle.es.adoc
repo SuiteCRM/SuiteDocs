@@ -1,0 +1,118 @@
+---
+Title: Ciclo de vida del objeto multimedia
+weight: 60
+---
+
+:imagesdir: /images/en/user
+
+{{% notice info %}}
+La siguiente documentación corresponde a SuiteCRM Versión 8.9.0+
+{{% /notice %}}
+
+
+== Ciclo de vida del objeto multimedia
+
+Esta sección describe el ciclo de vida de los objetos multimedia (archivos) subidos a través del sistema.
+
+=== Pasos del flujo
+
+==== Al subir el archivo
+
+1. Cuando un usuario selecciona un archivo, este se sube inmediatamente al servidor.
+2. Al subirse, se crea una nueva entrada en la tabla de almacenamiento correspondiente (p. ej., `private-documents`, `public-documents`).
+3. El archivo subido se marca como archivo temporal.
+
+==== Vinculación al registro padre
+
+1. Cuando se guarda el registro padre (p. ej., una Nota), el objeto multimedia se vincula al padre mediante los campos `parentModule`, `parentId` y `parentField`. El objeto multimedia deja entonces de estar marcado como temporal.
+2. Si el usuario cancela o no utiliza el objeto multimedia subido, el archivo temporal permanece en el sistema hasta que se elimina.
+
+==== Limpieza de archivos temporales
+
+1. Un programador (scheduler) se ejecuta cada minuto (configurable) para eliminar los objetos multimedia temporales creados hace más de 3 días (también configurable mediante `max_temp_file_lifetime`). La limpieza se realiza en lotes de 50 (configurable). Esto garantiza que los archivos temporales no utilizados no se acumulen en el sistema.
+
+==== Eliminación del registro padre
+
+1. Cuando un registro padre se elimina de forma reversible (soft delete), todos los objetos multimedia vinculados también se marcan como eliminados.
+
+==== Sustitución de archivos
+
+1. Cuando se sustituye un archivo por una nueva subida, el objeto multimedia anterior se elimina inmediatamente y se elimina el archivo correspondiente; no se marca como eliminado.
+
+==== Eliminación permanente
+
+1. Cuando se ejecuta el programador `pruneDatabase` y se elimina el registro padre, los objetos multimedia vinculados también se eliminan y sus archivos se eliminan del almacenamiento.
+
+=== Notas
+
+* Los objetos multimedia temporales se limpian automáticamente mediante el programador.
+* La vinculación entre los objetos multimedia y los registros padre garantiza una limpieza adecuada y la integridad de los datos.
+* Todas las opciones de configuración (como la frecuencia del programador y la antigüedad de los archivos temporales) son ajustables.
+
+=== Opciones de configuración
+
+=== Frecuencia de limpieza de archivos temporales
+
+Objetivo::
+Definir la frecuencia del trabajo de limpieza de archivos temporales. El valor predeterminado es cada minuto.
+
+Configuración::
+Vaya a Admin > Schedulers y edite el trabajo "Clean Up Temporary Files". Puede establecer la frecuencia que desee (p. ej., cada hora, diaria, semanal).
+
+Valor predeterminado::
+[source,json]
+----
+every minute
+----
+
+=== max_temp_file_lifetime
+
+Objetivo::
+La antigüedad máxima (en días) de los archivos temporales antes de que el programador los elimine. El valor predeterminado es 3 días.
+
+Configuración::
+Establezca un valor en formato HORAS/DÍAS/MINUTOS. En config.php o config_override.php, utilice la clave `max_temp_file_lifetime`.
+
+Valor predeterminado::
+[source,json]
+----
+72 HOURS
+----
+
+Ejemplo de sobrescritura:
+[source,php]
+----
+//public/legacy/config_override.php or can also be added to config.php
+
+<?php
+
+...
+
+$sugar_config['max_temp_file_lifetime'] = '24 HOURS';
+----
+
+=== max_temp_file_batch_per_table
+
+Objetivo::
+El número de archivos temporales que se eliminan en cada lote por tabla. El valor predeterminado es 50. Cada vez que se ejecuta el programador, procesará hasta este número de registros por tabla.
+
+Configuración::
+Establezca el número de registros a procesar. En config.php o config_override.php, utilice la clave `max_temp_file_batch_per_table`.
+
+Valor predeterminado::
+[source,json]
+----
+50
+----
+
+Ejemplo de sobrescritura:
+[source,php]
+----
+//public/legacy/config_override.php or can also be added to config.php
+
+<?php
+
+...
+
+$sugar_config['max_temp_file_batch_per_table'] = '10';
+----

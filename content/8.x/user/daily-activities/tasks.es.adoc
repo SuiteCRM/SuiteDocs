@@ -1,0 +1,40 @@
+---
+title: "Tareas"
+weight: 70
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities/tasks
+
+= Tareas
+
+El módulo Tasks le permite registrar, asignar y hacer seguimiento de acciones pendientes y elementos por hacer. Las Tareas pueden relacionarse con otros registros para que las acciones pendientes sean visibles desde la Account, Contact, Opportunity o Case correspondiente.
+
+== Campos Clave
+
+* *Subject*: el nombre o la descripción de la tarea. Obligatorio.
+* *Status*: en qué punto se encuentra la tarea: Not Started, In Progress, Completed, Pending Input o Deferred.
+* *Priority*: la urgencia de la tarea: High, Medium o Low.
+* *Due Date*: la fecha límite para completar la tarea.
+* *Start Date*: cuándo se espera que empiece el trabajo en la tarea.
+* *Related To*: relaciona la tarea con un registro superior (Account, Contact, Opportunity, Case, etc.) mediante un campo de relación. La tarea aparece en el tile de Activities de ese registro mientras está abierta, y pasa al tile de History una vez cerrada.
+* *Contact*: relaciona la tarea con un registro de Contact específico.
+
+== Crear una Tarea
+
+Para crear una Task:
+
+. En el menú del módulo, haga clic en *Create Task*.
+. Complete los campos descritos anteriormente.
+. Haga clic en *Save*.
+
+== Relaciones
+
+Las Tareas aparecen en el tile *Activities* dentro de la sección Relationships del registro al que están vinculadas. Las tareas completadas o cerradas pasan al tile *History*.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+Para conocer las operaciones estándar de los registros, incluyendo búsqueda, edición, duplicación e importación, consulte link:../../core-concepts/record-management[Record Management].
+
+== Cerrar una Tarea
+
+Para marcar una tarea como finalizada, abra su Vista de Detalle y seleccione *Close* en el desplegable *Actions*.

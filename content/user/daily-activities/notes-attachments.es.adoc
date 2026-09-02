@@ -1,0 +1,30 @@
+---
+title: "Notas y Adjuntos"
+weight: 60
+aliases:
+  - /es/user/core-modules/notes
+---
+
+:imagesdir: /images/en/user
+
+= Notas y Adjuntos
+
+El módulo Notas le permite mantener un registro de comentarios, observaciones o explicaciones, ya sean internos de su organización o vinculados a un registro de SuiteCRM como una Cuenta, Contacto, Cliente Potencial, Caso o Incidencia. Las Notas también pueden llevar un archivo adjunto, lo que las hace útiles para registrar correspondencia, decisiones y materiales de apoyo asociados a cualquier registro.
+
+== Campos clave
+
+* *Subject*: un título breve para la nota. Obligatorio.
+* *Related to*: relaciona la nota con un registro superior (Cuenta, Contacto, Cliente Potencial, Oportunidad, Caso, Incidencia y otros). Una vez vinculada, la nota aparece en el subpanel de Historial de ese registro.
+* *Contact*: relaciona la nota con un registro de Contacto específico, de forma independiente al campo Related to.
+* *Description*: el texto del cuerpo de la nota.
+* *Attachment*: se puede cargar y almacenar un único archivo junto con la nota. Compatible con cualquier tipo de archivo.
+* *Portal Flag*: cuando está marcado, la nota y su adjunto son visibles para los usuarios del portal que tienen acceso al Caso relacionado a través del Portal de Clientes.
+
+
+== Relaciones
+
+Las Notas aparecen en el subpanel *Historial* del registro al que están vinculadas mediante el campo *Related to*. Desde un registro de Nota puede acceder directamente al registro superior.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de los registros, como la búsqueda, edición, duplicación e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].

@@ -1,0 +1,52 @@
+---
+title: "Instalación y actualización de idiomas"
+weight: 20
+
+aliases:
+  - /es/admin/installation-guide/languages/install-a-new-language/
+  - /es/admin/installation-guide/languages/update-a-language-pack/
+---
+
+= Instalación y actualización de idiomas
+
+Como administrador, puede localizar el entorno de SuiteCRM instalando nuevos paquetes de idioma o actualizando los existentes. Esto garantiza que sus usuarios puedan interactuar con el sistema en su idioma preferido.
+
+== Obtención de paquetes de idioma
+
+Las traducciones de SuiteCRM están impulsadas por la comunidad. Para asegurarse de que las etiquetas de la interfaz coinciden con su versión específica, debe descargar el paquete correspondiente a su versión.
+
+1. Compruebe su versión en **Admin > About**.
+2. Visite el link:https://sourceforge.net/projects/suitecrmtranslations/files/[repositorio de SuiteCRM en SourceForge, window="_blank"].
+3. Seleccione la carpeta correspondiente a su versión (por ejemplo, *v8.x* o *v7.x*).
+4. Descargue el archivo `.zip` necesario (por ejemplo, `es_ES.zip` para español).
+
+== Instalación de un nuevo idioma
+
+1. Vaya a **Admin > Module Loader**.
+2. Haga clic en **Choose File** y seleccione el `.zip` de idioma descargado.
+3. Haga clic en **Upload**.
+4. Localice el paquete en la lista *Uploaded Packages* y haga clic en **Install**.
+5. Revise el acuerdo de licencia y haga clic en **Commit**.
+
+
+
+== Actualización de un paquete de idioma existente
+
+Cuando se publica una nueva versión de un paquete de idioma, o cuando actualiza SuiteCRM, debe actualizar sus traducciones para garantizar que todas las funciones nuevas estén correctamente etiquetadas.
+
+1. **Download** el archivo `.zip` actualizado desde SourceForge siguiendo los pasos de la sección "Sourcing" anterior.
+2. Vaya a **Admin > Module Loader**.
+3. **Uninstall the old pack:** busque el paquete de idioma actual en la lista *Installed* y haga clic en **Uninstall**.
+* *Nota:* seleccione la opción "Remove Files".
+4. **Upload and Install:** siga los pasos de instalación estándar para subir la nueva versión del archivo `.zip`.
+5. **Repair:** se recomienda encarecidamente ejecutar una **Quick Repair and Rebuild** inmediatamente después de una actualización.
+
+
+== Activación del idioma
+
+Después de la instalación o actualización, asegúrese de que el idioma está activo para su uso:
+
+1. Vaya a **Admin > System Settings**.
+2. Seleccione la subpestaña **Languages**.
+3. Mueva el idioma deseado a la columna **Enabled**.
+4. Haga clic en **Save**.

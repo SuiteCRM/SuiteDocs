@@ -1,0 +1,56 @@
+---
+title: "Migración desde SugarCRM CE"
+weight: 10
+---
+:experimental:
+
+SuiteCRM ofrece un paquete de migración que permite trasladar una instalación existente de SugarCRM Community Edition 6.x a SuiteCRM 7. El paquete de migración se aplica utilizando el mismo Asistente de Actualizaciones empleado en las actualizaciones estándar de SuiteCRM.
+
+== Compatibilidad
+
+[cols="1,1", options="header"]
+|===
+|Versión de origen
+|Versión de destino
+
+|SugarCRM CE 6.5.x
+|SuiteCRM 7.6.6
+|===
+
+Tras completar la migración a la versión 7.6.6, actualice a la versión actual de SuiteCRM 7 mediante el link:../../upgrading[proceso de actualización] estándar.
+
+== Antes de empezar
+
+Complete los mismos pasos de preparación que en una actualización estándar:
+
+* realice una copia de seguridad de los archivos y la base de datos de SugarCRM CE — es su única opción de recuperación si algo sale mal
+* confirme que su versión de PHP, base de datos y servidor web son compatibles con SuiteCRM 7.6.6 — consulte la link:../../compatibility-matrix[Matriz de Compatibilidad]
+* pruebe la migración en una copia de su entorno de producción antes de ejecutarla en producción
+* revise sus personalizaciones — cualquier cambio de código realizado directamente en los archivos principales de SugarCRM CE deberá volver a aplicarse tras la migración, utilizando el enfoque del directorio `/custom`, compatible con futuras actualizaciones
+* configure los límites de PHP según la lista de comprobación de link:../../upgrading/before-you-upgrade[Antes de Actualizar]
+
+== Descargar el paquete de migración
+
+Descargue el *paquete de migración de SugarCRM CE* desde la link:https://suitecrm.com/upgrade-suitecrm/[página de descargas de SuiteCRM].
+
+El paquete se denomina: `SuiteCRM-7.6.6-Migration-from-SugarCRM-CE-6.x.zip`
+
+== Ejecutar la migración
+
+El paquete de migración se aplica a través del Asistente de Actualizaciones de SugarCRM CE, no el de SuiteCRM — esta operación se ejecuta sobre su instancia existente de SugarCRM CE.
+
+. Inicie sesión en su instancia de SugarCRM CE como administrador.
+. Vaya a menu:Administración[Asistente de Actualizaciones].
+. Siga los pasos del asistente, subiendo el archivo ZIP del paquete de migración cuando se le solicite.
+. Complete el asistente. Su instancia estará ahora ejecutando SuiteCRM 7.6.6.
+
+== Pasos posteriores a la migración
+
+. Vaya a menu:Administración[Reparación] y ejecute *Reconstruir Relaciones* y *Reconstruir Extensiones*.
+. Revise sus personalizaciones y vuelva a implementar las que se hayan perdido.
+. Verifique la integridad de los datos — compruebe los módulos clave (Cuentas, Contactos, Oportunidades) para confirmar que están completos.
+. Actualice a la versión actual de SuiteCRM 7 siguiendo la link:../../upgrading[guía de actualización].
+
+{{% notice info %}}
+El paquete de migración lleva su instancia únicamente hasta SuiteCRM 7.6.6. Se recomienda encarecidamente actualizar cuanto antes a la última versión 7.x para beneficiarse de las correcciones de seguridad y del soporte actual.
+{{% /notice %}}

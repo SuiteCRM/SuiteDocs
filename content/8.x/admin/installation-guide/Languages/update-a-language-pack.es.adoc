@@ -1,0 +1,41 @@
+---
+Title: "Actualizar un paquete de idioma"
+Weight: 60
+---
+
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/8.x/admin/install-guide/
+
+{{% notice warning %}}
+Si ya tienes instalada una versión anterior de la traducción, debes eliminar el paquete anterior y subir uno nuevo.
+{{% /notice %}}
+
+En resumen, el proceso para actualizar un paquete de idioma es:
+
+. Desinstalar el paquete de idioma antiguo
+. Ejecutar una reparación y reconstrucción rápida
+. Instalar el nuevo paquete de idioma
+. Ejecutar una reparación y reconstrucción rápida
+
+== Pasos para eliminar el paquete antiguo
+
+. Inicia sesión en inglés
+image:1.png[1.png] +
+. Ve a Admin / Module Loader
+image:2.png[2.png] +
+image:3.png[3.png] +
+. Desinstala el paquete de idioma anterior haciendo clic en btn:[Uninstall] y después en btn:[Proceder]
+image:15.png[15.png] +
+image:16.png[16.png] +
+image:9.png[9.png] +
+. Ve a Admin / Repair / Quick Repair and Rebuild
+image:2.png[2.png] +
+image:10.png[10.png] +
+image:11.png[11.png] +
+. Cierra sesión
+image:13.png[13.png] +
+
+== Pasos para instalar el paquete de idioma actualizado
+
+Simplemente sigue los link:../install-a-new-language/[pasos de instalación] normales.

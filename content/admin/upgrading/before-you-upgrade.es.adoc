@@ -1,0 +1,106 @@
+---
+title: "Antes de Actualizar"
+weight: 10
+---
+:experimental:
+
+Complete todos los puntos de esta página antes de ejecutar una actualización, independientemente del método que utilice.
+
+== 1. Comprobar la matriz de compatibilidad
+
+Confirme que su versión actual de PHP, base de datos y servidor web son compatibles con la versión de destino de SuiteCRM.
+
+link:../../compatibility-matrix[Ver la Matriz de Compatibilidad]
+
+Si su entorno necesita actualizarse, planifique ese trabajo por separado y complételo antes de actualizar SuiteCRM.
+
+== 2. Probar primero en una instancia de desarrollo
+
+Nunca ejecute una actualización directamente en producción. Clone su entorno de producción — archivos y base de datos — a un servidor de desarrollo o de pruebas y complete allí la actualización completa antes de tocar producción.
+
+Esto es especialmente importante si tiene personalizaciones. Consulte link:../large-or-complex-upgrades[Actualizaciones Grandes o Complejas] para obtener una guía completa sobre cómo planificar este proceso.
+
+== 3. Realizar una copia de seguridad de su instancia
+
+Realice una copia de seguridad tanto de sus archivos de SuiteCRM como de su base de datos antes de continuar. Si la actualización falla o causa problemas, una copia de seguridad limpia es la única vía de recuperación fiable.
+
+[source,bash]
+----
+# Ejemplo: copia de seguridad de la base de datos
+mysqldump -u <user> -p <database_name> > suitecrm_backup_$(date +%Y%m%d).sql
+----
+
+Asegúrese de que la copia de seguridad se almacena fuera del directorio raíz de SuiteCRM.
+
+== 4. Descargar el paquete de actualización
+
+Descargue el paquete de actualización adecuado desde la link:https://suitecrm.com/upgrade-suitecrm/[página de descargas de SuiteCRM].
+
+Los paquetes de actualización se nombran con el formato `SuiteCRM-Upgrade-7.x.x-to-7.x.x.zip`. Asegúrese de descargar el paquete correspondiente a su versión de partida exacta.
+
+== 5. Configurar los ajustes de PHP
+
+El proceso de actualización requiere límites de PHP generosos. Actualice su `php.ini` (o la configuración equivalente del servidor) con los siguientes valores mínimos:
+
+[cols="2,1", options="header"]
+|===
+|Ajuste |Valor mínimo
+|`post_max_size` |60M
+|`upload_max_filesize` |60M
+|`max_input_time` |3000
+|`max_execution_time` |6000
+|`memory_limit` |256M
+|===
+
+Reinicie su servidor web tras realizar los cambios para que surtan efecto.
+
+{{% notice info %}}
+Estos ajustes se aplican al **Asistente de Actualizaciones**. Si está utilizando la link:../cli-upgrade[actualización por CLI], los límites de PHP para peticiones web son menos relevantes, pero `memory_limit` sigue aplicándose al proceso de PHP en la CLI.
+{{% /notice %}}
+
+== 6. Configurar los ajustes de subida de SuiteCRM
+
+Si utiliza el Asistente de Actualizaciones, el tamaño máximo de subida también debe aumentarse dentro de SuiteCRM:
+
+. Inicie sesión como Administrador.
+. Vaya a menu:Administración[Configuración del Sistema].
+. En la sección *Avanzado*, establezca *Tamaño Máximo de Subida* en `30000000` (30 MB).
+. Haga clic en *Guardar*.
+
+== 7. Desactivar la caché de opcode
+
+Si su servidor utiliza una caché de opcode (como OPcache o APC), desactívela antes de actualizar. Una caché de opcode obsoleta puede provocar que la aplicación actualizada se comporte de forma imprevisible.
+
+Vuelva a activarla después de completar la actualización y confirmar que la instancia funciona correctamente.
+
+== 8. Comprobar los permisos de archivos
+
+El usuario del servidor web debe tener permisos de escritura sobre el directorio raíz de SuiteCRM y todos sus subdirectorios durante la actualización. El proceso de actualización añade, sustituye y elimina archivos en toda la instalación.
+
+[source,bash]
+----
+# Ejemplo: establecer la propiedad en Linux (ajuste el usuario/grupo según su servidor web)
+chown -R www-data:www-data /path/to/suitecrm
+----
+
+{{% notice warning %}}
+Si ejecuta la actualización por CLI, tenga en cuenta que los archivos creados durante la actualización pertenecerán al usuario que ejecuta el comando — no necesariamente al usuario del servidor web. Consulte link:../cli-upgrade#file-permissions[Actualización por CLI: Permisos de Archivos] para más información.
+{{% /notice %}}
+
+== 9. Verificar que config.php es escribible
+
+El Asistente de Actualizaciones requiere que `config.php`, en el directorio raíz de SuiteCRM, sea escribible por el usuario del servidor web antes de continuar.
+
+== Lista de comprobación resumen
+
+Antes de empezar, confirme:
+
+* [ ] la versión de destino es compatible con su PHP, base de datos y servidor web
+* [ ] se ha probado en una instancia de desarrollo (o esta es la ejecución de desarrollo)
+* [ ] se han respaldado los archivos y la base de datos
+* [ ] se ha descargado el paquete de actualización correcto
+* [ ] se han actualizado los ajustes de PHP y reiniciado el servidor web
+* [ ] el tamaño de subida de SuiteCRM está establecido en 30 MB (solo Asistente)
+* [ ] la caché de opcode está desactivada
+* [ ] el usuario del servidor web tiene acceso de escritura a la raíz de SuiteCRM
+* [ ] `config.php` es escribible (solo Asistente)

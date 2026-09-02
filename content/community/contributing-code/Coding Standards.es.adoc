@@ -1,0 +1,303 @@
+---
+Title: Estándares de Código
+Weight: 50
+---
+
+== Estándares de Código para SuiteCRM
+
+Algunas partes de la estructura de código de SuiteCRM para el marcado PHP son
+inconsistentes en su estilo. SuiteCRM está trabajando para mejorar
+gradualmente esto ayudando a nuestro equipo interno y a los colaboradores a mantener un estilo
+consistente para que el código pueda volverse limpio y fácil de leer de un vistazo. Esta
+será una transición continua, pero animamos a los usuarios a empezar a pensar
+en que sus correcciones de errores y mejoras aportadas se ajusten a los siguientes
+estándares. ¡Te agradecemos tus continuas contribuciones!
+
+== Licencia
+
+Al principio de cada nuevo archivo del *núcleo* incluye la siguiente licencia
+como cabecera estándar
+
+[source]
+/**
+ * SuiteCRM is a customer relationship management program developed by SuiteCRM Ltd.
+ * Copyright (C) 2026 SuiteCRM Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUITECRM, SUITECRM DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+
+
+
+Asegúrate de que la sentencia if para el punto de entrada válido se haya movido
+*debajo* de la licencia.
+
+[source, php]
+if (!defined('sugarEntry') || !sugarEntry) {
+   die('Not A Valid Entry Point');
+}
+
+
+
+== Indentación
+
+Usando la indentación https://www.php-fig.org/psr/psr-2/#24-indenting[PSR-2].
+
+El código DEBE usar una indentación de *4 espacios*, y NO DEBE usar tabuladores para
+indentar.
+
+Los archivos JavaScript deben indentarse usando *2 espacios*.
+
+== Nombres de Clases
+
+Los nombres de clases deben usar 'StudlyCaps', p. ej. ClassName, DoSomething.. Las clases
+deben nombrarse de forma relevante a su Entidad.
+
+.Ejemplo
+[source, php]
+----
+class YoungInfant extends Person
+{
+
+}
+----
+
+== Nombres de Funciones
+
+Los nombres de funciones deben usar lower camelCase, p. ej. functionName,
+doSomething. Las funciones también deben nombrarse de forma descriptiva,
+preferiblemente con un verbo en ellas.
+
+.Ejemplo
+[source, php]
+function printLoginStatus($user, $time)
+{
+    // Do Something
+}
+
+
+En los argumentos de las funciones, las variables deben ser descriptivas de su
+uso.
+
+== Variables
+
+Las variables estáticas y de miembro deben usar lower camelCase y no
+abreviar los nombres de variables innecesariamente.
+
+.Ejemplo
+[source, php]
+----
+public static $jobStrings;
+
+var $disableRowLevelSecurity = true;
+----
+
+Asegúrate también de comprobar si las variables no inicializadas están definidas usando la función
+integrada `isset()`.
+
+.Ejemplo
+[source, php]
+if (isset($forum))
+
+== Comillas
+
+Usa comillas simples y dobles según corresponda. Si no estás evaluando
+nada dentro de la cadena, usa comillas simples. No debería ser necesario
+escapar nunca las comillas dentro de una cadena.
+
+.Ejemplo
+[source, php]
+$sample = 'Hello';
+$sample = "Hello, $name";
+$sample = "Hello, \{$name}";
+
+== Arrays
+
+Al declarar arrays indexados con la función Array, debe añadirse un espacio
+final después de cada coma delimitadora para mejorar la legibilidad.
+
+.Ejemplo
+[source,php]
+$sampleArray = [1, 2, 3, 'Zend', 'Studio'];
+
+Al declarar un array indexado multilínea, el
+elemento inicial del array puede comenzar en la línea siguiente. Si es así, debe
+tener una sangría de un nivel mayor que la línea que contiene la declaración del array,
+y todas las líneas siguientes deben tener la misma sangría; el paréntesis
+de cierre debe estar en una línea propia, al mismo nivel de sangría
+que la línea que contiene la declaración del array.
+
+.Ejemplo
+[source,php]
+$sampleArray = [
+   1, 2, 3, 'Zend', 'Studio',
+   $a, $b, $c,
+   56.44, $d, 500,
+];
+
+Al declarar arrays asociativos, el elemento inicial del array puede
+comenzar en la línea siguiente. Si es así, debe tener una sangría de un nivel
+mayor que la línea que contiene la declaración del array,
+y todas las líneas siguientes deben tener la misma sangría; el paréntesis
+de cierre debe estar en una línea propia, al mismo nivel de sangría
+que la línea que contiene la declaración del array. Para
+mejorar la legibilidad, los operadores de asignación `=>` deben alinearse
+mediante espacios.
+
+.Ejemplo
+[source, php]
+$sampleArray = [
+   'firstKey'  => 'firstValue',
+   'secondKey' => 'secondValue',
+];
+
+== Estilo de Llaves
+
+*Incluye siempre las llaves*: Aunque no sean obligatorias, mantén las
+llaves para aportar claridad al código.
+
+.Incorrecto
+[source, php]
+----
+if (condition) do_stuff();
+
+if (condition)
+   do_stuff();
+----
+
+
+.Correcto
+[source, php]
+----
+if (condition)
+{
+   do_stuff();
+}
+
+if ($a !== 2) {
+   $a = 2;
+} elseif ($a === 3) {
+   $a = 4;
+} else {
+   $a = 7;
+}
+----
+
+La llave de apertura en clases, funciones y nombres de métodos debe estar en la línea
+siguiente a la declaración, y la llave de cierre en una línea propia.
+
+.Ejemplo
+[source, php]
+----
+class ThisClass
+{
+   public function newMethod()
+   {
+
+   }
+}
+
+function newFunction()
+{
+
+}
+----
+
+== Comentarios
+
+Usa la sintaxis https://phpdoc.org/[phpdoc] antes de todas las
+definiciones de clases/métodos/miembros/funciones. Puedes configurar una plantilla
+sencilla en tu IDE.
+
+* Todas las definiciones de clase deben tener al menos `@author` y `@package`, con
+`@author` en la última línea del bloque de comentario
+* Comienza siempre los comentarios de bloque que contienen phpdoc con dos asteriscos
+(`/** ... */`)
+* Los comentarios simples deben empezar con un espacio, seguido de una letra
+mayúscula, sin necesidad de punto final `// This is an example`
+
+A menudo, comenta cualquier código complicado, oscuro o de otro modo no
+inmediatamente obvio, para incluir cualquier suposición que haga tu código, o
+las condiciones previas para su correcto funcionamiento. Un desarrollador debería poder
+mirar cualquier parte de la aplicación y entender razonablemente bien lo que
+está ocurriendo en un tiempo razonable.
+
+.Ejemplo
+[source, php]
+----
+/**
+* The method's summary
+*
+* This method's short description which can span
+* along multiple lines – also provide context
+* to the method.
+*
+* @param string $variable with a description of this argument
+* @return void
+*/
+public function myMethod($variable)
+{
+   // Do something here
+}
+----
+
+== Directrices Generales
+
+Cualquier clase nueva (incluidas las clases en archivos generados) debe usar el
+constructor `__construct`, pero solo cuando se requiera un constructor.
+
+.Ejemplo:
+[source, php]
+public function __construct()
+{
+   // Do child class specific code here
+   parent::__construct();
+}
+
+{{% notice warning %}}
+Asegúrate de que tu código sea compatible con los Sistemas Operativos, Bases de Datos y versiones de PHP
+y Navegadores actualmente soportados: consulta nuestra link:/admin/compatibility-matrix[Matriz de Compatibilidad].
+{{% /notice %}}
+
+== Mantenimiento
+
+Si incluyes archivos JavaScript, debe usarse una versión minificada en el
+núcleo, con una versión sin minificar añadida al directorio equivalente
+dentro de la carpeta `jssource`. Cualquier modificación a los archivos JavaScript debe
+hacerse en la carpeta `jssource` y luego minificarse hacia el núcleo.
+
+Si incluyes cambios de tema, debe proporcionarse una versión minificada del CSS.
+ Consulta la https://docs.suitecrm.com/developer/theme/sass/[Guía de SASS] para más detalles.
+
+Si desarrollas una nueva función del núcleo, no crees archivos dentro del directorio
+custom y asegúrate de que el nombre del nuevo módulo sea sensato y relevante,
+sin prefijos.
+
+Si añades un nuevo módulo, limpia los archivos generados de modo que solo se usen los
+archivos necesarios. Los siguientes son ejemplos (aunque no se limitan a estos) de
+cómo ordenar el directorio/archivos de un módulo.
+
+* Elimina `studio.php` si no debe estar en studio
+* Elimina la clase `_sugar` del archivo de clase principal si no es asignable
+* o en grupos de seguridad, elimina la opción de los vardefs y elimina
+
+ // to ensure that modules created and deployed under CE will continue to function under team security if the instance is upgraded to PRO

@@ -1,0 +1,117 @@
+---
+Title: Sincronización de calendario
+Weight: 80
+---
+
+:imagesdir: /images/en/admin/calendar-sync
+
+:toc:
+
+== Qué es la sincronización de calendario
+
+La sincronización de calendario de SuiteCRM permite la sincronización bidireccional entre sus reuniones de SuiteCRM y sistemas de calendario externos. Los cambios realizados en cualquiera de los dos sistemas se reflejan en ambos: cuando actualiza una reunión en SuiteCRM, esta se sincroniza con su calendario externo, y viceversa.
+
+La sincronización de calendario admite varios proveedores, entre ellos Google Calendar y servidores CalDAV, con una arquitectura extensible para futuros proveedores.
+
+Los datos fluyen directamente entre su instancia de SuiteCRM y los servidores del proveedor de calendario, sin servicios intermediarios.
+
+== Inicio rápido
+
+Ponga en marcha la sincronización de calendario en 5 pasos:
+
+1. **Configurar el proveedor de OAuth** (solo para Google Calendar): navegue hasta *Administration* > *External OAuth Providers* y cree un proveedor de OAuth de Google con sus credenciales de API
+2. **Habilitar el Scheduler**: asegúrese de que el scheduler (tarea cron) de SuiteCRM se está ejecutando; consulte link:/admin/administration-panel/system#_scheduler[Configuración del Scheduler]
+3. **Activar la tarea de sincronización**: vaya a *Administration* > *Scheduler*, busque *Calendar Accounts Sync* y establézcala como Active
+4. **Crear una cuenta de calendario**: navegue hasta el módulo *Calendar Accounts*, cree una nueva cuenta, seleccione su proveedor y autentíquese
+5. **Probar la conexión**: haga clic en *Test Connection* para verificar la configuración y, a continuación, en *Sync Now* para activar la sincronización inicial
+
+== Características principales
+
+* **Compatibilidad con varios proveedores**: conéctese a Google Calendar, servidores CalDAV, y arquitectura extensible para futuros proveedores
+* **Sincronización bidireccional**: los cambios se sincronizan en ambos sentidos entre SuiteCRM y los calendarios externos
+* **Configuración por usuario**: cada usuario gestiona sus propias conexiones de calendario
+* **Resolución de conflictos**: estrategias configurables para cuando el mismo evento se modifica en ambos sistemas
+* **Programación flexible**: la sincronización automática se ejecuta según una programación configurable
+* **Sincronización manual**: active la sincronización inmediata cuando sea necesario
+
+== Requisitos
+
+Antes de configurar la sincronización de calendario, asegúrese de disponer de lo siguiente:
+
+=== El Scheduler en ejecución
+
+El scheduler (tarea cron) de SuiteCRM debe estar en ejecución para la sincronización automática. Sin él, solo es posible la sincronización manual. Consulte link:/admin/administration-panel/system#_scheduler[Configuración del Scheduler] para obtener instrucciones de configuración.
+
+=== Credenciales válidas
+
+**Para Google Calendar (OAuth2):**
+
+* Credenciales de https://console.developers.google.com/[Google Developer Console]
+* Un External OAuth Provider configurado en *Administration* > *External OAuth Providers*
+* Una External OAuth Connection creada por el usuario a través de *Profile* > *External OAuth Connection*
+* Autorización del usuario a través del módulo Calendar Account (en el menú lateral del perfil del usuario o accesible desde el menú de navegación)
+
+**Para servidores CalDAV (autenticación básica):**
+
+* La URL de CalDAV del calendario específico que desea sincronizar
+* Credenciales de usuario y contraseña válidas
+* No se requiere configuración de OAuth
+
+== Próximos pasos
+
+Elija su ruta en función de su rol y sus necesidades:
+
+=== Administrador que realiza la configuración por primera vez
+
+Comience con la link:/admin/administration-panel/calendar-sync/admin-setup[Guía de configuración para administradores] para:
+
+* Configurar los ajustes globales de sincronización
+* Configurar el scheduler y la frecuencia de sincronización
+* Configurar las opciones de rendimiento y limitación
+* Comprender las estrategias de resolución de conflictos
+* Habilitar o deshabilitar los logic hooks
+
+=== Usuario que conecta un calendario
+
+Consulte la link:/user/integrations/calendar-sync[Guía de usuario] para:
+
+* Crear y configurar su cuenta de calendario
+* Autenticarse con Google Calendar o CalDAV
+* Probar su conexión
+* Activar la sincronización manual
+* Ver las reuniones sincronizadas
+
+=== Necesita configurar CalDAV
+
+Consulte la link:/user/integrations/caldav-guide[Guía del proveedor CalDAV] para:
+
+* Encontrar su URL de CalDAV para varios proveedores
+* Autenticación y credenciales de CalDAV
+* Probar conexiones CalDAV
+* Solucionar problemas específicos de CalDAV
+
+=== Comprender cómo funciona la sincronización / Solucionar problemas
+
+Consulte link:/admin/administration-panel/calendar-sync/understanding-sync-troubleshooting[Comprender la sincronización y solución de problemas] para:
+
+* Cómo funciona la sincronización (fases de descubrimiento, comparación y resolución)
+* Qué datos se sincronizan
+* Dirección de la sincronización y comportamiento de eliminación
+* Referencia de mensajes de error
+* Problemas comunes y soluciones
+* Registro y diagnóstico
+
+=== Migrar desde la sincronización de Google heredada
+
+Consulte link:/admin/administration-panel/calendar-sync/advanced-migration[Temas avanzados y migración] para:
+
+* Diferencias clave entre la sincronización de calendario heredada y la nueva
+* Proceso de migración automática
+* Pasos de migración manual
+* Referencia completa de configuración
+* Consideraciones de seguridad
+* Ejemplos de configuración avanzada
+
+{{% notice note %}}
+La sincronización de calendario reemplaza a la sincronización heredada de Google Calendar disponible en SuiteCRM 7.11+. Si está actualizando, consulte link:/admin/administration-panel/calendar-sync/advanced-migration[Temas avanzados y migración] para obtener información sobre la migración.
+{{% /notice %}}

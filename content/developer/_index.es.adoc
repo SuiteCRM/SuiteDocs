@@ -1,9 +1,0 @@
----
-title: "Guía del Desarollador"
-weight: 20
-pre: "<b>2. </b>"
----
-
-=== Contenidos
-
-{{% children depth="1" showhidden="false" %}}

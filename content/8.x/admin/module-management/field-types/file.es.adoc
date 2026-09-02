@@ -1,0 +1,78 @@
+---
+title: "Campo Archivo"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/admin/module-management/field-types
+
+= Campo Archivo
+
+== Descripción general
+
+El campo Archivo te permite adjuntar archivos a los registros que pueden subirse directamente desde tu dispositivo.
+Este tipo de campo es útil para añadir documentos, hojas de cálculo, PDF o cualquier otro contenido basado en archivos a tus registros del CRM.
+
+=== Añadir un campo Archivo
+
+Los campos de tipo Archivo se pueden añadir a los módulos a través de Studio, en el panel de administración.
+
+**Para añadir un campo Archivo:**
+
+. Ve al panel de administración
+. Haz clic en *Studio*
+. Selecciona el módulo al que quieres añadir el campo de archivo
+. Haz clic en *Fields*
+. Haz clic en *Add Field*
+. Selecciona *File* en el desplegable de tipo de dato
+. Configura los ajustes del campo (consulta Opciones de configuración a continuación)
+. Haz clic en *Save*
+
+image:add-file-field-studio.png[Añadir un campo Archivo en Studio]
+
+*Una vez guardado, deberás añadir el campo a las vistas correspondientes (por ejemplo, la Vista Detalle o la Vista de Lista) para que sea visible en el módulo.*
+
+==== Opciones de configuración
+
+Al crear o editar un campo Archivo en Studio, algunas de las opciones de configuración más importantes son:
+
+[cols="1,3", options="header"]
+|===
+|Opción |Descripción
+|*Field Name* |El nombre interno del campo. Se utiliza en la base de datos y en el código para hacer referencia al campo.
+|*Display Label* |El nombre visible del campo que se mostrará en las vistas y formularios.
+|*Storage Type* a|Determina dónde y cómo se almacenan los archivos subidos:
+
+* Private Documents
+* Public Documents
+* Archived Documents
+Para más información sobre las diferencias entre estos tipos de almacenamiento, consulta link:../../../../admin/configuration/file-storage/file-storage-configuration[Tipos de almacenamiento].
+|*Max Size (Bytes)* a|Especifica el tamaño máximo de archivo (en bytes) permitido para los archivos subidos.
+
+Esto ayuda a evitar que se suban archivos excesivamente grandes. Si no se especifica ningún valor, el límite se toma de la opción de configuración upload_maxsize.
+|*Required Field*
+|Cuando está activado, hace que el campo de imagen sea obligatorio, exigiendo a los usuarios que suban una imagen antes de guardar el registro.
+|===
+
+=== Subir archivos
+
+image:file-upload-area.png[Área de subida de archivos]
+
+Para subir un archivo a un campo Archivo, arrastra y suelta un archivo sobre el área de subida, o haz clic en el área de subida para abrir un explorador de archivos y seleccionar un archivo desde tu dispositivo. Una vez subido, el archivo quedará adjunto al registro.
+
+=== Ver archivos
+
+Al visualizar un archivo en un registro o listado, el nombre del archivo se mostrará como un enlace.
+Haz clic en el enlace del nombre del archivo para descargarlo directamente a tu dispositivo.
+
+=== Sustituir o eliminar archivos
+
+Para eliminar o sustituir un archivo existente en un campo Archivo, mientras estás en modo edición, haz clic en el icono X que aparece sobre el archivo actual para eliminarlo.
+Una vez eliminado el archivo, volverá a aparecer el área de subida, lo que te permitirá subir un nuevo archivo en su lugar.
+
+=== Tipos de archivo válidos
+
+Por defecto, ciertas extensiones de archivo están restringidas para subirse, según el ajuste de configuración `upload_badext` (que se encuentra en `config.php`).
+
+Si intentas subir un archivo con una extensión incluida en la configuración upload_badext, la subida se bloqueará y recibirás un mensaje de error.
+
+image:invalid-file-type.png[Error de tipo de archivo no válido]

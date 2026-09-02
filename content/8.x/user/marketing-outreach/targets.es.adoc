@@ -1,0 +1,33 @@
+---
+title: "Público Objetivo"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/user/marketing-outreach/targets
+
+= Público Objetivo
+
+Los registros de Público Objetivo son personas utilizadas como destinatarios de campañas de marketing cuando su organización dispone de información limitada sobre ellas — normalmente obtenida de listas de correo compradas o recopilada en ferias comerciales. A diferencia de los Clientes Potenciales y los Contactos, el Público Objetivo no se rastrea en profundidad y puede reutilizarse en distintas campañas o eliminarse sin afectar al resto de los datos del CRM.
+
+== Campos Clave
+
+* *Nombre / Apellidos*: el nombre del objetivo.
+* *Nombre de la Cuenta*: la empresa para la que trabaja el objetivo. Este es un campo de texto simple, no una relación con un registro de Cuenta.
+* *Puesto de Trabajo / Departamento*: el cargo del objetivo dentro de su organización.
+* *Dirección de Email*: la dirección de correo principal utilizada para el envío de la campaña.
+* *No Llamar / Rehusar Email*: indicadores de cumplimiento que impiden que se contacte con el objetivo por teléfono o por correo electrónico.
+* *Primer Medio de Contacto*: cómo se obtuvo el objetivo: Exposición, Lista Comprada, Sitio Web, etc.
+* *Campaña*: la campaña a la que está asociado este objetivo.
+* *Clave de Rastreo*: un identificador generado automáticamente que utiliza internamente el motor de campañas para atribuir aperturas, clics y otras respuestas a este objetivo.
+
+== Relaciones
+
+Los registros de Público Objetivo pueden añadirse a link:../target-lists[Listas de Público Objetivo], que a su vez se asocian a Campañas. Desde la Vista Detallada de un registro de Público Objetivo puede consultar la actividad y el historial de campañas relacionados en sus subpaneles.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, detección de duplicados e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].
+
+{{% notice tip %}}
+Al importar registros de Público Objetivo, en el paso final del Asistente de Importación se le ofrecerá la opción de añadir todos los registros importados a una Lista de Público Objetivo de su elección.
+{{% /notice %}}

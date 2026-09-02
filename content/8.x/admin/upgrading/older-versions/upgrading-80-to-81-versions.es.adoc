@@ -1,0 +1,41 @@
+---
+Title: Actualización de SuiteCRM 8.0.x a versiones 8.1.x
+weight: 30
+---
+
+{{% notice note %}}
+Esta sección solo se aplica a versiones superiores a 8.0.0-rc hasta 8.1.x
+{{% /notice %}}
+
+
+== 1. Descargue el paquete de la nueva versión
+
+{{% notice info %}}
+Para actualizar entre versiones de SuiteCRM 8.x no existen paquetes específicos de actualización. La actualización se realiza utilizando el paquete de instalación de la versión a la que queremos actualizar.
+{{% /notice %}}
+
+*1.1.* Cree la siguiente carpeta en su instancia actual:
+
+* `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
+
+*1.2.* Descargue el paquete instalable de la versión de destino de SuiteCRM 8 desde https://suitecrm.com/download/
+
+*1.3.* Coloque el paquete en la carpeta `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
+
+== 2. Vuelva a establecer los permisos correctos.
+
+== 3. Ejecute el comando de actualización
+
+*3.1.* En la raíz de su instancia de SuiteCRM 8 ejecute: `./bin/console suitecrm:app:upgrade -t "<version>"`,
+donde `<version>` es el nombre del paquete de SuiteCRM 8 que ha descargado, es decir, `SuiteCRM-8.1.2`:
+
+[source, bash]
+----
+./bin/console suitecrm:app:upgrade -t SuiteCRM-8.1.2
+----
+
+*3.2.* Vuelva a establecer los permisos correctos
+
+== 4. Abra su instancia
+
+Si todos los pasos anteriores se completaron como se esperaba, debería poder iniciar sesión en su instancia.

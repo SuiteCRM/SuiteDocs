@@ -1,0 +1,1215 @@
+---
+title: Campos Calculados de Flujo de Trabajo
+weight: 245
+aliases:
+  - /es/user/advanced-modules/workflow-calculated-fields
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+:toclevels: 4
+
+= Campos Calculados
+
+En Workflows, existe una link:../workflow/#_actions[Action] particularmente potente y compleja
+llamada *Calculated Fields* que le permite realizar operaciones sobre los valores de los registros que está gestionando.
+
+image:216Calculate_fields.png[title="Calculate Fields"]
+
+== Añadir parámetros
+
+Es posible añadir parámetros a las fórmulas utilizando la lista desplegable
+de la sección Parameters de la interfaz de usuario de Calculate Fields. La
+lista desplegable contiene todos los campos (básicos y personalizados) que pertenecen
+al módulo seleccionado en la sección de campos básicos.
+
+Para añadir un parámetro, seleccione el campo en la lista desplegable y haga clic en btn:[Add parameter]. Tras esta acción, aparece una nueva línea en la
+tabla de parámetros con el nombre del campo y el identificador asignado.
+
+Para algunos campos (listas desplegables y de selección múltiple) aparece
+una lista desplegable adicional donde el usuario puede seleccionar si debe usarse
+el valor sin procesar o el valor formateado en Calculated Fields. El formato sin procesar es el valor
+almacenado en la base de datos, y el valor formateado es la etiqueta
+correspondiente a ese valor de la base de datos.
+
+Para eliminar un parámetro de la tabla, simplemente haga clic en el btn:[-]
+en la fila del parámetro. Tenga en cuenta que si elimina un parámetro,
+se recalculan todos los identificadores, por lo que los identificadores de los campos
+podrían cambiar.
+
+image:217Add_parameter.png[title="Añadir parámetros"]
+
+El identificador se utiliza para hacer referencia a este campo cuando el usuario crea la
+fórmula. Por ejemplo, todas las apariciones del identificador
+{P0} serán
+sustituidas por el nombre de la Cuenta en la fórmula. Todos los parámetros tienen la forma
+{Px}, donde x es el orden secuencial del parámetro. La cantidad de
+parámetros no está limitada.
+
+== Añadir parámetros de relación
+
+Los parámetros de relación son muy similares a los parámetros normales; la única
+diferencia es que el usuario selecciona primero una entidad que tiene una
+relación uno a uno o uno a muchos con la entidad actual.
+
+Para añadir un parámetro de relación, seleccione primero la relación y luego seleccione
+el campo de la entidad conectada y pulse el botón Add relation parameter.
+Tras esta acción, aparece una nueva línea en la tabla de parámetros de relación
+con el nombre de la relación, el nombre del campo y el
+identificador asignado.
+
+Al igual que con los parámetros normales, para algunos campos de parámetro de relación (listas desplegables y
+de selección múltiple) aparece una lista desplegable adicional donde el usuario puede seleccionar
+si debe usarse el valor sin procesar o el valor formateado en Calculate Fields.
+
+Para eliminar un parámetro de relación de la tabla, simplemente haga clic en el botón btn:[-]
+en la fila del parámetro de relación. Tenga en cuenta que si
+elimina un parámetro de relación, se recalculan todos los identificadores, por lo que
+los identificadores de los campos podrían cambiar.
+
+image:128Adding_relation_parameter.png[title="Parámetros de relación"]
+
+El identificador se utiliza para hacer referencia a este campo cuando el usuario crea la
+fórmula. Por ejemplo, todas las apariciones del identificador {R0} serán
+sustituidas por el nombre de usuario del creador en la fórmula. Todos los parámetros
+de relación tienen la forma {Rx}, donde x es el orden secuencial del
+parámetro de relación. La cantidad de parámetros de relación no está
+limitada.
+
+== Crear una fórmula para un campo
+
+En la parte de Formulas de la interfaz de usuario, el usuario puede añadir fórmulas para
+campos de la entidad actual.
+
+Para añadir una fórmula, seleccione primero un campo en la lista desplegable y luego pulse
+el botón Add formula. Tras esta acción, aparece una nueva línea en la
+tabla de fórmulas con el nombre del campo y el espacio para la
+fórmula.
+
+Para eliminar una fórmula de la tabla, simplemente haga clic en el btn:[-] en
+la fila de la fórmula.
+
+image:129Add_formula.png[title="Añadir fórmula"]
+
+La fórmula es un cuadro de texto donde el usuario puede escribir las fórmulas. El
+módulo evalúa la fórmula en el momento indicado (al guardar, al ejecutarse el
+programador, o en ambos casos) y rellena el campo seleccionado con el valor evaluado.
+
+La fórmula puede contener cualquier texto (con soporte completo de UTF-8), pero solo se
+evalúan las partes de función (funciones con parámetros entre "{" y "}"). Por ejemplo, y con los parámetros añadidos en las secciones
+anteriores, si rellenamos la fórmula así: Account {P0} created by user
+name {R0}, entonces el campo de descripción tendrá el siguiente valor
+tras guardar: Account My Account created by user name MyUser (suponiendo que
+el nombre de la cuenta es My Account y el nombre de usuario del creador es MyUser).
+
+Calculate Fields dispone de muchas funciones integradas que permiten al usuario
+crear fórmulas complejas para lograr diversos objetivos. Estas funciones se
+describen en la siguiente sección.
+
+== Funciones disponibles
+
+Como se ha mencionado anteriormente, todas las funciones van envueltas entre los signos `{`
+y `}`, y tienen el aspecto `{functionName(parameter1; parameter2;
+…)}`. El número de parámetros varía según la función. El
+módulo evalúa las funciones y las sustituye por su resultado en la fórmula.
+
+Las funciones pueden anidarse unas dentro de otras (utilizando el resultado de una
+función como parámetro de otra) como en este ejemplo:
+
+ {power({subtract({divide({add({multiply(10; 2)}; 12)}; 8)}; 1)}; 2)}
+
+Esta función es la representación formalizada de la siguiente expresión
+matemática:
+
+ ((((10 * 2) + 12) / 8) – 1)2
+
+Las funciones se dividen en seis grupos. Estos grupos se describen en
+la siguiente sección del documento.
+
+=== Funciones lógicas
+
+Las funciones lógicas devuelven verdadero o falso en forma de 1 y 0, de modo que los
+campos de tipo casilla de verificación pueden rellenarse con estas funciones. También pueden
+utilizarse como condición lógica para la función ifThenElse.
+
+==== equal
+
+[cols="30,50", width="80%"]
+|================================
+
+|*Signature* |{equal(parameter1;parameter2)}
+
+.2+|*Parameters* |parameter1: puede ser cualquier valor de cualquier tipo |parameter2: puede ser cualquier valor de cualquier tipo
+
+|*Description* |Determina si *parameter1* es igual a *parameter2*
+
+|*Returns* |1 si los dos parámetros son iguales, o 0 si no lo son
+
+|*Example call* |{equal(1; 2)} devuelve 0
+|================================
+
+==== notEqual
+
+[cols="30,50", width="80%"]
+|==================================
+
+|*Signature* |{notEqual(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: puede ser cualquier valor de cualquier tipo |parameter2: puede ser cualquier valor de cualquier tipo
+
+|*Description* |Determina si *parameter1* no es igual a *parameter2*
+
+|*Returns* |0 si los dos parámetros son iguales, o 1 si no lo son
+
+|*Example call* |{notEqual(1; 2)} devuelve 1
+|==================================
+
+==== greaterThan
+
+[cols="30,50", width="80%"]
+|=================================
+
+|*Signature* |{greaterThan(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: puede ser cualquier valor de cualquier tipo |parameter2: puede ser cualquier valor de cualquier tipo
+
+|*Description* |Determina si *parameter1* es mayor que *parameter2*
+
+|*Returns* |1 si *parameter1* es mayor que *parameter2*, 0 si no lo es
+
+|*Example call* |{greaterThan(3; 3)} devuelve 0
+|=================================
+
+==== greaterThanOrEqual
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{greaterThanOrEqual(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: puede ser cualquier valor de cualquier tipo |parameter2: puede ser cualquier valor de cualquier tipo
+
+|*Description* |Determina si *parameter1* es mayor o igual
+que *parameter2*
+
+|*Returns* |1 si *parameter1* es mayor o igual que *parameter2*, 0 si no lo es
+
+|*Example call* |{greaterThanOrEqual(3; 3)} devuelve 1
+|====================================
+
+==== lessThan
+
+[cols="30,50", width="80%"]
+|===============================
+
+|*Signature* |{lessThan(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: puede ser cualquier valor de cualquier tipo |parameter2: puede ser cualquier valor de cualquier tipo
+
+|*Description* |Determina si *parameter1* es menor que *parameter2*
+
+|*Returns* |1 si *parameter1* es menor que *parameter2*, 0 si no lo es
+
+|*Example call* |{lessThan(3; 3)} devuelve 0
+|===============================
+
+==== lessThanOrEqual
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{lessThanOrEqual(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: puede ser cualquier valor de cualquier tipo |parameter2: puede ser cualquier valor de cualquier tipo
+
+|*Description* |Determina si *parameter1* es menor o igual que *parameter2*
+
+|*Returns* |1 si *parameter1* es menor o igual que *parameter2*, 0 si no lo es
+
+|*Example call* |{lessThanOrEqual(3; 3)} devuelve 1
+|====================================
+
+==== empty
+
+[cols="30,50", width="80%"]
+|========================
+
+|*Signature* |{empty(parameter)}
+
+|*Parameters* |parameter: valor de texto
+
+|*Description* |Determina si *parameter* está vacío
+
+|*Returns* |1 si *parameter* está vacío, 0 si no lo está
+
+|*Example call* |{empty(any text)} devuelve 0
+|========================
+
+==== notEmpty
+
+[cols="30,50", width="80%"]
+|==========================
+
+|*Signature* |{notEmpty(parameter)}
+
+|*Parameters* |parameter: valor de texto
+
+|*Description* |Determina si *parameter* no está vacío
+
+|*Returns* |1 si *parameter* no está vacío, 0 si está vacío
+
+|*Example call* |{notEmpty(any text)} devuelve 1
+|==========================
+
+==== not
+
+[cols="30,50", width="80%"]
+|=============================
+
+|*Signature* |{not(parameter)}
+
+|*Parameters* |parameter: valor lógico
+
+|*Description* |Niega el valor lógico de *parameter*
+
+|*Returns* |1 si *parameter* es 0, 0 si *parameter* es 1
+
+|*Example call* |{not(0)} devuelve 1
+|=============================
+
+==== and
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{and(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor lógico |parameter2: valor lógico
+
+|*Description* |Aplica el operador lógico AND a dos valores lógicos
+
+|*Returns* |1 si *parameter1* y *parameter2* son 1, 0 si alguno de los parámetros
+es 0
+
+|*Example call* |{and(1; 0)} devuelve 0
+|====================================
+
+==== or
+
+[cols="30,50", width="80%""]
+|====================================
+
+|*Signature* |{or(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor lógico |parameter2: valor lógico
+
+|*Description* |Aplica el operador lógico OR a dos valores lógicos
+
+|*Returns* |1 si *parameter1* u *parameter2* es 1, 0 si ambos parámetros
+son 0
+
+|*Example call* |{or(1; 0)} devuelve 1
+|====================================
+
+=== Funciones de texto
+
+Las funciones de texto se utilizan para manipular texto de varias formas. Todas las
+funciones aquí listadas son totalmente compatibles con textos en UTF-8, por lo que los caracteres
+especiales no deberían plantear ningún problema.
+
+==== substring
+
+[cols="30,70",]
+|====================================
+
+|*Signature* |{substring(text; start; length)}
+
+.3+|*Parameters* |text: valor de texto |start: valor decimal |length [parámetro opcional]: valor decimal
+
+|*Description* |Extrae la subcadena de un campo de texto a partir de *start*. Si el
+parámetro opcional *length* no se establece, se cortan todos los caracteres
+hasta el final de la cadena; en caso contrario se corta la *length*
+indicada. La indexación de los caracteres de un texto empieza en 0.
+
+|*Returns* |Subcadena del texto indicado
+
+.2+|*Example call* |{substring(This is my text; 5)} devuelve is my text |{substring(This is my text; 5; 5)} devuelve is my
+|====================================
+
+==== length
+
+[cols="30,50", width="80%"]
+|========================
+
+|*Signature* |{length(parameter)}
+
+|*Parameters* |parameter: valor de texto
+
+|*Description* |Cuenta los caracteres de un texto.
+
+|*Returns* |El número de caracteres del texto.
+
+|*Example call* |{length(sample text)} devuelve 11
+|========================
+
+==== replace
+
+[cols="30,50", width="80%"]
+|====================================
+
+|Signature |{replace(search; replace; subject)}
+
+.3+|Parameters |search: valor de texto |replace: valor de texto |subject: valor de texto
+
+|Description |Sustituye todas las apariciones de *search* por *replace* en el
+texto *subject*.
+
+|Returns |*subject* con los valores sustituidos.
+
+|Example call |{replace(apple; orange; This is an apple tree)} devuelve
+This is an orange tree
+|====================================
+
+==== position
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{position(subject; search)}
+
+.2+|*Parameters* |subject: valor de texto |search: valor de texto
+
+|*Description* |Encuentra la posición de la primera aparición de *search* en
+*subject*
+
+|*Returns* |Posición numérica de *search* en *subject*, o -1 si *search*
+no está presente en *subject*
+
+|*Example call* |{position(Where is my text?; text)} devuelve 12
+|====================================
+
+==== lowercase
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{lowercase(parameter)}
+
+|*Parameters* |parameter: valor de texto
+
+|*Description* |Convierte el texto a minúsculas
+
+|*Returns* |El texto en minúsculas.
+
+|*Example call* |{lowercase(ThIs iS a sAmPlE tExT)} devuelve this is a
+sample text
+|====================================
+
+==== uppercase
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{uppercase(parameter)}
+
+|*Parameters* |parameter: valor de texto
+
+|*Description* |Convierte el texto a mayúsculas
+
+|*Returns* |El texto en mayúsculas.
+
+|*Example call* |{uppercase(ThIs iS a sAmPlE tExT)} devuelve THIS IS A
+SAMPLE TEXT
+|====================================
+
+=== Funciones matemáticas
+
+Las funciones matemáticas se utilizan para manipular números de varias formas.
+Varios operadores matemáticos están implementados como funciones en Calculate
+Fields.
+
+==== add
+
+[cols="30,50", width="80%"]
+|=========================
+
+|*Signature* |{add(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor numérico |parameter2: valor numérico
+
+|*Description* |Suma *parameter1* y *parameter2*
+
+|*Returns* |La suma de *parameter1* y *parameter2*
+
+|*Example call* |{add(3.12; 4.83)} devuelve 7.95
+|=========================
+
+==== subtract
+
+[cols="30,50", width="80%"]
+|=============================
+
+|*Signature* |{subtract(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor numérico |parameter2: valor numérico
+
+|*Description* |Resta *parameter2* de *parameter1*
+
+|*Returns* |La diferencia entre *parameter2* y *parameter1*
+
+|*Example call* |{subtract(8; 3)} devuelve 5
+|=============================
+
+==== multiply
+
+[cols="30,50", width="80%""]
+|===========================
+
+|*Signature* |{multiply(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor numérico |parameter2: valor numérico
+
+|*Description* |Multiplica *parameter1* y *parameter2*
+
+|*Returns* |El producto de *parameter1* y *parameter2*
+
+|*Example call* |{multiply(2; 4)} devuelve 8
+|===========================
+
+==== divide
+
+[cols="30,50", width="80%"]
+|===========================
+
+|*Signature* |{divide(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor numérico |parameter2: valor numérico
+
+|*Description* |Divide *parameter2* entre *parameter1*
+
+|*Returns* |El resultado de la división de *parameter2* entre *parameter1*
+
+|*Example call* |{divide(8; 2)} devuelve 4
+|===========================
+
+==== power
+
+[cols="30,50", width="80%"]
+|===============================
+
+|*Signature* |{power(parameter1; parameter2)}
+
+.2+|*Parameters* |parameter1: valor numérico |parameter2: valor numérico
+
+|*Description* |Eleva *parameter1* a la potencia de *parameter2*
+
+|*Returns* |*parameter1* elevado a la potencia de *parameter2*
+
+|*Example call* |{power(2; 7)} devuelve 128
+|===============================
+
+==== squareRoot
+
+[cols="30,50", width="80%"]
+|===========================
+
+|*Signature* |{squareRoot(parameter)}
+
+|*Parameters* |parameter: valor numérico
+
+|*Description* |Calcula la raíz cuadrada de *parameter*
+
+|*Returns* |La raíz cuadrada de *parameter*
+
+|*Example call* |{squareRoot(4)} devuelve 2
+|===========================
+
+==== absolute
+
+[cols="30,50", width="80%"]
+|=============================
+
+|*Signature* |{absolute(parameter)}
+
+|*Parameters* |parameter: valor numérico
+
+|*Description* |Calcula el valor absoluto de *parameter*
+
+|*Returns* |El valor absoluto de *parameter*
+
+|*Example call* |{absolute(-4)} devuelve 4
+|=============================
+
+=== Funciones de fecha
+
+Hay varias funciones de fecha implementadas en Calculate Fields, de modo que el
+usuario puede manipular fechas de muchas formas. La mayoría de las funciones utilizan
+un parámetro de formato, que se usa para mostrar el resultado de las funciones
+con el formato que el usuario desee. Las opciones para estos formatos son
+equivalentes a los parámetros de formato de PHP:
+
+[cols="15,60,25",options="header",]
+|====================================
+|Carácter de formato |Descripción |Ejemplos de valores devueltos
+
+3+h|*Para el día*
+
+| d |Día del mes, 2 dígitos con
+ceros a la izquierda |01 a 31
+
+| D |Representación textual de un día,
+tres letras |Mon a Sun
+
+| j |Día del mes sin ceros a la izquierda
+|1 a 31
+
+| l |Representación textual completa del
+día de la semana |Sunday a Saturday
+
+| N |Representación numérica ISO-8601 del
+día de la semana |1 (lunes) a 7 (domingo)
+
+| S |Sufijo ordinal en inglés para el día
+del mes, 2 caracteres |st, nd, rd o th. Funciona bien con j
+
+| w |Representación numérica del día de
+la semana |0 (domingo) a 6 (sábado)
+
+| z |El día del año (empezando desde 0)
+|0 a 365
+
+3+h|*Para la semana*
+
+| W |Número de semana ISO-8601 del año, las semanas
+empiezan en lunes |42 (la semana 42 del año)
+
+3+h|*Para el mes*
+
+| F |Representación textual completa de un
+mes, como January o March |January a December
+
+| m |Representación numérica de un mes,
+con ceros a la izquierda |01 a 12
+
+| M |Representación textual corta de un
+mes, tres letras |Jan a Dec
+
+| n |Representación numérica de un mes,
+sin ceros a la izquierda |1 a 12
+
+| t |Número de días del mes indicado |28
+a 31
+
+3+h|*Para el año*
+
+| L |Si es un año bisiesto |1 si es un
+año bisiesto, 0 en caso contrario
+
+| o |Número de año ISO-8601. Tiene el
+mismo valor que Y, salvo que si el número de semana ISO (W) pertenece al
+año anterior o siguiente, se usa ese año en su lugar |1999 o 2003
+
+| Y |Representación numérica completa de un
+año, 4 dígitos |1999 o 2003
+
+| y |Representación de dos dígitos de un año
+|99 o 03
+
+3+h|*Para la hora*
+
+| a |Ante meridiem y post
+meridiem en minúsculas |am o pm
+
+| A |Ante meridiem y post
+meridiem en mayúsculas |AM o PM
+
+| B |Hora de Internet Swatch |000 a 999
+
+| g |Formato de 12 horas sin
+ceros a la izquierda |1 a 12
+
+| G |Formato de 24 horas sin
+ceros a la izquierda |0 a 23
+
+| h |Formato de 12 horas con
+ceros a la izquierda |01 a 12
+
+| H |Formato de 24 horas con
+ceros a la izquierda |00 a 23
+
+| i |Minutos con ceros a la izquierda |00 a 59
+
+| s |Segundos, con ceros a la izquierda |00
+a 59
+
+3+h|*Para la zona horaria*
+
+| e |Identificador de zona horaria |UTC, GMT,
+Atlantic/Azores
+
+| l |Si la fecha está o no en horario de
+verano |1 si está en horario de verano, 0 en caso contrario
+
+| O |Diferencia con el horario de Greenwich (GMT) en
+horas |+0200
+
+| P |Diferencia con el horario de Greenwich (GMT)
+con dos puntos entre las horas y los minutos |+02:00
+
+| T |Abreviatura de la zona horaria |EST, MDT
+
+| Z |Desplazamiento de la zona horaria en segundos. El desplazamiento
+para las zonas horarias al oeste de UTC siempre es negativo, y para las del este de UTC
+siempre es positivo. |-43200 a 50400
+
+3+h|*Para fecha/hora completa*
+
+| c |Fecha ISO 8601
+|2004-02-12T15:19:21+00:00
+
+| r |Fecha con formato RFC 2822 |Thu, 21 Dec
+2000 16:01:07 +0200
+
+| U |Segundos desde la época Unix (1 de enero
+de 1970 00:00:00 GMT) |
+|====================================
+
+{{% notice note %}}
+Para todas las funciones sin parámetro de marca de tiempo, se asume que la
+fecha/hora actual es 2016.04.29. 15:08:03
+{{% /notice %}}
+
+==== date
+
+[cols="30,50", width="80%"]
+|===========================
+
+|*Signature* | {date(format; timestamp)}
+
+.2+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora
+
+|*Description* |Crea una fecha en el formato indicado
+
+|*Returns* |*timestamp* en el *format* indicado
+
+|*Example call* | {date(ymd; 2016-02-11)} devuelve 160211
+|===========================
+
+==== now
+
+[cols="30,50", width="80%"]
+|===============================
+
+|*Signature* | {now(format)}
+
+|*Parameters* |format: texto de formato
+
+|*Description* |Crea la fecha/hora actual en el formato indicado
+
+|*Returns* |Fecha/hora actual en el *format* indicado
+
+|*Example call* |{now(Y-m-d H:i:s)} devuelve 2016-04-29 15:08:03
+|===============================
+
+==== yesterday
+
+[cols="30,50", width="80%"]
+|==================================
+
+|*Signature* | {yesterday(format)}
+
+|*Parameters* |format: texto de formato
+
+|*Description* |Crea la fecha/hora de ayer en el formato indicado
+
+|*Returns* |Fecha/hora de ayer en el *format* indicado
+
+|*Example call* | {yesterday(Y-m-d H:i:s)} devuelve 2016-04-28 15:08:03
+|==================================
+
+==== tomorrow
+
+[cols="30,50", width="80"]
+|=================================
+
+|*Signature* |{tomorrow(format)}
+
+|*Parameters* |format: texto de formato
+
+|*Description* |Crea la fecha/hora de mañana en el formato indicado
+
+|*Returns* |Fecha/hora de mañana en el *format* indicado
+
+|*Example call* |{tomorrow(Y-m-d H:i:s)} devuelve 2016-04-30 15:08:03
+|=================================
+
+==== datediff
+
+[cols="30,50", width="80%"]
+|=================================
+
+|*Signature* |{datediff(timestamp1; timestamp2; unit)}
+
+.3+|*Parameters* |timestamp1: valor de fecha/hora |timestamp2: valor de fecha/hora |unit: years/months/days/hours/minutes/seconds; valor por defecto: days
+
+|*Description* |Resta *timestamp2* de *timestamp1*
+
+|*Returns* |La diferencia entre las dos fechas, devuelta en *unit*
+
+|*Example call* |{datediff(2016-02-01; 2016-04-22; days)} devuelve 81
+|=================================
+
+==== addYears
+
+[cols="30,50", width="80%"]
+|===============================
+
+|*Signature* |{addYears(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Suma *amount* años a *timestamp*
+
+|*Returns* |Fecha incrementada en el *format* indicado
+
+|*Example call* |{addYears(Ymd; 2016-04-22; 1)} devuelve 20170422
+|===============================
+
+==== addMonths
+
+[cols="30,50", width="80%"]
+|================================
+
+|*Signature* |{addMonths(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Suma *amount* meses a *timestamp*
+
+|*Returns* |Fecha incrementada en el *format* indicado
+
+|*Example call* |{addMonths(Ymd; 2016-04-22; 1)} devuelve 20160522
+|================================
+
+==== addDays
+
+[cols="30,50", width="80%"]
+|===============================
+
+|*Signature* |{addDays(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Suma *amount* días a *timestamp*
+
+|*Returns* |Fecha incrementada en el *format* indicado
+
+|*Example call* |{addDays(Ymd; 2016-04-22; 1)} devuelve 20160423
+|===============================
+
+==== addHours
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{addHours(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Suma *amount* horas a *timestamp*
+
+|*Returns* |Fecha incrementada en el *format* indicado
+
+|*Example call* |{addHours(Ymd H:i:s; 2016-04-22 23:30; 5)} devuelve
+20160423 04:30:00
+|====================================
+
+==== addMinutes
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{addMinutes(format; timestamp; amount)}
+
+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Suma *amount* minutos a *timestamp*
+
+|*Returns* |Fecha incrementada en el *format* indicado
+
+|*Example call* |{addMinutes(Ymd H:i:s; 2016-04-22 22:58; 5)} devuelve
+20160422 23:03:00
+|====================================
+
+==== addSeconds
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{addSeconds(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Suma *amount* segundos a *timestamp*
+
+|*Returns* |Fecha incrementada en el *format* indicado
+
+|*Example call* |{addSeconds(Ymd H:i:s; 2016-04-22 22:58; 5)} devuelve
+20160422 22:58:05
+|====================================
+
+==== subtractYears
+
+[cols="30,50", width="80%"]
+|==================================
+
+|*Signature* |{subtractYears(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Resta *amount* años a *timestamp*
+
+|*Returns* |Fecha decrementada en el *format* indicado
+
+|*Example call* |{subtractYears(Ymd; 2016-04-22; 5)} devuelve 20110422
+|==================================
+
+==== subtractMonths
+
+[cols="30,50", width="80%"]
+|==================================
+
+|*Signature* |{subtractMonths(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Resta *amount* meses a *timestamp*
+
+|*Returns* |Fecha decrementada en el *format* indicado
+
+|*Example call* |{subtractMonths(Ymd; 2016-04-22; 5)} devuelve 20151122
+|==================================
+
+==== subtractDays
+
+[cols="30,50", width="80%"]
+|=================================
+
+|Signature |{subtractDays(format; timestamp; amount)}
+
+.3+|Parameters |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|Description |Resta *amount* días a *timestamp*
+
+|Returns |Fecha decrementada en el *format* indicado
+
+|Example call |{subtractDays(Ymd; 2016-04-22; 5)} devuelve 20160417
+|=================================
+
+==== subtractHours
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{subtractHours(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Resta *amount* horas a *timestamp*
+
+|*Returns* |Fecha decrementada en el *format* indicado
+
+|*Example call* |{subtractHours(Ymd H:i:s; 2016-04-22 12:37; 5)} devuelve
+20160422 07:37:00
+|====================================
+
+==== subtractMinutes
+
+[cols="30,50", width="80%""]
+|====================================
+
+|*Signature* |{subtractMinutes(format; timestamp; amount)}
+
+.3+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Resta *amount* minutos a *timestamp*
+
+|*Returns* |Fecha decrementada en el *format* indicado
+
+|*Example call* |{subtractMinutes(Ymd H:i:s; 2016-04-22 12:37; 5)}
+devuelve 20160422 12:32:00
+|====================================
+
+==== subtractSeconds
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{subtractSeconds(format; timestamp; amount)}
+
+|*Parameters* |format: texto de formato |timestamp: valor de fecha/hora |amount: número decimal
+
+|*Description* |Resta *amount* segundos a *timestamp*
+
+|*Returns* |Fecha decrementada en el *format* indicado
+
+|*Example call* |{subtractSeconds(Ymd H:i:s; 2016-04-22 12:37; 5)}
+devuelve 20160422 12:36:55
+|====================================
+
+=== Funciones de control
+
+Hasta el momento solo hay una función de control implementada en Calculate
+Fields, pero esta función garantiza que el usuario pueda escribir fórmulas muy
+complejas con condiciones. Dado que las funciones pueden anidarse unas dentro de
+otras, el usuario puede escribir ramificaciones con muchas bifurcaciones.
+
+==== ifThenElse
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{ifThenElse(condition; trueBranch; falseBranch)}
+
+.3+|*Parameters* |condition: valor lógico |trueBranch: cualquier expresión |falseBranch: cualquier expresión
+
+|*Description* |Selecciona una de las dos ramas en función de *condition*
+
+|*Returns* |*trueBranch* si *condition* es verdadera, *falseBranch* en caso contrario
+
+|*Example call* |{ifThenElse(\{equal(1; 1)}; 1 equals 1; 1 not equals 1)}
+devuelve 1 equals 1
+|====================================
+
+=== Contadores
+
+Hay varios contadores implementados en Calculate Fields que pueden
+utilizarse en diversos escenarios.
+
+Los contadores se dividen en dos grupos:
+
+1.  *Contadores globales:* contadores que se incrementan cada vez que se
+evalúa una fórmula afectada
+2.  *Contadores diarios:* contadores que se reinician cada día (empezando desde 1)
+
+En este capítulo asumimos que el valor actual de los contadores es 4, por lo que el
+valor incrementado será 5 con el formato indicado.
+
+==== GlobalCounter
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{GlobalCounter(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* con longitud
+*numberLength*
+
+|*Returns* |Contador con longitud *numberLength*
+
+|*Example call* |{GlobalCounter(myName; 4)} devuelve 0005
+|====================================
+
+==== GlobalCounterPerUser
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{GlobalCounterPerUser(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* para el usuario
+que crea la entidad, con longitud *numberLength*
+
+|*Returns* |Contador con longitud *numberLength*
+
+|*Example call* |{GlobalCounterPerUser(myName; 3)} devuelve 005
+|====================================
+
+==== GlobalCounterPerModule
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{GlobalCounterPerModule(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* para el
+módulo de la entidad, con longitud *numberLength*
+
+|*Returns* |Contador con longitud *numberLength*
+
+|*Example call* |{GlobalCounterPerModule(myName; 2)} devuelve 05
+|====================================
+
+==== GlobalCounterPerUserPerModule
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{GlobalCounterPerUserPerModule(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* para el usuario
+que crea la entidad y para el módulo de la entidad, con longitud
+*numberLength*
+
+|*Returns* |Contador con longitud *numberLength*
+
+|*Example call* |{GlobalCounterPerUserPerModule(myName; 1)} devuelve 5
+|====================================
+
+==== DailyCounter
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{DailyCounter(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* con longitud
+*numberLength*
+
+|*Returns* |Contador con longitud *numberLength*, o si el contador no se ha
+incrementado ese día, entonces 1 con longitud *numberLength*
+
+|*Example call* |{DailyCounter(myName; 1)} devuelve 5
+|====================================
+
+==== DailyCounterPerUser
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{DailyCounterPerUser(name; numberLength)}
+
+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* para el usuario
+que crea la entidad, con longitud *numberLength*
+
+|*Returns* |Contador con longitud *numberLength*, o si el contador no se ha
+incrementado ese día para este usuario, entonces 1 con longitud *numberLength*
+
+|*Example call* |{DailyCounter(myName; 1)} devuelve 5
+|====================================
+
+==== DailyCounterPerModule
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{DailyCounterPerModule(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* para el
+módulo de la entidad, con longitud *numberLength*
+
+|*Returns* |Contador con longitud *numberLength*, o si el contador no se ha
+incrementado ese día para este módulo, entonces 1 con longitud *numberLength*
+
+|*Example call* |{DailyCounterPerModule(myName; 1)} devuelve 5
+|====================================
+
+==== DailyCounterPerUserPerModule
+
+[cols="30,50", width="80%"]
+|====================================
+
+|*Signature* |{DailyCounterPerUserPerModule(name; numberLength)}
+
+.2+|*Parameters* |name: cualquier texto |numberLength: número decimal
+
+|*Description* |Incrementa y devuelve el contador para *name* para el usuario
+que crea la entidad y para el módulo de la entidad, con longitud
+*numberLength*
+
+|*Returns* |Contador con longitud *numberLength*, o si el contador no se ha
+incrementado ese día para el usuario que crea la entidad y para este
+módulo, entonces 1 con longitud *numberLength*
+
+|*Example call* |{DailyCounterPerUserPerModule(myName; 1)} devuelve 5
+|====================================
+
+=== Ejemplo - Calcular la cuota mensual de una oportunidad
+
+==== Caso de uso
+
+El usuario desea calcular la cuota mensual de una oportunidad en un
+campo personalizado, dividiendo el importe de la oportunidad entre la duración.
+
+==== Configuración
+
+Nuestro módulo de oportunidades tiene un campo desplegable llamado Duration con
+los valores (valor de la base de datos entre corchetes) 6 months [6], 1 year [12], 2 years
+[24]. También hay un campo de tipo moneda llamado Monthly.
+
+==== Flujo de trabajo
+
+Vaya al módulo Workflow y cree un nuevo flujo de trabajo. Configure las opciones
+básicas de la siguiente manera:
+
+[cols=",", width="50%"]
+|===========================
+|*Name:* como desee |*Workflow Module:* Opportunities
+|*Status:* Active |*Run:* Only on save
+|*Run on:* All records |*Repeated runs:* activado
+|===========================
+
+image:130Example_workflow.png[title="Flujo de trabajo de ejemplo"]
+
+No creamos ninguna condición, ya que queremos que el flujo de trabajo se ejecute
+en todas las oportunidades.
+
+Ahora, añada una acción y seleccione Calculate Fields en la lista desplegable.
+
+A continuación, añada dos campos de Opportunities como parámetros. Primero, seleccione
+Opportunity amount (amount) y añádalo como parámetro (será \{P0}),
+luego seleccione Duration y la opción de valor sin procesar en la lista desplegable de tipo de dato
+y añádalo como parámetro dos (será \{P1}). No es necesario añadir
+ningún parámetro de relación para esta fórmula.
+
+Ahora, añada una fórmula para el campo monthly y rellene el cuadro de texto con la
+siguiente fórmula:
+
+ {divide({P0}; {P1})}
+
+Así, la acción completa debería tener este aspecto:
+
+image:ExampleCF_updated1.png[title="Flujo de trabajo de ejemplo"]
+
+Guarde el flujo de trabajo y cree una nueva Oportunidad:
+
+image:ExampleCF_orig2.png[title="Flujo de trabajo de ejemplo"]
+
+Como puede ver, ni siquiera hemos añadido el campo monthly a la vista de edición,
+porque no queremos obligar al usuario a hacer cálculos. Guarde la
+Oportunidad y compruebe los resultados en la vista de detalle:
+
+image:ExampleCF_orig3.png[title="Flujo de trabajo de ejemplo"]
+
+AOW Calculated Fields fue una contribución de http://www.dtbc.eu/[diligent technology & business consulting GmbH]
+
+==== Eliminar acciones
+
+Puede eliminar líneas de acción haciendo clic en btn:[x] en la esquina superior derecha
+de la acción.
+
+image:131Removing_actions.png[title="Eliminar acciones"]
+
+==== Eliminar líneas de campo y relación
+
+Puede eliminar líneas de campo y relación haciendo clic en btn:[-]
+en el lado izquierdo de la acción.
+
+image:132Removing_fields.png[Eliminar líneas de campo/relación]

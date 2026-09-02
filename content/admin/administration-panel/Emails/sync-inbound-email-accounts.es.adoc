@@ -1,0 +1,43 @@
+---
+title: "Sincronizar Cuentas de Correo Entrante"
+weight: 60
+---
+
+:experimental:
+:imagesdir: /images/en/admin/emails
+:toc:
+
+= Sincronizar Cuentas de Correo Entrante
+
+La herramienta *Sincronizar Cuentas de Correo Entrante* se conecta a todas las cuentas de correo entrante activas
+mediante IMAP y corrige problemas de sincronización. Se encuentra en *Admin* → *Reparación* → *Sincronizar Cuentas
+de Correo Entrante*.
+
+image:SyncInboundEmailAccounts.png[title="Sincronizar Cuentas de Correo Entrante"]
+
+La lista *Nombre de la Cuenta de Correo* muestra todas las cuentas de correo entrante activas, incluidas las
+cuentas personales. Seleccione las cuentas que desea sincronizar (utilice *ctrl + clic* para seleccionar más de
+una) y haga clic en btn:[SINCRONIZAR].
+
+[cols="20,80",frame="none", grid="none"]
+|===
+|image:SyncInboundEmailAccounts2.png[title="Seleccionar cuentas para sincronizar"]
+|Seleccione las cuentas necesarias de la lista y haga clic en btn:[SINCRONIZAR].
+|===
+
+La página se actualizará y mostrará el progreso de la herramienta.
+
+== Qué hace la herramienta
+
+Para cada cuenta seleccionada, la herramienta:
+
+* Se conecta al servidor de correo mediante IMAP.
+* Descarga la información de las cabeceras de los correos.
+* Determina el estado huérfano de los correos.
+* Actualiza el ID único de cada correo.
+* Corrige los problemas de sincronización.
+
+== Gestión de errores
+
+Si se produce un error en una cuenta, la herramienta puede seguir ejecutándose en el resto de cuentas. Los detalles
+de cualquier error se escriben en `suitecrm.log`.

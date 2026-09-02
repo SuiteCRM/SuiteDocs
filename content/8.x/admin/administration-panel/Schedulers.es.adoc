@@ -1,0 +1,240 @@
+---
+title: Planificadores
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/admin/schedulers
+
+== Planificadores
+
+{{% notice info %}}
+Esta documentación corresponde a SuiteCRM 8.9.0+
+{{% /notice %}}
+
+=== ¿Qué son los Planificadores?
+Los Planificadores son tareas automatizadas que se ejecutan a intervalos específicos para realizar diversas funciones dentro de SuiteCRM. Ayudan a agilizar los procesos y garantizan que las tareas rutinarias se gestionen de forma eficiente sin intervención manual.
+
+=== Configuración del Planificador
+Para habilitar los planificadores, configure el sistema para que ejecute el comando `./bin/console schedulers:run` cada minuto. Esto garantiza que todos los trabajos de SuiteCRM se ejecuten según su programación.
+
+En Windows, utilice el "Programador de Tareas" del sistema para configurarlo. En Linux e iOS (*el enfoque aquí*), utilice `crontab`.
+
+Puede añadir el comando necesario a su crontab:
+
+----
+* * * * * [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+{{% notice note %}}
+Nota: `{-e [env]}` es opcional y especifica el entorno.
+{{% /notice %}}
+
+Tras la instalación, estas instrucciones permanecen disponibles en la parte inferior de la pantalla `Admin / Schedulers`.
+
+Para evitar problemas de permisos con los trabajos del Planificador, se recomienda ejecutarlos con la misma cuenta de usuario que ejecuta su servidor web.
+Si necesita utilizar una cuenta de usuario diferente, debe modificar el array `allowed_cron_users` en `config.php` para incluir dicho usuario.
+
+También se muestra una pequeña guía paso a paso en la lista de planificadores:
+
+image:Scheduler-Setup-Widget.png[Widget de Configuración del Planificador]
+
+Para obtener más información sobre la configuración, consulte la sección "Información de Crontab" a continuación.
+
+=== Acceso a los Planificadores
+
+Para acceder al módulo de Planificadores, vaya al panel de Administración y seleccione "Schedulers" en la sección "System".
+
+image:Admin-Panel-Scheduler-Section.png[Panel de Administración]
+
+=== Gestión de Planificadores
+En el módulo de Planificadores, puede ver una lista de todos los planificadores junto con su estado, intervalo y rango (fecha de inicio a fin).
+
+image:Scheduler-List-View.png[Vista de Lista de Planificadores]
+
+Para ver información detallada sobre un planificador, haga clic en su nombre para abrir la Vista de Detalle.
+
+image:Schedulers-Record-View.png[Vista de Detalle del Planificador]
+
+=== Actualización de Planificadores
+
+Para actualizar un planificador, haga clic en el botón "Edit" del menú desplegable "Actions".
+
+image:Scheduler-Edit.png[Vista de Edición del Planificador]
+
+Durante la edición, puede establecer el estado del trabajo (solo se ejecutarán los trabajos con estado Activo) y configurar el intervalo al que se ejecuta el trabajo, así como la hora de inicio.
+
+Al desmarcar la casilla 'Advanced Options' se mostrará una forma más sencilla de establecer el intervalo del trabajo si no está
+familiarizado con la notación de crontab. Al volver a marcar Advanced Options podrá establecer la hora de inicio inicial.
+
+image:Scheduler-Edit-Advanced.png[Vista de Edición del Planificador]
+
+=== Planificadores Disponibles
+Los siguientes planificadores están disponibles en SuiteCRM:
+
+[cols="20,80"]
+|===
+|*Procesar Tareas de Flujo de Trabajo*| Este trabajo procesa todas las tareas de flujo de trabajo pendientes de ejecución.
+|*Ejecutar Tareas Programadas de Generación de Informes*| Este trabajo procesa todos los informes programados y los envía.
+|*Truncar Tablas de Monitorización*| Limpia los datos antiguos de monitorización de la base de datos.
+|*Comprobar Bandejas de Entrada*| Comprueba todas las cuentas de correo entrante configuradas en busca de mensajes nuevos.
+|*Ejecutar Proceso Nocturno de Emails de Campaña Rebotados*| Comprueba si hay correos nuevos en las cuentas de correo de rebotes.
+|*Ejecutar Campañas de Email Masivo Nocturnas (Inactivo en SuiteCRM 8)*| Envía campañas de correo masivo. (Inactivo en SuiteCRM 8)
+|*Truncar Base de datos al Inicio del Mes*| Elimina de la base de datos los registros marcados para su eliminación.
+|*Ejecutar Envío de Emails de Recordatorios*| Envía recordatorios por correo electrónico para las actividades.
+|*Extracción de documentos del sistema de archivos*| Elimina del sistema de archivos los documentos huérfanos que ya no están referenciados en la base de datos.
+|*Limpiar las Tablas de SuiteCRM Feed*| Limpia las tablas de feed de SuiteCRM.
+|*Sincronización de Google Calendar*| Sincroniza eventos entre SuiteCRM y Google Calendar.
+|===
+
+**Planificadores Específicos de SuiteCRM 8**
+
+[cols="20,80"]
+|===
+|*Clean Up Temporary Files*| Limpia los archivos temporales cargados a través de los campos de archivo y adjuntos.
+|*Queue Campaign Emails*| Pone en cola los registros de Email Marketing programados para su envío.
+|*Send Campaign Emails*| Envía los correos en cola de los registros de Email Marketing.
+|*Prune Database scheduler*| El planificador de limpieza de la base de datos se ha trasladado al lado de symfony y ahora también elimina los objetos multimedia del nuevo sistema de almacenamiento.
+|===
+
+=== ¿Cómo sé si los Planificadores están funcionando?
+
+Para comprobar si los planificadores están funcionando, hay un widget añadido en la lista de Planificadores que muestra:
+
+* El último usuario que ejecutó los planificadores.
+* La hora de la última ejecución exitosa.
+
+image:Scheduler-Widget.png[Widget del Planificador]
+
+=== Información de Crontab
+
+==== ¿Cuáles son los conceptos básicos de crontab que necesito entender?
+
+En Linux puede haber un crontab por usuario. Esto se aplica incluso a usuarios
+que no pueden iniciar sesión en una shell, como los usuarios estándar de servidor web presentes
+en muchas instalaciones por defecto (como `www-data` y `nobody`).
+Los siguientes ejemplos utilizarán `www-data`.
+
+Para listar el contenido del crontab de un usuario concreto, utilice algo
+como este comando:
+
+`sudo crontab -l -u www-data`
+
+Y para editar ese contenido, utilice el modificador `-e` en su lugar:
+
+`sudo crontab -e -u www-data`
+
+Algunas distribuciones de Linux (en particular Ubuntu) tienen además otro crontab que es
+el *crontab de todo el sistema*. Este se edita modificando un archivo:
+
+`sudo nano /etc/crontab`
+
+Observe que los comentarios dentro de este crontab explican que es el
+crontab de todo el sistema. Aquí puede especificar comandos que se ejecuten como cualquier
+usuario, por lo que tiene una columna adicional donde se indica bajo qué usuario se ejecuta
+el comando, por ejemplo:
+
+----
+* * * * * www-data [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+{{% notice note %}}
+Nota: `{-e [env]}` es opcional y especifica el entorno.
+{{% /notice %}}
+
+
+==== ¿Bajo qué usuario deben ejecutarse estos trabajos?
+
+El usuario adecuado varía según la configuración de su sistema.
+El enfoque recomendado es identificar qué cuenta de usuario ejecuta su servidor web y configurar sus trabajos cron para que se ejecuten
+bajo esa misma cuenta. Este enfoque simplifica la gestión de permisos y evita conflictos entre la aplicación web
+y los trabajos programados cuando acceden a bases de datos y archivos compartidos.
+
+*Una configuración de usuario incorrecta puede provocar problemas graves en su instalación*.
+Asegúrese de que su configuración de permisos permita a ambos procesos leer y escribir los mismos recursos que cualquiera de los dos procesos
+crea o modifica.
+
+Si anteriormente ejecutó trabajos cron como root debido a una configuración incorrecta, tras corregir la configuración
+deberá restaurar la propiedad y los permisos adecuados en toda la estructura de directorios de SuiteCRM,
+y a continuación realizar una `Quick Repair and Rebuild`.
+
+==== ¿Y cómo puedo averiguar bajo qué usuario se ejecuta mi servidor web?
+
+Existen varias formas de determinarlo, y aquí tiene algunos métodos específicos de SuiteCRM:
+
+* Vaya a `Admin / Schedulers` y consulte
+ese comando de crontab en la parte inferior de la pantalla.
+* Compruebe la sección `allowed_cron_users`
+de su archivo config.php, debería estar ahí.
+* Vaya a `Admin / Diagnostics` y seleccione únicamente
+`phpinfo`. Una vez generado ese archivo, compruebe el valor `APACHE_RUN_USER`
+que proporciona. (Nota: no ejecute php -i desde la línea de comandos, no es
+lo mismo)
+
+==== ¿Qué es la sección allowed_cron_users en config.php?
+
+Solo los usuarios especificados en el array allowed_cron_users dentro de config.php (ubicado en la raíz de su
+instalación de SuiteCRM) tienen permiso para ejecutar ./bin/console schedulers:run. Cualquier otro usuario hará que ese script se
+detenga a sí mismo cada vez que se inicie.
+
+Normalmente, *no tiene que hacer nada* para añadir un usuario válido a este
+array, ya que el instalador de SuiteCRM lo hará automáticamente por usted,
+añadiendo el usuario actual del servidor web, si aún no está incluido.
+
+Puede añadir más de un usuario permitido. `root` en particular NO
+se recomienda, y el Instalador no añade `root` aunque sea
+el usuario del servidor web que ejecuta el instalador; tendrá que hacerlo manualmente si
+realmente lo desea.
+
+La sección correspondiente de config.php podría tener este aspecto:
+
+.config.php
+[source, php]
+----
+'cron' =>
+ 	array (
+		`max_cron_jobs' => 10,
+		`max_cron_runtime' => 30,
+		`min_cron_interval' => 30,
+		`allowed_cron_users' =>
+		array (
+ 			0 => `www-data',
+		),
+	),
+----
+
+==== ¿Qué comando debo utilizar en crontab?
+
+El comando a utilizar en crontab es (como se muestra arriba):
+
+----
+* * * * * [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+{{% notice note %}}
+Nota: `{-e [env]}` es opcional y especifica el entorno.
+{{% /notice %}}
+
+Y ahora algunos ejemplos específicos y típicos. En primer lugar, *Ubuntu Server*,
+crontab de todo el sistema:
+
+----
+* * * * * www-data [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+Por supuesto, también puede utilizar la sintaxis de crontab para hacer que se ejecute con
+menos frecuencia, lo cual puede resultar relevante en un sistema muy utilizado. Para ejecutarlo
+cada dos minutos en lugar de cada minuto, cambie la primera columna,
+así:
+
+----
+*/2 * * * * [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+==== ¿Cómo puedo asegurarme de que los trabajos se están ejecutando realmente?
+
+* El módulo de Planificadores, a través del panel de administración, mostrará las últimas horas de ejecución de cada trabajo, así como cualquier error.
+* El archivo suitecrm.log de SuiteCRM registrará estos eventos, siempre que su nivel de registro esté configurado para capturarlos
+(puede verlo y modificarlo desde Admin / System Settings).
+* En caso de que algún Trabajo de Planificador concreto falle con un error, el
+suitecrm.log también es el lugar por donde empezar a solucionar el problema, junto con el log del
+Servidor Web (a menudo llamado `php_errors.log`).

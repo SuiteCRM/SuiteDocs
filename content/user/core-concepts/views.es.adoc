@@ -1,0 +1,95 @@
+---
+title: "Vistas"
+weight: 40
+aliases:
+  - /es/user/introduction/user-interface/views
+---
+
+:experimental:   ////this is here to allow ****syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Vistas
+
+Dentro del CRM se le presentarán varias vistas. Estas vistas están
+estructuradas para mostrarle información clave a lo largo del proceso de
+gestión de registros. Existen tres vistas principales, descritas en las
+subsecciones siguientes.
+
+== Vista de Lista
+
+Esta es la vista que se le presenta al navegar a cualquier módulo.
+
+image:40List_view.png[title="Vista de Lista"]
+
+La Vista de Lista le da acceso a muchas acciones que puede utilizar para ver y gestionar registros. Algunas de ellas son:
+
+* *Buscar Registros* – realizar búsquedas básicas y avanzadas, como se ha explicado anteriormente en la sección link:../searching[Búsqueda]
+de este capítulo.
+* *Ordenar Registros* – hacer clic en el nombre de la columna ordenará la lista de registros
+por esa columna, ya sea ascendente o descendentemente, si la ordenación está habilitada.
+* *Ver Registros* – hacer clic en cualquier dato con hipervínculo le llevará a la
+Vista Detallada del registro. Nota: hacer clic en un número de teléfono intentará marcar el número, y elegir una dirección de correo electrónico abrirá la ventana emergente 'Redactar Correo'.
+* *Editar Registros* – hacer clic en el icono de lápiz le llevará a la Vista de
+Edición de ese registro.
+
+Desde la Vista de Lista, también puede actualizar varios registros al mismo tiempo mediante el desplegable *Acción Masiva*. Para seleccionar los registros que desea actualizar, primero haga clic en la casilla situada a la izquierda y, a continuación, elija la acción que desea llevar a cabo. Algunos ejemplos son:
+
+* *Eliminar Registros* – esto eliminará los registros del módulo.
+* *Actualización Masiva de Registros* – actualiza datos en todos los registros seleccionados.
+* *Combinar Registros* – puede seleccionar un registro principal y, a continuación, combinar los datos de los registros duplicados en el
+registro principal. Una vez guardado, los registros duplicados se eliminarán y
+todos los datos/historial se combinarán en el registro principal.
+
+== Vista Detallada
+
+Esta es la vista que se le presenta al ver un registro.
+
+image:/images/es/user/41Detail_view.png[title="Vista Detallada"]
+
+La Vista Detallada incluye muchas acciones que puede utilizar para
+ver/gestionar sus datos, específicas del módulo que esté viendo. Las siguientes son las acciones estándar para la mayoría de los módulos:
+
+* *Editar* – editar el registro que está viendo.
+* *Duplicar* – duplicar el registro que está viendo.
+* *Eliminar* – eliminar el registro que está viendo. Si se elimina un registro, se le redirigirá a la Vista de Lista.
+* *Buscar Duplicados* – iniciar el proceso de búsqueda de duplicados, en el que puede utilizar la funcionalidad del sistema para encontrar registros duplicados.
+* *Ver Registro de Cambios* – ver los cambios realizados en los campos auditados.
+
+{{% notice note %}}
+Nota: para marcar campos como auditados y para cualquier cambio en la búsqueda de duplicados,
+póngase en contacto con su Administrador del Sistema.
+{{% /notice %}}
+
+Se puede hacer clic en los campos con hipervínculo. Esto le llevará a
+ese registro.
+
+La Vista Detallada está organizada en pestañas en SuiteCRM. Esto significa que hay un desplazamiento
+mínimo y los datos se clasifican para cada módulo en la pestaña
+correspondiente.
+
+{{% notice note %}}
+Los Administradores del Sistema pueden elegir mostrar los datos en pestañas
+o en paneles. Puede ponerse en contacto con su administrador del sistema para
+obtener más información sobre la gestión de diseños y vistas.
+{{% /notice %}}
+
+== Vista de Edición
+
+Esta es la vista que se le presenta al editar un registro.
+
+image:/images/es/user/42Edit_view.png[title="Vista de Edición"]
+
+La Vista de Edición le permite modificar la información del registro que se muestra
+en la vista. Esto permite a los usuarios actualizar datos existentes y también
+añadir/eliminar datos.
+
+Una vez que haya realizado los cambios en la Vista de Edición, puede
+hacer clic en 'Guardar' para aplicar los cambios o en **Cancelar**. Al hacer clic en cualquiera de
+las dos opciones se le redirigirá a la Vista Detallada del registro que está
+editando.
+
+Puede hacer clic en el botón **Ver Registro de Cambios** para ver los cambios realizados en los campos auditados, lo cual puede resultar útil antes de realizar
+los cambios que tenía previstos.

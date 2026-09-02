@@ -1,0 +1,92 @@
+---
+title: "Autenticación de Dos Factores"
+weight: 40
+aliases:
+  - /es/8.x/features/two-factor/two-factor/
+---
+
+:imagesdir: /images/en/8.x/user/getting-started/
+
+= Autenticación de Dos Factores
+
+La Autenticación de Dos Factores (2FA) añade una capa adicional de seguridad a su cuenta de SuiteCRM al exigirle que introduzca un código de un solo uso desde una aplicación de autenticación, además de su nombre de usuario y contraseña, cada vez que inicie sesión. Esto ayuda a proteger su cuenta incluso si su contraseña se ve comprometida.
+
+{{% notice note %}}
+La Autenticación de Dos Factores debe ser habilitada por su administrador del sistema antes de estar disponible para los usuarios. Si no ve la pestaña de Autenticación de Dos Factores en su perfil, póngase en contacto con su administrador del sistema.
+{{% /notice %}}
+
+== Configurar la Autenticación de Dos Factores
+
+Para configurar la Autenticación de Dos Factores, visite su perfil de usuario y haga clic en la pestaña *Two-Factor Authentication*. Esta pestaña muestra el estado actual de su configuración de 2FA y un botón *Two Factor Configuration*.
+
+image:2fa-tab.png[Pestaña de Autenticación de Dos Factores en el perfil]
+
+Haga clic en *Two Factor Configuration* para acceder a la página de configuración y, a continuación, haga clic en *Enable*.
+
+image:2fa-enable.png[Habilitar la Autenticación de Dos Factores]
+
+Se mostrará un código QR en la pantalla.
+
+image:2fa-verify.png[Código QR de Autenticación de Dos Factores]
+
+Abra su aplicación de autenticación en su dispositivo móvil (como Google Authenticator, Microsoft Authenticator o Authy) y escanee el código QR. Una vez escaneado, su aplicación mostrará un código de seis dígitos; introdúzcalo en el campo proporcionado en SuiteCRM y haga clic en *Verify Code* para completar la configuración.
+
+{{% notice note %}}
+Si no puede escanear el código QR, haga clic en *Unable to scan the QR Code?* para revelar una clave secreta que puede introducir manualmente en su aplicación de autenticación. Al configurarla manualmente, utilice la siguiente configuración si se le solicita: Tipo: TOTP, Basado en tiempo: Sí, Intervalo: 30 segundos, Dígitos: 6, Algoritmo: SHA1.
+{{% /notice %}}
+
+image:QR-Code-Secret.png[Clave secreta manual para la configuración del autenticador]
+
+== Códigos de Recuperación y Respaldo
+
+Después de habilitar correctamente la Autenticación de Dos Factores, se mostrará en pantalla un conjunto de diez códigos de recuperación.
+
+image:2fa-backup-codes.png[Códigos de recuperación mostrados tras habilitar la 2FA]
+
+Estos son códigos de respaldo de un solo uso que pueden utilizarse para acceder a su cuenta si no puede utilizar su aplicación de autenticación, por ejemplo si pierde el acceso a su dispositivo móvil.
+
+{{% notice warning %}}
+Estos códigos solo se mostrarán una vez y no volverán a aparecer cuando vuelva a visitar la página. Guárdelos de inmediato en un lugar seguro.
+{{% /notice %}}
+
+Cada código de respaldo solo puede utilizarse una vez. Una vez utilizado, no puede volver a utilizarse.
+
+=== Regenerar Códigos de Respaldo
+
+Si ha utilizado sus códigos de respaldo o necesita generar un nuevo conjunto:
+
+. Vaya a la pestaña *Two-Factor Authentication* de su perfil.
+. Haga clic en *Two Factor Configuration*.
+. Haga clic en *Regenerate Backup Codes*.
+. Introduzca el código actual de su aplicación de autenticación para confirmar.
+
+image:Regenerate-Codes.gif[Regenerar códigos de respaldo]
+
+Se mostrará un nuevo conjunto de códigos de respaldo. Guárdelos de forma segura; los códigos anteriores dejarán de ser válidos.
+
+== Iniciar Sesión con Autenticación de Dos Factores
+
+Una vez habilitada la Autenticación de Dos Factores, se le pedirá que introduzca un código de autenticación cada vez que inicie sesión. Después de introducir su nombre de usuario y contraseña, aparecerá una ventana emergente solicitando su código de seis dígitos.
+
+image:2fa-login-prompt.png[Ventana emergente de inicio de sesión con Autenticación de Dos Factores]
+
+Abra su aplicación de autenticación, obtenga el código actual e introdúzcalo para completar el proceso de inicio de sesión.
+
+== Deshabilitar la Autenticación de Dos Factores
+
+Para deshabilitar la Autenticación de Dos Factores en su cuenta:
+
+. Vaya a la pestaña *Two-Factor Authentication* de su perfil.
+. Haga clic en *Two Factor Configuration*.
+. Haga clic en *Disable*.
+. Introduzca el código actual de su aplicación de autenticación para confirmar.
+
+image:2fa-disable.gif[Deshabilitar la Autenticación de Dos Factores]
+
+La Autenticación de Dos Factores quedará entonces deshabilitada en su cuenta.
+
+{{% notice note %}}
+Los administradores del sistema también pueden deshabilitar la Autenticación de Dos Factores en nombre de un usuario. Si un usuario tiene la 2FA habilitada, aparecerá una opción *Disable 2FA* en el desplegable Actions cuando un administrador visualice el perfil de ese usuario.
+{{% /notice %}}
+
+image:2fa-admin-disable.png[Un administrador deshabilitando la 2FA desde el perfil de usuario]

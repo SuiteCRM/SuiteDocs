@@ -1,0 +1,124 @@
+---
+Title: Correcciones de Errores
+Weight: 60
+---
+
+== Proporcionar una Corrección de Error
+
+* Para aportar una contribución de código para una incidencia, necesitarás
+configurar tu propio fork del repositorio de SuiteCRM, realizar tus cambios de código, confirmar (commit)
+los cambios y crear una Pull Request a la rama correspondiente del
+repositorio de SuiteCM. Consulta nuestra
+link:../forking/[Guía Rápida para Hacer un Fork de SuiteCRM]. Una vez que hayas configurado tu repositorio con fork, puedes
+empezar a hacer commits al proyecto.
+
+* Al crear una PR a SuiteCRM, siempre debes dirigirla a la rama `hotfix`.
+* Al crear una PR a SuiteCRM 8 también debes dirigirla a la rama `hotfix`.
+
+{{%notice info%}}La rama hotfix se fusionará después en develop que, a su vez, se fusionará en `master`.{{%/notice%}}
+
+{{<mermaid align="center">}}
+graph TD;
+Bugfix{Bugfix}-->|Your PR|hotfix;
+hotfix-->|Merged Into|7.12.x
+hotfix-->|Merged Into|develop;
+develop-->|Merged Into| master;
+{{< /mermaid >}}
+
+* Separa cada corrección de incidencia en una nueva rama de tu repositorio y nómbrala con el
+ID de la incidencia, p. ej. _bugfix_3062_ o _issue-1234_.
++
+Por ejemplo, para crear la rama desde `hotfix` con el siguiente comando de git:
++
+`git checkout -b _bugfix_3062_ upstream/hotfix`
++
+Por ejemplo, para SuiteCRM 8 esto también sería:
++
+`git checkout -b _bugfix_3062_ upstream/hotfix`
+
+* Al confirmar cambios en tu rama de corrección individual, ayuda seguir
+el formato de mensaje que se muestra a continuación:
++
+`Fix #1234 - <the subject of the issue>`
++
+Por ejemplo, un comando de commit
++
+`git commit -m "Fix #1436 - Reports with nested Parentheses are removing parameters"` +
++
+Este formato de mensaje de commit nos permite incluir fácilmente todas las
+correcciones de errores dentro de las *notas de la versión* mayores y menores.
++
+Si eres nuevo escribiendo mensajes de commit en git, sigue la guía
+http://chris.beams.io/posts/git-commit/#seven-rules[aquí].
+
+* Al subir una rama que se ha creado a partir de una rama upstream
+a tu fork remoto, necesitarás especificar "origin", p. ej.
++
+`git push origin _bugfix_3062_`
+
+=== Cambiar tu Pull Request de 7.10.x a hotfix
+
+Desde el 31 de enero de 2022, el soporte extendido para 7.10.x ha finalizado. Sin embargo, ¡eso no significa que la Pull Request que
+creaste para corregir una incidencia concreta o añadir una función deje de ser aplicable!
+
+Si la incidencia que enfrentas sigue presente en 7.12.x pero tu Pull Request es para 7.10.x, a continuación tienes algunos pasos
+para orientar tu Pull Request hacia la rama `hotfix`.
+
+1. Haz checkout de tu rama que contiene la corrección prevista.
+`git checkout <your-branch>`
+
+2. Obtén el hash del primer commit que hiciste en la rama y continúa hasta el más reciente mediante:
+`git log -1 --format=format:"%H"`
++
+Al usar el comando anterior, para obtener los hashes de todos los commits que has hecho en la rama, debes cambiar
+el número `1` por la cantidad de commits que has realizado.
+
+3. Haz checkout de la rama hotfix.
+`git checkout hotfix`
+
+4. Haz checkout de una nueva rama a la que luego actualizarás la PR.
+`git checkout -b <new-branch>`
+
+5. Haz cherry-pick de tus commits.
+`git cherry-pick commit1 commit2`
++
+`commit1` se sustituirá por los hashes de tus commits.
+
+Al subir una nueva rama con los mismos cambios que una PR anterior, por favor referencia la Pull Request recién creada
+en la antigua Pull Request y luego ciérrala.
+
+Sin embargo, si te sientes cómodo con git y puedes hacerlo, puedes volver a subir a la misma rama y cambiar la rama base
+de la PR a hotfix, siempre que hayas hecho rebase.
+
+=== Crear una Pull Request de Corrección de Error
+
+* Después de haber hecho tus commits y subidos a tu repositorio con fork, creas una
+http://help.github.com/articles/using-pull-requests/[Pull Request] para que se
+revise y fusione en el repositorio de SuiteCRM. Crea una nueva Pull
+Request para cada incidencia que corrijas – *no* combines varias correcciones de errores en
+una sola Pull Request.
+
+* Asegúrate de que en tu Pull Request el fork base sea
+*SuiteCRM/SuiteCRM* y la rama base sea `hotfix`.
+Para SuiteCRM 8 asegúrate de que el fork base sea
+*SuiteCRM/SuiteCRM-Core* y la rama base sea `hotfix`.
+siendo el fork de origen *tu repositorio* y una rama base tu rama de corrección única, p. ej. _bugfix_1234_
+
+* ¡Rechazaremos automáticamente cualquier Pull Request creada hacia la
+rama incorrecta!
+
+=== Comprobación del CLA
+
+Si no has firmado nuestro https://cla.suitecrm.com/SuiteCRM/SuiteCRM[CLA] (Acuerdo de Licencia de Colaborador), tu Pull Request fallará una comprobación
+y no podrá fusionarse en el proyecto. Solo se te pedirá firmarlo
+una vez.
+
+=== Travis CI
+
+Cuando se abre una nueva Pull Request, Travis CI probará la fusión
+de la rama origen y upstream y actualizará la Pull Request. Si esta
+comprobación falla, puedes revisar los resultados de las pruebas y resolverlo en consecuencia. Para
+probar antes de crear una Pull Request, instala PHPUnit mediante composer en
+tu entorno de desarrollo, luego entra en el directorio tests y ejecuta:
+
+`sh runtests.sh`

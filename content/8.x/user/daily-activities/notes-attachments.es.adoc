@@ -1,0 +1,36 @@
+---
+title: "Notas y Adjuntos"
+weight: 80
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities
+
+== Resumen
+
+El módulo Notes de SuiteCRM se puede utilizar para mantener un registro de
+comentarios, observaciones o explicaciones que un usuario pueda tener en relación
+con su organización internamente, o en relación con otro registro de SuiteCRM,
+como una Account, Contact, Lead u otros muchos. Las Notes también se utilizan para
+mantener un registro de las interacciones con los clientes relativas a Cases y Bugs.
+
+== Acciones de Nota
+
+Acceda a las acciones de Note desde el menú del módulo:
+
+* *Create Note or Attachment* – Abre un formulario para crear un nuevo registro de Note.
+* *View Notes* – Redirige a la Vista de Lista para buscar y listar registros de Note.
+
+== Crear una Nota
+
+Navegue al módulo Notes y seleccione "Create Note" en el menú Actions.
+
+image:notes-edit.png[Vista de Creación de Nota]
+
+=== Resumen de Campos
+
+* *Subject* - Asunto de la nota
+* *Assigned To* - Usuario responsable del documento
+* *Related To* - El registro superior con el que se relaciona la nota (Account, Contact, Lead, etc.)
+* *Contact* - El Contact asociado a la nota (si procede). Este campo se ocultará dinámicamente si el Related To es Contacts.
+* *Note* - Contenido de la nota
+* *Attachment* - El archivo adjunto a la nota (si procede)

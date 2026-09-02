@@ -1,0 +1,33 @@
+---
+Title:  Votación de Incidencias y Pull Requests en GitHub
+Weight: 20
+---
+
+:imagesdir: /images/en/community
+
+== Votar Incidencias y Pull Requests en GitHub
+
+Votar a favor de Incidencias y Pull Requests de GitHub es una forma importante de contribuir al proyecto. La votación nos ayuda a determinar las cuestiones y prioridades clave para futuras versiones.
+
+Para votar por una Incidencia o Pull Request:
+
+* Localiza la Incidencia o Pull Request
+* Haz clic en el título de la Incidencia o Pull Request para verla
+* En la esquina inferior izquierda de la descripción original, haz clic en la carita 'sonriente'
+* Elige el icono de 'pulgar hacia arriba'
+
+{{% notice note %}}
+Los 'pulgares hacia arriba' registrados en cualquier otro comentario o nota no se tendrán en cuenta ni se contarán.
+{{% /notice %}}
+
+image:32Issue-Voting.gif[Demostración de votación de incidencias]
+
+También puedes eliminar tu voto de una Incidencia o Pull Request haciendo clic en el icono numerado de 'pulgar hacia arriba' en la descripción original.
+
+== Ordenar Incidencias o Pull Requests por votos
+
+Para ver las incidencias o pull requests más populares, puedes filtrar para ordenar Incidencias o Pull Requests por votos. Para hacerlo en una lista de GitHub, puedes seleccionar la reacción de 'pulgar hacia arriba' en la selección 'Sort', o añadir el siguiente parámetro al filtro
+
+----
+sort:reactions-+1-desc
+----

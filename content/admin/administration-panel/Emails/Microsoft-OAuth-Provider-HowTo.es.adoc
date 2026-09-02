@@ -1,0 +1,333 @@
+---
+Title: Cómo configurar un Proveedor OAuth de Microsoft
+weight: 20
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Introducción
+
+Esta guía explica cómo configurar un cliente en Microsoft Azure y después utilizar la información de Microsoft
+Azure para configurar un Proveedor OAuth en SuiteCRM.
+
+
+== 2. Registrar la aplicación SuiteCRM en Microsoft
+
+{{% notice note %}}
+Los siguientes pasos asumen que está configurando un proveedor para una cuenta de empresa que se compartirá entre
+muchos usuarios.
+{{% /notice %}}
+
+=== 2.1. Ir a Registros de Aplicaciones
+
+Vaya a https://portal.azure.com/ e inicie sesión.
+
+En la página de inicio debería ver una pantalla similar a la siguiente.
+
+image:azure-homepage.png[azure-homepage.png]
+
+Compruebe si hay un enlace a *Registros de Aplicaciones* en la página de inicio; debería tener un aspecto similar al
+siguiente.
+
+image:azure-services.png[azure-services.png]
+
+En caso contrario, vaya a *Más servicios* y busque el enlace *Registros de Aplicaciones*.
+
+image:more-services.png[more-services.png]
+
+image:azure-services-app-registration-entry.png[azure-services-app-registration-entry.png]
+
+La página *Registros de Aplicaciones* de Azure tiene el siguiente aspecto:
+
+image:azure-app-registrations.png[azure-app-registrations.png]
+
+=== 2.2. Crear un nuevo Registro de Aplicación
+
+En la página *Registros de Aplicaciones*, haga clic en el enlace "Nuevo Registro".
+
+image:azure-new-app-registration-link.png[azure-new-app-registration-link.png]
+
+Debería ver entonces la página de creación de registro de aplicación.
+
+En la página de registro, complete lo siguiente:
+
+. Añada un nombre para el registro, como "SuiteCRM".
+. Seleccione una de las opciones de "Tipos de cuenta admitidos" según sus necesidades.
+.. *Nota* En este ejemplo vamos a utilizar "Inquilino único" (Single tenant), lo que no significa que sea la opción
+que se deba usar en todos los casos.
+.. Debe seleccionar la opción adecuada a su caso de uso.
+. Establezca una "URI de redirección". Debería ser similar a:
+`https://<host-de-su-instancia-suitecrm>/index.php?entryPoint=setExternalOAuthToken`
+.. *Nota* Azure solo permite conexiones https a hosts que no sean localhost (la interfaz de Azure se lo advertirá).
+... Un host como `http://mi-suitecrm.com/index.php?entryPoint=setExternalOAuthToken` no es válido.
+... Un host como `https://mi-suitecrm.com/index.php?entryPoint=setExternalOAuthToken` es válido.
+... Un host como `http://localhost/index.php?entryPoint=setExternalOAuthToken` es válido.
+
+image:azure-new-app-registration-with-info.png[azure-new-app-registration-with-info.png]
+
+Tras rellenar la información, continúe con el registro.
+
+Tras el registro, debería ser redirigido a la "vista de detalle" del registro.
+
+image:azure-main-app-registration-page.png[azure-main-app-registration-page.png]
+
+Allí encontrará el *Application (client) ID*, que es el *Client Id* que necesitará configurar más adelante en
+SuiteCRM.
+
+image:azure-client-id.png[azure-client-id.png]
+
+=== 2.3. Crear un secreto de cliente
+
+El siguiente paso es generar un "secreto de cliente" que SuiteCRM utilizará para comunicarse con Microsoft.
+
+En la página principal de su Registro de Aplicación, haga clic en "Añadir un certificado o secreto".
+
+image:azure-add-secret.png[azure-add-secret.png]
+
+Esto debería llevarle a la página "Certificados y secretos".
+
+image:azure-cerfiticates-and-secrets-page.png[azure-cerfiticates-and-secrets-page.png]
+
+Aquí puede generar un nuevo secreto haciendo clic en "Nuevo Secreto de Cliente".
+
+image:azure-new-client-secret.png[azure-new-client-secret.png]
+
+Debería abrirse una barra lateral donde puede indicar el nombre que desea dar a su secreto y su duración.
+Tras establecer el nombre y la duración, haga clic en "Añadir".
+
+image:azure-add-a-client-secret-sidebar.png[azure-add-a-client-secret-sidebar.png]
+
+Esto debería generar una nueva línea en la tabla de la página "Certificados y secretos".
+
+image:azure-list-of-secrets.png[azure-new-client-secret.png]
+
+Debe copiar el "Valor" (haciendo clic en el icono situado junto a él) de su nuevo secreto y guardarlo en un lugar
+seguro. No podrá volver a acceder a este valor desde la interfaz de Microsoft Azure.
+El secreto será necesario en la configuración de SuiteCRM.
+
+image:azure-secret-value.png[azure-secret-value.png]
+
+{{% notice warning %}}
+Recomendamos anotar la fecha de caducidad de su Secreto de Cliente y renovarlo de forma periódica.
+Una vez que el secreto caduca, sus conexiones de correo fallarán con un mensaje de error en los registros similar a
+`OAuthAuthorizationService::hasConnectionTokenExpired | Access token has expired`.
+Si ve este error, genere un nuevo secreto en Azure y actualícelo en SuiteCRM para garantizar la continuidad del
+acceso.
+{{% /notice %}}
+
+
+
+Ahora vuelva a la página principal de su Registro de Aplicación, haciendo clic en "Información general" en la barra
+lateral.
+
+image:azure-link-to-app-registration-overview.png[azure-link-to-app-registration-overview.png]
+
+=== 2.4. Definir los ámbitos (scopes) autorizados
+
+Nuestro siguiente paso es configurar los ámbitos a los que SuiteCRM podrá acceder.
+
+Vuelva a la página principal de su Registro de Aplicación.
+
+image:azure-main-app-registration-page.png[azure-main-app-registration-page.png]
+
+Haga clic en "Ver permisos de API".
+
+image:azure-view-api-permissions-link.png[azure-view-api-permissions-link.png]
+
+Esto debería llevarle a la página "Permisos de API".
+
+image:azure-api-permissions-page-clean.png[azure-view-api-permissions-link.png]
+
+Ahora vamos a añadir los ámbitos que permitimos. Haga clic en "Añadir un permiso".
+
+image:azure-add-permission-link.png[azure-add-permission-link.png]
+
+Esto debería abrir una barra lateral.
+
+image:azure-add-permission-sidebar-clean.png[azure-add-permission-sidebar-clean.png]
+
+Los permisos que queremos están en Microsoft Graph. Haga clic en "Microsoft Graph".
+
+image:azure-microsoft-graph-permissions-link.png[azure-microsoft-graph-permissions-link.png]
+
+Tras hacer clic, se le pedirá que indique qué tipo de permiso desea utilizar.
+
+image:azure-microsoft-graph-permission-types.png[azure-microsoft-graph-permission-types.png]
+
+Haga clic en "Permisos delegados".
+
+image:azure-delegated-permissions-link.png[azure-delegated-permissions-link.png]
+
+Ahora debería ver una nueva sección "Seleccionar permisos".
+
+En la barra de búsqueda escriba `offline_access`; debería mostrarse el permiso offline_access.
+Selecciónelo y haga clic en "Añadir permisos".
+
+image:azure-add-offline-access-permission.png[azure-add-offline-access-permission.png]
+
+Repita el proceso para los siguientes permisos:
+. `IMAP.AccessAsUser.All`
+. `User.Read`
+
+image:azure-add-imap-permission.png[azure-add-imap-permission.png]
+image:azure-add-user-read-permission.png[azure-add-user-read-permission.png]
+
+Tras añadir todos los permisos anteriores, su tabla de permisos debería tener un aspecto similar al siguiente:
+
+image:azure-api-permissions-page-with-values.png[azure-api-permissions-page-with-values.png]
+
+Ahora vuelva a la página principal de su Registro de Aplicación, haciendo clic en "Información general" en la barra
+lateral.
+
+image:azure-link-to-app-registration-overview.png[azure-link-to-app-registration-overview.png]
+
+=== 2.5. Definir el URI de retorno
+
+Nuestro siguiente paso es establecer las configuraciones en "Autenticación", como el URI de retorno y otras.
+
+Vuelva a la página principal de su Registro de Aplicación.
+
+image:azure-main-app-registration-page.png[azure-main-app-registration-page.png]
+
+Haga clic en el enlace "URI de redirección".
+
+image:azure-redirect-uri-link.png[azure-redirect-uri-link.png]
+
+Esto debería llevarle a la página "Autenticación".
+
+Aquí debería ver el URI de retorno que configuró anteriormente.
+
+image:azure-redirect-uri-list.png[azure-redirect-uri-list.png]
+
+A continuación, active la opción "Tokens de acceso (utilizados para flujos implícitos)" en la sección Flujos de
+concesión implícitos e híbridos.
+
+image:azure-enable-access-token.png[azure-enable-access-token.png]
+
+Ahora vuelva a la página principal de su Registro de Aplicación, haciendo clic en "Información general" en la barra
+lateral.
+
+image:azure-link-to-app-registration-overview.png[azure-link-to-app-registration-overview.png]
+
+=== 2.6. Obtener la información de los endpoints
+
+El último paso que debe realizar es obtener los siguientes endpoints:
+
+. Endpoint de autorización OAuth 2.0
+. Endpoint de autorización OAuth 2.0 (v2)
+
+Vuelva a la página principal de su Registro de Aplicación.
+image:azure-main-app-registration-page.png[azure-main-app-registration-page.png]
+
+
+Haga clic en el enlace "Endpoints".
+
+image:azure-endpoints-link.png[azure-endpoints-link.png]
+
+Esto debería abrir una barra lateral similar a la siguiente:
+
+image:azure-endpoints-sidebar.png[azure-endpoints-sidebar.png]
+
+Desde la barra lateral, copie y anote los siguientes endpoints, que serán necesarios para configurar SuiteCRM.
+
+image:azure-required-endpoints.png[azure-required-endpoints.png]
+
+
+== 3. Configurar el Proveedor de Microsoft en SuiteCRM
+
+En los siguientes pasos vamos a configurar un proveedor que podrá ser utilizado por varios usuarios dentro de
+SuiteCRM.
+Este escenario solo tiene sentido cuando ha registrado una aplicación en Azure para cuentas que comparten el mismo
+dominio, normalmente cuentas que no son cuentas @outlook o similares.
+
+{{% notice note %}}
+Dado que vamos a configurar un proveedor OAuth de Grupo, los siguientes pasos deben ser realizados por un usuario
+administrador.
+{{% /notice %}}
+
+Inicie sesión en SuiteCRM como usuario administrador y vaya al panel de administración.
+
+image:suitecrm-admin-panel.png[suitecrm-admin-panel.png]
+
+En el panel de administración, busque "Proveedores OAuth Externos".
+
+image:suitecrm-external-oauth-provider-admin-panel.png[suitecrm-external-oauth-provider-admin-panel.png]
+
+Haga clic en "Proveedores OAuth Externos", lo que debería llevarle a la vista de lista del módulo.
+
+image:suitecrm-external-oauth-provider-module.png[suitecrm-external-oauth-provider-module.png]
+
+Como administrador puede crear dos tipos de registros:
+
+. Personal
+.. Solo son accesibles por el usuario que los creó.
+.. Los registros personales están pensados para configurar el acceso a cuentas personales en proveedores
+existentes, sin un dominio personalizado. Es decir, por ejemplo al configurar el acceso a sus cuentas `@gmail` u
+`@outlook`. Estos pueden compartir una configuración de grupo, ya que para cada uno los campos "Client Id",
+"Client Secret" y otros campos serán únicos por cuenta.
+. Grupo
+.. Registros que serán utilizados por muchos usuarios.
+.. Los registros de grupo están pensados para ser utilizados por todos los que tengan cuentas que compartan el
+mismo dominio, como `@example-inc.onmicrosoft.com`. Los campos "Client ID", "Client Secret" y el resto de campos
+serán los mismos para todas las cuentas que utilicen este dominio.
+
+Como se ha mencionado antes en esta guía, vamos a configurar un proveedor que será utilizado por varios usuarios,
+por lo que vamos a crear un registro de grupo.
+
+Haga clic en "Nuevo Proveedor OAuth de Grupo", lo que debería llevarle a la vista de creación.
+
+Añada un nombre significativo a su proveedor; puede ser simplemente "Microsoft", el nombre de su dominio, o algo
+que le ayude a identificar y diferenciar el proveedor de otros proveedores posibles.
+
+A continuación, seleccione "Microsoft" en el campo "Conector".
+
+image:suitecrm-connector-selection.png[suitecrm-connector-selection.png]
+
+El tipo de conector Microsoft funciona de la misma manera que el tipo de conector "Genérico". La diferencia es que
+tiene varios valores predeterminados integrados. Esto le ahorra algunos pasos de configuración y facilita el
+proceso de configurar un Proveedor OAuth Externo.
+
+Añada los "Ámbitos" (Scopes) a los que desea acceder, los mismos que configuró en la página de Permisos de API de
+Azure.
+
+. `offline_access`
+. `https://outlook.office.com/IMAP.AccessAsUser.All`
+. `User.Read`
+
+image:suite_crm_oauth_provider_scopes.png[suite_crm_oauth_provider_scopes.png]
+
+Establezca el "Client Id" generado en Azure.
+
+image:suitecrm-oauth-provider-client-id.png[suitecrm-oauth-provider-client-id.png]
+
+Establezca el "Client Secret" generado en Azure.
+
+image:suitecrm-oauth-provider-client-secret.png[suitecrm-oauth-provider-client-secret.png]
+
+
+Establezca la "URL de Autorización" que copió de los endpoints de Azure (endpoint de autorización OAuth 2.0 (v2)).
+
+image:azure-authorize-url.png[azure-authorize-url.png]
+image:suitecrm-oauth-provider-authorize-url.png[suitecrm-oauth-provider-authorize-url.png]
+
+Establezca la "URL del Token de Acceso" que copió de los endpoints de Azure (endpoint de token OAuth 2.0 (v2)).
+
+image:azure-access-token-url.png[azure-access-token-url.png]
+image:suitecrm-oauth-provider-access-token-url.png[suitecrm-oauth-provider-access-token-url.png]
+
+Su registro debería tener ahora un aspecto similar al siguiente:
+
+image:suitecrm-oauth-provider-filled-example.png[suitecrm-oauth-provider-filled-example.png]
+
+Dado que muchos de los demás campos tienen valores predeterminados y el conector de Microsoft añade otros valores
+predeterminados, estos son todos los campos que debería necesitar configurar.
+
+Ya puede guardar el registro.
+
+
+== 4. Configurar los Correos Entrantes de los Usuarios
+
+Ahora los usuarios deberían poder utilizar el Proveedor OAuth que ha creado para autenticarse con Microsoft.
+
+Consulte link:../inboundemail-oauth-howto[la guía Cómo configurar Correo Entrante con OAuth] para conocer los pasos
+que los usuarios deben seguir para configurar sus correos entrantes utilizando una conexión OAuth.

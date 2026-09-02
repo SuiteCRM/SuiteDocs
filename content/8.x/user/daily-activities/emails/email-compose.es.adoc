@@ -1,0 +1,172 @@
+---
+title: "Redactar Correos"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities/emails
+
+= Redactar Correos
+
+La ventana modal de redacción de correo le permite enviar correos directamente desde SuiteCRM. La ventana modal se puede minimizar mientras navega por la aplicación y admite edición de texto enriquecido con el editor Squire.
+
+== Abrir la Ventana Modal de Redacción
+
+Existen varias formas de abrir la ventana modal de redacción de correo. Dos de las más comunes son:
+
+* *Desde el Módulo Emails* — Navegue al módulo Emails y seleccione *Compose Email* en el menú del módulo.
+* *Haciendo Clic en una Dirección de Correo* — Haga clic en cualquier enlace de dirección de correo dentro de un registro (por ejemplo, Contact, Lead, Account). Esto abrirá una nueva ventana modal de redacción con la dirección de ese registro ya indicada como destinatario.
+
+image:email-compose-open.png[Ventana modal de redacción abriéndose desde un enlace de dirección de correo en un registro]
+
+== Campos de la Ventana Modal de Redacción
+
+=== From
+
+Seleccione la cuenta de correo de salida desde la que enviar. Si tiene configuradas varias cuentas de correo de salida, puede elegir cuál utilizar. Su cuenta de correo de salida predeterminada estará preseleccionada.
+
+Si su cuenta de correo de salida tiene una firma configurada, se incluirá automáticamente en el cuerpo del correo al seleccionar esa cuenta.
+
+=== To, CC y BCC
+
+Estos campos admiten la búsqueda y selección de Cuentas, Contactos, Clientes Potenciales y Usuarios de SuiteCRM, o la introducción de direcciones de correo individuales.
+
+* *To* — destinatarios principales del correo
+* *CC* — destinatarios en copia (visibles para todos los destinatarios)
+* *BCC* — destinatarios en copia oculta (ocultos para el resto de destinatarios)
+
+=== Subject
+
+Introduzca el asunto de su correo.
+
+=== Body (Editor Squire)
+
+El campo del cuerpo utiliza el editor ligero Squire, que ofrece edición de texto enriquecido adaptada al correo electrónico.
+
+Puede dar formato al texto, añadir enlaces, crear listas, insertar variables y estilizar el contenido de su correo.
+
+=== Inserción de Variables
+
+El Variable Injector le permite insertar variables en el cuerpo del correo que hacen referencia a datos del registro superior (Related To).
+Al enviar el correo, estas variables se procesan y se sustituyen por los valores correspondientes del registro seleccionado.
+
+image:variable-injector-email.png[Panel Variable Injector abierto en la barra de herramientas del cuerpo del correo]
+
+==== Disponibilidad y Uso
+
+El Variable Injector está disponible en dos contextos:
+
+* *Email Compose* — al redactar correos individuales, las variables se basan en el registro Related To.
+* *Campaigns* — al redactar correos de campaña, las variables se basan en los distintos tipos de registros que se pueden añadir a las listas de público objetivo (Contacts, Leads, Targets, Users y Accounts).
+
+Para utilizar el Variable Injector:
+
+. Abra una ventana de redacción de correo.
+. Haga clic en el botón *Variable Injector* en la barra de herramientas del cuerpo del correo.
+. Seleccione una variable del desplegable (formato: `${module}_{field_name}`, por ejemplo, `$accounts_name`).
+. La variable se insertará en la posición del cursor.
+. Para actualizar las variables disponibles, cambie el módulo superior en el campo Related To.
+
+Al enviar el correo, las variables se procesan según el registro Related To seleccionado y se sustituyen por sus valores reales.
+
+==== Ejemplo
+
+Si selecciona un Contacto como registro Related To, la entrada de Contacts se mostrará como "Contact/Lead/Target" en el desplegable.
+
+Esto se debe a que las variables de contacto se pueden utilizar para Contacts, Leads y Targets.
+
+Puede insertar variables como:
+
+----
+Dear $contact_full_name,
+
+We have an update regarding your account: $contact_account_name. Please contact us if you have any questions.
+----
+
+{{% notice note %}}
+Si un campo referenciado está vacío o la relación no existe, la variable se sustituirá por una cadena vacía.
+{{% /notice %}}
+
+Aunque no puede insertar variables directamente en el asunto del correo, puede utilizarlas y se procesarán igualmente.
+
+Las variables se pueden utilizar con formato y combinadas con otro texto en el cuerpo del correo.
+
+== Related To
+
+Vincule su correo a un registro específico de SuiteCRM (por ejemplo, Account, Opportunity, Case). Esto ayuda a mantener el contexto y permite un mejor seguimiento e historial del correo dentro del CRM.
+
+Cuando se selecciona un registro Related To e inserta una Plantilla de Correo, las variables de la plantilla se procesarán al enviar, según el registro seleccionado.
+
+== Adjuntos
+
+Puede adjuntar archivos a su correo de dos formas:
+
+* Cargando archivos directamente desde su equipo mediante *Attach Files*.
+* Adjuntando documentos del módulo Documents mediante *Attach Documents*.
+
+=== Adjuntar un Documento
+
+Seleccione un documento para adjuntar su última revisión a su correo. Se pueden adjuntar varios documentos según sea necesario.
+
+Para adjuntar un documento:
+
+. Haga clic en el botón *Attach Documents* en el pie de la ventana modal de redacción.
+. Busque el documento que desea adjuntar.
+. Seleccione el documento de los resultados de la búsqueda para adjuntarlo a su correo.
+
+==== Adjuntos de Documento Actualizados
+
+Si un documento adjunto a un correo en borrador se actualiza con una nueva revisión, al reabrir la vista de redacción se mostrará la última revisión del documento como adjunto.
+
+==== Adjuntos de Documento Eliminados
+
+Si un documento adjunto a un correo en borrador se elimina, al reabrir la vista de redacción se mostrará un adjunto de "Document not found".
+Los correos con adjuntos de documento eliminados no se pueden enviar.
+
+image:deleted-document-attachment.png[Ventana modal de redacción mostrando un marcador de posición de adjunto "Document not found"]
+
+==== Envío de Documentos como Adjuntos
+
+Cuando envía un correo con un registro de Documento adjunto, se incluirá como adjunto la última revisión del documento en el momento del envío.
+
+=== Diferencia Entre Adjuntos de Documento y Archivos Cargados
+
+Para distinguir un adjunto de documento de un archivo cargado, compruebe el icono del adjunto:
+
+* Los adjuntos de documento muestran un icono de documento.
+* Los archivos cargados muestran un icono de archivo genérico.
+
+image:attached-file-and-document.png[Área de adjuntos de la ventana modal de redacción mostrando un icono de adjunto de documento junto a un icono de archivo cargado]
+
+== Insertar una Plantilla de Correo
+
+Para insertar una plantilla de correo, haga clic en el botón *Insert Template* en el pie de la ventana modal de redacción. Esto le permite seleccionar entre sus plantillas de correo disponibles e insertar el contenido directamente en el cuerpo y el asunto de su correo.
+
+Al seleccionar una plantilla, las variables que contenga se procesarán según el registro Related To seleccionado.
+
+== Enviar su Correo
+
+Una vez que haya terminado de redactar su correo, haga clic en *Send* para enviarlo de inmediato.
+
+== Guardar su Correo como Borrador
+
+Para más información sobre los Borradores, consulte la sección link:../../managing-drafts[Gestión de Borradores].
+
+== Maximizar la Ventana Modal de Redacción
+
+La ventana modal de redacción se puede maximizar para disponer de un espacio de trabajo más amplio al redactar su correo. Para maximizarla, haga clic en el icono de maximizar en la esquina superior derecha de la ventana modal.
+
+image:maximised-compose-modal.png[Ventana modal de redacción en vista maximizada mostrando el editor a ancho completo]
+
+== Navegar Mientras Redacta
+
+La ventana modal de redacción se puede minimizar para permitirle navegar a otros registros o módulos mientras mantiene su correo en borrador abierto. Esto resulta útil para consultar información o adjuntar documentos de otros registros sin perder el contenido de su correo.
+
+Para minimizar la ventana modal, haga clic en el icono de minimizar en la esquina superior derecha de la ventana modal de redacción o haga clic en el encabezado de la ventana modal.
+
+image:minimized-modal.png[Ventana modal de redacción minimizada a una barra en la parte inferior de la pantalla]
+
+== Abrir Varias Ventanas Modales de Redacción
+
+Puede abrir varias ventanas modales de redacción al mismo tiempo, lo que le permite trabajar en varios correos simultáneamente. Cada ventana modal de redacción funciona de forma independiente, y puede alternar entre ellas según sea necesario.
+
+image:multiple-open-modals.png[Varias ventanas modales de redacción abiertas simultáneamente en la parte inferior de la pantalla]

@@ -1,0 +1,85 @@
+---
+Title: Actualización para versiones pre release-candidate
+weight: 30
+---
+
+== 1. Prepárese para la actualización.
+
+Pasos iniciales:
+
+*1.1.* Abra el archivo de configuración `config/services/system/upgrades.yaml`.
+
+*1.2.* Añada una entrada `tmp` a la sección `toKeep`.
+
+Debería quedar así:
+
+[source,yaml]
+----
+parameters:
+  upgrades:
+    toKeep:
+      - 'cache'
+      - 'extensions'
+      - 'public/extensions'
+      - 'public/legacy/modules'
+      - 'public/legacy/custom'
+      - 'public/legacy/cache'
+      - 'public/legacy/upload'
+      - 'public/legacy/Api/V8/OAuth2/private.key'
+      - 'public/legacy/Api/V8/OAuth2/public.key'
+      - 'public/legacy/config.php'
+      - 'public/legacy/config_override.php'
+      - 'public/legacy/config_si.php'
+      - 'public/legacy/suitecrm.log'
+      - 'public/legacy/install.log'
+      - 'logs'
+      - '.env.local'
+      - '.env.local.php'
+      - 'tmp'
+    toExpand:
+
+    ...
+----
+
+*1.3.* Ejecute:
+
+* Para el modo de desarrollo, ejecute:
+
+[source, bash]
+----
+composer install
+----
+
+* Para el modo de producción, ejecute:
+
+[source, bash]
+----
+composer install --no-dev --prefer-dist --optimize-autoloader
+----
+== 2. Descargue el paquete RC
+
+*2.1.* Cree la siguiente carpeta en su instancia actual:
+
+* `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
+
+*2.2.* Descargue el paquete instalable/preconstruido de la RC de SuiteCRM 8
+
+*2.3.* Coloque el paquete en la carpeta `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
+
+== 3. Vuelva a establecer los permisos correctos.
+
+== 4. Ejecute el comando de actualización
+
+*4.1.* En la raíz de su instancia de SuiteCRM 8 ejecute: `./bin/console suitecrm:app:upgrade -t "<version>"`,
+donde `<version>` es el nombre del paquete de SuiteCRM 8 que ha descargado, es decir, `SuiteCRM-8.0.0-rc`:
+
+[source, bash]
+----
+./bin/console suitecrm:app:upgrade -t SuiteCRM-8.0.0-rc
+----
+
+*4.2.* Vuelva a establecer los permisos correctos.
+
+== 5. Abra su instancia
+
+Si todos los pasos anteriores se completaron como se esperaba, debería poder iniciar sesión en su instancia.

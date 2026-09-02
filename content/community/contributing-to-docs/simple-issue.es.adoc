@@ -1,54 +1,54 @@
 ---
-Title: "Opening an Issue about a page"
+Title: "Abrir una incidencia sobre una página"
 Weight: 20
 ---
-:experimental: ////this is here to allow btn:[]syntax used below 
+:experimental: ////this is here to allow btn:[]syntax used below
 
-:imagesdir: /images/es/community
+:imagesdir: /images/en/community
 
-== Contribute with comments, corrections or questions
+== Contribuye con comentarios, correcciones o preguntas
 
-In order to contribute to the Documentation efforts, you can open issues regarding pages directly on GitHub 
-which is the repository of our content.
+Para contribuir a los esfuerzos de Documentación, puedes abrir incidencias sobre páginas directamente en GitHub,
+que es el repositorio de nuestro contenido.
 
 {{% notice info %}}
-You need a https://github.com/join[Github user account^] to open issues on the SuiteCRM Documentation Site. 
-If you don't have one yet, you will be given the opportunity to create one during this process.
+Necesitas una https://github.com/join[cuenta de usuario de GitHub^] para abrir incidencias en el sitio de Documentación de SuiteCRM.
+Si aún no tienes una, se te dará la oportunidad de crearla durante este proceso.
 {{% /notice %}}
 
-=== 1. Navigate to the place you want to comment on 
+=== 1. Ve al lugar sobre el que quieres comentar
 
-Simply use your browser to go to the relevant page. You can use the menus 
-and search feature to facilitate this.
+Simplemente usa tu navegador para ir a la página correspondiente. Puedes usar los menús
+y la función de búsqueda para facilitarlo.
 
-=== 2. Click "Issue"
+=== 2. Haz clic en "Incidencia"
 
-Every page on the site has an "Issue" link near the top.
+Cada página del sitio tiene un enlace "Incidencia" cerca de la parte superior.
 
-image:27PageIssue.png[title="Issue link"]
+image:/images/es/community/27PageIssue.png[title="Enlace de incidencia"]
 
-=== 3. Make your comments
+=== 3. Escribe tus comentarios
 
-You are taken to GitHub where a text editor will allow you to edit the Issue. 
+Se te llevará a GitHub, donde un editor de texto te permitirá redactar la incidencia.
 
-image:28EditIssue.png[title="Edit Issue"]
+image:/images/es/community/28EditIssue.png[title="Editar incidencia"]
 
-It's important to realize that these Issues are about the Documentation page, not about SuiteCRM itself. 
-So please direct any technical questions or feature requests to the https://community.suitecrm.com[Forums^].
+Es importante entender que estas incidencias son sobre la página de Documentación, no sobre SuiteCRM en sí.
+Así que, por favor, dirige cualquier pregunta técnica o solicitud de funcionalidad a los https://community.suitecrm.com[Foros^].
 
-Here, you can ask about something that needs to be clarified in the Documentation, 
-suggest an additional aspect to cover in this page, or tell us about anything that 
-you found wrong about the page.
+Aquí puedes preguntar sobre algo que necesite aclararse en la Documentación,
+sugerir un aspecto adicional que cubrir en esta página, o contarnos cualquier cosa que
+hayas encontrado incorrecta en la página.
 
-When you're done, click the green button 
-at the bottom that is labeled btn:[Submit new issue].
+Cuando termines, haz clic en el botón verde
+de la parte inferior, etiquetado como btn:[Submit new issue].
 
-=== That's it, you're done!
+=== ¡Ya está, has terminado!
 
-Your proposed Issue is now up handed over to the members of the Community in charge of the 
-SuiteCRM Documentation site. They will receive an e-mail notification as soon as you finish your Issue.
+Tu incidencia propuesta ya se ha entregado a los miembros de la Comunidad encargados del
+sitio de Documentación de SuiteCRM. Recibirán una notificación por correo electrónico en cuanto termines tu incidencia.
 
-You can check the status of every Issue, and participate in any discussion 
-about them by visiting https://github.com/SuiteCRM/SuiteDocs/issues[this list^].
+Puedes comprobar el estado de cada incidencia, y participar en cualquier debate
+sobre ellas visitando https://github.com/SuiteCRM/SuiteDocs/issues[esta lista^].
 
-Every small contribution matters! Thanks for helping out. 
+¡Cada pequeña contribución cuenta! Gracias por colaborar.

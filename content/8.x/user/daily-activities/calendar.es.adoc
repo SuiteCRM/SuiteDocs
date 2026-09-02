@@ -1,0 +1,94 @@
+---
+title: "Calendario"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities/calendar
+
+= Calendario
+
+El Calendario le ofrece una vista general de sus Reuniones, Llamadas y Tareas programadas. Puede desplazarse entre las vistas de día, semana, mes y año, crear y editar actividades directamente sobre el calendario, y ver los horarios de otros usuarios junto al suyo.
+
+image:calendar-week-view.png[title="Vista semanal del calendario"]
+
+{{% notice note %}}
+El Calendario se presenta dentro de la interfaz clásica de SuiteCRM, integrada en la estructura principal de la aplicación. Su diseño e interacciones difieren ligeramente de las vistas modernas de registro y de lista utilizadas en el resto de SuiteCRM.
+{{% /notice %}}
+
+== Vistas
+
+Utilice los botones de vista situados en la parte superior del calendario para cambiar entre:
+
+* *Day*: franjas horarias de un solo día
+* *Week*: franjas horarias a lo largo de siete días (la vista predeterminada)
+* *Month*: una cuadrícula con el mes completo
+* *Year*: una vista general del año completo
+* *Shared Week* / *Shared Month*: su calendario y los de los compañeros seleccionados, mostrados juntos (consulte <<Calendarios Compartidos>>)
+
+Utilice las flechas *Previous* y *Next* para desplazarse entre periodos, o haga clic en *Today* para volver a la fecha actual. Haga clic en el icono del calendario para ir directamente a una fecha concreta.
+
+== Creación de Actividades
+
+=== Hacer Clic en una Franja Horaria
+
+Haga clic en cualquier franja horaria vacía en la vista de Day o Week para abrir un cuadro de creación rápida. Seleccione *Meeting* o *Call*, complete el asunto y la duración, y haga clic en *Save*. Para añadir invitados o establecer una recurrencia, utilice las pestañas *Invitees* o *Recurrence* antes de guardar, o abra el formulario completo haciendo clic en *Full Form*.
+
+=== Desde la Barra Lateral o el Menú del Módulo
+
+La barra lateral del Calendario y el menú del módulo ofrecen enlaces directos para crear actividades:
+
+* *Schedule Meeting*: abre la Vista de Edición de Meetings
+* *Schedule Call*: abre la Vista de Edición de Calls
+* *Create Task*: abre la Vista de Edición de Tasks
+
+Las actividades creadas desde el calendario son idénticas a las creadas en sus propios módulos. Consulte link:../calls-meetings[Llamadas y Reuniones] y link:../tasks[Tareas] para conocer todos los detalles de los campos.
+
+== Editar y Reprogramar Actividades
+
+Haga clic en cualquier evento para abrir el cuadro de edición rápida, donde puede actualizar el asunto, la hora, la duración, el estado y el registro relacionado sin salir del calendario.
+
+Arrastre un evento a una nueva franja horaria para reprogramarlo al instante. Arrastre el borde inferior de un evento para cambiar su duración. Ambos cambios se guardan automáticamente.
+
+== Actividades Recurrentes
+
+Las Reuniones y las Llamadas pueden configurarse para repetirse según una programación. Abra la pestaña *Recurrence* al crear o editar una actividad para configurar:
+
+* *Repeat type*: Daily, Weekly, Monthly o Yearly
+* *Interval*: con qué frecuencia se repite la recurrencia (por ejemplo, cada 2 semanas)
+* *Days of the week*: para las recurrencias semanales, en qué días se produce la actividad
+* *End*: tras un número determinado de repeticiones o hasta una fecha concreta
+
+Al editar una actividad recurrente, puede elegir actualizar solo la repetición seleccionada o todas las futuras.
+
+== Calendarios Compartidos
+
+Las vistas *Shared Week* y *Shared Month* muestran su calendario junto a los calendarios de los usuarios que seleccione.
+
+Haga clic en *User List* para abrir el panel de selección de usuarios. Busque por nombre o filtre por equipo para encontrar a sus compañeros y, a continuación, seleccione los usuarios cuyos calendarios desea incluir. Utilice las flechas hacia arriba y hacia abajo para cambiar el orden en el que aparecen sus calendarios.
+
+De forma predeterminada, el calendario de cada usuario se muestra en una sección independiente. Para combinar todos los eventos en una sola vista, abra <<Configuración del Calendario>> y desactive *Display shared calendars separately*.
+
+== Configuración del Calendario
+
+Haga clic en *Settings* para configurar sus preferencias personales de calendario.
+
+=== Visualización
+
+* *Display time slots*: cuando está activado, las vistas de Day y Week muestran una cuadrícula por horas; cuando está desactivado, muestran una lista simplificada de eventos
+* *Day starts at / Day ends at*: establece el horario laboral visible en las vistas de Day y Week (predeterminado 08:00–19:00)
+* *Show Calls*: incluye u oculta las Llamadas del calendario
+* *Show Tasks*: incluye u oculta las Tareas del calendario
+* *Show completed activities*: incluye u oculta las actividades con estado Completed
+* *Display shared calendars separately*: muestra el calendario de cada usuario en su propia sección, o los combina en uno solo
+
+=== Colores
+
+La pestaña *Colours* le permite establecer el color de fondo, de borde y de texto de cada tipo de actividad (Meetings, Calls, Tasks) para distinguirlas fácilmente de un vistazo.
+
+== Dashlet de Calendario
+
+Puede añadirse una versión compacta del calendario a su página de inicio como Dashlet. Consulte link:../../core-concepts/homepage-dashboards[Página de Inicio y Dashboards] para saber cómo añadir y configurar Dashlets.
+
+== Sincronización de Calendario
+
+Para sincronizar el calendario de SuiteCRM con Google Calendar o una aplicación CalDAV, consulte link:../../integrations/calendar-sync[Sincronización de Calendario].

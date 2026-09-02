@@ -1,0 +1,153 @@
+---
+Title: Importación Automática de Correo
+weight: 60
+---
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+
+El trabajo programado `Check Inbound Mailboxes` (Comprobar buzones entrantes) es el responsable de importar
+automáticamente los correos de las cuentas de correo de grupo a *SuiteCRM*. Este trabajo se ejecuta a intervalos
+regulares (según lo configurado en el módulo *Schedulers*) y comprueba todas las cuentas de correo entrante activas
+y no personales en busca de correo nuevo.
+
+== Resumen
+
+El trabajo de importación es invocado por el programador. Para cada cuenta de correo entrante *no personal* y
+*activa*, el programador:
+
+* Recorre cada una de las carpetas monitorizadas configuradas para esa cuenta.
+* Obtiene los mensajes del servidor de correo en orden de fecha, día a día, desde la última fecha importada para esa
+carpeta hasta alcanzar el umbral configurado.
+** (Opcional, configurable) es posible obtener únicamente los mensajes NO LEÍDOS (UNSEEN).
+* Importa por completo cada mensaje seleccionado a la tabla `emails`.
+* Si está configurado, se activa la creación de casos para cada mensaje importado.
+* Si está configurado, se envían respuestas automáticas (respuestas de ausencia).
+* (Opcionalmente, configurable) elimina los mensajes del servidor de correo tras una importación correcta.
+* Actualiza la marca de tiempo de la última ejecución de importación de la Cuenta de Correo Entrante y los cursores
+de última importación por buzón (carpeta monitorizada).
+
+== Cómo se seleccionan los mensajes para su importación
+
+* Por cada buzón, un cursor `mailbox_last_imported_days` almacena el último día importado (A-m-d).
+* El servicio avanza el cursor día a día desde la fecha guardada hasta hoy O hasta alcanzar el límite de mensajes
+configurado por ejecución.
+* Para cada fecha:
+** Consulta el servidor de correo en busca de mensajes de esa fecha y recupera todos los mensajes de ese día.
+** Filtra los mensajes ya presentes en la tabla local `emails` para evitar duplicados, comprobando el UID del
+mensaje.
+** El cursor se actualiza al finalizar la ejecución.
+
+== Opciones de configuración
+
+=== Opciones globales
+
+En la página Configuración de Correo del panel de Administración encontrará las opciones de configuración globales
+para la importación de correo.
+
+image:global-email-import-configuration.png[global-email-import-configuration.png]
+
+Allí encontrará una sección de Configuración de Importación de Correo con las siguientes opciones:
+
+* Umbral de Número de Correos Importados por Ejecución (por Buzón)
+** Define el número umbral de correos que se importarán por ejecución para cada buzón de una cuenta de correo
+entrante.
+** Entrada de configuración: `email_import_per_run_threshold` (entero)
+** Número máximo de mensajes importados por ejecución (a lo largo de la iteración por días). Debe ser un entero
+positivo.
+** Valor predeterminado: `25`.
+
+* Punto de Inicio para Nuevas Importaciones de Buzón
+** Define hasta qué punto en el pasado se debe retroceder para empezar a importar correos cuando no existe ningún
+cursor para ese buzón.
+** Entrada de configuración: `email_import_timeframe_start` (cadena de texto)
+** Punto de referencia para la fecha de inicio predeterminada cuando no existe un cursor por buzón.
+** Formato aceptado: signo menos inicial, número y unidad, por ejemplo `-30 days`, `-3 months`, `-1 years`.
+** Si no es válido o falta, el sistema utiliza `-30 days`.
+
+* Obtener solo los correos no leídos al importar
+** Define si solo se obtienen del servidor de correo los mensajes NO LEÍDOS (UNSEEN).
+** Entrada de configuración: `email_import_fetch_unread_only` (booleano)
+** Cuando es verdadero, las importaciones IMAP solo obtienen mensajes NO LEÍDOS. Valor predeterminado: `false`.
+
+=== Opciones por cuenta de correo entrante
+
+==== Configuraciones de grupo
+
+image:group-inbox-import-config.png[group-inbox-import-config.png]
+
+* Importar Correos Automáticamente
+** Define si los correos se importan automáticamente para esta cuenta de correo entrante.
+
+* Mover Mensajes a la Papelera Tras la Importación
+** Define si los mensajes se eliminan del servidor de correo tras una importación correcta.
+
+* Umbral de Número de Correos Importados por Ejecución (por Buzón)
+** Define el número umbral de correos que se importarán por ejecución para cada buzón de una cuenta de correo
+entrante.
+** Sobrescribe la configuración global.
+** Campo: `email_import_per_run_threshold` (entero)
+** Número máximo de mensajes importados por ejecución (a lo largo de la iteración por días). Debe ser un entero
+positivo.
+** Valor predeterminado: utiliza el valor actual de la configuración global `email_import_per_run_threshold` como
+predeterminado.
+
+* Punto de Inicio para Nuevas Importaciones de Buzón
+** Define hasta qué punto en el pasado se debe retroceder para empezar a importar correos cuando no existe ningún
+cursor para ese buzón.
+** Sobrescribe la configuración global.
+** Campo: `email_import_timeframe_start` (cadena de texto)
+** Punto de referencia para la fecha de inicio predeterminada cuando no existe un cursor por buzón.
+** Formato aceptado: signo menos inicial, número y unidad, por ejemplo `-30 days`, `-3 months`, `-1 years`.
+** Valor predeterminado: utiliza el valor actual de la configuración global `email_import_timeframe_start` como
+predeterminado.
+
+* Obtener solo los correos no leídos al importar
+** Define si solo se obtienen del servidor de correo los mensajes NO LEÍDOS (UNSEEN).
+** Sobrescribe la configuración global.
+** Campo: `email_import_unread_only` (booleano)
+** Cuando es verdadero, las importaciones IMAP solo obtienen mensajes NO LEÍDOS.
+** Valor predeterminado: utiliza el valor actual de la configuración global `email_import_fetch_unread_only` como
+predeterminado.
+
+
+==== Configuraciones de casos
+
+Es posible configurar la creación automática de casos a partir de correos importados en función de cada cuenta de
+correo entrante.
+
+Para más información sobre la creación de casos a partir de correos, consulte la sección Crear Caso desde Correo en
+la documentación del módulo de correo:
+link:../email/#_create_case_from_email
+
+== Comprobación del estado
+
+image:group-inbox-import-status.png[group-inbox-import-status.png]
+
+En la vista de detalle de un registro de cuenta de correo entrante, los siguientes campos ofrecen información sobre
+la última ejecución de importación:
+
+* Fecha/Hora de la Última Ejecución de Importación:
+** Define la marca de tiempo de la última ejecución de importación de esta cuenta de correo entrante.
+
+* Última Fecha Importada por Buzón:
+** Define los cursores de último día importado por buzón (carpeta monitorizada).
+
+
+== Solución de problemas y consejos
+
+* Asegúrese de que el programador `Check Inbound Mailboxes` está activo y en ejecución.
+* Asegúrese de que el cron está configurado correctamente.
+* Compruebe que la cuenta de correo entrante está activa, no es personal y está configurada correctamente.
+* Configure el `Umbral de Número de Correos Importados por Ejecución` según los recursos disponibles en su servidor.
+* Revise los registros de SuiteCRM en busca de errores durante el proceso de importación.
+* Si experimenta problemas de rendimiento, considere aumentar el umbral de importación o ajustar la frecuencia del
+programador.
+* Para buzones grandes, considere ejecutar el trabajo de importación con más frecuencia para evitar tiempos de
+procesamiento largos por ejecución.
+* Si necesita volver a importar correos, puede reiniciar los cursores de última fecha importada por buzón
+modificando directamente la base de datos. Tenga cuidado al hacerlo y asegúrese de contar con una copia de
+seguridad de sus datos.
+* Si desea evitar importaciones duplicadas, asegúrese de que los UID de los correos son únicos y de que el servidor
+de correo no los reutiliza.

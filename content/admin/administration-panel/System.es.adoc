@@ -1,0 +1,267 @@
+---
+Title: Sistema
+weight: 30
+---
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: ./../../../images/en/admin
+
+:toc:
+
+= Sistema
+
+== Ajustes del Sistema
+
+image:SystemSettingsItem.png[title = "Ajustes del Sistema"]
+
+image:SystemSettings.png[title = "Ajustes del Sistema"]
+
+=== Interfaz de Usuario
+
+Estos ajustes de interfaz de usuario se aplican a todo el sistema, aunque algunos (por ejemplo *Show Full Names*)
+pueden anularse por cada usuario en su perfil de usuario.
+
+[cols = "30, 70", frame = "none", grid = "none"]
+|===
+|*Listview items per page*| El número de registros que se muestran por página en la vista de lista
+de cada módulo.
+|*System Name*|Este nombre se mostrará en la pestaña del navegador.
+|*Current Logo*|Muestra el logotipo mostrado actualmente en la pantalla de inicio de sesión
+|*Select Logo*|Haga clic en btn:[Choose file] para seleccionar el archivo del logotipo. Las imágenes pueden ser de formato .png o .jpg.
+|*Lead Conversion Options*|
+|*Display actions within menus*|
+|*Enable inline editing*|Permite editar registros desde la vista de lista o de detalle haciendo doble clic
+sobre el elemento que se desea editar.
+|*Show Full Names*|Muestra los nombres completos de los usuarios, en lugar de los nombres de usuario, en los campos Asignado A.
+|===
+
+==== Configurar la Interfaz de Usuario AJAX
+
+Haga clic en el enlace *Configure Ajax User Interface* para mostrar las opciones de configuración.
+
+image:SystemConfigureAJAXUserInterface.png[title = "Configurar Interfaz de Usuario AJAX"]
+
+Arrastre y suelte los módulos entre las columnas para habilitar/deshabilitar AJAX.
+
+image:SystemSettings2.png[title = "Ajustes del Sistema"]
+
+=== Ajustes de Proxy
+Seleccione la casilla *Use Proxy server?* para configurar la dirección del servidor proxy y los ajustes de autenticación.
+
+=== Autenticación de Google
+Aquí es donde se sube el archivo de credenciales JSON para la Sincronización de Google Calendar. +
+Consulte la sección link:../google-sync[Credenciales de Google y Sincronización].
+
+=== Ajustes Avanzados
+
+[cols = "30, 70", frame = "none", grid = "none"]
+|===
+|*Developer Mode*|Desactiva la caché para que los cambios de código en los archivos se vean de inmediato.
+Consulte la link:../../../developer[Guía de Desarrollador] para más información.
+|*vCal Updates Time Period*|Establece el número de meses de antelación para mostrar la información de disponibilidad
+de los invitados al programar llamadas y reuniones.
+|===
+
+=== Ajustes del Registro (Logger)
+Especifique aquí el nombre de archivo, la extensión y el tamaño del log, así como el nivel de registro.
+Consulte el link:../../../developer/logging/[capítulo sobre logging] para más información.
+
+Haga clic en el enlace View Log para ver el archivo de log.
+
+== Asistente de Importación
+
+image:ImportWizard.png[title = "Asistente de Importación"]
+
+El Asistente de Importación también está disponible desde la barra lateral de todos los módulos de SuiteCRM habilitados para importación.
+Seleccione el módulo en el que desea importar datos y haga clic en btn:[NEXT >] para iniciar el asistente.
+
+Consulte la sección link:../../../user/introduction/user-interface/record-management/#_importing_records[Importación de Registros]
+para más información sobre cómo importar registros.
+
+== Configuración Regional
+
+Establezca aquí los ajustes de configuración regional para todo el sistema, incluyendo los formatos de fecha y hora, la moneda del sistema y
+los ajustes de exportación. Se pueden añadir monedas a SuiteCRM desde el panel <<Currencies>>.
+
+image:LocaleSettings.png[title = "Ajustes de Configuración Regional"]
+
+{{%notice note%}} Tenga en cuenta que los ajustes de fecha y hora se pueden anular por el usuario en su perfil de usuario
+{{%/notice%}}
+
+== Asistente de Actualización
+
+El Asistente de Actualización proporciona una forma rápida y sencilla de actualizar su aplicación SuiteCRM.
+Descargue el https://suitecrm.com/upgrade-suitecrm/[paquete de actualización] requerido y compruebe la
+link:../../compatibility-matrix/[compatibilidad de su sistema] antes de ejecutar
+el asistente.
+
+Consulte link:../../installation-guide/using-the-upgrade-wizard/[Uso del Asistente de Actualización] para instrucciones completas
+sobre cómo actualizar.
+
+== Monedas
+
+Use esta sección para añadir una moneda a *SuiteCRM*. La moneda por defecto se puede establecer en la sección <<Locale>>.
+
+Al introducir el código ISO 4217 de la moneda se autocompletarán los campos Nombre de Moneda y Símbolo de Moneda.
+
+También debe especificar una tasa de conversión de moneda antes de guardar los nuevos ajustes de moneda.
+
+image:Currencies.png[title = "Añadir Moneda"]
+
+== Copias de Seguridad
+
+Los archivos de la aplicación *SuiteCRM* se pueden respaldar usando esta herramienta. Tenga en cuenta que también debe
+realizar copias de seguridad periódicas de su base de datos; consulte la documentación del proveedor para más información sobre cómo hacerlo.
+
+== Idiomas
+
+Descargue los paquetes de idioma para *SuiteCRM* https://crowdin.com/project/suitecrmtranslations[aquí].
+
+== Reparación
+
+Al seleccionar Repair en el panel de Ajustes del Sistema se muestra una amplia gama de opciones de reparación
+para SuiteCRM que se ejecutarán automáticamente al hacer clic en el enlace. *SuiteCRM* puede indicarle que
+ejecute comandos de Reparación específicos, por ejemplo tras una actualización mediante el <<Upgrade Wizard>>.
+
+Quick Repair and Rebuild es el comando que se usa con más frecuencia aquí, y será necesario tras
+instalar un nuevo módulo mediante Module Loader, por ejemplo, o para mostrar cambios de código
+durante el desarrollo cuando el <<Advanced Settings, Developer Mode>> no está activado.
+
+Al ejecutar Quick Repair and Rebuild, asegúrese de desplazarse hasta el final de la página para ver cualquier
+código SQL nuevo que pueda ser necesario ejecutar para garantizar que las tablas de su base de datos estén correctamente
+sincronizadas con los cambios que se hayan realizado.
+
+Las siguientes funciones están disponibles en esta sección:
+
+Quick Repair and Rebuild:: Repara y reconstruye la BD, las Extensiones, los Vardefs, los Dashlets de SuiteCRM, etc.
+Expand Column Width:: Expande determinadas columnas char, varchar y text en la base de datos (SOLO MSSQL)
+Rebuild .htaccess File:: Reconstruye el archivo .htaccess para restringir el acceso directo a determinados archivos
+Rebuild Config File:: Reconstruye config.php actualizando la versión y añadiendo valores por defecto cuando no estén declarados explícitamente
+Rebuild Relationships:: Reconstruye los metadatos de las relaciones y elimina el archivo de caché
+Rebuild Schedulers:: Reconstruye los Trabajos del Planificador (Scheduler) predeterminados
+Rebuild SuiteCRM Dashlets:: Reconstruye el archivo de caché de los Dashlets de SuiteCRM
+Rebuild Javascript Languages:: Reconstruye las versiones javascript de los archivos de idioma
+Rebuild JS Compressed Files:: Copia los archivos JS de origen completos y reemplaza los archivos JS comprimidos existentes
+Rebuild JS Grouping Files:: Vuelve a concatenar y sobrescribe los archivos de grupo existentes con las versiones más recientes de los archivos de grupo
+Rebuild Minified JS Files:: Copia los archivos JS de origen completos y los minifica, después reemplaza los archivos comprimidos existentes
+Repair JS Files:: Comprime los archivos JS existentes, incluidos los cambios realizados, pero sin sobrescribir los archivos JS de origen originales
+Repair Non-Lowercase Fields:: Repara las tablas y archivos de metadatos personalizados en mayúsculas/minúsculas mixtas para solucionar problemas en los que el código espera nombres de campo en minúsculas
+Repair Roles:: Repara los Roles añadiendo todos los módulos nuevos que admiten Controles de Acceso, y añadiendo cualquier nuevo Control de Acceso a los módulos existentes
+Repair Inbound Email Accounts:: Repara las cuentas de correo entrante y cifra las contraseñas de las cuentas
+Sync Inbound Email Accounts:: Sincroniza las Cuentas de Correo Entrante y los Correos Electrónicos
+Remove XSS:: Elimina vulnerabilidades XSS de la base de datos
+Repair Activities:: Repara las fechas de fin de las Actividades (Llamadas, Reuniones)
+Enable/Disable Seed Users:: Habilita o deshabilita rápidamente los usuarios de ejemplo (seed users) creados durante la instalación de demostración.
+Remove missed files from upload directory:: Tenga en cuenta que esta eliminación puede tardar bastante tiempo
+
+== Búsqueda Global
+
+La funcionalidad de Búsqueda Global se usa para buscar registros mediante la barra de búsqueda del menú de
+navegación principal.
+Añada o elimine módulos de la Búsqueda Global aquí.
+
+Consulte la guía de interfaz de usuario sobre link:../../../user/introduction/user-interface[la búsqueda global]
+para más información.
+
+image:GlobalSearch.png[title = "Búsqueda Global"]
+
+== Herramienta de Diagnóstico
+
+La herramienta de diagnóstico le permite recopilar información de configuración del sistema que se puede descargar mediante
+un archivo .zip para su análisis.
+
+image:DiagnosticTool.png[title = "Herramienta de Diagnóstico"]
+
+[cols = "30, 70", frame = "none", grid = "none"]
+|===
+|*SuiteCRM config.php*|Incluye una copia del archivo config.php del directorio raíz de SuiteCRM.
+Este contiene muchas de las opciones de ajustes del sistema, como formatos de fecha, información de moneda,
+configuración de contraseñas, así como detalles de configuración como los ajustes de base de datos y la versión
+de SuiteCRM
+|*SuiteCRM Custom directory*|Incluye una copia del directorio custom, que contiene cualquier personalización de campos o
+de diseño realizada, ya sea mediante Studio o mediante código.
+|*phpinfo()*|Incluye la salida de la función phpinfo(), con información sobre la configuración de php
+en el servidor
+|*MySQL - Configuration Table Dumps*|Incluye una carpeta MySQL/Table Dumps en el archivo zip de diagnóstico con un archivo html
+para cada tabla de configuración de SuiteCRM. Cada archivo contiene las definiciones de campo (nombres de campo, tipos de dato, etc.),
+los índices (nombre, tipo y campos del índice) y los datos de la tabla correspondiente.
+|*MySQL - All Tables Schema*|Incluye el archivo MySQL/TableSchema/TableSchema.html con dos secciones para cada tabla de SuiteCRM:
+definiciones de campo (nombre de tabla, tipos de dato, etc.) e índices (nombre, tipo y campos del índice)
+|*MySQL - General information*|Incluye un archivo MySQL/MySQL-General-info.html con información de la base de datos, como el número de versión
+y los juegos de caracteres
+|===
+
+Seleccione la información que necesite y haga clic en btn:[Execute Diagnostic]
+
+image:DiagnosticTool2.png[title = "Salida de la Herramienta de Diagnóstico"]
+
+Una vez completado, haga clic en el enlace para descargar el archivo de diagnóstico comprimido.
+
+== Conectores
+
+Esta sección está pendiente de completar.
+
+== Temas
+
+A partir de la versión 7.9, solo está disponible el tema SuiteP. Para versiones anteriores, puede establecer el tema por defecto
+y qué otros temas están disponibles para que los usuarios los seleccionen aquí.
+
+image:AdminThemes.png[title = "AdminThemes"]
+
+A partir de la versión 7.10, hay disponible una selección de colores de tema para SuiteP que se puede establecer desde el perfil de usuario.
+
+== Planificador (Scheduler)
+
+SuiteCRM usa una serie de trabajos del Planificador que se ejecutan en horarios programados, dando soporte a funcionalidades como la indexación de búsqueda,
+los flujos de trabajo, las notificaciones por correo electrónico, el mantenimiento de la base de datos y el envío de correos de campañas.
+
+image:AdminScheduler.png[title = "Planificador"]
+
+=== Configurar el Planificador
+
+Los trabajos del Planificador deben habilitarse manualmente. Esto se hace ejecutando un script llamado cron.php
+cada minuto. Este, a su vez, gestiona todos los trabajos de SuiteCRM según sus horarios correspondientes.
+
+En Windows esto se configura mediante el Programador de Tareas, y en Linux e iOS se configura en crontab. Se mostrarán instrucciones detalladas
+para su sistema durante la instalación, y también se pueden encontrar en la página de Planificadores, en la lista
+de trabajos programados.
+
+Consulte link:../../../blog/scheduler-jobs/[Scheduler Jobs in SuiteCRM in Linux - the Definitive Guide]
+para una guía detallada sobre cómo configurar y gestionar trabajos programados en Linux.
+
+=== Configurar Trabajos Programados
+
+Haga clic en un trabajo programado para ver sus ajustes
+
+image:AdminScheduledTask.png[title = "Tarea Programada"]
+
+En modo de edición, puede establecer el estado del trabajo (solo se ejecutarán los trabajos Activos) y configurar el intervalo con el que se ejecuta el trabajo,
+así como la hora de inicio.
+Al desmarcar la casilla "Advanced Options" se mostrará una forma más sencilla de establecer el intervalo del trabajo si no está
+familiarizado con la notación de crontab. Al volver a marcar Advanced Options podrá establecer la hora de inicio.
+
+image:AdminEditScheduledTask.png[title = "Editar Tarea Programada"]
+
+== Flujos de Actividad (Activity Streams)
+
+Por defecto, el dashlet de Flujo de Actividad muestra las actualizaciones recientes de los módulos Oportunidades, Contactos, Iniciativas y Casos.
+
+El panel de administración de Flujo de Actividad le permite configurar qué se muestra en el feed de actividad y qué funciones
+están disponibles para los usuarios.
+
+image:SystemActivityStreams.png[title = "Configurar Flujo de Actividad"]
+
+[cols = "40, 60", frame = "none", grid = "none"]
+|===
+|*Enable MyActivity Stream Dashlet:*|Habilita/deshabilita el dashlet de Flujo de Actividad para todos los usuarios
+|*Activate Feeds For:*|Seleccione los módulos para los que se mostrará actividad
+|*Activate User Feed:*|Permite a los usuarios introducir mensajes en el campo de actualización de estado para difundirlos a todos los usuarios
+|===
+
+Consulte la link:../../../user/introduction/user-interface/home-page/#_activity_stream[guía de interfaz de usuario] para
+más información sobre cómo usar el Flujo de Actividad.
+
+== Claves OAuth
+
+
+

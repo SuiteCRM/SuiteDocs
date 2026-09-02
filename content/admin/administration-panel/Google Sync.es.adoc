@@ -1,0 +1,151 @@
+---
+Title: Credenciales de Google y Sincronización
+Weight: 80
+---
+
+{{% notice warning %}}
+**Sustituido en la v7.15+**: esta función de Sincronización con Google Calendar ha sido completamente sustituida por el nuevo framework de link:../calendar-sync/[Sincronización de Calendario] en SuiteCRM 7.15 y versiones posteriores. Si está actualizando desde una versión anterior, su configuración se migrará automáticamente. Esta documentación se conserva únicamente como referencia para los usuarios de las versiones 7.11-7.14.
+{{% /notice %}}
+
+{{% notice info %}}
+Esta mejora se encuentra en fase **Beta**; ¡ayúdenos aportando sus comentarios!
+Solo está disponible en las versiones 7.11 y posteriores de SuiteCRM.
+{{% /notice %}}
+
+:imagesdir: /images/en/googleapi
+
+:toc:
+
+== Descripción General
+
+SuiteCRM tiene la capacidad de sincronizar las reuniones de un usuario con su Google Calendar. Se trata
+de una sincronización bidireccional, y los cambios realizados en cualquiera de los dos extremos de la sincronización provocan actualizaciones en el otro.
+
+No existe ningún intermediario en este proceso. Sus datos no pasan por terceros. Solo intervienen
+su instancia de SuiteCRM y los servidores de Google.
+
+=== Requisitos
+
+==== Credenciales de API válidas
+Para sincronizar las reuniones de SuiteCRM de un usuario con su Google Calendar, el sistema debe tener credenciales válidas guardadas.
+
+Estas credenciales se crean en la Consola de Desarrolladores de Google, se descargan como un archivo JSON y se importan a SuiteCRM.
+Más adelante en esta página encontrará instrucciones sobre cómo hacerlo.
+
+==== Acceso a Internet desde el servidor de SuiteCRM
+El servidor de SuiteCRM también debe tener acceso a internet. Sin embargo, el servidor de SuiteCRM no necesita ser accesible públicamente.
+El usuario debe poder acceder tanto a Google como a SuiteCRM al mismo tiempo para autorizar el acceso al calendario. Una vez hecho esto, el proceso
+de sincronización se ejecuta según una programación sin necesidad de interacción del usuario. El usuario no necesita tener la sesión iniciada en SuiteCRM para que la sincronización funcione.
+
+==== Al menos una cuenta de Google
+Necesitará una cuenta de Google para crear las credenciales de API, y una cuenta con la que sincronizar. Pueden ser la misma cuenta si solo tiene un usuario.
+Las credenciales de API solo necesitan generarse una vez, desde una única cuenta. Estas credenciales pueden utilizarse para sincronizar a todos los usuarios una vez que autoricen
+el acceso a su cuenta. Estas cuentas pueden ser cuentas genéricas de @gmail.com, o cuentas de GSuite de cualquier nivel (Basic/Business/Enterprise).
+
+== Generación e Instalación de Credenciales de Google
+=== Generación de Credenciales
+Asegúrese de haber iniciado sesión en una cuenta de Google antes de continuar.
+
+Vaya a https://console.developers.google.com/apis/dashboard[Google Developers Console]
+|===
+
+|Haga clic en el desplegable de la parte superior de la pantalla.|image:cred_1.png[float=left]
+
+|Haga clic en el botón 'New Project'.|image:cred_2.png[float=left]
+|Asigne al proyecto un nombre descriptivo, como 'SuiteCRM Google Sync', y haga clic en 'Create'.|image:cred_3.png[float=left]
+
+|En la parte superior de la página, haga clic en el desplegable 'Select a project'...|image:cred_4.png[float=left]
+
+|...y a continuación haga clic en el proyecto que acaba de crear.|image:cred_5.png[float=left]
+
+|Ahora verá el proyecto en el desplegable, y un aviso de que no hay ninguna API habilitada. Haga clic en el enlace 'Library' del aviso.|image:cred_6.png[float=left]
+
+|En la ventana de búsqueda, escriba "Calendar" y, a continuación, haga clic en el resultado 'Google Calendar API'.|image:cred_7.png[float=left]
+
+|Haga clic en el botón 'Enable'.|image:cred_8.png[float=left]
+
+|Ahora que hemos habilitado la API, creamos las credenciales. Haga clic en el botón 'Create credentials'.|image:cred_9.png[float=left]
+
+|Configure las opciones de la sección 1 tal como se muestra. Haga clic en '¿Qué credenciales necesito?' para continuar.|image:cred_10.png[float=left]
+
+|En la Sección 2, asígnele un nombre descriptivo. Deje 'JavaScript origins' en blanco. +
+ +
+En 'Authorized redirect URIs', debe indicar la URI completa del Entry Point 'saveGoogleApiKey'. +
+Por ejemplo, si accede a su instalación de SuiteCRM mediante la URI 'http://crm.yourdomain.com/', deberá añadir 'index.php?entryPoint=saveGoogleApiKey' al final de esa dirección. La URI completa sería +
+`http://crm.yourdomain.com/index.php?entryPoint=saveGoogleApiKey` +
+Si su instalación de SuiteCRM se encuentra en un subdirectorio, deberá incluirlo. Por ejemplo +
+`http://crm.yourdomain.com/SuiteCRM/index.php?entryPoint=saveGoogleApiKey` +
+
+Tenga en cuenta que esta no necesita ser una URL pública. Solo necesita ser accesible para el usuario que habilita la sincronización del calendario. Se recomienda encarecidamente contar con un sitio con https habilitado para producción en un entorno de acceso público. +
+ +
+A continuación, haga clic en 'Create OAuth client ID'.|image:cred_11.png[float=left]
+
+|De nuevo, cree un nombre descriptivo. Hay más opciones disponibles en 'More customization options', pero no son necesarias para que esto funcione. A continuación, haga clic en 'Continue'.|image:cred_12.png[float=left]
+
+|Haga clic en el botón 'Download'. Guarde el archivo .json. Lo utilizaremos más adelante en SuiteCRM. Haga clic en 'Done' cuando termine. Esto es todo lo que necesitamos para que todos nuestros usuarios puedan sincronizar sus calendarios.|image:cred_13.png[float=left]
+
+|===
+
+=== Instalación de Credenciales
+Inicie sesión en SuiteCRM como usuario administrador.
+
+Vaya a 'Administration'. +
+A continuación, desplácese hasta la sección 'Google Suite'. +
+Haga clic en el elemento 'Google Calendar Settings'. +
+
+|===
+
+|Observe que indica 'Unconfigured'. Esto significa que actualmente no hay ningún archivo JSON instalado. +
+Haga clic en el botón 'Choose File' aquí, y seleccione el archivo JSON que descargó desde la Consola de Desarrolladores. +
+Haga clic en el botón 'Save' en la parte inferior de la pantalla.|image:cred_14.png[float=left]
+
+|Esto le devolverá al menú 'Administration'. Vuelva a entrar en 'Google Calendar Settings'. +
+Ahora indicará 'Configured' en verde, mostrando que el archivo JSON se ha guardado correctamente.|image:cred_15.png[float=left]
+
+|===
+
+Si en algún momento necesita instalar credenciales nuevas, simplemente súbalas. Sobrescribirán las anteriores.
+
+== Autorización del Acceso al Calendario
+Esto debe realizarlo el usuario para habilitar la sincronización con su Google Calendar
+
+|===
+
+|Haga clic en el desplegable de su nombre en la parte superior derecha del sitio de SuiteCRM, y luego en 'Profile'.| image:cred_16.png[float=left]
+
+|Vaya a la pestaña 'Advanced'.|image:cred_17.png[float=left]
+
+|Debería ver el subencabezado 'Google Account Synchronization' en la parte inferior. Si no aparece, es que el servidor de SuiteCRM no tiene instaladas las Credenciales de Google. +
+Haga clic en el botón 'Authorize'.|image:cred_18.png[float=left]
+
+|Si tiene la sesión iniciada en varias cuentas de Google, se le preguntará con qué cuenta de Google desea sincronizar. En caso contrario, se le llevará directamente a este cuadro de diálogo:|image:cred_19.png[float=left]
+
+|Una vez que haga clic en 'Allow', volverá a la página de perfil del usuario. Haga clic de nuevo en la pestaña 'Advanced', y debería ver lo siguiente:|image:cred_20.png[float=left]
+
+|===
+
+Marque la casilla 'Enable Calendar Sync' y, a continuación, haga clic en el botón 'Save'.
+
+¡Eso es todo! Por defecto, la sincronización se produce cada cuarto de hora. El Administrador puede cambiar esto en la configuración del Scheduler.
+
+=== Problemas Conocidos
+
+Si se modifica el valor de "google_calendar_sync_name", esto provocará que TODAS las reuniones se resincronicen.
+Esto se debe a que, si el valor cambia, Google detecta todas las reuniones existentes como elementos de calendario nuevos y únicos.
+
+La mejor manera de evitar que esto ocurra es no editar/modificar el valor "google_calendar_sync_name" que se encuentra
+en su archivo config.php.
+
+== Deshabilitar la Sincronización con Google Calendar
+Si desea deshabilitar por completo la sincronización con Google Calendar o volver a añadir su token desde cero, realice las siguientes acciones:
+
+|===
+
+| Deshabilite las tareas 'Google Sync Calendars' desde Admin/Scheduler.|image:disable-1.png[float=left]
+
+| Elimine la línea del token de Google Cloud en `config_override.php`|image:disable-2.png[float=left]
+
+|===
+
+Para restablecer la autorización de Google, el usuario puede restablecer su configuración personal.
+Puede resultar innecesario si el token ya se ha eliminado de la configuración de administración y la tarea del scheduler no está activa.

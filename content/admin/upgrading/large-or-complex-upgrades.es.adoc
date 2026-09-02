@@ -1,0 +1,133 @@
+---
+title: "Actualizaciones Grandes o Complejas"
+weight: 40
+aliases:
+  - /es/blog/larger-upgrades/
+---
+:experimental:
+:imagesdir: /images/en/admin/upgrading
+
+Esta guía está dirigida a los administradores que gestionan actualizaciones de bases de datos grandes, instancias muy personalizadas o saltos de versión significativos. Cubre la planificación, la ejecución y los cuidados posteriores a la actualización necesarios para reducir el riesgo y proteger la continuidad.
+
+{{% notice info %}}
+Para una actualización estándar en una instancia pequeña o con pocas personalizaciones, las guías del link:../upgrade-wizard[Upgrade Wizard] o de link:../cli-upgrade[Actualización por CLI] son suficientes por sí solas.
+{{% /notice %}}
+
+== Planificación
+
+=== ¿Su sistema actual está en buen estado?
+
+Resuelva los problemas conocidos antes de actualizar. Partir de un estado no saludable dificulta distinguir los problemas preexistentes de los relacionados con la actualización.
+
+* **Compruebe si hay tablas de tamaño excesivo.** Algunas tablas acumulan con el tiempo grandes volúmenes de registros eliminados de forma lógica (soft-deleted). Revise su base de datos en busca de tablas con un número de filas inesperadamente alto y considere depurarlas antes de actualizar.
+* **Revise sus logs.** Compruebe `suitecrm.log` en busca de errores recurrentes. Conocer su estado de errores de referencia le permite identificar con mayor claridad cualquier problema nuevo que aparezca tras la actualización.
+
+=== Defina el alcance
+
+Cuando se actualiza una parte de su infraestructura, a menudo otras deben actualizarse con ella. Dedique tiempo a pensar en el alcance completo antes de empezar:
+
+* Elija la versión de destino de SuiteCRM. Consulte la link:../../compatibility-matrix[Matriz de Compatibilidad] para confirmar que su versión de PHP, base de datos y servidor web son compatibles.
+* Asegúrese de que su versión de PHP tenga suficiente vida de soporte restante; consulte link:https://www.php.net/supported-versions.php[php.net/supported-versions].
+* Decida si aprovechará esta oportunidad para mejorar su infraestructura: pasar a un servidor más reciente, separar la capa de base de datos, adoptar contenedores o máquinas virtuales, o trabajar desde un repositorio `git` para una mejor gestión de cambios.
+
+=== Audite sus personalizaciones
+
+Su objetivo es actualizar sin romper la funcionalidad de la que dependen sus usuarios. Empiece por enumerar todo lo que no forma parte del producto principal:
+
+* Complementos y extensiones: ¿son compatibles con la versión de destino?
+* Temas personalizados o cambios de logotipo/marca
+* Diseños personalizados mediante Studio
+* Logic Hooks y flujos de trabajo
+* Cualquier cambio de código realizado directamente en los archivos del núcleo en lugar de en el directorio `/custom`; estos se sobrescribirán y deberán volver a aplicarse tras la actualización de una forma segura para futuras actualizaciones
+
+=== Coordínese con su organización
+
+Una actualización del CRM afecta a los procesos diarios de toda la empresa. Asegúrese de que las siguientes partes interesadas estén informadas e implicadas antes de empezar:
+
+* El personal técnico responsable de la actualización y las pruebas
+* Los directivos y responsables de equipo que necesitan planificar en torno a cualquier interrupción del servicio
+* Los usuarios finales, que deben saber qué va a cambiar y cuándo
+* Cualquier persona ajena a la organización que pueda notar un impacto
+
+=== Trátelo como un proyecto
+
+Una actualización de gran envergadura se beneficia de una gestión de proyecto formal:
+
+* Identifique los riesgos y defina medidas de mitigación
+* Establezca plazos claros y asigne responsabilidades
+* Incluya una fase de pruebas y, si es posible, un despliegue por fases
+* Planifique cuidadosamente el momento del cambio (cut-over): el instante en que se retira el sistema antiguo y entra en funcionamiento el nuevo es el punto de mayor riesgo del proceso
+
+== Realización de la actualización
+
+=== Estrategia de actualización
+
+Necesitará un segundo servidor o entorno para realizar y probar la actualización antes de pasarla a producción. Existen dos estrategias habituales:
+
+**Estrategia de migrar y luego actualizar**
+Ponga en marcha un nuevo servidor, migre a él sus datos y archivos y, a continuación, actualice en el nuevo servidor. Cuando esté satisfecho con el resultado, dirija el tráfico hacia el nuevo servidor.
+
+**Estrategia de probar y luego actualizar**
+Clone su servidor de producción y actualice el clon. Una vez probado, actualice directamente producción (con una ventana de mantenimiento).
+
+image:upgrading-strategies.png[Diagrama de estrategias de actualización]
+
+{{% notice tip %}}
+La virtualización o la contenedorización suponen una ventaja importante en este punto: los snapshots le permiten volver a un estado conocido y estable en cualquier momento del proceso.
+{{% /notice %}}
+
+=== Migración de la base de datos
+
+Si va a pasar a un nuevo servidor, normalmente basta con un volcado SQL completo:
+
+[source,bash]
+----
+# Dump
+mysqldump -u <user> -p <database_name> > suitecrm_$(date +%Y%m%d).sql
+
+# Restore on new server
+mysql -u <user> -p <database_name> < suitecrm_$(date +%Y%m%d).sql
+----
+
+{{% notice warning %}}
+Nunca restaure una base de datos de una versión de SuiteCRM en un servidor que ejecute una versión distinta de SuiteCRM sin antes actualizar el código para que coincida. La discrepancia de esquema puede provocar problemas de integridad de datos que quizá no se hagan evidentes hasta mucho más tarde.
+{{% /notice %}}
+
+=== Transferencia de archivos
+
+Para un clon exacto, copie todo el directorio de SuiteCRM.
+
+Para una migración específica de solo datos y personalizaciones, transfiera:
+
+* `uploads/`: archivos, fotos y adjuntos subidos por los usuarios
+* `custom/`: sus personalizaciones
+* Cualquier módulo personalizado del directorio `modules/`
+* Cualquier tema personalizado del directorio `themes/`
+* `config.php` y `config_override.php`
+
+=== Pruebas de la instancia actualizada
+
+Antes de pasar a producción, centre las pruebas en:
+
+* Todo lo que haya personalizado: Logic Hooks, diseños, flujos de trabajo, complementos
+* La configuración de correo electrónico y el correo entrante/saliente
+* Cualquier integración con sistemas externos
+* Todas las plataformas desde las que trabajan sus usuarios: escritorio, tableta y móvil
+
+=== Cambios de nombre de servidor o URL
+
+Si la actualización implicó pasar a un servidor con un nombre de host o una URL diferentes:
+
+* Actualice `site_url` y `host_name` en `config.php`
+* Actualice cualquier acción de flujo de trabajo que incluya URLs codificadas de forma fija
+* Actualice cualquier enlace de su sitio web o de sistemas externos que apunte al CRM
+* Revise los archivos `.htaccess` en busca de rutas codificadas de forma fija
+
+== Cuidados posteriores a la actualización
+
+Una vez que el nuevo sistema esté en funcionamiento:
+
+. Vaya a menu:Administración[Reparación] y ejecute *Reconstruir Relaciones* y *Reconstruir Extensiones*.
+. Supervise los logs en busca de errores nuevos durante los primeros días.
+. Procure mantenerse cerca de la versión actual a partir de entonces: las actualizaciones más pequeñas y frecuentes son considerablemente menos arriesgadas que los grandes saltos de versión.
+. Si encuentra problemas, los link:https://community.suitecrm.com[Foros de la Comunidad] son un buen primer recurso. Si confirma que se trata de un error, notifíquelo en el link:https://github.com/SuiteCRM/SuiteCRM/issues[repositorio de GitHub de SuiteCRM].

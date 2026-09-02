@@ -1,0 +1,108 @@
+---
+title: "Llamadas y Reuniones"
+weight: 60
+---
+
+:imagesdir: /images/en/8.x/user/daily-activities/calls-meetings
+
+= Llamadas y Reuniones
+
+== Llamadas
+
+El módulo Calls le permite programar y registrar las llamadas entrantes y salientes en las que participa. Las Llamadas pueden relacionarse con Accounts, Contacts, Leads, Opportunities y Cases, y los invitados pueden recibir una notificación por correo electrónico.
+
+=== Campos Clave
+
+* *Direction*: si la llamada es Inbound u Outbound.
+* *Status*: Planned (próxima), Held (finalizada) o Not Held (cancelada).
+* *Date & Time / Duration*: cuándo empieza la llamada y cuánto dura (horas y minutos).
+* *Related To*: relaciona la llamada con un registro superior, como una Account, Contact, Lead, Opportunity o Case. Esto determina en qué subpanel de History de qué registro aparece la llamada.
+* *Reminders*: pueden configurarse recordatorios emergentes y por correo electrónico para avisar a los invitados antes de que empiece la llamada.
+* *Repeat Type*: las llamadas pueden configurarse para repetirse Daily, Weekly, Monthly o Yearly, con intervalo, día de la semana y condiciones de finalización configurables (repetir hasta una fecha o un número fijo de repeticiones).
+
+=== Relaciones
+
+Desde un registro de Call puede ver y gestionar:
+
+* *Invitees*: usuarios, Contacts y Leads añadidos como participantes. Se puede enviar un correo electrónico directamente a los invitados desde el registro.
+* *Registro relacionado*: la Account, Contact, Opportunity, Case u otro registro con el que está relacionada la llamada.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+Para conocer las operaciones estándar de los registros, incluyendo búsqueda, edición, duplicación y cierre, consulte link:../../core-concepts/record-management[Record Management].
+
+=== Reprogramar una Llamada
+
+Puede reprogramar una Call que tenga como Direction *Outbound* y como Status *Planned* mediante la opción *Reschedule* en la Vista de Detalle de la Call. Al seleccionarla se abre un panel donde puede establecer la nueva fecha y hora y, opcionalmente, seleccionar un motivo de reprogramación en la lista desplegable. Haga clic en *Save* para confirmar — la llamada se actualiza con la nueva fecha y hora, y se registra una entrada de reprogramación. Puede consultar el historial completo de reprogramaciones en la pestaña *Reschedule* de la Vista de Detalle de la Call.
+
+{{% notice note %}}
+Un administrador del sistema puede personalizar los motivos disponibles en el panel de Reschedule mediante el editor de listas desplegables (lista desplegable: `call_reschedule_dom`).
+{{% /notice %}}
+
+=== Envío de Invitaciones por Correo para Llamadas
+
+Al programar una Call, puede enviar invitaciones por correo electrónico a los invitados.
+
+En la sección de invitados:
+
+. Busque a los invitados que desea añadir a la Call.
+. Seleccione los invitados de los resultados de la búsqueda y haga clic en *Add*.
+. Una vez añadidos todos los invitados e introducidos los detalles de la llamada, haga clic en *Save & Send Invitations*.
+
+Esto guarda el registro de Call y envía invitaciones por correo electrónico a todos los invitados añadidos a la Call.
+
+==== Tipos de RSVP para las Invitaciones a Llamadas
+
+Hay disponibles dos tipos de RSVP por correo electrónico para las invitaciones: ICS RSVP y Link RSVP. El tipo de RSVP lo configura un administrador del sistema en `config.php` o `config_override.php` estableciendo la variable de configuración `email_calendar_invite_type` en `rsvp_ics` o `rsvp_links`.
+
+*ICS RSVP*: la invitación por correo electrónico contiene un archivo de calendario ICS que los invitados pueden usar para añadir la Call a su propia aplicación de calendario. Aceptar o rechazar mediante este archivo no actualiza el estado de aceptación en el registro de Call en SuiteCRM.
+
+*Link RSVP*: la invitación por correo electrónico contiene enlaces que los invitados pueden usar para aceptar o rechazar la Call directamente. Estos enlaces actualizan el estado de aceptación en el registro de Call en SuiteCRM.
+
+== Reuniones
+
+El módulo Meetings le permite crear un registro de cualquier reunión en la que haya participado. El programador de reuniones le permite invitar a asistentes, enviar invitaciones por correo electrónico, establecer recordatorios, programar reuniones recurrentes y relacionar reuniones con Accounts, Contacts, Projects y otros muchos módulos.
+
+=== Campos Clave
+
+* *Status*: Planned (próxima), Held (finalizada) o Not Held (cancelada).
+* *Location*: el lugar o la dirección donde se celebra la reunión.
+* *Date & Time / Duration*: cuándo empieza la reunión y cuánto dura.
+* *Related To*: relaciona la reunión con un registro superior. Esto determina en qué subpanel de History de qué registro aparece la reunión.
+* *Type*: identifica si se trata de una reunión estándar o de una realizada mediante una herramienta de videoconferencia externa (WebEx, GoToMeeting, etc.).
+* *Password / Join URL*: para las reuniones virtuales, almacenan las credenciales de acceso y el enlace de conexión para los asistentes.
+* *Reminders*: pueden configurarse recordatorios emergentes y por correo electrónico para avisar a los invitados antes de que empiece la reunión.
+* *Repeat Type*: las reuniones pueden configurarse para repetirse Daily, Weekly, Monthly o Yearly, con intervalo, día de la semana y condiciones de finalización configurables.
+
+=== Relaciones
+
+Desde un registro de Meeting puede ver y gestionar:
+
+* *Invitees*: usuarios, Contacts y Leads añadidos como participantes.
+* *Registro relacionado*: la Account, Contact, Opportunity, Case u otro registro con el que está relacionada la reunión.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relationships and Subpanels].
+
+Para conocer las operaciones estándar de los registros, incluyendo búsqueda, edición, duplicación y cierre, consulte link:../../core-concepts/record-management[Record Management].
+
+Para reprogramar una reunión, edite su campo *Start Date & Time* desde la Vista de Edición.
+
+=== Envío de Invitaciones por Correo para Reuniones
+
+Al programar una Meeting, puede enviar invitaciones por correo electrónico a los invitados.
+
+En la sección de invitados:
+
+. Busque a los invitados que desea añadir a la Meeting.
+. Seleccione los invitados de los resultados de la búsqueda y haga clic en *Add*.
+. Una vez añadidos todos los invitados e introducidos los detalles de la reunión, haga clic en *Save & Send Invitations*.
+
+Esto guarda el registro de Meeting y envía invitaciones por correo electrónico a todos los invitados añadidos a la Meeting.
+
+==== Tipos de RSVP para las Invitaciones a Reuniones
+
+Al igual que con las Calls, hay disponibles dos tipos de RSVP por correo electrónico para las invitaciones: ICS RSVP y Link RSVP, configurados por un administrador del sistema mediante el mismo ajuste `email_calendar_invite_type`.
+
+*ICS RSVP*: la invitación por correo electrónico contiene un archivo de calendario ICS que los invitados pueden usar para añadir la Meeting a su propia aplicación de calendario. Aceptar o rechazar mediante este archivo no actualiza el estado de aceptación en el registro de Meeting en SuiteCRM.
+
+*Link RSVP*: la invitación por correo electrónico contiene enlaces que los invitados pueden usar para aceptar o rechazar la Meeting directamente. Estos enlaces actualizan el estado de aceptación en el registro de Meeting en SuiteCRM.

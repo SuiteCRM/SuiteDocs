@@ -1,0 +1,37 @@
+---
+title: "Gestión de Documentos"
+weight: 60
+aliases:
+  - /es/user/core-modules/documents
+---
+
+:imagesdir: /images/en/user
+
+= Gestión de Documentos
+
+El módulo de Documentos es un repositorio de archivos asociados a sus registros de CRM. Los documentos pueden subirse, versionarse mediante revisiones y vincularse a Cuentas, Contactos, Oportunidades, Casos y otros módulos.
+
+== Campos Clave
+
+* *Nombre del Documento*: el nombre visible del documento. Obligatorio.
+* *Archivo*: el archivo real a subir. Obligatorio. Admitido para cualquier tipo de archivo.
+* *Fecha de Activación*: la fecha a partir de la cual el documento se considera vigente. Obligatorio.
+* *Fecha de Caducidad*: la fecha a partir de la cual el documento deja de estar vigente. Útil para contratos, políticas o materiales con vigencia limitada.
+* *Categoría / Subcategoría*: clasifica el documento para su navegación y filtrado en todo el módulo.
+* *Estado*: el estado actual del documento: Activo, Borrador, FAQ, Para Revisión u Obsoleto.
+* *Revisión*: el número de versión del documento. Cada subida crea un nuevo registro de Revisión de Documento, conservando el historial de versiones.
+* *Es Plantilla / Tipo de Plantilla*: marca el documento como una plantilla reutilizable, disponible para su uso con Formatos PDF u operaciones de combinación de correspondencia.
+* *Tipo de Documento*: para documentos alojados externamente en Google Drive, Box o un servicio similar, identifica el proveedor y enlaza con el archivo externo en lugar de subir una copia local.
+
+
+== Revisiones de Documentos
+
+SuiteCRM realiza un seguimiento de las versiones de los documentos mediante Revisiones de Documentos. Cada vez que se actualiza un archivo, se crea una nueva revisión mientras se conservan las versiones anteriores. Para añadir una nueva versión, abra la Vista de Detalle del Documento y cree una revisión desde el subpanel *Document Revisions*. La revisión más reciente se convierte en la versión activa mostrada en el registro del Documento.
+
+== Relaciones
+
+Los Documentos pueden vincularse a Cuentas, Contactos, Oportunidades, Clientes Potenciales, Casos, Bugs y otros registros. Los documentos vinculados aparecen en el subpanel *Documentos* del registro relacionado.
+
+Para obtener información sobre cómo trabajar con subpaneles y relaciones, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
+
+Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición, duplicación e importación, consulte link:../../core-concepts/record-management[Gestión de Registros].
