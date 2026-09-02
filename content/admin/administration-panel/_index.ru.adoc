@@ -1,6 +1,6 @@
 ---
 Title: Панель администратора
-Weight: 11
+Weight: 20
 ---
 
 :author: likhobory

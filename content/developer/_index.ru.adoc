@@ -1,7 +1,6 @@
 ---
 Title: "Руководство разработчика"
 Weight: 40
-pre: "<b>4. </b>"
 ---
 
 :author: likhobory

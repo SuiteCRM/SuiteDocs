@@ -1,7 +1,6 @@
 ---
 Title: "Руководство пользователя"
 Weight: 10
-pre: "<b>1. </b>"
 ---
 
 :author: likhobory

@@ -3,8 +3,8 @@ title: "Русификация SuiteCRM"
 weight: 26
 
 aliases:
-  - /admin/installation-guide/languages/install-a-new-language/
-  - /admin/installation-guide/languages/update-a-language-pack/
+  - /ru/admin/installation-guide/languages/install-a-new-language/
+  - /ru/admin/installation-guide/languages/update-a-language-pack/
 ---
 
 :author: likhobory

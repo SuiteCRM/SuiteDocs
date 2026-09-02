@@ -1,6 +1,6 @@
 ---
 Title: Настройка дополнительных параметров
-Weight: 52
+Weight: 30
 ---
 
 :author: likhobory

@@ -1,6 +1,6 @@
 ---
 Title: Обновление системы
-Weight: 30
+Weight: 40
 ---
 
 :author: likhobory
