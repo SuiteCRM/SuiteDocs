@@ -2,49 +2,50 @@
 Title: Getting Started
 Weight: 20
 ---
-
-:experimental:   ////this is here to allow btn:[]syntax used below
-
+:experimental:   ////ceci permet d'utiliser la syntaxe btn:[] ci-dessous
 :imagesdir: /images/en/user
 
-= Getting Started
+= Prise en main
 
-== Logging Into SuiteCRM
+== Se connecter à SuiteCRM
 
-SuiteCRM allows you to log in using your Username and Password,
-provided by your own System Administrator.
+SuiteCRM vous permet de vous connecter à l'aide de votre nom
+d'utilisateur et de votre mot de passe, fournis par votre
+administrateur système.
 
-image:190Home_screen.png[title="Home Screen"]
+image:190Home_screen.png[title="Écran d'accueil"]
 
-image:02Login_with_language.png[title="Language Select"]
+image:02Login_with_language.png[title="Sélection de la langue"]
 
-Before logging into SuiteCRM, you can select the language you wish to
-use. There are many default languages for SuiteCRM and there are also
-additional language packs available for other languages around the
-world.
+Avant de vous connecter à SuiteCRM, vous pouvez sélectionner la
+langue que vous souhaitez utiliser. SuiteCRM propose de nombreuses
+langues par défaut, et des packs de langues supplémentaires sont
+également disponibles pour d'autres langues dans le monde.
 
-Once you have chosen your language and have entered your user
-credentials, you will be able to click btn:[Log in] to access the
-CRM.
+Une fois que vous avez choisi votre langue et saisi vos identifiants,
+vous pouvez cliquer sur btn:[Log in] pour accéder au CRM.
 
-image:191Log_in.png[title="Log in"]
+image:191Log_in.png[title="Connexion"]
 
-== Forgotten Password
+== Mot de passe oublié
 
-If you forget your CRM password and cannot access your CRM user account,
-you can use the 'Forgotten Password' feature to re-send your password to
-the email address associated to your user account. Clicking the *'Forgot
-Password?'* link on the login form will display the forgotten password
-form.
+Si vous avez oublié votre mot de passe CRM et que vous ne pouvez plus
+accéder à votre compte utilisateur, vous pouvez utiliser la
+fonctionnalité « Mot de passe oublié » pour vous faire renvoyer votre
+mot de passe à l'adresse e-mail associée à votre compte utilisateur.
+En cliquant sur le lien *« Forgot Password? »* du formulaire de
+connexion, le formulaire de mot de passe oublié s'affichera.
 
-image:179Forgot_password.png[title="Forgotten Password"]
+image:179Forgot_password.png[title="Mot de passe oublié"]
 
-== Summary
+== Résumé
 
-In this chapter we have demonstrated how to access SuiteCRM using the
-login form. We have also established how to use the forgotten password
-functionality to retrieve a user's password in the event of the password
-being lost or forgotten.
+Dans ce chapitre, nous avons montré comment accéder à SuiteCRM à
+l'aide du formulaire de connexion. Nous avons également expliqué
+comment utiliser la fonctionnalité de mot de passe oublié pour
+récupérer le mot de passe d'un utilisateur en cas de perte ou
+d'oubli.
 
-In the next chapter we will cover the User Wizard, which allows you to
-set your preferences when using SuiteCRM.
+Dans le prochain chapitre, nous aborderons l'assistant de
+configuration utilisateur (User Wizard), qui vous permet de définir
+vos préférences d'utilisation de SuiteCRM.
