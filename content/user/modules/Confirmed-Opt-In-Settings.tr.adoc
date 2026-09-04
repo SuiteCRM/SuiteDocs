@@ -1,0 +1,113 @@
+---
+Title: Confirmed Opt In
+Weight: 145
+---
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Confirmed Opt In
+
+== Genel Bakış
+
+*SuiteCRM 7.10* yeni bir *Confirmed Opt In* özelliği sunar; bu özellik e-posta adresleri için iki farklı opt-in ayarı sağlar: *Opt In* ve *Confirmed Opt In*.
+
+. *Opt In*, bir Kişi (Contact), Potansiyel Müşteri (Lead) veya Hedef (Target) kişisinin pazarlama iletişimlerini almaya onay verdiğini belirtmek için kullanılır.
+
+. *Confirmed Opt In* ise kullanıcılardan e-posta ile gönderilen bağlantıya tıklayarak onaylarını doğrulamalarını isteyerek ek bir onay adımı gerektirir. Bu e-posta otomatik (ör. Web-To-Person form gönderimi sonrası) veya manuel olarak gönderilebilir; gönderimde kullanılan şablon özelleştirilebilir.
+
+Opt In veya Confirmed Opt In ayarları seçildiğinde:
+
+* Contacts, Leads ve Targets içinde e-posta alanları için *Detail* ve *Edit* görünümlerinde ek bir *Opt In* onay kutusu görünecektir.
+
+* Bu modüllerdeki kayıtların List görünümünde *Opt In*, *Confirmed Opt In* ve *Pending Confirmed Opt In* durumları gösterilecektir.
+
+* Web-To-Person formları otomatik olarak bir *Opt In* onay kutusu içerecektir.
+
+* Kampanya e-postaları, burada seçtiğiniz ayarlara bağlı olarak *Opt In* veya *Confirmed Opt In* olarak işaretlenmemiş e-posta adreslerine GÖNDERİLMEYECEKTİR.
+
+{{%notice note%}}Bu özellik Avrupa Birliği'ndeki GDPR uyumluluğu ile ilgilenenler için isteğe bağlı olarak eklenmiştir, ancak başka amaçlar için de genel olarak kullanılabilir. Eğer onaylı çift opt-in'e ihtiyacınız yoksa ayarınızı `Opt in` olarak bırakmanız yeterlidir.{{%/notice%}}
+
+== Opt In E-posta Ayarları
+
+Opt In ayarlarınızı yapılandırmak için *Admin* panelini açın ve *Email Settings* seçeneğini seçin. Opt In ayarları *Email Options* panelinde bulunur.
+image:GDPREmailOptions.png[title ="Confirmed Opt In Settings"]
+
+=== Opt In
+
+Opt In Settings: menüsünden *Opt In* seçeneğini seçin.
+
+image:GDPREmailOptionsOptIn.png[title ="Opt In Settings"]
+
+Bu ayar seçili olduğunda Opt In e-postaları gönderilmediği için diğer Opt In ayarlarını yapılandırmaya gerek yoktur.
+
+Click btn:[SAVE]
+
+=== Confirmed Opt In
+
+Opt In Settings: menüsünden *Confirmed Opt In* seçeneğini seçin.
+
+image:GDPREmailOptionsConfirmed.png[title ="Confirmed Opt In Settings"]
+
+Bu ayarla kullanıcıların opt-in durumlarını e-posta ile gönderilen bir bağlantıya tıklayarak doğrulamaları gerekir.
+
+*Automatic Opt In Email* seçeneğini işaretleyerek bu e-postaların otomatik gönderilmesini sağlayabilirsiniz (ör. Web-To-Lead formu gönderildiğinde).
+Varsayılan şablon Confirmed Opt In şablonudur. Bu şablonu `Email Templates` modülünden düzenleyebilirsiniz, ancak şablonun Opt In bağlantısını içermesi gerektiğini unutmayın.
+
+Click btn:[SAVE]
+
+== E-posta Opt In Gösterimi
+
+=== Liste ve Detay Görünümleri
+
+Opt In veya Confirmed Opt In ayarı seçildikten sonra, Contact, Lead veya Target e-posta adreslerinin durumu Liste ve Detay görünümünde tek veya çift tik ile gösterilir.
+
+image:GDPRContactsListOptIn.png[title = "Contacts List View Opt In"]
+
+[cols="20,80", frame = "none", grid = "none"]
+|===
+|image:GDPRSingleGreenTick.png[title = "Opt In List View"]|Opt in yapılmış e-posta adresleri tek yeşil tik ile gösterilir.
+|image:GDPRDoubleGreenTick.png[title = "Confirmed Opt In List View"]|Onaylanmış opt-in'e sahip e-posta adresleri çift yeşil tik ile gösterilir.
+|image:GDPRSingleGrayTick.png[title = "Pending List View"]|E-posta doğrulaması bekleyen adresler tek gri tik ile gösterilir.
+|===
+
+=== Düzenleme Görünümü
+
+Edit görünümünde bir *Opted In* onay kutusu opt-in durumunu gösterir.
+
+image:GDPREditViewOptIn.png[title="Edit View"]
+
+Not: *Confirmed Opt In* durumunda burada *Opted In* kutusunu manuel olarak işaretlemek kayıt için *Pending Confirmation* (Onay Bekliyor) durumuna yol açacaktır; kullanıcı yine de e-posta ile onay adımını tamamlamalıdır.
+
+== Opt In E-postalarını Manuel Gönderme/Yeniden Gönderme
+
+Confirmed Opt In yapılandırılmış ise onay e-postaları toplu ya da bireysel olarak manuel gönderilebilir/yeniden gönderilebilir.
+
+Toplu gönderim için, Liste görünümünde gönderilecek kayıtları sol taraftaki kutuları işaretleyerek seçin.
+
+image:GDPRSelectContacts.png[title="List view, select contacts"]
+
+
+Listeden *Bulk Action* menüsünden *Send Confirm Opt In Email* seçin.
+image:GDPRBulkActionMenu.png[title="Bulk Action menu"]
+
+Bireysel göndermek için, kişinin kayıt sayfasını açın ve *Actions* menüsünden *Send Confirm Opt In Email* seçin.
+image:GDPRRecordActionsMenu.png[title="Actions menu"]
+
+E-postalar önceden tanımlı şablon kullanılarak sessizce (onay ekranı göstermeden) gönderilir.
+
+== Kampanyalar
+
+Opt in ayarlarınız kampanyaların hedef listelerini etkiler. Kampanya e-postaları, seçiminize bağlı olarak *Opted In* veya *Confirmed Opted In* olarak işaretlenmemiş e-posta adreslerine GÖNDERİLMEYECEKTİR.
+
+=== Web To Person Form Opt In
+
+Web To Person formu oluştururken, e-posta alanından sonra eğer *Opt In* veya *Confirmed Opt In* yapılandırılmışsa otomatik olarak bir *Opt In* onay kutusu eklenir.
+
+image:GDPRCreatePersonForm.png[title="Web To Person form"]
+
+Kullanıcı bu kutuyu işaretlerse, kayıt SuiteCRM'de oluşturulduğunda e-posta adresi *Opted In* olarak kaydedilir (ve eğer Confirmed Opt In yapılandırılmışsa *Pending Confirmation* durumuna geçer).
+
+Eğer Confirmed Opt In yapılandırılmış ve *Automatic Opt In Email* seçilmişse, form gönderimi sonrası Opt In e-postası otomatik gönderilecektir. Aksi halde bu e-postalar manuel olarak gönderilmelidir.

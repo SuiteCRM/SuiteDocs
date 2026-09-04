@@ -1,0 +1,44 @@
+---
+title: "Bir Ön-Uç Eklenti Modülü Kurma"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-extensions-setup
+
+{{% notice info %}}
+Bu doküman SuiteCRM 8+ içindir; 8.8 öncesi sürümler için link:../../../../../../developer/introduction[buraya].
+{{% /notice %}}
+
+{{% notice warning %}}
+Bu doküman 8.8 öncesi sürümler içindir.
+{{% /notice %}}
+
+{{% notice note %}}
+Bu döküman angular hakkında iyi bir anlayış gerektirir.
+{{% /notice %}}
+
+== Extension framework kurulumu
+
+Bu rehber, bir frontend eklenti modülü kurmak için adım adım açıklamalar sağlar. Bu eklenti yeni frontend özelleştirmeleri eklemenize veya mevcut özellikleri override etmenize olanak verir.
+
+== 1. Eklenti ismi seçimi
+
+Eklenti makine adını seçin; boşluk, `-` veya özel karakter kullanmayın. CamelCase önerilir (örn: `myExt`) ve dosya/klasör adı için snake-case (`my-ext`) önerilir.
+
+*Not:* Bu dosya adlandırma önerisi, case-sensitive sistemlerde sorun yaşamamak içindir.
+
+== 2. Mikro frontend (angular app) oluşturma
+
+. `ng g app <your-extension-name> --projectRoot=extensions/<your-extension-name>/app --routing=false --style=scss` komutunu çalıştırarak oluşturun.
+.. Örnek: `ng g app myExt --projectRoot=extensions/my-ext/app --routing=false --style=scss`
+
+== 3. Module Federation başlatma
+
+Extension üzerinde module-federation etkinleştirin.
+
+=== 3.1 Module federation etkinleştirme
+
+. `ng add @angular-architects/module-federation --project=<your-extension-name>` komutunu çalıştırın.
+.. Örnek: `ng add @angular-architects/module-federation --project=myExt`
+
+=== 3.2 Webpack yapılandırmasını temizleme

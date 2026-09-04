@@ -1,0 +1,18 @@
+---
+title: Sorun Giderme
+weight: 5
+---
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+Elasticsearch eklentisinin sorun giderme sürecini kolaylaştırmak için, çok ayrıntılı ve özel loglama sağlayan ayrı bir dosya kullanılır: `search_index.log`. Bunun nedeni indeksleme işlemlerinin arka planda çalışmasıdır; bu tür işler debug açısından zorlayıcı olabilir. Log çağrıları standart loglamaya yönlendirilir ve yapılandırılmış log seviyesine göre filtrelenir.
+
+Logları kontrol etmenin yanı sıra, aramayı veya indekslemeyi komut satırından çalıştırmayı deneyebilirsiniz (bkz. command line tools). Konsol çıktısının ayrıntılı olması sorunların daraltılmasında yardımcı olacaktır.
+
+Son olarak, admin ayarlarında *developer mode* etkinleştirilirse, arama işlemi sırasında oluşan hatalarda daha açıklayıcı bir istisna sayfası gösterilir.
+
+:imagesdir: /images/en/admin/ElasticSearch
+
+image:ErrorPage.png[Detaylı hata sayfası örneği]

@@ -1,0 +1,49 @@
+---
+Title:  Raising Issues
+Weight: 20
+---
+
+:experimental:
+
+== Sorun (Issue) Bildirme
+
+Issue, projenin geliştirilebileceğini düşündüğünüz herhangi bir alanı bildirmek için kullanılabilir;
+örneğin bir bug, eksik bir özellik veya dokümantasyonda bir boşluk.
+
+GitHub üzerinden issue açarken sorunu net bir şekilde, yeniden üretme adımları, SuiteCRM versiyon(lar)
+ve gerekiyorsa platform bilgisi ve ekran görüntüsü ile belirtin. Bu, katkıda bulunanların sorunu
+kolayca tespit edip çözmesine yardımcı olur. İyi bir örnek için https://github.com/salesagility/SuiteCRM/issues/8535 adresine bakabilirsiniz.
+
+== Güvenlik
+
+Güvenlik bizim için ciddidir; bir güvenlik açığı keşfettiyseniz lütfen security@suitecrm.com adresine e-posta ile bildirin.
+Güvenlik ekibi sorunu ele alacaktır. Lütfen güvenlik açıklarını yetkilendirilmeden kamuya açıklamayın.
+
+Detaylar için link:../security-policy[Security Policy] bölümüne bakın.
+
+== GitHub Etiketleri (Labels)
+
+=== Issue Etiketi Türleri
+
+Aşağıdaki etiketlerden birine tıklayarak, o etikete sahip Issue'ların listesini görebilirsiniz.
+
+[frame=none, cols="40,60"]
+|===
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/bug[bug]]| Onaylanmış veya muhtemelen bug olanlar.
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/Low%20Priority[Low priority]]| Düşük etkili (ör. görsel, yazım hatası).
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/Medium%20Priority[Medium Priority]]| Orta düzeyde engelleyici, geçici çözümü var.
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/High%20Priority[High Priority]]| Yüksek etkili engelleyici, geçici çözüm yok.
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/Fix%20Proposed[Fix Proposed]]| İlgili pull request bulunan sorunlar.
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/Pending%20Input[Pending Input]]| Issue sahibinden ek bilgi bekleniyor.
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/Language[Language]]| Dil dosyalarıyla ilgili issue'lar.
+
+|btn:[https://github.com/salesagility/SuiteCRM/labels/Suggestion[Suggestion]]| Öneriler; sonra Trello'ya taşınabilir.
+
+|===

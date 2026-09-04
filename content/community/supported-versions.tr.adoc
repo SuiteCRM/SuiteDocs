@@ -1,0 +1,11 @@
+---
+Title: Desteklenen Sürümler
+---
+
+== Desteklenen Sürümler ve Yaşam Döngüsü
+
+SuiteCRM sürümlerinin hangi sürelerle desteklendiğini anlamak, güvenlik güncellemeleri ve hata düzeltmeleri için önemlidir. Lütfen kullandığınız sürümün destek durumunu kontrol edin ve kritik güncellemeler için plan yapın.
+
+- **Günlük bakım:** En son küçük sürüm (örneğin 8.x.y) aktif olarak hatalar ve güvenlik düzeltmeleri alır.
+- **Uzun süreli destek (LTS):** Belirlenmiş ana sürümler için daha uzun destek sunulabilir; LTS kapsamındaki sürümler için kritiklik derecesine göre düzeltmeler sağlanır.
+- **Eski sürümler:** Belirli bir süre sonra resmi destek kesilebilir; yükseltme planlaması önerilir.

@@ -1,0 +1,15 @@
+---
+title: Managing Tokens
+weight: 50
+---
+
+:imagesdir: /images/en/developer
+
+
+OAuth 2 yönetim paneli hangi oturumların başarıyla oluşturulduğunu gösterir.
+
+image:Admin-OAuth2Clients-3.png[Admin-OAuth2Clients-3.png,title="Admin-OAuth2Clients-3.png"]
+
+Bir oturumu iptal etmek veya sonlandırmak için oturumu seçip eylem veya toplu işlemler menüsünden "revoke token" seçeneğini kullanabilirsiniz.
+
+image:Screenshot_20180215_130855.png[Screenshot_20180215_130855.png,title="Screenshot_20180215_130855.png"]

@@ -1,0 +1,35 @@
+---
+Title: SuiteCRM'i Fork Etme
+Weight: 30
+---
+
+== SuiteCRM'i Fork Etmek için Hızlı Kılavuz
+
+=== SuiteCRM deposunu fork edin
+
+Bu işlemi tamamen GitHub web sitesinden yapabilirsiniz. Fork alma için https://help.github.com/articles/fork-a-repo/ kaynağına bakın.
+
+=== Yerel makinenizde Git ayarları
+
+https://help.github.com/articles/set-up-git/ bağlantısındaki rehberi takip edip Git'i kurun ve GitHub ile bağlantı sağlayın.
+
+=== Depoyu yerel makinenize klonlayın
+
+Git ayarlarını yaptıktan sonra fork'unuzu klonlayın:
+
+`git clone git@github.com:username/SuiteCRM.git`
+
+Sonra upstream remote'u ekleyin:
+
+`cd SuiteCRM`
+`git remote add upstream git@github.com:SuiteCRM/SuiteCRM.git`
+`git fetch upstream`
+
+Upstream'den güncellemeleri almak için, ilgili branch'e geçip şu komutları çalıştırın:
+
+`git checkout master`
+`git fetch upstream`
+`git merge upstream/master`
+`git push origin master`
+
+Bu komutlar upstream'den son değişiklikleri alıp yerel master'a merge eder ve fork'unuza push eder; bu, fork'unuzu güncel tutmak için önemlidir.

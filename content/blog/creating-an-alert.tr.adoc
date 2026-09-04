@@ -1,0 +1,41 @@
+---
+title: SuiteCRM'de Uyarı (Alert) Oluşturma
+date: 2015-08-25T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/suitecrm-creating-an-alert/
+hidden: true
+---
+
+:imagesdir: /images/en/community
+
+Menü çubuğundaki uyarılar (alerts), kullanıcıların dikkatini çekmek için harika bir yöntemdir. Peki ya bir uyarıyı kod ile nasıl oluşturursunuz? Çok kolay, işte nasıl yapılacağı:
+
+[width="100", cols="80,20", frame="none", grid="none"]
+|===
+|SuiteCRM 7.3 ile birlikte Alerts eklendi. Bunlar menü çubuğunda küçük bir rozet olarak görüntülenir:
+
+|image:20SuiteCRMAlerts0.png[SuiteCRMAlerts0]
+|===
+
+Alert'lar sadece bean olarak saklandığı için, uygun alanlarla yeni bir kayıt oluşturup kaydederek bildirim ekleyebiliriz. Örnek:
+
+.Example
+[source,php]
+<?php
+$alert = BeanFactory::newBean('Alerts');
+$alert->name = 'My Alert';
+$alert->description = 'This is my alert!';
+$alert->url_redirect = 'index.php';
+$alert->target_module = 'Account';
+$alert->assigned_user_id = '1';
+$alert->type = 'info';
+$alert->is_read = 0;
+$alert->save();
+
+Bu çağrı, belirli bir kullanıcı için bir uyarı oluşturmak amacıyla kullanılabilir:
+
+[width="80", cols="50,30", frame="none", grid="none"]
+|===
+|Aşağıdaki örnek, belirli kullanıcı için uyarı oluşturmayı gösterir: |image:21SuiteCRMExampleAlert.png[SuiteCRMExampleAlert]
+|===

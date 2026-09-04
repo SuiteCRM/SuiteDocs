@@ -1,0 +1,8 @@
+---
+title: "Yönetici Kılavuzu"
+weight: 30
+---
+
+=== İçindekiler
+{{% children depth="4" showhidden="false" %}}
+

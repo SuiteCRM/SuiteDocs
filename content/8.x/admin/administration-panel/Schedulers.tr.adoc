@@ -1,0 +1,164 @@
+---
+title: Zamanlayıcılar
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/admin/schedulers
+
+== Zamanlayıcılar
+
+{{% notice info %}}
+Bu dökümantasyon SuiteCRM 8.9.0+ için geçerlidir.
+{{% /notice %}}
+
+=== Zamanlayıcılar nedir?
+Zamanlayıcılar, SuiteCRM içinde belirli aralıklarla çalışan otomatik görevlerdir ve çeşitli işlevleri gerçekleştirir. Süreçleri otomatikleştirir ve rutin görevlerin elle müdahale olmadan verimli şekilde yapılmasını sağlar.
+
+=== Zamanlayıcı Kurulumu
+Zamanlayıcıları etkinleştirmek için sistemi her dakika `./bin/console schedulers:run` komutunu çalıştıracak şekilde yapılandırın. Bu, tüm SuiteCRM işlerinin planlarına göre yürütülmesini sağlar.
+
+Windows üzerinde sistemin "Task Scheduler" (Görev Zamanlayıcı) özelliğini kullanın. Linux üzerinde `crontab` kullanın.
+
+Gereken komutu crontab'e ekleyebilirsiniz:
+
+----
+* * * * * [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+{{% notice note %}}
+Not: `{-e [env]}` isteğe bağlıdır ve ortamı belirtir.
+{{% /notice %}}
+
+Kurulumdan sonra bu talimatlar `Admin / Schedulers` ekranının altında erişilebilir durumda kalır.
+
+Zamanlayıcı görevleriyle ilgili izin sorunlarını önlemek için, görevleri web sunucunuzu çalıştıranyla aynı kullanıcı hesabı altında çalıştırmanız önerilir. Farklı bir kullanıcı kullanmanız gerekiyorsa, `config.php` içindeki `allowed_cron_users` dizisini ilgili kullanıcıyı içerecek şekilde güncellemelisiniz.
+
+Zamanlayıcılar list görünümünde küçük bir kurulum adımı da gösterilmektedir:
+
+image:Scheduler-Setup-Widget.png[Zamanlayıcı Kurulum Bileşeni]
+
+Kurulum hakkında daha fazla bilgi için aşağıdaki "Crontab Bilgileri" bölümüne bakın.
+
+=== Zamanlayıcılara Erişim
+Zamanlayıcı modülüne erişmek için Yönetim paneline gidin ve "System" bölümünden "Schedulers" seçeneğini seçin.
+
+image:Admin-Panel-Scheduler-Section.png[Yönetim Paneli]
+
+=== Zamanlayıcıları Yönetme
+Zamanlayıcılar modülünde, tüm zamanlayıcıların durumunu, aralığını ve (başlangıç - bitiş tarihi) görebilirsiniz.
+
+image:Scheduler-List-View.png[Zamanlayıcı Liste Görünümü]
+
+Bir zamanlayıcı hakkında ayrıntıları görmek için adını tıklayarak Detay Görünümünü açın.
+
+image:Schedulers-Record-View.png[Zamanlayıcı Detay Görünümü]
+
+=== Zamanlayıcıları Güncelleme
+Bir zamanlayıcıyı güncellemek için "Actions" menüsünden "Edit" butonuna tıklayın.
+
+image:Scheduler-Edit.png[Zamanlayıcı Düzenleme Görünümü]
+
+Düzenlerken işin durumunu (yalnızca Aktif işler çalışır) ve çalıştırma aralığını ile başlama zamanını ayarlayabilirsiniz.
+
+"Advanced Options" kutusunun işaretini kaldırmak, crontab gösterimini bilmeyenler için daha kullanıcı dostu bir aralık ayarı gösterir. Tekrar işaretlerseniz ileri düzey seçenekler görünür.
+
+image:Scheduler-Edit-Advanced.png[Zamanlayıcı Düzenleme]
+
+=== Mevcut Zamanlayıcılar
+Aşağıdaki zamanlayıcılar SuiteCRM'de mevcuttur:
+
+[cols="20,80"]
+|===
+|*Workflow Görevlerini İşle*| Bu iş, çalışması gereken tüm workflow (iş akışı) görevlerini işler.
+|*Rapor Oluşturma Planlı Görevleri Çalıştır*| Bu iş, planlı raporları işler ve gönderir.
+|*Tracker Tablolarını Temizle*| Veritabanındaki eski tracker verilerini temizler.
+|*Gelen Posta Kutularını Kontrol Et*| Yapılandırılmış gelen e-posta hesaplarını kontrol eder.
+|*Gecelik Geri Dönen Kampanya E-postalarını Kontrol Et*| Geri dönen e-posta hesaplarında yeni mesajları kontrol eder.
+|*Gecelik Kitle E-posta Kampanyalarını Çalıştır (SuiteCRM 8'de devre dışı)*| Kitle e-posta kampanyalarını gönderir. (SuiteCRM 8'de devre dışı)
+|*Ayın 1'inde Veritabanını Budama*| Silinmiş olarak işaretlenen kayıtları veritabanından temizler.
+|*E-posta Hatırlatma Bildirimlerini Gönder*| Etkinlikler için e-posta hatırlatmaları gönderir.
+|*Dosya Sisteminden Belgeleri Kaldırma*| Veritabanında artık referans verilmeyen belge dosyalarını dosya sisteminden kaldırır.
+|*SuiteCRM Feed Tablolarını Budama*| Feed tablolarını budar.
+|*Google Takvim Senkronizasyonu*| SuiteCRM ile Google Takvim arasında etkinlikleri senkronize eder.
+|===
+
+**SuiteCRM 8'e Özgü Zamanlayıcılar**
+
+[cols="20,80"]
+|===
+|*Geçici Dosyaları Temizle*| Dosya ve ek alanları aracılığıyla yüklenen geçici dosyaları temizler.
+|*Kampanya E-postalarını Kuyruğa Al*| Planlanmış E-posta Pazarlama kayıtlarını kuyruğa alır.
+|*Kampanya E-postalarını Gönder*| E-posta Pazarlama kayıtları için kuyruğa alınmış e-postaları gönderir.
+|*Veritabanı budama zamanlayıcısı*| Veritabanı budama zamanlayıcısı symfony tarafına taşındı ve artık yeni depolama sisteminden medya nesnelerini de kaldırır.
+|===
+
+=== Zamanlayıcıların çalıştığını nasıl anlarım?
+Zamanlayıcıların çalışıp çalışmadığını görmek için Zamanlayıcılar Listview'inde eklenen bir bileşen aşağıdaki bilgileri gösterir:
+
+* Zamanlayıcıları en son çalıştıran kullanıcı.
+* Son başarılı çalıştırma zamanı.
+
+image:Scheduler-Widget.png[Zamanlayıcı Bileşeni]
+
+=== Crontab Bilgileri
+
+==== Bilmeniz gereken crontab temelleri nelerdir?
+Linux'ta her kullanıcı için bir crontab olabilir. Bu, kabuk girişine sahip olmayan kullanıcılar (ör. `www-data`, `nobody`) için de geçerlidir. Aşağıdaki örnekler `www-data` kullanıcısını esas alır.
+
+Belirli bir kullanıcının crontab içeriğini listelemek için:
+
+`sudo crontab -l -u www-data`
+
+Düzenlemek için:
+
+`sudo crontab -e -u www-data`
+
+Bazı Linux dağıtımlarında (ör. Ubuntu) ayrıca *sistem genelinde* bir crontab vardır; bu dosyayı düzenleyerek değişiklik yapılır:
+
+`sudo nano /etc/crontab`
+
+Bu crontab, hangi kullanıcı altında çalıştırılacağını belirten ekstra bir sütuna sahiptir. Örnek:
+
+----
+* * * * * www-data [path/to/php] [path/to/suite/instance]/bin/console {-e [env]} schedulers:run > /dev/null 2>&1
+----
+
+{{% notice note %}}
+Not: `{-e [env]}` isteğe bağlıdır ve ortamı belirtir.
+{{% /notice %}}
+
+
+==== Bu işleri hangi kullanıcı çalıştırmalı?
+Uygun kullanıcı sistem yapılandırmanıza bağlıdır. Önerilen yöntem, web sunucunuzu çalıştıran kullanıcı hesabını belirlemek ve cron işlerinizi o hesap altında çalıştırmaktır. Bu, izin yönetimini kolaylaştırır ve web uygulaması ile zamanlayıcı işler arasındaki dosya/veritabanı erişim çatışmalarını önler.
+
+Yanlış kullanıcı yapılandırması kurulumunuzda ciddi sorunlara yol açabilir. İzinlerin her iki sürecin de oluşturduğu veya değiştirdiği kaynakları okuyup yazmasına izin verecek şekilde ayarlandığından emin olun.
+
+Eğer daha önce root olarak cron çalıştırdıysanız, doğru yapılandırmayı uyguladıktan sonra SuiteCRM dizin yapısının sahipliğini ve izinlerini düzeltmeli ve ardından `Quick Repair and Rebuild` işlemi yapmalısınız.
+
+==== Web sunucumun hangi kullanıcı altında çalıştığını nasıl bulurum?
+Bunun için birkaç yöntem vardır; SuiteCRM'e özgü öneriler:
+
+* `Admin / Schedulers` sayfasına gidin ve sayfanın altındaki crontab komutunu kontrol edin.
+* `config.php` dosyasındaki `allowed_cron_users` bölümünü kontrol edin.
+* `Admin / Diagnostics` bölümünden yalnızca `phpinfo` çalıştırın ve üretilen çıktıda `APACHE_RUN_USER` değerini kontrol edin. (Not: Komut satırından `php -i` çalıştırmak aynı bilgi vermeyebilir.)
+
+==== config.php içindeki allowed_cron_users bölümü nedir?
+`config.php` içindeki `allowed_cron_users` dizisinde listelenen kullanıcılar `./bin/console schedulers:run` komutunu çalıştırmaya izinlidir. Listede olmayan kullanıcılar için betik her başladığında kendini sonlandırır.
+
+Normalde, kurulum sırasında SuiteCRM, geçerli web sunucusu kullanıcısını otomatik olarak bu diziye ekler.
+
+`root` kullanıcısı özellikle önerilmez ve kurucu root'u otomatik eklemez; eğer root kullanmak istiyorsanız bunu elle yapmalısınız.
+
+Örnek `config.php` bölümü:
+
+.config.php
+[source, php]
+----
+'cron' =>
+ 	array (
+		`max_cron_jobs' => 10,
+		`max_cron_runtime' => 30,
+		`min_cron_interval' => 30,
+		`allowed_cron_users' =>
+		array (
+			0 => `www-data',

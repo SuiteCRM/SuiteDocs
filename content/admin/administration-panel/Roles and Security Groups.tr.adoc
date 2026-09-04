@@ -1,0 +1,55 @@
+---
+Title: Roller ve Güvenlik Grupları
+weight: 25
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+= Roller ve Güvenlik Grupları
+
+Roller ve Güvenlik Grup ayarları *Users* bölümünden yönetilir. Bu ayarlar, hassas verilere erişimi belirli ekiplerle (gruplarla) sınırlamanıza olanak verir.
+
+*Security Groups* belirli erişim haklarına sahip kullanıcı grupları tanımlamanızı sağlar; roller bu gruplara atanır. Gruplar ayrıca kayıtları ekiplere atamak için kullanılabilir.
+
+*Roles* modüllere erişim haklarını tanımlar ve bir kullanıcı bir kayda eriştiğinde hangi işlemleri yapabileceğini belirler.
+
+Güvenlik Gruplarını doğru şekilde kurmak için 3 ana adım vardır:
+
+1. Her kullanıcı takımı için bir *group* oluşturun ve uygun kullanıcıları gruba ekleyin.
+2. Bir *role* oluşturun ve erişim seviyelerini seçin; bu role'ü her gruba atayın.
+3. Kayıtları SuiteCRM içinde gruplara ekleyin (List View üzerinde Mass Assign kullanılabilir).
+
+{{%notice info%}}Gelişmiş güvenlik grup ayarları ve fonksiyonları için https://store.suitecrm.com/addons/securitysuite[SecuritySuite] eklentisini inceleyin.{{%/notice%}}
+
+== Role Yönetimi
+
+Role oluşturmak için Role Management'i seçin ve Role Management kenar çubuğundan Create Role seçeneğine tıklayın.
+
+image:RolesSidebar.png["Roles sidebar"]
+
+Role adı ve açıklamasını girip btn:[SAVE] tıkladığınızda erişim matrisini göreceksiniz.
+
+image:RolesMatrix.png["Roles - access matrix"]
+
+Bir hücreye tıklayarak erişim seviyesini değiştirebilirsiniz; tüm sütunu değiştirmek için sütun başlığına tıklayın.
+
+[cols="20,80",frame="none", grid="none"]
+|===
+|*Enabled*| Kullanıcılar bu modüle erişebilir
+|*Disabled*| Kullanıcılar bu modülü görüntüleyemez
+|===
+
+Kayıt bazlı erişim türleri:
+
+[cols="20,80",frame="none", grid="none"]
+|===
+|*Group* | Kullanıcılar aynı grubun üyelerine atanmış olan tüm kayıtlara erişir.
+|*Owner* | Kullanıcılar yalnızca kendi kayıtlarına erişir.
+|*None*  | Kullanıcıların bu modülde ilgili işlev için erişimi yoktur.
+|===
+
+Kaydettiğinizde erişim hakları renk kodlu olarak gösterilir.

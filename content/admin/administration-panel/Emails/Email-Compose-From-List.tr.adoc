@@ -1,0 +1,34 @@
+---
+Title: E-posta Gönderici (From) Açılır Listesi Davranışı
+weight: 30
+---
+
+:imagesdir: /images/en/admin/email/
+
+== 1. Giriş
+
+SuiteCRM 7.13.1 ve 8.2.3 sürümlerinde, aşağıdaki görselde gösterilen "From" açılır listesi güncellenmiştir.
+
+image:suitecrm-compose-from.png[suitecrm-compose-from.png]
+
+Yeni stilin yanı sıra alanın davranışı da değişmiştir.
+
+Varsayılan olarak artık kullanıcı erişimi olan tüm Outbound Email Hesapları listesini gösterir; buna kişisel hesaplar ve grup hesapları dahildir.
+
+Ayrıca, `Administration > Email Settings` sayfasında `Users may send as this account's identity` seçeneği etkinleştirilmişse Sistem E-postası da gösterilecektir.
+
+
+== 2. `legacy_email_behaviour` konfigürasyon seçeneği
+
+=== 2.1 Seçenek açıklaması
+
+Yeni bir `legacy_email_behaviour` konfigürasyon seçeneği eklendi; bu seçenek eski Compose "From" davranışının bir kısmını korumanıza olanak tanır.
+
+Bu seçenek, önceki SuiteCRM sürümlerinde oluşturulan 'from e-posta adresleri' listesini alır ve Outbound Email Hesaplarına dayalı yeni listenin üstüne ekler.
+
+Bildiğiniz gibi, önceki davranış Inbound Email Hesaplarına dayalı bir adres listesini oluşturuyordu.
+
+
+=== 2.2 Yükseltilmiş sürümlere ilişkin not
+
+Yeni kurulan örneklerde `legacy_email_behaviour` seçeneği varsayılan olarak devre dışı olacaktır.

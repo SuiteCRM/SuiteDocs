@@ -1,0 +1,58 @@
+---
+weight: 1
+title: "Introduction"
+---
+
+= 1. Giriş
+
+== SuiteCRM nedir?
+
+https://www.suitecrm.com[SuiteCRM] hikayesi SugarCRM ile başlar. SugarCRM 2004'te
+kuruldu ve hem Community Edition (açık kaynak) hem de çeşitli ücretli sürümler
+ile geldi. Ancak SugarCRM 7 için Community Edition yayınlamayacağı görünce sorunlar
+başladı.
+
+SuiteCRM devreye girdi.
+
+https://salesagility.com/[SalesAgility] SugarCRM Community Edition'ı fork ederek SuiteCRM'i
+oluşturdu ve çeşitli açık kaynak eklentiler ekledi.
+
+== Bu rehber
+
+Bu rehber, SuiteCRM ile aşinalığı olan geliştiricilere yönelik olup, kendi özelleştirmelerini
+yapmak isteyenler için hazırlanmıştır. SuiteCRM geniş bir proje olduğundan tüm konuları
+kapsamak pratik değildir; burada en önemli parçaları eklemeye çalıştım.
+
+Sonunda ek kaynaklar bölümü bulunmaktadır. Eğer eksik veya hatalı bir şey görürseniz
+lütfen bildirin: http://www.jsmackin.co.uk[JSMackin.co.uk].
+
+== Bu rehberi okuma
+
+Her bölüm bağımsız olacak şekilde tasarlanmıştır; okuyucu ilgi duyduğu bölümlere
+atlayabilir. Bazı kısımlar dosya yolları veya değişken isimleri (`<TheModuleName>`,
+`<TheFileName>`) gibi yer tutucular içerebilir; bunları uygun isimlerle değiştirin.
+
+== SuiteCRM kurulum
+
+[discrete]
+==== İndirme ve Kurulum
+
+Ürünü indirmek için siteyi ziyaret edin: https://suitecrm.com/download/[SuiteCRM installer].
+Kurulum talimatları için yönetim rehberindeki ilgili bölüme bakın.
+
+[discrete]
+==== GitHub
+
+SuiteCRM ayrıca http://github.com[GitHub] üzerinde bulunur: https://github.com/salesagility/SuiteCRM.
+Her sürüm etiketlenir; ihtiyacınız olan sürümü kolayca çekebilirsiniz.
+
+== İlk düzenlemeler
+
+İlk kurulumdan sonra geliştirici verimliliğinizi artıracak bazı ayarlar yapmak faydalıdır.
+
+[discrete]
+==== Developer Mode
+
+SuiteCRM bazı önbellekleme mekanizmaları kullanır (Smarty şablonları vb.). Developer mode
+bazı önbelleği devre dışı bırakarak dosya değişikliklerinin hemen görülmesini sağlar (her
+zaman garanti değildir).

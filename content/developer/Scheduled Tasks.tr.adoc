@@ -1,0 +1,54 @@
+---
+weight: 13
+title: "Scheduled Tasks"
+
+:imagesdir: /images/en/developer
+
+= 13. Zamanlanmış Görevler (Scheduled Tasks)
+
+== Giriş
+
+Zamanlanmış görevler SuiteCRM'de scheduler modülü aracılığıyla yürütülür. İşler tanımlı
+zamanlanmış görevler veya kod tarafından oluşturulan job objeleri aracılığıyla kuyruğa
+eklenir. Scheduler'ların çalışması sisteminize göre değişir; genellikle Linux'ta cron
+girdiği, Windows'ta ise Task Scheduler'a kayıt eklenmesi gerekir. Scheduler sayfası
+uygulamanın gerektirdiği formatı belirtir.
+
+== Scheduler
+
+Scheduled tasks SuiteCRM'in periyodik görevleri gerçekleştirmesini sağlar. Örnekler:
+gelen postaları kontrol etme, e-posta hatırlatmaları gönderme, full text search indeksleme vb.
+
+Kendi scheduler'ınızı tanımlamak için `custom/Extension/modules/Schedulers/Ext/ScheduledTasks/` içine
+bir dosya ekleyin. Dosya adına açıklayıcı bir isim verin, örn. `CleanMeetingsScheduler.php`.
+
+Bu dosya ile job string'lerine yeni bir iş ekler ve scheduler'ın çağıracağı metodu sağlar.
+
+.Example 13.1: Örnek Clean Meetings Scheduler
+[source,php]
+----
+<?php
+----
+
+Ayrıca job için dil dosyası eklemeyi unutmayın: `custom/Extension/modules/Schedulers/Ext/Language/en_us.cleanMeetingsScheduler.php`.
+Bu, kullanıcıya gösterilecek label'ı tanımlar. Örnek mod string anahtarı
+`LBL_CLEANMEETINGSSCHEDULER` olacaktır.
+
+.Example 13.2: Clean Meetings Scheduler için mod string
+[source,php]
+----
+<?php
+//We add the mod string for our method here.
+$mod_strings['LBL_CLEANMEETINGSSCHEDULER'] = 'Mark old, planned meetings as Not \
+ Held';
+----
+
+Quick Repair and Rebuild yaptıktan sonra metodumuz scheduler ext dosyasına derlenecek
+ve scheduler sayfasında görünecektir. Not: herhangi bir değişiklik yaptıktan sonra tekrar
+repair and rebuild gerekecektir.
+
+image:CreateMeetingsScheduler.png[title ="Creating a scheduler that uses our new method"]
+
+Varsayılan sıklık genellikle her bir dakikadır; göreviniz ağır ise daha seyrek zamanlayın.
+
+== Job Queue

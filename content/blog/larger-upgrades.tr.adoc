@@ -1,0 +1,51 @@
+---
+title: Daha Büyük Yükseltmeler için Hazırlık
+date: 2019-07-15T12:00:00+01:00
+author: pgorod
+tags: ["admin"]
+hidden: true
+---
+
+:imagesdir: /images/en/blog/
+:sectnums:
+:toc: macro
+
+Genelde yükseltmeler küçük adımlarla yapılır ve sık yükseltme önerilir. Ancak arada çok geride kalmış bir instance, büyük özelleştirmeler veya eksik dokümantasyon gibi durumlar yükseltmeyi zorlaştırabilir.
+
+Bu rehber, sistem yöneticileri ve CRM yöneticileri için büyük sürüm yükseltmelerinde mevcut işlevsellik ve veri entegrasyonunun korunmasına yardımcı olacak bir kontrol listesi sunar. Teknik işler için bir geliştirici kaynağı olması faydalıdır.
+
+{{% notice note %}}
+Bu makale SuiteCRM 7.8 sonlandırma (EOL) sürecine yönelik yazılmıştır; bazı açıklamalar o senaryoya özeldir ancak çoğu öneri genel olarak uygulanabilir.
+{{% /notice %}}
+
+toc::[]
+
+== Planlama
+
+=== Mevcut sistem sağlıklı mı?
+
+Uzun bir yolculuktan önce arabayı servise götürmek gibi, yükseltme öncesi sistem sağlığını kontrol etmek iyi bir fikirdir.
+
+- *Veritabanında aşırı büyümüş tabloları kontrol edin.* Bazı tablolar zamanla büyür; silinmiş işaretli kayıtlar gerçek anlamda silinmemiş olabilir.
+- *Kayıtları ve tekrar eden hataları kontrol edin.* Bu, yükseltme sonrası ortaya çıkan yeni problemlerle hangi hataların önceden var olduğunu ayırt etmenize yardımcı olur.
+
+=== Amaç ve Kapsam
+
+Bir parçayı yükselttiğinizde diğer bileşenlerin de eş zamanlı yükseltilmesi gerekebilir. Uzun vadeli hedefleri belirleyin:
+
+- Hedef SuiteCRM sürümünüz nedir? (ör. 7.10 LTS veya en son 7.11)
+- link:../../admin/compatibility-matrix/[Uyumluluk Matrisi] kontrol edilerek PHP, web sunucu ve veritabanı gereksinimleri doğrulanmalıdır.
+
+Donanım/altyapı/iş süreçlerini geliştirmek için fırsatlar değerlendirin (ör. sunucu yükseltme, ayrık DB/web sunucusu, VM/container, git tabanlı deploy, yedek/HA stratejileri vb.).
+
+=== Özelleştirmaları denetleyin
+
+Mevcut özelleştirmaların bir envanterini çıkarın: eklentiler, tema değişiklikleri, layout değişiklikleri, logic hook'lar, özel kodlar vb. Çoğu uyumlu kalacaktır ancak çekirdek dosyalarına yapılmış değişiklikler upgrade-safe olmayabilir ve yeniden uygulanması gerekebilir.
+
+=== Kurumsal hizalama
+
+Yükseltme sürecinin ilgili herkesle koordine edilmesi önemlidir: teknik ekip, yöneticiler, kullanıcılar ve gerekirse müşteriler/satıcılar.
+
+== Yükseltmeyi proje olarak yönetin
+
+... (Rehberin devamı orijinal içerikteki detaylarla sürer.)

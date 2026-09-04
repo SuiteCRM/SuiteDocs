@@ -1,0 +1,55 @@
+---
+title: "Gerekli Alan Mantığı (Required Field Logic) Ekleme"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/
+
+{{% notice note %}}
+Değişiklikleri custom dizininde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}
+
+== 1. Giriş
+
+Required logic, diğer alanların değerlerine bağlı olarak alanların zorunlu (required) olarak işaretlenmesini sağlar.
+
+=== 1.1 Örnek senaryo
+
+Bu örnekte Accounts modülünde Annual Revenue alanını Employees alanı 10-50 aralığındaysa zorunlu kılacağız.
+
+image:Non-Required-Annual-Revenue-Field-Employees.png[Non Required Annual Revenue]
+
+image:Required-Annual-Revenue-Field-Employees.png[Required Annual Revenue]
+
+== 2. Mantık (Logic) Metadata tanımı
+
+İlk adım `logic` girdisini metadata'ya eklemektir; burada alanı required yapma tetikleyicileri tanımlanır.
+
+Konfigürasyon `vardefs.php` veya `detailviewdefs.php` içine eklenebilir.
+
+=== 2.1 Custom vardefs üzerinde required mantığı ekleme adımları
+
+. Accounts modülü için yeni bir field extension oluşturun, örn: `public/legacy/custom/Extension/modules/Accounts/Ext/Vardefs/annual_revenue.php`
+. `public/legacy/include/SugarObjects/templates/company/vardefs.php` içindeki `annual_revenue` tanımını kopyalayın.
+. `annual_revenue` tanımındaki `logic` girdisini aşağıdaki örnek ile değiştirin.
+** Gerekirse izinleri yeniden ayarlayın
+. Admin menüsünden `Repair and Rebuild` çalıştırın
+
+[source,php]
+----
+<?php
+
+$dictionary['Account']['fields']['annual_revenue'] = array(
+    /* Lines 47-69 omitted */
+);
+----
+
+=== Required Logic
+
+`logic` içinde `required` için birden fazla tanım koyabilirsiniz; her tanım `OR` gibi çalışır.
+
+[source,php]
+----
+    /* Lines 79-109 omitted */
+    ],
+----

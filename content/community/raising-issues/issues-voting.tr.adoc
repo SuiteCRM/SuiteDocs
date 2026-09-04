@@ -1,0 +1,34 @@
+---
+Title:  GitHub Issue & Pull Request Voting
+Weight: 20
+---
+
+:imagesdir: /images/en/community
+
+== GitHub Issue ve Pull Request Oylama
+
+GitHub Issue ve Pull Request'lerini oylandırmak projeye katkı sağlamanın önemli bir yoludur.
+Oylama, hangi konuların ve önceliklerin gelecekteki sürümlerde önemli olduğunu belirlememize yardımcı olur.
+
+Bir Issue veya Pull Request için oy vermek için:
+
+* Issue veya Pull Request'i bulun
+* Başlığı tıklayarak detay sayfasını açın
+* Orijinal açıklamanın sol alt köşesindeki 'smiley' ikonuna tıklayın
+* 'Thumbs up' (beğen) ikonunu seçin
+
+{{% notice note %}}
+Bir yorum veya başka bir yerde yapılan 'thumbs up' oyları dikkate alınmaz.
+{{% /notice %}}
+
+image:32Issue-Voting.gif[Issue Voting Demo]
+
+Oy verdiğiniz oyu kaldırmak için orijinal açıklamadaki sayı gösteren 'thumbs up' ikonuna tekrar tıklayın.
+
+== Issue veya Pull Request'leri Oylara Göre Sıralama
+
+En popüler konuları görmek için Issues listesinde 'thumbs up' reaksiyonunu veya aşağıdaki filtre parametresini kullanabilirsiniz:
+
+----
+sort:reactions-+1-desc
+----

@@ -1,0 +1,56 @@
+---
+title: "Eylem Görüntüleme Mantığını Ekleme"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/action-logic/
+
+== 1. Giriş
+
+Display logic, diğer alanların değerlerine bağlı olarak butonları gizleme veya gösterme kuralları tanımlamanıza olanak tanır.
+
+=== 1.1 Örnek Senaryo
+
+Bir butonu gizlemek/göstermek için örnek olarak Contacts modülünde yeni bir buton oluşturacağız ve butonun görünürlüğünü başka bir alanın değerine göre kontrol edeceğiz.
+
+== 2. Mantık (Logic) Metadata tanımı
+
+Önce tanımlanacak olan şey, kullanılacak yeni butondur.
+
+Daha sonra butonu gizle/göster tetikleyicilerini tanımlayan `displayLogic` girdisini ekleyeceğiz.
+
+Aşağıdaki örnekte butonu `detailviewdefs.php` içine ekliyoruz.
+
+=== 2.1 Custom viewdef üzerinde mantık ekleme adımları
+
+Butonu view'e eklemek için:
+
+* `public/legacy/custom/modules/Contacts` dizini içinde yeni bir `metadata` klasörü oluşturun.
+* `metadata` içinde `detailviewdefs.php` adında yeni bir dosya oluşturun.
+* `/modules/Contacts/metadata/detailviewdefs.php` içeriğini kopyalayın ve yeni dosyaya yapıştırın.
+
+`recordActions`->`actions` dizisinde butonunuzu ekleyin. Örnek:
+
+[source,php]
+----
+        /* Lines 38-75 omitted */
+        ],
+----
+
+Örnekte, `Phone Fax` alanı belirli bir numara ise buton `Send a Fax` şeklinde gösterilecektir.
+
+`modes` anahtarı, butonun hangi görünümlerde gösterilip/gizleneceğini belirler.
+
+== 3. Display Logic
+
+Butona `displayLogic` uygulandığında, tüm Logic Operator'leri action logic'te olduğu gibi çalışır.
+
+=== 3.1 Display Logic Örnekleri
+
+Aşağıda farklı operatörlerle butonu gizle/gösterme örnekleri bulunmaktadır.
+
+==== OR
+
+Display logic tanımlarken butonu, bir alanın değeri veya diğer bir alanın değeri veya yeni bir alanın değeri gibi şartlardan herhangi birinin sağlanması ile gösterebilirsiniz.
+
+[source,php]

@@ -1,0 +1,51 @@
+---
+Title: JSON API Error Object
+---
+
+== JsonApiErrorObject sınıfı
+
+JSON API Error Object spesifikasyonunun bir uygulaması. Daha fazla bilgi için: http://jsonapi.org/format/#error-objects[^]
+
+== Kullanım
+
+[source,php]
+--
+
+// yeni bir Error Object oluşturma:
+$error = new JsonApiErrorObject();
+
+// hata hakkında bilinen verileri ayarlama:
+$error->setTitle(new LangText('LBL_ERROR_LABEL_TITLE'));
+$error->setDetail(new LangText('LBL_ERROR_LABEL_DETAIL'));
+$error->setCode(ERROR_CODE);
+// daha fazlası için kaynak ve phpDoc'a bakın
+
+// bilinen verilerle doğrudan constructor ile oluşturma (tüm parametreler isteğe bağlıdır):
+$error = new JsonApiErrorObject(
+    new LangText('LBL_ERROR_LABEL_TITLE'),
+    new LangText('LBL_ERROR_LABEL_DETAIL'),
+    ERROR_ID,
+    ERROR_CODE,
+    STATUS,
+    ['about' => 'Description about the problem'],
+    ['pointer' => '/test/foo/bar', 'parameter' => 'wrong'],
+    ['some' => 'meta info']
+);
+
+// Exception'dan Error Object elde etme:
+try {
+  // ...işlemler
+} catch (Exception $e) {
+  $error->retrieveFromException($e);
+}
+
+// ServerRequestInterface'den Error object elde etme:
+$error->retrieveFromRequest($request);
+
+// diziye dönüştürme:
+$array = $error->export();
+
+// JSON string'e dönüştürme:
+$json = $error->exportJson();
+
+--

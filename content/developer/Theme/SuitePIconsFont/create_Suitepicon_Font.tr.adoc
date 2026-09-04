@@ -1,0 +1,27 @@
+---
+title: "SuiteP Icons Font"
+weight: 2
+---
+
+7.9'dan itibaren SuiteCRM yeni bir font olan `suitepicon`'u sunar; bu font SuiteP ikonlarını
+font haline getirir. Bu sayede ikonların renk ve stilini kolayca değiştirebilirsiniz.
+
+İkonları kullanmak için font içinde tanımlı CSS sınıflarını belirtmelisiniz:
+
+[source, html]
+....
+<span class="suitepicon action-first"></span>
+....
+
+*Konumlar:*
+
+* themes/SuiteP/css/suitepicon.eot
+* themes/SuiteP/css/suitepicon.html
+* themes/SuiteP/css/suitepicon.json
+* themes/SuiteP/css/suitepicon.scss
+* themes/SuiteP/css/suitepicon.svg
+* themes/SuiteP/css/suitepicon.ttf
+* themes/SuiteP/css/suitepicon.woff
+* themes/SuiteP/css/suitepicon-glyphs.scss
+
+Bu dosyalar şu depoda bulunabilir: https://salesagility.github.io/SuiteP-Icon-Font/index.html[SuiteP Icon Font GitHub repository]

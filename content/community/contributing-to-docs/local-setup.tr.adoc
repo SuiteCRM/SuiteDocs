@@ -1,0 +1,63 @@
+---
+Title: "Dokümantasyon İçin Yerel Kurulum"
+Weight: 40
+---
+
+Dokümantasyona katkıda bulunmak için GitHub üzerinde doğrudan düzenleme yapabilirsiniz. Daha güçlü bir düzenleme deneyimi için yerel kopya oluşturup Hugo ile siteyi yerelde çalıştırabilirsiniz.
+
+{{% notice warning %}}
+Bu yöntem ileri düzey bir çalışma şeklidir; gerekli teknik bilgiye sahip ve dokümantasyon üzerinde yoğun çalışacak kişiler için uygundur.
+{{% /notice %}}
+
+== Gerekli yazılımları kurma
+
+Gerekli paketler:
+
+- Git
+- Asciidoctor
+- Hugo
+
+{{% notice info %}}
+Aşağıdaki talimatlar Ubuntu 64-bit içindir ancak macOS dahil diğer sistemlere uyarlanabilir.
+{{% /notice %}}
+
+Basit örnek komutlar:
+
+`sudo apt-get update`
+
+`sudo apt-get install git`
+
+Hugo'nun en son sürümünü indirmek için uygun `wget` komutunu alın ve paketi kurun.
+
+Örnek olarak SuiteDocs deposunu klonlayın:
+
+`git clone https://github.com/salesagility/SuiteDocs.git`
+`cd SuiteDocs`
+`bundle install`
+
+Asciidoctor'ın kurulu olduğunu doğrulayın: `asciidoctor --version`
+
+== Yerel sunucuyu başlatma
+
+Siteyi derlemek için:
+
+`hugo`
+
+Yerel geliştirme sunucusunu başlatmak için (örnek):
+
+```bash
+hugo server --bind=0.0.0.0 --baseUrl=http://10.0.0.200 --navigateToChanged --enableGitInfo
+```
+
+Tarayıcıda belirtilen IP'yi açın. Değişiklikleri hızlıca görmek için sunucuyu sürekli açık tutmanızı öneririm.
+
+== Avantajlar
+
+- Git ile işbirliği, `grep`, `bash` gibi araçlarla hızlı toplu işlemler.
+- Otomatik yeniden deploy ve tarayıcı navigasyonu düzenleme esnasında kullanışlıdır.
+
+== Faydalı bağlantılar
+
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+https://gohugo.io/getting-started/installing/
+https://asciidoctor.org/docs/install-toolchain/

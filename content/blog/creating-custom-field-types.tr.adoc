@@ -1,0 +1,47 @@
+---
+title: SuiteCRM'de Özel Alan Türü Oluşturma
+date: 2018-05-03T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/creating-custom-field-type-suitecrm/
+hidden: true
+---
+
+SuiteCRM'de birçok alanda olduğu gibi alan türleri de özelleştirilebilir ve kendi alan türlerinizi ekleyebilirsiniz. Bu yazıda bir "Colour Picker" (renk seçici) alan türü eklemeyi göstereceğim.
+
+İlk adım olarak Studio'ya yeni alan türü ekleme seçeneği sunmamız gerekir. Bunun için `custom/modules/DynamicFields/templates/Fields/TemplateColourPicker.php` dosyasını oluşturup aşağıdaki içeriği ekleyin:
+
+.Example
+[source,php]
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+                            //
+require_once('modules/DynamicFields/templates/Fields/TemplateField.php');
+class TemplateColourPicker extends TemplateField{
+    var $type='ColourPicker';
+                            //
+    function get_field_def(){
+        $def = parent::get_field_def();
+        $def['dbType'] = 'varchar';
+        return $def;
+    }
+}
+
+Ardından dil dosyasını oluşturun: `custom/Extension/modules/ModuleBuilder/Ext/Language/en_us.ColourPicker.php` ve yeni alan türü için etiketi tanımlayın:
+
+.Example
+[source,php]
+<?php
+$mod_strings['fieldTypes']['ColourPicker'] = 'Colour Picker';
+
+Hızlı bir repair and rebuild sonrası Studio'da "Colour Picker" türünde bir alan oluşturma seçeneği göreceksiniz.
+
+:imagesdir: /images/en/community
+
+image:03ColourPickerStudio.png[ColourPickerStudio]
+
+Alan henüz etkileşimli değil, bu yüzden TinyColorPicker gibi bir kütüphane kullanarak işlevsellik ekleyeceğiz. `custom/include/SugarFields/Fields/ColourPicker/js/jqColorPicker.min.js` içine bu dosyayı ekleyin ve detay/edit view için iki şablon oluşturun (`DetailView.tpl` ve `EditView.tpl`) — içeriği orijinal örnekteki gibi bırakın.
+
+Repair and rebuild sonrası (ve alan view'lara eklendiğinde) yeni alanı göreceksiniz:
+
+image:04ColourPicker.png[Colour Picker Example]

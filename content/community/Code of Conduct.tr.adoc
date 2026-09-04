@@ -1,0 +1,15 @@
+---
+Title: Davranış Kuralları
+---
+
+== SuiteCRM Topluluğu Davranış Kuralları
+
+Sağlıklı ve kapsayıcı bir topluluk için üyelerin kendilerini hoş ve güvende hissedebilecekleri, birbirlerinden öğrenebilecekleri ve platformdan herkesin faydalanabileceği bir ortam yaratmalı ve bunu teşvik etmeliyiz. SuiteCRM topluluğu son kullanıcılar, sistem yöneticileri, geliştiriciler, partnerler ve hizmet sağlayıcılarından oluşur; bu nedenle topluluğun başarısı ve refahı için herkes sorumluluk almalıdır.
+
+. **Düşünceli olun.** İnsanlara nazik davranın ve yardımcı olun. Topluluğumuz her türlü geçmişe ve kimliğe sahip kişileri karşılar ve profesyonel saygıyla davranılmalıdır. Hoş olmayan davranışlar arasında ama bunlarla sınırlı olmamak üzere:
+.. Cinsel içerikli dil veya görseller kullanmak ya da istenmeyen cinsel taciz veya yaklaşımlar
+.. Trolleme, hakaret/ayrımcı yorumlar ve kişisel veya politik saldırılar
+.. Herhangi bir biçimde taciz (kamusal veya özel)
+.. Başkalarının açık izni olmadan özel bilgilerini (fiziksel veya elektronik adres gibi) yayınlamak
+
+. **Objektif olun.** Burada çoğunlukla teknik konularla uğraşıyoruz: duygular insanidir ama olumsuz duygular teknik sorunları çözmez. Diğer katılımcıların iyi niyetli olduğunu varsayın.

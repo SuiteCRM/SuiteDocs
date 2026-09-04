@@ -1,0 +1,51 @@
+---
+title: "Further Resources"
+weight: 200
+---
+
+:experimental:
+
+= 19. Ek Kaynaklar
+
+Bu kitap kapsamlı bir kaynak olmayı amaçlasa da SuiteCRM büyük ve özellik bakımından
+zengindir; bu yüzden tüm ihtiyaç duyabileceğiniz bilgileri burada toplamak mümkün
+değildir. Aşağıda geliştirirken başvurabileceğiniz ek kaynaklar bulunmaktadır.
+
+== SuiteCRM Web Sitesi
+
+SuiteCRM web sitesi `http://suitecrm.com[suitecrm.com^]` birçok faydalı kaynağa sahiptir:
+
+* https://community.suitecrm.com[SuiteCRM Community Forums^] - Gelin ve merhaba deyin!
+* https://suitecrm.com/about/newsroom/news/[SuiteCRM Blog^]
+
+== Harici SuiteCRM Kaynakları
+
+https://github.com/salesagility/SuiteCRM[SuiteCRM GitHub^] - SuiteCRM kaynak kodu GitHub'da
+barındırılır. Buradan en güncel değişiklikleri alabilir ve katkıda bulunabilirsiniz.
+
+== SugarCRM Kaynakları
+
+SuiteCRM, SugarCRM Community Edition ile uyumluluğu korumuştur ve birçok doküman
+hala geçerlidir. SuiteCRM için uygun SugarCRM sürümü 6.5'tir.
+
+* https://support.sugarcrm.com/Documentation/Unsupported_Versions/Sugar_6.5/[SugarCRM 6.5 Developer docs^]
+* https://community.sugarcrm.com/community/developer[SugarCRM Developer Blog^]
+
+== Teknik Linkler
+
+* https://www.php.net[PHP^]
+* https://www.smarty.net/[Smarty^]
+* https://xdebug.org[XDebug^]
+* https://git-scm.com/[Git^]
+* https://yuilibrary.com/[YUI^] - Legacy JS kütüphanesi
+* https://jquery.com/[JQuery^]
+* https://github.com/PHPMailer/PHPMailer[PHPMailer^]
+* http://php.net/manual/en/book.apc.php[APC^]
+* https://www.php.net/manual/en/book.wincache.php[WinCache^]
+* https://www.jetbrains.com/phpstorm/[PHPStorm^]
+* https://eclipse.org/pdt/[Eclipse PHP Development Tools^]
+
+== Diğer Linkler
+
+* https://salesagility.com/[SalesAgility^]
+* http://www.jsmackin.co.uk[Jim Mackin^]

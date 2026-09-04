@@ -1,0 +1,43 @@
+---
+Title: "Yeni Dillerin Kurulması"
+Weight: 50
+---
+
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin/install-guide/
+
+{{% notice note %}}
+Eğer yeni bir dil eklemiyor, sadece halihazırda kurulu bir dili güncelliyorsanız, önce link:/admin/installation-guide/languages/update-a-language-pack/[Dil Paketi Güncelleme] kılavuzunu takip ettiğinizden emin olun.
+{{% /notice %}}
+
+== Dil paketi indirme
+
+. https://sourceforge.net/projects/suitecrmtranslations/files/[Stable SuiteCRM Language Packs^] veya https://crowdin.com/project/suitecrmtranslations[Latest Build SuiteCRM Language Packs^] adreslerinden birini seçin.
+. Sürümünüzü ve dilinizi seçin
+. ZIP dosyasını indirin
+
+== Kurulum adımları
+
+. İngilizce olarak giriş yapın
+image:1.png[1.png] +
+. Admin / Module Loader bölümüne gidin
+image:2.png[2.png] image:3.png[3.png] +
+. Yeni dil paketini (zip dosyası) yükleyip kurun
+image:4.png[4.png] +
+image:5.png[5.png] +
+. Dosyayı sunucuya göndermek için btn:[Upload] butonuna tıklayın
+image:6.png[6.png] +
+. Değişiklikleri uygulamak için btn:[Install] butonuna tıklayın ve onaylayın
+image:7.png[7.png] +
+image:8.png[8.png] +
+image:9.png[9.png] +
+. Admin / Repair / Quick Repair and Rebuild bölümüne gidin
+image:10.png[10.png] +
+image:11.png[11.png] +
+image:12.png[12.png] +
+image:13.png[13.png] +
+. Oturumu kapatın
+image:14.png[14.png] +
+. Yeni diliniz ile tekrar giriş yapın
+image:15.png[15.png]

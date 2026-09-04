@@ -1,0 +1,98 @@
+---
+title: "Bildirimler"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/features/
+
+=== Bildirimlerimi nasıl görebilirim?
+
+Bildirimler, çoğu sayfada 🔔 simgesine tıklayarak bulunabilir.
+
+image:Notifications-Open.png[Notifications-Open.png]
+
+=== Bildirimlerim neleri gösterir?
+
+Aşağıdakilerden birine davet edildiğinizde bildirim alırsınız:
+
+* Toplantılar
+* Aramalar
+
+Ayrıca yukarıdaki etkinlikler için hatırlatmalar gönderildiğinde bildirim gönderilir.
+
+=== Yeni bildirimim olduğunu nasıl anlarım?
+
+Yeni bildirimleriniz varsa, aşağıdaki gibi ekranın üst kısmında bir açılır bildirim gösterilir:
+
+image:Notification-Pop-up.png[Notification-Pop-up.png]
+
+🔔 simgesinin yanında bildirim sayısını da göreceksiniz.
+
+image:Notifications-Bell-Update.png[Notifications-Bell-Update.png]
+
+=== Bildirimlerim ne kadar hızlı güncellenir?
+
+Varsayılan olarak bildirimler her dakika kontrol edilecek şekilde yapılandırılmıştır.
+
+`config/services/ui/notifications.yaml` yapılandırma dosyasında `autoRefreshFrequency` seçeneğini dakika cinsinden ayarlayarak yenileme sıklığını belirleyebilirsiniz. Aşağıdaki örneğe bakın.
+
+Performans amacıyla otomatik yenileme periyoduna rastgele bir sapma eklenir. Bu, her aktif kullanıcı için isteğin tam olarak aynı zamanda yapılmasını engeller. Varsayılan sapma, -15 ile +15 saniye arasındaki rastgele bir sayıdır.
+
+[source,yaml]
+----
+parameters:
+  notifications:
+    module: 'alerts'
+    class: 'notifications'
+    maxListHeight: 350
+    ...
+    autoRefreshFrequency: 1 # dakika
+    autoRefreshDeviationMin: -15 # saniye. sapma istemiyorsanız 0 olarak ayarlayın
+    autoRefreshDeviationMax: 15 # saniye. sapma istemiyorsanız 0 olarak ayarlayın
+    ...
+----
+
+=== Bildirim tablosunun yüksekliğini yapılandırma
+
+Yukarıdaki kod bloğunda `maxHeightList` ayarının da tanımlı olduğunu görebilirsiniz. Buradaki değeri değiştirerek tablonun boyutunu güncelleyebilirsiniz.
+
+=== Bildirimleri erteleme (Snooze) ve kapatma (Dismiss)
+
+Aşağıda görüldüğü gibi, her bildirimin üzerinde iki simge bulunur: Ertele (Snooze) ve Kapat (Dismiss).
+
+image:Single-Notification.png[Single-Notification.png]
+
+==== Bildirimleri Erteleme
+
+Bildirimlerin erteleme süresini `Sistem Ayarları`'nda veya `Kullanıcı Profili` altındaki `Gelişmiş` sekmesinde ayarlayabilirsiniz.
+
+image:Notifications-System-Settings.png[Notifications-System-Settings.png]
+
+image:Notifications-User-Pref.png[Notifications-User-Pref.png]
+
+==== Bildirimleri Kapatma
+
+Gerekmeyen bildirimleri kapatabilirsiniz. Bir bildirimi kapatmanın iki yolu vardır ve aşağıdaki bölümler her ikisini de açıklar.
+
+===== Kapat
+
+image:Single-Notification.png[Single-Notification.png]
+
+İlk yol, tek bir bildirimin üzerindeki ☒ işaretini seçerek onu Kapatmaktır.
+
+===== Tümünü Kapat
+
+Diğer yol, gösterilen bildirimlerin altında bulunan `dismiss all` butonudur.
+
+image:Notifications-Dismiss-All.png[Notifications-Dismiss-All.png]
+
+`Dismiss all` mevcut açılır bildirim popup'ında gösterilen tüm bildirimleri kapatır.
+
+=== Daha Fazla Yükle (Load More)
+
+Geçerli bildirim listenizin altında bir `load-more` butonu göreceksiniz.
+
+image:Notifications-Dismiss-All.png[Notifications-Load-More.png]
+
+`load-more` tıklandığında listenize 10 adet daha bildirim eklenir.
+

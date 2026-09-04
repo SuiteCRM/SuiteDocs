@@ -1,0 +1,27 @@
+---
+Title: E-posta Genel Bakış
+weight: 10
+---
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+== E-posta
+
+== Mail Hesapları Genel Bakış
+
+SuiteCRM için e-posta yapılandırması; kişilere kişisel e-posta gönderme, otomatik vaka oluşturma, olaylar için bildirim gönderme (link:../../../../user/advanced-modules/workflow/[workflow]) ve e-posta pazarlama gönderme (link:../../../../user/core-modules/campaigns/[campaigns]) gibi geniş bir özellik seti sağlar.
+
+Bu belge, farklı tipte mail hesaplarının neler olduğunu ve nasıl yapılandırılacağını açıklar. SuiteCRM'de E-postalar modülünü kullanarak e-posta okuma ve gönderme bilgileri için link:../../../../user/core-modules/emails[Emails module guide] bölümüne bakın.
+
+Farklı amaçlar için SuiteCRM içinde yapılandırılabilecek çeşitli hesap türleri vardır. Bunlar:
+
+*Outgoing Mail*
+
+Giden posta sunucusu otomatik e-posta bildirimlerini (ör. kayıt atama bildirimleri) ve link:../../../../user/advanced-modules/workflow/[workflows] aracılığıyla gönderilen e-postaları göndermek için kullanılır.
+
+Giden posta yapılandırması bir Yönetici tarafından yapılmalıdır.
+
+Talimatlar için <<Outgoing Mail Configuration>> bölümüne bakın.

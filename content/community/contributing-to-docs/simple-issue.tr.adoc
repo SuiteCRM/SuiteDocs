@@ -1,0 +1,39 @@
+---
+Title: "Bir sayfa hakkında issue açma"
+Weight: 20
+---
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/community
+
+== Yorum, düzeltme veya soru ile katkıda bulunun
+
+Dokümantasyona katkıda bulunmak için sayfalar hakkında GitHub üzerinde issue açabilirsiniz.
+
+{{% notice info %}}
+Issue açmak için https://github.com/join[GitHub hesabı] gereklidir.
+{{% /notice %}}
+
+=== 1. Yorum yapmak istediğiniz sayfaya gidin
+
+Menü ya da arama ile ilgili sayfaya ulaşın.
+
+=== 2. "Issue" linkine tıklayın
+
+Her sayfanın üstünde "Issue" bağlantısı bulunur.
+
+image:27PageIssue.png[title="Issue link"]
+
+=== 3. Yorumunuzu yazın
+
+GitHub editörüne yönlendirileceksiniz; burada dokümanla ilgili düzeltme, açıklama isteği veya soru belirtebilirsiniz.
+
+image:28EditIssue.png[title="Edit Issue"]
+
+Bu Issues, dokümantasyon sayfasına ilişkindir; teknik sorunlar için lütfen https://community.suitecrm.com[forum] adresini kullanın.
+
+İşiniz bittiğinde `btn:[Submit new issue]` ile gönderin.
+
+=== Hepsi bu kadar!
+
+Issue açıldığında topluluk yöneticileri bilgilendirilecektir; SuiteDocs issues listesinden süreci takip edebilirsiniz.

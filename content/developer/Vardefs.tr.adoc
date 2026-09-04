@@ -1,0 +1,87 @@
+---
+weight: 4
+title: "Vardefs"
+---
+
+:imagesdir: /images/en/developer
+
+= 4. Vardefs
+
+== Vardefs nedir?
+
+Vardefs bir bean hakkında SuiteCRM'e bilgi sağlar. Genellikle alanlar, ilişkiler ve
+indeksleri belirtir; ayrıca audit, tablo adı gibi ek bilgileri içerir.
+
+== Vardefs tanımlama
+
+=== Modül
+Vardefs başlangıçta ilgili modül klasöründe tanımlanır. Örneğin Accounts için
+`modules/Accounts/vardefs.php`. Bilgi `$dictionary` dizisinde modül adı anahtar olarak
+saklanır. Örnek:
+
+.Example 4.1: Account Vardefs
+[source,php]
+----
+$dictionary['Account'] =
+array(
+  /* Lines 32-49 omitted */
+);
+
+VardefManager::createVardef(
+  /* Lines 52-55 omitted */
+);
+----
+
+=== Anahtarlar
+Bazı önemli anahtarlar:
+
+`table`::
+  Modülün veritabanı tablo adı.
+`audited`::
+  /* Lines 69-70 omitted */
+`unified_search`::
+  Küresel aramada modülün aranabilir olup olmadığı.
+`duplicate_merge`::
+  /* Lines 76-77 omitted */
+`comment`::
+  Modülün açıklaması.
+`optimistic_locking`::
+  /* Lines 81-88 omitted */
+
+=== Alanlar
+Alan tanımları modüldeki her alanın davranışını belirler.
+
+`name`::
+  Alan adı.
+`vname`::
+  Bu alan için kullanılacak dil etiketi.
+`type`::
+  Alan tipi (field types bölümüne bakın).
+`isnull`::
+  Null değer alıp almayacağı.
+`len`::
+  String tipi ise maksimum karakter sayısı.
+`options`::
+  /* Lines 105-106 omitted */
+`dbtype`::
+  /* Lines 108-109 omitted */
+`default`::
+  /* Lines 111-112 omitted */
+`display_default`::
+  Tarih tipleri için örnek değerler: `-1 day`, `today`, `+1 week` vb.
+`massupdate`::
+  Toplu güncelleme izinleri.
+`rname`::
+  İlişkili modülde kullanılacak alan adı.
+`id_name`::
+  İlişkili id alanı.
+`source`::
+  Alanın kaynağı (DB, formula, vb.).
+`sort_on`::
+  Sıralama için kullanılacak alan.
+`fields`::
+  Birleştirilecek alanlar.
+`db_concat_fields`::
+  DB seviyesinde birleştirme yapılacak alanlar.
+`unified_search`::
+  Küresel aramada bu alanın aranabilir olup olmadığı.

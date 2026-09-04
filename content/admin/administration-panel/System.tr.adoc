@@ -1,0 +1,22 @@
+---
+Title: Sistem
+weight: 46
+---
+
+:imagesdir: /images/en/admin
+
+= Sistem
+
+Sistem sayfası SuiteCRM'in genel ayarlarına erişim sağlar: e-posta sunucuları, günlük ayarları, tam yol ayarları, ve diğer teknik yapılandırmalar.
+
+== Genel Ayarlar
+
+Genel Sistem ayarlarını değiştirmek için Admin > System Settings bölümüne gidin. Burada site başlığı, zaman dilimi ve bazı görsel ayarlar bulunur.
+
+== E-posta Yapılandırması
+
+E-posta sunucusu ayarları Admin > Emails altında yapılandırılır. Giden ve gelen posta ayarlarını kontrol edin.
+
+== Log Seviyesi
+
+Debug ve bilgi seviyelerini ayarlamak için logging seçeneklerini kullanın. Yüksek seviye debug, performansa etkisi olabileceği için üretim ortamlarında dikkatle kullanılmalıdır.

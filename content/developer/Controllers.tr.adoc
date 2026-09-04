@@ -1,0 +1,78 @@
+---
+weight: 7
+title: "Controllers"
+---
+
+= 7. Kontrollerler
+
+SuiteCRM MVC (Model-View-Controller) desenini takip eder ve bu nedenle kontroller
+konseptine sahiptir. Kontrolör, Model üzerinde değişiklik yapmaktan ve uygun
+olduğunda görünümü çağırmaktan sorumludur. SuiteCRM'de contoller'ın hangi eylemleri
+(actions) gerçekleştireceği URL tarafından belirlenir. Örnek bir SuiteCRM URL'sine bakalım:
+
+.Example 7.1: Örnek SuiteCRM URL
+[source,php]
+example.com/index.php?module=Accounts&action=index
+
+Bu örnekte modül `Accounts`'dır. Bu hangi kontrolörün kullanılacağını belirler ve
+sonra o kontrolörde `index` action'ı çağrılır.
+
+SuiteCRM önce `custom/module/<TheModule>/controller.php` dosyasında kontrolör olup
+olmadığını arar. Bulunmazsa `module/<TheModule>/controller.php` kontrol edilir. Her
+ikisi de yoksa varsayılan kontrolör kullanılır: `include/MVC/Controller/SugarController.php`.
+
+== Kontrollerleri özelleştirme
+
+Varsayılan kontrolör isteği işler ve uygun görünüme delege eder. Ancak özel kontrolörler
+ekleyerek işlevsellik ekleyebilir veya değiştirebilirsiniz. Yeni bir action eklemeye
+bir örnek ile başlayalım.
+
+=== Özel modül
+
+Bu durumda dosyayı doğrudan modülün içine koyabilirsiniz: `modules/<TheModule>/controller.php`.
+İçerik şu şekilde olacaktır:
+
+.Example 7.2: Özel modül için kontrolör oluşturma
+[source,php]
+----
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+class <TheModule>Controller extends SugarController
+{
+
+}
+----
+
+=== Mevcut modüller
+
+Mevcut modüller için kontrolörü `custom/modules/<TheModule>/controller.php` içine ekleyin.
+Dosya içeriği, var olan kontrolörü genişletmek veya tamamen kendi versiyonunuzu oluşturmak
+isteyip istemediğinize bağlı olarak değişir. Genellikle var olan kontrolörü genişletmek daha
+iyi olur çünkü önemli mantığı korur. Buradaki sınıf isimlendirme kuralı `Custom<TheModule>Controller`'dır.
+
+.Example 7.3: Mevcut modül için özel kontrolör (yeni)
+[source,php]
+----
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+class Custom<TheModule>Controller extends SugarController
+{
+
+}
+----
+
+Veya mevcut kontrolörü genişletiriz; bu durumda mevcut kontrolörü require ederiz:
+
+.Example 7.4: Mevcut kontrolörü genişleterek özel kontrolör oluşturma
+[source,php]
+----
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+require_once 'modules/<TheModule>/controller.php';
+
+class Custom<TheModule>Controller extends <TheModule>Controller
+{
+
+}
+----

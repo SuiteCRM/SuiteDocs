@@ -1,0 +1,293 @@
+---
+Title: Campaigns
+Weight: 190
+---
+
+:imagesdir: /images/en/8.x/user/modules/campaigns/
+
+= Kampanyalar
+
+== Genel Bakış
+
+SuiteCRM'deki Kampanya Modülü, Pazarlama, İşlemsel ve Anket gibi farklı e-posta türlerini Seçilmiş Hedeflere (Kullanıcılar, Kişiler, Hedefler, Potansiyel Müşteriler ve Kuruluşlar) göndermek ve takip etmek için kullanılabilir.
+
+Kampanya Modülü'ne entegre izleme araçlarıyla, kampanyanızdan aldığınız yanıtları gerçek zamanlı olarak izleyebilirsiniz. Bu sayede alıcıların e-postayı görüntüleme, bağlantıya tıklama veya engellenen e-postalar gibi faaliyetlerini görebilirsiniz.
+
+== Kampanya Oluşturma
+
+Kampanyalar Modülü'nden modül açılır menüsünden "Kampanya Oluştur" seçeneğini seçin.
+
+image:Campaign-Edit.png[Kampanya Oluşturma Görünümü]
+
+=== Genel Bilgiler
+
+[cols="20,80"]
+|===
+|*Ad*|Kampanyanın adı.
+|*Başlangıç Tarihi*|Temsili bir tarihtir, kampanyanın gönderim sürecinin başlangıcını belirlemez.
+|*Bitiş Tarihi*|Temsili bir tarihtir, kampanyanın gönderim sürecinin bitişini belirlemez.
+|*Açıklama*|Kampanya için isteğe bağlı açıklama.
+|*Bastırma Listeleri*|Bastırma Listeleri kampanyanızdan belirli hedefleri hariç tutar. Oluşturma sırasında bir Bastırma Listesi (ID ile) eklenmezse, otomatik olarak bir tane oluşturulup eklenecektir. Bastırma Listeleri hakkında daha fazla bilgi için bkz: link:../../../../user/core-modules//target-lists/#_target_list_types[burası].
+|*Hedef Listeleri*|Kampanyanızın göndereceği potansiyel hedef listeleri.
+|===
+
+{{% notice note %}}
+Burada seçtiğiniz Hedef Listeleri, Pazarlama Kaydı üzerinde *yalnızca* gösterilecek/seçilebilir Hedef Listeleri olacaktır.
+{{% /notice %}}
+
+=== Bütçe
+
+[cols="30,70"]
+|===
+|*Bütçe*|Kampanyanın bütçesi.
+|*Beklenen Maliyet*|Kampanyanın beklenen maliyeti.
+|*Gerçekleşen Maliyet*|Kampanyanın gerçekleşen maliyeti.
+|*Beklenen Gelir*|Kampanyanın beklenen geliri.
+|*Hedef*|Kampanyanın hedefi.
+|*Etkileşim Sayısı*|Kampanyanın aldığı gösterim/etkileşim sayısı.
+|===
+
+== Kampanya Grafikleri
+
+image:Campaign-Charts.png[Kampanya Grafikleri]
+
+Kampanyalar için İçgörülerde iki *yeni* grafik bulunmaktadır.
+
+=== Alıcı Etkinliğine Göre Kampanya Yanıtı
+
+[cols="30,70"]
+|===
+|*Gönderilen/Denenen*|Gönderilen e-posta sayısı.
+|*Mesajı Görüntüleyen*|Gönderilen e-postalardan görüntülenenler.
+|*Tıklama*|Tıklama yapan benzersiz kullanıcı sayısı.
+|*Abonelikten Çıkan*|Abonelikten çıkan hedef sayısı.
+|===
+
+=== Kampanya Gönderim Durumu
+
+[cols="40,60"]
+|===
+|*Mesaj Kuyruğu*|Gönderim için sıradaki e-posta sayısı.
+|*Gönderilen/Denenen*|Gönderilen e-posta sayısı.
+|*Bastırılan/Engellenen*|Gönderilenler arasında bastırılan/engellenenler.
+|*Geri Dönen Mesajlar, Geçersiz E-posta*|Geri dönen mesajların veya geçersiz e-posta nedeniyle geri dönenlerin sayısı.
+|*Geri Dönen Mesajlar, Diğer*|Kopya e-posta gibi diğer nedenlerle geri dönen mesajların sayısı.
+|===
+
+== Kampanya İşlem Tablosu
+
+Kampanya Kaydı oluşturulduktan sonra yeni bir "Kampanya İşlemleri" tablosu görünecektir.
+
+image:Campaign-Actions-Table.png[Kampanya İşlem Tablosu]
+
+Bu tabloda dört işlem vardır:
+
+[cols="20,80"]
+|===
+|*Yeni Pazarlama E-posta'sı*|Bu işlem, Pazarlama türünde bir E-posta Pazarlama Kaydı oluşturur; bu kaydın e-posta gövdesinde bir abonelikten çıkma bağlantısı bulunması gereklidir. Abonelikten çıkma bağlantısı eklemek için bkz: link:../_campaigns/#_opt_out_tracker[burası].
+|*Yeni İşlemsel E-posta*|Bu işlem, İşlemsel türde bir E-posta Pazarlama kaydı oluşturur; bu kaydın e-posta gövdesinde abonelikten çıkma bağlantısı *olmaması* gerekmektedir.
+|*Yeni Anket E-posta'sı*|Bu işlem, Anket türünde bir E-posta Pazarlama kaydı oluşturur; bu kaydın da abonelikten çıkma bağlantısı içermesi gerekmektedir.
+|*Yeni Anket*|Bu işlem yeni bir Anket oluşturur.
+|===
+
+== E-posta Pazarlama Kaydı Oluşturma
+
+image:create-email-marketing-demo.gif[E-posta Pazarlama Oluşturma]
+
+=== E-posta Pazarlama Alanları
+
+*Durum*
+
+[cols="20,80"]
+|===
+|*Taslak*|* Taslak durumundayken, kayıt "Planlanan Çalıştırma Tarihi" geldiğinde göndermeye başlamaz.
+
+* Kayıt *yalnızca* taslak durumundayken düzenlenebilir.
+
+* Test e-postaları *yalnızca* taslak durumundayken gönderilebilir.
+|*Planlandı*|* Planlandığında, kayıt "Planlanan Çalıştırma Tarihi"nde toplu (ayarlara göre) e-posta göndermeye başlayacaktır.
+
+* Bu duruma "Planla" butonunu seçerek ulaşılır.
+
+* Kaydı tekrar taslağa almak için "Planlamayı Kaldır" butonunu seçin; gönderim süreci başladıktan sonra bunu yapamazsınız.
+|*Gönderim Bekliyor*|* Kayıt "Planlandı"ysa ve "Planlanan Çalıştırma Tarihi" geçmişse, kayıt gönderim bekliyor olarak işaretlenecek ve Sonraki Zamanlayıcı çalıştırmasında işleme alınacaktır.
+
+* Gönderim bekliyor durumundayken, kayıt artık "Planlamayı Kaldır" yapılamaz. Süreci durdurmak için "İptal Et" butonunu seçin.
+|*Gönderiliyor*|* E-postalar sıraya alınıp gönderim süreci başladıysa bu durum görünür.
+
+* Gönderiliyor durumundayken, kayıt artık "Planlamayı Kaldır" yapılamaz. Süreci durdurmak için "İptal Et" butonunu seçin.
+|*Gönderildi*|* Tüm Hedeflere gönderim/deneme yapıldıysa bu durum görünür.
+|*İptal Edildi*|* Gönderim sürecinde kayıt iptal edildiyse bu durum görünür.
+|===
+
+*Kuyruk Durumu*
+
+[cols="20,80"]
+|===
+|*Başlamadı*|* Bu durum, bu E-posta Pazarlama Kaydından hiçbir e-posta kuyruğa alınmadığında görünür.
+|*İşlemde*|* Bu durum, Zamanlayıcı bu Pazarlama Kaydını alıp e-posta kuyruğa almaya başladığında görünür.
+
+* Kuyruğa alınan e-posta sayısı, "İşlem başına işlenen/gönderilen e-posta sayısı" ayarına bağlıdır.
+|*Tamamlandı*|* Tüm e-postalar kuyruğa alındığında bu durum görünür.
+
+* Not: Burada tamamlandığında bile gönderim süreci devam ediyor olabilir.
+|===
+
+*Gönderen*
+
+Bu, gönderimde kullanılacak giden e-posta adresidir.
+
+*Hedef Listeleri*
+
+Burada seçilen Hedef Listeleri, "Planlandığında" e-postanın gönderileceği hedefler olacaktır.
+
+*Şablon*
+
+Bu kayıt için mevcut bir e-posta şablonu seçebilir ve seçtikten sonra düzenleyebilir veya hiç şablon kullanmayabilirsiniz.
+
+*Planlanan Çalıştırma Tarihi*
+
+Bu, E-posta Pazarlama Kaydı için gönderim sürecinin başlayacağı planlanan tarih/zamandır.
+
+*İzleyiciler Etkin*
+
+Bu, bu E-posta Pazarlama Kaydı için izleyicileri etkinleştirir.
+
+Eğer izleyiciler global olarak devre dışı bırakıldıysa, bir E-posta Pazarlama kaydında bunları etkinleştiremezsiniz.
+
+Daha fazla bilgi için izleyiciler hakkında bkz: link:../_campaigns/#_tracker_urls[burası].
+
+*Çoğaltma İşleme*
+
+[cols="20,80"]
+|===
+|*Aynı kayıtlara gönderimi önle*| Birden fazla hedef listesinde aynı kaydın olması durumunda, seçiliyse aynı kayda tekrar gönderimi önler.
+|*Aynı kayıt ve e-posta adresine gönderimi önle*| Aynı e-posta adresine birden fazla kayıt varsa, aynı e-posta adresine birden fazla gönderimi engeller; yalnızca bir kayda gönderilir, diğerleri engellenir.
+|===
+
+*Konu*
+
+Bu, gönderilen E-posta Pazarlama Kaydının konu satırı olacaktır.
+
+*Gövde*
+
+Bu, gönderilen E-posta Pazarlama Kaydının içeriğidir.
+
+*Gövde: Araç Çubuğu*
+
+image:Body-Toolbar.png[Gövde Araç Çubuğu]
+
+Her düğmenin işlevini (ör. "Kalın", "İtalik"...) görmek için üzerine gelin.
+
+Standart düzenleyici düğmelerinin yanı sıra şunlar da vardır:
+
+[cols="20,80"]
+|===
+|*image:Unsubscribe-Icon.png[Abonelikten Çıkma,width=75]*| Bu, e-posta gövdesine bir abonelikten çıkma bağlantısı ekler.
+|*image:Code-Icon.png[Kod, width=75]*| Bu, düzenleyiciyi bir monaco editöre — HTML alanına — çevirir.
+|===
+
+== İzleyici URL'leri
+
+İzleyici URL'leri, örneğin kuruluşunuzun web sitesine veya başlattığınız yeni bir ürüne doğrudan bağlantı eklemek için kullanılabilir. Her alıcı için benzersiz bir kimlik bağlantıya eklenir ve SuiteCRM'in tıklamaları izlemesine olanak tanır.
+
+Toplanan bilgiler kayıt grafiklerinde topluca veya alt panellerde daha ayrıntılı olarak görüntülenebilir.
+
+image:track_recipient_activity.gif[Alıcı Etkinliği]
+
+İzleyicileri global olarak etkinleştirmek için Yönetim Menüsü üzerinden "Kampanya E-posta Ayarları"na gidin.
+
+=== İzleyici Ekleme Yöntemi
+
+Kampanya E-posta gövde alanına bir köprü ekleyerek E-posta Pazarlama Kaydınıza izleyiciler ekleyebilirsiniz.
+
+image:Tracker.gif[İzleyici Bağlantı]
+
+=== Abonelikten Çıkma İzleyicisi
+
+Abonelikten çıkma bağlantısı alıcının gelecekteki Pazarlama E-postalarından vazgeçmesine olanak tanır.
+
+Abonelikten çıkma izleyicisini E-posta Pazarlama Kaydınıza eklemek için ikon seçilebilir:
+
+image:Unsubscribe-Icon.png[Abonelikten Çıkma İkonu]
+
+Bu, e-postaya bir abonelikten çıkma bağlantısı ekleyecektir.
+
+{{% notice info %}}
+Bir abonelikten çıkma bağlantısı, hem pazarlama hem de anket türü E-posta Pazarlama kayıtlarında gereklidir.
+{{% /notice %}}
+
+== E-posta Pazarlama Kayıt İşlemleri
+
+=== Test E-postası Gönder
+
+Bir Kullanıcıya, test Hedef Listesine veya belirli bir E-posta Adresine test e-postası gönderebilirsiniz.
+
+image:send_test_entries_demo.gif[Test E-postası Gönder]
+
+Bunu yaparak kampanyayı bir alıcı gözüyle görüntüleyebilir ve görünümün doğru olup olmadığını kontrol edebilirsiniz.
+
+Test Kayıtları, kayıt alt panellerinde ve grafiklerde görülebilen görüntülemeler ve tıklamalar üretecektir.
+
+image:test-entries-demo.gif[Test Kayıtları]
+
+Test e-postaları gönderildikten sonra, verinin test verisi olduğunu göstermek için bir uyarı bandı görüntülenecektir.
+
+`test_email_limit` değerini `config.php` üzerinden değiştirerek aynı anda daha fazla test e-postası gönderebilirsiniz. Bunun varsayılan değeri 50'dir.
+
+Planlamadan sonra test e-postası gönderemezsiniz.
+
+=== Test Kayıtlarını Sil
+
+Bu, test e-postalarıyla oluşturulmuş tüm test kayıtlarını kaldırır.
+
+Test kayıtları, kayıt "Planlandığında" silinecektir.
+
+=== Planla
+
+Bu, E-posta Pazarlama Kaydını Planlayarak Planlanan Çalıştırma Tarihinde kuyruğa/sıraya alınmasını sağlar.
+
+Planlama ayrıca test kayıtlarını siler.
+
+{{% notice info %}}
+Kayıt planlandıktan sonra düzenlenemez/güncellenemez.
+{{% /notice %}}
+
+=== Planlamayı Kaldır
+
+Kayıt planlandıktan sonra, bu işlem kaydı Taslak durumuna alır ve kullanıcıya düzenleme imkânı verir.
+
+{{% notice info %}}
+Kayıt, gönderim süreci başlamadan önce planlamayı kaldırılabilir. Bu aşamadan sonra süreci durdurmak için kaydı "İptal Et"melisiniz.
+{{% /notice %}}
+
+=== İptal Et
+
+Bu, kaydın gönderim sürecini durdurur ve bu kayda ait tüm mesaj kuyruğu öğelerini siler.
+
+== E-posta Pazarlama İçgörüleri
+
+=== E-posta Pazarlama Durum Kontrolü
+
+image:Status-Check-Widget.png[Durum Kontrolü Bileşeni]
+
+==== Zamanlayıcılar
+
+Bu, Kampanya E-postalarıyla ilgili üç zamanlayıcının aralığını gösterir.
+
+[cols="20,80"]
+|===
+|*Kampanya E-postalarını Gönder*| Kampanya E-postalarının toplu olarak ne sıklıkla gönderileceğini gösterir.
+|*Kampanya E-postalarını Kuyruğa Al*| Kampanya e-postalarının ne sıklıkla toplu olarak kuyruğa alınacağını gösterir.
+|*Gecelik İşlemi - Geri Dönen Kampanya E-postalarını Çalıştır*| Geri dönen kampanya e-postaları için ne sıklıkla kontrol yapılacağını gösterir.
+|===
+
+{{% notice note %}}
+Kuyruğa alınmak üzere planlanan e-postalar ilgili hedeflerin etkinlik alt panellerinde görünecektir.
+{{% /notice %}}
+
+
+==== Gelen E-posta
+
+Bu, şu anda var olan ve Türü "Bounce" olan bir Gelen E-posta Kaydınız olup olmadığını gösterir.
+

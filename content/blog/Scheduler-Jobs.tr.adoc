@@ -1,0 +1,40 @@
+---
+title: Scheduler İşleri (Linux) - Kesin Rehber
+date: 2017-04-14T12:00:00+01:00
+author: pgorod
+tags: ["admin"]
+source: https://pgorod.github.io/Scheduler-Jobs/
+hidden: true
+---
+
+:toc: macro
+
+SuiteCRM bir dizi `Scheduler jobs` kullanır; bunlar aramalı indeksleme, iş akışları, e-posta bildirimleri, veritabanı bakımı gibi işlevleri zamanlı şekilde yürütür.
+
+Kurulum tamamlandığında Scheduler işleri *manuel olarak etkinleştirilmelidir*. Bunun için işletim sisteminize `cron.php` betiğini her dakika çalıştırtıracak bir cron görevi eklemeniz gerekir. Bu işlem tüm SuiteCRM işlerinizin doğru zamanlarda çalışmasını sağlar. Tüm bunları `Admin / Schedulers` ekranından yönetebilirsiniz.
+
+Bu yazıda özellikle Linux üzerinde nasıl yapılacağı anlatılmaktadır. Windows için Task Scheduler kullanılmalıdır.
+
+Scheduler işleri izin problemleri yaratmaması için *standart uygulama web sunucusunun çalıştığı kullanıcıyla aynı kullanıcı altında çalıştırmaktır*. Gerekliyse `config.php` içindeki `allowed_cron_users` dizisini düzenleyin.
+
+== Crontab temelleri
+
+Linux'ta her kullanıcı için bir crontab olabilir. Web sunucusu kullanıcısı (ör. `www-data` veya `nobody`) için crontab düzenlemek mümkündür. Örnek olarak bir kullanıcının crontab içeriğini listelemek için:
+
+`sudo crontab -l -u www-data`
+
+Ve düzenlemek için:
+
+`sudo crontab -e -u www-data`
+
+Bazı Linux dağıtımlarında sistem genelinde bir crontab `/etc/crontab` ile yönetilir; burada hangi kullanıcı altında komut çalıştırılacağı da belirtilir. Örnek:
+
+`*  *    * * *   www-data cd /var/www/html; php -f cron.php > /dev/null 2>&1`
+
+== Hangi kullanıcı olmalı?
+
+Bu sistemden sisteme değişir ancak genel olarak web sunucusunun çalıştığı kullanıcıyı kullanmak en güvenli yaklaşımdır. Yanlış kullanıcı seçimi kurulumun çalışmasını olumsuz etkileyebilir; cron işi root olarak çalıştırılırsa dosya izin sorunları ortaya çıkabilir.
+
+=== cron_allowed_users nedir?
+
+Bu özellik SuiteCRM 7.8.3 ve sonrası için geçerlidir: `config.php` içindeki `cron_allowed_users` dizisine eklenen kullanıcılar cron işleri çalıştırmaya izinlidir.

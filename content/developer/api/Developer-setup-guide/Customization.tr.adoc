@@ -1,0 +1,110 @@
+---
+title: Customization
+weight: 60
+---
+
+:imagesdir: /images/en/developer
+
+
+== Özelleştirme
+
+Her özelleştirme `custom/application/Ext/Api/V8/` temel klasörü içinde olmalıdır. Slim framework hakkında daha fazla bilgi için https://www.slimframework.com adresine bakın.
+
+`custom/application/Ext/Api/V8/slim.php` içinde Slim yapılandırmasını genişletmek için döndürülen bir dizi içeren yerel bir PHP dosyası oluşturun. Ek yapılandırmalar varsayılan slim yapılandırmasına birleştirilecektir.
+[source,php]
+return [ /* slim yapılandırması buraya ...*/ ];
+
+
+`custom/application/Ext/Api/V8/Config/routes.php` içinde Route genişletme, `$app` değişkeninin Slim uygulaması olarak verildiği yerel bir PHP dosyasıdır. Eklenen rotalar varsayılan slim uygulamasına eklenecek ve URL üzerinden erişilebilir hâle gelecektir: [SuiteCRM-path]/Api/V8/custom
+custom/application/Ext/Api/V8/Config/routes.php
+[source,php]
+// örnek custom POST route girdisi:
+$app->post('/my-route/{myParam}', 'MyCustomController:myCustomAction');
+
+
+`custom/application/Ext/Api/V8/services.php` içindeki Servis genişletme, bir dizi döndüren yerel bir PHP dosyasıdır. Ek servisler varsayılan slim servislerine birleştirilecektir.
+custom/application/Ext/Api/V8/services.php
+[source,php]
+// örnek custom servis:
+return ['myCustomService' => function() {
+    return new MyCustomService();
+}];
+
+
+`custom/application/Ext/Api/V8/beanAliases.php` içindeki BeanAliases genişletme, özel bean takma adları döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/beanAliases.php
+[source,php]
+// örnek bean alias:
+return [MyCustom::class => 'MyCustoms'];
+
+
+`custom/application/Ext/Api/V8/controllers.php` içinde Controller genişletme, özel controller dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/controllers.php
+[source,php]
+// örnek controller tanımı:
+return [MyCustomController::class => function(Container $container) {
+    return new MyCustomController();
+}];
+
+
+`custom/application/Ext/Api/V8/factories.php` içindeki Factory genişletme, özel factory dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/factories.php
+[source,php]
+// örnek factory:
+return [MyCustomFactory::class => function(Container $container) {
+    return new MyCustomFactory();
+}];
+
+
+`custom/application/Ext/Api/V8/globals.php` içindeki Globals genişletme, özel global dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/globals.php
+[source,php]
+// örnek global:
+return [MyCustomGlobal::class => function(Container $container) {
+    return new MyCustomFactory();
+}];
+
+
+`custom/application/Ext/Api/V8/helpers.php` içindeki Helpers genişletme, özel helper dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/helpers.php
+[source,php]
+// örnek helper:
+return [MyCustomHelper::class => function(Container $container) {
+    return new MyCustomHelper();
+}];
+
+
+`custom/application/Ext/Api/V8/middlewares.php` içindeki Middlewares genişletme, özel middleware dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/middlewares.php
+[source,php]
+// örnek middleware:
+return [MyCustomMiddleware::class => function(Container $container) {
+    return new MyCustomMiddleware();
+}];
+
+
+`custom/application/Ext/Api/V8/params.php` içindeki Params genişletme, özel param dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/params.php
+[source,php]
+// örnek param:
+return [MyCustomParam::class => function(Container $container) {
+    return new MyCustomParam();
+}];
+
+
+`custom/application/Ext/Api/V8/validators.php` içindeki Validators genişletme, özel validator dizisini döndüren bir PHP dosyasıdır.
+custom/application/Ext/Api/V8/validators.php
+[source,php]
+// örnek validator:
+return [MyCustomValidator::class => function(Container $container) {
+    return new MyCustomValidator();
+}];
+
+
+=== Basit bir API özelleştirme örneği
+Yeni bir custom route oluşturun: `[SuiteCRM-path]/custom/application/Ext/Api/V8/Config/routes.php` ve aşağıdaki içeriği ekleyin:
+[source,php]
+<?php
+$app->get('/hello', function() {
+    return 'Hello World!';
+});

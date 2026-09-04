@@ -1,0 +1,32 @@
+---
+title: "Frontend eklenti geliştirmeye başlama"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-extensions-setup
+
+{{% notice info %}}
+Bu doküman SuiteCRM 8+ içindir; Sürüm 7 için ilgili kılavuz için link:../../../../../../developer/introduction[buraya].
+{{% /notice %}}
+
+{{% notice note %}}
+Bu rehber angular framework hakkında iyi bir anlayışa sahip olduğunuzu varsayar.
+{{% /notice %}}
+
+== 1. Giriş
+
+Bu rehber, SuiteCRM 8.4.0'den itibaren gelen `defaultExt` eklentisini kullanarak frontend eklenti geliştirmeye başlamanızı sağlar.
+
+Bu temel eklenti, başlamanız için gereken yapıyı sağlar. Eğer `defaultExt` kullanmak istemezseniz, onu kopyalayarak kendi eklentinizi oluşturabilirsiniz; neyi değiştirmeniz gerektiğini görmek için link:../8x-fe-extensions-setup/[Frontend Extension Setup] kılavuzuna bakın.
+
+{{% notice note %}}
+Bu adımlar SuiteCRM-8.4.0 veya daha yeni kurulu ve `extensions/defaultExt` altında çalışan bir defaultExt bekler.
+{{% /notice %}}
+
+=== 1.1 Geliştirme paketi
+
+{{% notice note %}}
+Bu adımlar dev paketi (örn: SuiteCRM-8.4.0-dev.zip) kullanılarak kurulmuş bir ortam varsayar. Dev paketi, dist klasörü içerir ve core frontend kodunu yeniden derlemeyi gerektirmez.
+{{% /notice %}}
+
+Bu paketin kullanımı geliştirme sürecini kolaylaştırır. Core frontend'i yeniden derlemek isterseniz link:../../../../installation-guide/8.2.0-front-end-installation-guide[buraya] bakın.

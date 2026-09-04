@@ -1,0 +1,34 @@
+---
+title: "Backend Hesaplamaya Dayalı Alan Değerini Güncelleme"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/
+
+== 1. Giriş
+
+`updateValueBackend` alan mantığı, alan değerlerinin sunucu tarafında hesaplanıp alana atanmasına izin verir.
+
+Koşullar sağlandığında backend'e istek gönderilir ve dönen değer alana atanır.
+
+Bu, birden fazla modülden veya harici kaynaklardan gelen verilere dayanan karmaşık hesaplamalara olanak sağlar.
+
+{{% notice info %}}
+Şu anda relate alanlar için çalışmamaktadır.
+{{% /notice %}}
+
+=== 1.1 Örnek senaryo
+
+Örnek olarak `Cases` modülünde `type` ve `subject` (name) alanlarına göre `priority` alanını ayarlamak istiyoruz.
+
+. Yüksek öncelik - `type` = `User` ve `name` içinde `Error` ise `priority` = High
+. Orta öncelik - `type` = `User` ve `name` içinde `Warning` ise `priority` = Medium
+. Düşük öncelik - diğer durumlarda `priority` = Low
+
+image:Logic-updateValueBackend-example.gif[Backend Değer Güncelleme Örneği]
+
+== 2. Mantık Metadata tanımı
+
+{{% notice note %}}
+Değişiklikleri custom dizininde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}

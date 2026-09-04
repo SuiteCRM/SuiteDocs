@@ -1,0 +1,13 @@
+---
+Title: JJW Maps
+Weight: 290
+---
+
+:imagesdir: /images/en/user
+
+= JJW Maps
+
+JJW Maps, SuiteCRM için haritalama işlevselliği sağlar. JJW Maps üçüncü taraf bir modüldür ve http://www.jjwdesign.com/[JJW Design] tarafından sağlanır.
+
+Dökümantasyon ve sürümler güncel olarak
+http://www.jjwdesign.com/google-maps-for-sugarcrm/[JJW Maps project page] adresinde tutulmaktadır.

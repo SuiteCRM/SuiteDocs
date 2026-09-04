@@ -1,0 +1,86 @@
+---
+weight: 3
+title: "Working with Beans"
+
+:toc:
+
+= 3. Bean'lerle Çalışmak
+
+Bean'ler SuiteCRM'in MVC mimarisinde Model katmanını oluşturur. Veritabanından
+veri almayı, kayıtları düzenlemeyi ve persist etmeyi nesne tabanlı olarak sağlar.
+Bu bölüm bean'lerle çalışmanın çeşitli yollarını ele alır.
+
+== BeanFactory
+
+BeanFactory dinamik olarak bean örnekleri yüklemeye veya yeni kayıtlar
+oluşturmaya izin verir. Yeni bir bean oluşturmak için:
+
+.Example 3.1: BeanFactory ile yeni bean oluşturma
+[source,php]
+----
+$bean = BeanFactory::newBean('<TheModule>');
+// Örneğin yeni bir account bean:
+$accountBean = BeanFactory::newBean('Accounts');
+----
+
+Mevcut bir bean'i almak benzer şekilde yapılır:
+
+.Example 3.2: BeanFactory ile bean alma
+[source,php]
+----
+$bean = BeanFactory::getBean('<TheModule>', $beanId);
+// Örnek: bir account id'si ile
+$bean = BeanFactory::getBean('Accounts', $beanId);
+----
+
+`getBean` ikinci argüman verilmezse veya kayıt yoksa boş bir bean nesnesi döndürür.
+Bu, statik metotları kullanmak için faydalı olabilir.
+
+.Example 3.3: Boş bean alma
+[source,php]
+$bean = BeanFactory::getBean('<TheModule>');
+
+{{% notice warning %}}
+`BeanFactory::getBean` on sonuç cache'ler. Bu, tekrar getBean çağrıldığında cache'den
+aynı örneği döndürebilir; bu durumda bir bean'de yapılan değişiklikler tüm sonuçlarda
+görünebilir.
+{{% /notice %}}
+
+BeanFactory kullanmak bean'in doğru kurulumunu ve gerekli dosyaların dahil edilmesini sağlar.
+
+== SugarBean
+
+SugarBean temel bean sınıfıdır ve tüm bean'ler bu sınıfı extend eder. Kayıtlarla
+etkileşim için çeşitli yöntemler sağlar.
+
+== Bean arama
+
+Aşağıdaki örnekler bean sınıfını kullanarak nasıl arama yapılacağını gösterir. Örnek
+olarak bir account bean'in $accountBean olarak elde edildiği varsayılmıştır.
+
+.Example 3.4: Boş account bean alma
+[source,php]
+$accountBean = BeanFactory::getBean('Accounts');
+
+=== get_list
+
+`get_list` methodu eşleşen bean'leri alır ve sayfalama desteği sunar.
+
+.Example 3.5: get_list method imzası
+[source,php]
+----
+get_list(
+    /* Lines 92-97 omitted */
+    $show_deleted = 0)
+----
+
+`$order_by`::
+  /* Lines 103-108 omitted */
+`$where`::
+  /* Lines 110-115 omitted */
+`$row_offset`::
+  Başlanacak satır (sayfalamada kullanılır).
+`$limit`::
+  Döndürülecek satır sayısı.
+`$max`::
+  Varsayılan maksimum (genellikle 20).

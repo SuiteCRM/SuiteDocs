@@ -1,0 +1,8 @@
+---
+title: "Mimari"
+weight: 40
+---
+
+=== İçindekiler
+{{% children depth="3" showhidden="false" %}}
+

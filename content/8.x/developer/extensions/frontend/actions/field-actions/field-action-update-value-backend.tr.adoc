@@ -1,0 +1,56 @@
+---
+title: "Backend hesaplamaya dayalı alan değeri güncelleme eylemi ekleme"
+weight: 30
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/actions/field-actions/
+
+== 1. Giriş
+
+Alan eylemleri, SuiteCRM'de alanların yanına özel eylem butonları eklemenizi sağlar.
+
+`updateValueBackend` alan eylemi, bir alanın değerini backend hesaplamasına göre ayarlamaya olanak tanır.
+
+Bu, birden fazla modülden ya da harici kaynaklardan alınan değerlere ihtiyaç duyan daha karmaşık hesaplamalara izin verir.
+
+Bu rehber, bir alan eylemi için backend hesaplama kurulum adımlarını açıklar.
+
+{{% notice info %}}
+Şu anda bu özellik relate alanlar için çalışmamaktadır.
+{{% /notice %}}
+
+image:backend-value-calculation-field-action-example.gif[Backend Hesaplama Alan Eylemi Örneği]
+
+== 2. Mantık (Logic) Metadata tanımı
+
+{{% notice note %}}
+Değişiklikleri custom dizininde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}
+
+İlk olarak metadata içindeki `fieldActions` girdisini tanımlayın. Eylem butonları buraya eklenir.
+
+Konfigürasyon yalnızca `detailviewdefs.php` dosyasına eklenebilir.
+
+=== 2.1 Custom detailviewdefs.php üzerinde eylem ekleme adımları
+
+. Core Accounts `detailviewdefs.php` dosyasını custom klasöre kopyalayın:
+.. From: `public/legacy/modules/Accounts/metadata/detailviewdefs.php`
+.. To: `public/legacy/custom/modules/Accounts/metadata/detailviewdefs.php`
+. Custom `detailviewdefs.php` içine eylem öğenizi ekleyin (aşağıdaki snippet)
+** Gerekirse izinleri yeniden ayarlayın
+. Admin menüsünden `Repair and Rebuild` çalıştırın
+
+=== 2.2 Eylem tanımı
+
+Aşağıdaki değişiklikler alan eyleminin görüntülenmesi için uygulanmıştır.
+
+[source,php]
+----
+    /* Lines 54-76 omitted */
+    ],
+----
+
+=== 3. Özelliklerin açıklaması
+
+* Key
+- `key` hangi eylem tipinin kullanılacağını belirtir. Bu örnekte `updateValueBackend`.

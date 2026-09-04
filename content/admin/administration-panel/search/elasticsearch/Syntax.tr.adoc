@@ -1,0 +1,46 @@
+---
+title: Arama Sözdizimi
+weight: 4
+---
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+:toc:
+
+SuiteCRM Elasticsearch motoru, Elasticsearch'ün _Query String DSL_'ini kullanır. Bu, oldukça gelişmiş arama sorgularının gerçekleştirilmesine olanak verir.
+
+Detaylı bilgi için resmi dokümantasyona bakın: https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl-query-string-query.html#query-string-syntax
+
+== Örnekler
+
+Hem 'John' hem de 'Doe' geçen tüm kayıtları arama:
+
+[source]
+John AND Doe
+
+İlk ismi 'John' olan kayıtlar ("Johnny" dahil değildir):
+
+[source]
+name.first:John
+
+İsimleri 'John' ile başlayan kayıtlar:
+
+[source]
+named:John*
+
+Accounts modülünde adı içinde 'corp' geçen kayıtlar:
+
+[source]
+named:corp AND _type:Accounts
+
+== Birleştirme (Joining)
+
+Varsayılan olarak anahtar kelimeler OR ile birleştirilir; yani `John Doe` araması `John OR Doe` ile eşdeğerdir. Her iki kelimeyi içeren sonuçlar üstte çıkar.
+
+== Boosting
+
+İsimler yükseltilir (boost), yani anahtar kelimeler isim alanında eşleşirse kayıtlar sonuçlarda üst sıralarda yer alır.
+
+== Wildcards

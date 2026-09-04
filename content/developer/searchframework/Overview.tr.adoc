@@ -1,0 +1,55 @@
+---
+weight: 1
+title: Overview
+---
+
+:imagesdir: /images/en/developer/SearchFramework
+
+{{% notice info %}}
+Bu geliştirme yalnızca SuiteCRM 7.11 ve sonrası sürümlerde mevcuttur.
+{{% /notice %}}
+
+Search Framework, SuiteCRM için arama motorlarının oluşturulmasını mümkün olduğunca
+kolay hale getirmeyi amaçlar; kullanıcı deneyimine minimum etkiyle UI öğelerinin yeniden
+kullanımına olanak verir.
+
+Bileşenleri `lib\Search` altında yer alır. Dosya yapısının bir özeti aşağıda yer alır:
+/* Lines 16-39 omitted */
+
+== Ana Sınıflar
+
+=== SearchWrapper
+Search Framework'ün ana sınıfı olup statik metodlarla aramaları kolayca gerçekleştirmeye olanak verir.
+
+=== SearchEngine
+Soyut sınıf; uygulayan sınıflar için yardımcı metotlar içerir. Dahili metotlar sonuçları
+ve arama görünümünü göstermeyi halleder; gerekli ise override edilebilir. Alt sınıflar
+sadece `search(SearchQuery $query)` metodunu uygulamakla yükümlüdür; ayrıca `validateQuery(SearchQuery $query)`
+metodunu override etmeleri önerilir.
+
+=== SearchQuery
+`SearchQuery` nesnesi `SearchWrapper` ve `SearchEngine` tarafından kullanılan tüm parametreleri kapsar.
+Standart şekilde parametreleri doldurmak için factory metotları vardır.
+
+Alanları (getter ile erişilir):
+
+- `$query` ─ Arama sorgusunu içeren string. Boşsa arama yapılmaz.
+- `$size` ─ İstenen sonuç sayısı (int). Varsayılan 10.
+- `$from` ─ Sayfalama için offset (int). Varsayılan 0.
+- `$engine` ─ Kullanılacak SearchEngine sınıfının adı (string). Konfigürasyona göre varsayılan belirlenir.
+- `$options` ─ Özelleştirilmiş arama motorları için ihtiyaç duyulan opsiyonlar dizisi.
+
+=== SearchResults
+`SearchResults` sınıfı arama sonuçlarını ve arama süresi, toplam eşleşme sayısı ve skor
+gibi meta verileri tutar.
+
+Alanları (getter ile erişilir):
+
+- `$hits` ─ Arama sonuçlarını içeren dizi. Sonuçlar modüllere göre gruplanabilir.
+- `$scores` ─ `$hits` ile aynı indexlere sahip float değerler içeren skor dizisi.
+- `$options` ─ Motorlar tarafından kullanılacak özel opsiyonlar dizisi.
+- `$searchTime` ─ Aramanın gerçekleştirilme süresi (float, saniye).
+- `$total` ─ Toplam eşleşme sayısı (pagination olmadan).
+- `$groupedByModule` ─ `$hits` dizisinin modüle göre gruplanıp gruplanmadığını belirten flag.
+
+== İletişim Diyagramı

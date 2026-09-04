@@ -1,0 +1,86 @@
+---
+Title: Hata Düzeltmeleri
+Weight: 60
+---
+
+== Hata Düzeltmesi Sağlama
+
+* Bir issue için kod katkısı yapacaksanız, SuiteCRM deposunun bir fork'unu oluşturmanız, kod değişikliklerinizi yapıp commit etmeniz ve uygun SuiteCRM dalına Pull Request (PR) yapmanız gerekir. link:../forking/[SuiteCRM Fork Kılavuzu] bölümüne bakın. Fork'unuzu oluşturduktan sonra projeye commit yapmaya başlayabilirsiniz.
+
+* Pull Request oluştururken hedef olarak her zaman `hotfix` dalını seçin.
+* SuiteCRM 8 için de PR oluştururken hedef dal `hotfix` olmalıdır.
+
+{{%notice info%}}`hotfix` dalı daha sonra `develop` içine, oradan da `master` içine merge edilecektir.{{%/notice%}}
+
+Grafiksel süreç (örnek):
+
+{{<mermaid align="center">}}
+graph TD;
+Bugfix{Bugfix}-->|Your PR|hotfix;
+hotfix-->|Merged Into|7.12.x
+hotfix-->|Merged Into|develop;
+develop-->|Merged Into| master;
+{{< /mermaid >}}
+
+* Her bir issue düzeltmesini kendi branch'inde yapın ve branch adını issue ID içerecek şekilde verin, örn: `_bugfix_3062_` veya `issue-1234`.
+
+Örnek: `hotfix` dalından yeni branch oluşturma:
+
+`git checkout -b _bugfix_3062_ upstream/hotfix`
+
+SuiteCRM 8 için de aynı şekilde `upstream/hotfix`'ten yeni branch oluşturun.
+
+* Bugfix branch'ine commit yaparken aşağıdaki mesaj formatını kullanmak yardımcı olur:
+
+`Fix #1234 - <the subject of the issue>`
+
+Örnek commit komutu:
+
+`git commit -m "Fix #1436 - Reports with nested Parentheses are removing parameters"`
+
+Bu commit mesajı formatı, yapılan hata düzeltmelerinin Release notes içine kolayca dahil edilmesini sağlar.
+
+Yeni iseniz, git commit mesaj yazımı için http://chris.beams.io/posts/git-commit/#seven-rules[buradaki rehberi] takip edin.
+
+* Upstream dalından oluşturulmuş branch'i kendi fork'unuza push ederken `origin` belirtmeniz gerekir:
+
+`git push origin _bugfix_3062_`
+
+=== Pull Request hedefini 7.10.x'den hotfix'e değiştirme
+
+31 Ocak 2022 tarihi itibarıyla 7.10.x için genişletilmiş destek sona ermiştir. Ancak daha önce 7.10.x için açtığınız PR hâlâ 7.12.x'te geçerliyse PR hedefini `hotfix` dalına yönlendirmeniz mümkündür. Bunun için özet adımlar:
+
+1. Düzeltmenin olduğu branch'i checkout edin.
+`git checkout <your-branch>`
+
+2. Branch'te yaptığınız commit'lerin hash'lerini (ilk commit'ten sonuncuya kadar) alın:
+`git log -1 --format=format:"%H"` (Gerekirse `-1` sayısını commit sayınız kadar değiştirin.)
+
+3. `hotfix` dalını checkout edin: `git checkout hotfix`
+
+4. Yeni bir branch oluşturun: `git checkout -b <new-branch>`
+
+5. Commit'lerinizi cherry-pick ile taşıyın: `git cherry-pick commit1 commit2` (commit hash'lerini kullanın).
+
+Yeni branch'i push edip oluşturduğunuz yeni PR'yi önceki PR içinde referans gösterip eski PR'yi kapatabilirsiniz.
+
+Alternatif olarak, git konusunda yetkin iseniz aynı branch'e rebase edip PR tabanını (`base branch`) `hotfix` olarak değiştirebilirsiniz.
+
+=== Hata Düzeltmesi için Pull Request Oluşturma
+
+* Commit'lerinizi yapıp fork'unuza push ettikten sonra, SuiteCRM deposuna review için bir Pull Request oluşturun. Her düzeltilen issue için ayrı bir PR oluşturun — birden fazla hatayı tek PR içinde toplamayın.
+
+* PR'de base fork olarak *salesagility/SuiteCRM* ve base branch olarak `hotfix` seçili olduğundan emin olun.
+  SuiteCRM 8 için base fork *salesagility/SuiteCRM-Core* ve base branch `hotfix` olmalıdır. Head fork sizin depounuz ve base branch ise sizin hata düzeltme branch'iniz olmalıdır.
+
+* Yanlış dala açılan PR'ler otomatik olarak reddedilecektir.
+
+=== CLA Kontrolü
+
+https://cla.suitecrm.com/salesagility/SuiteCRM[ Contributor License Agreement ] imzalanmadıysa PR kontrolünden geçemez ve merge edilemez. CLA sadece bir kere imzalanır.
+
+=== Travis CI
+
+Yeni bir PR açıldığında Travis CI, origin ve upstream dallarının merge testlerini çalıştırır ve PR'ı günceller. Bu kontrol başarısız olursa test sonuçlarını gözden geçirip düzeltmeniz gerekir. PR öncesi test etmek için PHPUnit'i composer ile develop ortamınıza kurun, `tests` dizinine girip:
+
+`sh runtests.sh`

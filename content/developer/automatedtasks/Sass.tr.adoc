@@ -1,0 +1,32 @@
+---
+Title: "Building Sass"
+---
+
+== SuiteP Teması
+
+SuiteCRM, SuiteP renklerini oluşturmak için otomatik bir görev sağlar.
+
+=== Her SuiteP Rengini Derleme (bash):
+
+Terminali açın ve robo'yu çalıştırın
+
+`./vendor/bin/robo build:suite-p`
+
+=== Her SuiteP Rengini Derleme (Komut İstemi):
+
+Komut İstemcisini (Command Prompt) açın ve robo'yu çalıştırın
+
+`.\vendor\bin\robo build:suite-p`
+
+
+=== Belirli Bir SuiteP Rengini Derleme (bash):
+
+Terminali açın ve robo'yu çalıştırın
+
+`./vendor/bin/robo build:suite-p --color-scheme=[ColorName]`
+
+=== Belirli Bir SuiteP Rengini Derleme (Komut İstemi):
+
+Komut İstemcisini açın ve robo'yu çalıştırın
+
+`.\vendor\bin\robo build:suite-p --color-scheme=[ColorName]`

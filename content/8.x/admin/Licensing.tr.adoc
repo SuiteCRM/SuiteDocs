@@ -1,0 +1,9 @@
+---
+Title: Lisanslama
+Weight: 30
+---
+
+:imagesdir: /images/en/user
+
+SuiteCRM şu lisans altında yayımlanmıştır:
+http://en.wikipedia.org/wiki/Affero_General_Public_License[AGPL versiyon 3].

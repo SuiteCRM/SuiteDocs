@@ -1,0 +1,19 @@
+---
+Title: "Configure Testing Environment"
+---
+
+== Test Ortamı
+
+SuiteCRM, test ortamının yapılandırılmasına yardımcı olmak için otomatik bir görev sağlar.
+
+=== Test Ortamını Yapılandırma (bash):
+
+Terminali açın ve Robo'yu çalıştırın:
+
+`./vendor/bin/robo configure:tests`
+
+=== Test Ortamını Yapılandırma (Komut İstemi):
+
+Komut İstemcisini açın ve Robo'yu çalıştırın:
+
+`\.\vendor\bin\robo configure:tests`

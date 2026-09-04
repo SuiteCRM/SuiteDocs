@@ -1,0 +1,44 @@
+---
+title: SuiteCRM Data Integration
+weight: 20
+---
+
+:imagesdir: /images/en/admin
+
+= SuiteCRM Data Integration
+
+SuiteCRM Data Integration, mevcut bir SuiteCRM kurulumundan MySQL veritabanından verileri çıkarıp analitik amaçlı optimize edilmiş Data Warehouse'a yükleyen bir ETL çözümüdür. Bağımsız olarak kurulabilir ve farklı raporlama araçlarıyla birlikte kullanılabilir.
+
+== İndirme ve Kurulum Önkoşulları
+
+Gereksinimler:
+
+* Linux ortamı
+* OpenJDK 8 JRE (Java)
+* wget
+* unzip
+* zip
+* MySQL sunucusu + boş bir MySQL veritabanı
+
+İki indirme yöntemi vardır:
+
+* https://suitecrm.com/resources/suitecrm-analytics-tool[SuiteCRM web sitesinden indirme^]
+* Repo'yu klonlayıp paket oluşturma
+
+=== Manuel paket oluşturma (repo'dan klonlama)
+
+[source,bash]
+----
+git clone https://github.com/ivylabs/suitecrm-data-integration
+./build.sh
+----
+
+Bu işlem sonunda `suitecrm-data-integration-server.zip` adlı paket oluşturulur.
+
+=== Yapılandırma
+
+Paketi sunucuya yükleyip açtıktan sonra `install.properties` dosyasındaki bağlantı bilgilerini düzenleyin (örnek değerler: `SUITECRM_HOST`, `SUITECRM_PORT`, `SUITECRM_DATABASE`, `SUITECRM_USERNAME`, `SUITECRM_PASSWORD`, `SUITECRM_ANALYTICS_*`, SMTP ayarları vb.).
+
+{{% notice note %}}
+SuiteCRM Data Integration için ayrı bir MySQL veritabanı oluşturmayı unutmayın.
+{{% /notice %}}

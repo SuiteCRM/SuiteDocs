@@ -1,0 +1,55 @@
+---
+title: "Smarty Template Overrides"
+weight: 90
+---
+
+SuiteCRM 7.7'den itibaren bir tema kullanarak smarty template (.tpl) dosyasının
+çıktısını değiştirebilirsiniz. Bu, SuiteCRM görünümünü değiştirmek istediğinizde
+mevcut işlevselliği etkilemeden özelleştirme yapmanıza yarar.
+
+== Nasıl çalışır
+
+Smarty template metotları değiştirildi; böylece bir tema klasörünü kök konum olarak
+değerlendirebilirsiniz. Bu sayede `themes/<tema_adı>` içinde klasör yapısını oluşturup
+override etmek istediğiniz `.tpl` dosyasını bu yapıya yerleştirebilirsiniz.
+
+=== Örnek
+
+Varsayalım bir kullanıcı grubunun alert (uyarı) görünümünü değiştirmek istiyorsunuz.
+Düzenlemek istediğiniz template `modules/Alerts/templates/default.tpl` içinde yer alıyor.
+Varolan temalardan birini kopyalayıp `themedef.php` dosyasını düzenleyerek yeni tema
+oluşturabilirsiniz. Tema klasörü içinde `modules/Alerts/templates/default` yapısını
+oluşturup yeni `default.tpl` dosyasını yerleştirerek özelleştirmeyi uygulayabilirsiniz.
+Test etmek için kullanıcı profilinden temayı değiştirmeniz yeterlidir.
+
+{{% notice info %}}
+PhpStorm kullanıyorsanız `default.tpl`'yi kopyalayıp templates klasörüne yapıştırırken
+hedefe `themes/<tema_adı>` prefix'ini ekleyerek klasör yapısının otomatik oluşturulmasını
+sağlayabilirsiniz.
+{{% /notice %}}
+
+==== Diğer Smarty Template'leri İçe Aktarma
+
+Smarty template overrides özelliğinden faydalanmak ve diğer template dosyalarını import
+etmek için template içinde aşağıdaki kodu kullanın:
+
+[source, html]
+....
+{{sugar_include type="smarty" file=$headerTpl}}
+....
+
+`type="smarty"` kullanımına dikkat edin; bu `sugar_include` fonksiyonunun tema klasörünü
+doğru şekilde kök olarak kullanmasına yardımcı olur.
+
+==== Diğer JavaScript dosyalarını içe aktarma
+
+[source, html]
+....
+{{getjspath file="path/to/file.js"}}
+....
+
+==== Smarty içinde resimleri kullanma
+
+Smarty motorunun resimleri nasıl ele aldığı değişti. SuiteP teması ağırlıklı olarak SVG
+kullanır. `SugarThemeRegistry::current()->getImage(...)` metodu önce SVG, sonra PNG, sonra GIF
+dosyalarını arar.

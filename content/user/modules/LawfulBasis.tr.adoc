@@ -1,0 +1,41 @@
+---
+Title: Lawful basis
+Weight: 140
+---
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/user
+
+:toc:
+
+= Lawful basis
+
+{{%notice note%}}Bu dokümantasyon *SuiteCRM 7.10.5 ve sonrası* için geçerlidir. Özellikle Avrupa Birliği'ndeki GDPR uyumluluğu için isteğe bağlı olarak eklenmiştir, ancak başka amaçlar için de kullanılabilir.{{%/notice%}}
+
+*SuiteCRM 7.10.5* işlenen kullanıcı bilgilerini saklama ve işleme izninin hangi temele dayandığını takip etmeye yönelik yeni yetenekler sunar.
+
+== Hukuki Dayanak
+
+Hukuki dayanak özelliği şu alanları kapsar: Lawful basis, Lawful basis source ve Date Reviewed. Bu alanların varsayılan olarak görünmesini sağlamak için *Admin* paneli -> *Studio* -> *İlgili Modül* -> *Edit/Detail View* yolunu izleyip alanları görüntüye ekleyebilirsiniz.
+
+image:LawfulBasisStudio.png[title ="Lawful Basis Studio"]
+
+"View Change Log" eylemini kullanarak bu üç alanın denetlenebilir (auditable) alanlar olarak izlenebileceğini görebilirsiniz.
+
+image:LawfulBasisChangeLog.png[title ="Lawful Basis Change Log"]
+
+=== Lawful Basis Alanlarını Manuel Güncelleme
+
+Lawful basis alanlarını elle güncellemek için detay/düzenleme görünümünden düzenleme yapabilir ya da Liste görünümündeki "Mass Update" (Toplu Güncelleme) özelliğini kullanabilirsiniz. Bunu yapmak için listeden bir veya daha fazla kaydı seçip "Bulk Action" açılır menüsünden "Mass Update" seçeneğini seçin. Listenin en altına kaydırdığınızda üç lawful basis alanını görecek ve topluca güncelleyebileceksiniz.
+
+== Lawful Basis Otomasyonu
+
+E-posta ayarlarınızı "Confirmed Opt In" olarak güncellediğinizde, kampanya web-to-lead formları veya onaylı opt-in e-postaları sayesinde kayıtların lawful basis alanları otomatik olarak güncellenebilir. Daha fazla bilgi için link:../confirmed-opt-in-settings[confirmed-opt-in-settings] sayfasına bakın.
+
+=== Lawful Basis Otomatik Güncelleme (WebToLead)
+
+WebToLead işlevselliğini kullanarak bir kaydın lawful basis alanlarını otomatik olarak güncelleyebilirsiniz. Opt in e-posta ayarları "Confirmed Opt In" olarak ayarlanmışsa, campaigns modülünde oluşturulan person formları, oluşturulan kayıtların doğru lawful basis bilgileriyle doldurulmasını sağlar. Örneğin: Lawful Basis: Consent, Lawful Basis Source: Website, Date Reviewed: kullanıcının tıkladığı tarihin kullanıcının tarih formatında gösterimi.
+
+=== Lawful Basis Otomatik Güncelleme (E-posta)
+
+Bir Contact, Lead veya Target "Opt in" olarak işaretlendiğinde, toplu işlem ile ilgili kayıtların lawful basis alanları e-posta yoluyla otomatik güncellenebilir. Liste görünümünden ilgili kayıtları seçip "Bulk Action" -> "Send Confirm Opt In" seçeneğini kullandığınızda, her kaydın birincil e-posta adresine onay e-postası gönderilir ve onay işlemi tamamlandığında CRM içindeki ilgili kayıtların lawful basis alanları örneğin Lawful Basis: Consent, Lawful Basis Source: Email, Date Reviewed: kullanıcının tıklama tarihine göre güncellenir.

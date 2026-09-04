@@ -1,0 +1,60 @@
+---
+Title: Advanced Configuration Options
+Weight: 52
+---
+
+:toc:
+
+:imagesdir: /images/en/user
+
+= Gelişmiş Yapılandırma Seçenekleri
+
+Sistem dosyalarına erişimi olan bir sistem yöneticisi için bu bölüm ek yapılandırma seçeneklerini açıklar.
+
+== Update Wizard, Module Builder ve Yedek dosyalarını engelleme
+
+Birden fazla SuiteCRM kopyasını yöneten bir sistem yöneticisiyseniz, tüm yönetici kullanıcılarının sistemde değişiklik yapmasını engelleyerek tam kontrolü elinizde tutabilirsiniz. Bunun için `config.php` dosyasında şu parametreyi ayarlayın:
+
+[source,php]
+['admin_access_control'] => true
+
+== Module Load Kontrolü
+
+`config.php` içinde belirli bir klasöre module yüklemelerini sınırlayarak, yönetici haklarına sahip ancak `config.php` erişimi olmayan kullanıcıların dışarıdan modül yüklemesini engelleyebilirsiniz:
+
+[source,php]
+'use_common_ml_dir'=>'true',
+'common_ml_dir'=>'ml_directory',
+
+Burada *ml_directory* modüllerin yükleneceği klasörün adıdır.
+
+== Sistem kaynaklarını sınırlama
+
+Varsayılan olarak 1000'den fazla sorgu gerektiren veritabanı çağrıları sonlandırılır. İçe/dışa aktarma ve yönetici paneli işlemleri için maksimum istek varsayılanı 50,000'dir. `config.php` içindeki `default_limit` ve `special_query_limit` değişkenleriyle bu değerleri değiştirebilirsiniz.
+
+== Linux'ta dosya sistemi izinlerini ayarlama
+
+Linux üzerinde çalışıyorsa `config.php` içinde dosya sahibini ve erişim haklarını ayarlayabilirsiniz. Örnek:
+
+[source,php]
+----
+'default_permissions' => array(
+'dir_mode' => 02770,
+'file_mode' => 0660,
+'chown' => 'apache',
+'chgrp' => 'apache',),
+----
+
+`dir_mode` ve `file_mode` için ondalık eşdeğerler de kullanılabilir (ör. `02770` -> `1528`, `0660` -> `432`).
+
+== İndirme klasörünün yerini değiştirme
+
+Sistem tarafından indirilen dosyalar özel bir indirme klasöründe saklanır; bu yer `config.php` içindeki `upload_dir` ile belirlenir. Yeni dizin oluşturduktan sonra eski dosyaları yeni konuma kopyalamayı unutmayın. Yeni klasör web sunucusu kullanıcısı tarafından yazılabilir olmalıdır.
+
+== Önbellek klasörünün yerini değiştirme
+
+Önbellek dizini (`cache`) sistem performansı için önemlidir; `cache_dir` parametresi ile yerini değiştirebilirsiniz. Yeni cache dizini oluşturulduğunda orijinal cache dizinine bağlayan linklerin de uygun şekilde yerleştirildiğinden emin olun.
+
+== List Formlarında Gelişmiş Filtrelerin Kalıcı Gösterimi
+
+SuiteCRM 7.8'de filtrelerin daha sıkıştırılmış görüntüsü tanıtıldı. Eski görünümü geri getirmek isterseniz uygun yapılandırma dizilerini `config.php` içine ekleyebilirsiniz.

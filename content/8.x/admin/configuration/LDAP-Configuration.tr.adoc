@@ -1,0 +1,312 @@
+---
+title: "LDAP yapılandırma referansı"
+weight: 40
+---
+
+:imagesdir: /images/en/user
+
+{{% notice info %}}
+Aşağıdaki belgeler SuiteCRM Sürüm 8+ içindir
+{{% /notice %}}
+
+
+== 1. Giriş
+
+LDAP kimlik doğrulama, Symfony Security bileşeninin LDAP için olan doğrulayıcılarına (authenticators) dayanır.
+
+SuiteCRM, Symfony'nin bazı servislerini genişletir. Bu nedenle, yapılandırmanın çoğu çekirdek Symfony'deki yapılandırmaya benzeyecektir.
+
+Lütfen SuiteCRM'i bir LDAP sağlayıcısına bağlamak için yapılandırmanın aşağıdakilere bağlı olarak değişeceğini unutmayın:
+
+* Kullanılan LDAP sağlayıcısı
+* LDAP sağlayıcısının nasıl yapılandırıldığı
+
+Bu dokümantasyon SuiteCRM'de kullanılabilen LDAP yapılandırma seçeneklerini açıklar. Bu bir LDAP yapılandırma rehberi DEĞİLDİR.
+
+
+== 2. Eski yapılandırma notu
+
+LDAP yapılandırmasına başlamadan önce lütfen aşağıdakileri göz önünde bulundurun:
+
+- Bu sayfada açıklanan yapılandırma:
+** v4 veya v8 API oturumu (login) tarafından kullanılmaz
+** eski (legacy) yapılandırmayı okumaz
+** SuiteCRM giriş ekranını LDAP kullanacak şekilde yapılandırma yoludur. Legacy yapılandırma dikkate alınmaz
+- SuiteCRM'de `Administration > Password Management` menüsünde bulunan LDAP yapılandırması yalnızca legacy v4 API tarafından kullanılır
+
+Bu, LDAP kullanmak istiyorsanız `.env.local` içinde yapılandırma yapmanız gerekebileceği anlamına gelir (aşağıdaki bölümlerde açıklandığı gibi) ve eğer v4 ile LDAP kullanmak istiyorsanız, örneğin `Administration > Password Management` menüsünü de yapılandırmanız gerekir.
+
+
+== 3. LDAP kimlik doğrulamayı etkinleştirme
+
+LDAP kimlik doğrulamayı etkinleştirmek için `.env.local` dosyanızı değiştirin ve şunu ayarlayın:
+
+[source,bash]
+----
+AUTH_TYPE=ldap
+----
+
+⚠️ `.env.local` dosyanızda değişiklik yaptıktan sonra lütfen kök dizinden `./bin/console cache:clear` çalıştırdığınızdan veya Yönetici Menüsünden `Repair and Rebuild` işlemini gerçekleştirdiğinizden emin olun.
+
+
+== 4. LDAP bağlantı yapılandırma referansı
+
+SuiteCRM, Symfony'nin LDAP yapılandırmasının bazılarını `env` değişkenleri olarak sunar.
+`.env` dosyası, mevcut tüm değişkenler için varsayılan değeri içerir. Bir örneği yapılandırırken, üzerine yazmak istediğiniz değişkenleri `.env.local` dosyasına ekleyin.
+
+*Varsayılan .env LDAP bağlantı yapılandırması*
+[source,bash]
+----
+###> LDAP CONFIG ###
+LDAP_CONNECTION_STRING=~ # available from 8.7.0
+LDAP_HOST=~
+LDAP_PORT=389
+LDAP_ENCRYPTION=tls
+LDAP_PROTOCOL_VERSION=3
+LDAP_REFERRALS=false
+LDAP_DN_STRING=''
+LDAP_QUERY_STRING=''
+LDAP_SEARCH_DN=''
+LDAP_SEARCH_PASSWORD=''
+
+# All the following options are available from 8.7.0
+# ldap debug logs go to php error log
+LDAP_CONNECTION_OPTION_DEBUG_LEVEL=~
+LDAP_CONNECTION_OPTION_API_INFO=~
+LDAP_CONNECTION_OPTION_DEREF=~
+LDAP_CONNECTION_OPTION_SIZELIMIT=~
+LDAP_CONNECTION_OPTION_TIMELIMIT=~
+LDAP_CONNECTION_OPTION_RESTART=~
+LDAP_CONNECTION_OPTION_SERVER_CONTROLS=~
+LDAP_CONNECTION_OPTION_CLIENT_CONTROLS=~
+LDAP_CONNECTION_OPTION_API_FEATURE_INFO=~
+LDAP_CONNECTION_OPTION_HOST_NAME=~
+LDAP_CONNECTION_OPTION_ERROR_NUMBER=~
+LDAP_CONNECTION_OPTION_ERROR_STRING=~
+LDAP_CONNECTION_OPTION_MATCHED_DN=~
+
+LDAP_CONNECTION_OPTION_TIMEOUT=~
+LDAP_CONNECTION_OPTION_NETWORK_TIMEOUT=~
+LDAP_CONNECTION_OPTION_X_TLS_CACERTDIR=~
+LDAP_CONNECTION_OPTION_X_TLS_CACERTFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_CERTFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRL_ALL=~
+LDAP_CONNECTION_OPTION_X_TLS_CRL_NONE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRL_PEER=~
+LDAP_CONNECTION_OPTION_X_TLS_KEYFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_REQUIRE_CERT=~
+LDAP_CONNECTION_OPTION_X_TLS_PROTOCOL_MIN=~
+LDAP_CONNECTION_OPTION_X_TLS_CIPHER_SUITE=~
+LDAP_CONNECTION_OPTION_X_TLS_RANDOM_FILE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRLFILE=~
+LDAP_CONNECTION_OPTION_X_TLS_PACKAGE=~
+LDAP_CONNECTION_OPTION_X_TLS_CRLCHECK=~
+LDAP_CONNECTION_OPTION_X_TLS_DHFILE=~
+LDAP_CONNECTION_OPTION_X_SASL_MECH=~
+LDAP_CONNECTION_OPTION_X_SASL_REALM=~
+LDAP_CONNECTION_OPTION_X_SASL_AUTHCID=~
+LDAP_CONNECTION_OPTION_X_SASL_AUTHZID=~
+LDAP_CONNECTION_OPTION_X_KEEPALIVE_IDLE=~
+LDAP_CONNECTION_OPTION_X_KEEPALIVE_PROBES=~
+LDAP_CONNECTION_OPTION_X_KEEPALIVE_INTERVAL=~
+###< LDAP CONFIG ###
+----
+
+
+=== Temel seçenekler
+
+*LDAP_HOST*
+
+LDAP örneğinin host adresi
+
+*LDAP_PORT*
+
+LDAP örneğinin portu (ör. 389)
+
+*LDAP_ENCRYPTION*
+
+LDAP bağlantısında kullanılan şifreleme türü: *none*, *tls* veya *ssl*
+
+*LDAP_DN_STRING*
+
+LDAP'de kullanıcıyı tanımlamak için kullanılan `DN` dizesi. `username` değişkeni olarak kullanılabilir, örneğin:
+`'cn={username},dc=example,dc=org'`
+
+*LDAP_QUERY_STRING*
+
+Kullanıcıyı aramak için bir arama dizesi ayarlamaya izin verir. Bulunan `DN`, kimlik doğrulama için kullanılacak olandır.
+
+*LDAP_SEARCH_DN*
+
+DN aramak için kullanılacak başka bir kullanıcının DN'si.
+
+*LDAP_SEARCH_PASSWORD*
+
+LDAP_SEARCH_DN için kullanılan kullanıcının parolası
+
+=== Bağlantı seçenekleri
+
+**Aşağıdaki tüm seçenekler SuiteCRM 8.7.0'dan itibaren mevcuttur**
+
+Bu seçenekler PHP'nin `ldap_set_option` fonksiyonunda bulunan seçeneklere karşılık gelir.
+
+Her bir seçeneğin açıklaması ve beklenen değerleri için link:https://www.php.net/manual/en/function.ldap-set-option.php[ldap_set_option belgesine] bakın.
+
+* LDAP_CONNECTION_OPTION_DEBUG_LEVEL
+** Maksimum log seviyesi için `LDAP_CONNECTION_OPTION_DEBUG_LEVEL=7` olarak ayarlayın
+** Hata ayıklama bilgisi php hata günlüğüne yazılır
+* LDAP_CONNECTION_OPTION_API_INFO
+* LDAP_CONNECTION_OPTION_DEREF
+* LDAP_CONNECTION_OPTION_SIZELIMIT
+* LDAP_CONNECTION_OPTION_TIMELIMIT
+* LDAP_CONNECTION_OPTION_RESTART
+* LDAP_CONNECTION_OPTION_SERVER_CONTROLS
+* LDAP_CONNECTION_OPTION_CLIENT_CONTROLS
+* LDAP_CONNECTION_OPTION_API_FEATURE_INFO
+* LDAP_CONNECTION_OPTION_HOST_NAME
+* LDAP_CONNECTION_OPTION_ERROR_NUMBER
+* LDAP_CONNECTION_OPTION_ERROR_STRING
+* LDAP_CONNECTION_OPTION_MATCHED_DN
+* LDAP_CONNECTION_OPTION_TIMEOUT
+* LDAP_CONNECTION_OPTION_NETWORK_TIMEOUT
+* LDAP_CONNECTION_OPTION_X_TLS_CACERTDIR
+* LDAP_CONNECTION_OPTION_X_TLS_CACERTFILE
+* LDAP_CONNECTION_OPTION_X_TLS_CERTFILE
+* LDAP_CONNECTION_OPTION_X_TLS_CRL_ALL
+* LDAP_CONNECTION_OPTION_X_TLS_CRL_NONE
+* LDAP_CONNECTION_OPTION_X_TLS_CRL_PEER
+* LDAP_CONNECTION_OPTION_X_TLS_KEYFILE
+* LDAP_CONNECTION_OPTION_X_TLS_REQUIRE_CERT
+* LDAP_CONNECTION_OPTION_X_TLS_PROTOCOL_MIN
+* LDAP_CONNECTION_OPTION_X_TLS_CIPHER_SUITE
+* LDAP_CONNECTION_OPTION_X_TLS_RANDOM_FILE
+* LDAP_CONNECTION_OPTION_X_TLS_CRLFILE
+* LDAP_CONNECTION_OPTION_X_TLS_PACKAGE
+* LDAP_CONNECTION_OPTION_X_TLS_CRLCHECK
+* LDAP_CONNECTION_OPTION_X_TLS_DHFILE
+* LDAP_CONNECTION_OPTION_X_SASL_MECH
+* LDAP_CONNECTION_OPTION_X_SASL_REALM
+* LDAP_CONNECTION_OPTION_X_SASL_AUTHCID
+* LDAP_CONNECTION_OPTION_X_SASL_AUTHZID
+* LDAP_CONNECTION_OPTION_X_KEEPALIVE_IDLE
+* LDAP_CONNECTION_OPTION_X_KEEPALIVE_PROBES
+* LDAP_CONNECTION_OPTION_X_KEEPALIVE_INTERVAL
+
+== 5. Kullanıcı otomatik oluşturma yapılandırma referansı
+
+=== Bağlam
+Kullanıcı otomatik oluşturma (auto creation) LDAP için varsayılan olarak devre dışıdır.
+
+**Devre dışı bırakıldığında** LDAP kullanarak yalnızca SuiteCRM'de önceden oluşturulmuş kullanıcıları doğrulayabilirsiniz.
+
+Otomatik oluşturma seçeneği, kullanıcı henüz SuiteCRM'de mevcut değilse LDAP'den otomatik olarak kullanıcı oluşturur.
+
+Lütfen unutmayın ki **otomatik oluşturulan kullanıcıların SuiteCRM üzerinde bir parolası olmayacaktır** ve `external_auth_only` **varsayılan olarak 1 (veya true) olarak ayarlanır**.
+
+=== Kullanıcı otomatik oluşturmayı etkinleştirme
+LDAP kullanıcı otomatik oluşturmayı etkinleştirmek için `.env.local` dosyanızı değiştirin ve şunu ayarlayın:
+
+[source,bash]
+----
+LDAP_AUTO_CREATE=enabled
+----
+
+==== Otomatik oluşturma seçenekleri
+Kullanıcı otomatik oluşturmayı etkinleştirirken, kullanıcıyı LDAP'de bulmak için gerekli yapılandırmaları da belirtmeniz gerekir.
+
+Diğer LDAP yapılandırma seçeneklerinde olduğu gibi, kullanıcı otomatik oluşturma için de `.env` dosyası varsayılan değerleri içerir ve bunları üzerine yazabilirsiniz.
+
+*Varsayılan .env LDAP otomatik oluşturma yapılandırması*
+[source,bash]
+----
+###> LDAP AUTO CREATE CONFIG ###
+LDAP_AUTO_CREATE=disabled
+LDAP_PROVIDER_BASE_DN=''
+LDAP_PROVIDER_SEARCH_DN=''
+LDAP_PROVIDER_SEARCH_PASSWORD=''
+LDAP_PROVIDER_DEFAULT_ROLES=ROLE_USER
+LDAP_PROVIDER_UID_KEY=''
+LDAP_PROVIDER_FILTER=''
+###< LDAP AUTO CREATE CONFIG ###
+----
+
+===== Seçenekler referansı
+*LDAP_PROVIDER_BASE_DN*
+
+Kullanıcıları aramak için kullanılan temel `DN`
+
+*LDAP_PROVIDER_UID_KEY*
+
+LDAP girdinizde `uid` olarak kullanılacak öznitelik. Bu, `({uid_key}={username})` gibi bir sorgu oluşturmak için kullanılır.
+
+*LDAP_PROVIDER_FILTER*
+
+İsteğe bağlı. LDAP'de kullanıcıyı aramak için bir filtre belirlemenize izin verir. Varsayılan filtre `({uid_key}={username})`'dir.
+
+*LDAP_PROVIDER_SEARCH_DN*
+
+Kullanıcıyı aramak için kullanılacak başka bir kullanıcının DN'si.
+
+*LDAP_PROVIDER_SEARCH_PASSWORD*
+
+LDAP_PROVIDER_SEARCH_DN için kullanılan kullanıcının parolası
+
+=== Kullanıcı alanlarını eşleme
+
+Otomatik oluşturma, LDAP'den alınan özniteliklere dayanarak kullanıcı kaydında ayarlanacak alanları tanımlamanıza olanak sağlar.
+
+Bu, aşağıdaki seçeneklerle yapılabilir.
+
+==== Seçenekler
+
+*ldap.extra_fields*
+
+Alınacak LDAP öznitelik/alan anahtarlarını içeren string dizisi. Bir sonraki bölümde örneğe bakın.
+
+*ldap.autocreate.extra_fields_map*
+
+LDAP alanlarının kullanıcıdaki alanlara nasıl eşleneceğini tanımlar. Bir sonraki bölümde örneğe bakın.
+
+==== Yapılandırma dosyası
+
+Ek alan yapılandırması `.env` üzerinden **yapılmaz**. Konteyner parametrelerini geçersiz kılarak yapılması gerekir.
+Bu, yapılandırmanın her ortam için kolayca yapılandırılamayacağı anlamına gelir.
+
+Ek alanlar için varsayılan yapılandırma `config/services/ldap/ldap.yaml` dosyasında tanımlıdır.
+
+Yapılandırmaları geçersiz kılmak için dosyayı `extensions` klasörüne `extensions/<your-package>/config/services/ldap/ldap.yaml` gibi bir yola kopyalamanız gerekir.
+
+**extra_fields ve extra_fields_map yapılandırma örneği**
+File: `extensions/<your-package>/config/services/ldap/ldap.yaml`
+[source,yaml]
+----
+parameters:
+  ldap.extra_fields: [ 'name', 'sn', 'email' ]
+  ldap.autocreate.extra_fields_map:
+    name: first_name
+    sn: last_name
+    email: email1
+----
+
+
+== 5. Native (yerel) kimlik doğrulamaya geri dönüş
+
+SuiteCRM, kullanıcı için SuiteCRM üzerinde ayarlı parolayı kullanarak yerel kimlik doğrulamaya geri dönmeyi (fallback) destekler.
+
+Eğer bir kullanıcının `external_auth_only` değeri 1 (veya true) ise, sağlanan parola LDAP ile eşleşmiyorsa veya LDAP'a karşı doğrulamada başka bir sorun varsa giriş başarısız olur.
+
+Diğer taraftan, eğer bir kullanıcının `external_auth_only` değeri 0 (veya false) ise ve LDAP doğrulaması başarısız olursa, sistem hemen SuiteCRM'in yerel kimlik doğrulamasına geçmeye çalışır.
+
+
+== 6. Symfony Secrets kullanımı
+
+Gizli bilgiler (ör. parolalar) gibi hassas bilgileri saklamak için Symfony Secrets kullanmayı düşünün.
+
+Daha fazla bilgi için link:../using-symfony-secrets[Symfony Secrets kullanımı] rehberine bakın.
+
+
+== 7. Daha fazla bilgi
+
+LDAP seçenekleri hakkında daha fazla bilgi için link:https://symfony.com/doc/current/security/ldap.html[Symfony Security Component belgelerine] bakın.
+
+Lütfen kullandığınız SuiteCRM sürümünde kullanılan Symfony sürümünün belgelerini okumayı unutmayın.

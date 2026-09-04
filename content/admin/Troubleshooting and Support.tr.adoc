@@ -1,0 +1,12 @@
+---
+Title: Troubleshooting and Support
+Weight: 20
+---
+
+== Sorun Giderme ve Destek
+
+SalesAgility olarak Açık Kaynak'ı savunuyoruz. Bu nedenle SuiteCRM desteği için doğrudan e-posta veya telefon ile iletişime geçmeyin; bunun yerine destek forumumuzu kullanın. https://community.suitecrm.com[forum] üzerinden bilgi tüm toplulukla paylaşılır. Geliştiricilerimiz forumda günlük olarak soruları cevaplar; aynı zamanda topluluk üyeleri de katkıda bulunabilir. Eğer SuiteCRM'inizin özel ihtiyaçları için SalesAgility'den özelleştirme veya barındırılan destek hizmeti almak isterseniz, https://suitecrm.com/about/about-us/contact[iletişim formunu] kullanın.
+
+== Destek Paketleri
+
+SuiteCRM için çeşitli destek katmanları mevcuttur; ayda 2 saatlik bilet/telefon desteğinden 12 saatlik gelişmiş e-posta/bilet/telefon desteğine kadar seçenekler ve deneyimli geliştirici erişimi sunulmaktadır.

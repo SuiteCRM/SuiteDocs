@@ -1,0 +1,17 @@
+---
+Title: "Dokümantasyonu Çevirme"
+Weight: 60
+---
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/community
+
+SuiteCRM Dokümantasyon sitesini kendi dilinize çevirmenize yardımcı olabilirsiniz.
+
+Önce link:./../simple-edit/[sayfa düzenlemeyi] öğrenin.
+
+Ardından, çevirmek istediğiniz sayfanın tam adıyla aynı dosyayı oluşturun, ancak uzantıdan önce dil kodunu ekleyin.
+
+Örneğin `upgrade.adoc` dosyasının İspanyolca çevirisi `upgrade.es.adoc` olacaktır.
+
+Daha fazla bilgi için link:../guidelines/[Dokümantasyon Rehberi] bölümüne bakın.

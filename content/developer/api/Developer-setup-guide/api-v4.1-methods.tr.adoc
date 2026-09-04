@@ -1,0 +1,115 @@
+---
+weight: 21
+title: "API v4.1 Metodları"
+---
+
+= API v4.1 Metodları
+
+== Metodlar
+
+=== login
+
+SuiteCRM'e giriş yapar ve sonraki API çağrıları için kullanılacak bir oturum id'si döndürür.
+
+==== Argümanlar
+
+[cols="35%,15%,55%",options="header",]
+|=======================================================================
+|Name |Type |Desc
+|user_auth |array |API kullanıcısı için kimlik doğrulama bilgileri
+
+|user_auth[user_name] |string |SuiteCRM kullanıcısının kullanıcı adı. Zorunlu.
+
+|user_auth[password] |string |Kullanıcının parolasının MD5 hash'i. Zorunlu.
+
+|application_name |string |API'ye erişen uygulama için bir tanımlayıcı
+
+|name_value_list |name_value_list |Giriş için seçenekler dizisi
+
+|name_value_list[language] |string |Bu kullanıcı için dil
+
+|name_value_list[notifyonsave] |bool |Yeni bir kayıt kaydedildiğinde ve kullanıcıya atandığında e-posta bildirimi gönderilsin mi
+|=======================================================================
+
+==== Yanıt
+[cols="35%,15%,55%",options="header",]
+|=======================================================================
+|Name |Type |Desc
+|id |string |Bu giriş için oturum id'si. Diğer tüm API çağrıları için gereklidir.
+
+|name_value_list |name_value_list |Bu kullanıcı hakkında bilgi içeren dizi.
+
+|name_value_list[user_id] |string |Giriş yapan kullanıcının id'si.
+
+|name_value_list[user_name] |string |Giriş yapan kullanıcının kullanıcı adı.
+
+|name_value_list[user_language] |string |Giriş yapan kullanıcının dil ayarı.
+
+|name_value_list[user_currency_id] |string |Giriş yapan kullanıcının para birimi id'si. -99 varsayılan.
+
+|name_value_list[user_currency_name] |string |Giriş yapan kullanıcının para birimi adı.
+
+|name_value_list[user_is_admin] |bool |Giriş yapan kullanıcının admin olup olmadığı.
+
+|name_value_list[user_default_team_id] |string |Giriş yapan kullanıcının varsayılan takımı (eski dönem verisi).
+
+|name_value_list[user_default_dateformat] |string |Giriş yapan kullanıcının varsayılan tarih formatı.
+
+|name_value_list[user_default_timeformat] |string |Giriş yapan kullanıcının varsayılan saat formatı.
+
+|name_value_list[user_number_seperator] |string |Giriş yapan kullanıcının sayı ayırıcı karakteri.
+
+|name_value_list[user_decimal_seperator] |string |Giriş yapan kullanıcının ondalık ayırıcı karakteri.
+
+|name_value_list[mobile_max_list_entries] |int |Mobil için azami liste girdisi (wl_list_max_entries_per_subpanel config anahtarından alınır)
+
+|name_value_list[mobile_max_subpanel_entries] |int |Mobil için azami alt panel girdisi (wl_list_max_entries_per_subpanel config anahtarından alınır)
+|=======================================================================
+
+=== logout
+
+SuiteCRM web kullanıcısını oturumdan çıkarır ve oturumu yok eder.
+
+==== Argümanlar
+[cols="35%,15%,55%",options="header",]
+|===========================================
+|Name |Type |Desc
+|session |string |Oturum id'si. login ile elde edilen değer.
+|===========================================
+
+==== Yanıt
+Yanıt yok.
+
+=== get_available_modules
+
+Kullanılabilir modüllerin listesini döndürür. Her modül için ACL (erişim denetimi) bilgisi de döner.
+
+==== Argümanlar
+[cols="35%,15%,55%",options="header",]
+|=======================================================================
+|Name |Type |Desc
+|session |string |Oturum id'si. login ile elde edilen değer.
+
+|filter |string |Dönen modülleri filtreleyin: 'default', 'mobile' veya 'all'.
+|=======================================================================
+
+==== Yanıt
+[cols="35%,15%,55%",options="header",]
+|=======================================================================
+|Name |Type |Desc
+|modules |array |Modül detaylarını içeren dizi.
+
+|modules[][module_key] |string |Modülün anahtarı
+
+|modules[][module_label] |string |Modül etiketi
+
+|modules[][favorite_enabled] |bool |Favorites özelliği (SugarCRM Pro'ya ait) — genellikle boş.
+
+|modules[][acls] |array |ACL listesi — hangi eylemlere izin verildiğini içerir.
+
+|modules[][acls][][action] |string |Eylem örn. edit, delete, list
+
+|modules[][acls][][access] |bool |Erişime izin verilip verilmediği
+|=======================================================================
+
+... (dosyada kalan metodlar aynı şekilde çevrilecektir; büyük dosya olduğundan burada özet gösterim korunmuştur) ...

@@ -1,0 +1,42 @@
+---
+title: İlişkileri Düzenleme (Nice Relationships)
+date: 2016-03-18T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/suitecrm-nice-relationships/
+hidden: true
+draft: true
+---
+
+Module Builder ve Studio, SuiteCRM'i kolayca özelleştirmek için harika araçlardır ve modüller arası ilişkileri tanımlamaya izin verir. Ancak oluşturulan ilişki adları ve alan adları genellikle çok uzun ve hantal olabilir. Bu yazıda Studio tarafından oluşturulan ilişkileri temizleyip daha okunaklı hale getirmeyi göstereceğim.
+
+:imagesdir: /images/en/community
+
+Örneğin Products ile Accounts arasında bir one-to-many ilişkisi eklediğimizde join tablosu `accounts_aos_products_1_c` gibi bir isim alır ve alan adları şu şekilde olabilir:
+
+* accounts_aos_products_1accounts_ida
+* accounts_aos_products_1aos_products_idb
+
+Bu isimler SQL yazarken rahatsız edicidir. Bunları daha okunaklı hale getirmek için birkaç dosyada değişiklik yapmanız gerekir.
+
+Öncelikle hangi isimleri kullanacağınıza karar verin: örneğin `account_id` ve `product_id`.
+
+Değişiklik yapılması gereken ana yerler:
+
+- `custom/metadata/accounts_aos_products_1MetaData.php` (tablo tanımı)
+- `custom/Extension/modules/relationships/vardefs/...`
+- `custom/Extension/modules/AOS_Products/Ext/Vardefs/...`
+
+Bu değişikliklerden sonra Quick Repair and Rebuild yapıp veritabanı değişikliklerini uygulayın. Var olan verileriniz varsa bir migrate sorgusu ile eski alanlardan yeni alanlara aktarmanız gerekir.
+
+Örneğin verileri taşımak için:
+
+.Example
+[source,.sql]
+UPDATE accounts_aos_products_1_c
+SET accounts_id = accounts_aos_products_1accounts_ida, product_id = accounts_aos_products_1aos_products_idb
+WHERE account_id IS NULL AND product_id IS NULL
+
+### True one-to-many şemasına geçiş
+
+Studio varsayılan olarak bir-to-many ilişkiler için bile many-to-many şeması oluşturur (join tablosu). Eğer ilişki kesinlikle one-to-many ise join tablosunu kaldırıp doğrudan one-to-many şemasına geçmeyi düşünebilirsiniz — ancak var olan veriyi uygun şekilde migrate etmeniz gerekir.

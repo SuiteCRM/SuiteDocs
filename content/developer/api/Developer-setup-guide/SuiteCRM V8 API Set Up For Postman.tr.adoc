@@ -1,0 +1,60 @@
+---
+title: SuiteCRM V8 API Set Up For Postman
+weight: 40
+---
+
+:imagesdir: /images/en/developer/API-Images/
+
+== Postman için V8 API Kurulum Adımları
+
+== Composer
+
+Composer paketlerini kurmak için
+
+[source,php]
+composer install
+
+== .htaccess yeniden oluşturma
+
+Admin Panel -> Repair -> Rebuild .htaccess File bölümüne gidin
+
+image:htaccess_rebuild.png[Rebuild of .htaccess]
+
+== Collection Dosyasını Postman'e İçe Aktarma
+
+1 - Import'a tıklayın
+
+image:import_Files.png[Import Collection File]
+
+2 - Collection dosyasını içe aktarın. Dosyayı `Api/docs/postman` içinde bulabilirsiniz.
+
+{{% notice note %}}
+Eğer collection dosyasını bulamazsanız, Postman'in yükleyemediği bir dizinde olabilir — Çözüm: collection dosyasını `Documents` klasörüne taşıyın.
+{{% /notice %}}
+
+=== Ortam (Environment) Ayarları
+
+1 - Manage Environments -> Add
+
+2 - Environment adı belirleyin - Örnek: SuiteCRM V8 API Environment
+
+3 - Aşağıdaki tabloyu doldurun:
+
+.Manage Environments
+|===
+|VARIABLE |INITIAL VALUE |CURRENT VALUE
+
+|suitecrm.url
+|\http://{{IP ADDRESS}}/{{Your Instance}}/Api
+|\http://{{IP ADDRESS}}/{{Your Instance}}/Api
+
+|token.url
+|\http://{{IP ADDRESS}}/{{Your Instance}}/Api/access_token
+|\http://{{IP ADDRESS}}/{{Your Instance}}/Api/access_token
+|===
+
+-> Add
+
+4 - Drop-down listesinden Environment'u seçin
+
+image:change_environment.png[Changing Environment]

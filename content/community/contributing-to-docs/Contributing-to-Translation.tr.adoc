@@ -1,0 +1,39 @@
+---
+Title: "SuiteCRM'i Çevirin"
+Weight: 50
+---
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/community
+
+== Crowdin ve SuiteCRM
+
+=== Crowdin nedir
+
+Crowdin, uygulamaları ve web sayfalarını çevirmek için kullanılan çevrimiçi bir platformdur.
+
+SuiteCRM çeviri projesi, ortak çeviri ortamı sağlamak için Crowdin'i kullanır. Burada dilinizi çevirip kurulum için hazır dil paketlerini indirebilirsiniz. Tek ihtiyacınız bir tarayıcıdır.
+
+=== Hangi projelere katılmalıyım?
+
+SuiteCRM iki ilgili projede çevrilir ve her iki projeye de katılmanız gerekir:
+
+[cols=2*,options=header]
+|===
+|A- Core language files
+|B- Using Joomla?
+
+|· SuiteCRM core - (latest version):  https://crowdin.com/project/suitecrmtranslations
+|· Advanced OpenPortal (SuiteCRM / Joomla integration): https://crowdin.com/project/suitecrm-advanced-openportal
+|===
+
+=== Çeviri nasıl yapılır
+
+1- https://crowdin.com/project/suitecrmtranslations[buraya] tıklayın ve Crowdin sitesine gidin.
+2- Bir hesap oluşturun ve katılmak istediğiniz dili seçin.
+
+image:29Crowdin.png[Crowdin]
+
+=== Çeviriye başlama
+
+https://crowdin.com/project/suitecrmtranslations adresinden çeviriye başlayabilirsiniz.
