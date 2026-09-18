@@ -117,7 +117,7 @@ We have added support for pre-upgrade migrations. This allows to have migrations
 
 * *Record-Level Async Validators* — A new metadata-driven system for running server-side validation when a record is saved. Async validators can display confirmation modals, list modals, or block the save entirely based on backend logic. See: link:../../../developer/metadata/record-view-metadata/record-async-validators/[Record-Level Async Validators]
 
-* *Confirmation List Modal* — A new modal type that displays a searchable, paginated table of records inside a dialog. Used when a backend process needs to show the user a list of related records and let them decide whether to proceed or cancel. See: link:../../../developer/extensions/frontend/containers/confirmation-modal/confirmation-list-modal/[Confirmation List Modal]
+* *Confirmation List Modal* — A new modal type that displays a searchable, paginated table of records inside a dialog. Used when a backend process needs to show the user a list of related records and let them decide whether to proceed or cancel. See: link:../../../developer/extensions/frontend/containers/confirmation-list-modal/[Confirmation List Modal]
 
 * *Record Logic* — New record-level logic rules in view metadata. Record Logic can update multiple fields at once based on cross-field conditions, autofill fields from related records, or trigger backend calculations. See: link:../../../developer/extensions/frontend/logic/record-logic/[Adding Custom Record Logic]
 
@@ -125,7 +125,7 @@ We have added support for pre-upgrade migrations. This allows to have migrations
 
 * *Customizing View Metadata* — A new guide covering the full metadata extension pipeline, including all four mapper types (Vardef Config Mappers, Field Definition Mappers, View Config Mappers, and View Definition Mappers), with a pipeline diagram, comparison table, and examples for each approach. See: link:../../../developer/metadata/customizing-metadata/[Customizing View Metadata]
 
-* *Confirmation Modals* — New documentation covering both the standard Confirmation Modal and the Confirmation List Modal. See: link:../../../developer/extensions/frontend/containers/confirmation-modal/[Confirmation Modals]
+* *Confirmation Modals* — New documentation covering both the standard Confirmation Modal and the Confirmation List Modal. See: link:../../../developer/extensions/frontend/containers/[Confirmation Modals]
 
 * *YAML Language Labels* — Extensions can now define language labels using YAML files, as an alternative to PHP language files. Supports application strings, list strings, and module strings. See: link:../../../developer/extensions/backend/languages/[Adding Language Labels via YAML]
 
@@ -508,7 +508,7 @@ SuiteCRM 7.15 has been merged into the 8.10 release. Key features it brings incl
 * *Updated Automatic Email Import*
 * *V8 API: OAuth Auth Code Grant*
 
-For the full list of changes from 7.15, see the link:../../../../../admin/releases/7.15.x/#_7_15_0[7.15 Release Notes].
+For the full list of changes from 7.15, see the link:../../../../admin/releases/7.15.x/#_7_15_0[7.15 Release Notes].
 
 '''
 

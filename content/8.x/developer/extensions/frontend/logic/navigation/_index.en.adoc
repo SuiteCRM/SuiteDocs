@@ -1,6 +1,6 @@
 ---
-title: "Adding Custom Panel Logic"
-weight: 50
+title: "Adding Custom Navigation Logic"
+weight: 60
 ---
 
 === Table of Contents

@@ -1,6 +1,6 @@
 ---
 title: "Adding Custom Record Logic"
-weight: 50
+weight: 30
 ---
 
 == Introduction

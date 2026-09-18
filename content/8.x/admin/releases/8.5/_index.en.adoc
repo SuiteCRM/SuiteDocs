@@ -32,7 +32,7 @@ Repair Schedulers.
 
 ==== icon:star[] Documentation
 
-* We have added a new page explaining action display logic see link:../../../developer/extensions/frontend/logic/action-logic/fe-extensions-display-action-logic[here.]
+* We have added a new page explaining action display logic see link:../../../developer/extensions/frontend/logic/panel-and-action-display-logic[here.]
 
 ==== icon:bug[] Bug Fixes
 

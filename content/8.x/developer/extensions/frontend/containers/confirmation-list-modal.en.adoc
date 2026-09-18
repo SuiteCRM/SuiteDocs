@@ -1,13 +1,15 @@
 ---
 title: "Confirmation List Modal"
-weight: 10
+weight: 20
+aliases:
+  - /8.x/developer/extensions/frontend/containers/confirmation-modal/confirmation-list-modal/
 ---
 
 == 1. Introduction
 
 The Confirmation List Modal displays a searchable, paginated table of records inside a modal dialog. It is used when a backend process needs to show the user a list of related records — for example, duplicate contacts — and let them decide whether to proceed or cancel.
 
-For an example of how this modal is used, see the link:../../../../../metadata/record-view-metadata/record-async-validators/#_7_complete_example_duplicate_email_check[Complete Example: Duplicate Email Check] in the Record-Level Async Validators page.
+For an example of how this modal is used, see the link:../../../../metadata/record-view-metadata/record-async-validators/#_7_complete_example_duplicate_email_check[Complete Example: Duplicate Email Check] in the Record-Level Async Validators page.
 
 == 2. Backend Response Properties
 
@@ -80,7 +82,7 @@ $process->setData([
 | Array of action button configurations. Empty array uses default Cancel/Proceed buttons (see link:./#_5_action_buttons[Action Buttons])
 |===
 
-See the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page for the full backend response reference.
+See the link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page for the full backend response reference.
 
 == 3. Column Configuration
 
@@ -190,7 +192,7 @@ class DuplicateEmailPresetHandler extends ListDataHandler implements PresetListD
 
 The `getType()` return value must match the `preset.type` used in the process handler's response. `ListDataHandler` provides helper methods like `getBean()`, `mapCriteria()`, `prepareQueryData()`, and `buildListData()`.
 
-For a complete preset handler implementation, see the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7.5).
+For a complete preset handler implementation, see the link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7.5).
 
 === 4.2 How It Works
 
@@ -329,4 +331,4 @@ The backend response can include control flags to manage the modal. Flags are ev
 
 == 6. Complete Example
 
-For a complete end-to-end example that uses the Confirmation List Modal — including viewdef configuration, process handler, preset data handler, language labels, and the full user flow — see the link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7).
+For a complete end-to-end example that uses the Confirmation List Modal — including viewdef configuration, process handler, preset data handler, language labels, and the full user flow — see the link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators] page (Section 7).

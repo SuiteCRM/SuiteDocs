@@ -1,6 +1,6 @@
 ---
 title: "Old Getting started"
-weight: 20
+weight: 70
 ---
 
 === Table of Contents

@@ -1,6 +1,6 @@
 ---
 title: "Adding Field Display Logic "
-weight: 40
+weight: 10
 ---
 
 :imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/

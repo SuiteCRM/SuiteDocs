@@ -1,6 +1,8 @@
 ---
 title: "Setting Up a Front-End Extension Module 8.8+"
-weight: 20
+weight: 10
+aliases:
+  - /8.x/developer/extensions/frontend/88x-fe-extensions-setup/
 ---
 
 :imagesdir: /images/en/8.x/developer/extensions/front-end/fe-extensions-setup

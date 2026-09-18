@@ -1,7 +1,118 @@
 ---
 title: "Adding Custom Field Logic"
-weight: 50
+weight: 20
 ---
+
+== Introduction
+
+Field Logic lets you define rules on a single field's `logic` vardef entry that run in the
+frontend (or call a backend ProcessHandler) to show/hide the field, mark it required, or
+compute/copy its value. See the subpages below for the available action types
+(`updateValue`, `required`, `displayType`, `displayTypeBackend`, `updateValueBackend`).
+
+Unlike link:../record-logic/[Record Logic], which is configured in view metadata
+(`detailviewdefs.php`) and can update several fields at once, Field Logic is configured per
+field in `vardefs.php` and only affects that one field.
+
+=== `triggeringStatus`
+
+Every field logic action accepts a `triggeringStatus` param that controls *when* it
+(re-)runs. If it's not declared, each action type falls back to its own default (see
+table below).
+
+[cols="1,3"]
+|===
+|Value |Behaviour
+
+|`onDependencyChange`
+|The implicit default. Runs only when a field listed in `fieldDependencies` (or a key of
+`activeOnFields`, if `fieldDependencies` isn't set) changes value.
+
+|`onValueChange` (alias of `onAnyLogic`)
+|Runs whenever any dependency field's value changes, for the life of the record in the
+view - equivalent to `onDependencyChange` without restricting to a specific changed field.
+
+|`onFieldInitialize`
+|Runs once, when the field component first initializes - i.e. on record load / when the
+field is first rendered in the view. Guarded so it never re-runs a second time for the
+same field instance.
+
+|`onInit` (alias)
+|Rewritten internally to include `onFieldInitialize` alongside whatever else is declared.
+|===
+
+{{% notice note %}}
+Field Logic's init-time status is `onFieldInitialize`. This is distinct from
+link:../record-logic/[Record Logic]'s own init-time status, `onRecordInit` (exposed there
+via the same `onInit` alias) - the two logic systems are separate managers and do not
+share triggering state.
+{{% /notice %}}
+
+==== Action defaults
+
+Some action types already include `onFieldInitialize` in their default
+`triggeringStatus`, so they compute the correct value/state on load as well as reacting to
+later changes, without you declaring anything extra:
+
+[cols="1,2"]
+|===
+|Action `key` |Default `triggeringStatus`
+
+|`required`
+|`onAnyLogic`, `onFieldInitialize`
+
+|`displayType`
+|`onAnyLogic`, `onFieldInitialize`
+
+|`displayTypeBackend`
+|`onAnyLogic`, `onFieldInitialize`
+|===
+
+These default to `onDependencyChange` only - the field's value is left untouched on
+initial load unless `triggeringStatus` explicitly includes `onFieldInitialize`:
+
+[cols="1,2"]
+|===
+|Action `key` |Default `triggeringStatus`
+
+|`updateValue`
+|`onDependencyChange`
+
+|`updateValueBackend`
+|`onDependencyChange`
+|===
+
+==== Forcing `onFieldInitialize` on an action
+
+To make an action also compute its value/state when the record first loads (not just
+when a dependency later changes), declare `triggeringStatus` explicitly:
+
+[source,php]
+----
+<?php
+
+'logic' => [
+    'my-init-rule' => [
+        'key' => 'updateValue',
+        'modes' => ['edit', 'create'],
+        'triggeringStatus' => ['onFieldInitialize', 'onDependencyChange'],
+        'params' => [
+            'fieldDependencies' => ['industry'],
+            'targetValue' => '450',
+            'activeOnFields' => [
+                'industry' => ['Banking'],
+            ],
+        ],
+    ],
+],
+----
+
+Include `onDependencyChange` alongside `onFieldInitialize` (as above) if the action should
+keep reacting to later changes as well as computing the initial value; omit it if the
+value should only ever be set once, at field init.
+
+A typical use case: defaulting a field's value from a related record as soon as a create
+form loads, rather than leaving it blank until the user touches the dependency field once.
 
 === Table of Contents
 {{% children depth="3" showhidden="false" %}}

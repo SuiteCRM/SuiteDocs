@@ -259,7 +259,7 @@ image:Floating-Save-Example.png[Nav Bar]
 
 * Add support for more operators in field logic. See link:../../../developer/extensions/frontend/logic/operators/[Logic Operators] guide
 * New field display logic configuration. See link:../../../developer/extensions/frontend/logic/field-logic/fe-extensions-display-logic/[Field Display Logic] guide
-* New record view panel display logic configuration. See link:../../../developer/extensions/frontend/logic/panel-logic/fe-extensions-dynamic-panels/[Panel Display Logic] guide
+* New record view panel display logic configuration. See link:../../../developer/extensions/frontend/logic/panel-and-action-display-logic/[Panel Display Logic] guide
 * New field logic for updating field with pre-defined value. See link:../../../developer/extensions/frontend/logic/field-logic/fe-extensions-update-value/[Update Field Value] guide
 * New field logic for calculating value in the backend. See link:../../../developer/extensions/frontend/logic/field-logic/fe-extensions-update-value-backend/[Update Field Value Based on a backend calculation] guide
 

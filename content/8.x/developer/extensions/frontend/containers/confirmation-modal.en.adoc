@@ -1,14 +1,16 @@
 ---
 title: "Confirmation Modal"
 weight: 10
+aliases:
+  - /8.x/developer/extensions/frontend/containers/confirmation-modal/confirmation-modal/
 ---
 
 == 1. Introduction
 
 The Confirmation Modal is a dialog that asks the user to confirm or cancel an action. It is used across several features in SuiteCRM 8:
 
-* **Async validators** — when a backend process handler returns `displayConfirmation: true`, a confirmation modal is shown before the save proceeds (see link:../../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators] and link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators])
-* **Record logic** — logic actions like link:../../../logic/record-logic/fe-extensions-record-update-values[updateValues] and link:../../../logic/record-logic/fe-extensions-record-autofill-from-relate[autofillFromRelate] can show a confirmation modal before applying changes
+* **Async validators** — when a backend process handler returns `displayConfirmation: true`, a confirmation modal is shown before the save proceeds (see link:../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators] and link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators])
+* **Record logic** — logic actions like link:../../logic/record-logic/fe-extensions-record-update-values[updateValues] and link:../../logic/record-logic/fe-extensions-record-autofill-from-relate[autofillFromRelate] can show a confirmation modal before applying changes
 
 == 2. Configuration Properties
 
@@ -96,18 +98,18 @@ If the form also has non-silent errors (for example, a required field is empty),
 |===
 | Feature | Description
 
-| link:../../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators]
+| link:../../../../metadata/fields/field-options/async-validator[Field-Level Async Validators]
 | Backend returns `displayConfirmation: true` to confirm before saving
 
-| link:../../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators]
+| link:../../../../metadata/record-view-metadata/record-async-validators[Record-Level Async Validators]
 | Backend returns `displayConfirmation: true` to confirm before saving
 
-| link:../../../logic/record-logic/fe-extensions-record-update-values[updateValues Record Logic]
+| link:../../logic/record-logic/fe-extensions-record-update-values[updateValues Record Logic]
 | Shows confirmation before applying field updates
 
-| link:../../../logic/record-logic/fe-extensions-record-autofill-from-relate[autofillFromRelate Record Logic]
+| link:../../logic/record-logic/fe-extensions-record-autofill-from-relate[autofillFromRelate Record Logic]
 | Shows confirmation before autofilling field values
 
-| link:../../../logic/record-logic/fe-extensions-record-update-values-backend[updateValuesBackend Record Logic]
+| link:../../logic/record-logic/fe-extensions-record-update-values-backend[updateValuesBackend Record Logic]
 | Shows confirmation before calling backend to update values
 |===

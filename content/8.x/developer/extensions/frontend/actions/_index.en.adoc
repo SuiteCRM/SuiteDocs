@@ -1,6 +1,6 @@
 ---
 title: "Front-end Action Examples"
-weight: 50
+weight: 30
 ---
 
 === Table of Contents
