@@ -113,7 +113,7 @@ Cuando haya más de una cuenta, seleccione la cuenta que se usará como
 cuenta principal.
 
 Para más información sobre los ajustes de correo electrónico del perfil de usuario, consulte
-link:../../../user/introduction/managing-user-accounts/#_personal_email_account_settings[ajustes de correo del perfil de usuario]
+link:../../../user/getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[ajustes de correo del perfil de usuario]
 
 ==== Pestaña Contraseña
 
@@ -121,7 +121,7 @@ Establezca aquí la contraseña de un nuevo usuario, o restablezca la contraseñ
 
 {{%notice note %}}La pestaña Contraseña no será visible en el registro de usuario si tiene
 habilitada la funcionalidad *Contraseñas Generadas por el Sistema*. Para habilitar/deshabilitar
-las contraseñas generadas por el sistema, consulte la sección <<#_password_management, Administración de Contraseñas>>
+las contraseñas generadas por el sistema, consulte la sección <<#_administración_de_contraseñas, Administración de Contraseñas>>
 de este documento.
 {{% /notice %}}
 

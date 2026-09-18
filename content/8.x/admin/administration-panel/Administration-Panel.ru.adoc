@@ -23,7 +23,7 @@ ifdef::env-github[:imagesdir: ../../../../static/images/ru/8.x/admin/administrat
 :adm-openadmin: link:../../../../admin/administration-panel/advanced-openadmin/
 :adm-dev-tools: link:../../../../admin/administration-panel/developer-tools/
 :adm-email: link:../../../../admin/administration-panel/emails/email/
-:usr-workflow: link:../../../../user/advanced-modules/workflow/
+:usr-workflow: link:../../../../admin/administration-panel/workflow/
 :adm-google-cal: link:../../../../admin/administration-panel/google-sync/
 :adm-google-maps: link:../../../../admin/administration-panel/google-maps/
 

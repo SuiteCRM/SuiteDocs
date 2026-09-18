@@ -341,7 +341,7 @@ When events are not syncing between systems, follow these diagnostic steps:
 * Navigate to *Calendar Sync Settings* in Administration
 * Verify *Past Days* and *Future Days* settings include the event date
 * Events outside the sync window are intentionally ignored
-* Adjust sync window settings if needed - see link:/admin/administration-panel/calendar-sync/admin-setup#_sync_window_settings[Sync Window Settings]
+* Adjust sync window settings if needed - see link:../admin-setup/#_sync_limits[Sync Window Settings]
 
 **4. Review Logs**
 

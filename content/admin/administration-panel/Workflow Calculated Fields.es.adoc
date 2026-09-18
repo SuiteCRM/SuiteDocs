@@ -14,7 +14,7 @@ aliases:
 
 = Campos Calculados
 
-En Workflows, existe una link:../workflow/#_actions[Action] particularmente potente y compleja
+En Workflows, existe una link:../workflow/#_acciones[Action] particularmente potente y compleja
 llamada *Calculated Fields* que le permite realizar operaciones sobre los valores de los registros que está gestionando.
 
 image:216Calculate_fields.png[title="Calculate Fields"]

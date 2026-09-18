@@ -106,7 +106,7 @@ Los paquetes de módulos personalizados que se hayan creado y modificado en el C
 aparecerán en el Cargador de Módulos una vez que se hayan desplegado.
 
 Para obtener más información sobre cómo generar paquetes que puedan subirse mediante el Cargador de Módulos,
-consulte la link:../../../developer/module-installer[Guía del Desarrollador]
+consulte la link:/developer/extending-app/module-installer/[Guía del Desarrollador]
 
 image:ModuleLoader6.png["Cargador de Módulos"]
 
@@ -145,7 +145,7 @@ image:ModuleLoader4.png["Cargador de Módulos"]
 
 Para que un paquete se pueda desinstalar, debe estar definido como desinstalable en el
 archivo de manifiesto del paquete. Para obtener más información sobre el archivo de manifiesto,
-consulte la link:../../../developer/module-installer[Guía del Desarrollador]
+consulte la link:/developer/extending-app/module-installer/[Guía del Desarrollador]
 
 Desinstale un paquete haciendo clic en los botones junto al
 nombre del paquete.
@@ -190,7 +190,7 @@ El Editor de Listas Desplegables muestra todas las listas desplegables instalada
 
 Haga clic en el nombre de la lista desplegable para editarla. Si no está seguro de qué lista desplegable necesita, puede resultar
 más sencillo editarla desde Studio, donde puede encontrar la lista desplegable por el nombre de su campo.
-Consulte la link:../../administration-panel/studio/#_adding_a_dropdown_field[guía de Studio] para obtener instrucciones
+Consulte la link:../../administration-panel/studio/#_añadir_un_campo_de_tipo_desplegable[guía de Studio] para obtener instrucciones
 completas sobre cómo añadir o editar una lista desplegable.
 
 image:StudioDropdownEditor.png["Editor de Listas Desplegables"]

@@ -114,4 +114,4 @@ Desde aquí puede:
 
 Si no hay notificaciones sin leer, no se mostrará ningún contador.
 
-Para habilitar o deshabilitar las notificaciones de escritorio en su navegador, consulte el ajuste link:../../getting-started/managing-your-profile/#_desktop_notifications[Notificaciones de Escritorio] en la pestaña Avanzado de su perfil.
+Para habilitar o deshabilitar las notificaciones de escritorio en su navegador, consulte el ajuste link:../../getting-started/managing-your-profile/#_notificaciones_de_escritorio[Notificaciones de Escritorio] en la pestaña Avanzado de su perfil.

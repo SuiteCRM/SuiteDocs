@@ -62,7 +62,7 @@ SuiteCRM includes a built-in Maps feature. A map panel showing the billing or sh
 
 * *Building account hierarchies*: use the Member Of field to nest accounts under a parent. This is useful for group structures, franchises, or any organisation with subsidiaries — the parent record's Member Organisations sub-panel gives you a view of the whole corporate family.
 * *Printing an account as PDF*: from the Account Detail View, open the actions menu and select *Print as PDF* to generate a PDF using one of your organisation's PDF templates. See link:../pdf-templates[PDF Templates] for how these are set up.
-* *Adding accounts to a target list*: from the Accounts List View, select the records you want and use the bulk action to add them to a target list for use in a marketing campaign. See link:../target-lists[Target Lists] for details.
+* *Adding accounts to a target list*: from the Accounts List View, select the records you want and use the bulk action to add them to a target list for use in a marketing campaign. See link:../../marketing-outreach/target-lists/[Target Lists] for details.
 * *Creating accounts from leads*: when a Lead is qualified and converted, SuiteCRM can create a related Account automatically. See link:../leads[Leads] for how conversion works.
 
 == Where to Go Next

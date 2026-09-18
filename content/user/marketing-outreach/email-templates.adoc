@@ -19,7 +19,7 @@ Email templates are used to send standardised responses and notifications via em
 
 Email templates can be viewed, edited and created from the *Email Templates* module which can be found on the *ALL* menu. Alternatively, templates can be created directly from the workflow and campaigns modules.
 
-{{% notice tip %}}The template editor used for creating and editing email templates can be selected in the link:../../getting-started/managing-your-profile/#_user_profile_email_settings[user profile email settings]. The default setting (Mozaik) is shown in the following screen shots. {{% /notice %}}
+{{% notice tip %}}The template editor used for creating and editing email templates can be selected in the link:../../getting-started/managing-your-profile/#_personal_email_account_settings[user profile email settings]. The default setting (Mozaik) is shown in the following screen shots. {{% /notice %}}
 
 image:300EmailsTemplates.png[Email Templates]
 

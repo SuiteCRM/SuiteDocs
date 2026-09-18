@@ -17,6 +17,7 @@ Understanding the order in which metadata is processed helps you choose the righ
 
 Field definitions and view definitions are processed in **two separate pipelines** that merge when the view handler assembles the final metadata:
 
+[#field_view_definition_architecture]
 image:field_view_definition_architecture.svg[Metadata Processing Pipeline,width=70%,align=center,id="field_view_definition_architecture",link="#field_view_definition_architecture"]
 
 ////

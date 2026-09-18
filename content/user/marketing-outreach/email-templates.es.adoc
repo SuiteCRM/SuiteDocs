@@ -19,7 +19,7 @@ Las plantillas de email se utilizan para enviar respuestas y notificaciones esta
 
 Las plantillas de email pueden verse, editarse y crearse desde el módulo *Plantillas de Email*, que se encuentra en el menú *TODOS*. Alternativamente, las plantillas pueden crearse directamente desde los módulos de flujos de trabajo y campañas.
 
-{{% notice tip %}}El editor de plantillas utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_user_profile_email_settings[configuración de email del perfil de usuario]. La configuración por defecto (Mozaik) es la que se muestra en las siguientes capturas de pantalla. {{% /notice %}}
+{{% notice tip %}}El editor de plantillas utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[configuración de email del perfil de usuario]. La configuración por defecto (Mozaik) es la que se muestra en las siguientes capturas de pantalla. {{% /notice %}}
 
 image:300EmailsTemplates.png[Plantillas de Email]
 

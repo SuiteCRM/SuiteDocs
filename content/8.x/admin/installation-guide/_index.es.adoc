@@ -25,4 +25,4 @@ Para actualizar SuiteCRM 8, empieza link:../../admin/upgrading/general-info[aqu�
 
 == Notas de la versión
 
-Consulta las últimas notas de la versión de SuiteCRM link:../releases[aquí].
+Consulta las últimas notas de la versión de SuiteCRM link:/8.x/admin/releases/[aquí].

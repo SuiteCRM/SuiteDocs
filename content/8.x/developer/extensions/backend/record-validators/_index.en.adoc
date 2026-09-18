@@ -74,7 +74,7 @@ interface RecordValidatorInterface
 
 | `getModes()`
 | `string[]`
-| The operation modes where this validator should run. See link:./#_32_modes[Modes].
+| The operation modes where this validator should run. See link:#_3_2_modes[Modes].
 
 | `validate()`
 | `void`

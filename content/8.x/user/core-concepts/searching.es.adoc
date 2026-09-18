@@ -86,7 +86,7 @@ image:My-Filters-Highlighted.png[Desplegable Mis Filtros]
 Para cambiar entre filtros, simplemente seleccione el que desee y los resultados se actualizarán.
 
 {{% notice note %}}
-El número de Filtros Rápidos mostrados antes de agruparse en un desplegable, y su comportamiento en distintos tamaños de pantalla, pueden ser configurados por un desarrollador. Consulte link:../../../developer/configuration/quick-filters/[Configuración de los Filtros Rápidos].
+El número de Filtros Rápidos mostrados antes de agruparse en un desplegable, y su comportamiento en distintos tamaños de pantalla, pueden ser configurados por un desarrollador. Consulte link:/8.x/developer/configuration/quick-filters/[Configuración de los Filtros Rápidos].
 {{% /notice %}}
 
 == Uso de Comodines en la Búsqueda

@@ -66,7 +66,7 @@ SuiteCRM incluye una función de Mapas integrada. Se puede mostrar un panel de m
 * *Importar una vCard*: cree un nuevo Contacto importando un archivo vCard (`.vcf`). Seleccione *Import vCard* en el menú del módulo Contactos y suba el archivo. SuiteCRM rellenará previamente los campos del Contacto a partir de los datos de la vCard.
 * *Exportar una vCard*: se puede habilitar un botón *vCard* en la Vista de Detalle del Contacto para descargar los datos del Contacto como un archivo `.vcf`. Esto requiere que un administrador sustituya los campos separados *Nombre* y *Apellidos* por el campo combinado *Nombre* utilizando link:../../../admin/administration-panel/studio/#_layouts[Studio].
 * *Crear un usuario de portal*: si su instancia de SuiteCRM tiene habilitado el portal de clientes, se puede conceder acceso al portal a un Contacto directamente desde su Vista de Detalle mediante el botón *Create Portal User*. Consulte a su administrador para conocer los detalles de configuración del portal.
-* *Crear contactos a partir de clientes potenciales*: cuando un Cliente Potencial se cualifica y se convierte, SuiteCRM puede crear automáticamente un Contacto relacionado. Consulte link:../leads[Clientes Potenciales] para saber cómo funciona la conversión.
+* *Crear contactos a partir de clientes potenciales*: cuando un Cliente Potencial se cualifica y se convierte, SuiteCRM puede crear automáticamente un Contacto relacionado. Consulte link:/user/sales-relationships/leads/[Clientes Potenciales] para saber cómo funciona la conversión.
 
 == Próximos Pasos
 

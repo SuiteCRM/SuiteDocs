@@ -64,9 +64,9 @@ So this can pose a problem if you happen to have multiple images with the same n
 The ideal way to handle this is in the smarty template file by adding params to specify what you need.
 
 [source, html]
-....
+----
 <img src="{sugar_getimagepath  directory='sidebar/modules' file_name=$item.module_name file_extension="svg" file='sidebar/modules/'.$item.module_name.".svg"}"/>
-....
+----
 
 
 * sugar_getimagepath - is the function responsible for giving the correct url to the image. 

@@ -22,7 +22,7 @@ Estos correos relacionados se pueden ver después en el subpanel de historial de
 
 {{% notice note %}}
 Necesitará configurar y tener acceso a al menos una cuenta de correo *personal* o de *grupo* para poder utilizar
-el módulo *Emails*. Consulte link:../../getting-started/managing-your-profile/#_personal_email_account_settings[Personal Email Settings]
+el módulo *Emails*. Consulte link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[Personal Email Settings]
 para obtener información sobre cómo configurar una cuenta de correo personal. Para obtener información sobre la configuración de las cuentas de
 correo de grupo, la gestión de rebotes y las cuentas de correo saliente del sistema, consulte
 la sección link:../../../admin/administration-panel/emails[Emails] de la Guía del Administrador.
@@ -59,7 +59,7 @@ seleccionar varios correos en la vista de lista mediante las casillas de verific
 |image:252EmailsComposebutton.png[title="Botón Compose Mail"]|*Compose Mail* |Abre la ventana de <<Redactar Correo, Compose>> para
 crear un mensaje nuevo.
 |image:254EmailsSettingsButton.png[title="Botón Mail Settings"]|*Settings*|Acceso directo a su perfil de usuario donde
-puede editar la link:../../getting-started/managing-your-profile/#_personal_email_account_settings[configuración de correo de su perfil de usuario].
+puede editar la link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[configuración de correo de su perfil de usuario].
 Añada y elimine cuentas y seleccione las carpetas que se mostrarán aquí.
 |image:255EmailsCheckForMailButton.png[title="Botón Check for Mail"]|*Check For Mail*| Para las cuentas de correo
 personales, puede comprobar si hay correo nuevo con este botón. Tenga en cuenta que, para las cuentas de correo de grupo, la comprobación
@@ -85,7 +85,7 @@ Los correos también se pueden redactar directamente desde un registro de *Suite
 Esto abrirá la vista de redacción en el módulo *Emails*. Para los correos nuevos abiertos de esta forma, el campo *To:*
 se rellenará automáticamente y el correo quedará relacionado con el registro correspondiente.
 
-{{% notice note %}}Si ha optado por utilizar un cliente de correo externo en la link:../../getting-started/managing-your-profile/#_personal_email_account_settings[configuración de correo de su perfil de usuario], al hacer clic en una
+{{% notice note %}}Si ha optado por utilizar un cliente de correo externo en la link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[configuración de correo de su perfil de usuario], al hacer clic en una
 dirección de correo de un registro en *SuiteCRM* se abrirá un correo nuevo en el editor que haya elegido.
 {{% /notice %}}
 
@@ -111,7 +111,7 @@ También puede rellenar los campos *To:*, *Cc:* y *Bcc:* manualmente o mediante 
 al hacer clic dentro de los campos.
 
 * *Body:* si ha configurado una firma para esta cuenta en la
-link:../../getting-started/managing-your-profile/#_user_profile_email_settings[configuración de correo de su perfil de usuario], esta aparecerá
+link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[configuración de correo de su perfil de usuario], esta aparecerá
 automáticamente en el cuerpo del correo.
 
 La barra de herramientas situada en la parte inferior de la vista *Compose* tiene los siguientes botones:
@@ -162,7 +162,7 @@ Tenga en cuenta que, si importa correo de forma masiva, todos los correos se rel
 con distintos registros, deberá importarlos de forma individual.
 
 *SuiteCRM* también se puede configurar para importar automáticamente los correos de las cuentas de correo de grupo.
-Consulte link:../../../admin/administration-panel/emails/email/#_group_email_account[Group Email Accounts] para más información.
+Consulte link:../../../admin/administration-panel/emails/email/#_cuenta_de_correo_de_grupo[Group Email Accounts] para más información.
 
 === Importación Automática de Correo
 

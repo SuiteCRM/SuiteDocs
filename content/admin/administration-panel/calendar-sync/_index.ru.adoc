@@ -104,7 +104,7 @@ link:./admin-setup[Руководства администратора] для:
 === Подключение календаря пользователем
 
 Начните с
-link:../../../user/calendar-sync/user-guide[Руководства пользователя] для:
+link:../../../user/integrations/calendar-sync/[Руководства пользователя] для:
 
 * Создания и настройки учётной записи календаря
 * Аутентификации с помощью Google Calendar или CalDAV
@@ -116,7 +116,7 @@ link:../../../user/calendar-sync/user-guide[Руководства пользо�
 === Настройка CalDAV
 
 Ознакомьтесь с 
-link:../../../user/calendar-sync/caldav-guide[Руководства для провайдеров CalDAV] для:
+link:../../../user/integrations/caldav-guide/[Руководства для провайдеров CalDAV] для:
 
 * Поиска URL-адреса CalDAV для различных провайдеров
 * Аутентификации в CalDAV

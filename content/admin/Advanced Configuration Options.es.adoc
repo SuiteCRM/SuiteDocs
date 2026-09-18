@@ -145,12 +145,12 @@ Para modificar el subpanel *history*, haga lo siguiente:
 $layout_defs['Leads']['subpanel_setup']['history']['flat'] = 1;
 
 [start=3]
- . Ejecute link:../administration-panel/system/#_repair[Reparación y Reconstrucción Rápida].
+ . Ejecute link:../administration-panel/system/#_reparación[Reparación y Reconstrucción Rápida].
 
 == Edición rápida de listas desplegables personalizadas
 
 Si necesita editar las listas desplegables creadas en el
-link:../administration-panel/developer-tools/#_dropdown_editor[Editor de Listas Desplegables],
+link:../administration-panel/developer-tools/#_editor_de_listas_desplegables[Editor de Listas Desplegables],
 esto se puede hacer tanto con la ayuda del editor
 como mediante la edición directa del archivo php, lo cual puede ser útil al editar grandes cantidades de datos.
 Por ejemplo, se muestra un archivo que contiene valores en inglés; deberá editar el archivo `/custom/include/language/en_us.lang.php`

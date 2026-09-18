@@ -95,7 +95,7 @@ Haga clic en **CREAR**
 
 La plantilla es el mensaje que se enviará a su lista de público objetivo. Puede seleccionar o editar una plantilla de email existente, o crear una nueva aquí. Consulte la sección Plantillas de Email de la guía de usuario para más información.
 
-{{% notice tip %}}El editor de plantillas utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_user_profile_email_settings[configuración de email del perfil de usuario]. La configuración por defecto (Mozaik) es la que se muestra en las siguientes capturas de pantalla. {{% /notice %}}
+{{% notice tip %}}El editor de plantillas utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[configuración de email del perfil de usuario]. La configuración por defecto (Mozaik) es la que se muestra en las siguientes capturas de pantalla. {{% /notice %}}
 
 image:81Campaign_template.png[title="Plantilla del Asistente de Campañas"]
 
@@ -231,12 +231,12 @@ image:CampaignsROIChart.png[title="Detalles del Retorno de la Inversión"]
 == Formulario Web a Persona
 
 La función *Formulario de Creación de Persona* le permite crear un formulario basado en web que creará un
-registro de link:../targets[Cliente Potencial], link:../contacts[Contacto] o link:../targets[Público Objetivo] en *SuiteCRM*
+registro de link:../targets[Cliente Potencial], link:../../sales-relationships/contacts/[Contacto] o link:../targets[Público Objetivo] en *SuiteCRM*
 a partir de la información enviada en el formulario web. Estos registros pueden asignarse a un usuario concreto
 y quedan vinculados a una campaña para poder hacer seguimiento de las respuestas.
 
 {{%notice note%}}Deberá asociar su Formulario Web a Persona a una campaña existente.
-Consulte la sección <<Crear una Campaña>> para instrucciones sobre cómo hacerlo. Una campaña de tipo no basada en email es adecuada para esto.{{%/notice%}}
+Consulte la sección <<_crear_una_campaña,Crear una Campaña>> para instrucciones sobre cómo hacerlo. Una campaña de tipo no basada en email es adecuada para esto.{{%/notice%}}
 
 Haga clic en *Crear Formulario de Persona* en la barra lateral, o seleccione *Crear Formulario de Persona* en el menú desplegable de *Campañas* para abrir el asistente.
 

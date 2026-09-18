@@ -329,6 +329,6 @@ If you want to get involved and submit a fix, fork the repo and when ready pleas
 
 Please https://suitecrm.com/releases/[visit the official website] to find the appropriate upgrade package.
 
-To report any security issues please follow our link:../../../community/security-policy[Security Policy] and send them directly to us via email security@suitecrm.com
+To report any security issues please follow our link:../../../../community/security-policy[Security Policy] and send them directly to us via email security@suitecrm.com
 
 '''

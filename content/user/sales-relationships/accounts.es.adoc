@@ -62,8 +62,8 @@ SuiteCRM incluye una función de Mapas integrada. Se puede mostrar un panel de m
 
 * *Construir jerarquías de cuentas*: utilice el campo Miembro De para anidar cuentas bajo una principal. Esto resulta útil para estructuras de grupo, franquicias o cualquier organización con filiales — el subpanel Organizaciones Miembro del registro principal ofrece una vista de toda la familia corporativa.
 * *Imprimir una cuenta como PDF*: desde la Vista de Detalle de la Cuenta, abra el menú de acciones y seleccione *Imprimir como PDF* para generar un PDF utilizando uno de los formatos PDF de su organización. Consulte link:../pdf-templates[Formatos PDF] para saber cómo se configuran.
-* *Añadir cuentas a una lista de público objetivo*: desde la Vista de Lista de Cuentas, seleccione los registros que desee y utilice la acción masiva para añadirlos a una lista de público objetivo para su uso en una campaña de marketing. Consulte link:../target-lists[Listas de Público Objetivo] para más información.
-* *Crear cuentas a partir de clientes potenciales*: cuando un Cliente Potencial se cualifica y se convierte, SuiteCRM puede crear automáticamente una Cuenta relacionada. Consulte link:../leads[Clientes Potenciales] para saber cómo funciona la conversión.
+* *Añadir cuentas a una lista de público objetivo*: desde la Vista de Lista de Cuentas, seleccione los registros que desee y utilice la acción masiva para añadirlos a una lista de público objetivo para su uso en una campaña de marketing. Consulte link:../../marketing-outreach/target-lists/[Listas de Público Objetivo] para más información.
+* *Crear cuentas a partir de clientes potenciales*: cuando un Cliente Potencial se cualifica y se convierte, SuiteCRM puede crear automáticamente una Cuenta relacionada. Consulte link:/user/sales-relationships/leads/[Clientes Potenciales] para saber cómo funciona la conversión.
 
 == Próximos Pasos
 

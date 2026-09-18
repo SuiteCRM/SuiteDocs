@@ -1,6 +1,12 @@
 <h2>{{ T "ExtendDevelop" }}</h2>
 <ul>
-   <li>{{ T "Dev-guide" }}: <a href="developer">{{ T "Suite7" }}</a> {{ "/" }} <a href="8.x/developer">{{ T "Suite8" }}</a></li>
-   <li>{{ T "Customise-with" }} <a href="admin/administration-panel/studio">Studio</a> {{ T "and" }} <a href="admin/administration-panel/developer-tools/#_module_builder">{{ T "ModuleBuilder" }}</a></li>
+   {{ $devHref := "developer" }}
+   {{ $dev8Href := "8.x/developer" }}
+   {{ if eq .Lang "es" }}
+      {{ $devHref = "/developer" }}
+      {{ $dev8Href = "/8.x/developer" }}
+   {{ end }}
+   <li>{{ T "Dev-guide" }}: <a href="{{ $devHref }}">{{ T "Suite7" }}</a> {{ "/" }} <a href="{{ $dev8Href }}">{{ T "Suite8" }}</a></li>
+   <li>{{ T "Customise-with" }} <a href="admin/administration-panel/studio">Studio</a> {{ T "and" }} <a href="admin/administration-panel/developer-tools/">{{ T "ModuleBuilder" }}</a></li>
    <li>{{ T "Contribute" }} <a href="community/contributing-code">{{ T "Code" }}</a> {{ T "or" }} <a href="community/contributing-to-docs/simple-edit">{{ T "Docs" }}</a></li>
 </ul>

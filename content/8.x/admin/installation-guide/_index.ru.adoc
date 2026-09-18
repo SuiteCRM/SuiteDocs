@@ -21,7 +21,7 @@ link:https://suitecrm.com[SuiteCRM] - это отмеченное награда
 Описание установки SuiteCRM 7+ находится
 link:../../../admin/installation-guide/downloading-installing[здесь]. +
 Описание обновления SuiteCRM 7+ находится 
-and link:../../../admin/installation-guide/upgrading[здесь].
+and link:../../../admin/upgrading/[здесь].
 {{% /notice %}}
 
 [discrete]

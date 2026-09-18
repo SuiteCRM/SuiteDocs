@@ -6,7 +6,7 @@ weight: 22
 :imagesdir: /images/en/8.x/admin/install-guide
 
 {{% notice info %}}
-La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7, haz clic link:../../../../developer/introduction[aquí].
+La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7, haz clic link:/developer/getting-started/introduction/[aquí].
 {{% /notice %}}
 
 == 1. Introducción

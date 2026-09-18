@@ -341,7 +341,7 @@ Cuando los eventos no se sincronizan entre sistemas, siga estos pasos de diagnó
 * Navegue hasta *Calendar Sync Settings* en Administration
 * Verifique que los ajustes de *Past Days* y *Future Days* incluyen la fecha del evento
 * Los eventos fuera de la ventana de sincronización se ignoran intencionadamente
-* Ajuste los ajustes de la ventana de sincronización si es necesario; consulte link:/admin/administration-panel/calendar-sync/admin-setup#_sync_window_settings[Ajustes de la ventana de sincronización]
+* Ajuste los ajustes de la ventana de sincronización si es necesario; consulte link:../admin-setup/#_límites_de_sincronización[Ajustes de la ventana de sincronización]
 
 **4. Revisar los registros**
 

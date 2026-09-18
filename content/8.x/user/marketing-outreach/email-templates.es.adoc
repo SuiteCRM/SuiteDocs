@@ -14,7 +14,7 @@ Las plantillas de email se utilizan para enviar respuestas y notificaciones esta
 Las plantillas de email pueden verse y crearse desde el módulo *Plantillas de Email*. Navegue hasta él utilizando la barra de navegación superior y, a continuación, utilice el menú del módulo para crear una plantilla nueva, o la Vista de Lista para consultar las ya existentes. Las plantillas también pueden crearse directamente desde los módulos de Flujos de Trabajo y Campañas.
 
 {{% notice tip %}}
-El editor utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_personal_email_account_settings[configuración de email de su perfil de usuario], donde puede elegir entre HTML Directo y TinyMCE.
+El editor utilizado para crear y editar plantillas de email puede seleccionarse en la link:../../getting-started/managing-your-profile/#_configuración_de_la_cuenta_de_correo_personal[configuración de email de su perfil de usuario], donde puede elegir entre HTML Directo y TinyMCE.
 {{% /notice %}}
 
 Existen varias plantillas *de Sistema* predeterminadas que se crean durante la instalación. Se utilizan para enviar notificaciones del sistema, como nuevas contraseñas o actualizaciones de casos. Estas pueden verse y editarse aquí junto con las plantillas creadas por los usuarios. Las plantillas creadas aquí también pueden utilizarse en Flujos de Trabajo y en link:../campaigns-overview[Campañas], además de para las notificaciones del sistema.
@@ -35,7 +35,7 @@ Utilice la barra de herramientas del editor para dar formato al cuerpo de la pla
 
 Para añadir una variable, seleccione el módulo y el nombre de campo correspondientes en las listas desplegables y, a continuación, haga clic en *Insertar* para añadir la variable en la posición del cursor. Las variables pueden añadirse tanto en la línea de asunto como en el cuerpo de la plantilla de email.
 
-Para más información sobre cómo insertar y procesar variables, consulte link:../../daily-activities/emails/email-compose/#_variable_injection[Inserción de Variables].
+Para más información sobre cómo insertar y procesar variables, consulte link:../../daily-activities/emails/email-compose/#_inserción_de_variables[Inserción de Variables].
 
 === Adjuntos
 

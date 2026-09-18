@@ -1,5 +1,5 @@
 ---
-title: "Setting Up a Front-End Extension Module 8.8+"
+title: "Setting Up a Front-End Extension Module"
 weight: 10
 aliases:
   - /8.x/developer/extensions/frontend/88x-fe-extensions-setup/

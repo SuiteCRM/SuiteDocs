@@ -68,7 +68,7 @@ image:199Enable_desktop_notifications.png[title="Habilitar Notificaciones de Esc
 Las notificaciones de escritorio deben habilitarse por separado en cada navegador y equipo que utilice. Cuando el navegador se lo solicite, elija permitir las notificaciones para su sitio de SuiteCRM.
 {{% /notice %}}
 
-Una vez habilitadas, las notificaciones de alertas no vistas o no reconocidas se acumulan y se muestran como un contador en la barra de navegación. Consulte link:../../core-concepts/navigation/#_alerts[Alertas] para obtener más información sobre la gestión de estas notificaciones.
+Una vez habilitadas, las notificaciones de alertas no vistas o no reconocidas se acumulan y se muestran como un contador en la barra de navegación. Consulte link:../../core-concepts/navigation/#_alertas[Alertas] para obtener más información sobre la gestión de estas notificaciones.
 
 == Opciones de Diseño
 

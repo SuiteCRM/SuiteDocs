@@ -27,7 +27,7 @@ Algunas versiones requieren una acción manual antes o después de actualizar. C
 |8.7.0
 |Cambio de configuración
 |Si existe una configuración SAML existente, deberá actualizarse antes de la actualización.
-|link:../releases/8.7/[Notas de la versión 8.7]
+|link:/8.x/admin/releases/8.7/[Notas de la versión 8.7]
 |===
 
 == Rutas de actualización

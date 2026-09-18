@@ -50,7 +50,7 @@ Los correos de las cuentas personales no se almacenan en *SuiteCRM* a menos que 
 Las cuentas personales pueden ser configuradas por el propio usuario desde su perfil. Los administradores pueden
 configurar cuentas personales para otros usuarios.
 
-Consulte link:../../../../user/introduction/managing-user-accounts[Gestión de Cuentas de Usuario] para obtener
+Consulte link:../../../../user/getting-started/managing-your-profile/[Gestión de Cuentas de Usuario] para obtener
 instrucciones sobre cómo configurar una cuenta personal.
 
 *Cuentas de Grupo*
@@ -365,7 +365,7 @@ image:EmailCampaignSettings.png[Configuración de Campañas]
 Los correos de campaña programados se ponen en cola aquí hasta que se ejecuta el trabajo programado que los envía.
 De forma predeterminada, este es el trabajo programado *Ejecutar Campañas de Correo Masivo Nocturnas*.
 
-Consulte la sección link:../../system/#_scheduler[Programador] para obtener más información sobre los trabajos
+Consulte la sección link:../../system/#_planificador_scheduler[Programador] para obtener más información sobre los trabajos
 programados.
 
 Haga clic en btn:[ENVIAR CORREOS DE CAMPAÑA EN COLA] para enviarlos de inmediato sin esperar a que lo haga el

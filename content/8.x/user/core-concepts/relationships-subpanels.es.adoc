@@ -41,7 +41,7 @@ Cabe destacar que los campos de relación y los subpaneles son dos caras de la m
 
 == Filtrado de Subpaneles
 
-Algunos subpaneles incluyen un botón *Filtro* que le permite buscar y filtrar registros dentro de ese subpanel concreto sin afectar al resto de la página. Si un subpanel de su instancia no tiene un botón de filtro y necesita uno, hable con su administrador del sistema o desarrollador — consulte link:../../../developer/extensions/backend/subpanel-filtering/[Filtrado de Subpaneles] para más información sobre la configuración.
+Algunos subpaneles incluyen un botón *Filtro* que le permite buscar y filtrar registros dentro de ese subpanel concreto sin afectar al resto de la página. Si un subpanel de su instancia no tiene un botón de filtro y necesita uno, hable con su administrador del sistema o desarrollador — consulte link:/8.x/developer/extensions/backend/subpanel-filtering/[Filtrado de Subpaneles] para más información sobre la configuración.
 
 == Campos de Relación
 

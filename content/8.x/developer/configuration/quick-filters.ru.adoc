@@ -108,7 +108,7 @@ quick_filters_breakdown_screen_sizes::
 
 {{% notice note %}}
 После изменения параметров необходимо выполнить 
-link:../../../../../admin/administration-panel/system/#_восстановление[Быстрое восстановление^].
+link:../../../../admin/administration-panel/system/#_восстановление[Быстрое восстановление^].
 {{% /notice %}}
 
 === Изменение или удаление условий фильтрации 

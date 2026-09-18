@@ -70,7 +70,7 @@ link:before-you-upgrade[Подготовка к обновлению]
 
 * В версии 8.3.1 появилась ошибка, которая привела к сбою процесса обновления, но эта ошибка была исправлена в версии 8.4.
 Более подробно проблема описана в разделе
-link:troubleshooting/known-issues[Известные проблемы].
+link:/8.x/admin/upgrading/troubleshooting/known-issues/[Известные проблемы].
 
 === Содержание
 {{% children depth="3" showhidden="false" %}}

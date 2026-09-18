@@ -1,0 +1,7 @@
+---
+title: "Основные концепции"
+weight: 20
+---
+
+=== Содержание
+{{% children depth="2" showhidden="false" %}}

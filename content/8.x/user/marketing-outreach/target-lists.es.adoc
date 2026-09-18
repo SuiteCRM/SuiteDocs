@@ -36,6 +36,6 @@ Una lista de público objetivo controla la inclusión o exclusión de sus miembr
 
 Los miembros pueden añadirse desde la Vista Detallada de la Lista de Público Objetivo mediante los subpaneles de Contactos, Clientes Potenciales, Público Objetivo, Usuarios y Cuentas. Abra el subpanel correspondiente y utilice *Crear* o *Vincular / Desvincular* para añadir registros existentes o nuevos. Para más información sobre cómo trabajar con subpaneles, consulte link:../../core-concepts/relationships-subpanels[Relaciones y Subpaneles].
 
-También puede añadir miembros de forma masiva importando un archivo y seleccionando la lista de público objetivo durante el paso final del Asistente de Importación. Consulte link:../../core-concepts/record-management/#_importing_records[Importar Registros] para conocer el procedimiento general de importación.
+También puede añadir miembros de forma masiva importando un archivo y seleccionando la lista de público objetivo durante el paso final del Asistente de Importación. Consulte link:../../core-concepts/record-management/#_importar_registros[Importar Registros] para conocer el procedimiento general de importación.
 
 Para conocer las operaciones estándar de registros, incluyendo búsqueda, edición y detección de duplicados, consulte link:../../core-concepts/record-management[Gestión de Registros].

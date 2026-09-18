@@ -131,8 +131,8 @@ Se creará un registro de Nota individual para cada registro seleccionado con el
 En el módulo puede realizar las siguientes acciones: ::
 
 * Buscar Formatos: utilice link:../../core-concepts/searching[Filtros o filtros avanzados] en la vista de lista del módulo.
-* link:../../core-concepts/record-management/#_exporting_records[Exportar] formatos; para ello, seleccione los registros necesarios en la lista.
-* Para editar o eliminar información sobre varios formatos a la vez, utilice link:../../core-concepts/record-management/#_mass_updating_records[Actualización masiva].
+* link:../../core-concepts/record-management/#_exportar_registros[Exportar] formatos; para ello, seleccione los registros necesarios en la lista.
+* Para editar o eliminar información sobre varios formatos a la vez, utilice link:../../core-concepts/record-management/#_actualización_masiva_de_registros[Actualización masiva].
 * Para ver información detallada sobre el formato, haga clic en el nombre del formato en la vista de lista.
 * Para editar datos, haga clic en el botón `Edit`, o directamente en la vista de lista, haga clic en el botón situado a la izquierda del registro que se va a editar. También puede realizar una Edición Rápida.
 * Para duplicar un formato, en el menú de acciones seleccione el botón `Duplicate`. La duplicación es una forma cómoda de crear rápidamente registros similares; puede modificar la información duplicada para crear un nuevo formato.

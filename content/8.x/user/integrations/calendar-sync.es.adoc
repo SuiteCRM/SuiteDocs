@@ -79,4 +79,4 @@ Si el estado de sincronización muestra un error, consulte *Sync Message* para m
 
 == Recursos para Administradores
 
-Para la configuración global de sincronización, la configuración del scheduler y la resolución de problemas avanzada, consulte el resumen del link:../../../../admin/administration-panel/administration-panel[Panel de Administración].
+Para la configuración global de sincronización, la configuración del scheduler y la resolución de problemas avanzada, consulte el resumen del link:../../../../8.x/admin/administration-panel/administration-panel/[Panel de Administración].

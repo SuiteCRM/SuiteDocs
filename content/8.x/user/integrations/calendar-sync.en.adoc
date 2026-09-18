@@ -79,5 +79,5 @@ If the sync status shows an error, check *Sync Message* for details. Contact you
 
 == Administrator Resources
 
-For global sync settings, scheduler configuration, and advanced troubleshooting, see the link:../../../../admin/administration-panel/administration-panel[Administration Panel] overview.
+For global sync settings, scheduler configuration, and advanced troubleshooting, see the link:../../../../8.x/admin/administration-panel/administration-panel/[Administration Panel] overview.
 

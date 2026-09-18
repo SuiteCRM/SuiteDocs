@@ -4,7 +4,7 @@ weight: 21
 ---
 
 {{% notice info %}}
-La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7, haz clic link:../../../../developer/introduction[aquí].
+La siguiente documentación corresponde a SuiteCRM versión 8+; para consultar la documentación de la versión 7, haz clic link:/developer/getting-started/introduction/[aquí].
 {{% /notice %}}
 
 == 1. Introducción
@@ -62,7 +62,7 @@ Instala en tu servidor los módulos de php necesarios:
 
 === Recursos útiles
 
-Consulta la sección `Recursos útiles` de link:#_2_install_required_software[Instalar el software necesario] para instrucciones sobre cómo instalar los módulos de php
+Consulta la sección `Recursos útiles` de link:#_2_instalar_el_software_necesario[Instalar el software necesario] para instrucciones sobre cómo instalar los módulos de php
 
 == 4. Configurar las reescrituras de URL
 
@@ -114,7 +114,7 @@ error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
 
 === Recursos útiles
 
-Consulta la sección `Recursos útiles` de link:#_2_install_required_software[Instalar el software necesario] para saber dónde encontrar `php.ini`
+Consulta la sección `Recursos útiles` de link:#_2_instalar_el_software_necesario[Instalar el software necesario] para saber dónde encontrar `php.ini`
 
 
 == 6. (opcional) Rendimiento

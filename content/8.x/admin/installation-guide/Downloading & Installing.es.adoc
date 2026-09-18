@@ -30,7 +30,7 @@ Asegúrate de que tu entorno cumple los requisitos del sistema indicados en link
 
 A menos que quieras configurar un entorno de desarrollo, deberías descargar los paquetes instalables preconstruidos disponibles para descarga en link:https://suitecrm.com/download/[suitecrm.com,window=_blank].
 
-Consulta la link:../../releases/[página de versiones de SuiteCRM 8]
+Consulta la link:/8.x/admin/releases/[página de versiones de SuiteCRM 8]
 
 === 2.3 Copiar los archivos a la raíz de tu servidor web
 
@@ -42,7 +42,7 @@ Después de descargar el paquete
 Para el servidor web `apache`, la raíz web suele estar en `/var/www` o `/var/www/html`
 
 {{% notice note %}}
-Ten en cuenta el `DocumentRoot` que hayas configurado en tu vhost (si usas apache). Consulta link:../webserver-setup-guide#_4_configuring_url_re_writes[Guía de configuración del servidor web - 4. Configurar las reescrituras de URL]
+Ten en cuenta el `DocumentRoot` que hayas configurado en tu vhost (si usas apache). Consulta link:../webserver-setup-guide#_4_configurar_las_reescrituras_de_url[Guía de configuración del servidor web - 4. Configurar las reescrituras de URL]
 {{% /notice %}}
 
 {{% notice note %}}

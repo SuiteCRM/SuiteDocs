@@ -32,7 +32,7 @@ image:Campaign-Edit.png[Vista de Creación de Campañas]
 |*Fecha de Fin*|Se trata de una fecha orientativa y no determina el fin del proceso de envío de la campaña.
 |*Descripción*|Descripción opcional de la Campaña.
 |*Listas de Exclusión*| Las Listas de Exclusión excluirán a determinados objetivos de su Campaña. Si no se añade una Lista de Exclusión (Por Id) en el momento de la creación, se creará / añadirá una automáticamente. Para más información
-sobre las Listas de Exclusión, consulte link:../../../../user/marketing-outreach/target-lists/#_target_list_types[aquí.]
+sobre las Listas de Exclusión, consulte link:../../../../user/marketing-outreach/target-lists/#_tipos_de_lista_de_público_objetivo[aquí.]
 |*Listas de Público Objetivo*| Listas de posibles Objetivos a los que se enviará su campaña.
 |===
 
@@ -90,7 +90,7 @@ Esta tabla tiene cuatro acciones:
 [cols="20,80"]
 |===
 |*Nuevo Email de Marketing*| Esta acción creará un Registro de Email de Marketing de tipo Marketing; este registro requiere un enlace
-de baja en el cuerpo del Email. Para añadir un enlace de baja, consulte link:#_opt_out_tracker[Rastreador de Rehúse.]
+de baja en el cuerpo del Email. Para añadir un enlace de baja, consulte link:#_rastreador_de_rehúse[Rastreador de Rehúse.]
 |*Nuevo Email Transaccional*|Esta acción creará un Registro de Email de Marketing de tipo Transaccional; este registro *no* debe tener
 un enlace de baja en el cuerpo del Email.
 |*Nuevo Email de Encuesta*|Esta acción creará un Registro de Email de Marketing de tipo Encuesta; este registro también debe tener un enlace de baja.
@@ -169,7 +169,7 @@ Esto sirve para habilitar los rastreadores en este Registro de Email de Marketin
 
 Tenga en cuenta que, si los rastreadores están deshabilitados globalmente, *no* podrá habilitarlos en un registro de Email de Marketing.
 
-Consulte más información sobre los rastreadores link:#_tracker_urls[aquí].
+Consulte más información sobre los rastreadores link:#_urls_de_rastreo[aquí].
 
 *Gestión de Duplicados*
 
@@ -203,7 +203,7 @@ Además de los botones estándar del editor, también encontrará:
 |*image:Variable-Injector-Icon.png[Código, width=75]*| Esto le permitirá insertar variables marcador de posición en el email.
 |===
 
-Para más información sobre el Insertador de Variables, consulte link:../../daily-activities/emails/email-compose#_variable_injection[aquí.]
+Para más información sobre el Insertador de Variables, consulte link:../../daily-activities/emails/email-compose#_inserción_de_variables[aquí.]
 
 == URLs de Rastreo
 
@@ -331,13 +331,13 @@ Un registro de Rebote puede existir y no estar configurado correctamente; tenga 
 
 ==== Configuración
 
-Esto muestra parte de la Configuración presente en "Configuración de Email de Campañas". Para más información sobre estos ajustes, consulte link:#_campaign_settings[Configuración de Campañas.]
+Esto muestra parte de la Configuración presente en "Configuración de Email de Campañas". Para más información sobre estos ajustes, consulte link:#_configuración_de_campañas[Configuración de Campañas.]
 
 === Gráficos del Registro de Email de Marketing
 
 Al igual que en la Campaña principal, puede hacer seguimiento de la Actividad General del Destinatario y del Estado de Envío de cada Registro de Email de Marketing.
 
-Para más información sobre los gráficos mostrados, consulte link:#_campaign_charts[Gráficos de la Campaña.]
+Para más información sobre los gráficos mostrados, consulte link:#_gráficos_de_la_campaña[Gráficos de la Campaña.]
 
 == Subpaneles del Email de Campaña
 

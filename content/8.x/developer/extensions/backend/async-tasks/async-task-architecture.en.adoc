@@ -25,6 +25,7 @@ The system is used by Manual Migration Tasks, and in the future will be used by 
 
 The Async Task system is composed of five layers:
 
+[#migration_layer_architecture]
 image:migration_layer_architecture.svg[Architecture Layers,width=70%,align=center,id="migration_layer_architecture",link="#migration_layer_architecture"]
 
 ////
@@ -178,6 +179,7 @@ The `AsyncTaskRunner` base class orchestrates task execution through three seque
 
 === 4.1 Phase 1: Queueing
 
+[#queueing_phase_flowchart]
 image:queueing_phase_flowchart.svg[Queueing phase flowchart,width=70%,align=center,id="queueing_phase_flowchart",link="#queueing_phase_flowchart"]
 
 ////
@@ -225,6 +227,7 @@ image:queueing_phase_flowchart.svg[Queueing phase flowchart,width=70%,align=cent
 
 === 4.2 Phase 2: Processing
 
+[#processing_phase_flowchart]
 image:processing_phase_flowchart.svg[Processing phase flowchart,width=70%,align=center,id="processing_phase_flowchart",link="#processing_phase_flowchart"]
 
 ////
@@ -283,6 +286,7 @@ image:processing_phase_flowchart.svg[Processing phase flowchart,width=70%,align=
 
 === 4.3 Phase 3: Finalizing (Optional)
 
+[#finalizing_phase_flowchart]
 image:finalizing_phase_flowchart.svg[Finalizing phase flowchart,width=70%,align=center,id="finalizing_phase_flowchart",link="#finalizing_phase_flowchart"]
 
 ////
@@ -322,6 +326,7 @@ The runner never processes all items in a single Messenger message. After each b
 * Allows the Messenger worker to process other messages between batches.
 * Makes the system resilient — if a worker dies mid-batch, only the current item is affected.
 
+[#async_task_run_sequence]
 image:async_task_run_sequence.svg[Async Task Run Sequence,width=70%,align=center,id="async_task_run_sequence",link="#async_task_run_sequence"]
 
 ////
@@ -434,6 +439,7 @@ This allows administrators to route heavy tasks (e.g. PDF exports) to a dedicate
 
 The Process API is the bridge between frontend action buttons and the async task system.
 
+[#frontend_process_processor_flow]
 image:frontend_process_processor_flow.svg[Process Processor flow,width=70%,align=center,id="frontend_process_processor_flow",link="#frontend_process_processor_flow"]
 
 ////

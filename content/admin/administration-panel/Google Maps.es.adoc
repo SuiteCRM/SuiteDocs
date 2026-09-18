@@ -60,7 +60,7 @@ image:SetupGeocode.png[Configuración de geocodificación automática en el Sche
 
 
 Para obtener más información sobre cómo configurar una tarea, consulte el
-link:../system/#_scheduler[Scheduler].
+link:../system/#_planificador_scheduler[Scheduler].
 
 Si es necesario geocodificar direcciones con utilidades de terceros,
 puede exportar las direcciones desde los módulos correspondientes. Al finalizar la geocodificación,

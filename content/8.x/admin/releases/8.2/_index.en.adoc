@@ -339,7 +339,7 @@ _Released 11/10/2022_
 ==== icon:star[] Documentation
 * Add 7.12.x to 8.x migration documentation - link:../../../../8.x/admin/legacy-migration/8.2.0-legacy-migration/[7.12 Migration Documentation]
 * Add step to check config and htaccess to install documentation - link:../../../../8.x/admin/installation-guide/downloading-installing[Installation Documentation]
-* Update 8.x upgrade guide with new upgrade steps - link:../../../../8.x/admin/installation-guide/upgrading[Upgrade Documentation]
+* Update 8.x upgrade guide with new upgrade steps - link:../../../../8.x/admin/upgrading/[Upgrade Documentation]
 
 ==== icon:star[] Enhancements
 
@@ -353,7 +353,7 @@ Authentication with LDAP and SAML (including SAML's user auto creation) has been
 To see how to setup and configure the authentication methods, please see the following documentation:
 
 ** link:../../../../8.x/admin/configuration/ldap-configuration/[LDAP Setup and Configuration]
-** link:../../../../8.x/admin/configuration/saml-configuration/[SAML Setup and Configuration]
+** link:../../../../8.x/admin/configuration/saml/[SAML Setup and Configuration]
 
 ==== Duplicate View
 When duplicating a record, you will now see the ‘Create’ page for that module:

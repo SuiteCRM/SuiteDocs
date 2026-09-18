@@ -10,7 +10,7 @@ Esta sección solo se aplica al actualizar a una versión 8.2.x o posterior.
 {{% /notice %}}
 
 {{% notice warning %}}
-Si su versión de SuiteCRM es inferior a 8.2.x, consulte la siguiente guía link:../general-info#_version_steps[Pasos de Versión de Actualización]
+Si su versión de SuiteCRM es inferior a 8.2.x, consulte la siguiente guía link:../../../../8.x/admin/upgrading/#_rutas_de_actualización[Pasos de Versión de Actualización]
 {{% /notice %}}
 
 == 1. Descargue el paquete de la nueva versión

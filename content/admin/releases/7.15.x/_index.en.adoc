@@ -240,13 +240,13 @@ New or updated guides are available for:
 
 * link:../../../admin/administration-panel/emails/automatic-email-importing[Automatic Email Importing]
 * Sending Email Invitation for:
-** link:../../../user/core-modules/calls#_sending_call_email_invitations[Calls]
-** link:../../../user/core-modules/meetings#_sending_meeting_email_invitations[Meetings]
+** link:../../../user/daily-activities/calls-meetings/#_sending_call_email_invitations[Calls]
+** link:../../../user/daily-activities/calls-meetings/#_sending_meeting_email_invitations[Meetings]
 * link:../../../user/integrations/calendar-sync/[Calendar Sync]
 * link:../../../user/integrations/calendar-sync/[Setting up your Calendar]
 * link:../../../user/integrations/caldav-guide/[User Calendar CalDav Setup Guide]
 * link:../../../admin/administration-panel/calendar-sync[Calendar Configuration]
-* link:../../../user/core-modules/surveys#_view_survey[Surveys]
+* link:../../../user/marketing-outreach/surveys/#_view_survey[Surveys]
 * link:../../../developer/integration-api/v8/authentication#_4_authorization_code_grant[OAuth Authorization Code Grant Type]
 
 === icon:heart[] Community

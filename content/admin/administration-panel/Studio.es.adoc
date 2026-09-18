@@ -50,7 +50,7 @@ image:StudioEditLabels.png["Studio - editar etiquetas del módulo"]
 
 Al hacer clic en btn:[CHANGE MODULE NAME] podrá cambiar la etiqueta del
 propio módulo. Consulte la sección
-link:../developer-tools/#_rename_modules[Renombrar Módulos] de la documentación de
+link:../developer-tools/#_renombrar_módulos[Renombrar Módulos] de la documentación de
 Herramientas de Desarrollador para más detalles.
 
 === Fields
@@ -90,7 +90,7 @@ que lo contenga.
 |*Audit:*|Si se selecciona esta opción, los cambios realizados en el valor del campo pueden rastrearse desde el
 Registro de Cambios del registro.
 |*Inline Edit:*|Si el campo se puede editar en línea o no, cuando esta opción está habilitada
-en los link:../system/#_user_interface[Ajustes del Sistema].
+en los link:../system/#_interfaz_de_usuario[Ajustes del Sistema].
 |*Importable:*|Seleccione una opción para permitir, no permitir o exigir
 que el campo se importe al usar el Asistente de Importación.
 |*DuplicateMerge:*|Seleccione una opción para habilitar o deshabilitar las funciones de Combinar Duplicados

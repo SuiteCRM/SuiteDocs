@@ -112,7 +112,7 @@ Alternatively, the *To:*, *Cc:* and *Bcc:* fields can be populated manually or v
 when you click inside the fields.
 
 * *Body:*  If you have configured a signature for this account in your
-link:../../getting-started/managing-your-profile/#_user_profile_email_settings[user profile email settings], this will appear
+link:../../getting-started/managing-your-profile/#_personal_email_account_settings[user profile email settings], this will appear
 automatically in the body of the email.
 
 The toolbar at the bottom of the *Compose* view has the following buttons:

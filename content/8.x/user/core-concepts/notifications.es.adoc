@@ -16,7 +16,7 @@ image:Notifications-Open.png[Panel de notificaciones abierto mostrando una lista
 Por defecto, las notificaciones se comprueban cada minuto.
 
 {{% notice note %}}
-La frecuencia de actualización y el número máximo de notificaciones mostradas pueden ser configurados por un desarrollador. Consulte link:../../../developer/configuration/notifications/[Configuración de Notificaciones].
+La frecuencia de actualización y el número máximo de notificaciones mostradas pueden ser configurados por un desarrollador. Consulte link:/8.x/developer/configuration/notifications/[Configuración de Notificaciones].
 {{% /notice %}}
 
 == Posponer y Descartar Notificaciones

@@ -4,7 +4,7 @@ weight: 30
 ---
 :experimental:   ////this is here to allow btn:[]syntax used below
 
-:imagesdir: ./../../../images/en/admin
+:imagesdir: /images/en/admin
 
 :toc:
 
@@ -57,14 +57,14 @@ Consulte la sección link:../google-sync[Credenciales de Google y Sincronizació
 [cols = "30, 70", frame = "none", grid = "none"]
 |===
 |*Developer Mode*|Desactiva la caché para que los cambios de código en los archivos se vean de inmediato.
-Consulte la link:../../../developer[Guía de Desarrollador] para más información.
+Consulte la link:/developer/[Guía de Desarrollador] para más información.
 |*vCal Updates Time Period*|Establece el número de meses de antelación para mostrar la información de disponibilidad
 de los invitados al programar llamadas y reuniones.
 |===
 
 === Ajustes del Registro (Logger)
 Especifique aquí el nombre de archivo, la extensión y el tamaño del log, así como el nivel de registro.
-Consulte el link:../../../developer/logging/[capítulo sobre logging] para más información.
+Consulte el link:/developer/optimization-security/logging/[capítulo sobre logging] para más información.
 
 Haga clic en el enlace View Log para ver el archivo de log.
 
@@ -75,13 +75,13 @@ image:ImportWizard.png[title = "Asistente de Importación"]
 El Asistente de Importación también está disponible desde la barra lateral de todos los módulos de SuiteCRM habilitados para importación.
 Seleccione el módulo en el que desea importar datos y haga clic en btn:[NEXT >] para iniciar el asistente.
 
-Consulte la sección link:../../../user/introduction/user-interface/record-management/#_importing_records[Importación de Registros]
+Consulte la sección link:../../../user/core-concepts/record-management/#_importar_registros[Importación de Registros]
 para más información sobre cómo importar registros.
 
 == Configuración Regional
 
 Establezca aquí los ajustes de configuración regional para todo el sistema, incluyendo los formatos de fecha y hora, la moneda del sistema y
-los ajustes de exportación. Se pueden añadir monedas a SuiteCRM desde el panel <<Currencies>>.
+los ajustes de exportación. Se pueden añadir monedas a SuiteCRM desde el panel <<Monedas>>.
 
 image:LocaleSettings.png[title = "Ajustes de Configuración Regional"]
 
@@ -95,12 +95,12 @@ Descargue el https://suitecrm.com/upgrade-suitecrm/[paquete de actualización] r
 link:../../compatibility-matrix/[compatibilidad de su sistema] antes de ejecutar
 el asistente.
 
-Consulte link:../../installation-guide/using-the-upgrade-wizard/[Uso del Asistente de Actualización] para instrucciones completas
+Consulte link:../../upgrading/upgrade-wizard/[Uso del Asistente de Actualización] para instrucciones completas
 sobre cómo actualizar.
 
 == Monedas
 
-Use esta sección para añadir una moneda a *SuiteCRM*. La moneda por defecto se puede establecer en la sección <<Locale>>.
+Use esta sección para añadir una moneda a *SuiteCRM*. La moneda por defecto se puede establecer en la sección <<Configuración Regional>>.
 
 Al introducir el código ISO 4217 de la moneda se autocompletarán los campos Nombre de Moneda y Símbolo de Moneda.
 
@@ -121,11 +121,11 @@ Descargue los paquetes de idioma para *SuiteCRM* https://crowdin.com/project/sui
 
 Al seleccionar Repair en el panel de Ajustes del Sistema se muestra una amplia gama de opciones de reparación
 para SuiteCRM que se ejecutarán automáticamente al hacer clic en el enlace. *SuiteCRM* puede indicarle que
-ejecute comandos de Reparación específicos, por ejemplo tras una actualización mediante el <<Upgrade Wizard>>.
+ejecute comandos de Reparación específicos, por ejemplo tras una actualización mediante el <<Asistente de Actualización>>.
 
 Quick Repair and Rebuild es el comando que se usa con más frecuencia aquí, y será necesario tras
 instalar un nuevo módulo mediante Module Loader, por ejemplo, o para mostrar cambios de código
-durante el desarrollo cuando el <<Advanced Settings, Developer Mode>> no está activado.
+durante el desarrollo cuando el <<Ajustes Avanzados, Developer Mode>> no está activado.
 
 Al ejecutar Quick Repair and Rebuild, asegúrese de desplazarse hasta el final de la página para ver cualquier
 código SQL nuevo que pueda ser necesario ejecutar para garantizar que las tablas de su base de datos estén correctamente
@@ -160,7 +160,7 @@ La funcionalidad de Búsqueda Global se usa para buscar registros mediante la ba
 navegación principal.
 Añada o elimine módulos de la Búsqueda Global aquí.
 
-Consulte la guía de interfaz de usuario sobre link:../../../user/introduction/user-interface[la búsqueda global]
+Consulte la guía de interfaz de usuario sobre link:../../../user/core-concepts/searching/[la búsqueda global]
 para más información.
 
 image:GlobalSearch.png[title = "Búsqueda Global"]
@@ -226,7 +226,7 @@ En Windows esto se configura mediante el Programador de Tareas, y en Linux e iOS
 para su sistema durante la instalación, y también se pueden encontrar en la página de Planificadores, en la lista
 de trabajos programados.
 
-Consulte link:../../../blog/scheduler-jobs/[Scheduler Jobs in SuiteCRM in Linux - the Definitive Guide]
+Consulte link:/blog/scheduler-jobs/[Scheduler Jobs in SuiteCRM in Linux - the Definitive Guide]
 para una guía detallada sobre cómo configurar y gestionar trabajos programados en Linux.
 
 === Configurar Trabajos Programados
@@ -258,7 +258,7 @@ image:SystemActivityStreams.png[title = "Configurar Flujo de Actividad"]
 |*Activate User Feed:*|Permite a los usuarios introducir mensajes en el campo de actualización de estado para difundirlos a todos los usuarios
 |===
 
-Consulte la link:../../../user/introduction/user-interface/home-page/#_activity_stream[guía de interfaz de usuario] para
+Consulte la link:../../../user/core-concepts/homepage-dashboards/#_flujo_de_actividad[guía de interfaz de usuario] para
 más información sobre cómo usar el Flujo de Actividad.
 
 == Claves OAuth
