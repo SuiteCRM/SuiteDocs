@@ -66,6 +66,12 @@ The `CustomLoader` only recognizes the following specific filenames. Any other f
 | `controllers.php` | Register custom controllers.
 | `middlewares.php` | Add custom Slim middlewares.
 | `slim.php` | Override core Slim framework settings.
+| `beanAliases.php` | Override module-to-bean alias mappings.
+| `globals.php` | Override global container definitions.
+| `validators.php` | Register or override custom field/record validators.
+| `helpers.php` | Register custom helper services.
+| `params.php` | Override request parameter definitions.
+| `factories.php` | Register or override custom factories.
 |===
 
 

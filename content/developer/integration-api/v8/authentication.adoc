@@ -84,7 +84,7 @@ Your backend must now exchange that code for an access token:
 [source,http]
 ----
 POST {{suitecrm.url}}/Api/access_token
-Content-Type: application/vnd.api+json
+Content-Type: application/json
 
 {
     "grant_type": "authorization_code",
@@ -111,6 +111,19 @@ A successful response returns a JSON object.
 
 To use the token, include it in the header of all subsequent API calls:
 `Authorization: Bearer <your_access_token>`
+
+=== Refreshing an Expired Token
+When the access token expires, use the `refresh_token` returned above to obtain a new one without repeating the full grant flow:
+
+[source,json]
+----
+{
+    "grant_type": "refresh_token",
+    "refresh_token": "YOUR_REFRESH_TOKEN",
+    "client_id": "YOUR_ID",
+    "client_secret": "YOUR_SECRET"
+}
+----
 
 == 6. Managing & Revoking Tokens
 

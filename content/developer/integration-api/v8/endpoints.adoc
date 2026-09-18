@@ -77,6 +77,18 @@ Manage links between records using the `{linkFieldName}` defined in the module V
 === Link Records (POST)
 `POST {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}/relationships/{linkFieldName}`
 
+[source,json]
+----
+{
+  "data": {
+    "type": "Contacts",
+    "id": "11a71596-83e7-624d-c792-5ab9006dd493"
+  }
+}
+----
+
+`type` is the related module name and `id` is the record to link. For example, `POST {{suitecrm.url}}/Api/V8/module/Accounts/{id}/relationships/contacts` with the payload above links the Contact to the Account using the `contacts` link field.
+
 === Unlink Records (DELETE)
 `DELETE {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}/relationships/{linkFieldName}/{relatedBeanId}`
 
@@ -103,6 +115,14 @@ Use these to discover the CRM structure programmatically.
 
 === List Module Fields (GET)
 `GET {{suitecrm.url}}/Api/V8/meta/fields/{moduleName}`
+
+=== Get Search Definitions (GET)
+`GET {{suitecrm.url}}/Api/V8/search-defs/module/{moduleName}`
+Returns the search field definitions used to build a module's list view search.
+
+=== Get List View Columns (GET)
+`GET {{suitecrm.url}}/Api/V8/listview/columns/{moduleName}`
+Returns the columns configured for a module's list view.
 
 === Get Swagger Schema (GET)
 `GET {{suitecrm.url}}/Api/V8/meta/swagger.json`

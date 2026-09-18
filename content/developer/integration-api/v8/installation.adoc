@@ -28,4 +28,8 @@ Ensure the keys are owned by the web server user (e.g., `www-data`) and have `60
 == 2. URL Rewriting
 All API requests must be routed to `Api/index.php`.
 
-* **Apache:** Ensure `mod_rewrite` is enabled and the `.htaccess` file in the `Api/` directory is present.
+* **Apache:** Ensure `mod_rewrite` is enabled. The required rewrite rules already ship in the site's **root** `.htaccess` file — there is no separate `.htaccess` in the `Api/` directory. Do not remove or bypass the root file.
+
+{{% notice warning %}}
+The root `.htaccess` also includes a rule that passes the `Authorization` header through to PHP (`env=HTTP_AUTHORIZATION`). Some server configurations strip this header before PHP sees it — if OAuth2 authentication fails with a valid token, confirm this rule is present and that your server isn't stripping the header upstream.
+{{% /notice %}}
