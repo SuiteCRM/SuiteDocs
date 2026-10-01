@@ -1,0 +1,28 @@
+---
+Title: Sürüm
+Weight: 80
+---
+
+:experimental:
+
+:imagesdir: /images/en/user
+
+= Sürüm Kontrolü
+
+Bu bölümde ürün sürümlerinizin listesini yönetebilirsiniz. Yeni bir hata (bug) oluştururken sürüm dropdown'unda sürümler listelenir.
+
+Yeni bir sürüm eklemek için:
+
+ . Yönetici panelinde *Release* bölümüne gidin.
+ . *Create* butonuna tıklayın.
+ . Açılan alt panelde gerekli bilgileri girin.
+
+image:Release.png[Sürüm kontrolü]
+
+Version:: 1. Gerekli sürüm numarasını girin.
+Status:: 2. Açılır listeden *Active* seçilirse sürüm modülde görünür.
+Order:: 3. Sürümün listede yer alacağı pozisyonu belirtin.
+
+[start=4]
+ . Kaydetmek için btn:[*Save*] butonuna tıklayın.
+ . Kaydederken yeni bir sürüm daha oluşturmak için btn:[*Save and Continue*] butonunu kullanın.

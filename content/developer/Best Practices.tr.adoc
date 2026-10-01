@@ -1,0 +1,70 @@
+---
+weight: 17
+title: "Best Practices"
+---
+
+= 17. En İyi Uygulamalar
+
+== Geliştirme örnekleri
+
+Değişiklik yaparken her zaman önce bir geliştirme veya test ortamı kullanmalısınız.
+Bu, yaptığınız değişiklikleri tamamen ve güvenli bir şekilde test etmenizi sağlar.
+
+== Sürüm kontrolü
+
+Özelleştirme geliştirirken bir tür sürüm kontrolü kullanmak akıllıca olacaktır. Sürüm
+kontrolü, kod tabanınızdaki değişiklikleri takip etmeyi ve gerektiğinde geri almayı
+kolaylaştırır. Birçok sürüm kontrol sistemi mevcuttur. SuiteCRM `http://git-scm.com/[Git]`
+kullanır ancak ben `http://mercurial.selenic.com/[Mercurial]`'i de beğeniyorum.
+
+Geliştirme örneği olarak (yukarıda bahsedildiği gibi) sürüm kontrolü genellikle
+değişiklikleri diğer sürümlere itmenize veya sürümleri etiketlemenize izin verir.
+Bu, değişiklikleri canlı veya test ortamlarına güvenli bir şekilde göndermek için bir
+yol sağlar. Kritik olarak, bir sürümle ilgili büyük sorunlar ortaya çıkarsa, bunu kolayca
+geri alabilirsiniz.
+
+== Yedekleme
+
+SuiteCRM özelleştirilebilir olacak şekilde geliştirilmiştir. Ancak hatalar, bug'lar ve
+diğer hoş olmayan durumlar (Murphy yasasına göre) olabilir. Herhangi bir değişiklik
+yapmadan önce dosyaların ve veritabanının yedeğini aldığınızdan emin olmalısınız.
+
+Dosyaları yedeklemek için SuiteCRM dizininin bir zip'ini oluşturarak güvenli bir yere
+kopyalayabilirsiniz. Linux sistemlerde aşağıdaki gibi yapılabilir:
+
+.Example 17.1: Dosya yedeği
+[source,php]
+tar -czvf suitecrmfilebackup.tar.gz /path/to/suitecrm
+
+
+SuiteCRM veritabanını yedeklemek, kullandığınız veritabanına bağlı olarak değişir.
+Ancak MySQL yedekleri Linux'ta `mysqldump` komutu ile şöyle yapılabilir:
+
+.Example 17.2: MySQL Veritabanı yedeği
+[source,php]
+mysqldump suitecrmdatabase -u databaseuser -p | gzip -c | cat > suitecrm.sql.gz
+
+
+== Yükseltmeye karşı güvenli olun
+
+Özelleştirmeyi `custom` klasöründe yapmaya çalışın. Bu sayede bir hata yaparsanız
+özelleştirmeyi kaldırmak daha kolay olur.
+
+`custom` kullanmanın en büyük avantajı, SuiteCRM'i yükselttiğinizde değişikliklerinizin
+üstüne yazılmamasıdır. Daha fazla bilgi için link:../extension-framework/[Extensions]
+bölümüne bakın.
+
+== Uygun log seviyelerini kullanın
+
+Doğru log seviyeleri (bakınız link:../logging/[Logging]) sorunları takip etmeyi kolaylaştırır.
+Önemli mesajları `debug` olarak loglamamalısınız; bu onları bulmayı zorlaştırır.
+
+== Uzun süren logic hook'lar
+
+Uzun süre çalışan logic hook'ları iş kuyruğuna koyun (bakınız link:../logic-hooks/[Logic Hooks]
+ve link:../scheduled-tasks/[Scheduled Tasks]).
+
+== SQL'i en aza indirin
+
+Mümkünse veriye erişmek için SuiteCRM'in sunduğu yöntemleri kullanın. Bu, bean'leri ve
+`BeanFactory`'yi kullanmayı içerir.

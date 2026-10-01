@@ -1,0 +1,40 @@
+---
+Title: Geliştirici Araçları
+weight: 50
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+== Studio
+
+Studio araçları, modüllerde gösterilen bilgileri ve bunların nasıl görüntülendiğini özelleştirmenizi sağlar.
+
+Detaylı rehber için link:../studio[Studio guide] bölümüne bakın.
+
+== Modül Adlarını Yeniden Adlandırma
+
+Bu paneli kullanarak bir SuiteCRM modülünün adını yeniden adlandırabilirsiniz (ör. Accounts -> Businesses).
+
+image:RenameModules.png["Modülleri yeniden adlandırma"]
+
+İlgili modülü seçin, yeni tekil ve çoğul etiketleri girin ve btn:[SAVE] butonuna tıklayın.
+
+== Module Builder
+
+Module Builder ile özel modüller oluşturabilirsiniz. Süreç genel hatlarıyla:
+
+. Paket oluşturun.
+. SuiteCRM'in sunduğu bir şablonu kullanarak modül oluşturun (Basic, Company, File, Issue, Person, Sale vb.).
+
+[cols = "20, 80", frame = "none", grid = "none"]
+|===
+| *Basic* | Basit alanlar sağlar (ID, Date Entered, Created By).
+|===
+
+== Paketi dağıtma
+
+Paketi dağıtmak için çeşitli seçenekler mevcuttur; detaylar orijinal belgede anlatılmaktadır.

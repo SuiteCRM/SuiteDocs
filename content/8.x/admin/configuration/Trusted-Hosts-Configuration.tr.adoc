@@ -1,0 +1,33 @@
+---
+title: "Güvenilir Hostlar yapılandırması"
+weight: 50
+---
+
+:imagesdir: /images/en/user
+
+== Giriş
+
+8.4.2 sürümünden itibaren, isteklerin Host başlığının (host header) geçerli olup olmadığını kontrol eden yeni bir güvenlik denetimi vardır.
+Bu denetim her istek başında backend tarafında çalıştırılır.
+
+=== Yapılandırma
+Bu denetim `public/legacy/config.php` veya `public/legacy/config_override.php` içinde tanımlanabilen `trusted_hosts` girişini kullanır; burada güvenilir hostlar için regex dizileri tanımlayabilirsiniz, örnek:
+
+[source,php]
+----
+<?php
+...
+$sugar_config = array (
+...
+
+$sugar_config['trusted_hosts'] = ['^dev\.local$', '^localhost$'];
+
+...
+
+----
+
+=== Varsayılan / Yedek (Fallback)
+Eğer `public/legacy/config.php` veya `public/legacy/config_override.php` içinde `trusted_hosts` girişi tanımlanmamışsa, sistem şunları yapar:
+
+* `site_url` yapılandırmasını ayrıştırır ve bir giriş olarak ekler
+* `localhost` için bir giriş ekler

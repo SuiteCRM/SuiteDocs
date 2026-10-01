@@ -1,0 +1,23 @@
+---
+Title: Katkıda Bulunan Sözleşmesi
+---
+
+== Katkıda Bulunan Sözleşmesini Nerede Bulurum?
+
+Katkıda bulunan sözleşmesini https://cla.suitecrm.com/salesagility/SuiteCRM[buradan] bulabilirsiniz.
+
+== Katkıda Bulunan Sözleşmesi Nedir?
+
+Katkıda bulunan sözleşmesi, siz (geliştirici) ile biz (SalesAgility) arasındaki, SuiteCRM projesine yapılan katkılar için lisans anlaşmasını özetleyen bir belgedir.
+
+== Neden imzalamalıyım?
+
+Projecti korumak ve uzun vadede açık kaynak olarak sürebilir kılmak için gereklidir:
+
+* Katkı Sözleşmesi projeyi korur ve katkıyı yapan kişiye bazı yükümlülükler getirir.
+* Bu, katkıya ilişkin hukuki sorumluluğun büyük ölçüde katkıda bulunan üzerinde olmasını sağlar.
+* Katkıda Bulunan Sözleşmesi sadece bir kez imzalanır; tüm PR'lar için tekrar imzalamanıza gerek yoktur.
+
+== Sonraki Adımlar
+
+PR'niz kabul edilip projeye eklendiğinde e-posta ile bilgilendirileceksiniz.

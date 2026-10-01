@@ -1,0 +1,107 @@
+---
+title: Getting Available Resources
+weight: 40
+---
+
+:imagesdir: /images/en/developer
+
+== Swagger Dokümantasyonu
+Hangi kaynakların ve kimlik doğrulama yöntemlerinin kullanılabilir olduğunu görmek için swagger dokümantasyonunu iki yoldan alabilirsiniz.
+
+Sunucuda dokümantasyon şu konumdadır:
+
+[source]
+{{suitecrm.url}}/Api/docs/swagger/swagger.json
+
+Ayrıca dokümantasyonu bir API çağrısıyla da alabilirsiniz:
+
+[source]
+GET {{suitecrm.url}}/Api/V8/meta/swagger.json
+
+Swagger dokümantasyonu, varsayılan API'nin neler yapabildiği ve bir API çağrısının nasıl yapılandırılacağı hakkında bilgi içeren bir JSON dosyasıdır.
+
+Aşağıda, JSON içindeki yollar (paths) bölümünden bir örnek gösterilmiştir.
+[source]
+  "paths": {
+    "/module/{moduleName}/{id}": {
+      "get": {
+        "tags": [
+          "Module"
+        ],
+        "description": "Belirli bir ID ile bir bean döndürür",
+        "parameters": [
+          {
+            "name": "moduleName",
+            "in": "path",
+            "description": "Modül adı",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Contacts"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modülün ID'si",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "b13a39f8-1c24-c5d0-ba0d-5ab123d6e899"
+          },
+          {
+            "name": "fields[Contacts]",
+            "in": "query",
+            "description": "Bean'in filtreleme alanları",
+            "schema": {
+              "type": "string"
+            },
+            "example": "name,account_type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      },
+    },
+  }
+
+Bu dosya, API isteğinin nasıl yapılandırılacağı hakkında bilmeniz gereken her şeyi sağlayacaktır. Aşağıda anahtar alanların açıklamaları verilmiştir.
+
+=== path
+İstek yolu veya URI, örn. "{{suitecrm.url}}/module/{moduleName}/{id}"
+
+=== get
+İstek türü (ör. GET/POST/PATCH)
+
+=== description
+Bu isteğin ne için olduğunu açıklar.
+
+=== parameters
+İsteğe hangi parametrelerin dahil edilebileceğini belirtir.
+
+* "name" parametrenin adıdır veya path içindeki süslü parantez içindeki değerleri temsil eder.
+* "in" parametrenin nereye koyulacağını belirtir.
+** "path" path içindeki değişkenlerden birinin yerine geçer.
+** "query" parametrenin isteğin sorgu kısmında yer alacağını belirtir.
+* "required" parametrenin zorunlu olup olmadığını belirtir.
+* "schema" parametrenin tipini/formatını açıklar.
+* "example" parametrenin kullanım örneğini sağlar.
+
+=== responses
+API yanıtında beklenen HTTP mesajlarını açıklar.
+
+=== security
+API çağrısı için gerekli güvenlik yapılandırmasını belirtir.

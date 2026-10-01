@@ -1,0 +1,46 @@
+---
+title: "How to Create a Font"
+weight: 6
+---
+
+== Gereksinimler
+
+Suite-P-Icon-Font deposunu klonlayın: https://github.com/salesagility/SuiteP-Icon-Font
+Ardından aşağıdaki adımları izleyin.
+
+[source, bash]
+....
+sudo npm install -g svgo
+sudo npm install -g icon-font-generator
+....
+
+== İkon Oluşturma Süreci
+
+Bir `build` klasörü oluşturun
+
+[source, bash]
+....
+mkdir /tmp/suitepicon/
+....
+
+Yeni temizlenmemiş ikonları build klasörüne ekleyin.
+
+Inkscape kullanın:
+
+* Maske ve clippingleri kaldırın
+* İkonları 1024x1024 boyutuna getirin
+* `svgo` ile sıkıştırın
+
+`svgo` ile svg'leri temizleyin / sıkıştırın:
+
+[source, bash]
+....
+svgo -f /tmp/suitepicon/ -o src
+....
+
+== İkon Setini Derleme
+
+[source, bash]
+....
+icon-font-generator src/*svg -o suitepicon --mono --center -p suitepicon --csspath suitepicon/suitepicon-glyphs.scss --name suitepicon
+....

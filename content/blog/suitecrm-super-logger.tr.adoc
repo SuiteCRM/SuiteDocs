@@ -1,0 +1,38 @@
+---
+title: SuiteCRM Super Logger
+date: 2018-07-23T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/suitecrm-super-logger/
+hidden: true
+---
+
+Daha önce SuiteCRM için renkli loglama ekleyen basit bir modül oluşturmuştum (SuiteCRM Super Logger). Şimdi bu modülü genişlettim ve ekstra özellikler ekledim.
+
+Şimdi adı *SuiteSuperLogger* ve yapılandırmada log formatını belirlemeye izin veriyor. Orijinal blog yazısından indirilebilir bir paket vardır.
+
+Renkli loglamayı etkinleştirmek için `config` içine şu satırı ekleyin:
+
+.Example
+[source,php]
+$sugar_config['suitesuperlogger']['colour'] = true;
+
+Log formatını değiştirmek için `config_override.php` içine örneğin şu satırı ekleyebilirsiniz:
+
+.Example
+[source,php]
+$sugar_config['suitesuperlogger']['format'] = ':date:[:pid:][:userId:][:level:][:remoteAddr:][:forwardedAddr:][:requestMethod:]:msg:';
+
+Kabul edilen yer tutucular (placeholders):
+
+[width="72",cols="12,60", grid="none", frame="none"]
+|===
+|*date* |Log mesajının kaydedildiği tarih
+|*pid* |İşlem (process) id
+|*userId* |O anki giriş yapmış kullanıcı id'si
+|*level* |Log seviyesi
+|*remoteAddr* |PHP `$_SERVER` süper globalinden bulunan uzak adres
+|*forwardedAddr* |HTTP `X FORWARDED FOR` başlığı
+|*requestMethod* |İstek metodu (GET, POST vb.)
+|*msg* |Asıl log mesajı
+|===

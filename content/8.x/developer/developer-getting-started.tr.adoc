@@ -1,0 +1,41 @@
+---
+title: "Başlarken"
+weight: 1
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-extensions-setup
+
+{{% notice info %}}
+Aşağıdaki dokümantasyon SuiteCRM Sürüm 8+ içindir; Sürüm 7 için dokümantasyon görmek isterseniz link:../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+== 1. Giriş
+
+Eklentilerinizi geliştirmeye başlamadan önce bir geliştirme ortamı kurmanız gerekir. 8.3.0 sürümünden itibaren bu kurulum için iki yol bulunmaktadır.
+
+Geliştirme paketi (dev package) kullanılmasını öneriyoruz; bu paket 8.3.0'dan beri mevcuttur.
+
+Alternatif olarak kaynak koddan doğrudan, paket kullanmadan bir ortam kurabilirsiniz.
+
+=== 1.1 (önerilen) Geliştirme paketi ile kurulum
+
+. GitHub'dan dev paketini indirin, örneğin: `SuiteCRM-8.3.0-dev.zip` — en son sürüm için link:https://github.com/salesagility/SuiteCRM-Core/releases/latest[Latest GitHub Release]
+. Admin bölümünden link:./extensions/frontend/older/8x-fe-extensions-getting-started[Frontend eklenti geliştirmeye başlama] kılavuzunu takip ederek SuiteCRM'i kurun
+. Frontend eklentisini kurmak için link:./extensions/frontend/older/8x-fe-extensions-getting-started[Getting started with frontend extension development] dokümanını izleyin
+
+
+=== 1.2 (alternatif) Kaynak kodu kullanarak kurulum
+
+Kaynak koddan kurulum yapmak isterseniz link:../installation-guide/backend-end-installation-guide[Backend-end Developer Install Guide] sayfasını takip edin.
+
+== 2. Eklentilerin nasıl çalıştığını anlayın
+
+Extension Structure (Eklenti Yapısı) sayfaları eklenti yapısı ve bunların nasıl oluşturulacağı hakkında bilgi verir: link:../extensions/extension-structure[Extension Structure].
+
+== 3. Uygulamanın nasıl yapılandırıldığını anlayın
+
+link:../architecture/[Architecture] bölümündeki sayfalar uygulamanın yapısı ve çalışma mantığı hakkında bilgi sağlar.
+
+== 4. Örnekler
+
+Belirli eklentiler geliştirme hakkında daha fazla dokümantasyon için link:../extensions/frontend/examples/[Frontend extension examples] rehberlerine bakın.

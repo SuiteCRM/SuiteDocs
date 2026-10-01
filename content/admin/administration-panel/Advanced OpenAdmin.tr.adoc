@@ -1,0 +1,43 @@
+---
+Title: Gelişmiş OpenAdmin
+weight: 70
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin
+
+:toc:
+
+== AOS Ayarları
+
+Advanced OpenSales modülleri, Teklif (Quoting), Faturalama (Invoicing) ve tekrarlayan kontrat süreçleri gibi satış sonrası işlemleri yönetmenizi sağlar.
+
+image:AdminAOSSettings.png[Advanced OpenSales Ayarları]
+
+AOS Ayarları içinde aşağıdaki seçenekleri özelleştirebilirsiniz:
+
+* *Renewal Reminder Period*  — Kontrat bitiş tarihinden kaç gün önce hatırlatma çağrısı oluşturulacağını belirtir.
+* *Initial Invoice Number*  — Başlangıç fatura numarasını belirler (ör. 20001).
+* *Initial Quote Number*  — Başlangıç teklif numarasını belirler (ör. 456).
+* *Enable Line Items Groups*  — Seçiliyse kullanıcılar satır öğelerini gruplandırabilir; seçili değilse AOS Grup fonksiyonu kullanılamaz.
+{{% notice note %}}
+Enable Line Item Groups seçeneği AOS kullanılmadan önce etkinleştirilmelidir; Quotes/Invoices oluşturulduktan sonra gruplar arasında geçiş yapmak zordur.
+{{% /notice %}}
+* *Add Tax to Line Total*  — Seçiliyse vergi satır toplamına eklenir; seçili değilse satır toplamı vergi içermez.
+
+Yapılandırmayı tamamladıktan sonra `Save` butonuna tıklayın.
+
+== AOD Ayarları
+
+Full text global aramayı burada etkinleştirebilir veya devre dışı bırakabilirsiniz. Bu arama Zend Lucene tarafından sağlanır ve belge içi arama gibi gelişmiş özellikler sunar.
+
+== AOP Ayarları
+
+Advanced OpenPortal fonksiyonunu etkinleştirebilir veya devre dışı bırakabilirsiniz; Joomla URL, case dağıtım yöntemi ve portal tarafından kullanılan e-posta şablonları buradan yapılandırılır.
+
+== İş Saatleri (Business Hours)
+
+Çalışma saatlerini burada belirtin. Bu ayarlar, "Only In The Scheduler" olarak ayarlanmış iş akışlarının ne zaman çalışacağını belirler.
+
+image:AdminBusinessHours.png[Business Hours]

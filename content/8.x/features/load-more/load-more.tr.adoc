@@ -1,0 +1,112 @@
+---
+title: "Daha Fazla Yükle"
+weight: 80
+---
+
+:imagesdir: /images/en/8.x/user/features
+
+== "Daha Fazla Yükle" nedir?
+
+Etkinleştirildiğinde, "Daha Fazla Yükle" List Görünümü, Alt Panel ve Açılır Kayıt Listesi için gösterilen tabloya sayfalama seçeneklerine ihtiyaç duymadan kayıtların yüklenmesine izin verir. Bu sayede kullanıcı kayıtlar arasında sayfalar arasında ileri geri gitmek zorunda kalmadan kaydırarak göz atabilir.
+
+image:Load-More-Full.png[Load-More-Full.png]
+
+image:Load-More-Scroll.png[Load-More-Scroll.png]
+
+`load-more` düğmesine tıkladıktan sonra kayıt sayısının kullanıcı tercihleri olarak "kayıtlı" (hafızaya alınmış) olmadığını unutmayın. Bu nedenle sayfayı yenilediğinizde tablo başlangıçtaki kayıt sayısına dönecektir. Varsayılan yüklenen kayıt sayısını nasıl ayarlayacağınızı görmek için link:#_configure_the_amount_of_records_loaded[buraya] tıklayın.
+
+== "Daha Fazla Yükle" Yapılandırması
+
+=== "Daha fazla yükle" nereden ayarlanır?
+
+Admin panelindeki Sistem Ayarları sayfasında ve Kullanıcı Profilü sayfasındaki Düzen Seçenekleri sekmesinde Listview, Alt Panel ve Açılır Kayıt Listesi için sayfalama türünü belirlemenizi sağlayan yeni bir açılır liste eklendi.
+
+Hem Sistem Ayarları hem de Kullanıcı Tercihleri ekranlarında açılır menünün nasıl göründüğünü aşağıda görebilirsiniz:
+
+image:Load-More-System-Settings.png[Load-More-System-Settings.png]
+
+image:Load-More-User-Pref.png[Load-More-User-Pref.png]
+
+Kullanıcı Profili ayarı Sistem Ayarları seçeneğinin üzerine yazacaktır.
+
+Sistem varsayılanı `Pagination` (Sayfalama) olarak kalır.
+
+=== Yüklenen Kayıt Sayısını Yapılandırma
+"Daha Fazla Yükle" tıklandığında yüklenecek kayıt sayısı, Sistem Ayarları sayfasındaki aşağıdaki alanlarla tanımlanır.
+
+* Listview Items Per Page - Listview
+* Pop up Record List - Kayıt Listesi Açılır Penceresi
+* Subpanel Items Per Page - Alt Paneller
+
+image:Per-Page-Settings.png[Per-Page-Settings.png]
+
+=== Tablo maksimum yüksekliğini yapılandırma
+Tabloların maksimum yüksekliğini yapılandırabilirsiniz.
+
+* Alt Panel - metadata dosyası içindeki subpanel tanımına `maxHeight` ekleyin.
+** Aşağıdaki örnekte `public/legacy/custom/modules/Accounts/metadata/subpaneldefs.php` içinde `maxHeight` değiştirilmiştir.
+
+[source,php]
+----
+        'contacts' => array(
+            'order' => 30,
+            'module' => 'Contacts',
+            'sort_order' => 'asc',
+            'maxHeight' => 1000,
+            'sort_by' => 'last_name, first_name',
+            'subpanel_name' => 'ForAccounts',
+            'get_subpanel_data' => 'contacts',
+            'add_subpanel_data' => 'contact_id',
+            'title_key' => 'LBL_CONTACTS_SUBPANEL_TITLE',
+            'top_buttons' => array(
+                array('widget_class' => 'SubPanelTopCreateAccountNameButton'),
+                array('widget_class' => 'SubPanelTopSelectButton', 'mode' => 'MultiSelect')
+            ),
+        ),
+----
+
+* Listview & Açılır Kayıt Listesi - değiştirmek istediğiniz modülün `public/legacy/custom/modules/<Module>/listviewdefs.php` dosyasına `maxHeight` ekleyin.
+** Aşağıdaki örnekte `Accounts` Listview için `maxHeight` güncellenmiştir.
+
+[source,php]
+----
+'ListView' =>  [
+        'maxHeight' => 3000,
+        'sidebarWidgets' => [
+            'accounts-new-by-month' => [
+                'type' => 'chart',
+                'labelKey' => 'LBL_QUICK_CHARTS',
+                'options' => [
+                    'toggle' => true,
+                    'headerTitle' => false,
+                    'charts' => [
+                        [
+                            'chartKey' => 'accounts-new-by-month',
+                            'chartType' => 'line-chart',
+                            'statisticsType' => 'accounts-new-by-month',
+                            'labelKey' => 'ACCOUNT_TYPES_PER_MONTH',
+                            'chartOptions' => [
+                            ]
+                        ] ...
+----
+
+Her tablo için varsayılan değerler şunlardır:
+
+* Alt Panel & Açılır Kayıt Listesi - 10 kayıt.
+* Listview - Belirlenmiş bir varsayılan yok.
+
+=== Yapılandırma Ayarları
+`config_override.php` içinde herhangi bir değeri doğrudan değiştirmek isterseniz şu anahtarları kullanabilirsiniz:
+
+* `'{view}_pagination_type'` - (örn. `'listview_pagination_type'`) — Bu, ilgili görünüm için sayfalama türünü değiştirir.
+* `'list_max_entries_per_{type}'` - (örn. `'list_max_entries_per_subpanel'`) — Bu, her görünüm yüklendiğinde gösterilen kayıt sayısını ve `load-more` ile yüklenecek yeni kayıt sayısını değiştirir.
+
+Lütfen `config_override.php` içinde doğrudan değişiklik yapmanın, Kullanıcı Profili üzerinde tercihi olmayan tüm kullanıcılar için geçerli olacağını unutmayın.
+
+Örneğin alt panelleri `load-more` yapmak ve 10 kayıt göstermek için:
+
+[source,php]
+----
+'subpanel_pagination_type' => 'load-more',
+'list_max_entries_per_subpanel' => 10,
+----

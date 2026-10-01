@@ -1,0 +1,45 @@
+---
+title: "Ön-Uç Eklenti Modülü Kurma 8.8+"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-extensions-setup
+
+{{% notice info %}}
+Bu doküman SuiteCRM 8.8+ içindir; önceki sürümler için link:./older/8x-fe-extensions-setup[buraya].
+{{% /notice %}}
+
+== Extension framework kurulumu
+
+Bu rehber, bir front-end eklenti modülünün nasıl kurulacağını adım adım açıklar.
+
+== 1. Orijinal defaultExt'i kopyalayın
+
+İlk adım defaultExt'i kopyalamak ve yeni isimlendirmek.
+
+=== 1.1 Eklentiyi yeni isimle güncelleme
+
+Kopyaladıktan sonra tüm `defaultExt` referanslarını yeni eklenti adı ile değiştirin (örn: `myExt`). Güncellemeniz gereken dosyalar:
+
+* webpack.config.js
+* angular.json
+* extension.php
+* index.html
+
+==== app/webpack.config.js
+
+Bu dosyada üç alanda güncelleme gerekebilir: `uniqueName`, `filename`, `exposes`.
+
+==== app/angular.json
+
+`angular.json` içinde birçok yerde `outputPath` gibi alanları güncelleyin; prod build çıktısı `/extensions/<your-extension-name>/Resources/public` olmalıdır.
+
+==== config/extension.php
+
+Gerekli alanlar: `remoteEntry`, `remoteName`, `enabled`. `enabled`'i başlangıçta `false` yapın.
+
+==== app/src/index.html
+
+Icon linkleri gibi birkaç yerde güncelleme gerekebilir.
+
+== 2. Angular kodunu güncelleme

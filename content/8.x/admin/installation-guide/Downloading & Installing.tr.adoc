@@ -1,0 +1,87 @@
+---
+title: "İndirme ve Kurulum"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/admin/install-guide
+
+:toc:
+
+{{% notice info %}}
+Aşağıdaki dokümantasyon SuiteCRM Sürüm 8+ içindir; aynı konunun Sürüm 7 için dokümantasyonunu görmek istiyorsanız link:../../../../admin/installation-guide/downloading-installing[buraya] tıklayın.
+{{% /notice %}}
+
+
+== 1. Web Sunucusunu Kurma
+
+İlk adım web sunucusunu kurmaktır.
+
+Lütfen link:../webserver-setup-guide/[Web Sunucusu Kurulum Kılavuzunu] okuyun.
+
+'''
+
+== 2. SuiteCRM İndirme ve Kurulum
+
+=== 2.1 Uyum Matrisi Kontrolü
+
+Ortamınızın link:../../compatibility-matrix/[Uyumluluk matrisi] bölümünde listelenen sistem gereksinimlerini karşıladığından emin olun.
+
+=== 2.2 En son SuiteCRM dosyalarını indirme
+
+Geliştirme ortamı kurmuyorsanız, link:https://suitecrm.com/download/[suitecrm.com,window=_blank] adresinde bulunan önceden oluşturulmuş kurulum paketlerini indirmelisiniz.
+
+Ayrıca link:../../releases/[SuiteCRM 8 Sürümleri sayfasına] bakın.
+
+=== 2.3 Dosyaları web sunucusu köküne kopyalama
+
+Paketi indirdikten sonra
+
+. Önceden oluşturulmuş kurulum paketinin sıkıştırmasını açın.
+. Dosyaları web sunucusu kök dizininize kopyalayın.
+
+`apache` web sunucusu için web kökü genellikle `/var/www` veya `/var/www/html` altındadır.
+
+{{% notice note %}}
+Vhost üzerinde ayarladığınız `DocumentRoot` değerini göz önünde bulundurun (eğer apache kullanıyorsanız). Bkz. link:../webserver-setup-guide#_4_configuring_url_re_writes[Web Sunucusu Kurulum Kılavuzu - 4. URL yeniden yazma yapılandırması]
+{{% /notice %}}
+
+{{% notice note %}}
+Dosyaları web köküne eklemek en yaygın kurulum yöntemidir; ancak alt alan adları (subdomain) gibi farklı kurulumlar da mümkündür.
+{{% /notice %}}
+
+=== 2.4 İzinleri ayarlama
+
+Gerekli izinleri ayarlayın
+
+Terminal kullanıyorsanız aşağıdaki komutları çalıştırabilirsiniz:
+
+[source,bash]
+----
+find . -type d -not -perm 2755 -exec chmod 2755 {} \;
+find . -type f -not -perm 0644 -exec chmod 0644 {} \;
+find . ! -user www-data -exec chown www-data:www-data {} \;
+chmod +x bin/console
+----
+
+Şunları göz önünde bulundurun:
+
+* Yukarıdaki örnekteki kullanıcı ve grup adı (`www-data`) web sunucunuzun çalıştığı gerçek sistem kullanıcı ve grup ile değiştirilmelidir. Bu işletim sisteminize göre değişir. Yaygın web sunucusu kullanıcıları şunlardır:
+** `www-data` (Ubuntu Linux/Apache)
+** `apache` (Linux/Apache)
+
+* Eğer grup adı apache'in çalıştığı kullanıcı adından farklıysa, `0644` yerine `0664` ve `2755` yerine `2775` kullanmanız gerekebilir.
+
+=== 2.5 (isteğe bağlı) Veritabanı oluşturma
+
+Kurulum yapılandırmanıza bağlı olarak, yükleme işleminden önce veritabanını oluşturmanız gerekebilir.
+
+Yükleyici gerekli tabloları oluşturacaktır.
+
+'''
+
+== 3. Yükleyiciyi çalıştırma
+
+SuiteCRM 8 ve üstü sürümlerinde yükleyiciyi çalıştırmanın iki yolu vardır.
+
+* link:../running-the-ui-installer/[Seçenek 1: Yükleyici arayüzü kullanarak kurulum]
+* link:../running-the-cli-installer/[Seçenek 2: CLI kullanarak kurulum]

@@ -1,0 +1,44 @@
+---
+title: ListView Koşullu Biçimlendirme
+date: 2016-03-04T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/suitecrm-list-view-conditional-formatting/
+hidden: true
+---
+
+Bazı durumlarda list view üzerinde gösterilen alanları değerlerine göre biçimlendirmek istersiniz. Örneğin çağrıların direction alanını farklı renklendirmek veya yakında süresi dolacak teklifleri vurgulamak gibi.
+
+:imagesdir: /images/en/community
+
+Bu yazıda Accounts modülündeki ``Industry`` alanına basit bir renkli kenarlık ekleyeceğiz. Sonuç şu şekilde olacaktır:
+
+image:02IndustryColours.png[Coloured fields on the list view]
+
+Bunun için list view hazırlığı sırasında tetiklenen bir logic hook tanımlayıp, industry değerini üzerine istediğimiz HTML stilini ekleyeceğiz.
+
+Önce `custom/Extension/modules/Accounts/Ext/LogicHooks/ListViewHighlight.php` içinde logic hook'u şu şekilde tanımlıyoruz:
+
+.Example
+[source,php]
+<?php
+$hook_array['process_record'][] = Array(1, 'Highlight account industry', 'custom/modules/Accounts/HighlightIndustryLogicHook.php','HighlightIndustryLogicHook', 'highlightIndustry');
+----
+
+Bu, `process_record` logic hook'unu ayarlar; bu hook bir kayıt list view veya subpanel için hazırlanırken çalışır.
+
+Ardından `custom/modules/Accounts/HighlightIndustryLogicHook.php` içinde formatting işini yapan sınıfı tanımlayın:
+
+.Example
+[source,php]
+<?php
+class HighlightIndustryLogicHook{
+
+    public function highlightIndustry(SugarBean $bean, $event, $arguments){
+        $colour = substr(md5($bean->industry),0,6);
+        $bean->industry = "<div style='border: solid 5px #$colour;'>".$bean->industry."</div>";
+    }
+}
+----
+
+Bu kod industry alanına dayalı bir renk oluşturur ve alana kenarlık olarak uygular.

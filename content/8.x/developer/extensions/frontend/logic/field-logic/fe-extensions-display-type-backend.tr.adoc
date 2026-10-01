@@ -1,0 +1,46 @@
+---
+title: "Backend Hesaplamaya Dayalı Göster/Gizle (displayTypeBackend)"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/
+
+== 1. Giriş
+
+`displayTypeBackend` alan mantığı, göster/gizle kararının sunucu tarafında (backend) hesaplanmasını sağlar.
+
+Koşullar sağlandığında backend'e bir istek gönderilir ve dönen değer kullanılarak alan gizlenir veya gösterilir.
+
+Bu, birden fazla modülden veya harici kaynaklardan alınan değerlere bağlı daha karmaşık hesaplamalara izin verir.
+
+Bu rehber, bir alan için backend hesaplaması kullanarak show/hide mantığının nasıl kurulacağını açıklar.
+
+=== 1.1 Örnek senaryo
+
+Örneğin `Cases` modülünde `priority` alanını `type` ve `subject` (name) alanlarının değerlerine göre göstermek/gizlemek istiyoruz.
+
+Kurallar:
+
+. Hata (Error) için öncelik göster
+** `type` alanı `User` ise
+** `name` alanı `Error` içeriyorsa
+** `priority` göster
+
+. Uyarı (Warning) için öncelik göster
+** `type` alanı `User` ise
+** `name` alanı `Warning` içeriyorsa
+** `priority` göster
+
+. Diğer durumlarda gizle
+.. `type` alanı `User` ise ve `name` alanı `Warning` ya da `Error` içermiyorsa
+.. `priority` gizle
+
+image:displayTypeBackend-default-hide-example.gif[Backend Hesaplamalı Göster/Gizle Örneği]
+
+== 2. Mantık Metadata tanımı
+
+{{% notice note %}}
+Değişiklikleri custom dizinde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}
+
+İlk adım `logic` girdisini metadata'ya eklemektir; bu backend hesaplaması için tetikleyicileri tanımlar.

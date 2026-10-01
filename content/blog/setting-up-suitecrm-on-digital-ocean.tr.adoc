@@ -1,0 +1,60 @@
+---
+title: DigitalOcean Üzerinde SuiteCRM Kurulumu
+date: 2015-10-23T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/setting-up-suitecrm-on-digital-ocean/
+hidden: true
+draft: true
+---
+
+Bu yazı, DigitalOcean üzerinde bir SuiteCRM örneğinin droplet oluşturulmasından SuiteCRM'e girişe kadar dağıtımını kapsar.
+
+İlk olarak bir https://www.digitalocean.com/?refcode=ec80c6be8923[Digital Ocean] hesabına ihtiyacınız var.
+
+[width="100", cols="70,30" frame="none", grid="none"]
+|===
+|Hesabınızdaki Droplets sayfasından "Create Droplet" butonuna tıklayın. |image:05CreateDroplet.png[Create Droplet Button]
+|===
+
+Yeni droplet ayarlarında:
+
+- Ad verin (ör. MySuiteCRMInstance)
+- Boyut seçin (gerektiğinde yükseltebilirsiniz)
+- Bölge seçin (kullanıcılara yakın bir bölge seçin)
+- Image seçin (ör. Ubuntu LTS)
+- Opsiyonel olarak SSH anahtarı ekleyin
+
+Droplet oluşturulduktan sonra IP ve bağlantı bilgileri e-postayla gönderilir. Droplet'e SSH ile bağlanın, parola değiştirin ve gerekirse yeni bir non-root kullanıcı oluşturun.
+
+Örnek paket kurulum adımları (Ubuntu için):
+
+[source]
+apt-get update;
+apt-get upgrade;
+
+apt-get install apache2 mysql-server php5 php5-mysql libapache2-mod-php5 php5-mcrypt php-apc php5-imap php5-curl php5-gd unzip;
+php5enmod imap;
+service apache2 restart;
+
+MySQL root parolası sorulacaktır; girin.
+
+SuiteCRM dosyalarını web köküne kopyalayın (örnek):
+
+```
+cd /var/www/html;
+rm index.html;
+wget http://heanet.dl.sourceforge.net/project/suitecrm/SuiteCRM-7.3.2.zip
+unzip -q SuiteCRM-7.3.2.zip;
+mv SuiteCRM-7.3.2/* .;
+rm -r SuiteCRM-7.3.2 SuiteCRM-7.3.2.zip;
+```
+
+İzinler:
+
+[source]
+chown -R www-data:www-data .;
+chmod -R 755 .;
+chmod -R 775 cache custom modules themes data upload config_override.php;
+
+Tarayıcıda droplet IP adresine gidip kurulum ekranını görmelisiniz. Lisansı kabul edip tipik kurulumu seçin ve veritabanı ayarlarını girin.

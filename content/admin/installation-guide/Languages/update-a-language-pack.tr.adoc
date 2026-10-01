@@ -1,0 +1,40 @@
+---
+Title: "Dil Paketini Güncelleme"
+Weight: 60
+---
+
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin/install-guide/
+
+{{% notice warning %}}
+Önceki bir çeviri sürümü zaten yüklüyse, önce eski paketi kaldırıp yeni paketi yüklemeniz gerekir.
+{{% /notice %}}
+
+Genel olarak Dil Paketi güncelleme süreci şunlardır:
+
+. Eski dil paketini kaldırın
+. Quick Repair and Rebuild çalıştırın
+. Yeni dil paketini yükleyin
+. Quick Repair and Rebuild tekrar çalıştırın
+
+== Eski paketi kaldırma adımları
+
+. İngilizce olarak giriş yapın
+image:17.png[17.png] +
+. Admin / Module Loader bölümüne gidin
+image:18.png[18.png] +
+image:19.png[19.png] +
+. Önceki dil paketini btn:[Uninstall] ardından btn:[Commit] ile kaldırın
+image:20.png[20.png] +
+image:21.png[21.png] +
+. Admin / Repair / Quick Repair and Rebuild bölümüne gidin
+image:22.png[22.png] +
+image:23.png[23.png] +
+image:24.png[24.png] +
+image:25.png[25.png] +
+. Oturumu kapatın
+
+== Güncellenmiş dil paketini yükleme adımları
+
+Yükleme için normal link:/admin/installation-guide/languages/install-a-new-language/[kurulum adımlarını] takip edin.

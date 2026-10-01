@@ -1,0 +1,56 @@
+---
+Title: Azure SAML Tek Oturum Açma (Single Sign On)
+weight: 60
+---
+
+:experimental:   ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/admin/sso
+
+:toc:
+
+{{% notice info %}}
+Aşağıdaki doküman SuiteCRM Sürüm 7.x içindir; aynı konu hakkında Sürüm 8+ belgelerini görmek için link:../../../../8.x/admin/configuration/saml-configuration/[buraya] tıklayın.
+{{% /notice %}}
+
+== Azure SAML Tek Oturum Açma
+
+SuiteCRM, Microsoft Azure Active Directory gibi üçüncü taraf bir kimlik sağlayıcıyı (IdP) ve SAML protokolünü kullanarak tek oturum açma (SSO) sağlayabilir. Böylece Azure AD ile kimlerin SuiteCRM'e erişebileceğini kontrol edebilir ve otomatik giriş etkinleştirebilirsiniz.
+
+*Dikkate Alınacaklar*
+
+- En son SuiteCRM 7.x sürümünü kullanmanızı öneririz.
+- Kullanıcının hem Azure AD'de hem de SuiteCRM'de mevcut olması gerekir.
+- SuiteCRM 7.x içindeki kullanıcı adlarının Azure'daki e-posta adresi ile eşleşmesi gerekir; kısaltılmış kullanıcı adları varsa bunlar önceden e-posta adresi biçimine dönüştürülmelidir.
+
+== 1. Azure'da Uygulama Oluşturma
+İlk adım Azure'da yeni bir Enterprise Application oluşturmaktır. Bu uygulama, Azure'un IdP olarak SuiteCRM ile nasıl etkileşeceğini tanımlar ve SuiteCRM'i yapılandırmak için gereken değerleri ve sertifikayı sağlar. Her SAML uygulaması CRM URL'sine göre doğrulandığından her ortam için (staging/test/prod) ayrı bir uygulama gerekebilir.
+
+=== 1.1 Yeni uygulama oluşturma
+
+Microsoft Azure'a giriş yapın ve ana sayfadaki "Azure Active Directory" bölümüne gidin.
+Soldaki menüden 'Enterprise applications' seçin.
+
+image:suitecrm-sso-azure-side-menu.png[SuiteCRM SSO Azure yan menü]
+
+Üst menüden 'New Application' (Yeni Uygulama) seçin.
+
+image:suitecrm-sso-azure-top-menu.png[SuiteCRM SSO Azure üst menü]
+
+"Create your own application" seçeneğini seçin ve uygulama adını girin (ör: 'SuiteCRM SAML Authentication').
+
+Integrate any other application you don't find in the gallery (Non-gallery) seçeneğini seçin ve Create butonuna tıklayın.
+
+=== 1.2 Yeni uygulamayı yapılandırma
+
+Soldaki menüden Manage altında 'Single sign-on' seçeneğini seçin ve SAML protokolünü seçin.
+
+image:suitecrm-sso-azure-application-side-menu.png[Uygulama menüsü]
+
+Basic SAML Configuration'ı düzenlemek için kalem ikonuna tıklayın.
+
+SuiteCRM, Entity ID, ACS URL ve Sign On URL için aynı değeri kullanır: bu değer CRM URL'niz olmalıdır, örneğin:
+
+*{CRM URL}/index.php?action=Login&module=Users*
+
+Identifier (Entity ID), Reply URL (ACS URL) ve Sign on URL alanlarına SuiteCRM URL'sini girin.

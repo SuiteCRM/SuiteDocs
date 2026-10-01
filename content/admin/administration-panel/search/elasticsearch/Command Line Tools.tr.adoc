@@ -1,0 +1,43 @@
+---
+title: Komut Satırı Araçları
+weight: 5
+---
+
+:imagesdir: /images/en/admin/ElasticSearch
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+SuiteCRM'in Elasticsearch entegrasyonu, https://robo.li/[_Robo_] tarafından sağlanan iki kullanışlı komut satırı aracıyla birlikte gelir.
+
+Bu iki komut, indeksleme ve aramaları komut satırından çalıştırmanıza olanak verir; hata ayıklamayı ve harici araçlarla entegrasyonu kolaylaştırır.
+
+{{% notice note %}}
+Bu komutlar veritabanına çalışan bir bağlantı gerektirir; SuiteCRM'i Docker veya VM içinde çalıştırıyorsanız komutları SuiteCRM web sunucusunun çalıştığı host üzerinde çalıştırın.
+{{% /notice %}}
+
+== elastic:index
+
+`elastic:index` komutu, komut satırından indekslemeyi çalıştırmanıza ve adım adım logları görmenize olanak tanır. Hem kısmi hem de tam indeksleme desteklenir.
+
+=== Kullanım
+
+[source,bash]
+elastic:index [<differential> = 1]
+
+=== Örnekler
+
+Tam indeksleme çalıştırma:
+[source,bash]
+vendor/bin/robo elastic:index 0
+
+Kısmi indeksleme çalıştırma:
+[source,bash]
+vendor/bin/robo elastic:index 1
+
+image:ElasticIndexCLI.png["Elasticsearch Index CLI"]
+
+== elastic:search
+
+`elastic:search` komutu, arama çubuğundan yapacağınız sorgularla aynı türden sorguları komut satırından yapmanızı sağlar.

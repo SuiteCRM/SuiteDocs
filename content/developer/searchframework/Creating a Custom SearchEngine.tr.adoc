@@ -1,0 +1,77 @@
+---
+weight: 2
+title: Creating a Custom SearchEngine
+---
+
+:imagesdir: /images/en/developer/SearchFramework
+
+{{% notice info %}}
+Bu geliştirme yalnızca SuiteCRM 7.11 ve sonrası sürümlerde mevcuttur.
+{{% /notice %}}
+
+SearchFramework'ün çekirdeğinde `SearchEngine` sınıfının özelleştirilebilir yapısı yatar.
+`SearchWrapper` tarafından tespit edilecek bir `SearchEngine` alt sınıfı oluşturmak için
+tek yapmanız gereken `custom/Extension/SearchEngines` klasöründe `SearchEngine`'i genişleten
+ve `search(SearchQuery $query)` metodunu uygulayan bir dosya oluşturmaktır.
+
+== Mock arama örneği
+
+Aşağıdaki örnek, arama sorgunuz ne olursa olsun Administrator kullanıcıyı döndürecek
+örnek bir arama motorunu gösterir.
+
+[source,php]
+----
+use SuiteCRM\Search\SearchEngine;
+use SuiteCRM\Search\SearchQuery;
+use SuiteCRM\Search\SearchResults;
+
+class FakeSearch extends SearchEngine
+{/* Lines 29-35 omitted */}
+----
+
+== Şehir arama örneği
+
+Yukarıdaki örnek geçerli olsa da pek kullanışlı değildir. Şimdi bir kasaba/town içeren
+adreslere sahip Accounts kayıtlarını arayan basit bir `SearchEngine` yapalım.
+
+[source,php]
+----
+use SuiteCRM\Search\SearchEngine;
+use SuiteCRM\Search\SearchQuery;
+use SuiteCRM\Search\SearchResults;
+
+class CitySearch extends SearchEngine
+{/* Lines 51-79 omitted */}
+----
+
+== Görünümü özelleştirme örneği
+
+Arama motorunun arayüzü nasıl oluşturduğunu `displayForm()` ve `displayResults()`
+metotlarını override ederek özelleştirebilirsiniz. Daha fazla kontrol gerekirse
+`searchAndDisplay()` metodunu tamamen override edebilirsiniz.
+
+Varsayılan olarak `displayForm()` (arama çubuğunu gösterir) ve `displayResults()`
+(sonuçları ve hataları gösterir) sırasıyla `SearchFormController` ve
+`SearchResultsController` sınıflarını çağırır. Bu iki sınıf, özelleştirilmiş arama
+motorları tarafından kullanılmak ve özelleştirilmek üzere tasarlanmıştır.
+
+Aşağıdaki örnekte, üstteki sınıf için `displayResults()` metodunu override edip
+motoru farklı bir template dosyası yükleyecek şekilde yönlendiriyoruz. Template
+dosyası, motor ile aynı klasöre yerleştirilmiş özel bir dosyadır ve üç sütunlu bir tablo
+görünümü (bean adı, kargo adresi ve fatura adresi) gösterecektir.
+
+[source,php]
+----
+use SuiteCRM\Search\SearchEngine;
+use SuiteCRM\Search\SearchQuery;
+use SuiteCRM\Search\SearchResults;
+use SuiteCRM\Search\UI\SearchResultsController;
+
+class CitySearchWithView extends SearchEngine
+{/* Lines 106-127 omitted */}
+----
+
+citysearch.tpl
+[source,html]
+----
+----

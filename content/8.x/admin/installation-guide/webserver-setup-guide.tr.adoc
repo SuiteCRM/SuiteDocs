@@ -1,0 +1,118 @@
+---
+title: "Web Sunucusu Kurulum Kılavuzu"
+weight: 21
+---
+
+{{% notice info %}}
+Aşağıdaki dokümantasyon SuiteCRM Sürüm 8+ içindir; Sürüm 7 için dokümantasyon görmek isterseniz link:../../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+== 1. Giriş
+
+Bu rehber, SuiteCRM 8+ kurulumunu yapmak için gerekli web sunucusu kurulumu adımlarını içerir.
+
+{{% notice note %}}
+Aşağıdaki belge bir LAMP yığınını (Linux, Apache, MySQL ve PHP) temel kurulum olarak alacaktır; ancak adımların çoğu diğer web sunucuları ve veritabanları için de geçerli olabilir.
+{{% /notice %}}
+
+== 2. Gerekli yazılımların kurulması
+
+Aşağıdaki yazılımların platformunuza uygun sürümlerini kurun:
+
+* web sunucusu: `apache`
+* `php`
+* veritabanı: `mysql` veya `mariadb`
+
+{{% notice info %}}
+Doğru yazılım sürümlerine sahip olduğunuzdan emin olmak için link:../../compatibility-matrix/[Uyumluluk matrisi] bölümüne bakın.
+Geliştirme ortamı için ek gereksinimler `Additional requirements for Development` bölümünde listelenmiştir; ancak önceden oluşturulmuş kurulum paketinden yükleme yapıyorsanız bunların çoğunu yüklemeniz gerekmez.
+{{% /notice %}}
+
+Önceden oluşturulmuş kurulum paketini kullanıyorsanız geliştirici bağımlılıkları (node, angular cli, yarn/npm) kurmanıza gerek yoktur.
+
+SuiteCRM 8 önceden oluşturulmuş paketinde önceden derlenmiş ön yüz dosyaları `public/dist` altında ve gerekli tüm kütüphaneler `vendor` dizininde yer alır.
+
+=== Faydalı Kaynaklar
+
+Ubuntu üzerinde geliştirme amaçlı bir LAMP yığını kurmak için:
+
+* link:https://www.digitalocean.com/community/tutorials/how-to-install-php-7-4-and-set-up-a-local-development-environment-on-ubuntu-20-04[DigitalOcean - Ubuntu üzerinde LAMP geliştirme ortamı kurulumu,window=_blank]
+
+
+== 3. Gerekli PHP modüllerinin kurulması
+
+Sunucunuza aşağıdaki PHP modüllerini kurun:
+
+* cli
+* curl
+* common
+* intl
+* json
+* gd
+* mbstring
+* mysqli
+* pdo_mysql
+* openssl
+* soap
+* xml
+* zip
+* imap (isteğe bağlı)
+* ldap (isteğe bağlı)
+
+=== Faydalı Kaynaklar
+
+Hangi modüllerin nasıl kurulacağı ile ilgili talimatlar için link:#_2_install_required_software[2. Bölüm - Gerekli yazılımların kurulması] bölümündeki `Helpful Resources` kısmına bakın.
+
+== 4. URL yeniden yazmaları yapılandırma
+
+API yollarının çalışması için URL yeniden yazmalarına izin vermeniz gerekir.
+
+* Tüm SuiteCRM çekirdek API çağrıları (`api/graphql`) bu özelliğe bağımlıdır; yeniden yazmalar etkin değilse `404` hatası alırsınız.
+
+`apache` web sunucusunda bu, `mod_rewrite` modülünü etkinleştirip vhost yapılandırmasını uygun şekilde ayarlayarak sağlanır.
+
+{{% notice note %}}
+Web kökünü SuiteCRM klasörünün içindeki `public` klasörüne yönlendirmeniz veya web root'u buna göre ayarlamanız şiddetle tavsiye edilir. Eğer webroot doğrudan SuiteCRM klasörünü işaret ederse, SuiteCRM içindeki tüm dosyalar internete açık hale gelebilir.
+{{% /notice %}}
+
+Vhost yapılandırmanızı aşağıdaki gibi güncelleyin:
+
+[source,xml]
+----
+<VirtualHost *:80>
+
+    DocumentRoot /<path-to-suite>/public
+    <Directory /<path-to-suite>/public>
+        AllowOverride All
+        Order Allow,Deny
+        Allow from All
+    </Directory>
+
+</VirtualHost>
+----
+
+
+=== Faydalı kaynaklar:
+
+* link:https://symfony.com/doc/current/setup/web_server_configuration.html#apache-with-mod-php-php-cgi[Symfony dokümantasyonu - web sunucusu yapılandırması,window=_blank]
+* link:https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite[DigitalOcean - mod_rewrite nasıl etkinleştirilir,window=_blank]
+** Bu kaynaklardan sadece aşağıdaki kısımlar gereklidir:
+*** Bölüm 1 — Mod_Rewrite nasıl etkinleştirilir
+*** `.htaccess` dosyasında değişikliklere izin verme
+
+== 5. php error_reporting yapılandırma
+
+Notların (`notices`) hata işleme sırasında dikkate alınmamasını sağlayın. Bunun için `php.ini` içindeki error handling girişini güncelleyebilirsiniz:
+
+[source,ini]
+----
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
+----
+
+=== Faydalı Kaynaklar
+
+`php.ini` dosyasının yerini bulma ve düzenleme hakkında bilgi için link:#_2_install_required_software[2. Bölüm - Gerekli yazılımların kurulması] bölümündeki `Helpful Resources` kısmına bakın.
+
+== 6. (isteğe bağlı) Performans
+
+Performans optimizasyonu hakkında daha fazla bilgi için link:../performance/[Performans yapılandırma kılavuzuna] bakın.
