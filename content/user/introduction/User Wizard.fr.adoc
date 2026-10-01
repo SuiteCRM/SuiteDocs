@@ -1,0 +1,111 @@
+---
+Title: User Wizard
+Weight: 30
+---
+:experimental:   ////ceci permet d'utiliser la syntaxe btn:[] ci-dessous
+:imagesdir: /images/en/user
+
+= Assistant de configuration utilisateur
+
+L'assistant de configuration utilisateur (User Wizard) vous guide à
+travers les options de configuration disponibles après la connexion.
+Il vous permet de sélectionner de nombreux formats pour les données
+qui s'afficheront dans SuiteCRM, ces formats étant propres à votre
+compte utilisateur.
+
+== Bienvenue dans SuiteCRM
+
+Une fois connecté, une page d'accueil simple s'affiche. Cliquez sur
+btn:[Next] sur cette page pour commencer à configurer vos
+préférences utilisateur.
+
+image:04SuiteCRM_welcome.png[title="Bienvenue dans SuiteCRM !"]
+
+== Vos informations
+
+Sur cet écran, vous pouvez renseigner des informations vous
+concernant. Lorsque vous fournissez ces informations, les autres
+utilisateurs peuvent les consulter, telles que votre nom complet,
+votre adresse e-mail et vos coordonnées. Les champs marqués d'une
+étoile rouge (*) sont obligatoires et doivent donc être remplis avec
+des données valides avant de pouvoir continuer.
+
+image:05Welcome_info.png[title="Informations utilisateur"]
+
+Une fois toutes les informations de cette page renseignées, cliquez
+sur btn:[Next] pour passer à l'étape suivante de l'assistant.
+
+== Vos paramètres régionaux
+
+Sur cet écran, vous pouvez spécifier vos paramètres régionaux
+(Locale) préférés.
+
+image:06SuiteCRM_Locale.png[title="Paramètres régionaux"]
+
+== Sélection de la devise
+
+Sélectionnez la devise que vous souhaitez voir s'afficher pour tous
+les champs de type Devise dans SuiteCRM. Les options de devise sont
+renseignées par l'administrateur système. Si des options de devise
+dont vous avez besoin ne sont pas disponibles, veuillez contacter
+votre administrateur système.
+
+image:180Currency_selection.png[title="Sélection de la devise"]
+
+== Format de date
+
+Sélectionnez le format de date que vous souhaitez utiliser pour tous
+les champs de type Date dans SuiteCRM. De nombreuses options de
+format de date sont disponibles, toutes propres à votre utilisateur.
+Ce format de date s'appliquera également aux champs de type Date et
+heure.
+
+image:08Date_format.png[title="Format de date"]
+
+== Fuseau horaire
+
+Sélectionnez le fuseau horaire que vous souhaitez utiliser dans
+SuiteCRM. Cela vous permet d'adapter votre utilisation de SuiteCRM en
+fonction de votre localisation dans le monde. Si vous voyagez entre
+différents pays, vous pouvez modifier le fuseau horaire à tout moment
+dans vos Préférences utilisateur, une fois la configuration de
+l'assistant terminée.
+
+image:09Time_zone.png[title="Fuseau horaire"]
+
+== Format du nom
+
+Sélectionnez le format de nom que vous préférez pour l'affichage de
+tous les champs de type Nom. Cela s'applique aux différents modules
+« Personne » au sein de SuiteCRM.
+
+image:181Name_format.png[title="Format du nom"]
+
+Une fois toutes vos préférences régionales spécifiées, cliquez sur
+btn:[Next] pour passer à l'étape finale/page de confirmation de
+l'assistant de configuration utilisateur.
+
+== Étape finale
+
+L'étape finale de l'assistant de configuration utilisateur vous
+propose plusieurs liens utiles pour en apprendre davantage et obtenir
+un support supplémentaire depuis le site web de SuiteCRM et son
+équipe dédiée. Un bouton btn:[Back] est disponible si vous souhaitez
+corriger des erreurs commises lors des étapes précédentes.
+
+image:241Finish User Wizard.png[title="Terminer l'assistant utilisateur"]
+
+En cliquant sur btn:[Finish], vous terminerez l'assistant de
+configuration utilisateur et serez redirigé vers le formulaire de
+connexion de SuiteCRM.
+
+== Résumé
+
+Dans ce chapitre, nous avons parcouru l'assistant de configuration
+utilisateur. Celui-ci vous permet de définir vos préférences
+d'utilisation de SuiteCRM.
+
+Dans le prochain chapitre, nous aborderons la gestion des comptes
+utilisateurs, ce qui inclura la mise à jour des informations
+utilisateur, la sélection de thèmes, la modification des mots de
+passe, et plus encore.
