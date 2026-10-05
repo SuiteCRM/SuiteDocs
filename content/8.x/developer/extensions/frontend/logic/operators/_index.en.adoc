@@ -124,7 +124,7 @@ In the example above when employees is 10, update Annual Revenue to 1000.
     ]
 ----
 
-In the example above, the Annual Revenue updated to 1000 if Employees is less than 10.
+In the example above, the Annual Revenue updated to 500 if Employees is less than 5.
 
 === Not Empty
 
