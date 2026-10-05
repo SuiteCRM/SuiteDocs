@@ -1,0 +1,35 @@
+---
+title: "Özel Bir Kenar Çubuğu (Sidebar) Widget'ı Ekleme"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/examples/add-sidebar-widget
+
+{{% notice note %}}
+Bu doküman angular ve rxjs hakkında iyi bir anlayışa sahip olduğunuzu varsayar.
+{{% /notice %}}
+
+Gerekli kavramlar:
+
+* link:https://angular.io/guide/component-overview[angular bileşenleri,window=_blank]
+* link:https://angular.io/guide/lifecycle-hooks[angular lifecycle,window=_blank]
+* link:https://angular.io/guide/architecture-modules[angular modüller,window=_blank]
+* link:https://angular.io/guide/dependency-injection[angular servisleri ve DI,window=_blank]
+* link:https://angular.io/guide/content-projection[content-projection,window=_blank]
+* link:https://rxjs.dev/[rxjs,window=_blank]
+
+== Extension framework kurulumu
+
+{{% notice info %}}
+Bu rehber, frontend extension framework'ünü yerel ortamınızda kurduğunuzu varsayar.
+{{% /notice %}}
+
+Daha fazla bilgi için link:../../older/8x-fe-extensions-getting-started[buraya] bakın.
+
+== Genel kavramlar
+
+Ön uç eklentileri registries kullanılarak oluşturulur. Uygulamadaki ana alanlar için bir registry bulunur. Yeni bileşenler veya servisler register edilerek mevcut olanlar override edilebilir.
+
+== 1. Hello World örneği
+
+İlk örneğimiz basit bir örnektir; frontend extension framework yapısına giriş niteliğindedir.

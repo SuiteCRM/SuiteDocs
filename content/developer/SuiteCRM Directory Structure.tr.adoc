@@ -1,0 +1,41 @@
+---
+weight: 2
+title: "SuiteCRM Directory Structure"
+---
+
+= 2. SuiteCRM Dizin Yapısı
+
+`cache`::
+  SuiteCRM tarafından kullanılan önbellek dosyalarını içerir; derlenmiş smarty
+  şablonları, gruplanmış vardefs, minified JS vb. Bazı modüller geçici bilgileri burada
+  saklayabilir.
+`custom`::
+  Kullanıcı ve geliştirici özelleştirmelerini içerir. Ayrıca SugarCRM ile uyumluluk
+  sağlamak için bazı SuiteCRM kodları bulunur.
+`data`::
+  SugarBeans ve ilişkilerle ilgili sınıfları ve dosyaları saklar.
+`examples`::
+  Bazı basit lead capture ve API kullanım örnekleri içerir (çok eski olabilir).
+`include`::
+  Modüller ve veri dışındaki SuiteCRM kodlarının çoğunu içerir.
+`install`::
+  SuiteCRM yükleyicisi tarafından kullanılan kodlar.
+`jssource`::
+  Minify edilmemiş JS kaynaklarını içerir.
+`metadata`::
+  Çeşitli stok SuiteCRM modülleri için ilişki metadata'larını saklar.
+`ModuleInstall`::
+  Module installer ile ilgili kodlar.
+`modules`::
+  Stok veya özel SuiteCRM modüllerinin kodlarını içerir.
+`service`::
+  SuiteCRM Soap ve REST API kodları.
+`themes`::
+  Tema kodları, verileri ve görseller.
+`upload`::
+  Yüklenen dokümanları içerir; dosya isimleri Document Revision/Note ID'sine karşılık gelir.
+  `upload/upgrades` ayrıca upgrade dosyalarını ve yüklü paketleri içerir.
+`log4php`, `soap`, `XTemplate`, `Zend` ::
+  Kullanılan çeşitli kütüphanelerin kaynak kodları; bazıları eskimiş olabilir.
+
+link:../suitecrm-directory-structure[↩]

@@ -1,0 +1,155 @@
+---
+title: "Eklenti Yapısı"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-extensions-setup
+
+{{% notice info %}}
+Bu dokümantasyon SuiteCRM Sürüm 8+ içindir; Sürüm 7 için dokümantasyon görmek isterseniz link:../../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+{{% notice note %}}
+Bu doküman Angular çerçevesi hakkında iyi bir bilgiye sahip olduğunuzu varsayar.
+{{% /notice %}}
+
+== 1. Giriş
+
+Aşağıdaki rehber, örnek ve kılavuz olarak `defaultExt` eklentisini kullanarak frontend eklentilerinin yapısını açıklar. `defaultExt` eklentisi SuiteCRM 8.4.0'dan itibaren gelen ön-yüklü bir frontend eklentisidir.
+
+Sadece kod yazmaya başlamak için bir başlangıç noktası sağlamaz; ayrıca özelleştirmeleriniz için kullanılabilecek bir temel yapı sunar.
+
+Aşağıdaki bölümler, `defaultExt` eklentisinin nasıl yapılandırıldığını ve kodunuzun nasıl yerleştirileceğini anlatır.
+
+== 2. Eklenti İçeriği
+
+Bir eklenti hem backend hem de frontend özelleştirmelerini içerebilir.
+
+Her eklenti `extensions` klasörü altında ayrı bir klasördür.
+
+Eklentinin tüm içeriği kendi klasörü altında yer alır; bu sayede bir eklentiyi kaldırmak için sadece klasörü silmek yeterlidir.
+
+Örnek olarak `extensions/defaultExt` klasörünü kullanacağız.
+
+== 3. Eklenti Yapısı
+
+`extensions/defaultExt` klasörü altında aşağıdaki 5 klasör bulunabilir:
+
+* app
+** Frontend kodunu içerir
+* backend
+** Backend kodunu içerir
+* modules
+** Modül özel backend kodu ve yapılandırmaları içerir
+* config
+** SuiteCRM 8 tarafı yapılandırmasını içerir (SuiteCRM 7 yapılandırması değil)
+* public
+** Frontend derleme komutu ile otomatik oluşturulur
+** Frontend eklentisinin derlenmiş hâlini içerir
+** Önbellek temizlendiğinde içeriği `public/extensions/defaultExt` klasörüne kopyalanır
+
+Bu yapı SuiteCRM çekirdeğinde kullanılan yapıya benzer:
+
+* configs
+* core/app
+* core/backend
+* core/modules
+
+=== 3.1 App Klasörü
+
+defaultExt eklentisi frontend eklentileri için ön yapılandırılmış bir yapı ile gelir. Temel olarak, app klasörü ModuleFederation plugin'i kullanan özel bir webpack yapılandırmasına sahip küçük bir Angular uygulamasıdır.
+
+Özel kodunuzu `extensions/defaultExt/app/src` klasörüne koymalısınız.
+
+==== 3.1.1 Yapı
+Geliştiricilere örnek olması için defaultExt eklentisi aşağıdaki placeholder klasörleri içerir:
+
+* components
+* containers
+* fields
+* services
+* views
+
+Yukarıdakiler frontend kodunun ana yapı taşlarıdır. Yeni bir öğe eklerken çekirdeğin kullandığı yapıyı takip etmeye çalışın; bu, kodda gezinmeyi kolaylaştırır.
+
+Bu yapı zorunlu değildir, sadece önerilen bir düzen ve kılavuzdur.
+
+==== 3.1.2 Extension Module
+
+`extensions/defaultExt/app/src/extension.module.ts` içindeki `ExtensionModule`, frontend eklenti kodunuz için giriş noktasıdır. Özel kodunuzun algılanması için `ExtensionModule` içinde veya `ExtensionModule` tarafından kullanılan başka bir dosyada kaydedilmiş olması gerekir.
+
+Bazı link:../frontend/examples/[frontend extension example guides] sayfalarında kodunuzun nasıl kaydedileceğine dair örnekler görebilirsiniz.
+
+=== 3.2 Backend ve Modules Klasörleri
+
+`backend` ve `modules` klasörleri backend kodu içindir. Symfony tarafında autowire edildiği için bu klasörlere eklenen sınıflar dependency injection ile kullanılabilir.
+
+Backend'e eklenen dosyaların `core/backend` içindeki yapıya benzer bir düzen izlemesi idealdir.
+
+`modules` klasörü, genişletmek istediğiniz modül için bir klasör içermelidir ve bu modül klasörü de core/backend'deki yapıyı takip edebilir.
+
+=== 3.3 Config Klasörü
+
+`config` klasörü, eklentinizin yapılandırma override'larını yerleştireceğiniz yerdir.
+
+== 4. Angular Kurulumu
+
+=== 4.1 angular.json
+`angular.json` dosyası `defaultExt` eklentisini derlemek için gereken yapılandırmayı zaten içerir; proje ayarlarını `projects` bölümünde bulabilirsiniz.
+
+[source,json]
+----
+{
+  ...
+
+  "projects": {
+    ...
+    "defaultExt": {
+      ...
+    },
+
+  ...
+}
+----
+
+=== 4.2 package.json
+
+`package.json` iki adet build komutu içerir:
+
+==== 4.2.1 Development build
+
+`package.json` içindeki aşağıdaki satır geliştirme derlemesi komutunu tanımlar:
+
+[source,json]
+----
+    "build-dev:defaultExt": "ng build defaultExt --configuration dev",
+----
+
+Bu komut `defaultExt` eklentisini development modunda derleyecektir ve derleme çıktısını doğrudan `public/extensions/defaultExt` klasörüne yerleştirir; bu sayede `--watch` seçeneğiyle kullanmak mümkündür.
+
+Geliştirme sırasında şu komutu çalıştırmanız önerilir:
+
+[source,bash]
+----
+yarn run build-dev:defaultExt --watch
+----
+
+Bu komut izleme modunda kalır ve değişiklikleri algılayıp otomatik yeniden derleme yapar. Yeniden derlemeden sonra tarayıcıyı yenileyerek değişiklikleri görebilirsiniz (cache temizleme / hard reload önerilir).
+
+==== 4.2.2 Production Build
+
+[source,json]
+----
+    "build:defaultExt": "ng build defaultExt --configuration production",
+----
+
+Bu komut production modu için derleme yapar ve eklentiyi `extensions/defaultExt/public` konumuna yerleştirir. Önbellek temizlendiğinde `extensions/defaultExt/public` içeriği `public/extensions/defaultExt` konumuna kopyalanır.
+
+Derleme sonrası neden iki farklı konum olduğuna dair açıklama ve üretim paketleme adımları da orijinal dokümanda olduğu gibi korunmuştur.
+
+Yapılandırılmış derlemeden sonra paket hazır ve production için şu komutu çalıştırın:
+
+[source,bash]
+----
+yarn run build:defaultExt
+----

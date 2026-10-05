@@ -1,0 +1,31 @@
+---
+title: Özel Modülü "Related To" Alanına Eklemek (SuiteCRM)
+date: 2015-07-30T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/adding-custom-module-related-field-suitecrm/
+hidden: true
+draft: true
+---
+
+Bazen yeni bir modül oluşturduğunuzda onun SuiteCRM içindeki "Related To" açılır menülerinde görünmesini istersiniz. Bu yazıda, bu açılır menülere modül eklemenin basit yöntemini anlatacağım.
+
+:imagesdir: /images/en/community
+
+Bu yazıda hayali bir "Sport" modülünü açılır menüye ekleyeceğiz. Sonuç olarak aşağıdakine benzer bir görüntü elde edeceğiz:
+
+image:22RelatedToWithSport.png[Related to With Sport]
+
+"Related to" açılır menüsü, SuiteCRM'deki diğer açılır menüler gibi, SuiteCRM içindeki dropdown editörü ile değiştirilebilir. Biz bu dropdown editörünü kullanarak özel modülümüzü ekleyeceğiz.
+
+Notlar modülündeki Related To hedefini düzenlemek isterseniz `record_type_display_notes` dropdown'unu; diğer Related To açılırları için `parent_type_display` dropdown'unu düzenleyin.
+
+Önce dropdown'a yeni bir öğe ekliyoruz: modülün adını "Item Name" olarak ve görüntülenecek etiketi "Display Label" olarak girin. Örneğimizde şöyle olacak:
+
+''ABC_Sport'' -> ''Item Name''
+
+''Sport'' -> ''Display Label''
+
+image:23DropdownEditorSport.png[DropdownEditorSport]
+
+Hepsi bu kadar! SuiteCRM, modül adını popup aramasını yüklemek için kullanacak ve kayıt kaydedildiğinde bunu saklayacaktır. Artık özel modülünüz notlara ve benzer yerlere eklenebilir.

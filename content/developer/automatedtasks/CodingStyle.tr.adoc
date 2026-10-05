@@ -1,0 +1,43 @@
+---
+Title: "Coding Style"
+---
+
+=== Linux:
+
+==== Ortamı Yapılandırma:
+
+Terminali açın ve robo'yu çalıştırın
+
+`./vendor/bin/robo style:configure-phpcsfixer`
+
+==== Tüm kod stili sorunlarını düzeltin:
+
+Terminali açın ve robo'yu çalıştırın
+
+`./vendor/bin/robo style:phpcsfixer`
+
+==== Değiştirilmiş dosyalardaki kod stili sorunlarını düzeltin:
+
+Terminali açın ve robo'yu çalıştırın
+
+`./vendor/bin/robo style:phpcsfixer-modified`
+
+=== Windows:
+
+==== Test Ortamını Yapılandırma:
+
+Komut İstemcisini açın ve robo'yu çalıştırın
+
+`\\vendor\\bin\\robo style:configure-phpcsfixer`
+
+==== Tüm kod stili sorunlarını düzeltin:
+
+Komut İstemcisini açın ve robo'yu çalıştırın
+
+`\\vendor\\bin\\robo style:phpcsfixer`
+
+==== Değiştirilmiş dosyalardaki kod stili sorunlarını düzeltin (Komut İstemi):
+
+Komut İstemcisini açın ve robo'yu çalıştırın
+
+`\\vendor\\bin\\robo style:phpcsfixer-modified`

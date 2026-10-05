@@ -1,0 +1,158 @@
+---
+title: Available Grant Types
+weight: 40
+---
+:imagesdir: /images/en/developer/
+
+
+== Kimlik Doğrulama Yapılandırması: Oturum Edinme
+
+SuiteCRM API, bir istemcinin API'yi kullanabilmesi için aktif bir oturuma sahip olmasını gerektirir. Oturumlar, http://oauth2.thephpleague.com/[OAuth 2 Server] ile, mevcut yetki verme (grant) türlerinden biri kullanılarak kimlik doğrulaması yapılarak elde edilir.
+
+== Grant Türlerini Yapılandırma
+API'yi tüketmeye başlamadan önce SuiteCRM'in bir istemciye erişim vermesi için yapılandırma yapmanız gerekir. SuiteCRM 7.10, istemciler ekleyebileceğiniz ve tokenleri iptal edebileceğiniz bir yönetim paneli sağlar. Grant türlerini yapılandırmak için Admin panelinden "OAuth2 Clients and Tokens" seçeneğini seçin:
+
+image:Admin-OAuth2Clients-3.png[Configure SuiteCRM API]
+
+== Mevcut Grant Türleri
+
+[width="50, cols="25,25",options="header",]
+|=======================================
+|SuiteCRM Sürüm |Mevcut Grant Türleri
+|7.10.0 | Password Grant, Refresh Token Grant
+|7.10.2 + | Password Grant, Client credentials Grant, Refresh Token Grant
+|=======================================
+
+image:Admin-OAuth2Clients-4.png[Create a new grant]
+
+== Client Credentials Grant
+
+Client credentials grant, tüm grant türleri arasında en basit olanıdır ve bir makine veya servis kimlik doğrulaması için kullanılır. Yeni bir client credentials istemcisi oluşturun:
+
+image:Admin-OAuth2Clients-8.png[Create a new client credentials grant]
+
+Oluşturmaya başlayın:
+
+image:Admin-OAuth2Clients-2.png[Create a new Client]
+
+[cols="15,85",options="header"]
+|=======================================================================
+| Alan| Açıklama
+|*Name* |İstemciyi tanımlamayı kolaylaştırır.
+|*Secret* |Kimlik doğrulama sırasında sunucuya gönderilecek *client_secret* değerini belirler.
+|*Is Confidential* |Gizli bir istemci, parola gibi gizli bilgileri saklayabilen bir uygulamadır.
+|*Associated User* |İstemciyi bir kullanıcı ile ilişkilendirerek CRM erişimini o kullanıcının güvenlik ayrıcalıkları ile sınırlar.
+|=======================================================================
+
+`secret` kaydedildiğinde hash'lenir ve daha sonra erişilemez. `id` SuiteCRM tarafından oluşturulur ve istemci kaydedildikten sonra görünür.
+
+image:Admin-OAuth2Clients-5.png[View a Client Credentials Client]
+
+== Client Credentials ile Kimlik Doğrulama
+
+[source,php]
+POST /Api/access_token
+
+[[required-parameters]]
+=== Gerekli parametreler
+
+[width="40",cols="20,20",options="header",]
+|======================================
+|param |value
+|grant_type |client_credentials
+|client_id |*ExampleClientName*
+|client_secret |*ExampleSecretPassword*
+|======================================
+
+
+.Örnek İstek (PHP):
+[source,php]
+$ch = curl_init();
+$header = array(
+    /* Lines 82-84 omitted */
+ );
+$postStr = json_encode(array(
+    /* Lines 86-88 omitted */
+    'client_secret' => 'client_secret',
+));
+$url = 'https://path-to-instance/Api/access_token';
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postStr);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+$output = curl_exec($ch);
+
+.Örnek Yanıt:
+[source,php]
+{
+   "token_type":"Bearer",
+   /* Lines 102-104 omitted */
+}
+
+
+[cols="15,80"]
+|=======================================================================
+|*token_type* |Bearer token değeri
+
+|*expires_in* |erişim tokeninin TTL'sini temsil eden bir tamsayı
+
+|*access_token* |yetkilendirme sunucusunun özel anahtarıyla imzalanmış bir https://tools.ietf.org/html/rfc7519[JWT]. API'ye yapılan her istekte HTTP başlıklarına bu değer dahil edilmelidir.
+
+|=======================================================================
+
+Bearer tokenini bir veritabanında saklayabilir ve isteklerinizde şu şekilde kullanabilirsiniz:
+
+.Örnek
+[source,php]
+$header = array(
+   'Content-type: application/vnd.api+json',
+   'Accept: application/vnd.api+json',
+   'Authorization: Bearer ' . $your_saved_access_token
+);
+
+'''
+
+== Password Grant
+
+Password grant, kullanıcıların kullanıcı adı ve parola ile SuiteCRM'e giriş yapmasına olanak verir. Yeni bir password istemcisi oluşturun:
+
+image:Admin-OAuth2Clients-9.png[Create a Password Client]
+
+Konfigürasyona başlayın:
+
+image:Admin-OAuth2Clients-6.png[Create a new Client]
+
+[cols="15,85", frame="none", grid="none"]
+|=======================================================================
+|*Name* |İstemciyi tanımlamayı kolaylaştırır.
+|*Secret* |Kimlik doğrulama sırasında sunucuya gönderilecek *client_secret* değerini belirler.
+|*Is Confidential* |Gizli bir istemci, parola gibi gizli bilgileri saklayabilen bir uygulamadır.
+|=======================================================================
+
+`secret` kaydedildiğinde hash'lenir ve daha sonra erişilemez. `id` SuiteCRM tarafından oluşturulur ve istemci kaydedildikten sonra görünür.
+
+image:Admin-OAuth2Clients-7.png[View a password grant client]
+
+=== Password Grant ile Kimlik Doğrulama
+
+[source,php]
+POST /Api/access_token
+
+[[required-parameters-1]]
+=== Gerekli parametreler
+
+[width="40",cols="20,20",options="header",]
+|======================================
+|param |value
+|grant_type |password
+|client_id |*ExampleClientName*
+|client_secret |*ExampleSecretPassword*
+|username |*admin*
+|password |*secret*
+|======================================
+
+Lütfen kalın olan değerleri kendi kimlik doğrulama bilgilerinize göre değiştirin.
+
+.Örnek İstek (PHP):
+/ * Uzun örnek atlandı * /

@@ -1,0 +1,49 @@
+---
+title: "İşlem Tabanlı Modül Menü Linkleri Ekleme"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/
+
+== 1. Giriş
+
+SuiteCRM 8.4.0 ile modül menü öğeleri için backend işlem (process) handler'ları ekleme mekanizması eklendi.
+
+Bu özellik sayesinde menüde bir linke tıklandığında backend'e çağrı yapılabilir:
+
+. Bir işlem yapmak için
+. Ardından:
+** Bir sonuç göstermek
+** Bir yere yönlendirmek
+
+Bu, menü linklerini çok daha özelleştirilebilir ve esnek kılar; backend tarafında istediğinizi yapabilirsiniz.
+
+=== 1.1 Örnek senaryo
+
+Örneğin "Create Critical Error Case" adında özel bir menü linki ekleyeceğiz.
+
+Tıklandığında yapmak istediklerimiz:
+
+* Yeni bir case oluşturmak
+* `type` alanını `User` olarak ayarlamak
+* `priority` değerini `High` yapmak
+* `name` alanını `Critical Error` yapmak
+* Oluşturulan case'e yönlendirmek
+
+image:module-menu-process-example.gif[Özel Süreç Tabanlı Menü Eylemi Örneği]
+
+== 2. Menü Metadata tanımı
+
+{{% notice note %}}
+Değişiklikleri custom dizininde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}
+
+İlk adım yeni `menu` girdisini metadata'ya eklemektir; backend işlemi için tetikleyicileri burada tanımlayacağız.
+
+=== 2.1 Custom menü girdisini ekleme adımları
+
+. `public/legacy/custom/Extension/modules/Cases/Ext/Menus` içinde bir `Menus` klasörü oluşturun.
+. `create-critical-error.php` adında yeni bir dosya ekleyin.
+** final path: `public/legacy/custom/Extension/modules/Cases/Ext/Menus/create-critical-error.php`
+. 2.2 bölümündeki örnek menu tanımını kullanarak menü konfigürasyonunu ekleyin.
+. `public/legacy/custom/Extension/modules/Cases/Ext/Language` içinde yeni bir `Language` klasörü oluşturun.

@@ -1,0 +1,185 @@
+---
+weight: 16
+title: "API v4.1"
+---
+
+{{% notice warning %}}
+Bu dokümantasyon SuiteCRM sürümlerine kadar v7.9.x ile ilgilidir. SuiteCRM 7.10'dan itibaren link:../[brand new v8 REST API] yeni bir API mevcuttur.
+{{% /notice %}}
+
+SuiteCRM API üçüncü taraf kodunun SuiteCRM verilerine ve işlevselliğine erişmesine ve bunları düzenlemesine izin verir.
+
+== API Kullanımı
+
+SuiteCRM hem REST hem de SOAP API sunar. Hangi API'nin kullanılacağı kişisel tercihlere ve seçtiğiniz dilde SOAP/REST kütüphane desteğine bağlıdır.
+
+Her iki API de bir kullanıcı adı ve parola gerektirir. Genellikle API için özel bir kullanıcı oluşturulur.
+
+=== SOAP
+
+SOAP API için WSDL şu adreste bulunur:
+
+.Örnek 16.1: SOAP API WSDL Konumu
+[source, php]
+example.com/suitecrm/service/v4_1/soap.php?wsdl
+
+`example.com/suitecrm` SuiteCRM örneğinizin adresidir. `v4_1` API sürümüdür ve değiştirilebilir.
+
+==== SOAP Örneği
+
+Aşağıdaki PHP örneği yerleşik SoapClient sınıfını kullanır.
+
+.Örnek 16.2: SOAP API Erişim
+[source, PHP, numbered]
+----
+<?php
+//Create a new SoapClient
+$wsdlURL = "http://example.com/suitecrm/service/v4_1/soap.php?wsdl";
+$client = new SoapClient($wsdlURL);
+
+//Login to the API and get the session id
+$userAuth = array(
+        /* Lines 49-51 omitted */
+);
+$appName = 'My SuiteCRM SOAP Client';
+$nameValueList = array();
+$loginResults = $client->login($userAuth, $appName, $nameValueList);
+
+//Get a list of at most 10 accounts with a billing address in Ohio. Along with
+//The first and last names of any contacts in that Account.
+$results = $client->get_entry_list(
+        /* Lines 59-86 omitted */
+);
+print_r($results);
+----
+
+
+=== REST
+
+SuiteCRM REST API şu adreste bulunur:
+
+.Örnek 16.3: REST API Uç Noktası
+[source,php]
+example.com/suitecrm/service/v4_1/rest.php
+
+`example.com/suitecrm` SuiteCRM örneğinizin adresidir. `v4_1` API sürümüdür ve değiştirilebilir.
+
+SuiteCRM REST API tam bir REST API değildir — tüm çağrılar POST olarak yapılır ve tüm çağrılar base URL'e yapılır, metod POST argümanı olarak gönderilir.
+
+REST API çağrı argümanları şunlardır:
+
+`method`::
+  /* Lines 111-112 omitted */
+  link:../api-v4.1-methods[list of API v4.1 methods].
+`input_type`::
+  /* Lines 114-115 omitted */
+  be `Serialize`.
+`response_type`::
+  /* Lines 117-118 omitted */
+  be `Serialize`.
+`rest_data`::
+  /* Lines 120-122 omitted */
+
+{{% notice warning %}}
+REST isteklerinde `rest_data` içindeki argümanların sırası önemlidir ve isimleri değil sıra dikkate alınır.
+{{% /notice %}}
+
+.Örnek 16.4: REST API Erişim
+[source,php]
+----
+<?php
+
+$url = "http://example.com/suitecrm/service/v4_1/rest.php";
+
+function restRequest($method, $arguments){/* Lines 137-152 omitted */}
+
+
+$userAuth = array(
+        /* Lines 156-158 omitted */
+);
+$appName = 'My SuiteCRM REST Client';
+$nameValueList = array();
+
+$args = array(
+            /* Lines 163-166 omitted */
+
+$result = restRequest('login',$args);
+$sessId = $result['id'];
+
+$entryArgs = array(
+),
+   /* Lines 194-200 omitted */
+
+print_r($result);
+----
+
+Tam API metodları ve argümanları için link:../api-v4.1-methods[buraya] bakın.
+
+== JSON REST Formatlama
+
+JSON REST argümanları örnekte gösterildiği sırada sağlanmalıdır.
+
+.Örnek format:
+
+[source]
+----
+// Doğru çalışan örnek
+$params = array();
+$params['session'] = $this->sessionToken;
+$params['module_name'] = 'Accounts';
+$params['query'] = "accounts.id IS NOT NULL");
+$params['order_by'] = '';
+$params['offset'] = 0;
+$params['select_fields'] = array();
+$params['link_name_to_fields_array'] = array(array('name'=>'accounts', 'value'=>array('id', 'name')));
+$params['max_results'] = 5;
+$params['deleted'] = false;
+$jsonEncodedData = json_encode($params);
+----
+
+== Özel API metodları ekleme
+
+Bazı durumlarda mevcut API metodları yeterli olmayabilir veya bir işlem için bunları kullanmak aşırı karmaşık olabilir. SuiteCRM web servisleri ek metodlarla genişletilebilir veya mevcut metodlar override edilebilir.
+
+Önerilen yol: `custom/service/<version>_custom/` dizini. Örneğin `v4_1` için `custom/service/v4_1_custom/`.
+
+Sonra uygulayıcı sınıfı oluşturun; örneğimiz yeni bir metod yazacak ve SuiteCRM loguna yazacaktır. Metodun adı `write_log_message` olacaktır.
+
+[discrete]
+==== Örnekler
+
+.Örnek 16.5: Custom v4_1 Web Service Implementation
+[source,php]
+----
+<?php
+if(!defined('sugarEntry')){/* Lines 251-252 omitted */}
+require_once 'service/v4_1/SugarWebServiceImplv4_1.php';
+class SugarWebServiceImplv4_1_custom extends SugarWebServiceImplv4_1
+{/* Lines 256-276 omitted */}
+----
+
+Sonra registry dosyasını oluşturun ve yeni metodunuzu kayıt ettirin.
+
+.Örnek 16.6: Custom v4_1 web service registry
+[source,php]
+----
+<?php
+----
+
+Son olarak entry point dosyasını oluşturun. Bu dosya API istemcilerinin çağıracağı dosyadır ve oluşturduğunuz sınıfları referans edip web servisi çağıracaktır.
+
+.Örnek 16.7: Custom v4_1 REST Entry point
+[source,php]
+----
+<?php
+chdir('../../..');
+
+require_once 'SugarWebServiceImplv4_1_custom.php';
+
+$webservice_path = 'service/core/SugarRestService.php';
+$webservice_class = 'SugarRestService';
+$webservice_impl_class = 'SugarWebServiceImplv4_1_custom';
+$registry_path = 'custom/service/v4_1_custom/registry.php';
+$registry_class = 'registry_v4_1_custom';
+$location = 'custom/service/v4_1_custom/rest.php';
+----

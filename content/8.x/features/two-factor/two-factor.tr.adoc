@@ -1,0 +1,73 @@
+---
+title: "İki Faktörlü Doğrulama"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/features/
+
+== SuiteCRM 8'de İki Faktörlü Doğrulama Nasıl Kurulur?
+
+Kullanıcı profilinize gidin; yeni bir "İki Faktörlü Doğrulama" sekmesi olacaktır.
+
+image:2FA-Profile.png[Profilde 2FA]
+
+Bu sekme, kullanıcının 2FA `Durum`unu ve yapılandırma düğmesini gösterir (yöneticiler profilleri görüntülerken yalnızca `Durum` görür).
+
+`İki Faktör Yapılandırması` düğmesi, İki Faktörlü Doğrulamayı etkinleştirebileceğiniz sayfaya götürür.
+
+image:Enable-2FA.png[2FA Etkinleştirme Sayfası]
+
+image:Qr-2FA.png[2FA QR Kodu]
+
+2FA'yı etkinleştirdikten sonra bir QR Kodu gösterilecektir. Bu kodu doğrulayıcı (authenticator) uygulamanızla tarayın ve uygulamanın gösterdiği kodu girin.
+
+=== QR Kodu Tarayamıyorsanız?
+QR kodunu tarayamıyorsanız, gizli anahtarı manuel olarak girmek için alabilirsiniz.
+
+`Unable to scan the QR Code?` seçeneğini seçin.
+
+image:QR-Code-Secret.png[QR Kodu Gizli Anahtarı]
+
+Manuel yapılandırmada ek bilgi girmeniz gerekirse `Extra Config` bölümüne bakın: link:./#_extra_configuration[Ek Yapılandırma].
+
+== Etkinleştirdikten Sonra
+
+image:Enabled-2FA.png[2FA Etkin]
+
+Etkinleştirdikten sonra bir dizi Kurtarma / Yedekleme kodu gösterilecektir.
+
+=== Kurtarma / Yedekleme Kodları Nedir?
+Yedekleme kodları, doğrulayıcı uygulamanızla giriş yapamadığınız durumlarda kullanılabilecek tek seferlik kodlardır. Bir kod kullanıldıktan sonra tekrar kullanılamaz.
+
+10 Yedekleme Kodu, doğrulama kodunuzu doğruladıktan sonra *yalnızca bir kez* gösterilir ve sayfayı tekrar ziyaret ettiğinizde yeniden gösterilmez.
+
+=== Yedekleme Kodlarını Yeniden Oluşturma
+Yedekleme kodlarını `İki Faktör Yapılandırması` sayfasından yeniden oluşturabilirsiniz. Yeniden oluştururken doğrulayıcı kodunuzu tekrar girmeniz gerekecektir.
+
+image:Regenerate-Codes.gif[Yedekleme Kodlarını Yeniden Oluşturma]
+
+== İki Faktörlü Doğrulamayı Devre Dışı Bırakma
+İki Faktörlü Doğrulamayı devre dışı bırakmak için doğrulama kodunuzu yeniden girmeniz gerekir.
+
+Bu işlem `İki Faktör Yapılandırması` sayfasından yapılabilir.
+
+image:Disable-Two-Factor.gif[2FA Devre Dışı Bırakma]
+
+=== Diğer Devre Dışı Bırakma Yolları
+Yöneticiler, kullanıcı profilleri üzerinden de 2FA'yı devre dışı bırakabilirler. Kullanıcıda 2FA etkinse, yönetici kullanıcıları için yeni bir "Disable 2FA" (2FA'yı Devre Dışı Bırak) işlemi görünerek yöneticilerin kullanıcı için 2FA'yı kapatmasına izin verir.
+
+image:New-Disable-2FA.png[Profil Üzerinden Devre Dışı Bırakma]
+
+== Girişte İki Faktör
+Kullanıcı için 2FA etkinse, giriş yaptıktan sonra doğrulama kodunu girmeniz için bir açılır pencere gösterilecektir.
+
+image:Login-2FA.png[2FA Giriş]
+
+== Ek Yapılandırma
+Manuel olarak İki Faktörü ayarlarken bazı uygulamalar sizden ekstra bilgi isteyebilir:
+
+* TOTP
+* Zaman bazlı
+* Aralık: 30 saniye
+* Basamak sayısı: 6
+* Sha: 1

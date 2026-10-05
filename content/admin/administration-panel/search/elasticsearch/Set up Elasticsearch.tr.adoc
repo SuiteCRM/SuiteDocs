@@ -1,0 +1,34 @@
+---
+title: Elasticsearch Kurulumu
+weight: 2
+---
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+:toc:
+
+{{% notice note %}}
+SuiteCRM 7.11, Elasticsearch 5.6 gerektirir. SuiteCRM 7.12, Elasticsearch 7 gerektirir.
+{{% /notice %}}
+
+Elasticsearch çalıştırmak için Java 8 gereklidir; Oracle Java veya OpenJDK desteklenir.
+
+En hızlı şekilde Elasticsearch sunucusunu ayağa kaldırmanın yollarından biri resmi Docker görüntüsünü kullanmak veya Debian tabanlı sistemler için .deb paketidir.
+
+Bu rehberde Ubuntu üzerinde Elasticsearch kurduğunuz varsayılacaktır. Farklı kurulum yöntemleri için resmi dokümantasyona bakın:
+https://www.elastic.co/guide/en/elasticsearch/reference/5.6/install-elasticsearch.html
+
+Bu rehber geliştirme amaçlı hafif bir Elasticsearch sunucusu kurmanıza yöneliktir; üretim sunucusu kurulumları için ayrıntılı güvenlik ve performans ayarları gerekir.
+
+== Docker ile kurulum (önerilen)
+
+{{% notice note %}}
+Mevcut kullanıcı `docker` grubuna dahil değilse izin sorunlarıyla karşılaşabilirsiniz.
+{{% /notice %}}
+
+Görüntüyü indirin:
+
+[source,bash]
+docker pull docker.elastic.co/elasticsearch/elasticsearch:5.6.10

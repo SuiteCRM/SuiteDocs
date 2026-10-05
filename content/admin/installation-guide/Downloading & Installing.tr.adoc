@@ -1,0 +1,75 @@
+---
+title: Downloading & Installing
+weight: 20
+---
+
+:toc:
+
+{{% notice info %}}
+Bu belgeler SuiteCRM 7.x için hazırlanmıştır; 8+ sürümler için aynı konuya dair dokümantasyona link:../../../8.x/admin/installation-guide/downloading-installing[buradan] ulaşabilirsiniz.
+{{% /notice %}}
+
+== SuiteCRM İndirme ve Kurulum
+
+SuiteCRM'i ilk kez kuruyorsanız bu bölümdeki talimatları izleyin. Önceden bir SuiteCRM kurulumunuz varsa yükseltme talimatları için upgrade bölümüne bakın. Kurulum için genel adımlar:
+
+. İşletim sisteminize uygun PHP, web sunucusu ve veritabanını kurun.
+. SuiteCRM dosyalarını suitecrm.com adresinden indirin.
+. SuiteCRM dosyalarını web sunucunuza kopyalayın.
+. Kurulum sihirbazını takip ederek SuiteCRM'i kurun.
+
+=== SuiteCRM en son dosyalarını indirme
+
+. SuiteCRM indirme sayfasına gidin: http://suitecrm.com/download
+. İstediğiniz SuiteCRM sürümünü indirin. En güncel sürümün kullanılmasını tavsiye ederiz.
+. Eğer kayıt veya indirme sırasında sorun yaşarsanız destek forumlarını kullanın.
+
+=== SuiteCRM dosyalarını web sunucusuna kopyalama
+
+İndirilen paket açılıp gerekli izinlerin verilmesi gerekir. Aşağıdaki adımlar genel bir kılavuzdur:
+
+. SuiteCRM dizininin yer alacağı web sunucusu dizinini seçin (genelde root veya bir alt dizin).
+. ZIP dosyasını seçtiğiniz dizine açın; bu işlem SuiteCRM adlı bir dizin oluşturur.
+. İsterseniz varsayılan `SuiteCRM` dizin adını değiştirebilirsiniz.
+. Kurulum için uygun izinleri ayarlayın (Linux örneği):
+
+[source]
+----
+/* Lines 55-58 omitted */
+sudo chmod 775 config_override.php 2>/dev/null
+----
+
+`www-data` kullanıcı adının kullandığınız sistemdeki web sunucusu kullanıcısı ile değiştirilmesi gerektiğini unutmayın (örn. `apache`, `nobody`, `IUSR_computerName`).
+
+=== Önerilen önkoşullar
+
+* PHP
+* JSON
+* XML Parsing
+* MB Strings Modülü
+* Yazılabilir `config.php`
+* Yazılabilir `custom` dizini
+* Yazılabilir `modules` alt dizinleri
+* Yazılabilir `upload` dizini
+* Yazılabilir `data` alt dizinleri
+* Yazılabilir `cache` alt dizinleri
+* PHP bellek limiti (en az 128M)
+* ZLIB, ZIP, PCRE, IMAP, cURL modülleri
+
+==== PHP yapılandırması ile ilgili notlar
+
+SuiteCRM 8.4.0'a kadar `session.name` değeri olarak `PHPSESSID` varsaymaktadır. `/api/graphql` çağrılarında 403 hatası alırsanız `php.ini` içinde `session.name`'i kaldırmayı veya `PHPSESSID` olarak ayarlamayı deneyin.
+
+=== SuiteCRM kurulumu
+
+Dosyalar web sunucusuna kopyalandıktan sonra kurulum sihirbazını çalıştırın:
+
+`http://<yourServer>/<yourSuiteCRMDirectory>/install.php`
+
+Tipik veya özel kurulum seçenekleri mevcuttur; tipik kurulum genelde yeterlidir. Özel kurulumda veritabanı kullanıcı ayarları ve locale seçenekleri kurulum sürecinde belirtilebilir.
+
+=== Tipik kurulumun uygulanması
+
+. Tarayıcıda `http://<yourServer>/<yourSuiteCRMDirectory>/install.php` adresini açın.
+. Welcome sayfasında Next'e tıklayın ve yönergeleri takip edin.
+. Lisans sözleşmesini kabul edip Next ile ilerleyin.

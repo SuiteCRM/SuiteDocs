@@ -1,0 +1,73 @@
+---
+weight: 5
+title: "Views"
+
+:toc:
+
+= 5. Görünümler (Views)
+
+SuiteCRM MVC desenini takip eder ve bu nedenle görünümler (views) konsepti vardır.
+Görünümler veriyi toplayıp gösterme sorumluluğuna sahiptir. Birçok varsayılan görünüm
+bulunur; örneğin:
+
+*ListView*::
+  /* Lines 16-19 omitted */
+*DetailView*::
+  /* Lines 21-22 omitted */
+*EditView*::
+  /* Lines 24-26 omitted */
+
+== Konum
+
+Görünümler `modules/<TheModule>/views/` veya özelleştirilmiş ise `custom/modules/<TheModule>/views/` içinde
+bulunur ve `view.<viewname>.php` biçiminde adlandırılır. Örneğin Accounts detail view
+`modules/Accounts/views/view.detail.php` içindedir. Eğer custom'da bir versiyon varsa o
+kullanılır; yoksa modül versiyonu, o da yoksa include/MVC/View/views/ içindeki default
+kullanılır.
+
+== Özelleştirme
+
+Özelleştirme için uygun view dosyasını oluşturmanız gerekir; bu modüle göre değişir.
+
+=== Özel modül
+
+Dosyayı modül içine ekleyin: `modules/<TheModule>/views/view.<viewname>.php`.
+İçerik tipik olarak şu yapıda olur:
+
+.Example 5.1: Örnek view (custom modül)
+[source,php]
+----
+<?php
+
+require_once 'include/MVC/View/views/view.<viewname>.php';
+
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+class <TheModule>View<ViewName> extends View<ViewName>
+{
+
+}
+----
+
+=== Önceden var olan modüller
+
+Mevcut bir modül için view'u `custom/modules/<TheModule>/views/view.<viewname>.php` içine
+ekleyin. Var olan view'u genişletmek genellikle daha iyidir çünkü önemli mantık korunur.
+Sınıf isimlendirme kuralı `Custom<TheModule>View<ViewName>` şeklindedir.
+
+.Example 5.2: ABC_Vehicles için Detay view örneği
+[source,php]
+----
+<?php
+
+require_once 'include/MVC/View/views/view.detail.php';
+
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+class ABC_VehiclesViewDetail extends ViewDetail
+{
+
+}
+----
+
+=== Var olan view'u genişletme
+
+Mevcut view'u genişletirken orijinal view'u require etmeyi unutmayın.

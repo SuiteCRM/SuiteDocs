@@ -1,0 +1,45 @@
+---
+Title: "Bir sayfayı düzenleme"
+Weight: 10
+---
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/community
+
+== İlk basit düzenlemen
+
+Dokümantasyona katkıda bulunmak için GitHub üzerinde sayfaları doğrudan düzenleyebilirsiniz.
+
+{{% notice info %}}
+GitHub hesabınız olması gerekir: https://github.com/join. Hesabınız yoksa düzenleme sırasında oluşturabilirsiniz.
+{{% /notice %}}
+
+=== 1. Düzenlemek istediğiniz sayfaya gidin
+
+Menüler ve arama özelliğini kullanarak sayfayı bulun.
+
+=== 2. "Edit this page" linkine tıklayın
+
+Her sayfanın üst kısmında "Edit this Page" bağlantısı vardır.
+
+image:24EditThisPage.png[title="Edit this page link"]
+
+=== 3. Değişiklikleri yapın
+
+GitHub editörüyle dosya kaynak kodunu düzenleyin. Asciidoc formatı düz metin gibidir — sadece yazıyı düzenleyin.
+
+image:25GitHubEditAndSave.png[title="Edit this page link"]
+
+Değişiklikleri yaptıktan sonra alt bölümdeki yeşil `btn:[Propose File Change]` butonuna tıklayın.
+
+=== 4. Değişiklikleri önerin (Pull Request oluşturun)
+
+Birkaç değişiklik yapıp sonra PR oluşturabilirsiniz; ilk basit düzenleme için hemen PR oluşturun.
+
+image:26GitHubCreatePR.png[title="Edit this page link"]
+
+İsteğe bağlı olarak başlık ve açıklama ekleyip `btn:[Create pull request]` butonuna tıklayın.
+
+=== Hepsi bu kadar!
+
+Önerdiğiniz değişiklik değerlendirmeye alınacak. PR durumunu SuiteDocs pull requests sayfasından takip edebilirsiniz.

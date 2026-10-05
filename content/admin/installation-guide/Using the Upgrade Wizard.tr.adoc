@@ -1,0 +1,21 @@
+---
+title: Using the Upgrade Wizard
+weight: 40
+---
+
+== Upgrade Wizard Kullanımı
+
+Upgrade Wizard, SuiteCRM uygulamasını en son sürüme yükseltmek için hızlı bir yol sağlar. Yükseltme mantığını ve gerekli SQL komutlarını içerir. `config.php` dosyanızın yazılabilir olduğundan emin olun.
+
+=== Upgrade Wizard ile yükseltme adımları
+
+1. Uygun SuiteCRM Upgrade zip dosyasını indirin.
+2. Yönetici hesabıyla mevcut SuiteCRM'e giriş yapın ve Admin paneline gidin.
+3. Admin sayfasında Upgrade Wizard'a tıklayın.
+4. Next ile devam edin; sistem kontrolleri çalışacaktır.
+5. Upload Upgrade ile paketi yükleyin.
+6. Preflight Check sayfasında kontrolü yapın; SQL değişikliklerini görüntüleyebilirsiniz.
+7. Recheck ile tekrar kontrol edin veya Next ile ilerleyin.
+8. Commit Upgrade adımlarını takip edin; işlem sırasında üç yönlü merge yapılacaktır (özelleştirilmiş instance, eski default, yeni default arasındaki birleşimler).
+
+*Not:* Özelleştirilmiş layout'lar varsa Confirm Layouts adımı görünebilir ve hangi değişikliklerin uygulanacağını seçebilirsiniz.

@@ -1,0 +1,33 @@
+---
+title: SuiteCRM ile Elasticsearch Entegrasyonunu Kurma
+weight: 3
+---
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+:imagesdir: /images/en/admin/ElasticSearch
+:experimental:
+
+== Elasticsearch bağlantısını yapılandırma
+
+Yönetici paneline gidin, Search ayarlarına ilerleyin ve Elasticsearch ayar sayfasını açın. Elasticsearch'i etkinleştirmek için ilgili kutuyu işaretleyin ve host, kullanıcı ve parola alanlarını doldurun. Eğer anonim erişim etkin ise kullanıcı ve parolayı boş bırakabilirsiniz.
+
+{{% notice note %}}
+Eğer SuiteCRM ve Elasticsearch'i Docker ile çalıştırıyorsanız hostname, Elasticsearch konteynerinin adı olmalıdır.
+{{% /notice %}}
+
+image:ElasticsearchSearchSetting.png["Elasticsearch yapılandırması"]
+
+`Test connection` butonunu kullanarak mevcut yapılandırmanın çalışıp çalışmadığını kontrol edebilirsiniz.
+
+Ayarlarınızdan memnun kalınca `Save` butonuna basın.
+
+== İlk indeksleme
+
+Kaydetme işleminden sonra, Elasticsearch ayar sayfasına geri dönüp `Schedule full indexing` butonuna basarak tam indeksleme başlatın. Bu görev, crontab doğru yapılandırıldıysa bir dakika içinde çalışmaya başlayacaktır.
+
+== Arama motorunu Elasticsearch olarak değiştirin
+
+Arama Ayarları bölümüne gidin ve `Elasticsearch Engine` seçeneğini arama motoru olarak seçin.

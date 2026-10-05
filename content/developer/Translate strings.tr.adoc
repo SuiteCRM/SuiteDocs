@@ -1,0 +1,39 @@
+---
+Title: Translate strings
+weight: 190
+---
+
+= LangText sınıfı
+
+Yardımcı sınıfı string çevirisi için kullanılır.
+
+{{%notice note %}}
+Bu doküman *SuiteCRM* versiyon 7.10.3 ve sonrası için referans verir.
+{{% /notice %}}
+
+== Kullanım
+
+[source,php]
+----
+// örnek string tanımı (bir sonraki örnekleri anlamak için):
+$app_strings['LBL_EXAMPLE_APP_STR'] = 'Example Application String';
+$mod_strings['LBL_EXAMPLE_MOD_STR'] = 'Example string for a specified module';
+$mod_strings['LBL_EXAMPLE_VARIABLE'] = 'Example string to use value of {foo}';
+
+
+// Herhangi bir string için çeviri kullanımı
+$text = new LangText('LBL_EXAMPLE_APP_STR');
+echo $text;
+
+// Değiştirilecek değerlerle çeviri kullanımı
+$text = new LangText('LBL_EXAMPLE_VARIABLE', ['foo' => 'bar']);
+echo $text; // çıktı: Example string to use value of bar
+
+// Sadece modül stringleri için çeviri
+$text = new LangText('LBL_EXAMPLE_MOD_STR', null, LangText::USING_MOD_STRINGS);
+echo $text;
+
+// Sadece uygulama stringleri için çeviri
+$text = new LangText('LBL_EXAMPLE_APP_STR', null, LangText::USING_APP_STRINGS);
+echo $text;
+----

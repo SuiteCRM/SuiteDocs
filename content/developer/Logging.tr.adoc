@@ -1,0 +1,80 @@
+---
+weight: 11
+title: "Logging"
+---
+
+= 11. Logging (Kayıt Tutma)
+
+== Kayıt mesajları
+
+SuiteCRM'de log erişimi bir logger singleton'ı aracılığıyla sağlanır. Logger örneğini
+almak çok basittir:
+
+.Example 11.1: Log'a erişim
+[source,php]
+LoggerManager::getLogger();
+
+Bu örnek ile mesaj loglanabilir. Her log seviyesi için bir metot mevcuttur:
+
+.Example 11.2: Mesaj loglama
+[source,php]
+----
+LoggerManager::getLogger()->debug('This is a debug message');
+LoggerManager::getLogger()->error('This is an error message');
+----
+
+Bu şu çıktıyı üretir:
+
+.Example 11.3: Log örneği
+[source,php]
+----
+Tue Apr 28 16:52:21 2015 [15006][1][DEBUG] This is a debug message
+Tue Apr 28 16:52:21 2015 [15006][1][ERROR] This is an error message
+----
+
+== Log çıktısı
+
+Varsayılan olarak log şu bilgileri gösterir:
+
+.Example 11.4: Log çıktı formatı
+[source,php]
+----
+<Date> [<ProcessId>][<UserId>][<LogLevel>] <LogMessage>
+----
+
+`<Date>`::
+  Mesajın loglandığı tarih ve saat.
+`<ProcessId>`::
+  PHP süreç id'si.
+`<UserId>`::
+  Sisteme giriş yapmış kullanıcının ID'si.
+`<LogLevel>`::
+  Log mesajının seviyesi.
+`<LogMessage>`::
+  Log mesajının içeriği.
+
+== Log seviyeleri
+
+Admin paneldeki seviye ayarına bağlı olarak bazı mesajlar log'a eklenmez. Örneğin logger
+`error` ise yalnızca `error` ve üzeri seviyeler (`error`, `fatal`, `security`) görünür.
+
+Varsayılan log seviyeleri (verişim sırasına göre):
+
+* `debug`
+* `info`
+* `warn`
+* `deprecated`
+* `error`
+* `fatal`
+* `security`
+
+{{% notice note %}}
+Üretim ortamında genelde daha az ayrıntılı seviyeler (ör. `error` ya da `fatal`) kullanılır.
+Geliştirme sırasında ise tercih size kalmıştır; yazar genellikle `debug` seviyesini kullanmayı
+tercih eder.
+{{% /notice %}}
+
+== Log dosyası konumu
+
+Varsayılan log dosyası `suitecrm.log` olup kurulumun kök dizininde bulunur. Logger
+ayarlarını Admin / System settings / Logger Settings altında değiştirebilirsiniz. link:../../admin/administration-panel/system/#_logger_settings

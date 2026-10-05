@@ -1,0 +1,35 @@
+---
+title: SuiteCRM'de Büyük Veri Aktarımları (Large Imports)
+date: 2016-02-20T12:00:00+01:00
+author: Jim Mackin
+tags: ["development"]
+source: http://www.jsmackin.co.uk/suitecrm/large-imports-in-suitecrm/
+hidden: true
+draft: true
+---
+
+Performans ayarı için büyük veritabanlarıyla denemeler yaparken, milyonlarca satır ekleyebilen küçük bir script yazdım. Ancak verinin eklenmesi çok uzun sürüyordu; bu işlemi tekrarlanabilir yapmak istedim.
+
+:imagesdir: /images/en/community
+
+Bu yazıda 40.000 hesap her biri için 100 kişi (contacts) ve 100 büyük hesap her biri için 10.000 kişi gibi büyük veri setleri ekleme senaryosunu inceleyeceğim.
+
+Normal (ve doğru) yöntem SuiteCRM'in dahili importer'ını kullanmaktır, ancak çok büyük hacimlerde bu yöntem yetersiz kalır.
+
+Bir sonraki çözüm doğrudan veritabanına yazmaktı; bu, büyük boyutlarda dahili importer'dan daha hızlıdır.
+
+İlk yaklaşımım veriyi Faker ile üretip doğrudan INSERT ile eklemekti — bu çok yavaştı (günler alıyordu). Daha sonra toplu (batch) INSERT'ler denedim; biraz daha iyi oldu ama yine uzun sürüyordu.
+
+Son olarak MySQL'in `LOAD DATA INFILE` komutunu denedim; MySQL belgelerine göre INSERT'e göre 20 kata kadar daha hızlı olabilir.
+
+Yöntem: Script ile CSV dosyası üretin, ardından MySQL `LOAD DATA INFILE` ile tabloya yükleyin. Bu yaklaşımla örnekte bazı kümeler dakikalar içinde yüklendi:
+
+.Example
+[source]
+mysql> LOAD DATA INFILE 'accounts.csv' INTO TABLE accounts FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' (id,name,date_entered, date_modified,modified_user_id,created_by);
+
+Ve sonuçlar örneğin:
+
+Query OK, 40100 rows affected (30.15 sec)
+
+Büyük datasetlerde `LOAD DATA INFILE` ciddi performans avantajı sağlar.

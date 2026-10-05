@@ -1,0 +1,71 @@
+---
+title: Database Schema
+weight: 195
+---
+
+:imagesdir: /images/en/developer/database-schema
+
+== SchemaSpy tabloları ve diyagramları
+
+Veritabanı yapımızı, tabloları ve ilişkileri görmek için lütfen
+link:++https://schema--suitecrm-docs.netlify.app/schema++[SuiteCRM Veritabanı Şeması^] adresini ziyaret edin.
+Bu şema SchemaSpy ile üretilmiştir.
+
+image::schemaspy.png[link="https://schema--suitecrm-docs.netlify.app/schema", SchemaSpy ekran görüntüsü, window="_blank"]
+
+== Genel ilkeler ve örnek SQL sorguları
+
+{{% notice warning %}}
+Aşağıdaki bazı sorgular veritabanınızdan veri silebilir. Kendi sorumluluğunuzda
+kullanınız ve denemeden önce tam yedek aldığınızdan emin olun. Tek bir hatalı SQL
+sorgusu veritabanınıza geri döndürülemez zarar verebilir.
+{{% /notice %}}
+
+=== Benzersiz tanımlayıcılar
+
+SuiteCRM benzersiz tanımlayıcılar için UUID'ler kullanır. Örnek: `46c35607-bcad-c7f1-1745-558d6b858b27`.
+UUID'ler SQL içinde üretilebilir ve alt sorgu olarak kullanılabilir:
+
+[source,sql]
+----
+UPDATE some_table SET id=(SELECT uuid());
+----
+
+Geçmişte (SugarCRM döneminde) bu id'ler belirli bir formata uyuyordu ancak pratikte
+herhangi bir format (numeric, string vb.) kullanılabiliyordu; önemli olan benzersiz olmalarıdır.
+
+=== Özel Alanlar
+
+Özel alanlar `_cstm` son eki ile tablolarda saklanır. Her özel alan, Studio'da
+girdiğiniz isimle birlikte `_c` son ekini alır.
+
+Örnek olarak bir modül tablosunu özel alan tablosu ile JOIN eden sorgu:
+
+[source,sql]
+----
+SELECT first_name, last_name, contacts_cstm.age_c
+----
+
+`contacts_cstm` içindeki yetim kayıtları listeleyen örnek sorgu:
+
+[source,sql]
+----
+SELECT * -- DELETE ChildTable
+  /* Lines 62-65 omitted */
+  WHERE ParentTable.id IS NULL
+----
+
+Bu sorgu bir SELECT'tir; yorum satırındaki kısmı (---) değiştirerek silme işlemi
+yapabilirsiniz — uyarıyı dikkate alarak.
+
+=== İlişkiler
+
+SuiteCRM veritabanı motorunun yabancı anahtar kısıtlamalarına güvenmez. Bu işler
+uygulama tarafından PHP kodu düzeyinde yönetilir.
+
+Genel olarak cascade update veya cascade delete kullanılmaz; bazı özel durumlar dışında
+bunlar otomatik yapılmaz. Bu nedenle periyodik veritabanı temizliği gerekebilir.
+
+`relationships` adlı bir tablo vardır; burada vardefs'ten alınan metadata bulunur.
+
+==== Tabloları JOIN etmenin tipik yolları

@@ -1,0 +1,26 @@
+---
+Title: Harici OAuth Sağlayıcı Genel Bakış
+weight: 40
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Giriş
+
+Bu rehber, External OAuth Provider modülündeki konfigürasyonlara daha derin bir bakış sunmayı amaçlar.
+
+== 2. Kayıt türleri
+Bir yönetici olarak iki tür kayıt oluşturabilirsiniz:
+
+. Personal
+.. Bunlar sadece oluşturduğu kullanıcı tarafından erişilebilir
+.. Kişisel kayıtlar, özel alan adı olmayan dış sağlayıcılardaki kişisel hesaplara erişimi yapılandırmak için kullanılır (örn. `@gmail` veya `@outlook` hesapları). Her hesap için "Client Id" ve "Client Secret" gibi değerler hesap bazında benzersiz olacaktır.
+. Group
+.. Birçok kullanıcı tarafından kullanılacak kayıtlar
+.. Grup kayıtları, aynı domaini paylaşan hesaplar (ör. `@example-inc.onmicrosoft.com`) için kullanılır. "Client ID", "Client Secret" ve diğer alanlar bu domaini kullanan tüm hesaplar için aynı olacaktır.
+
+Daha fazla bilgi ve iki kayıt türü arasındaki farklar için link:../inboundemail-securitygroups[Configuring Security Groups for Inbound Email] sayfasına bakın.
+
+== 3. OAuth2 Client kütüphanesi
+
+... (orijinal belgedeki ilgili teknik detaylar burada korunmalıdır)

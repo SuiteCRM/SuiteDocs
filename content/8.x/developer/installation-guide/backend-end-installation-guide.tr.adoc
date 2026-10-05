@@ -1,0 +1,102 @@
+---
+title: "Backend Geliştirici Kurulum Kılavuzu"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-architecture-intro
+
+{{% notice info %}}
+Bu dokümantasyon SuiteCRM Sürüm 8+ içindir; Sürüm 7 dokümanları için link:../../../../developer/introduction[buraya] bakın.
+{{% /notice %}}
+
+== 1. Başlamadan önce
+
+Bu rehber, önceden oluşturulmuş paketler kullanmadan kaynak koddan SuiteCRM inşa etmek isteyen geliştiriciler için hazırlanmıştır.
+
+Özelleştirmeler yapmak için kaynak koddan derlemek zorunlu değildir. Öncelikle sağlanan paketleri denemenizi öneririz; indirme ile ilgili bilgiler için link:../../../admin/releases/[Release page] ve paket ile kurulum için link:../../../admin/installation-guide/downloading-installing/[Downloading & Installing] sayfalarına bakın.
+
+Eğer sağlanan paketleri kullanmak istemiyorsanız aşağıdaki adımlara devam edin.
+
+== 2. Web Sunucusu Kurulumu
+
+İlk adım web sunucusunu kurmaktır.
+
+Lütfen link:../../../admin/installation-guide/webserver-setup-guide/[Webserver Setup Guide] dokümanını takip edin.
+
+== 2. SuiteCRM dosyalarını indirme ve yerleştirme
+
+=== 2.1 En son SuiteCRM dosyalarını indirme
+
+Kaynak dosyalardan bir geliştirme ortamı kurmak istiyorsanız, kullanmak istediğiniz sürümün kaynak kodunu çekin veya zip olarak indirin. Örneğin GitHub'daki link:https://github.com/salesagility/SuiteCRM-Core[SuiteCRM-Core] deposundan çekebilirsiniz.
+
+=== 2.2 Dosyaları web sunucu kök dizinine kopyalama
+
+Dosyaları çektikten sonra web sunucunuzun kök dizinine kopyalayın.
+
+`apache` için web root genellikle `/var/www` veya `/var/www/html` altındadır.
+
+{{% notice note %}}
+VHost üzerinde ayarladığınız `DocumentRoot` değerini göz önünde bulundurun (apache kullanıyorsanız). Ayrıntılar için link:../../../admin/installation-guide/webserver-setup-guide#_4_configuring_url_re_writes[Web Server Setup guide - 4. Configuring URL re-writes] bölümüne bakın.
+{{% /notice %}}
+
+{{% notice note %}}
+Dosyaları web root'a eklemek en tipik kurulum yöntemidir, ancak alt alan adları (subdomain) gibi farklı kurulumlar da mümkündür.
+{{% /notice %}}
+
+=== 2.3 İzinleri ayarlama
+
+Gerekli dosya ve dizin izinlerini ayarlayın.
+
+Terminal kullanıyorsanız şu komutları çalıştırabilirsiniz:
+
+[source,bash]
+----
+find . -type d -not -perm 2755 -exec chmod 2755 {} \;
+find . -type f -not -perm 0644 -exec chmod 0644 {} \;
+find . ! -user www-data -exec chown www-data:www-data {} \;
+chmod +x bin/console
+----
+
+Lütfen örnekteki `www-data` kullanıcı/grup adını kendi sisteminizdeki web sunucusu kullanıcısı ile değiştirin. İşletim sisteminize göre yaygın web sunucu kullanıcıları şunlardır:
+
+* `www-data` (Ubuntu/Apache)
+* `apache` (Linux/Apache)
+
+Eğer grup adı kullanıcı adından farklıysa `0644` yerine `0664` ve `2755` yerine `2775` kullanmanız gerekebilir.
+
+=== 2.4 (isteğe bağlı) Veritabanı oluşturma
+
+Kurulum sürecinden önce veritabanını oluşturmanız gerekebilir; yükleyici gerekli tabloları oluşturacaktır.
+
+== 3. Front-End Kurulumu
+
+Bu kılava devam etmeden önce uygulamanın frontend kısmını kurmanız gerekir.
+
+Lütfen link:../8.8.0-front-end-installation-guide[Front-end Developer install guide] dokümanını inceleyin.
+
+== 4. Bağımlılıkların kurulumu
+
+{{% notice note %}}
+Bu adımı yalnızca bir kez yapmanız gerekir. Bağımlılıklar kurulduktan sonra yeni bir SuiteCRM sürümüne yükseltilmediğiniz sürece tekrar çalıştırmanız gerekmez.
+{{% /notice %}}
+
+. Composer'ı link:https://getcomposer.org/[Composer] adresinden edinin.
+. SuiteCRM kök dizininde `composer install` çalıştırın
+. Legacy tema derlemesini kök dizinde çalıştırın
+- *NOT:* `./vendor/bin/pscss` composer dev bağımlılığı olarak eklendiği için `composer install` komutunu `--no-dev` ile çalıştırmayın
+
+[source,bash]
+----
+./vendor/bin/pscss -s compressed ./public/legacy/themes/suite8/css/Dawn/style.scss > ./public/legacy/themes/suite8/css/Dawn/style.css
+----
+
+== 5. İzinleri ayarlama
+
+Bkz. link:#_2_3_set_permissions[İzinleri ayarlama]
+
+== 6. Yükleyiciyi çalıştırma
+
+SuiteCRM 8 ve üzeri sürümlerde yükleyiciyi çalıştırmak için iki yol vardır:
+
+* link:../../../admin/installation-guide/running-the-ui-installer/[Seçenek 1: Web UI üzerinden yükleme]
+* link:../../../admin/installation-guide/running-the-cli-installer/[Seçenek 2: CLI ile yükleme]

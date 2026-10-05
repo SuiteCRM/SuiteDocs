@@ -1,0 +1,54 @@
+---
+title: "Writing Tests"
+---
+
+:toc:
+
+
+== PHPUnit testleri
+
+PHPUnit testleri, test ettiğiniz birim ile ilişkilidir. Testlerin yolu `tests/...` klasöründeki
+birimin yoluyla aynıdır. Her Unit test sınıfı `...Test` sonekine sahiptir ve
+`SuiteCRM\Test\SuitePHPUnitFrameworkTestCase` sınıfını extend etmelidir. Test metodları
+`test...` öneki ile başlar.
+
+Örneğin, `/path/to/Example.php` içinde `class Example` varsa ilgili test
+`tests/path/to/ExampleTest.php` içinde yer almalıdır.
+
+*Örnek PHPUnit testi*
+
+`tests/path/to/ExampleTest.php` içeriği:
+
+[source,php]
+--
+
+use SuiteCRM\Test\SuitePHPUnitFrameworkTestCase;
+
+// not: `SuitePHPUnitFrameworkTestCase` `SuiteCRM\TestCaseAbstract` sınıfını genişletir,
+// o da `PHPUnit_Framework_TestCase`'i genişletir.
+
+class ExampleTest extends SuitePHPUnitFrameworkTestCase {/* Lines 28-35 omitted */}
+
+--
+
+PHPUnit testleri hakkında daha fazla bilgi için https://phpunit.readthedocs.io adresine bakın.
+
+---
+
+== State-safe Testler
+
+Eskiden `StateSaver` ve `StateChecker` yardımcıları vardı; ancak yavaş ve karmaşık
+oldukları için bunların yerine her test sonrasında veritabanı transaction'ları rollback
+edilen daha standart bir sistem kullanılmaktadır.
+
+Testlerin global ortam durumunu temiz tutması önemlidir. Eğer bir test veritabanında,
+dosya sisteminde veya süperglobal'lerde ekstra veri bırakırsa sonraki testlerin davranışı
+değişebilir. Yeni test yazarken testin *state-safe* olmasına dikkat edin.
+
+Durumun korunması için dikkat edilmesi gerekenler:
+
+- Veritabanı durumu otomatik rollback ile yönetilir. Ancak eğer test içinde açıkça bir
+  transaction oluşturuluyorsa `truncate` cleanup stratejisi kullanılmalıdır.
+- Dosya sistemi değişiklikleri şu an otomatik olarak ele alınmamaktadır.
+- Hata seviyesine bağlı testler varsa test başında mevcut hata raporlama seviyesini
+  kaydedip test sonunda geri yüklemeniz gerekmektedir.

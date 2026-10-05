@@ -1,0 +1,38 @@
+---
+title: "Özel Bir Grafik Ekleme"
+weight: 50
+---
+
+{{% notice note %}}
+Bu doküman angular ve rxjs hakkında iyi bir anlayışa sahip olduğunuzu varsayar.
+{{% /notice %}}
+
+Gerekli kavramlar:
+
+* link:https://angular.io/guide/component-overview[angular bileşenleri,window=_blank]
+* link:https://angular.io/guide/lifecycle-hooks[angular lifecycle,window=_blank]
+* link:https://angular.io/guide/architecture-modules[angular modüller,window=_blank]
+* link:https://angular.io/guide/dependency-injection[angular servisleri ve DI,window=_blank]
+* link:https://angular.io/guide/content-projection[content-projection,window=_blank]
+* link:https://rxjs.dev/[rxjs,window=_blank]
+* Reactive angular örnekleri (videolar)
+
+== Extension framework kurulumu
+
+{{% notice info %}}
+Bu rehber, yerel ortamınızda frontend eklentisi kurulumunun zaten tamamlandığını varsayar.
+{{% /notice %}}
+
+Frontend eklenti kurulumuyla ilgili bilgi için link:../../older/8x-fe-extensions-getting-started[buraya] bakın.
+
+== Grafik Metadata Konfigürasyon Örneği
+
+Grafikler, herhangi bir sidebar widget'ına metadata kullanarak eklenebilen bir Insight türüdür. Bu konfigürasyon `listviewdefs` veya `detailviewdefs` içine eklenebilir.
+
+Şu anda kullanılabilecek 3 grafik tipi vardır:
+
+- horizontal-bar
+- pie-grid
+- vertical-bar
+
+İleride başka grafik tipleri eklenecektir. Ayrıca kendi özel grafik tipinizi uygulamanız da mümkündür; sayfanın sonunda buna dair doküman bulunmaktadır.

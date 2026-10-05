@@ -1,0 +1,44 @@
+---
+title: "Ön-Uç Mimari"
+weight: 10
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/fe-architecture-intro
+
+{{% notice info %}}
+Aşağıdaki doküman SuiteCRM Sürüm 8+ içindir; Sürüm 7 ile ilgili dokümantasyonu görmek için link:../../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+{{% notice note %}}
+Bu dökümantasyon angular framework hakkında temel bir anlayışa sahip olduğunuzu varsayar.
+{{% /notice %}}
+
+== 1. Mimari genel bakış
+
+SuiteCRM ön yüz mimarisi aşağıdaki kavramlar göz önünde tutularak tasarlanmıştır.
+
+. Uygulama boyunca standart bir tasarım ve yaklaşım koruyun
+** Uygulama genelinde aynı görünüm ve hisse sahip standart bir UI hedefleyin
+** Bileşenlerin mümkün olduğunca tekrar kullanılmasını ve benzer özelliklerin aynı bileşenlerle geliştirilmesini hedefleyin
+. Konfigürasyon odaklı
+** Mümkün olduğunca backend konfigürasyon tarafından yönlendirilen çözümler hedefleyin.
+*** Bu, özelleştirmeleri kolaylaştırır
+*** Ön uç eklentileri karmaşık ve geliştirilmesi zor olabilir
+** Modül bazlı özel özelliklerden kaçının.
+*** Eğer bir modülün özel bir özelliği varsa, yeniden kullanılabilir ve konfigüre edilebilir şekilde geliştirilmelidir
+. Genişletilebilir
+** Tüm bileşenlerin ve servislerin genişletilip/üstünün yazılabilmesine izin vermeyi hedefleyin
+
+== 2. Ön-Uç yapı
+
+SuiteCRM ön uç bileşenleri amaçlarına göre kategorilere ayrılır.
+
+Başlamak için `core/app/core` içindeki `app-core` yapısına göz atmak iyi bir yoldur. Bu, projenin nasıl yapılandırıldığı ve mevcut kavramlar hakkında yüksek seviyeli bir anlayış sağlar.
+
+image:app_core_folder_structure.png[app_core_folder_structure.png]
+
+`directives`, `pipes`, `services` ve `components` iyi bilinen angular kavramlarıdır. Diğer bazı kavramlar ilk bakışta o kadar belirgin olmayabilir. Aşağıdaki alt başlıklarda bu parçaların arkasındaki kavramlara yüksek seviyeli bir giriş verilecektir.
+
+== 2.1 Görünümler
+
+Görünümler SuiteCRM'de uzun zamandır bilinen bir kavramdır. Her görünüm bir sayfayı temsil eder.

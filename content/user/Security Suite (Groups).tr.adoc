@@ -1,0 +1,156 @@
+---
+Title: Security Suite (Groups)
+Weight: 280
+---
+
+:imagesdir: /images/en/user
+
+= Security Suite (Groups)
+
+Security Suite, kullanıcıların hangi verilere erişebileceğini kontrol etmenizi sağlar. SuiteCRM'deki hassas verileri belirli takımlara (gruplara) kısıtlamanıza olanak tanır. SecuritySuite bir dizi seçenekle birlikte gelir ve gereksinimlerinize göre yapılandırılabilir. Otomatik atama seçeneklerinden birini seçerek kullanıcılarınızın gerekli verilere her zaman erişebilmesini sağlayabilirsiniz.
+
+== Gruplar Oluşturma
+
+Sistem Yöneticileri Admin sayfasının üst kısmında bulunan Security Suite Settings içinde gruplar ve rolleri ekleyebilir veya Security Groups tercihlerini yapılandırabilir.
+
+image:167Create_groups.png[title="Create Groups"]
+
+== Admin Olmayanların Grup Oluşturmasına İzin Verme
+
+Sistem Yöneticileri, admin olmayan kullanıcıların kayıtlara grup eklemesine izin verebilir. Bunu yapmak için:
+
+1. Configure Tabs sayfasına gidin. Görüntülenen sekmelere Security Groups'u ekleyin.
+2. Admin->Repair altında Repair Roles çalıştırın, böylece Security Groups'a hak atayabilirsiniz.
+3. Rolleri düzenleyerek Security Groups Management'i etkinleştirin.
+4. Rolleri düzenleyip Security Groups Management için List değerini All veya Group olarak ayarlayın.
+
+== SecuritySuite Ayarlarını Yapılandırma
+
+SecuritySuite çok yapılandırılabilir bir eklentidir ve neredeyse her duruma uygun destek sunacak şekilde seçenekler içerir. Bu nedenle hangi seçeneğin ne yaptığına alışmak için biraz zaman gerekebilir. Ayarlar sayfasına Admin->SecuritySuite Settings yoluyla ulaşabilirsiniz.
+
+== Grupların Kurulumu
+
+Grupların doğru çalışacak şekilde kurulması için üç temel adım vardır:
+
+1. Her kullanıcı takımı için bir grup oluşturun ve ilgili kullanıcıları gruba ekleyin.
+2. Bir rol oluşturun ve griddeki her uygun hücre için erişim seviyesini Group olarak seçin. Bu rolü ilgili gruba atayın.
+3. Kayıtlara grupları ekleyin. Bunu Liste Görünümündeki Mass Assign ile yapabilirsiniz. İleriye dönük olarak, gruplar SecuritySuite ayarlarınıza göre otomatik olarak devralınacaktır. Ayrıca logic hook, workflow veya tek seferlik başlangıç kurulumunda `securitygroups_records` tablosuna doğrudan veri ekleyebilirsiniz.
+
+Eğer kullanıcıların genellikle yalnızca kendi kayıtlarını görmesi isteniyorsa grup için atanan rol Owner only (Yalnızca Sahip) haklarına sahip olacak şekilde yapılandırılmalıdır. Bir yönetici, kendi kaydına doğrudan atanan bir rol ile grup içindeki tüm kayıtları görebilir.
+
+Daha fazla yardım için şu videoya göz atın:
+https://www.youtube.com/watch?v=yJ-BzM3GTgA[Introduction Video^]
+
+Roller bir kullanıcı bir kayda eriştikten sonra kullanıcının kayıt üzerinde ne yapabileceğini belirler.
+
+1. Rolleri oluşturun
+2. Rolleri düzenleyerek Security Groups Management'i etkinleştirin
+3. Security Groups Management için List değerini All veya Group olarak ayarlayın
+
+== Tipik Bir Hiyerarşi Kurulumu
+
+SecuritySuite herhangi bir organizasyon yapısını yönetebilir, fakat en yaygın senaryo sahibin her şeyi görebildiği, yöneticilerin kendi ve ekiplerinin kayıtlarını görebildiği ve ekip üyelerinin yalnızca kendi kayıtlarını görebildiği bir yapıdır.
+
+=== Senaryo
+
+Bu şirkette 2 satış takımı vardır; East ve West. Sahibin Jill olduğu senaryoda Jill her şeyi görmelidir. East Sales takımına Will liderlik eder ve West Sales takımına Sarah liderlik eder. Onlar kendi takımlarındaki kayıtların tamamını görmelidir. Diğer satış temsilcileri yalnızca kendi kayıtlarını görebilmelidir.
+
+=== Grupları Kurma
+
+1. East Sales adında bir grup oluşturun
+2. Will ve ilgili satış temsilcilerini ekleyin
+3. West Sales adında bir grup oluşturun
+4. Sarah ve ilgili satış temsilcilerini ekleyin
+
+=== Roller Kurulumu
+
+1. Everything adında bir rol oluşturun ve hakları All olarak ayarlayın._İpucu: rol ızgarası üzerindeki herhangi bir sütun başlığına tıklayarak o sütundaki tüm hakları aynı anda ayarlayabilirsiniz_
+2. Everything rolünü doğrudan Jill'in kullanıcı hesabına atayın
+3. Group Only adında bir rol oluşturun ve tüm hakları Group olarak ayarlayın
+4. Group rolünü doğrudan Will ve Sarah'ya atayın
+5. Owner Only adında bir rol oluşturun ve tüm hakları Owner olarak ayarlayın
+6. Owner Only rolünü East Sales ve West Sales gruplarına atayın
+
+=== Grupları Atama
+
+Bu örnekte var olan bazı Leads kayıtlarını uygun gruplara atayacağız.
+
+1. Leads Liste Görünümüne gidin ve East Sales grubuna ait olması gereken Leads'i arayın
+2. Uygun Leads'i işaretleyin, Mass Assign panelinde East Sales'i seçin ve "Assign" düğmesine tıklayın
+3. West Sales takımı için aynı işlemi tekrarlayın
+
+{{% notice note %}}
+İleriye dönük olarak, oluşturulan Çağrılar (Calls), Kişiler (Contacts), Notlar vb. SecuritySuite ayarlarına bağlı olarak otomatik şekilde grupları devralacaktır. Eğer SuiteCRM örneğiniz SecuritySuite ile başlamadan önce çok fazla veri içeriyorsa, ilgili kayıtları eklemek için başlangıçta biraz çalışma gerekebilir. Liste Görünümündeki Mass Assign fonksiyonu veya `securitygroups_records` tablosuna doğrudan SQL eklemesi ile bunu yapabilirsiniz. Tablo içeriğini inceleyerek doğru formatı görebilirsiniz. Bu yöntem SQL bilgisi gerektirebilir.
+{{% /notice %}}
+
+=== Ayarları Kontrol Etme
+
+Bu ayarlar SecuritySuite'in nasıl çalışacağını belirler. Group Inheritance Rules panelinde "Inherit from Created By User", "Inherit from Assigned To User" ve "Inherit from Parent Record" varsayılanları bu senaryo için iyi çalışacaktır.
+
+Oluşturulan herhangi bir Lead otomatik olarak oluşturucusuna ve atanan kullanıcıya göre gruplarla ilişkilendirilecektir. Bir Lead için bir Call oluşturulursa, Call kayıt parent record'tan (ebeveyn kayıt) grup devralacak, ayrıca oluşturucu ve atanan kullanıcıdan gelen grupları da devralacaktır.
+
+Bir diğer önemli ayar "Strict Rights" dir. Yukarıdaki senaryoda varsayılan ayarlar, Liste Görünümündeki takım Lead bağlantılarını, kaydın sizin grubunuza atanmamışsa bağlantı göstermeyecek şekilde davranışa neden olabilir. Birçok durumda grup atamalarını dokümanda anlatıldığı şekilde yapabilmek için "Strict Rights" seçeneğinin işaretini kaldırmak isteyebilirsiniz.
+
+=== Hepsi bu kadar!
+
+En zor bölüm genellikle başlangıç kurulumu olur. Bir kez yapılandırma tamamlandığında sistem kendi kendine çalışacaktır.
+
+Daha karmaşık bir yapı mı gerekiyor? Her ek hiyerarşi seviyesi için aynı ilkeleri uygulayın. Önemli olan, yapının en alt seviyesindeki kullanıcılar için bir grup oluşturmak ve sonrasında yukarı doğru ilerlemektir.
+
+== Gelişmiş Seçenekler
+
+SuiteCRM Sistem Yöneticileri, Security Suite için birçok gelişmiş seçenek yapılandırabilir. Bu sayede farklı erişim/hak kontrolleri, kayıt devralma kuralları, filtreler ve daha fazlasını kontrol edebilirsiniz.
+
+image:168Security_group_management.png[title="Advanced Options"]
+
+=== Additive Rights
+
+Kullanıcıya atanan tüm roller veya kullanıcının grup(lar)ı içindeki rollerin en yüksek hakları verilir.
+
+=== Strict Rights
+
+Eğer bir kullanıcı birden fazla grubun üyesiyse sadece kayda atanan gruba ait haklar kullanılır.
+
+=== New User Group Popup
+
+Yeni bir kullanıcı oluşturulduğunda kullanıcıyı bir veya daha fazla gruba atamak için SecurityGroups popup'ını göster.
+
+=== User Role Precedence
+
+Kullanıcıya doğrudan atanmış bir rol varsa, bu rol grup rollerinden önce gelir.
+
+=== Filter User List
+
+Admin olmayan kullanıcılar sadece kendi grup(lar)ındaki kullanıcıları atayabilir.
+
+=== Use Popup Select
+
+Eğer kaydı oluşturan kullanıcı birden fazla gruba üyeyse yeni kayıt oluşturma sırasında bir grup seçim popup'ı göster; aksi halde varsayılan devralma kuralları uygulanır. Devralma kuralları yalnızca kullanıcı tarafından oluşturulan olmayan kayıtlar için (örn. Workflows) kullanılır.
+
+=== Use Creator Group Select
+
+Eğer kullanıcı birden fazla devralınabilir gruba üyeyse, kayıt oluşturma ekranına bir panel ekleyerek kullanıcının yeni kayda ait olacak bir veya daha fazla grup seçmesine izin verir. Eğer kullanıcı yalnızca bir gruba üyeyse normal devralma kuralları uygulanır.
+
+{{% notice note %}}
+Yeni kayıt ayrıca Assigned To kullanıcı veya Parent record tarafından da devralınmaya devam edecektir eğer bu seçenekler açıksa. Bu ayar sadece Created By ayarını geçersiz kılar.
+{{% /notice %}}
+
+=== Inherit from Created By User
+
+Kayıt, onu oluşturan kullanıcıya atanan tüm grupları devralır.
+
+=== Inherit from Assigned To User
+
+Kayıt, atanan kullanıcıya ait tüm grupları devralır. Kayıtta zaten var olan diğer gruplar kaldırılmaz.
+
+=== Inherit from Parent Record
+
+Örn. bir contact için oluşturulan bir case, contact kaydına atanmış grupları devralacaktır.
+
+=== Default Groups for New Records
+
+Belirli bir modül oluşturulduğunda her zaman ilişkilendirilecek grupları ayarlayın.
+
+=== Inbound email account
+
+E-posta istemcisindeki inbound email hesaplarını mevcut kullanıcının grubuyla aynı olan hesaplarla sınırlandırır.

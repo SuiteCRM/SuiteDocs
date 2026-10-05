@@ -1,0 +1,56 @@
+---
+Title: Upgrading
+weight: 30
+---
+
+:imagesdir: /images/en/user
+
+== SuiteCRM Yükseltme
+
+SuiteCRM'i yükseltmek için Upgrade Wizard'a giriş yapın. DİKKAT: Yükseltme sürecini üretim sisteminizin bir kopyasında test etmeniz kuvvetle tavsiye edilir.
+
+=== Yükseltme için uyumluluk matrisi
+
+SuiteCRM birçok işletim sistemi, web sunucusu, veritabanı ve PHP sürümünde çalışır. Uyumluluk bilgileri için link:/admin/compatibility-matrix[Uyumluluk Matrisi] sayfasına bakın.
+
+===== İşletim Sistemleri
+
+* Windows: PHP çalıştırabilen herhangi bir Windows sürümü
+* Linux: PHP çalıştırabilen herhangi bir Linux sürümü
+* Mac: PHP çalıştırabilen herhangi bir MacOS sürümü
+
+===== Veritabanları
+
+* MySQL
+* Microsoft SQL Server
+* MariaDB
+
+===== Web Sunucuları
+
+* Apache
+* Microsoft IIS
+
+===== Tarayıcılar
+
+İstemci tarafında SuiteCRM'e aşağıdaki tarayıcılarla erişilebilir: Chrome, Firefox, Internet Explorer, Edge, Safari.
+
+=== SugarCRM Community Edition'dan SuiteCRM'e yükseltme
+
+Yükseltme yolları SuiteCRM indirme sayfasında mevcuttur; hangi SugarCRM sürümlerinin hangi SuiteCRM sürümleriyle uyumlu olduğunu kontrol edin.
+
+=== Yükseltme önkoşulları
+
+* Yükseltmeden önce SuiteCRM dizininizin ve veritabanınızın yedeğini alın.
+* Op-code cache etkinse yükseltmeden önce devre dışı bırakın.
+* Büyük yükseltmeler için PHP ve web sunucusu ayarlarını (time-out, upload_max_filesize, memory_limit vb.) arttırın.
+* Web sunucusu kullanıcısının SuiteCRM dizini ve alt dizinleri üzerinde yazma izni olduğundan emin olun.
+
+=== Yükseltme sırasında dikkat edilmesi gerekenler
+
+1. Yükseltmeyi üretim yerine geliştirme ortamında test edin.
+2. Veritabanında tablo başına 10000'den fazla kayıt varsa CLI üzerinden Silent Upgrade (komut satırı) yöntemini kullanın.
+3. Yükseltme tamamlandıktan sonra Admin > Repair ile veritabanını düzeltin ve yeniden oluşturun.
+
+== Güncelleme yolları
+
+Güncelleme çeşitli yöntemlerle yapılabilir, örneğin komut satırı ile güncelleme gibi. Daha fazla ayrıntı için orijinal döküman içeriğine bakın.

@@ -1,0 +1,51 @@
+---
+title: "Panel/Tab Gösterim Mantığı (Dynamic Panels) Ekleme"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/panel-logic/
+
+{{% notice note %}}
+Değişiklikleri custom dizininde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}
+
+== 1. Giriş
+
+Display logic, alan değerlerine bağlı olarak panelleri veya sekmeleri (tabs) gizleme veya gösterme kuralları tanımlamanıza izin verir.
+
+=== 1.1 Örnek senaryo
+
+Örnek olarak Accounts modülünde `More Information` sekmesini `Name` alanı `Example` ise gizleyeceğiz.
+
+image:Shown-Tab-Name-Example.png[Gösterilmiş Sekme - Örnek]
+
+image:Hidden-Tab-Name-Example.png[Gizlenmiş Sekme - Örnek]
+
+== 2. Mantık Metadata tanımı
+
+İlk adım `displayLogic` girdisini metadata içinde tanımlamaktır. Bu, paneli gizle/göster tetikleyicilerini belirler.
+
+Konfigürasyon yalnızca `detailviewdefs.php` dosyasına eklenebilir.
+
+Ekleme yaparken `newTab` altına `tabDefs` içinde olmasına dikkat edin.
+
+=== 2.1 Custom detailviewdefs.php üzerinde mantık ekleme adımları
+
+. Core Accounts `detailviewdefs.php` dosyasını custom klasöre kopyalayın:
+.. From: `public/legacy/modules/Accounts/metadata/detailviewdefs.php`
+.. To: `public/legacy/custom/modules/Accounts/metadata/detailviewdefs.php`
+. `LBL_PANEL_ADVANCED` girdisini custom dosyada uygun kod ile değiştirin.
+** Gerekirse izinleri yeniden ayarlayın
+. Admin menüsünden `Repair and Rebuild` çalıştırın
+
+[source,php]
+----
+----
+
+=== 3. Özelliklerin açıklaması
+
+* Key
+- `displayLogic` dizisindeki `key` hangi mantık tipinin kullanılacağını belirtir; bu örnekte `displayType`.
+
+* Modes
+- `modes` alanı mantığın hangi görünümlerde etkili olacağını belirtir; örnekler `detail`, `edit`, `create`.

@@ -1,0 +1,13 @@
+---
+Title: Sprint Planlamasında Sorunları Aday Gösterme
+---
+
+== Sprint Planlaması için Sorun Seçimi
+
+Sprint planlaması sırasında hangi işlerin ele alınacağını seçmek önemlidir. Topluluk üyeleri, üzerinde çalışılması gereken önemli hataları veya özellik isteklerini aday gösterebilirler. Aday gösterme sürecinde açık iletişim ve önceliklendirme önemlidir.
+
+Önerilen adımlar:
+- Sorunu kısa ve açık bir başlıkla tanımlayın.
+- Tekrar üretilebilir adımlar, beklenen davranış ve mevcut davranış gibi ayrıntıları ekleyin.
+- Ekran görüntüleri veya loglar mevcutsa ekleyin.
+- Aday gösterdiğiniz sorunun neden öncelikli olduğunu açıklayın.
