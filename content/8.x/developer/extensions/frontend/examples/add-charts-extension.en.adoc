@@ -159,7 +159,7 @@ When creating your own chart you will be able to set your own options.
 
 === Module TypeScript File
 
-Below we will be adding in the final file, the `horizontal-bar-chart.module.ts`.
+Below we will be adding in the final file, the `horizontal-bar-chart.component.ts`.
 
 [source, javascript,typescript]
 ----
