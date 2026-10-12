@@ -44,7 +44,7 @@ A new configuration option `disable_v4_api_query_where` has been added. This opt
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61650[CVE-2026-61650: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-qmh9-m7g7-pxxp[GitHub Advisory] | Reporter: larlarua
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61651[CVE-2026-61651: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-7cj5-pc2f-9xgv[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-61653[CVE-2026-61653: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-5m7h-v4v6-2r8h[GitHub Advisory] | Reporter: Nguy Minh Tuan (@minhtuanact) of Sun* Cyber Security Research Team
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-6c7r-7g6m-29f9[GitHub Advisory] | Reporter: marginaldeer
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100365[CVE-2026-100365: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-6c7r-7g6m-29f9[GitHub Advisory] | Reporter: marginaldeer
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-69134[CVE-2026-69134: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-3phg-q9w9-4pqw[GitHub Advisory] | Reporter: Tristan Madani (@TristanInSec) from Talence Security
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-69135[CVE-2026-69135: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-gcc4-hvpc-cgvv[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-69136[CVE-2026-69136: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-3mjp-45mc-3256[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
@@ -60,17 +60,17 @@ A new configuration option `disable_v4_api_query_where` has been added. This opt
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63215[CVE-2026-63215: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-pmhw-r27f-w92m[GitHub Advisory] | Reporter: Furkan KARAARSLAN https://www.linkedin.com/in/furkan-k/
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63217[CVE-2026-63217: IDOR Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-m5xj-rrwv-g3q3[GitHub Advisory] | Reporter: geo-chen
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-63218[CVE-2026-63218: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-v624-ccrf-9v97[GitHub Advisory] | Reporter: Yash Shendge (GitHub: ashrexon)
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4fhr-x4wr-fwqg[GitHub Advisory] | Reporter: Anonymous
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-69145[CVE-2026-69145: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4fhr-x4wr-fwqg[GitHub Advisory] | Reporter: Anonymous
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-71550[CVE-2026-71550: LFI to RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-cx24-rr7r-mxrg[GitHub Advisory] | Reporter: amwhoi
 * CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-71548[CVE-2026-71548: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-239h-ffjr-v957[GitHub Advisory] | Reporter: Ahmed Alshammari (isch1zo)
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-2hv5-wj8h-mv8m[GitHub Advisory] | Reporter: AdrianJunge
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4773-c8fh-3rww[GitHub Advisory] | Reporter: MichaelPasternak1337
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-22rh-qc6x-cvgw[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rxx9-4rg7-c3qp[GitHub Advisory] | Reporter: voraci0us
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-8rjm-vpj3-hch8[GitHub Advisory] | Reporter: usmonkhudoyorov
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-jhhh-64wx-fj9c[GitHub Advisory] | Reporter: adilkhan7546
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rc46-hjjp-4jv5[GitHub Advisory] | Reporter: MichaelPasternak1337
-* CVE: https://nvd.nist.gov/vuln/detail/Pending[CVE-Pending: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-6jf7-hh5p-8fcm[GitHub Advisory] | Reporter: TA-MU-TA
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-97377[CVE-2026-97377: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-2hv5-wj8h-mv8m[GitHub Advisory] | Reporter: AdrianJunge
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100358[CVE-2026-100358: RCE Vulnerability] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-4773-c8fh-3rww[GitHub Advisory] | Reporter: MichaelPasternak1337
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100359[CVE-2026-100359: SQL Injection] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-22rh-qc6x-cvgw[GitHub Advisory] | Reporter: Security Researcher Ahmed Mosaa
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100363[CVE-2026-100363: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rxx9-4rg7-c3qp[GitHub Advisory] | Reporter: voraci0us
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100364[CVE-2026-100364: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-8rjm-vpj3-hch8[GitHub Advisory] | Reporter: usmonkhudoyorov
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100361[CVE-2026-100361: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-jhhh-64wx-fj9c[GitHub Advisory] | Reporter: adilkhan7546
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100362[CVE-2026-100362: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-rc46-hjjp-4jv5[GitHub Advisory] | Reporter: MichaelPasternak1337
+* CVE: https://nvd.nist.gov/vuln/detail/CVE-2026-100360[CVE-2026-100360: Improper Access Control] | https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-6jf7-hh5p-8fcm[GitHub Advisory] | Reporter: TA-MU-TA
 
 ==== icon:bug[] Bug Fixes
 
