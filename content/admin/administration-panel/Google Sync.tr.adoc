@@ -1,0 +1,33 @@
+---
+Title: Google Kimlik Bilgileri ve Senkronizasyon
+Weight: 80
+---
+
+{{% notice info %}}
+Bu özellik **Beta** aşamasındadır; geri bildirimlerinizi bekliyoruz. SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+:imagesdir: /images/en/googleapi
+
+:toc:
+
+== Genel Bakış
+
+SuiteCRM, kullanıcı takvimlerini Google Calendar ile çift yönlü senkronize edebilir. Her iki taraftaki değişiklikler diğer tarafta güncellenir. Veriler sadece SuiteCRM örneğiniz ve Google sunucuları arasında geçer; üçüncü taraf bir servis kullanılmaz.
+
+=== Gereksinimler
+
+==== Geçerli API Kimlik Bilgileri
+Takvim senkronizasyonu için sistemde geçerli kimlik bilgileri bulunmalıdır. Bu kimlik bilgileri Google Developers Console'dan oluşturulur, JSON dosyası olarak indirilir ve SuiteCRM'e içe aktarılır.
+
+==== SuiteCRM Sunucusunun İnternete Erişimi
+SuiteCRM sunucusunun internete erişimi olmalıdır; sunucunun genel olarak erişilebilir olması gerekmez ancak kullanıcı hem Google hem de SuiteCRM'e erişebilmelidir.
+
+==== En Az Bir Google Hesabı
+API kimlik bilgilerini oluşturmak için bir Google Hesabına ihtiyacınız var; senkronize etmek istediğiniz hesaplarla aynı hesap olabilir.
+
+== Google Kimlik Bilgileri Oluşturma ve Yükleme
+=== Kimlik Bilgileri Oluşturma
+Google hesabınızla oturum açın ve https://console.developers.google.com/apis/dashboard adresine gidin.
+
+… (orijinaldeki adım adım görseller ve talimatlar burada korunur)

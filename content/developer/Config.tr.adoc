@@ -1,0 +1,81 @@
+---
+weight: 10
+title: "Config"
+---
+
+= 10. Yapılandırma (Config)
+
+== Yapılandırma dosyaları
+
+SuiteCRM'de iki ana yapılandırma dosyası vardır; her ikisi de SuiteCRM kök
+klasöründe bulunur: `config.php` ve `config_override.php`.
+Buradaki tanımlar SuiteCRM için çeşitli yapılandırma seçeneklerini sağlar; örneğin
+veritabanına erişim detayları veya list view'de sayfa başına kaç kayıt gösterileceği.
+Çoğu seçenek SuiteCRM yönetim sayfasından erişilebilir, ancak bazıları yalnızca
+yapılandırma dosyalarında tanımlanabilir.
+
+=== config.php
+
+Bu ana SuiteCRM konfigürasyon dosyasıdır ve veritabanı ayarları ile mevcut SuiteCRM
+versiyonu gibi önemli bilgileri içerir.
+
+Genellikle bu dosyadaki ayarlar elle değiştirilmez. Bir istisna, SuiteCRM taşındı veya
+göç ettirildiyse veritabanı ayarlarını veya `site_url`'u değiştirmeniz gerekebilir.
+
+.Example 10.1: Veritabanı yapılandırma tanımı
+[source,php]
+----
+'dbconfig' =>
+array (
+   'db_host_name' => 'localhost',
+   'db_host_instance' => 'SQLEXPRESS',
+   'db_user_name' => 'dbuser',
+   'db_password' => 'dbpass',
+   /* Lines 38-41 omitted */
+   'db_manager' => 'MysqliManager',
+),
+----
+
+Burada örnekte bu instance yerel bir MySQL'e `dbuser`/`dbpass` kullanıcı bilgisi ile
+erişmekte ve `dbname` adlı veritabanına bağlanmaktadır.
+
+.Example 10.2: Site URL ayarı
+[source,php]
+'site_url' => 'http://example.com/suitecrm',
+
+Site URL örnekte `http://example.com/suitecrm` olarak ayarlanmıştır. Eğer bu
+örneğin `suite.example.org` olsaydı, o değeri dosyaya koymanız yeterlidir.
+
+Genelde `config.php`'yi doğrudan değiştireceğiniz iki durum bunlardır. Diğer değişiklikleri
+ya SuiteCRM içinden yapmalı ya da `config_override.php` dosyasını kullanmalısınız.
+
+=== config_override.php
+
+`config_override.php` ana config dosyasını riske atmadan konfigürasyon değişikliği
+yapmanızı sağlar. Bu, `$sugar_config` değişkenine öğe ekleyip/ düzenleyerek
+gerçekleştirilir. `config_override.php` mevcut konfigürasyon ile birleştirilir ve
+override sağlar. Örneğin kendi yeni bir config değeri ekleyebilirsiniz:
+
+.Example 10.3: Özel config değeri ekleme
+[source,php]
+$sugar_config['enable_the_awesome'] = true;
+
+
+Veya mevcut bir config seçeneğini şu şekilde üzerine yazabilirsiniz:
+
+.Example 10.4: Mevcut config değerini değiştirme
+[source,php]
+$sugar_config['logger']['level'] = 'debug';
+
+== Config seçeneklerini kullanma
+
+Özel kod içinde konfigürasyon seçeneklerine erişmek isteyebilirsiniz. PHP'de global
+anahtar kelimesi ile kolayca erişebilirsiniz:
+
+.Example 10.5: SuiteCRM içinden bir config ayarına erişim
+[source,php]
+----
+function myCustomLogic(){/* Lines 101-107 omitted */}
+----
+
+link:../config[↩]

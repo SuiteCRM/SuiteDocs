@@ -1,0 +1,30 @@
+---
+Title: Pull Request'leri Test Etme
+Weight: 40
+---
+
+:imagesdir: /images/en/community
+
+Bekleyen pull request'leri SuiteCRM reposunda https://github.com/salesagility/SuiteCRM/pulls[buradan] kontrol edin.
+
+Test edecek uygun bir PR seçin ve yazarın repo ve branch bilgilerini alın (ör. `https://github.com/jack7anderson7/SuiteCRM` ve `issue-6611`).
+
+{{% notice tip %}}
+Kullanıcının repo adresini PR üzerindeki kullanıcı adına tıklayarak bulabilirsiniz veya doğrudan `https://github.com/{username}/SuiteCRM` URL'sini kullanabilirsiniz.
+{{% /notice %}}
+
+Gerekli bilgilerle PR'ı test etmek için:
+
+1. Fork'unuzda PR tabanına uygun bir test branch'i oluşturun (ör. `testing6614`):
+`cd /path/to/your/fork` + `git checkout -b testing6614 hotfix`
+
+2. Yazarın branch'ini kendi test branch'inize çekin:
+`git pull https://github.com/jack7anderson7/SuiteCRM.git issue-6611`
+
+Bu komut hangi dosyaların çekildiğini gösterecektir.
+
+Eğer bir "merge msg" istenirse genelde CTL+X ile kaydedip çıkabilirsiniz.
+
+Hazır olduğunuzda PR için belirtilen "How to Test This" bölümünü veya ilgili bug raporundaki testi uygulayın.
+
+Eğer PR sorunu çözüyor ve ek görev yoksa PR altında `Assessed :+1:` yorumu bırakın — bu, hangi PR'ların test edildiğini kolayca gösterir.

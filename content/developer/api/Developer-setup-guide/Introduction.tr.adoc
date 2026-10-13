@@ -1,0 +1,8 @@
+---
+title: Introduction
+weight: 10
+---
+
+SuiteCRM API sürüm 8, SuiteCRM'in sunduğu güçlü CRM işlevselliğini kullanmak isteyen istemciler tarafından tüketilebilecek bir dizi kaynak sunar.
+
+API çerçevesi, http üzerinden JSON API 1.0 standardı mesajlarını kolaylaştırmak için Restful bir tasarım kullanır: http://jsonapi.org/format/1.0/[JSON API 1.0]. Ayrıca JSON API 1.0 standardında henüz tanımlanmamış işlevsellikler için meta nesneler içerir. SuiteCRM API, SuiteCRM içinde sağlanan OAuth 2 Server ile korunur.

@@ -1,0 +1,32 @@
+---
+Title: Studio
+weight: 45
+---
+
+:imagesdir: /images/en/admin
+
+= Studio
+
+`Studio` SuiteCRM'de modül düzenlemeleri, alan ekleme/çıkarma, görünüm özelleştirmeleri ve ilişki yönetimi gibi görevler için kullanılan bir araçtır.
+
+== Modül Özelleştirmesi
+
+Yeni alanlar eklemek için hedef modülü seçin, ardından *Fields* sekmesine gidin ve *Add Field* seçeneğini kullanın.
+
+image:StudioFields.png["Studio - fields"]
+
+Eklenen alanlar kaydedilip yayınlandığında kullanıcı arabiriminde görünür hale gelir.
+
+== Görünümler
+
+Record View, List View ve Search View gibi farklı görünümleri yapılandırabilirsiniz. Bir görünüme alan sürükleyip bırakarak düzenleme yapabilirsiniz.
+
+image:StudioLayouts.png["Studio - layouts"]
+
+== İlişkiler
+
+Modules > Relationships bölümünden modüller arası ilişkiler kurabilirsiniz. İlişki türünü (bir-e çok, çoğa-çok) seçin ve gerekli alanları yapılandırın.
+
+image:StudioRelationships.png["Studio - relationships"]
+
+Studio değişiklikleri kaydettikten sonra btn:[SAVE & DEPLOY] ile yayınlanmalıdır.

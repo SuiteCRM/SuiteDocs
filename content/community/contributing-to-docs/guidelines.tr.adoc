@@ -1,0 +1,50 @@
+---
+title: Dokümantasyon Rehberi
+weight: 50
+---
+
+:toc:
+
+Bu sayfa, Dokümantasyon dosyalarında çalışırken uyulması gereken temel kuralları özetler. Hugo, Learn teması ve Asciidoc işaretlemesini bilmek önemlidir.
+
+== Dosya yerleşimi
+
+Çoğu düzenleme `content` dizini altında yapılır (User, Developer, Admin, Community, Technical Blog vb.). Yeni alt dizinler veya dosyalar oluşturabilirsiniz. Hugo'nun içerik organizasyon mantığını anlamak önemlidir.
+
+== Dosya İsimlendirme
+
+Dosya ve dizin adlarında küçük harf, boşluksuz ve özel karaktersiz isimlendirme kullanıyoruz. Örneğin `installation-guide/downloading-installing.adoc`.
+
+=== Çeviri Dosyalarının İsimlendirilmesi
+
+Çevirilerde İngilizce dosya adını koruyoruz, ancak dil kodunu `.adoc` uzantısından önce ekliyoruz:
+
+[source]
+----
+requirements.adoc
+requirements.es.adoc
+requirements.ru.adoc
+----
+
+Biz İngilizce için `en` kodunu kullanmıyoruz; varsayılan dili dil kodsuz bırakıyoruz.
+
+== Front-matter ve Özel Kodlar
+
+Her Asciidoc içeriği front-matter ile başlar (ör. `title`, `weight`). `weight` menü sıralamasını belirler; genelde 10,20,30 gibi aralıklarla kullanılır.
+
+Özel kod örnekleri:
+
+- Buton görselleştirme: `:experimental:` satırı
+- Görseller için `:imagesdir: /images/en/admin`
+- Otomatik içerik tablosu: `:toc:`
+- Alt dizindeki sayfaların listelenmesi (children shortcode)
+- GitHub katkıcı listesini oluşturmak için `ghcontributors` shortcode
+
+== İçerik kuralları
+
+- Satırları yaklaşık 80 sütunda kırın (Asciidoc bunları yok sayar).
+- Dosya yolları, değişkenler ve kopyalanabilir ifadeleri backticks ile sarın.
+
+== Referanslar
+
+- Hugo, Learn tema ve Asciidoc dökümantasyonuna bakın.

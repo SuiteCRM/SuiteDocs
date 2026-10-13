@@ -1,0 +1,20 @@
+---
+Title: Özellik Sağlama
+weight: 80
+---
+
+SuiteCRM'e bir özellik eklemek (bug fix'e benzer şekilde) için SuiteCRM'in bir fork'unu oluşturup geliştirici ortamınızı kurmanız gerekir.
+
+Yeni bir özellik üzerinde çalışmak için `develop` dalından yeni bir branch oluşturun ve özelliğe uygun bir isim verin, örn: `campaign-wizard-ui`. link:../coding-standards[Coding Standards] bölümündeki kurallara uyun ve fork'unuzu güncel tutun. link:../forking[SuiteCRM Fork Kılavuzu] kılavuzuna bakın.
+
+Commit mesajlarınız açıklayıcı olsun. İnceleme için hazır olduğunda özellikle ilgili fonksiyonelliği detaylandıran bir Pull Request oluşturun.
+
+PR'de base fork olarak `salesagility/SuiteCRM` ve base branch olarak `develop` seçili olmalı; head fork sizin repounuz, head branch ise özellik branch'iniz olmalıdır.
+
+Gerekirse yeni PHPUnit testlerini feature branch'inize ekleyin.
+
+== Özellik İncelemesi
+
+Kod incelenecek ve PR üzerinden geri bildirim verilecektir. Eğer özellik core'a dahil edilecekse, fork'unuza bir Issues tabı ekleyip test sırasında çıkan hataları orada takip etmeniz istenebilir.
+
+Yeni kabul edilen özellikler uygun major release'a dahil edilir (ör. 7.10 veya 7.11). Minor sürümler genellikle hata düzeltmeleri içerir.

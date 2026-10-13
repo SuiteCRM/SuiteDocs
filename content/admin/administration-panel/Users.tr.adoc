@@ -1,0 +1,22 @@
+---
+Title: Kullanıcılar
+weight: 47
+---
+
+:imagesdir: /images/en/admin
+
+= Kullanıcılar
+
+Kullanıcı yönetimi SuiteCRM'de kullanıcı oluşturma, düzenleme, rol atama ve parola sıfırlama işlemlerini içerir.
+
+== Kullanıcı Oluşturma
+
+Admin > User Management bölümüne gidin ve *Create User* seçeneğini kullanın. Zorunlu alanları doldurun (isim, kullanıcı adı, e-posta) ve uygun role ve güvenlik grubu atayın.
+
+== Parola Sıfırlama
+
+Kullanıcı parolasını sıfırlamak için kullanıcının profilinde *Reset Password* seçeneğini kullanın veya Admin > Password Management aracılığıyla küresel sıfırlama politikaları uygulayın.
+
+== Kullanıcı Rolleri
+
+Kullanıcıya rolleri atamak erişim seviyelerini belirler. Bir kullanıcı aynı anda birden çok role sahip olabilir.

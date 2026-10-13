@@ -1,0 +1,12 @@
+---
+title: "SuiteCRM Kaldırma"
+weight: 90
+---
+
+== SuiteCRM örneğini kaldırma
+
+SuiteCRM örneğinizi kaldırmak için aşağıdaki adımları izleyin:
+
+. Web sunucunuzda SuiteCRM'in bulunduğu dizine gidin.
+. SuiteCRM dizinini silin. Linux'ta isterseniz `rm -r <suitedirectory>` komutunu kullanarak onay isteyebilir veya `rm -rf <suitedirectory>` ile onaysız silebilirsiniz.
+. Sunucunuzdan SuiteCRM veritabanı şemasını silin. Varsayılan ad `suitecrm`'dir; ancak kurulum sırasında farklı bir ad seçtiyseniz o adı silmeniz gerekir.

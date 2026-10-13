@@ -1,0 +1,162 @@
+---
+title: JSON API
+weight: 30
+---
+
+== Başlamadan önce endpointleri çağırmaya başlamadan önce lütfen aşağıdakileri kontrol edin:
+
+=== Composer
+
+Composer paketlerini kurmak için
+
+[source,shell]
+composer install
+
+=== OAUTH2 için özel ve genel anahtar oluşturma
+
+SuiteCRM API OAuth2 protokolünü kullanır ve public/private anahtar çiftine ihtiyaç duyar.
+
+Öncelikle bir terminal açıp `{{suitecrm.root}}/Api/V8/OAuth2` dizinine gidin.
+
+Özel anahtar oluşturun:
+[source,shell]
+openssl genrsa -out private.key 2048
+
+Ardından genel anahtar oluşturun:
+[source,shell]
+openssl rsa -in private.key -pubout -out public.key
+
+Oluşturmayla ilgili daha fazla bilgi için https://oauth2.thephpleague.com/installation/ adresini ziyaret edin.
+
+Anahtar dosyalarının izinleri 600 veya 660 olmalıdır, bu yüzden izinleri değiştirin:
+[source,shell]
+sudo chmod 600 private.key public.key
+
+Ayrıca config dosyalarının PHP tarafından sahiplenildiğinden emin olun:
+[source,shell]
+sudo chown www-data:www-data p*.key
+
+=== OAUTH2 şifreleme anahtarı
+OAuth2 AuthorizationServer için güvenlik amacıyla bir şifreleme anahtarı ayarlanması gerekir. Bu anahtar SuiteCRM kurulumunda `config.php` içinde "oauth2_encryption_key" altında oluşturulur. Değerini değiştirmek isterseniz şu komutu çalıştırarak yeni bir anahtar oluşturabilirsiniz:
+[source,shell]
+php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
+
+ve çıktıyı `config.php` içinde saklayın.
+
+Mevcut sürümler `config.php` içindeki değeri doğrudan kullanır. Eski sürümler `Apiconfig.php` dosyasını `config.php` değerleri ile güncellemiş olabilir; sorun giderirken buraya bakmak faydalı olabilir.
+
+Daha fazla bilgi için: https://oauth2.thephpleague.com/v5-security-improvements/
+
+=== mod_rewrite modülünü doğrulayın
+Apache sunucusunda '**mod_rewrite**' modülünün etkin olduğundan emin olun. Ayrıca SuiteCRM kök konumu için `.htaccess` kurallarının çalışması amacıyla `AllowOverride` direktifinin `None` yerine `All` olarak ayarlandığından emin olun.
+
+[source,apache]
+<Directory /var/www/subdir>
+    /* Lines 63-66 omitted */
+</Directory>
+
+== Kimlik Doğrulama
+
+SuiteCRM API iki tür grant destekler:
+
+* Client credential
+* Password
+
+.Token istek parametreleri
+|===
+|Parameter |Description
+
+|*Access Token URL*
+|{{suitecrm.url}}/Api/access_token
+
+|*Username*
+|Sadece Password grantleri için geçerlidir. Geçerli bir SuiteCRM kullanıcı adı olmalıdır.
+
+|*Password*
+|Sadece Password grantleri için geçerlidir. Seçilen kullanıcının parolası.
+
+|*Client ID*
+|OAuth2Clients modülündeki ID. Geçerli bir GUID olmalıdır.
+
+|*Client Secret*
+|OAuth2Clients modülünde SHA256 ile oluşturulmuş client secret değeri.
+
+|*Scopes*
+|Scopes henüz uygulanmamıştır
+|===
+
+== Kullanılabilir parametreler
+JsonApi spesifikasyonuna göre, GET endpointlerine bağlı olarak aşağıdaki parametreler kullanılabilir:
+
+=== Fields
+Fields attribute objesi üzerinde filtreleme yapar. Geçerli anahtarlar bean özellikleri ile uyumlu olmalıdır.
+
+Örnek:
+
+[source,html]
+{{suitecrm.url}}/Api/V8/module/Accounts/11a71596-83e7-624d-c792-5ab9006dd493?fields[Accounts]=name,account_type
+
+=== Page
+Sayfalama için kullanılabilir parametreler *number* ve *size*'dır.
+
+* *page[number]* : istenen sayfa numarası
+* *page[size]* : sonuç sayısı
+
+=== Sort
+Sıralama yalnızca koleksiyonlar alındığında kullanılabilir. Varsayılan ASC'dir; önüne `-` eklenirse DESC olur. Şu anda yalnızca tekli sıralama desteklenir.
+
+=== Filter
+Filtre stratejisi:
+
+- filter[operator]=and
+- filter[account_type][eq]=Customer
+
+==== Desteklenen operatörler
+
+===== Karşılaştırma
+
+[source,php]
+EQ = '=';
+NEQ = '<>';
+GT = '>';
+GTE = '>=';
+LT = '<';
+LTE = '<=';
+
+===== Mantıksal
+[source,php]
+'AND', 'OR'
+
+Örnek:
+
+[source,html]
+{{suitecrm.url}}/Api/V8/module/Accounts?fields[Accounts]=name,account_type&filter[operator]=and&filter[account_type][eq]=Customer
+
+== Endpoints
+
+=== Logout
+
+[source,php]
+POST {{suiteCRM.url}}/Api/V8/logout
+
+=== Modules
+
+[source,php]
+GET {{suitecrm.url}}/Api/V8/meta/modules
+
+=== Module Fields
+
+[source,php]
+GET {{suitecrm.url}}/Api/V8/meta/fields/{moduleName}
+
+=== Get a module by ID
+
+[source,php]
+GET {{suitecrm.url}}/Api/V8/module/{moduleName}/{id}
+
+Available parameters: fields
+
+=== Get collection of modules
+
+[source,php]
+GET {{suitecrm.url}}/Api/V8/module/{moduleName}

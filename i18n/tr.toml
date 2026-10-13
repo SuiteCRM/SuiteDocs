@@ -1,0 +1,146 @@
+[suitedocs-title]
+other = "SuiteCRM Dokümantasyon Sitesi"
+
+[navigation]
+other = "Gezinme"
+
+[Search-placeholder]
+other = "Ara..."
+
+[Clear-History]
+other = "Tümünü okunmadı olarak işaretle"
+
+[Attachments-label]
+other = "Ekler"
+
+[title-404]
+other = "Hata"
+
+[message-404]
+other = "Tüh. Görünüşe göre bu sayfa mevcut değil ¯\\_(ツ)_/¯."
+
+[Go-to-homepage]
+other = "Anasayfaya git"
+
+[Edit-this-page]
+other = "Bu sayfayı düzenle"
+
+[Shortcuts-Title]
+other = "Daha fazla"
+
+[Expand-title]
+other = "Genişlet..."
+
+[Issue-for-page]
+other = "Bu sayfa hakkında bir sorun bildir"
+
+[Issue-for-page-short]
+other = "Sorun"
+
+[Documentation]
+other = "Dokümantasyon"
+
+[Guides]
+other = "Kılavuzlar"
+
+[User]
+other = "Kullanıcı"
+
+[Developer]
+other = "Geliştirici"
+
+[Administrator]
+other = "Yönetici"
+
+[Admin-SHORT]
+other = "Yönetici"
+
+[Community]
+other = "Topluluk"
+
+[TechnicalBlog]
+other = "Teknik Blog"
+
+[FromTechnicalBlog]
+other = "Teknik Blogumuzdan"
+
+[LatestPosts]
+other = "Son Gönderiler"
+
+[GettingStarted]
+other = "Başlarken"
+
+[Installing]
+other = "Kurulum"
+
+[Upgrading]
+other = "Yükseltme"
+
+[An-existing-installation]
+other = " mevcut bir SuiteCRM kurulumu"
+
+[Add-features-with]
+other = "Özellikler ekleyin "
+
+[3rdPartyAdd-Ons]
+other = "Üçüncü taraf eklentiler"
+
+[Using-SuiteCRM]
+other = "SuiteCRM Kullanımı"
+
+[Learn-the]
+other = "Öğrenin"
+
+[UserInterface]
+other = "Kullanıcı Arayüzü"
+
+[Understand-the]
+other = "Anlayın"
+
+[CoreModules]
+other = "Çekirdek Modüller"
+
+[Its-open-source]
+other = "Açık kaynak ve"
+
+[Developers]
+other = "Geliştiriciler"
+
+[Customize-all-the-code]
+other = "tüm kodu özelleştirin!"
+
+[Contribute]
+other = "Katkıda Bulunun"
+
+[Learn-how-to]
+other = "Nasıl yapılacağını öğrenin "
+
+[Edit-a-page]
+other = "Bir Sayfayı Düzenle"
+
+[In-this-site]
+other = " bu sitede"
+
+[Report-an]
+other = "Bildirin "
+
+[Issue]
+other = "Sorun"
+
+[About-a-page]
+other = " bir sayfa hakkında"
+
+[Code]
+other = "Kod"
+
+[RecentlyEdited]
+other = "Son Düzenlenenler"
+
+[DocumentationPages]
+other = "Dokümantasyon Sayfaları"
+
+[Suite7]
+other = "SuiteCRM 7"
+
+[Suite8]
+other = "SuiteCRM 8"

@@ -1,0 +1,8 @@
+---
+title: "Yönetici"
+weight: 10
+---
+
+=== İçindekiler
+{{% children depth="2" showhidden="false" %}}
+

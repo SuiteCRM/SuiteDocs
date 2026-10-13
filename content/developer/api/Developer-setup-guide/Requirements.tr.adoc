@@ -1,0 +1,21 @@
+---
+title: Requirements
+weight: 20
+---
+
+:imagesdir: /images/en/developer
+
+
+Orta kişi saldırılarını (man-in-the-middle) önlemek için yetkilendirme sunucusu, yetkilendirme ve token uç noktalarına gönderilen tüm istekler için RFC2818'e uygun olarak TLS kullanımını zorunlu kılmalıdır.
+
+İstemci, yetkilendirme sunucusunun TLS sertifikasını RFC6125'e ve sunucu kimlik doğrulaması gereksinimlerine uygun olarak doğrulamalıdır.
+
+SuiteCRM, şifreleme ve imza bütünlüğünü doğrulamak için anahtar kriptografisini kullanır.
+
+Lütfen aşağıdakilere sahip olduğunuzdan emin olun:
+
+* OpenSSL PHP uzantısı yüklü ve yapılandırılmış olmalıdır
+* SuiteCRM örneğiniz HTTPS/SSL ile yapılandırılmış olmalıdır
+* PHP sürümünüz 5.5.9 veya 7.0 ve üzeri olmalıdır
+
+Endpointlere başarılı şekilde bağlanabilmek için, `Before you start calling endpoints` bölümünde belirtilen adımları da tamamlamanız gerekir: link:../json-api/#_before_you_start_calling_endpoints[Before you start calling endpoints]

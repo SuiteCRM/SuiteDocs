@@ -1,0 +1,11 @@
+---
+Title: Güvenlik Politikası
+---
+
+== Güvenlik Politikasına Genel Bakış
+
+SuiteCRM projeleri için güvenlik açıklarını hızlı ve sorumlu bir şekilde ele almak önceliğimizdir. Güvenlik sorunlarını kamuya duyurmadan önce önce sorumlu bir şekilde raporlamanızı ve ekibimizin bu raporu incelemesine fırsat tanımanızı rica ediyoruz.
+
+*Raporlama talimatları:* Eğer bir güvenlik açığı bulduysanız, lütfen güvenli bir kanaldan bize bildirin. Açığın istismarına ilişkin ayrıntılı teknik bilgiler içermeli ve mümkünse yeniden üretilebilir adımlar eklemelisiniz.
+
+Güvenlik ekibimiz raporu doğrulayacak, gerekli düzeltmeleri planlayacak ve uygun zamanlama ile koordineli bir şekilde düzeltmeleri yayımlayacaktır.

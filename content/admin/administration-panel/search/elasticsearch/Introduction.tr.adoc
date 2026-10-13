@@ -1,0 +1,22 @@
+---
+title: Giriş
+weight: 1
+---
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+https://www.elastic.co/[Elasticsearch], neredeyse gerçek zamanlı arama sonuçları sunmak için özel olarak geliştirilmiş, metin aramaları için optimize edilmiş bir indeksleme motorudur. Java ile yazılmıştır ve ayrı bir sunucu/proses olarak çalışır.
+
+Elasticsearch, SuiteCRM ile entegre edilerek arama kalitesini ve hızını büyük ölçüde artırabilir. Bunu başarmak için arama etkin modüller Elasticsearch sunucusunda indekslenir. SuiteCRM bir arama sorgusu aldığında sorgu Elasticsearch sunucusuna yönlendirilir ve sunucu optimize edilmiş aramayı gerçekleştirip sonuçları CRM'e geri döndürür.
+
+{{% notice note %}}
+SuiteCRM 7.11, Elasticsearch 5.6 gerektirir. SuiteCRM 7.12 ise Elasticsearch 7 gerektirir.
+{{% /notice %}}
+
+Veritabanı ile Elasticsearch indexi arasındaki senkronizasyon üç ana yolla gerçekleşir:
+
+- Logic Hooks: Her kayıt güncellendiğinde otomatik olarak yeniden indekslenir.
+- Zamanlanmış görev: Veritabanı ve indeksin senkronize kalmasını sağlamak için belirli aralıklarla çalışan bir scheduler işi vardır.
+- Manuel indeksleme: Yöneticinin tam veya kısmi indeks isteğinde bulunabileceği seçenekler mevcuttur.

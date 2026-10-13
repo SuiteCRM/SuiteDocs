@@ -1,0 +1,31 @@
+---
+Title: Gelen E-posta için Güvenlik Gruplarını Yapılandırma
+weight: 50
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Giriş
+
+Bu rehber, Gelen E-posta ve ilişkili kayıtlar için uygulanan varsayılan görünürlük ayarlarının ve Güvenlik Gruplarının nasıl yapılandırılacağını açıklar.
+
+
+== 2. Kişisel Kayıtlar - Varsayılan görünürlük
+
+`Inbound Emails`, `External OAuth Connection` ve `External OAuth Provider` kişisel kayıtlar oluşturulmasına izin verir.
+
+Bu kayıt türleri yalnızca kayıt sahibine ve yönetici kullanıcılarına görünür.
+
+
+== 3. Grup Kayıtları - Varsayılan görünürlük
+
+=== 3.1 Inbound Emails ve External OAuth Connection
+
+Kişisel kayıtlarda olduğu gibi, yönetici kullanıcılar tüm grup kayıtlarını görebilir.
+
+Admin olmayan kullanıcılar varsayılan olarak hiçbir grup kaydını göremez. Bir grubu görebilmek için:
+
+. İlgili modül için ACL'leri tanımlı bir Role'a sahip olmalıdır (örn. Inbound Emails veya External OAuth Connection)
+. Kayıtla aynı Güvenlik Grubuna ait olmalıdır
+
+Bu davranış, SuiteCRM'deki Güvenlik Gruplarının varsayılan davranışından farklıdır; çünkü normalde SuiteCRM kayıtları varsayılan olarak herkese görünür olur ve yöneticinin erişimi kısıtlaması için Güvenlik Grupları eklemesi gerekir. Bu iki modül bunun tersini yapar: kayıtlar varsayılan olarak gizlidir.

@@ -1,0 +1,68 @@
+---
+weight: 8
+title: "Entry Points"
+---
+
+= 8. Giriş Noktaları (Entry Points)
+
+Giriş noktaları SuiteCRM'e erişim sağlayan sayfalardır. Dışarıdan bir formun
+SuiteCRM'e kolay erişimi gibi amaçlarla ya da Events modülündeki gibi e-posta
+daveti cevaplama gibi durumlar için kullanılabilirler.
+
+== Giriş noktası oluşturma
+
+Basit bir giriş noktası oluşturalım; önce yeni bir dosyada kayıt tanımı yaparız:
+
+.Example 8.1: Entry point kayıt yeri
+[source,php]
+custom/Extension/application/Ext/EntryPointRegistry/
+
+Örneğimizde dosyanın adını `MyTimeEntryPoint.php` koyacağız:
+
+.Example 8.2: Örnek giriş noktası yeri
+[source,php]
+custom/Extension/application/Ext/EntryPointRegistry/MyTimeEntryPoint.php
+
+Bu dosyada `$entry_point_registry` içine yeni bir giriş ekleriz; hangi dosyanın
+çağrılacağını belirtiriz. Örneğimizde dosyayı `custom` içinde tutuyoruz; eğer
+giriş noktası belirli bir modüle aitse `custom/<TheModule>/` altına koymak genellikle
+iyi bir fikirdir.
+
+`auth` parametresini de sağlarız. Eğer `auth` true ise giriş noktasına erişen herkesin
+SuiteCRM'e giriş yapmış olması gerekir.
+
+.Example 8.3: Entry point kaydı ekleme
+[source,php]
+----
+<?php
+  $entry_point_registry['MyTimeEntryPoint'] = array(
+      'file' => 'custom/MyTimeEntryPoint.php',
+      'auth' => true,
+  );
+----
+
+Son olarak gerçek mantığı `custom/MyTimeEntryPoint.php` içine ekleriz:
+
+.Example 8.4: Mevcut zamanı gösteren örnek giriş noktası
+[source,php]
+----
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+$date = new DateTime();
+echo $date->format('r');
+----
+
+Quick Repair and Rebuild işleminden sonra giriş noktasına şu şekilde erişebiliriz:
+
+.Example 8.5: Özel entry point URL'si
+[source,php]
+example.com/index.php?entryPoint=MyTimeEntryPoint
+
+Örnek çıktı şöyle olacaktır:
+
+.Example 8.6: MyTimeEntryPoint
+[source,php]
+Sun, 15 Mar 2015 13:03:03 +0000
+
+Bu örnek basit olsa da SuiteCRM içinde yapılabilecek herhangi bir mantık burada
+gerçekleştirilebilir (örneğin kayıt oluşturma veya düzenleme). link:../entry-points[↩]

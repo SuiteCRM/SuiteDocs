@@ -1,0 +1,11 @@
+---
+title: Elasticsearch
+weight: 10
+---
+
+{{% notice info %}}
+Bu geliştirme SuiteCRM 7.11 ve sonraki sürümlerde kullanılabilir.
+{{% /notice %}}
+
+== İçindekiler
+{{% children depth="3" showhidden="true" %}}

@@ -1,0 +1,139 @@
+---
+title: "Yönetim Paneli"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/admin/administration-panel
+
+=== Yönetim Paneli
+
+Yönetim Paneli, bir kullanıcının kendi CRM sistemini kişiselleştirmek için güncellemek isteyebileceği tüm yapılandırma seçeneklerini ve ayarları listeler.
+
+Bir seçeneği seçtiğinizde mor renkle vurgulanır ve her ayarın ne amaçla kullanıldığını açıklayan kısa bir açıklama gösterilir.
+
+image:Admin-Panel-Highlighted.png[Admin-Panel-Highlighted.png]
+
+Aşağıda, aşağıdaki ayarların her yönünü tanımlayan sayfalara bağlantılar bulacaksınız:
+
+image:Admin-Panel-Top.png[Admin-Panel-Top.png]
+
+image:Admin-Panel-Bottom.png[Admin-Panel-Bottom.png]
+
+==== Kullanıcılar ve Kimlik Doğrulama
+
+* link:../../../../admin/administration-panel/users[Kullanıcılar]
+** Kullanıcı Yönetimi
+** Rol Yönetimi
+** Parola Yönetimi
+* link:../../../../admin/administration-panel/roles-and-security-groups/[Roller ve Güvenlik Grupları]
+** Rol Yönetimi
+** Security Suite Grup Yönetimi
+** Security Suite Ayarları
+* link:../../../../developer/api/developer-setup-guide/managing-tokens/[OAuth2 Clients and Tokens]
+** OAuth Jetonları ve İstemcileri
+
+==== Sistem
+
+* link:../../../../admin/administration-panel/system/[Sistem]
+** Sistem Ayarları
+** Yerel Ayarlar
+** Para Birimleri
+** Diller
+** Temalar
+** link:../administration-panel/schedulers/[Zamanlayıcılar]
+
+* link:../../../../admin/administration-panel/search/elasticsearch/[Elasticsearch]
+** Elasticsearch
+
+* PDF Ayarları
+* Arama Ayarları
+
+==== Modül Ayarları
+
+* link:../../../../admin/administration-panel/system/#_activity_streams[Aktivite Akışı]
+** Aktivite Akışı Ayarları
+
+* link:../../../../admin/administration-panel/advanced-openadmin/#_business_hours[Çalışma Saatleri]
+** Çalışma Saatleri
+
+* link:../../../../admin/administration-panel/advanced-openadmin/#_aop_settings[Vaka Modülü]
+** Vaka Modülü Ayarları
+
+* link:../../../../admin/administration-panel/developer-tools/#_configure_module_menu_filters[Modül Menü Filtrelerini Yapılandır]
+** Modül Menü Filtrelerini Yapılandır
+
+* Bağlayıcılar (Connectors)
+
+* link:../../../../admin/administration-panel/developer-tools/#_display_modules_and_subpanels[Modülleri ve Alt Panelleri Göster]
+** Modülleri ve Alt Panelleri Göster
+
+* link:../../../../admin/administration-panel/developer-tools/#_history_subpanel[Geçmiş Alt Paneli]
+** Geçmiş Alt Paneli
+
+* link:../../../../admin/administration-panel/advanced-openadmin/#_aos_settings[Satış Modülü Ayarları]
+** Satış Modülü Ayarları
+
+* link:../../../../admin/administration-panel/release[Sürümler]
+** Sürümler
+
+==== E-postalar
+
+* link:../../../../admin/administration-panel/emails/email[E-postalar]
+** E-posta Ayarları
+** Gelen E-posta
+** Giden E-posta
+** Kampanya E-posta Ayarları
+** E-posta Kuyruğu
+
+* link:../../../../admin/administration-panel/emails/inboundemail-oauth-howto/[OAuth ile Gelen E-postayı Yapılandırma]
+** Harici OAuth Bağlantıları
+
+* link:../../../../admin/administration-panel/emails/oauth-provider-overview/[Harici OAuth Sağlayıcıları Hakkında]
+** Harici OAuth Sağlayıcıları
+
+==== Yönetici Araçları
+
+* link:../../../../admin/administration-panel/system/[Sistem]
+** Onarma (Repair)
+** Yedeklemeler
+** Tanılama Aracı
+
+* link:../../../../user/introduction/user-interface/record-management/#_importing_records[Kayıt İçe Aktarma]
+** İçe Aktarma Sihirbazı
+
+* link:../../../../admin/administration-panel/developer-tools/#_module_loader[Modül Yükleyici]
+** Modül Yükleyici
+
+==== Geliştirici Araçları
+
+* link:../../../../admin/administration-panel/studio[Studio]
+** Studio
+
+* link:../../../../admin/administration-panel/developer-tools[Geliştirici Araçları]
+** Modülleri Yeniden Adlandır
+** Modül Oluşturucu
+** Açılır Liste Düzenleyici
+
+* link:../../../../user/advanced-modules/workflow[Workflows]
+** İş Akışları Yöneticisi
+
+==== Google Suite
+
+* link:../../../../admin/administration-panel/google-sync/#_overview[Google Kimlik Bilgileri ve Eşitleme]
+** Google Takvim Ayarları
+
+* link:../../../../admin/administration-panel/google-maps/#_google_map_setup[Google Haritalar]
+** Google Haritalar Ayarları
+** Geokodlama Testi
+** Adresleri Geokodla
+** Adres Önbelleği
+
+== Yönetici Çoklu Menüsü
+
+Artık yönetici sayfasındaki herhangi bir menüye Yönetici Çoklu Menüsü aracılığıyla erişebilirsiniz.
+
+image:Admin-Panel-Extended.png[Admin-Panel-Extended.png]
+
+image:Admin-Panel-Scheduler.png[Admin-Panel-Scheduler.png]
+
+image:Scheduler-View.png[Scheduler-View.png]

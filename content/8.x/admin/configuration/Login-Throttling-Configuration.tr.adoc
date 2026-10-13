@@ -1,0 +1,22 @@
+---
+title: "Giriş sınırlandırma (throttling) yapılandırması"
+weight: 30
+---
+
+:imagesdir: /images/en/user
+
+== Varsayılanlar
+
+Varsayılan olarak SuiteCRM'de giriş sınırlandırma (login throttling) etkinleştirilmiştir ve `3` başarısız denemeden sonra tetiklenir.
+
+Eğer kullanıcı bu sayıda art arda giriş yapmayı başaramazsa, maksimum deneme sayısına ulaşıldığını belirten bir mesaj gösterilir.
+Kullanıcının tekrar giriş denemesi yapabilmesi için en az bir dakika beklemesi gerekir.
+
+== Maksimum deneme sayısını yapılandırma
+
+Deneme sayısı `LOGIN_THROTTLING_MAX_ATTEMPTS` .env özelliği ile yapılandırılır; bu değer `.env.local` içinde değiştirilebilir.
+
+== Daha fazla yapılandırma ve özelleştirme
+
+SuiteCRM, Symfony'nin giriş sınırlandırma mekanizmasını kullanır.
+Daha fazla seçenek ve yapılandırma yolları için link:https://symfony.com/doc/current/security.html#limiting-login-attempts[Symfony Security - Giriş Denemelerini Sınırlama] bölümüne bakın.

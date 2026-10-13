@@ -1,0 +1,54 @@
+---
+Title: Google Haritalar
+Weight: 60
+---
+
+:experimental: ////this is here to allow btn:[]syntax used below
+
+:imagesdir: /images/en/user
+
+= Google Haritalar
+
+Bu bölüm SuiteCRM ile Google Maps entegrasyonunu yapılandırmanıza olanak sağlar.
+
+== Google Harita Kurulumu
+
+Haritalarla çalışmaya başlamadan önce bir API anahtarı alıp sistemi kaydetmelisiniz. Yönetim panelinde *Google services* altında *Setting up Google maps* bölümüne gidip *Get API key* bağlantısını takip edin ve gerekli adımları uygulayıp anahtarı yapılandırma ayarlarına kaydedin.
+
+Ana ayarların açıklaması sistem arayüzünde detaylı olarak sunulduğundan burada tüm parametreler yeniden açıklanmamıştır.
+
+image:Googleconfig.png[Google harita ayarları]
+
+Google Maps API hakkında ayrıntılı dokümantasyon: https://developers.google.com/maps/[Google Maps].
+
+== Adresleri Geokodlama
+
+Bu bölüm seçildiğinde, sistem adreslerine coğrafi koordinatların otomatik atanması başlar.
+
+{{%notice tip%}}
+Eğer sadece daha önce yapılmış geokodlama sonuçlarını görüntülemek istiyorsanız *Geocoding results* modülünü kullanın.
+{{%/notice%}}
+
+Veritabanı boyutu ve işleme hızı nedeniyle bu işlem uzun sürebilir.
+
+image:GoogleMaps(2).png[Geocoding addresses]
+
+{{%notice note%}}
+Google Premium *hesabı* yoksa günlük isteklere (IP başına) 2500 sınırı uygulanır — detaylar: link:https://developers.google.com/maps/documentation/geocoding/usage-limits[Google Maps Geocoding API Usage Limits^].
+{{%/notice%}}
+
+Otomatik geocoding için scheduler içine `./index.php?module=jjwg_Maps&entryPoint=jjwg_Maps&cron=1` URL'sini eklemeniz önerilir.
+
+image:SetupGeocode.png[Scheduler içinde otomatik geocoding kurulumu]
+
+== Geocoding sonuçları
+
+Bu seçenek önceki Geocoding sonuçlarını görüntüler.
+
+== Test Geocoding
+
+Modül, girilen adresin koordinatlarını hızlıca almak için tasarlanmıştır.
+
+== Adres Önbelleği (Address Cache)
+
+Adres önbelleği görüntüleme, düzenleme ve içe aktarma işlemleri için bu modül kullanılır.

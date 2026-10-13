@@ -1,0 +1,60 @@
+---
+weight: 18
+title: "Performance Tweaks"
+---
+
+= 18. Performans İyileştirmeleri
+
+Çoğu durumda SuiteCRM'in performansı yeterli olacaktır. Ancak büyük veri setleri veya
+çok sayıda kullanıcı olan sistemlerde performans düşüşü gözlemlenebilir. Aşağıdaki
+önergeler performansı artırmaya yardımcı olabilir.
+
+== Sunucu
+
+Sunucu yapılandırması SuiteCRM performansında çok önemlidir. Ayrıntılı sunucu rehberi bu
+belgenin kapsamı dışında olsa da bazı öneriler şunlardır:
+
+[discrete]
+==== PHP
+
+Bir PHP opcode cache kurmak PHP dosyalarının performansını artıracaktır. Bu, PHP dosyalarının
+derlenmiş halini önbelleğe alır. SuiteCRM ayrıca bazı hızlandırıcıların caching API'sini kullanır.
+Linux'ta `http://php.net/manual/en/book.apc.php[APC]` yaygın bir tercihtir; Windows kullanıcıları
+`http://php.net/manual/en/book.wincache.php[WinCache]`'e bakmalıdır.
+
+[discrete]
+==== MySQL
+
+MySQL'ın varsayılan ayarları genellikle küçüktür. Tam optimizasyon rehberi bu belgenin
+kapsamı dışında olsa da `innodb_buffer_pool_size` gibi ayarları artırmak büyük fark yaratabilir.
+Veri taşındıysa tablolar fragmentlenmiş olabilir; `OPTIMIZE TABLE tablename` performansı
+iyileştirebilir.
+
+== İndeksler
+
+Yeni modül veya sık aranan alanlar için indeks eklemek veritabanı performansını iyileştirebilir.
+Core modüller genellikle önemli alanları indeksler. Vardefs bölümünde indeks ekleme hakkında bilgi vardır.
+
+== Yapılandırma Değişiklikleri
+
+Aşağıdaki config ayarları performansı artırmak için kullanılabilir. Çoğu durumda önce önceki
+bölümlerdeki adımları uygulamak daha etkilidir. Bu ayarlar `config_override.php` içinde
+tanımlanmalıdır. Örnekler:
+
+[source,php]
+$sugar_config['developerMode'] = false;
+
+Geliştirme yapmıyorsanız `developerMode` kapatılmalıdır; aksi halde her istekte önbellek
+yenilenebilir.
+
+[source,php]
+$sugar_config['disable_count_query'] = true;
+
+Büyük veri setlerinde subpanel sayfalama için yapılan count sorguları yavaşlayabilir; bu
+ayar bu sorguları devre dışı bırakarak performansı artırabilir.
+
+[source,php]
+$sugar_config['disable_vcr'] = true;
+
+Varsayılan olarak listeden detay görünümüne geçerken yapılan VCR (virtual change) işlemleri
+etkin olabilir; büyük sistemlerde devre dışı bırakmak fayda sağlayabilir.
