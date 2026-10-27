@@ -1,0 +1,54 @@
+---
+title: "Sass"
+weight: 4
+---
+
+{{% notice info %}}
+SuiteCRM 7.8'den itibaren SuiteP teması Sass ile yazılmıştır. Bu, geliştiricilerin ve
+sistem yöneticilerinin `variables.scss` dosyası sayesinde SuiteP temasını kolayca
+konfigüre etmelerini sağlar. Değişikliklerinizin derleme/sırasında üzerine yazılmaması
+için stil değişikliklerini CSS dosyaları yerine Sass dosyalarında yapmalısınız.
+{{% /notice %}}
+
+== Sass hakkında
+
+Sass, CSS'in gücünü ve zarafetini artıran bir eklentidir. Değişkenler, iç içe kurallar,
+mixins, inline importlar ve daha fazlasını kullanmanızı sağlar; tamamen CSS uyumlu bir
+sentaks sunar. Sass, büyük stil dosyalarını düzenli tutmaya yardımcı olur ve Compass
+stil kütüphanesi ile birlikte küçük projeleri hızlıca hayata geçirmenizi sağlar.
+
+Daha fazla bilgi için https://sass-lang.com/documentation[Sass Documentation] adresine bakın.
+
+=== Sass Compiler'lar ve Git
+
+Birçok Sass derleyicisi mevcuttur; tercih ettiğinizi kullanabilirsiniz. Aynı anda birden
+fazla derleyici çalıştırmamalısınız; çünkü her derleyici `style.css`'i farklı formatlarda
+üretebilir ve git repo'nuzda gereksiz şişmeye yol açabilir. Bu nedenle `style.css`'i git'e
+commit etmeden önce Scss PHP Compiler kullanmanız önerilir. Ayrıca `style.css`'i yalnızca
+son commit'te dahil etmeniz depo boyutunu azaltır. Scss PHP Compiler biraz yavaş olabilir;
+geliştirme sırasında daha hızlı bir derleyici kullanıp son derleme için Scss PHP tercih
+edebilirsiniz.
+
+=== Tipik proje iş akışı
+
+* `.scss` dosyası değiştirin
+* Sadece `.scss` dosyasını git'e commit edin
+* `.scss` değişikliği yapın
+* Sadece `.scss` dosyasını commit edin
+* `style.scss`'i php derleyici ile derleyin
+* `style.css`'i commit edin
+
+=== Ürün için tipik iş akışı
+
+* `.scss` değiştirin ve commit edin
+* Pull request oluşturun; "How To Test" bölümüne "Rebuild sass" ekleyin.
+
+{{% notice info %}}
+`style.css` commit etmeyin — ürün için release sürecinde derlenir.
+{{% /notice %}}
+
+=== Derleyici kurulumu
+
+Aşağıda bazı derleyici kurulum rehberleri yer alır.
+
+=== Scss PHP Compiler

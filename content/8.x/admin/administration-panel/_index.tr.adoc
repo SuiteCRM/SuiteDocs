@@ -1,0 +1,8 @@
+---
+title: "Yönetim Paneli"
+weight: 20
+---
+
+=== İçindekiler
+{{% children depth="1" showhidden="false" %}}
+

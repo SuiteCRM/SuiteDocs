@@ -1,0 +1,82 @@
+---
+title: "Oturum (Session) Dizin yapılandırması"
+weight: 30
+---
+
+:imagesdir: /images/en/user
+
+== Seçenek 1. php.ini içinde oturum dizinini değiştirme
+
+Global oturum dizinini, php.ini dosyanızdaki link:https://www.php.net/manual/en/session.configuration.php#ini.session.save-path[session.save_path] yönergesini değiştirerek güncellemek mümkündür.
+
+
+== Seçenek 2. SuiteCRM yapılandırmasında oturum dizinini değiştirme
+
+=== Oturum dizinini değiştirin
+
+{{% notice note %}}
+Bu yalnızca dosya tabanlı oturumlar için geçerlidir
+{{% /notice %}}
+
+Bu kılavuz SuiteCRM 8.x sürümlerini, oturum dosyalarını farklı bir klasörde saklayacak şekilde yapılandırmayı açıklar.
+
+==== 1. Legacy içinde `session_dir`'ı değiştirin
+
+`public/legacy/config.php` veya `public/legacy/config_override.php` dosyasında `session_dir` değerini yeni yola göre değiştirin.
+
+Bu kılavuz boyunca, oturum dosyalarımızın SuiteCRM 8 örneğinizin içinde `var/sessions` klasöründe saklanacağını varsayacağız, örneğin:
+* `/<sisteminizin-yolu>/var/sessions`
+
+[source,php]
+----
+<?php
+...
+$sugar_config = array (
+...
+
+  'session_dir' => '/<path-to-your-suite8-project>/var/sessions',
+  'session_gc' =>
+  array (
+    'enable' => true,
+    'gc_probability' => 1,
+    'gc_divisor' => 100,
+  ),
+
+----
+
+==== 2. SuiteCRM 8 yapılandırmasında session save_path'i değiştirin
+
+Şimdi SuiteCRM 8 Symfony yapılandırmasını değiştirmeniz gerekir.
+Bunu uzantılı (extensible) bir şekilde eklemek için şuraya ekleyebilirsiniz:
+`extensions/<your-extension>/config/services/framework.yaml`
+
+Eğer uzantınızı `custom` olarak adlandırırsanız, yol şu şekilde olur:
+`extensions/custom/config/services/framework.yaml`
+
+[source,yaml]
+----
+framework:
+  session:
+    cookie_lifetime: null
+    cookie_secure: auto
+    cookie_samesite: lax
+    gc_probability : 1
+    gc_divisor : 100
+    handler_id: session.handler.native_file
+    save_path: '%kernel.project_dir%/var/sessions'
+
+----
+
+==== 3. Symfony önbelleğini temizleyin
+
+Örnek kök dizininden `bin/console cache:clear` komutunu çalıştırın
+
+[source,bash]
+----
+bin/console cache:clear
+----
+
+Eğer terminal erişiminiz yoksa, `/<path-to-your-project>/cache` içeriğini silerek de temizleyebilirsiniz.
+
+* Lütfen `apache / php`'nin `cache` klasörüne **yazma izni** olduğundan emin olun
+* **Yukarıdaki**, legacy önbellek klasörü değildir. **Lütfen** `/<path-to-your-project>/public/legacy/cache`'i silmeyin

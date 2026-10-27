@@ -1,0 +1,22 @@
+---
+Title: "Suite 8 Modülleri"
+Weight: 65
+chapter: true
+---
+
+== Temel Modüller
+
+=== İçindekiler
+{{% children depth="3" showhidden="true" %}}
+
+---
+Title: "Suite 8 Modülleri"
+Weight: 65
+chapter: true
+---
+
+== Temel Modüller
+
+=== İçindekiler
+{{% children depth="3" showhidden="true" %}}
+

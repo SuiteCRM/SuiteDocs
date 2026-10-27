@@ -1,0 +1,128 @@
+---
+Title: Kodlama Standartları
+Weight: 50
+---
+
+== SuiteCRM için Kodlama Standartları
+
+SuiteCRM'in PHP işaretlemesi için bazı bölümleri stil açısından tutarsız olabilir. SuiteCRM, iç ekip ve katkıda bulunanların tutarlı bir stil korumasına yardım ederek kodun daha okunaklı olmasını sağlamaya çalışmaktadır. Aşağıdaki standartlara uymaya çalışın.
+
+== Lisans
+
+Her yeni *core* dosyanın başında standart bir lisans başlığı bulunmalıdır.
+
+[source]
+/**
+ /* Lines 23-63 omitted */
+
+Lisansın hemen altına geçerli giriş noktası kontrolü (`if` statement) yerleştirilmelidir.
+
+[source, php]
+if (!defined('sugarEntry') || !sugarEntry) {
+   die('Not A Valid Entry Point');
+}
+
+== Girintileme
+
+https://www.php-fig.org/psr/psr-2/#24-indenting[PSR-2] kurallarını kullanın.
+
+PHP kodunda girintileme *4 boşluk* olmalı; tab kullanılmamalıdır.
+JavaScript dosyalarında girintileme *2 boşluk* olmalıdır.
+
+== Sınıf İsimleri
+
+Class isimleri `StudlyCaps` kullanmalıdır (ör. `ClassName`). Sınıflar ilgili entiteyi ifade edecek şekilde adlandırılmalıdır.
+
+[source, php]
+----
+class YoungInfant extends Person
+{
+
+}
+----
+
+== Fonksiyon İsimleri
+
+Fonksiyon isimleri `lowerCamelCase` kullanılmalıdır (ör. `functionName`). Fonksiyonlar açıklayıcı isimlere sahip olmalı, tercihen bir fiil içermelidir.
+
+[source, php]
+function printLoginStatus($user, $time)
+{/* Lines 107-108 omitted */}
+
+Fonksiyon argümanlarındaki değişkenler kullanım amacını açıklamalıdır.
+
+== Değişkenler
+
+Statik ve üye değişkenler `lowerCamelCase` olmalıdır; gereksiz kısaltmalardan kaçının.
+
+[source, php]
+----
+public static $jobStrings;
+
+var $disableRowLevelSecurity = true;
+----
+
+İnitialize edilmemiş değişkenleri kullanmadan önce `isset()` ile kontrol edin.
+
+[source, php]
+if (isset($forum))
+
+== Alıntılar (Quotations)
+
+Değer değerlendirmesi yapmıyorsanız tek tırnak (`'`) kullanın; değişken değerlendirmesi gerekiyorsa çift tırnak (`"`) kullanın.
+
+[source, php]
+$sample = 'Hello';
+$sample = "Hello, $name";
+
+== Diziler
+
+İndeksli diziler için virgülden sonra boşluk bırakın: `[1, 2, 3]`.
+
+Çok satırlı dizilerde, kapanış parantezi aynı girintide olmalıdır; `=>` atama operatörleri hizalanmalıdır.
+
+[source,php]
+$sampleArray = [
+   'firstKey'  => 'firstValue',
+   'secondKey' => 'secondValue',
+];
+
+== Parantez Stili
+
+Her zaman parantezleri kullanın; tek satırlık bir ifade olsa bile parantezleri koruyun.
+
+.Bad
+[source, php]
+----
+if (condition) do_stuff();
+
+if (condition)
+   do_stuff();
+----
+
+.Good
+[source, php]
+----
+if (condition)
+{
+   do_stuff();
+}
+
+if ($a !== 2) {
+   $a = 2;
+} elseif ($a === 3) {
+   $a = 4;
+} else {
+   $a = 7;
+}
+----
+
+Açılış parantezi sınıf, fonksiyon veya metod deklarasyonunun bir sonraki satırında olmalıdır; kapanış parantezi kendi satırında olmalıdır.
+
+== Yorumlar
+
+Tüm sınıf/metod/özellik tanımlarından önce phpdoc (https://phpdoc.org/) kullanın. Her sınıf tanım bloğu en az `@author` ve `@package` içermelidir.
+
+Blok yorumları `/** ... */` ile başlamalıdır. Tek satırlık yorumlarda `//` yorumundan sonra bir boşluk ve büyük harf kullanın.
+
+Özel veya karmaşık kod parçaları için açıklamalar ekleyin; kodun varsaydığı ön koşulları yazın.

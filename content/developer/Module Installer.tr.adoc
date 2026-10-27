@@ -1,0 +1,76 @@
+---
+weight: 15
+title: "Module Installer"
+
+:toc:
+
+= 15. Module Installer
+
+SuiteCRM'de birçok özelleştirme yöntemi vardır. Module installer bu değişiklikleri paketleyip
+diğer SuiteCRM örneklerine yüklemenizi sağlar. En azından bir paket root'unda `manifest.php`
+dosyası içeren bir zip dosyasıdır. Manifest dosyası, paket hakkında bilgi ve nasıl
+yüklenmesi gerektiğini belirler.
+
+== manifest.php
+
+`manifest.php` üç dizinin tanımını içerir. Aşağıda bu dizileri inceleyeceğiz; tam örnek
+dosya daha sonra verilecektir.
+
+{{% notice info %}}
+Manifest içindeki path kullanırken `<basepath>` ile paket kökünü referans gösterebilirsiniz.
+Örneğin `<basepath>/Foo.txt` paket kökündeki `Foo.txt` dosyasını gösterir.
+{{% /notice %}}
+
+`$manifest` ::
+$manifest dizisi paket hakkında bilgi (isim, readme vb.) sağlar; `patch` paketleri için
+`copy` dizisini de tanımlar. Örnek bir tanım şöyle olabilir:
+
+.Example 15.1: $manifest örneği
+[source,php]
+----
+$manifest = array(
+   /* Lines 44-65 omitted */
+);
+----
+
+`name`::
+  Paket ismi.
+`description`::
+  Kısa açıklama.
+`version`::
+  Geleneksel sürüm numarası (ör. `3.1.4`).
+`author`::
+  Paketin yazarı.
+`readme`::
+  /* Lines 82-83 omitted */
+`acceptable_sugar_flavors`::
+  /* Lines 85-88 omitted */
+`acceptable_sugar_versions`::
+  /* Lines 90-96 omitted */
+`copy_files`::
+  /* Lines 98-100 omitted */
+`dependencies`::
+  /* Lines 102-103 omitted */
+`icon`::
+  /* Lines 105-106 omitted */
+`is_uninstallable`::
+  Paketin uninstall edilip edilemeyeceği.
+`published_date`::
+  Yayın tarihi (string).
+`key`::
+  /* Lines 113-116 omitted */
+`remove_tables`::
+  /* Lines 118-120 omitted */
+`type`::
+  /* Lines 122-124 omitted */
+
+=== $installdefs
+
+$installdefs paketin nasıl yükleneceğini, hangi dosyaların nereye gideceğini ve
+ek bilgi (logic hook'lar, custom alanlar vb.) içerir.
+
+`id` ::
+Benzersiz bir paket tanımlayıcısı.
+
+`connectors` ::
+Kurulacak connector'ların dizisi; her bir giriş `id_name` ve `version` gibi anahtarlar içerir.

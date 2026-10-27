@@ -1,0 +1,55 @@
+---
+title: Özel SuiteP Alt-themeleri Oluşturma
+date: 2018-09-05T12:00:00+01:00
+author: pgorod
+tags: ["development"]
+hidden: true
+---
+
+SuiteCRM 7.10'dan itibaren SuiteP temasında **Dawn**, **Day**, **Dusk** ve **Night** adında 4 alt-theme bulunmaktadır. Bu makale bu alt-temelerden birini "fork" ederek yeni bir alt-theme oluşturmayı öğretir.
+
+Ben **Day** bazlı bir alt-theme olan **Noon** adında yeni bir tema oluşturacağım ve uygulamanın bazı bölümlerindeki kontrastı arttıracağım.
+
+{{% notice info %}}
+Bu makale yalnızca SuiteCRM 7.10 ve üstü sürümler için geçerlidir.
+{{% /notice %}}
+
+== Var olan bir Alt-theme'i Fork Etme
+
+`themes/SuiteP/themedef.php` dosyasının bir kopyasını `custom/themes/SuiteP/themedef.php` altında oluşturun ve bitişe yakın bir yere şu satırı ekleyin:
+
+`'Noon' => $app_strings['LBL_SUBTHEME_OPTIONS_NOON'],`
+
+Ardından etiketleri ekleyin:
+
+`custom/modules/Users/language/en_us.lang.php` ve `custom/Extension/application/Ext/Language/en_us.NoonThemeLabel.php` içine uygun `$app_strings` ve `$mod_strings` tanımlarını ekleyin.
+
+Alt-theme klasörünü kopyalayın:
+
+`cp -R themes/SuiteP/css/Day themes/SuiteP/css/Noon`
+
+Quick Repair and Rebuild yaptıktan sonra yeni alt-theme profil ayarlarında görüntülenir.
+
+== Stil derleme
+
+SCSS derleyicisi kurmanız gerekir. Ubuntu için proje kökünden:
+
+`composer require leafo/scssphp`
+
+SCSS değişikliklerinden sonra şu komutu kullanarak derleyin:
+
+`./vendor/bin/pscss -f compressed themes/SuiteP/css/Noon/style.scss >  themes/SuiteP/css/Noon/style.css`
+
+== Stil özelleştirme
+
+Değiştirebileceğiniz birkaç `.scss` dosyası vardır: `variables.scss`, `color-palette.scss`, `style.scss` vb. Örnekte `color-palette.scss` içindeki bazı renkler kontrastı arttıracak şekilde değiştirilmiştir.
+
+Örnek renk paleti içeriği (kısmi):
+
+[source,php]
+-----
+$color-1: #000000;
+$color-2: #31708F;
+$color-3: #333333;
+/* ... */
+-----

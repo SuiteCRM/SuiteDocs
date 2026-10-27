@@ -1,0 +1,165 @@
+---
+title: "UI yükleyicisini çalıştırma"
+weight: 23
+---
+
+:imagesdir: /images/en/8.x/admin/install-guide
+
+{{% notice info %}}
+Aşağıdaki dokümantasyon SuiteCRM Sürüm 8+ içindir; Sürüm 7 için dokümantasyon görmek isterseniz link:../../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+== 1. Giriş
+
+Bu sayfa SuiteCRM için UI yükleyicisinin nasıl kullanılacağını açıklar.
+
+{{% notice note %}}
+Bu sayfadaki adımlara geçmeden önce lütfen link:../downloading-installing/[İndirme ve Kurulum] rehberini okuyun.
+{{% /notice %}}
+
+== 2. Ön Kurulum Sayfası
+
+Burada Ön Kurulum Denetimi (Pre Install Check) sayfasını göreceksiniz.
+
+image:SuiteCRM8-PreInstall-1.png[SuiteCRM 8 Ön Kurulum Sayfası - 1]
+
+image:SuiteCRM8-PreInstall-2.png[SuiteCRM 8 Ön Kurulum Sayfası - 2]
+
+=== 2.1 Ön Kurulum Uyarıları/Hataları
+
+Her kontrol ya sorun yoksa `OK` ya da aşağıdakini gösterecektir:
+
+image:SuiteCRM8-PreInstall-Error.png[SuiteCRM8-PreInstall-Error]
+
+Eğer gerekli bir kontrol başarısız olursa, küçük bir hata etiketi ve kontrolün neden geçmediğine dair bilgi görüntülenecektir.
+
+Gereksinimleri karşılamak için değişiklikler yapıldıktan sonra yeniden çalıştırmak için `RECHECK` butonunu seçin.
+
+=== 2.2 Cron Yapılandırması
+
+image:SuiteCRM8-PreInstall-2.png[SuiteCRM 8 Ön Kurulum Sayfası - 2]
+
+Ayrıca crontab kurulumuna ilişkin talimatlar bulunur. **Bu adımlar SADECE kurulum tamamlandıktan SONRA uygulanmalıdır**
+
+== 3. Yükleme sayfası kullanılarak kurulum
+
+Eğer Ön Kurulum sayfasındaki tüm kontroller geçtiyse `Proceed` düğmesini seçin; sizi `https://<your-suite-crm-instance-path>/#/install` sayfasına yönlendirecektir.
+
+=== 3.1 Temel sistem yapılandırmasını ayarlama
+
+Bir sonraki adım sistemin çalışması için temel yapılandırmayı eklemektir.
+
+image:web-ui-install-configuration.png[web-ui-install-configuration.png]
+
+{{% notice note %}}
+Bu sayfada `Ignore system check warnings` haricindeki tüm alanlar zorunludur ve bir değer verilmelidir.
+{{% /notice %}}
+
+Bu sekmede aşağıdaki yapılandırmaları bulacaksınız:
+
+==== 3.1.1 SUITECRM ÖRNEĞİ URL'Sİ
+
+image:web-ui-install-url.png[web-ui-install-url.png]
+
+Bu alanda mevcut URL önceden doldurulmuş olacaktır. Eğer bu doğru değilse, SuiteCRM örneğinizin bulunduğu URL'yi ayarlayın. Örnekler:
+
+* `https://example-domain.com`
+* `https://localhost`
+* `https://crm.example-domain.com`
+
+**İpucu:** URL'yi tarayıcı adres çubuğundan kopyalayabilirsiniz.
+
+==== 3.1.2 SuiteCRM Veritabanı Kullanıcısı
+
+image:web-ui-install-db-user.png[web-ui-install-db-user.png]
+
+Bu alanda veritabanına erişim için kullanılacak kullanıcı adını ayarlayın.
+
+{{% notice note %}}
+Belirttiğiniz veritabanı kullanıcısının SuiteCRM veritabanını oluşturma ve yazma izinlerine sahip olduğundan emin olun.
+{{% /notice %}}
+
+==== 3.1.3 SuiteCRM Veritabanı Parolası
+
+image:web-ui-install-db-user-password.png[web-ui-install-db-user-password.png]
+
+Bu alanda veritabanı için kullanılacak parolayı ayarlayın.
+
+==== 3.1.4 Host Adı
+
+image:web-ui-install-db-host.png[web-ui-install-db-host.png]
+
+Bu alanda veritabanı hostunu ayarlayın.
+
+{{% notice note %}}
+Bazı sistemlerde `localhost` kullanıldığında doctrine socket bağlantısı deneyecektir; socket bağlantısı şu an desteklenmediğinden `127.0.0.1` gibi IP kullanmak daha iyi olabilir.
+{{% /notice %}}
+
+==== 3.1.5 Veritabanı Adı
+
+image:web-ui-install-db-name.png[web-ui-install-db-name.png]
+
+Bu alanda kurulum sırasında oluşturulacak veritabanı için isim belirleyin, örn. `suite` veya `suitecrm`.
+
+==== 3.1.6 Veritabanı Portu
+
+image:web-ui-install-db-port.png[web-ui-install-db-port.png]
+
+Bu alan varsayılan MySQL/MariaDB portu ile gelir; farklı bir port kullanıyorsanız değiştirin.
+
+==== 3.1.7 VERİTABANINI DEMO VERİLERLE DOLDURMA
+
+image:web-ui-install-demo-data.png[web-ui-install-demo-data.png]
+
+Bu alanda kurulum sırasında veritabanını demo verilerle doldurmak isteyip istemediğinizi belirleyebilirsiniz.
+
+==== 3.1.8 SuiteCRM Yönetici Kullanıcı Adı
+
+image:web-ui-install-admin-username.png[web-ui-install-admin-username.png]
+
+Bu alanda SuiteCRM yönetici kullanıcısının kullanıcı adını ayarlayabilirsiniz (varsayılan `admin` değeri önceden doldurulacaktır).
+
+==== 3.1.9 SuiteCRM Yönetici Parolası
+
+image:web-ui-install-admin-password.png[web-ui-install-admin-password.png]
+
+Bu alanda yönetici kullanıcısı için parola belirleyin.
+
+=== 3.2 Kurulum uyarılarını yok sayma
+
+image:web-ui-install-ignore-warnings.png[web-ui-install-ignore-warnings.png]
+
+Kurulum işleminden önce SuiteCRM bazı sistem gereksinimlerini kontrol edecektir. Bu kontrollerin bazıları isteğe bağlıdır; uyarıları yok sayarak kuruluma devam etmek isterseniz `Ignore System Check Warnings` kutusunu işaretleyin.
+
+=== 3.3 Kurulumu çalıştır
+
+Lisansı kabul edip tüm alanlara doğru değerleri girdikten sonra `Proceed` butonuna tıklayın.
+
+Bu, kurulum sürecini başlatacaktır. Önce bazı sistem gereksinimleri doğrulanacaktır.
+
+Eğer doğrulama sırasında herhangi bir hata olursa, kurulum duracak ve başarısız olan kontrollerin açıklaması ile bir modal açılacaktır.
+
+Eğer tüm kontroller geçerse kurulum süreci devam edecektir. Kurulum sırasında sayfada bir yükleme göstergesi görünecektir. Bu işlem biraz zaman alabilir.
+
+Kurulum tamamlandığında giriş sayfasına yönlendirileceksiniz.
+
+=== 3.4 Yapılandırmaları çift kontrol etme
+
+Lütfen aşağıdaki yapılandırmaların doğru olduğunu tekrar kontrol edin:
+
+*1* - Legacy yapılandırma `public/legacy/config.php`
+
+* `site_url`:
+** Eğer vhost'unuz SuiteCRM 8 kök klasörünüzün içindeki `public` dizinine işaret etmiyorsa, mevcut host'unuza `/public` eklemelisiniz.
+*** örn. adresiniz `https://your-host/crm/public` gibiyse,
+
+*2* - `public/legacy/.htaccess`
+
+* `RewriteBase`
+** Eğer vhost'unuz `legacy` dizinine işaret ediyorsa doğru değer `RewriteBase /legacy`'dir
+** Aksi halde `public` klasörüne kadar olan yolu başa ekleyin.
+*** örn. adresiniz `https://your-host/crm/public` ise doğru değer `RewriteBase /crm/public/legacy` olmalıdır.
+
+=== 3.5 Uygulamaya erişme
+
+Giriş yapmayı deneyin.

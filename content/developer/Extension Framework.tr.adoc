@@ -1,0 +1,57 @@
+---
+weight: 14
+title: "Extension Framework"
+---
+
+= 14. Extension Framework (Eklenti Çatısı)
+
+== Giriş
+
+Extension framework, SuiteCRM içinde çeşitli uygulama verilerini değiştirmek için bir
+yöntem sağlar. Örneğin vardefs, scheduled tasks, dil stringleri ve daha fazlasını
+eklemek veya değiştirmek için kullanılabilir.
+
+Mekanizma, dosyayı `custom` dizinine kopyalamaktan biraz daha karmaşıktır fakat
+avantajları vardır:
+
+- yalnızca değiştirmek istediğiniz kısmı geçersiz kılabilirsiniz
+- farklı kişiler aynı anda farklı parçaları değiştirebilir, çakışma olmadan. Örneğin
+  bir alan ekleyebilir, başka bir eklenti başka bir alan ekleyip, bir üçüncü eklenti
+  aynı layout üzerinde değişiklik yapabilir; SuiteCRM bu değişiklikleri birleştirir.
+
+Genelde `custom/Extension` içinde bir klasör sağlanır (yol eklentiye göre değişir). Bu
+klasör taranır ve dosyalar bir `ext` dosyası halinde birleştirilir; SuiteCRM bu derlenmiş
+ext dosyasını okur ve uygular. Böylece geliştiriciler yeni bir dosya ekleyerek SuiteCRM
+davranışını değiştirebilirler, mevcut dosyaları doğrudan değiştirmeye gerek kalmaz.
+
+Ayrıca bu dosyalar konsolide edildiği için çok sayıda dosya kontrol edilmesinden kaynaklı
+performans etkisi olmaz; bu işlem admin menüsündeki `repair and rebuild` sırasında yapılır.
+
+== Standart Extensions
+
+Standart SuiteCRM eklenti türleri listelenmiştir:
+
+[cols="20,20,20,50",options="header",]
+|=======================================================================
+|Extension Directory |Compiled file |Module |Description
+|ActionViewMap |action_view_map.ext.php |  |Modül için action'ları bir view'e map etmekte kullanılır.
+
+|ActionFileMap |action_file_map.ext.php |  |Module action'larını belirli dosyalara yönlendirmek için kullanılır.
+
+|ActionReMap |action_remap.ext.php |  |Bir modül için action'ları yeniden eşlemek için kullanılır.
+
+|Administration |administration.ext.php |Administration |Yönetim paneline yeni bölümler eklemek için kullanılır.
+
+|EntryPointRegistry |entry_point_registry.ext.php |application |Yeni giriş noktaları eklemek için kullanılır. Bakınız link:../entry-points/[Entry Points].
+
+|Extensions |extensions.ext.php |application |Yeni eklenti tipleri eklemek için kullanılır.
+
+|FileAccessControlMap |file_access_control_map.ext.php |  |Dosya erişim kontrol listelerine giriş eklemek/güncellemek/silmek için kullanılır.
+
+|Language |N/A (dil eklentileri özel olarak ele alınır)  |  |Modül ve uygulama dil stringlerini eklemek/güncellemek için kullanılır. link:../language-strings[Language Strings].
+
+|Layoutdefs |layoutdefs.ext.php |  |Bir modül için subpanel tanımlarını ekleme/güncelleme/silme için kullanılır.
+
+|GlobalLinks |links.ext.php |application |Uygulamanın sağ üstünde görülen global linkleri eklemek/güncellemek/silmek için kullanılır.
+
+|LogicHooks |logichooks.ext.php |  |Logic hook'ları eklemek/güncellemek/silmek için kullanılır.

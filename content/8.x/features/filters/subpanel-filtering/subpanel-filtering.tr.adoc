@@ -1,0 +1,128 @@
+---
+title: "Alt Panel Filtreleme"
+weight: 80
+---
+
+:imagesdir: /images/en/8.x/user/features/subpanels
+
+=== Alt panellerde filtrelemeyi nasıl yapılandırırsınız?
+
+Bir alt panelde filtrelemeye izin vermek için `subpaneldefs.php` dosyasına aşağıdaki ifadeyi eklemeniz gerekir:
+
+[source,php]
+----
+['widget_class' => 'SubPanelTopFilterButton'],
+----
+
+Aşağıdaki örnek, bunun `public/legacy/Accounts/metadata/subpaneldefs.php` dosyasında `Accounts` -> `Contacts` Alt Paneline nerede eklendiğini göstermektedir:
+
+[source,php]
+----
+        'contacts' => array(
+            'order' => 30,
+            'module' => 'Contacts',
+            'sort_order' => 'asc',
+            'sort_by' => 'last_name, first_name',
+            'subpanel_name' => 'ForAccounts',
+            'get_subpanel_data' => 'contacts',
+            'add_subpanel_data' => 'contact_id',
+            'title_key' => 'LBL_CONTACTS_SUBPANEL_TITLE',
+            'top_buttons' => array(
+                array('widget_class' => 'SubPanelTopCreateAccountNameButton'),
+                ['widget_class' => 'SubPanelTopFilterButton'],
+                array('widget_class' => 'SubPanelTopSelectButton', 'mode' => 'MultiSelect')
+            ),
+        ),
+----
+
+Bu eklendikten sonra Admin->Repair menüsünden `Repair and Rebuild` çalıştırın.
+
+=== Filtre nasıl görünür?
+
+Etkinleştirildiğinde alt panelde yeni bir Filtre düğmesi görüntülenecektir.
+
+image:Filter-Full-Panel.png[Filter-Full-Panel.png]
+
+Filtre düğmesini seçtikten sonra, ilgili alt panel için filtre seçenekleri listesini göreceksiniz:
+
+image:Filter-Expanded.png[Filter-Expanded.png]
+
+Gerekli filtre seçeneklerini girdikten sonra yalnızca filtrelenmiş kayıtları göstermek için `Search` butonuna tıklayın:
+
+image:Filter-Searched.png[Filter-Searched.png]
+
+Mevcut filtrenizi düzenlemek veya güncellemek için `Filter` seçeneğini yeniden seçin. Filtreyi kapatmak veya kaldırmak için `Clear Filter` seçeneğini seçin.
+
+Filtrelerin kullanıcı tercihlerinde "hafızaya alınmadığını" unutmayın; sayfayı yenilediğinizde filtre sıfırlanacaktır.
+
+=== Alt panellere Search Vardefs ekleme
+
+CRM içinde bazı alt paneller standart bir Listview / Listview Filter düzenine sahip değildir ve bu nedenle aranabilir alanlar tanımlı olmayabilir (ör. Activities, Campaign Log vb.).
+
+Bu durumlarda filtre eklemeye çalışırken filtrelenecek alanlar görünmeyebilir.
+
+Filtre eklemek isterseniz ve değişiklik yaptıktan sonra `Repair and Rebuild` çalıştırmayı unutmayın. Aşağıdaki yollarla filtre alanı ekleyebilirsiniz:
+
+==== `subpaneldefs.php` ile ekleme
+Alt panele doğrudan searchdefs / filter alanları ekleyebilirsiniz. Örneğin `public/legacy/modules/Accounts/metadata/subpaneldefs.php` içinde şöyle tanımlanabilir:
+
+[source,php]
+----
+            'searchdefs' => array(
+                'collection' =>
+                    array(
+                        'name' => 'collection',
+                        'label' => 'LBL_COLLECTION_TYPE',
+                        'type' => 'enum',
+                        'options' => 'collection_temp_list',
+                        'default' => true,
+                        'width' => '10%',
+                    ), ...
+
+----
+
+==== `searchdefs.php` dosyası ekleme
+Modül dizinine bir `searchdefs.php` ekleyebilirsiniz. Örneğin Accounts modülünde `public/legacy/modules/Accounts/metadata/searchdefs.php` kullanıldığı gibi:
+
+[source,php]
+----
+$searchdefs ['Accounts'] =
+    array(
+        'templateMeta' =>
+            array(
+                'maxColumns' => '3',
+                'maxColumnsBasic' => '4',
+                'widths' =>
+                    array(
+                        'label' => '10',
+                        'field' => '30',
+                    ),
+            ),
+        'layout' =>
+            array(
+                'basic_search' =>
+                    array(
+                        'name' =>
+                            array(
+                                'name' => 'name',
+                                'default' => true,
+                                'width' => '10%',
+                            ),
+                        'current_user_only' =>
+                            array(
+                                'name' => 'current_user_only',
+                                'label' => 'LBL_CURRENT_USER_FILTER',
+                                'type' => 'bool',
+                                'default' => true,
+                                'width' => '10%',
+                            ),
+                        'favorites_only' => array(
+                            'name' => 'favorites_only',
+                            'label' => 'LBL_FAVORITES_FILTER',
+                            'type' => 'bool',
+                        ),
+                    ),
+                'advanced_search' =>
+                    array(
+                        'name' => ...
+----

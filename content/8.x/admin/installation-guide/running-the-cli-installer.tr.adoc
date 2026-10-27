@@ -1,0 +1,149 @@
+---
+title: "CLI yükleyicisini çalıştırma"
+weight: 22
+---
+
+:imagesdir: /images/en/8.x/admin/install-guide
+
+{{% notice info %}}
+Aşağıdaki dokümantasyon SuiteCRM Sürüm 8+ içindir; Sürüm 7 için dokümantasyon görmek isterseniz link:../../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+== 1. Giriş
+
+Bu sayfa SuiteCRM için CLI yükleyicisinin nasıl kullanılacağını açıklar.
+
+{{% notice note %}}
+Bu sayfadaki adımlara geçmeden önce lütfen link:../downloading-installing/[İndirme ve Kurulum] rehberini okuyun.
+{{% /notice %}}
+
+== 2. CLI ile kurulum
+
+
+=== 2.1 Sistemi yükleme
+
+* Komutu çalıştırın:
+. Seçenek 1 - `./bin/console suitecrm:app:install` komutunu herhangi bir seçenek olmadan çalıştırın; komut gerekli seçenekleri sırayla soracaktır.
+. Seçenek 2 - Gerekli seçenekleri tek satırda geçirerek `./bin/console suitecrm:app:install` komutunu çalıştırın. Aşağıdaki bölüm daha detaylı bilgi verir.
+
+
+[source,bash]
+----
+./bin/console suitecrm:app:install -u "admin_username" -p "admin_password" -U "db_user" -P "db_password" -H "db_host" -N "db_name" -S "site_url" -d "demo_data"
+----
+
+[source,bash]
+----
+# Örnek
+./bin/console suitecrm:app:install -u "admin" -p "pass" -U "root" -P "dbpass" -H "mariadb" -N "suitecrm" -S "https://yourcrm.com/" -d "yes"
+----
+
+*Daha fazla bilgi*
+
+Desteklenen argümanlar hakkında daha fazla bilgi almak için `./bin/console suitecrm:app:install --help` komutunu çalıştırabilirsiniz. Bu, aşağıdakine benzer bir liste gösterecektir:
+
+image:suite-cli-install-options.png[suite-cli-install-options.png]
+
+Aşağıdaki alt bölümler, ayarlayabileceğiniz her parametrenin kısa açıklamasını verir.
+
+==== 2.1.1 site_url
+
+Bu parametrede SuiteCRM örneğinizin bulunduğu URL'yi ayarlamalısınız. Örnekler:
+
+* `https://example-domain.com`
+* `https://localhost`
+* `https://crm.example-domain.com`
+
+**İpucu:** URL'yi tarayıcı adres çubuğunuzdan kopyalayabilirsiniz.
+
+==== 2.1.2 db_user
+
+Bu parametrede veritabanınıza erişim için kullanılacak kullanıcı adını ayarlayın.
+
+{{% notice note %}}
+Belirttiğiniz Veritabanı Kullanıcısının SuiteCRM veritabanını oluşturma ve yazma izinlerine sahip olduğundan emin olun.
+{{% /notice %}}
+
+==== 2.1.3 db_password
+
+Bu parametrede veritabanına erişim için kullanılacak parolayı ayarlayın.
+
+==== 2.1.4 db_host
+
+Bu parametrede veritabanı sunucunuzun host adresini ayarlayın.
+
+{{% notice note %}}
+bazı sistemlerde `localhost` kullanıldığında doctrine socket bağlantısı deneyecektir. Socket bağlantısı şu an desteklenmediğinden, bu tür durumlarda `127.0.0.1` gibi IP ile denemek daha iyi olabilir.
+{{% /notice %}}
+
+==== 2.1.5 db_name
+
+Bu parametrede kurulum sürecinde adveritabanınızda oluşturulacak veritabanının adını ayarlayın, örn. `suite` veya `suitecrm` veya başka geçerli bir ad.
+
+==== 2.1.6 db_port
+
+Bu parametrede varsayılan MySQL/MariaDB portu kullanılır; veritabanı sunucunuz farklı bir port kullanıyorsa değiştirin.
+
+==== 2.1.7 demo_data
+
+Bu parametrede kurulum sırasında veritabanını önceden demo verilerle doldurmak isteyip istemediğinizi belirleyebilirsiniz.
+
+Olası değerler: 'yes', 'no'.
+
+==== 2.1.8 admin_username
+
+Bu parametrede SuiteCRM örneğinizin yönetici kullanıcı adı için bir isim belirleyebilirsiniz, örn. `admin`.
+
+==== 2.1.9 admin_password
+
+Bu parametrede SuiteCRM örneğinizin yönetici kullanıcısı için parola belirleyin.
+
+==== 2.1.10 sys_check_option
+
+Kurulum uyarılarını yok sayma
+
+Kurulum işleminden önce SuiteCRM bazı sistem gereksinimlerini (ör. maksimum yükleme dosya boyutu veya bellek limiti) kontrol edecektir. Bu kontrollerin bazıları isteğe bağlıdır; bu kontroller başarısız olsa bile sistemi kurabilirsiniz.
+Eğer uyarıları yok sayarak kuruluma devam etmek isterseniz `Ignore System Check Warnings` seçeneğini işaretleyebilirsiniz.
+
+Olası değerler: 'true' (yok saymak için), 'false' (yok saymamak için).
+
+=== 2.2 İzinleri yeniden ayarlama
+
+Kurulumun tamamlanmasına izin verdikten sonra tekrar izinleri ayarlayın.
+
+Terminal kullanıyorsanız aşağıdaki komutları çalıştırın:
+
+[source,bash]
+----
+find . -type d -not -perm 2755 -exec chmod 2755 {} \;
+find . -type f -not -perm 0644 -exec chmod 0644 {} \;
+find . ! -user www-data -exec chown www-data:www-data {} \;
+chmod +x bin/console
+----
+
+Şunları göz önünde bulundurun:
+
+* Yukarıdaki `www-data` örneği gerçek web sunucusu kullanıcı ve grubuyla değiştirilmelidir.
+* Eğer grup adı farklıysa `0664` ve `2775` gibi alternatif izinler gerekebilir.
+
+=== 2.3 Yapılandırmaları çift kontrol etme
+
+Aşağıdaki yapılandırmaların doğru olduğundan emin olun:
+
+*1* - Legacy yapılandırma `public/legacy/config`
+
+* `site_url`:
+** Eğer vhost'unuz SuiteCRM 8 kök klasörünüzün içindeki `public` dizinine işaret etmiyorsa, mevcut host'unuza `/public` eklemelisiniz.
+*** örn. adresiniz `https://your-host/crm/public` gibiyse,
+
+*2* - `public/legacy/.htaccess` içindeki `.htaccess`
+
+* `RewriteBase`
+** Eğer vhost'unuz SuiteCRM 8 kök klasöründeki `public` dizinine işaret ediyorsa doğru değer `RewriteBase /legacy`'dir
+** Aksi halde, `public` klasörüne kadar olan yolu başa eklemelisiniz.
+*** örn. adresiniz `https://your-host/crm/public` ise doğru değer `RewriteBase /crm/public/legacy` olmalıdır.
+
+
+=== 2.4 Uygulamaya erişme
+
+Artık örneğinize `https://<your-suite-crm-instance-path>` adresinden erişebilmelisiniz.

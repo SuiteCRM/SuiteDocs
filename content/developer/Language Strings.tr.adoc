@@ -1,0 +1,50 @@
+---
+weight: 9
+title: "Language Strings"
+---
+
+= 9. Dil Dizeleri (Language Strings)
+
+Dil dizeleri SuiteCRM'e uluslararasılaştırma (i18n) sağlar. Farklı diller için farklı
+metinler tanımlamaya izin verir ve modül/özelleştirme etiketlerini kolayca çevirmeyi sağlar.
+Tek bir dil hedeflense bile, dil dizelerini kullanmak faydalıdır çünkü kullanıcıların
+özelleştirme etiketlerini değiştirmelerini kolaylaştırır.
+
+Temelde dil dizeleri bir anahtar-değer yapısıdır. Anahtarlar uygulama içinde kullanılır,
+değerler ise mevcut dile göre yüklenir.
+
+SuiteCRM'de diller, dosya adının başına IETF dil kodu eklenerek yönetilir. Örnekler:
+
+• *Core Accounts dil dosyası en_us için* - `modules/Accounts/language/en_us.lang.php`
+
+• *Core Cases dil dosyası es_es için* - `modules/Cases/language/es_es.lang.php`
+
+• *Özel dil dosyası de_de için* - `custom/Extension/application/Ext/Language/de_de.SomeCustomPackage.php`
+
+SuiteCRM hangi dilin yükleneceğini, kullanıcının girişte seçtiği dile veya seçilmemişse
+varsayılan dile göre belirler. Genellikle varsayılan dil ve `en_us` dosyaları da yüklenecektir;
+eksik anahtarlar bu dosyalardan gelir (fallback mekanizması).
+
+== Modül Dizeleri
+
+[discrete]
+==== Kullanım
+Modül dizeleri genellikle alan etiketleri veya panel başlıkları gibi modüle özgü metinlerdir.
+
+[discrete]
+==== Tanım yeri
+Modül dizeleri `$mod_strings` dizisinde tanımlanır. Örneğin `modules/<TheModule>/language/<LanguageTag>.lang.php`.
+
+[discrete]
+==== Özelleştirme yeri
+Modül dizelerini şu şekilde özelleştirebilirsiniz: `custom/Extension/modules/<TheModule>/Ext/Language/<LanguageTag>.<Name>.php`.
+
+`<Name>` açıklayıcı bir isim olmalıdır. Ör: `custom/Extension/modules/Accounts/Ext/Language/en_us.MyLanguageFile.php`.
+
+Extension framework bölümü dil dosyaları hakkında daha fazla bilgi içerir. link:../extension-framework/[extensions]
+
+== Uygulama Dizeleri
+
+[discrete]
+==== Kullanım
+Uygulama dizeleri modüle özgü olmayan uygulama genelindeki etiketler için kullanılır.

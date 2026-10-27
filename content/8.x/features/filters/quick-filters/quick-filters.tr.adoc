@@ -1,0 +1,85 @@
+---
+title: "Hızlı Filtreler"
+weight: 50
+---
+
+:imagesdir: /images/en/8.x/user/features/
+
+=== Giriş
+
+{{% notice info %}}
+Bu özellik SuiteCRM 8.5 ve sonraki sürümlerde mevcuttur
+{{% /notice %}}
+
+Hızlı Filtreler, liste görünümünde kaydedilmiş filtreler için yeni bir seçenektir. Sık kullanılan filtrelere kolay erişim ve bu filtreler arasında hızlı geçiş yapma imkânı sağlar (aşağıdaki gif örneğinde gösterildiği gibi).
+
+image:quick-filter-demo-docs.gif[Quick Filters Demo]
+
+=== Hızlı Filtre ekleme
+
+Yeni bir Hızlı Filtre eklemek için, modülün liste görünümüne gidin ve `Filter` düğmesini seçin.
+
+image:EmptyFilter.png[Empty Filter]
+
+Ardından filtre kriterlerini doldurun.
+
+image:Trait-Opp.png[Trait Inc Opportunities]
+
+Filtreye bir isim verin, `Quick Filter` onay kutusunu işaretleyin ve kaydedin.
+
+Arama sonuçları döndürülecektir.
+
+Yeni filtre artık filtre düğmesinin yanında diğer oluşturulmuş hızlı filtrelerle birlikte görüntülenecektir.
+
+Filtreyi kaldırmak için filtre düğmesi üzerindeki `x` işaretine tıklayabilir veya oluşturduğunuz hızlı filtre düğmesini tekrar seçebilirsiniz.
+
+=== Hızlı Filtre seçildiğinde
+
+Bir Hızlı Filtre seçildiğinde filtre kriterleri doldurulmuş olur:
+
+image:Will-Selected.png[Trait Selected]
+
+Sayfada gösterilemeyecek kadar çok filtre eklendiğinde (bu durumun yapılandırması için link:#_quick_filter_configurations[buraya] bakın), kalan filtreleri içeren bir açılır liste (My Filters) gösterilir. Bu açılır listeden bir filtre seçtiğinizde `My Filters` düğmesi dolu olarak gösterilir:
+
+image:My-Filters-Highlighted.png[My Filters Highlighted]
+
+Filtreler arasında geçiş yapmak için değiştirmek istediğiniz filtreye tıklayın; filtre güncellenecektir.
+
+=== Hızlı Filtre Yapılandırmaları
+
+Hızlı Filtreler için değiştirilebilen çeşitli yapılandırmalar vardır.
+
+Varsayılan ek alan yapılandırması `config/services/ui/ui.yaml` dosyasında tanımlıdır.
+Bu yapılandırmayı geçersiz kılmak için dosyayı `extensions` klasörüne `extensions/<your-package>/config/services/ui/ui.yaml` yolu ile kopyalayın.
+
+Aşağıdakileri tanımlayabilirsiniz:
+
+* displayed_quick_filters
+** Bu, açılır liste (My Filters) oluşturulmadan önce kaç filtrenin görüntüleneceğini belirler.
+
+image:My-Filters-Highlighted.png[My Filters Highlighted]
+
+* quick_filters_breakdown_threshold
+** Bu yapılandırma filtrelerin satır kırılımını değiştirir; bu değer değiştiğinde filtrelerin yeni bir satıra ne zaman geçeceği belirlenir.
+** Eğer `displayed_quick_filters` burada ayarlanan değerden yüksekse filtreler açılır listeye dönüşmeden önce yeni bir satıra girer.
+
+image:SmallFilters.png[Small Filters]
+
+* enable_quick_filters
+** Bu, ekran boyutuna göre hızlı filtrelerin etkinleştirilip etkinleştirilmeyeceğini kontrol eder.
+
+* quick_filters_breakdown_screen_sizes
+** Bu yapılandırma, Hızlı Filtrelerin filtrelerden ayrı bir satırda gösterilip gösterilmeyeceğini belirler.
+
+[source,yaml]
+----
+parameters:
+  ui:
+     enable_quick_filters:
+      XSmall: true
+      Small: false
+      Medium: true
+      Large: true
+      XLarge: true
+
+----

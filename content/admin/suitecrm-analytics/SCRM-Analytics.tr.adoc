@@ -1,0 +1,87 @@
+---
+title: SuiteCRM Web Analytics
+weight: 30
+---
+
+:imagesdir: /images/en/admin
+
+= SuiteCRM Web Analytics
+
+SuiteCRM Web Analytics, SuiteCRM ve üçüncü taraf veri kaynaklarından alınan verilerin Data Warehouse içine aktarılıp analiz edilmesine olanak veren web tabanlı bir raporlama ön yüzüdür.
+
+Kullanıcılar web portala giriş yaparak raporları çalıştırabilir, filtreleyebilir veya zamanlayabilir. Portal, Pentaho CTools ve Report Designer ile oluşturulmuş rapor ve panoların içe aktarılmasını destekler. Raporlar HTML, PDF ve Excel gibi farklı çıktı türlerini destekleyebilir.
+
+== SuiteCRM Web Analytics indirme ve kurulum önkoşulları
+
+Gereksinimler:
+
+* Linux ortamı
+* OpenJDK 8 JRE (Java)
+* wget
+* unzip
+* zip
+
+{{% notice note %}}
+SuiteCRM Web Analytics, SuiteCRM Data Integration çözümünün önceden kurulmuş ve çalıştırılmış olmasını gerektirir.
+{{% /notice %}}
+
+İki indirme yöntemi vardır:
+
+* https://suitecrm.com/resources/suitecrm-analytics-tool[SuiteCRM web sitesinden indirilen paket^]
+* Repo'dan klonlayıp paket oluşturma (aynı paket oluşturulur)
+
+=== Manuel paket oluşturma (repo'dan klonlama)
+
+Terminalde repo klonlayın:
+
+[source,bash]
+----
+git clone https://github.com/ivylabs/suitecrm-analytics
+----
+
+Yeni dizine girip `build.sh` çalıştırın:
+
+[source,bash]
+----
+./build.sh
+----
+
+Bu işlem sonunda `suitecrm-analytics-server.zip` adlı paket oluşturulacaktır.
+
+=== SuiteCRM Data Integration yapılandırması
+
+`suitecrm-analytics-server.zip` dosyasını sunucuya yükleyip açın. `install.properties` dosyasını düzenleyin (örnek değişkenler: `JVM_SIZE`, `SUITECRM_HOST`, `SUITECRM_PORT`, `SUITECRM_DATABASE`, `SUITECRM_USERNAME`, `SUITECRM_PASSWORD`, `SUITECRM_ANALYTICS_*` vb.).
+
+[source,bash]
+----
+JVM_SIZE=1024
+SUITECRM_HOST=127.0.0.1
+SUITECRM_PORT=3306
+SUITECRM_DATABASE=suitecrm_testdata
+SUITECRM_USERNAME=suitecrmrootuser
+SUITECRM_PASSWORD=suitecrmrootuserpassword
+SUITECRM_ANALYTICS_WEBAPP_PORT=8080
+----
+
+=== SuiteCRM Web Analytics kurulumu
+
+Yapılandırmayı tamamladıktan sonra kurulum betiğini çalıştırın:
+
+[source,bash]
+----
+./setup-suitecrm-analytics.sh
+----
+
+Ardından sunucuyu başlatın:
+
+[source,bash]
+----
+./start-suitecrm-analytics.sh
+----
+
+Çalışıp çalışmadığını doğrulamak için logları takip edebilirsiniz:
+
+[source,bash]
+----
+tail -f tomcat/logs/catalina.out
+----

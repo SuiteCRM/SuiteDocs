@@ -1,0 +1,35 @@
+---
+title: Ekler (Attachments) Nasıl Saklanır?
+date: 2017-04-21T12:00:00+01:00
+author: pgorod
+tags: ["development"]
+source: https://pgorod.github.io/How-Attachments-Stored/
+hidden: true
+draft: true
+---
+
+Bir noktada SuiteCRM'in ekleri veritabanında ve dosya sisteminde nasıl sakladığını incelemeniz gerekebilir. İşte yardımcı olacak bir rehber.
+
+:imagesdir: /images/en/community
+
+Eğer henüz okumadıysanız, öncelikle şu makaleyi inceleyin: link:%7B%%20post_url%202017-4-20-Concepts-Docs-Attach-Notes%20%%7D[SuiteCRM Concepts Explained: Documents, Notes, Attachments]
+
+== Veritabanında
+
+E-posta, Kampanya ve Case ekleri SuiteCRM'de Notes olarak saklanır.
+
+İlgili tablo `notes` adını taşır. Bu tabloda `id`, dosya adı (`filename`) ve MIME türü gibi alanlar bulunur. Her note kaydının (doğrudan loose Note olarak oluşturulmadıysa) bir `parent_type` (ör. `Emails`) ve `parent_id` alanı olur; böylece ek hangi kayda bağlı olduğu belirlenir.
+
+== Dosya sisteminde
+
+Gerçek dosya `upload` dizininde note kaydının `id` alanına denk gelen isimle saklanır.
+
+Dolayısıyla Email ek dosyalarını görmek için şu MySQL sorgusunu kullanabilirsiniz:
+
+.Example
+[source,sql]
+SELECT notes.id, emails.id, CONCAT("upload/", filename), file_mime_type FROM notes INNER JOIN emails ON notes.parent_type = 'Emails' AND notes.parent_id = emails.id INNER JOIN emails_text ON emails.id = emails_text.email_id
+
+Bu sorgu ile kullanıcı tarafından görülen dosya adını ve ilgili diğer bilgileri çekebilirsiniz. Farklı kayıt tipleri (`cases`, `email templates` vb.) için sorguyu uyarlayabilirsiniz.
+
+Tüm dosyaların tek bir dizinde tutulması düzen açısından zayıf olabilir ve büyük miktarda dosya olduğunda dosya sistemi sorunlarına yol açabilir. İleride SuiteCRM'in kayıt tiplerine göre klasörleme yapması faydalı olacaktır.

@@ -1,0 +1,57 @@
+---
+title: "Alan değerini güncelleme (Update field value)"
+weight: 40
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/logic/field-logic/
+
+{{% notice note %}}
+Değişiklikleri custom dizininde yapın: `public/legacy/custom/modules/<module>/...`
+{{% /notice %}}
+
+== 1. Giriş
+
+UpdateValue mantığı, diğer alanların değeri değiştiğinde bir alanın değerini ayarlamak için kurallar tanımlamanıza izin verir.
+
+{{% notice info %}}
+Şu anda relate alanlar için çalışmamaktadır.
+{{% /notice %}}
+
+=== 1.1 Örnek senaryo
+
+Bu örnekte Industry alanı değiştiğinde Account'un employees alanının değerini güncelleyeceğiz.
+
+image:Updated-Employees-Field-Industry.png[Güncellenmiş Employees Alanı]
+
+== 2. Mantık Metadata tanımı
+
+İlk adım metadata içinde `logic` girdisini tanımlamaktır; bu, value update tetikleyicilerini belirler.
+
+Konfigürasyon `vardefs.php` veya `detailviewdefs.php` içine eklenebilir.
+
+=== 2.1 Custom vardefs üzerine mantık ekleme adımları
+
+. Accounts modülü için yeni bir field extension oluşturun: `public/legacy/custom/Extension/modules/Accounts/Ext/Vardefs/employees.php`
+. `public/legacy/include/SugarObjects/templates/company/vardefs.php` içindeki `employees` tanımını kopyalayın.
+. `employees` tanımındaki `logic` girdisini aşağıdaki snippet ile değiştirin.
+** Gerekirse izinleri yeniden ayarlayın
+. Admin menüsünden `Repair and Rebuild` çalıştırın
+
+[source,php]
+----
+<?php
+
+$dictionary['Account']['fields']['employees'] = array(
+    /* Lines 49-69 omitted */
+);
+----
+
+=== 3. Update Field Value Mantığı
+
+`logic` içinde `update-value` için birden fazla tanım ekleyebilirsiniz; her tanım `OR` gibi çalışır.
+
+[source,php]
+----
+----
+
+Artık Industry `Banking` ise Employees 450, Industry `Media` ise 5000 olarak güncellenecektir.

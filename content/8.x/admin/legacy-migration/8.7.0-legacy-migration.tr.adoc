@@ -1,0 +1,44 @@
+---
+Title: Geçiş - 7.14.x'den 8.7.0+
+weight: 10
+---
+
+:imagesdir: /images/en/user
+
+{{% notice info %}}
+Aşağıdaki dökümantasyon SuiteCRM Sürüm 8.7.0+ içindir
+{{% /notice %}}
+
+== 1. Geçişten önce
+
+{{% notice note %}}
+Bu sayfada 7.14.x+ ifadesi geçtiğinde, 7.14.x veya daha yüksek herhangi bir sürüm kastedilir.
+{{% /notice %}}
+
+. Geçişi çalıştırmadan önce lütfen sisteminizin **yeni sürüm uyumluluk matrisiyle uyumlu** olduğundan emin olun.
+** Tam bilgi için bakın:../../compatibility-matrix[Compatibility Matrix].
+
+. Geçiş sürecini **geliştirme ortamında çalıştırıp test etmeniz** önerilir. Testten sonra yükseltilmiş sürümü üretime dağıtın.
+
+. Geçişten önce lütfen örnek ve veritabanı yedeği (**backup**) oluşturduğunuzdan emin olun.
+
+. SuiteCRM 7.x örneğinizi **en son 7.14.x sürümüne yükseltin**
+.. Her sürümün sürüm notlarında yer alan elle yapılması gereken adımları kontrol edin.
+
+. Varsayılan olarak, yükseltme komutları uyarıları bastırmak için `error_reporting` değerini daha az katı bir moda ayarlar.
+** Ayarlanan `error_reporting` değeri: `E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING`
+** Daha katı bir mod istiyorsanız komutlarda `-vvv` kullanın; bu `error_reporting` için `E_ALL` ayarlar.
+
+. Lütfen dikkat: geçiş işlemi `public/legacy/` klasörü altındaki çekirdek dışı dosya/dizinleri **kaldırabilir**.
+
+. Komutları çalıştırmadan önce SuiteCRM 8 örneğinizin `APP_ENV`'inin `APP_ENV=prod` olduğundan emin olun (`.env` veya `.env.local`).
+
+---
+
+== 2. Geçiş Adımları
+
+=== 2.1. Yeni sürüm geçiş paketini indirin
+
+. SuiteCRM 8.x hedef geçiş paketini (ör: `8.7.0 Upgrade from 7.14.x`) link:https://suitecrm.com/upgrade-suitecrm/[SuiteCRM Release page] adresinden indirin.
+
+. Paketin içeriğini SuiteCRM 8.x hedef klasörünüze açın.

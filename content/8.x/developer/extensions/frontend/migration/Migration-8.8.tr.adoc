@@ -1,0 +1,49 @@
+---
+title: "Frontend eklenti - SuiteCRM 8.8+ için Göç (Migrate)"
+weight: 20
+---
+
+:imagesdir: /images/en/8.x/developer/extensions/front-end/migration
+
+{{% notice info %}}
+Bu doküman SuiteCRM 8+ içindir; Sürüm 7 için ilgili sayfaya bakmak isterseniz link:../../../../../../developer/introduction[buraya] tıklayın.
+{{% /notice %}}
+
+== 1. Giriş
+
+Bu rehber, 8.8 öncesi sürümlerde oluşturulmuş frontend eklentilerinin SuiteCRM 8.8+ ile uyumlu hale getirilmesini açıklar.
+
+8.8 ile Angular sürümü v18'e yükseltildi ve bazı yapı değişiklikleri yapıldı. Önemli: SuiteCRM hâlâ Webpack ve Module Federation kullanıyor; esbuild ve Native Federation henüz kullanılmıyor.
+
+== 2. Yapı Değişiklikleri
+
+**Frontend ortak kütüphane core içine taşındı**
+
+* `core/app/common` artık `core/app/core/src/lib/common/` içindedir.
+
+**angular.json dosyası artık üretiliyor**
+
+* `angular.json` dosyası artık jeneratörden üretilir ve versiyon kontrolüne dahil edilmez.
+* `yarn merge-angular-json` ile `base-angular.json` ve eklentilerin `angular.json` dosyalarından üretilebilir.
+* `base-angular.json` artık `core/angular/base-angular.json` altında bulunur.
+
+*Zone.js devre dışı bırakıldı*
+
+* `zone.js` deneysel olarak disabled edildi (provideExperimentalZonelessChangeDetection kullanımı)
+
+*Eklentilerin webpack.config.js güncellendi*
+
+* Eğer eklenti kullanıyorsanız `webpack.config.js` dosyanızı güncelleyin (defaultExt içindeki örneğe bakın).
+
+== 3. Komut Değişiklikleri
+
+*Eski `yarn build:common` kaldırıldı*
+
+* `yarn run build:common` artık gerekli değil.
+
+*Yeni `yarn` komutları eklendi*
+
+* `yarn build` üretim için kullanılabilir.
+** `yarn build-dev` geliştirme için kullanılabilir.
+
+*Yeni `yarn merge-angular-json` eklendi*

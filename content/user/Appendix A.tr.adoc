@@ -1,0 +1,495 @@
+---
+Title: Appendix A
+Weight: 300
+hidden: true
+---
+
+:imagesdir: /images/en/user
+
+= Appendix A
+
+== Kişiler Alan Listesi
+
+[cols="25,10,25", width="60%", options="header"]
+|====
+s|Etiket s|Gerekli s|Türü
+
+s|ID: |Yes |ID
+
+s|İsim: | |Hitap + Ad + Soyad
+
+s|Oluşturulma Tarihi: | |Tarih/Saat
+
+s|Değiştirilme Tarihi: | |Tarih/Saat
+
+s|Değiştiren: | |İlişki - Kullanıcılar
+
+s|Oluşturan: | |İlişki - Kullanıcılar
+
+s|Açıklama: | |Metin Alanı
+
+s|Atanan Kullanıcı: | |İlişki - Kullanıcılar
+
+s|Hitap: | |Açılır Liste
+
+s|Ad: | |Metin Alanı
+
+s|Soyad: |Yes |Metin Alanı
+
+s|Ünvan: | |Metin Alanı
+
+s|Departman: | |Metin Alanı
+
+s|Aranmasın: | |Onay Kutusu
+
+s|Ev Telefonu: | |Telefon
+
+s|Cep Telefonu: | |Telefon
+
+s|İş Telefonu: | |Telefon
+
+s|Diğer Telefon: | |Telefon
+
+s|Faks: | |Telefon
+
+s|E-posta Adresi: | |Metin Alanı
+
+s|Diğer E-posta: | |Metin Alanı
+
+s|Geçersiz E-posta: | |Onay Kutusu
+
+s|E-posta Aboneliği Yok: | |Onay Kutusu
+
+s|Birincil Adres Sokak: | |Metin Alanı
+
+s|Birincil Adres Sokak 2: | |Metin Alanı
+
+s|Birincil Adres Sokak 3: | |Metin Alanı
+
+s|Birincil Adres Şehir: | |Metin Alanı
+
+s|Birincil Adres Eyalet: | |Metin Alanı
+
+s|Birincil Adres Posta Kodu: | |Metin Alanı
+
+s|Birincil Adres Ülke: | |Metin Alanı
+
+s|Alternatif Adres Sokak: | |Metin Alanı
+
+s|Alternatif Adres Sokak 2: | |Metin Alanı
+
+s|Alternatif Adres Sokak 3: | |Metin Alanı
+
+s|Alternatif Adres Şehir: | |Metin Alanı
+
+s|Alternatif Adres Eyalet: | |Metin Alanı
+
+s|Alternatif Adres Posta Kodu: | |Metin Alanı
+
+s|Alternatif Adres Ülke: | |Metin Alanı
+
+s|Asistan: | |Metin Alanı
+
+s|Asistan Telefonu: | |Telefon
+
+s|E-posta Adresi: | |E-posta
+
+s|Tavsiye Eden: | |Metin Alanı
+
+s|Potansiyel Kaynak: | |Açılır Liste
+
+s|Potansiyel Kaynak Açıklaması: | |Metin Alanı
+
+s|Durum: | |Açılır Liste
+
+s|Durum Açıklaması: | |Metin Alanı
+
+s|Kim Rapor Ediyor: | |İlişki - Leads
+
+s|Hesap Adı: | |Metin Alanı
+
+s|Fırsat Adı: | |Metin Alanı
+
+s|Fırsat Tutarı: | |Metin Alanı
+
+s|Kampanya: | |İlişki - Kampanyalar
+
+s|Doğum Tarihi: | |Tarih
+|====
+
+== Potansiyel Müşteriler Alan Listesi
+
+[cols="25,10,25", width="60%", options="header"]
+|====
+s|Etiket s|Gerekli s|Türü
+
+s|ID: |Yes |ID
+
+s|İsim: | |Hitap + Ad + Soyad
+
+s|Oluşturulma Tarihi: | |Tarih/Saat
+
+s|Değiştirilme Tarihi: | |Tarih/Saat
+
+s|Değiştiren: | |İlişki - Kullanıcılar
+
+s|Oluşturan: | |İlişki - Kullanıcılar
+
+s|Açıklama: | |Metin Alanı
+
+s|Atanan Kullanıcı: | |İlişkiler - Kullanıcılar
+
+s|Hitap: | |Açılır Liste
+
+s|Ad: | |Metin Alanı
+
+s|Soyad: |Yes |Metin Alanı
+
+s|Ünvan: | |Metin Alanı
+
+s|Departman: | |Metin Alanı
+
+s|Aranmasın: | |Onay Kutusu
+
+s|Ev Telefonu: | |Telefon
+
+s|Cep Telefonu: | |Telefon
+
+s|İş Telefonu: | |Telefon
+
+s|Diğer Telefon: | |Telefon
+
+s|Faks: | |Telefon
+
+s|E-posta Adresi: | |Metin Alanı
+
+s|Diğer E-posta | |Metin Alanı
+
+s|Geçersiz E-posta: | |Onay Kutusu
+
+s|E-posta Aboneliği Yok: | |Onay Kutusu
+
+s|Birincil Adres Sokak: | |Metin Alanı
+
+s|Birincil Adres Sokak 2: | |Metin Alanı
+
+s|Birincil Adres Sokak 3: | |Metin Alanı
+
+s|Birincil Adres Şehir: | |Metin Alanı
+
+s|Birincil Adres Eyalet: | |Metin Alanı
+
+s|Birincil Adres Posta Kodu: | |Metin Alanı
+
+s|Birincil Adres Ülke: | |Metin Alanı
+
+s|Alternatif Adres Sokak: | |Metin Alanı
+
+s|Alternatif Adres Sokak 2: | |Metin Alanı
+
+s|Alternatif Adres Sokak 3: | |Metin Alanı
+
+s|Alternatif Adres Şehir: | |Metin Alanı
+
+s|Alternatif Adres Posta Kodu: | |Metin Alanı
+
+s|Alternatif Adres Ülke: | |Metin Alanı
+
+s|Asistan: | |Metin Alanı
+
+s|Asistan Telefonu: | |Telefon
+
+s|E-posta Adresi: | |E-posta
+
+s|Tavsiye Eden: | |Metin Alanı
+
+s|Potansiyel Kaynak: | |Açılır Liste
+
+s|Potansiyel Kaynak Açıklaması: | |Metin Alanı
+
+s|Durum: | |Açılır Liste
+
+s|Durum Açıklaması: | |Metin Alanı
+
+s|Kim Rapor Ediyor: | |İlişki - Leads
+
+s|Hesap Adı: | |Metin Alanı
+
+s|Fırsat Adı: | |Metin Alanı
+
+s|Fırsat Tutarı | |Metin Alanı
+
+s|Kampanya | |İlişki - Kampanyalar
+
+s|Doğum Tarihi | |Tarih
+|====
+
+== Hedefler Alan Listesi
+
+[cols="25,10,25", width="60%", options="header"]
+|====
+s|Etiket s|Gerekli s|Türü
+
+s|ID: |Yes |ID
+
+s|Oluşturulma Tarihi: | |Hitap + Ad + Soyad
+
+s|Değiştirilme Tarihi: | |Tarih/Saat
+
+s|Değiştiren: | |İlişki - Kullanıcılar
+
+s|Oluşturan: | |İlişki - Kullanıcılar
+
+s|Açıklama: | |Metin Alanı
+
+s|Atanan: | |İlişki - Kullanıcılar
+
+s|Hitap: | |Açılır Liste
+
+s|Ad: | |Metin Alanı
+
+s|Soyad: |Yes |Metin Alanı
+
+s|Ünvan: | |Metin Alanı
+
+s|Departman | |Metin Alanı
+
+s|Aranmasın: | |Onay Kutusu
+
+s|Ev Telefonu: | |Telefon
+
+s|Cep Telefonu | |Telefon
+
+s|İş Telefonu: | |Telefon
+
+s|Diğer Telefon: | |Telefon
+
+s|Faks: | |Telefon
+
+s|E-posta Adresi | |E-posta
+
+s|Diğer E-posta: | |E-posta
+
+s|Geçersiz E-posta: | |Onay Kutusu
+
+s|E-posta Aboneliği Yok: | |Onay Kutusu
+
+s|Birincil Adres Sokak: | |Metin Alanı
+
+s|Birincil Adres Sokak 2: | |Metin Alanı
+
+s|Birincil Adres Sokak 3: | |Metin Alanı
+
+s|Birincil Adres Şehir: | |Metin Alanı
+
+s|Birincil Adres Eyalet: | |Metin Alanı
+
+s|Birincil Adres Posta Kodu: | |Metin Alanı
+
+s|Birincil Adres Ülke: | |Metin Alanı
+
+s|Alternatif Adres Sokak: | |Metin Alanı
+
+s|Alternatif Adres Sokak 2: | |Metin Alanı
+
+s|Alternatif Adres Sokak 3: | |Metin Alanı
+
+s|Alternatif Adres Şehir: | |Metin Alanı
+
+s|Alternatif Adres Posta Kodu: | |Metin Alanı
+
+s|Alternatif Adres Ülke: | |Metin Alanı
+
+s|Asistan: | |Metin Alanı
+
+s|Asistan Telefonu: | |Telefon
+
+s|Doğum Tarihi: | |Tarih
+
+s|Hesap Adı: | |Metin Alanı
+|====
+
+== Hesaplar Alan Listesi
+
+[cols="25,10,25", width="60%", options="header"]
+|====
+s|Etiket s|Gerekli s|Türü
+
+s|ID: |Yes |ID
+
+s|İsim: |Yes |İsim
+
+s|Oluşturulma Tarihi | |Tarih/Saat
+
+s|Değiştirilme Tarihi | |Tarih/Saat
+
+s|Değiştiren: | |İlişki - Kullanıcılar
+
+s|Açıklama | |Metin Alanı
+
+s|Silindi: | |Onay Kutusu
+
+s|Atanan Kullanıcı | |İlişki - Kullanıcılar
+
+s|Tür: | |Açılır Liste
+
+s|Sektör: | |Açılır Liste
+
+s|Yıllık Gelir | |Metin Alanı
+
+s|Faks | |Telefon
+
+s|Fatura Sokak: | |Metin Alanı
+
+s|Fatura Sokak 2: | |Metin Alanı
+
+s|Fatura Sokak 3: | |Metin Alanı
+
+s|Fatura Sokak 4: | |Metin Alanı
+
+s|Fatura Şehir: | |Metin Alanı
+
+s|Fatura Eyalet: | |Metin Alanı
+
+s|Fatura Posta Kodu: | |Metin Alanı
+
+s|Fatura Ülke: | |Metin Alanı
+
+s|Puanlama: | |Metin Alanı
+
+s|Ofis Telefonu: | |Telefon
+
+s|Alternatif Telefon: | |Telefon
+
+s|Web Sitesi: | |URL
+
+s|Mülkiyet: | |Metin Alanı
+
+s|Çalışan Sayısı | |Metin Alanı
+
+s|Borsa Sembolü | |Metin Alanı
+
+s|Sevkiyat Sokak: | |Metin Alanı
+
+s|Sevkiyat Sokak 2: | |Metin Alanı
+
+s|Sevkiyat Sokak 3: | |Metin Alanı
+
+s|Sevkiyat Sokak4: | |Metin Alanı
+
+s|Sevkiyat Şehir: | |Metin Alanı
+
+s|Sevkiyat Eyalet: | |Metin Alanı
+
+s|Sevkiyat Posta Kodu: | |Metin Alanı
+
+s|Sevkiyat Ülke: | |Metin Alanı
+
+s|E-posta Adresi: | |E-posta
+
+s|Birincil Olmayan E-postalar | |E-posta
+
+s|SIC Kodu: | |Metin Alanı
+
+s|Üyesi: | |İlişki - Hesaplar
+
+s|E-posta Aboneliği Yok: | |Onay Kutusu
+
+s|Geçersiz E-posta: | |Onay Kutusu
+|====
+
+== Fırsatlar Alan Listesi
+
+image:Opportunities.png[Opportunities.png,title="Opportunities.png"]
+
+== Ürünler Alan Listesi
+
+image:Products.png[Products.png,title="Products.png"]
+
+== Ürün Kategorileri Alan Listesi
+
+image:Product_Categories.png[Product_Categories.png,title="Product_Categories.png"]
+
+== Teklifler Alan Listesi
+
+image:Quotes.png[Quotes.png,title="Quotes.png"]
+
+== Faturalar Alan Listesi
+
+image:Invoices.png[Invoices.png,title="Invoices.png"]
+
+== Sözleşmeler Alan Listesi
+
+image:Contracts.png[Contracts.png,title="Contracts.png"]
+
+== Satır Öğeleri Alan Listesi
+
+image:Line_Items.png[Line_Items.png,title="Line_Items.png"]
+
+== Gruplar Alan Listesi
+
+image:Groups.png[Groups.png,title="Groups.png"]
+
+== PDF Şablonları Alan Listesi
+
+image:PDF_Templates.png[PDF_Templates.png,title="PDF_Templates.png"]
+
+== Vaka (Cases) Alan Listesi
+
+image:Cases.png[Cases.png,title="Cases.png"]
+
+== Notlar Alan Listesi
+
+image:Notes.png[Notes.png,title="Notes.png"]
+
+== Aramalar Alan Listesi
+
+image:Calls.png[Calls.png,title="Calls.png"]
+
+== E-postalar Alan Listesi
+
+image:Emails.png[Emails.png,title="Emails.png"]
+
+== Toplantılar Alan Listesi
+
+image:Meetings.png[Meetings.png,title="Meetings.png"]
+
+== Görevler Alan Listesi
+
+image:Tasks.png[Tasks.png,title="Tasks.png"]
+
+== Projeler Alan Listesi
+
+image:Projects.png[Projects.png,title="Projects.png"]
+
+== Proje Görevleri Alan Listesi
+
+image:Project_Tasks.png[Project_Tasks.png,title="Project_Tasks.png"]
+
+== Kampanyalar Alan Listesi
+
+image:Campaigns.png[Campaigns.png,title="Campaigns.png"]
+
+== Hedef Listeleri Alan Listesi
+
+image:Target_Lists.png[Target_Lists.png,title="Target_Lists.png"]
+
+== E-posta Şablonları Alan Listesi
+
+image:Email_Templates.png[Email_Templates.png,title="Email_Templates.png"]
+
+== Dokümanlar Alan Listesi
+
+image:Documents.png[Documents.png,title="Documents.png"]
+
+== Etkinlikler Alan Listesi
+
+image:Events.png[Events.png,title="Events.png"]
+
+== Lokasyonlar Alan Listesi
+
+image:Locations.png[Locations.png,title="Locations.png"]
+
+== Kullanıcılar Alan Listesi
+
+image:Users.png[Users.png,title="Users.png"]

@@ -1,0 +1,76 @@
+---
+weight: 6
+title: "Metadata"
+
+---
+
+:toc:
+
+= 6. Metadata
+
+== Giriş
+
+Modül metadata'ları, bir modüldeki çeşitli görünümlerin nasıl davrandığını tanımlar.
+Ana kullanım alanı field ve layout bilgilerini sağlamak olsa da, subpanel filtrelemesi
+ve aramada hangi alanların kullanılacağını tanımlamak için de kullanılabilir.
+
+== Konum
+
+Modül metadata'ları genelde şu klasörde bulunur:
+
+.Example 6.1: Modül metadata konumu
+[source,php]
+modules/<TheModule>/metadata/
+
+== Özelleştirme
+
+Genellikle metadata özelleştirmeleri için Studio en iyi yoldur. Studio ile yapılandırıp
+sonra gerektiğinde dosyayı custom içine taşımak daha kolay olabilir. Ancak manuel
+yapılandırma gerekiyorsa ilgili dosyayı `custom` dizinine koymak yeterlidir.
+
+Örneğin Accounts detailviewdefs'i (`modules/Accounts/metadata/detailviewdefs.php`) üzerine
+yazmak için `custom/modules/Accounts/metadata/detailviewdefs.php` dosyasını yerleştirin.
+Bir istisna: `studio.php` dosyası için custom yolu göz ardı edilir.
+
+== Farklı metadata türleri
+
+=== detailviewdefs.php
+
+detailviewdefs.php, bir modülün detail view layout ve alan bilgilerini sağlar. Yapısı
+editviewdefs.php ile benzerdir. Örnek bir `ABC_Vehicles` modülü için:
+
+.Example 6.2: DetailView metadata örneği
+[source,php]
+----
+<?php
+$viewdefs ['ABC_Vehicles'] ['DetailView'] = array (
+?>
+----
+
+Yukarıda 2. satır `$viewdefs['ABC_Vehicles']['DetailView']` dizisini tanımlar; bu
+DetailView tanımını içerir. Bu dizi iki ana anahtar içerir:
+
+=== templateMeta
+`templateMeta` görünüm hakkında genel bilgi sağlar. `['form']['buttons']` butonları
+tanımlar.
+
+`maxColumns`::
+  /* Lines 145-146 omitted */
+`widths`::
+  Etiket ve alan genişliklerini tanımlayan dizi.
+`includes`::
+  /* Lines 150-152 omitted */
+
+=== panels
+`panels` entry, Detail (veya Edit) görünümün gerçek layout'unu tanımlar. Her bir
+girdi panelin etiketini ve satır/kolon yapılarını içerir. Örneğin bir panelde iki
+satır varsa her satır sütunlar için array içinde tanımlanır.
+
+.Example 6.3: DetailView metadata satır tanımı
+[source,php]
+----
+array(
+  /* Lines 168-173 omitted */
+  'reg_number',
+),
+----

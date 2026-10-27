@@ -1,0 +1,30 @@
+---
+Title: OAuth ile Giden veya Gelen E-posta Yapılandırma Nasıl Yapılır
+weight: 30
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Giriş
+
+Bu rehber, önceden yapılandırılmış bir OAuth Sağlayıcısı kullanarak gelen ve giden e-posta bağlantılarının nasıl yapılandırılacağını açıklar.
+
+Örnek olarak Microsoft hesabı kullanılacaktır; ancak adımlar diğer sağlayıcılar için benzer olacaktır.
+
+Bu rehberde grup OAuth Sağlayıcısı kullanılarak bir kişisel hesap yapılandıracağız. Grup OAuth sağlayıcıları sistemde birçok kullanıcı tarafından kullanılmak üzere tasarlanmıştır.
+
+Bir yönetici olarak üç tür kayıt oluşturabilirsiniz:
+
+. Personal
+.. Bunlar sadece oluşturduğu kullanıcı tarafından erişilebilir
+.. Kişisel hesaplara erişim yapılandırılırken, örn: `john.doe@example-inc.onmicrosoft.com` gibi hesaplar için kullanılır
+.. Bu hesap yapılandırması yalnızca hesap sahibi ve sistem yöneticileri tarafından erişilebilir
+. Group
+.. Birçok kullanıcı tarafından kullanılacak kayıtlar
+.. Grup kayıtları, aynı domaine ait hesapların örneğin destek ekibi üyelerinin (`support@example-inc.onmicrosoft.com`) kullanacağı hesaplar için kullanılır
+. Bounce (sadece Inbound Email için)
+.. Kampanya bounce e-postalarını okumak için kullanılan kayıtlar
+
+{{% notice warning %}}
+... (orijinal belgedeki uyarı notu burada korunmalı)
+{{% /notice %}}

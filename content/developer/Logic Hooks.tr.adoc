@@ -1,0 +1,97 @@
+---
+weight: 12
+title: "Logic Hooks"
+---
+
+= 12. Logic Hooks
+
+== Giriş
+
+Logic hook'lar SuiteCRM'deki çeşitli olaylara bağlanarak özelleştirilmiş kodun
+çalışmasını sağlar. Bu, örneğin harici bir API'ye çağrı yapmak veya belirli bir olay
+gerçekleştiğinde yeni bir kayıt oluşturmak gibi işlemleri mümkün kılar.
+
+== Türler
+
+Logic hook'lar üç bağlamda gerçekleşebilir: Application Hooks, Module Hooks ve
+User Hooks. Aşağıda detaylandırılmıştır.
+
+== Application Hooks
+
+Application hook'lar uygulama düzeyinde tetiklenen hook'lardır (belirli bir modüle
+ait değildir). Bu hook'lar genellikle `custom/modules/logic_hooks.php` içinde tanımlanır.
+
+`after_user_load`::
+  /* Lines 28-30 omitted */
+  `after_login` gibi bazıları sadece login sırasında tetiklenir.
+`after_entry_point`::
+  /* Lines 32-33 omitted */
+`after_ui_footer`::
+  UI footer gösterildikten sonra çağrılır.
+`after_ui_frame`::
+  /* Lines 37-38 omitted */
+`server_round_trip`::
+  /* Lines 40-41 omitted */
+
+== User Hooks
+
+User hook'lar login/logout gibi kullanıcı işlemlerinde tetiklenir. Bunlar da genellikle
+`custom/modules/logic_hooks.php` içinde tanımlanır.
+
+`after_login`::
+  Kullanıcı SuiteCRM'e giriş yaptıktan sonra tetiklenir.
+`after_logout`::
+  Kullanıcı çıkış yaptığında tetiklenir.
+`before_logout`::
+  Kullanıcı çıkmadan önce tetiklenir.
+`login_failed`::
+  /* Lines 55-56 omitted */
+
+== Module Hooks
+
+Module hook'lar belirli bir modülün kayıt eylemleri sırasında çağrılır.
+
+`after_delete`::
+  Kayıt silindikten sonra tetiklenir.
+`after_relationship_add`::
+  /* Lines 64-65 omitted */
+  Bu, ilişki iki taraflı ise iki kez çağrılabilir.
+`after_relationship_delete`::
+  İki kayıt arasındaki ilişki silindikten sonra tetiklenir.
+`after_restore`::
+  Kayıt geri alındıktan sonra tetiklenir.
+`after_retrieve`::
+  Kayıt veritabanından çekildikten sonra tetiklenir.
+`after_save`::
+  /* Lines 73-78 omitted */
+`before_delete`::
+  Kayıt silinmeden önce tetiklenir.
+`before_relationship_add`::
+  /* Lines 82-83 omitted */
+`before_relationship_delete`::
+  /* Lines 85-86 omitted */
+`before_restore`::
+  Kayıt geri alınmadan önce tetiklenir.
+`before_save`::
+  Kayıt kaydedilmeden önce tetiklenir.
+`handle_exception`::
+  Kayıt işlemi sırasında bir exception oluştuğunda tetiklenir.
+`process_record`::
+  /* Lines 94-96 omitted */
+
+== Job Queue Hooks
+
+Job queue hook'lar scheduler işleri için tetiklenir. Bunlar da üst seviye logic hook
+dosyasında tanımlanmalıdır (`custom/modules/logic_hooks.php`).
+
+`job_failure`::
+  /* Lines 104-106 omitted */
+`job_failure_retry`::
+  /* Lines 108-111 omitted */
+
+== Uygulama
+
+Logic hook türüne bağlı olarak hook'lar `custom/modules/Logic_Hooks.php` veya
+`custom/modules/<TargetModule>/Logic_Hooks.php` içine yerleştirilir.
+
+=== Logic_Hooks.php

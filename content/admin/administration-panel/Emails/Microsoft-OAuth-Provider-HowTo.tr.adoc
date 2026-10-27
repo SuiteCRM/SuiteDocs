@@ -1,0 +1,40 @@
+---
+Title: Microsoft OAuth Sağlayıcısı nasıl yapılandırılır
+weight: 20
+---
+
+:imagesdir: /images/en/admin/email/microsoft
+
+== 1. Giriş
+
+Bu rehber, Microsoft Azure üzerinde bir istemci (client) nasıl kaydedilir ve Azure'dan alınan bilgilerin SuiteCRM'de External OAuth Provider olarak nasıl yapılandırılacağını açıklar.
+
+== 2. SuiteCRM Uygulamasını Microsoft'ta Kayıt Etme
+
+{{% notice note %}}
+Aşağıdaki adımlar, bir şirket hesabı için ve birçok kullanıcı tarafından paylaşılacak bir sağlayıcı yapılandırdığınızı varsayar.
+{{% /notice %}}
+
+=== 2.1 App Registrations sayfasına gidin
+
+https://portal.azure.com/ adresine gidip oturum açın.
+
+Ana sayfada aşağıdaki gibi bir ekran görmelisiniz.
+
+image:azure-homepage.png[azure-homepage.png]
+
+Ana sayfada *App Registrations* bağlantısı olup olmadığını kontrol edin.
+
+image:azure-services.png[azure-services.png]
+
+Yoksa *More services* bölümüne gidip *App Registrations* araması yapın.
+
+image:more-services.png[more-services.png]
+
+App Registrations sayfası aşağıdaki gibi görünür:
+
+image:azure-app-registrations.png[azure-app-registrations.png]
+
+=== 2.2 Yeni App Registration oluşturma
+
+App Registrations sayfasında "New Registration" (Yeni Kayıt) bağlantısına tıklayın.
