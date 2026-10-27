@@ -87,6 +87,12 @@ export class HelloWorldSidebarWidgetComponent extends BaseWidgetComponent implem
     constructor() {
         super();
     }
+
+    ngOnInit(): void {
+    }
+
+    ngOnDestroy(): void {
+    }
 }
 ----
 
