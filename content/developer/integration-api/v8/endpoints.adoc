@@ -131,7 +131,7 @@ Returns the full OpenAPI/Swagger definition for the API.
 ---
 
 == Advanced Filtering Logic
-To use multiple filters, you must specify a logical operator.
+To use multiple filters, you must specify a logical operator (`filter[operator]` accepts `and` or `or`).
 
 [source,text]
 ----
@@ -147,7 +147,6 @@ To use multiple filters, you must specify a logical operator.
 | `neq` | Not equal to
 | `gt` / `gte` | Greater than / Greater than or equal to
 | `lt` / `lte` | Less than / Less than or equal to
-| `in` / `nin` | In list / Not in list (values separated by commas)
 | `like` | SQL Like (use `%` as wildcard)
 |===
 
