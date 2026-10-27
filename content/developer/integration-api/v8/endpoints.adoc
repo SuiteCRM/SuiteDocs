@@ -148,7 +148,7 @@ To use multiple filters, you must specify a logical operator.
 | `gt` / `gte` | Greater than / Greater than or equal to
 | `lt` / `lte` | Less than / Less than or equal to
 | `in` / `nin` | In list / Not in list (values separated by commas)
-| `li` | SQL Like (use `%` as wildcard)
+| `like` | SQL Like (use `%` as wildcard)
 |===
 
 ---
