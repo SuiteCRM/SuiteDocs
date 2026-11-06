@@ -11,353 +11,405 @@ aliases:
 
 == Overview
 
-The Campaign Module in SuiteCRM can be used to send and track different types of Emails, such as Marketing, Transactional and Survey,
-to selected Targets (Users, Contacts, Targets, Leads & Accounts).
+You can use the Campaigns module to send and track marketing, transactional and survey emails to selected users, contacts, targets, leads and accounts.
 
-With the tracking tools built into the Campaign Module, you can monitor the response you receive from your Campaign in real time.
-Allowing you to view recipient activity with your Campaign, such as those that view the email, click through and any blocked Emails.
+You can monitor how people respond to your campaign. The tracking tools show you who viewed the email, clicked through or opted out, and any emails that were blocked.
 
-== Create a Campaign
+{{% notice tip %}}
+Before you send your first email, read link:#_how_campaigns_are_structured[How campaigns are structured] and link:#_who_receives_a_campaign_email[Who receives a campaign email]. They explain how opt-outs, unsubscribes and suppression lists decide who your emails reach.
+{{% /notice %}}
 
-From the Campaigns Module select "Create Campaign" from the module dropdown.
+== How campaigns are structured
 
-image:Campaign-Edit.png[Campaigns Create View]
+A campaign is the parent record for a marketing initiative, for example a product launch or a monthly newsletter. It holds your audience: the target lists you want to reach and the suppression list you want to exclude.
+
+Inside a campaign, you create one or more campaign emails. Each campaign email is a marketing, transactional or survey email, sent to target lists chosen from the campaign.
+
+Unsubscribes are recorded against the campaign, not against a single email. When someone unsubscribes, it affects every marketing and survey email sent from that campaign, but not emails sent from other campaigns.
+
+== Who receives a campaign email
+
+Before sending, SuiteCRM checks each recipient against two main things:
+
+* *Global opt-out*: the *Opted Out* checkbox next to the email address on a contact, lead, account or target record. It is stored on the email address itself, so ticking it on one record opts out every record that shares the address.
+* *The campaign's suppression list*: targets on this list are excluded from this campaign only.
+
+Whether these checks apply depends on the type of campaign email:
+
+[cols="40h,20,20,20", options="header"]
+|===
+|Recipient |Marketing email |Survey email |Transactional email
+|Opted out globally |Not sent |Not sent |Sent
+|On this campaign's suppression list (By Id) |Not sent |Not sent |Sent
+|On another campaign's suppression list only |Sent |Sent |Sent
+|===
+
+Some checks apply to every type of campaign email, including transactional emails. SuiteCRM does not send to a recipient who:
+
+* has no primary email address, or an invalid one
+* has an email address marked as invalid
+* is on one of the campaign's By Address or By Domain suppression lists
+* shares an email address with another recipient, when Duplicate Handling is set to prevent sending to duplicate email addresses
+
+If your administrator has turned on the Opt In Settings, marketing and survey emails are also blocked for addresses that have not opted in or confirmed their opt in.
+
+{{% notice warning %}}
+Transactional emails ignore global opt-out and the campaign's unsubscribe (By Id) suppression list. Use them only for messages the recipient needs, such as account or billing notices. Sending promotional content as a transactional email overrides your recipients' choice to stop receiving marketing.
+{{% /notice %}}
+
+== What happens when someone unsubscribes
+
+When a recipient clicks the unsubscribe link in a marketing or survey email, SuiteCRM adds their record to the campaign's suppression list. They will not receive any more marketing or survey emails from that campaign.
+
+The unsubscribe link does not opt them out globally. They will still receive marketing emails from other campaigns, unless their email address is opted out.
+
+{{% notice note %}}
+If a campaign has no By Id suppression list, for example because you removed it, an unsubscribe opts the recipient out globally instead. When you create a campaign without choosing a By Id suppression list, SuiteCRM creates one for you.
+{{% /notice %}}
+
+{{% notice tip %}}
+If someone asks to stop receiving all marketing email, tick the *Opted Out* checkbox next to their email address on their record.
+{{% /notice %}}
+
+*Example*: Anna unsubscribes from the March newsletter, sent from the Newsletters campaign. She will not receive the April newsletter from the same campaign. She will still receive the invitation sent from the Product Launch campaign, because her unsubscribe only applied to Newsletters.
+
+=== People with more than one record
+
+The suppression list holds records, not email addresses. If the same person exists as more than one record, for example as a lead and a contact, only the record they unsubscribed from is added to the list. Their other records can still receive marketing emails from the campaign.
+
+{{% notice tip %}}
+To prevent this, set link:#_duplicate_handling[Duplicate Handling] to *Prevent sending to duplicate records and email addresses* on each campaign email. If someone asks to stop receiving all marketing email, tick *Opted Out* next to their email address instead.
+{{% /notice %}}
+
+== Checking why someone did not receive an email
+
+To see who was not sent a campaign email, open the campaign email and go to the *Suppressed/Blocked* subpanel. The *Activity Type* column shows the reason:
+
+[cols="40h,60", options="header"]
+|===
+|Activity type |Reason
+|`blocked-opted-out` |The recipient's email address is opted out globally, or has not opted in or confirmed its opt in.
+|`blocked-suppressed-by-id-list` |The recipient's record is on the campaign's suppression list, usually because they unsubscribed from an earlier email in this campaign.
+|`blocked-suppressed-by-email-list` |The recipient's email address is on one of the campaign's By Address suppression lists.
+|`blocked-suppressed-by-domain-list` |The recipient's email domain is on one of the campaign's By Domain suppression lists.
+|`blocked-duplicate-email` |Another record with the same email address is on this email's target lists, so SuiteCRM sent to only one of them. This happens when Duplicate Handling is set to prevent sending to duplicate email addresses.
+|`blocked-no-primary-email` |The record has no primary email address.
+|`blocked-not-valid-email` |The email address is not in a valid format.
+|`blocked-email-marked-invalid` |The email address is marked as invalid.
+|`blocked-target-not-found` |SuiteCRM could not find the record, for example because it has been deleted.
+|`blocked-validation-exception` |An unexpected error stopped SuiteCRM checking the recipient.
+|===
+
+== Create a campaign
+
+From the Campaigns module, select *Create Campaign* from the module dropdown.
+
+image:Campaign-Edit.png[title="Campaigns create view"]
 
 === Overview
 
 [cols="20,80"]
 |===
-|*Name*|The name of the Campaign.
-|*Start Date*|This is a representative date and does not determine the start of the sending process for the campaign.
-|*End Date*|This is a representative date and does not determine the end of the sending process for the campaign.
-|*Description*|Optional Description for the Campaign.
-|*Suppression Lists*| Suppression Lists will exclude certain targets from your Campaign. If a Suppression List (By Id) is not added on creation, one will be created / added automatically. To see more information
-on Suppression Lists see link:../../../../user/marketing-outreach/target-lists/#_target_list_types[here.]
-|*Target Lists*| Lists of potential Targets that your campaign will send to.
+|*Name*|The name of the campaign. Required.
+|*Status*|The status of the campaign: Planning, Active, Inactive or Complete. Required.
+|*Start Date*|A date for your reference only. It does not control when the campaign starts sending.
+|*End Date*|A date for your reference only. It does not control when the campaign stops sending. Required.
+|*Description*|An optional description of the campaign.
+|*Target Lists*|The target lists your campaign will send to.
+|*Suppression Lists*|Records on a suppression list will not receive marketing or survey emails from this campaign. When a recipient unsubscribes using the link in a marketing or survey email, their record is added to the suppression list (By Id). If you do not add one when creating the campaign, SuiteCRM creates one for you. For more information on suppression lists, see link:../target-lists/#_target_list_types[Target Lists].
+|*Assigned To*|The user responsible for the campaign.
 |===
 
 {{% notice note %}}
-Target Lists you select here will be the *only* Target Lists shown / selectable on the Marketing Record
+The target lists you select here are the only ones you can choose on the campaign email.
 {{% /notice %}}
 
 === Budget
 
 [cols="30,70"]
 |===
-|*Budget*|The budget for the Campaign.
-|*Expected Cost*|The expected cost of the Campaign.
-|*Actual Cost*|The actual cost of the Campaign.
-|*Expected Revenue*|The expected revenue of the Campaign.
-|*Objective*| The Objective of the Campaign.
-|*Impressions*| How many impressions the Campaign has had.
+|*Budget*|The budget for the campaign.
+|*Expected Cost*|The expected cost of the campaign.
+|*Actual Cost*|The actual cost of the campaign.
+|*Expected Revenue*|The expected revenue of the campaign.
+|*Objective*|The objective of the campaign.
+|*Impressions*|How many impressions the campaign has had.
 |===
 
-== Campaign Charts
+== Campaign charts
 
-image:Campaign-Charts.png[Campaign Charts]
+image:Campaign-Charts.png[title="Campaign charts"]
 
-Inside the Insights for Campaigns there are two *new* charts.
+Once you have created the campaign, select *Insights* to see the Campaign Charts panel. Use the dropdown in the panel to switch between the two charts.
 
-=== Campaign Response By Recipient Activity
+=== Campaign response by recipient activity
 
 [cols="30,70"]
 |===
-|*Sent/Attempted*|The number of sent Emails.
-|*Viewed Message*|Of the sent emails, which have been viewed.
-|*Click-thru Link*|The number of unique users that have clicked-thru.
-|*Opted Out*|The number of targets that have opted out.
+|*Sent/Attempted*|The number of emails sent.
+|*Viewed Message*|How many of the sent emails have been viewed.
+|*Click-thru Link*|The number of unique users who have clicked through.
+|*Opted Out*|The number of recipients who unsubscribed using the link in this campaign's emails.
 |===
 
-=== Campaign Send Status
+=== Campaign send status
 
 [cols="40,60"]
 |===
-|*Message Queue*|The number of Emails currently in the queue to send.
-|*Sent/Attempted*|The number of sent Emails.
-|*Suppressed/Blocked*|Of the sent, which have been suppressed / blocked.
-|*Bounced Messages, Invalid Email*|The number of bounced messages / bounced because of an invalid email.
-|*Bounced Messages, Other*|The number of bounced messages for other reasons, such as being a duplicate email.
+|*Message Queue*|The number of emails currently waiting in the queue.
+|*Sent/Attempted*|The number of emails sent.
+|*Suppressed/Blocked*|The number of recipients who were not sent this email, for example because they are opted out or on the campaign's suppression list. See link:#_checking_why_someone_did_not_receive_an_email[Checking why someone did not receive an email] for the reason per recipient.
+|*Bounced Messages, Invalid Email*|The number of messages that bounced because of an invalid email address.
+|*Bounced Messages, Other*|The number of bounced messages for other reasons, such as an error when sending.
 |===
 
-== Campaign Action Table
+== Campaign actions panel
 
-After creating the Campaign Record, you will see a new "Campaign Actions" table.
+You can now create your campaign email. The *Campaign Actions* panel has four actions. *New Marketing Email* and *New Transactional Email* are buttons. *New Survey Email* and *New Survey* are in the *Actions* dropdown.
 
-image:Campaign-Actions-Table.png[Campaigns Actions Table]
+image:Campaign-Actions-Table.png[title="Campaign Actions panel"]
 
-This table has four actions:
-
-[cols="20,80"]
+[cols="30,70"]
 |===
-|*New Marketing Email*| This action will create a Marketing type Email Marketing Record; this record requires an unsubscribe
-link in the Email body. To add an unsubscribe link see link:#_opt_out_tracker[Opt Out Tracker.]
-|*New Transactional Email*|This action will create a Transactional type Email Marketing record; this record is required to *not* have an
-unsubscribe link within the Email body.
-|*New Survey Email*|This action will create a Survey type Email Marketing record; this record is also required to have an unsubscribe link.
-|*New Survey*|This action will create a new Survey.
+|*New Marketing Email*|Creates a marketing campaign email. It must have an unsubscribe link in the email body. To add one, see link:#_opt_out_tracker[Opt out tracker].
+|*New Transactional Email*|Creates a transactional campaign email. It must not have an unsubscribe link in the email body. Transactional emails are sent regardless of global opt-out or the campaign's unsubscribe suppression list. See link:#_who_receives_a_campaign_email[Who receives a campaign email].
+|*New Survey Email*|Creates a survey campaign email. Like a marketing email, it must have an unsubscribe link.
+|*New Survey*|Creates a new survey.
 |===
 
-== Creating an Email Marketing Record
+== Creating a campaign email
 
-image:create-email-marketing-demo.gif[Create Email Marketing]
+image:create-email-marketing-demo.gif[title="Creating a campaign email"]
 
-=== Email Marketing Fields
+=== Campaign email fields
 
 *Status*
 
 [cols="20,80"]
 |===
-|*Draft*| * While in draft, the record will not start sending at the "Scheduled Run Date".
-
-* The record is *only* editable while in draft.
-
-* Test Emails can *only* be sent while in draft.
-|*Scheduled*| * When scheduled, the record will start sending out Emails in batches (based on the "Number of emails processed/sent per batch"
-setting) at the "Scheduled Run Date".
-
-* This status can be achieved by selecting the "Schedule" button.
-
-* To set the record back to draft, select the "Unschedule" button, you *cannot* do this when the sending process has started.
-|*Paused*| * This status is set by hitting the threshold for errors per batch (based on the "Error threshold per batch" setting), or it will pause because the Outbound Email cannot connect to SMTP.
-
-* This will pause both the queueing and sending process for the record until the record is resumed (can be achieved by selecting the "Resume" action).
-
-* When paused, there will be a warning banner showing that the record is paused due to too many errors, along with the most recent error from the latest failed email (or SMTP connection error).
-
-|*Pending Send*| * If the record is "Scheduled" and "Scheduled Run Date" is in the past, the record will show as pending send and will be picked up the next time the Scheduler runs.
-
-* While in "pending send", this record can no longer be "Unscheduled". To stop the process, select the "Abort" button.
-|*Sending*| * This status will show if the Emails are being / have been queued and the sending process has started.
-
-* While "sending", this record can no longer be "Unscheduled". To stop the process, select the "Abort" button.
-|*Sent*| * This will show if all Targets have been sent to / attempted to send to.
-|*Aborted*| * This will show if the record was aborted during the sending process.
+|*Draft*|While in draft, the campaign email will not start sending at the *Scheduled Run Date*. Draft is the only status where you can edit the campaign email or send test emails.
+|*Scheduled*|When scheduled, the campaign email will start sending in batches at the *Scheduled Run Date*. The batch size is set by the *Number of emails processed/sent per batch* setting in link:#_campaign_settings[Campaign settings]. Select *Schedule* to set this status. To set it back to draft, select *Unschedule*. You cannot do this once sending has started.
+|*Paused*|The campaign email pauses if it reaches the *Error threshold per batch* in link:#_campaign_settings[Campaign settings], if the outbound email account cannot connect to SMTP, or if no outbound email account is configured. Queueing and sending both stop until you select *Resume*. While it is paused, a warning banner shows the most recent error from the latest failed email, or the SMTP connection error.
+|*Pending Send*|If the campaign email is Scheduled and the *Scheduled Run Date* has passed, it shows as pending send and will be picked up the next time the scheduler runs. You can no longer unschedule it. To stop the process, select *Abort*.
+|*Sending*|Emails are being queued or have been queued, and sending has started. You can no longer unschedule it. To stop the process, select *Abort*.
+|*Sent*|SuiteCRM has sent, or tried to send, the email to every target.
+|*Aborted*|The campaign email was aborted while it was sending.
 |===
 
-*Queuing Status*
+*Queueing Status*
 
 [cols="20,80"]
 |===
-|*Not Started*| * This will show when no emails have been queued from this Email Marketing Record to send.
-|*In Progress*| * This will show when the Scheduler has picked up this Marketing Record and began queuing emails to send.
-
-* The number of emails it queues at a time is based on the "Number of emails processed/sent per batch" setting.
-|*Finished*| * This will show when all Emails have been queued to send.
-
-* Please note, when finished here, sending could still be in process.
+|*Not Started*|Nothing from this campaign email has been queued yet.
+|*In Progress*|The scheduler has picked up this campaign email and started queuing emails. How many it queues at a time depends on the *Number of emails processed/sent per batch* setting.
+|*Finished*|All emails have been queued. Sending may still be in progress.
 |===
 
-*From*
+*Other fields*
 
-This is the Outbound Email that will be used to send from.
-
-*Target Lists*
-
-The Target Lists selected here will be the Targets that the Email will be sent to when "Scheduled".
-
-*Template*
-
-You can select an existing email template for this record and edit it after selection or not use one at all.
-
-*Scheduled Run Date*
-
-This is the scheduled date / time that the sending process will start for the Email Marketing Record.
-
-*Trackers Enabled*
-
-This is to enable trackers on this Email Marketing Record specifically.
-
-Please Note if trackers are disabled globally, you *cannot* enable them on an Email Marketing record.
-
-See more information about trackers link:#_tracker_urls[here].
-
-*Duplicate Handling*
-
-[cols="20,80"]
+[cols="25,75"]
 |===
-|*Prevent sending to duplicate records*| This will prevent sending to the same record if selected on multiple target lists.
-|*Prevent sending to duplicate records and email addresses*|This will prevent sending to the same email address twice, if two records have the same email,
-it will only send it to one record, and the other will be blocked.
+|*Name*|The name of the campaign email. Required.
+|*From*|The outbound email account the campaign email is sent from. Required.
+|*Target List(s)*|The target lists the campaign email is sent to once it is scheduled. Required.
+|*Scheduled Run Date*|The date and time the campaign email becomes ready to send. Required.
+|*Marketing Type*|Marketing, transactional or survey. It is set by the action you used to create the campaign email.
+|*Tracker Links Enabled*|Turns on trackers for this campaign email. If trackers are turned off globally, you cannot turn them on here. For more about trackers, see link:#_tracker_urls[Tracker URLs].
+|*Duplicate Handling*|See the table below.
+|*Related Campaign*|The campaign this campaign email belongs to.
+|*Subject*|The subject line of the campaign email.
+|*Body*|The content of the campaign email.
 |===
 
-*Subject*
+{{% notice note %}}
+Sending does not start at exactly the *Scheduled Run Date*. SuiteCRM picks up the campaign email the next time the campaign email schedulers run, so the actual start depends on how often your schedulers are set to run. You can check this in the link:#_campaign_email_diagnostics[campaign email diagnostics].
+{{% /notice %}}
 
-This will be the subject of the Email Marketing Record that's sent out.
+==== Duplicate Handling
 
-*Body*
-
-This will be the content of the Email Marketing Record that's sent out.
-
-*Body: Toolbar*
-
-image:Body-Toolbar.png[Body Toolbar]
-
-Hovering over each button will tell you the function of the button (i.e "Bold", "Italic"...)
-
-Aside from standard editor buttons there is also:
-
-[cols="20,80"]
+[cols="40,60"]
 |===
-|*image:Unsubscribe-Icon.png[Unsubscribe,width=75]*| This will inject an unsubscribe link to the email body.
-|*image:Code-Icon.png[Code, width=75]*| This will change the editor to a monaco editor - a html field.
-|*image:Variable-Injector-Icon.png[Code, width=75]*| This will allow you to insert placeholder variables into the email.
+|*Prevent sending to duplicate records*|If a record is on more than one target list, it only gets the email once.
+|*Prevent sending to duplicate records and email addresses*|Each email address only gets the email once. If two records share an email address, SuiteCRM sends to one and blocks the other. This also stops an email reaching someone who unsubscribed under a different record with the same email address. This is the default, and we recommend it for marketing and survey emails.
 |===
 
-To see more information on the Variable Injector, see link:../../daily-activities/emails/email-compose#_variable_injection[here.]
+==== Using a template
 
-== Tracker Urls
+Select *Insert Template* at the top of the page to choose an existing email template and edit it, or leave the body empty and write the email yourself.
 
-Tracker URLs can be used to insert a link to your organization's website or direct link to a new product that you have launched, for example.
-A unique id is added to the link for each recipient which allows SuiteCRM to track click-thrus.
+{{% notice tip %}}
+To use your own HTML, select the code icon in the body toolbar and paste your HTML into the editor.
+{{% /notice %}}
 
-The information gathered can be viewed collectively on the record charts or, more individually, on the subpanels below the record.
+==== Body toolbar
 
-image:track_recipient_activity.gif[Recipient Activity]
+image:Body-Toolbar.png[title="Body toolbar"]
 
-To enable trackers globally, go to the "Campaign Email Settings" via the Admin Menu.
+Hover over a button to see what it does, for example *Bold* or *Italic*.
+
+As well as the standard editor buttons, there are:
+
+[cols="30,70", options="header"]
+|===
+|Button |Description
+|*Insert Variable* |The `{*}` icon at the left end of the toolbar. Lets you insert placeholder variables into the email.
+|*Unsubscribe Link* |The envelope icon with a cross, near the right end of the toolbar. Adds an unsubscribe link to the email body.
+|*Code* |The `</>` icon at the right end of the toolbar. Switches to a code editor so you can edit the HTML.
+|===
+
+For more about inserting variables, see link:../../daily-activities/emails/email-compose/#_variable_injection[Composing emails].
+
+== Tracker URLs
+
+You can use tracker URLs to add a link to your organisation's website or to a new product you have launched, for example. SuiteCRM adds a unique ID to the link for each recipient, so it can track who clicks through.
+
+You can see the results as a whole in the record charts, or per recipient in the subpanels below the record.
+
+image:track_recipient_activity.gif[title="Recipient activity"]
+
+To turn on trackers globally, go to *Admin* > *Campaign Email Settings*. See link:#_campaign_settings[Campaign settings].
 
 === How to add trackers
 
-You can add trackers to your Email Marketing Record by adding a hyperlink via the Campaign Email body field.
+To add a tracker, add a hyperlink to the *Body* field of your campaign email.
 
-image:Tracker.gif[Tracker Link]
+image:Tracker.gif[title="Adding a tracker link"]
 
-=== Opt Out Tracker
+=== Opt out tracker
 
-An Opt-Out link allows the recipient to opt out of future Marketing Emails.
+An unsubscribe link lets the recipient stop receiving marketing and survey emails from this campaign. It does not opt them out of other campaigns. See link:#_what_happens_when_someone_unsubscribes[What happens when someone unsubscribes].
 
-To add an opt-out tracker to your Email Marketing Record, you can select the icon:
-
-image:Unsubscribe-Icon.png[Unsubscribe Icon]
-
-This will add an unsubscribe link to the email.
+To add an opt-out tracker to your campaign email, select *Unsubscribe Link* in the body toolbar. This adds an unsubscribe link to the email.
 
 {{% notice info %}}
-An unsubscribe link is required on both a marketing and survey type Email Marketing record.
+An unsubscribe link is required on both marketing and survey campaign emails.
 {{% /notice %}}
 
-== Email Marketing Record Actions
+== Campaign email actions
 
-=== Send Test Email
+=== Send test email
 
-You can send a test email to a User, test Target List or specific Email Address.
+You can send a test email to a user, a test target list or a specific email address.
 
-image:send_test_entries_demo.gif[Send Test Email]
+image:send_test_entries_demo.gif[title="Sending a test email"]
 
-By doing this you can view the campaign as a recipient and double-check that it appears as it should.
+This lets you see the email as a recipient would and check it looks right. It also fills in the variables in the email body, so you can check they are working.
 
-This should also parse the variables in the email body, so you can check that they are working as expected.
+Test emails create entries, such as views and clicks, which you will see in the record subpanels and charts.
 
-Test Entries will generate views and click-thrus etc. which can be viewed from the record subpanels and charts.
+image:test-entries-demo.gif[title="Test entries in the subpanels and charts"]
 
-image:test-entries-demo.gif[Test Entries]
+{{% notice note %}}
+After you send test emails, a warning banner reminds you that the data shown is test data.
+{{% /notice %}}
 
-After sending out test emails, a warning banner will display to show that the data show is test data.
+{{% notice note %}}
+You can send test emails to up to 50 email addresses at once. To change the limit, change `test_email_limit` in `config.php`.
+{{% /notice %}}
 
-Changing `test_email_limit` via `config.php` allows to send more test emails at once. The default for this is 50.
+{{% notice note %}}
+You cannot send a test email once the campaign email is scheduled.
+{{% /notice %}}
 
-You *cannot* send a test email after Scheduling.
+=== Delete test entries
 
-=== Delete Test Entries
+Removes all entries created by test emails. This action is only available while the campaign email is in draft.
 
-This will remove all test entries created by sending test emails.
-
-Test entries will be deleted when the record is "Scheduled".
+{{% notice note %}}
+Test entries are also deleted automatically when you schedule the campaign email.
+{{% /notice %}}
 
 === Schedule
 
-This will Schedule the Email Marketing Record to start queuing / sending at the Scheduled Run Date.
-
-Scheduling also deletes test entries.
+Schedules the campaign email to start queuing and sending at the *Scheduled Run Date*. SuiteCRM asks you to confirm, and warns you that scheduling deletes test entries.
 
 {{% notice info %}}
-The Record *CANNOT* be edited / updated after scheduling.
+Once it is scheduled, you cannot edit the campaign email.
 {{% /notice %}}
 
 === Unschedule
 
-Once the record has been scheduled, This action will set the record to Draft and allow the user to make further changes.
+Sets a scheduled campaign email back to Draft so you can make changes.
 
-{{% notice info %}}
-The Record can only be unscheduled before the sending process has begun. After this stage the record must be "Aborted" to stop the process.
+{{% notice note %}}
+You can only unschedule before sending starts. After that, you need to abort it to stop the process.
 {{% /notice %}}
 
 === Resume
 
-This will resume the queueing/ sending process if the record has been paused.
+Restarts queueing and sending if the campaign email has been paused. You see this action when the campaign email paused because it reached the error threshold, the outbound email account could not connect to SMTP, or no outbound email account is configured.
 
-This will show if the record has been paused due to hitting the error threshold or if the Outbound Email can not connect to SMTP.
+A warning banner shows the error that caused the pause, along with the option to resume.
 
-There will be a warning banner showing the most recent error that caused the pause, along with the option to resume.
-
-image:warning-banner.png[Campaigns Warning Banner]
+image:warning-banner.png[title="Campaigns warning banner"]
 
 === Abort
 
-This will stop the sending process for the record and will delete everything for this record on the message queue.
+Stops sending and removes everything for this campaign email from the message queue. You can abort a campaign email that is in Pending Send or Sending.
 
-== Email Marketing Insights
+== Campaign email insights
 
-=== Email Marketing Status Check
+=== Campaign email diagnostics
 
-image:Status-Check-Widget.png[Status Check Widget]
+The Email Marketing Diagnostics panel in the Insights panel of a campaign email shows whether sending is set up correctly.
+
+image:Status-Check-Widget.png[title="Email Marketing Diagnostics panel"]
 
 ==== Schedulers
 
-This will show the interval for three schedulers related to Campaign Emails.
+Shows how often the three campaign email link:../../../admin/administration-panel/schedulers/[schedulers] run.
 
-[cols="20,80"]
+[cols="40,60"]
 |===
-|*Send Campaign Emails*|  How often will batched Campaign Emails be sent out.
-|*Queue Campaign Emails*| How often will Campaigns Emails be added in batches to the queue.
-|*Run Nightly Process Bounced Campaign Emails*| How often will there be a check for bounced campaign emails.
+|*Send Campaign Emails*|How often batched campaign emails are sent.
+|*Queue Campaign Emails*|How often campaign emails are added to the queue in batches.
+|*Run Nightly Process Bounced Campaign Emails*|How often SuiteCRM checks for bounced campaign emails.
 |===
 
 {{% notice note %}}
-Emails that have been scheduler to send will show in the respective targets activity subpanel.
+Emails that have been scheduled to send show in each target's activity subpanel.
 {{% /notice %}}
 
+==== Email settings
 
-==== Email Settings
+Shows:
 
-This will show:
+* whether there is an Inbound Email record of type Bounce
+* whether the selected Outbound Email record can connect to SMTP
 
-* If there is currently an Inbound Email Record that exists that is of type Bounce
-* If the selected Outbound Email Record can connect to SMTP.
-
-{{% notice note %}}
-A Bounce record can exist and not be configured correctly, be wary of this if running into issues.
+{{% notice tip %}}
+A Bounce record can exist but still be set up incorrectly, so check it if you run into problems.
 {{% /notice %}}
 
 ==== Settings
 
-This shows some of the Settings that are present in the "Campaign Email Settings". To see more info about these settings, see link:#_campaign_settings[Campaign Settings.]
+Shows some of the settings from *Campaign Email Settings*. For more about these settings, see link:#_campaign_settings[Campaign settings].
 
-=== Email Marketing Record Charts
+=== Campaign email charts
 
-As for the parent Campaign, you can track overall Recipient Activity and Send Status of each Email Marketing Record.
+Just like the parent campaign, you can track recipient activity and send status for each campaign email. The charts are in the Email Marketing Charts panel.
 
-To see more information about the Charts shown, see link:#_campaign_charts[Campaign Charts.]
+For details of each chart, see link:#_campaign_charts[Campaign charts].
 
-== Campaign Email Subpanels
+== Campaign email subpanels
 
-More information can be viewed in the subpanels below the record, where responses are detailed on an individual record level.
+The subpanels below the record show each recipient's activity: *Message Queue*, *Sent/Attempted*, *Suppressed/Blocked* and *Bounced Messages*. To see why a recipient was not sent an email, use the *Suppressed/Blocked* subpanel. See link:#_checking_why_someone_did_not_receive_an_email[Checking why someone did not receive an email].
 
-== Campaign Settings
+== Campaign settings
 
-You can see the settings for your campaigns via the Admin Menu -> "Campaign Email Settings".
+You can find the settings for your campaigns in *Admin* > *Campaign Email Settings*.
 
-image:Campaign-Email-Settings.png[Campaign Email Settings]
+image:Campaign-Email-Settings.png[title="Campaign Email Settings"]
 
-On this page you can change different Campaign Settings:
+On this page you can change these settings:
 
-[cols="20,80"]
+[cols="30,70"]
 |===
-|*Number of emails marketing records to process per run*| This is the maximum number of Email Marketing Records to process at once time during the Queue and Send Campaign Email Schedulers.
-|*Number of emails processed/sent per batch*|This is the maximum number of Emails to queue and send per run of Email Marketing Record.
-|*Maximum send retries per recipient on failure*|This is the maximum number of times to retry sending an email to a recipient if there is a failure before marking it as failed.
-|*Error threshold per batch (campaign pauses when reached, 0 to disable)*|This is the maximum number of errors allowed per batch before pausing the campaign. Setting this to 0 will disable this feature and allow campaigns to continue regardless of errors.
-|*Trackers Enabled*| This is to enable / disable trackers globally.
-|*Location of campaign tracking files*| This is to define the location of the campaign tracking files.
-|*Keep copies of campaign messages*|This is if you want copies of individual Email Marketing Records.
+|*Number of emails marketing records to process per run*|The maximum number of campaign emails processed at one time when the Queue and Send Campaign Emails schedulers run. The default is 3.
+|*Number of emails processed/sent per batch*|The maximum number of emails queued and sent per run for each campaign email. The default is 50.
+|*Maximum send retries per recipient on failure*|How many times SuiteCRM retries sending to a recipient before marking the email as failed. The default is 3.
+|*Error threshold per batch (campaign pauses when reached, 0 to disable)*|The maximum number of errors allowed per batch before the campaign email pauses. Set it to 0 to turn this off, so campaign emails keep sending regardless of errors. The default is 10.
+|*Tracker Links Enabled*|Turns trackers on or off globally.
+|*Location of campaign tracking files*|Where the campaign tracking files are stored. Choose *Default*, or choose *User Defined* and enter a location.
+|*Keep copies of campaign messages*|Turn this on to store a full copy of every message sent to every recipient. When it is off, SuiteCRM stores only the template and the variables needed to recreate each message. It is off by default.
 |===
