@@ -174,3 +174,6 @@ other = "Module Builder"
 
 [Docs]
 other = "Docs"
+
+[Studio]
+other = "Studio"

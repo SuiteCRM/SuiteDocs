@@ -35,13 +35,19 @@ image:testingprs0.png[Адрес репозитория GitHub]
 
 В нижеследующем примере перейдём в папку с вашей копией проекта и создадим новую ветку с именем *testing6612* на основе ветки *hotfix*:
 
-`cd /name/of/your/forked/instance` +
-`git checkout -b testing6612 hotfix`
+[source,console]
+----
+cd /name/of/your/forked/instance
+git checkout -b testing6612 hotfix
+----
 
 Теперь получим и сольём удалённую ветку, содержащую PR, с только что созданной веткой, выполнив команду в формате: 
 git pull {репозиторий автора} {удалённая ветка}:
 
-`git pull https://github.com/jack7anderson7/SuiteCRM.git issue-6611`
+[source,console]
+----
+git pull https://github.com/jack7anderson7/SuiteCRM.git issue-6611
+----
 
 image:testingprs1.png[Получение и слияние удалённой ветки]
 

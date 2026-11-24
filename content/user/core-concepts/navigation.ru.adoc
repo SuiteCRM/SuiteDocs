@@ -1,6 +1,8 @@
 ---
 Title: Навигация в системе
-Weight: 51
+Weight: 10
+aliases:
+  - /ru/user/introduction/user-interface/navigation-elements
 ---
 
 :author: likhobory
@@ -128,12 +130,12 @@ image:image11.png[Быстрое создание записей-выбор за
 [discrete]
 == Окно глобального поиска
 
-см. link:../searching/[Глобальный поиск]
+см. link:../searching/[Глобальный поиск^]
 
 [discrete]
 == Окно уведомлений
 
-см. link:../../getting-started/managing-your-profile/#_дополнительно[Уведомления]
+см. link:../../getting-started/managing-your-profile/#_дополнительно[Уведомления^]
 
 
 == Меню пользователя 
@@ -141,11 +143,11 @@ image:image11.png[Быстрое создание записей-выбор за
 Меню расположено в правой верхней части страницы системы и доступно при
 просмотре любого модуля. Меню позволяет получить доступ к:
 
-*  link:../../getting-started/managing-your-profile/[Настройкам текущего пользователя]
+*  link:../../getting-started/managing-your-profile/[Настройкам текущего пользователя^]
 
-*  link:../../getting-started/employees/[Списку сотрудников организации]
+*  link:../../getting-started/employees/[Списку сотрудников организации^]
 
-*  link:../../../../admin/administration-panel[Панели администрирования] (только для пользователей с правами администратора SuiteCRM)
+*  link:../../../../admin/administration-panel[Панели администрирования^] (только для пользователей с правами администратора SuiteCRM)
 
 *  link:https://community.suitecrm.com[Форуму^]
 

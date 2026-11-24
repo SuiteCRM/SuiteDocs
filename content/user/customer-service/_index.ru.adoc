@@ -1,0 +1,10 @@
+---
+title: "Поддержка клиентов"
+weight: 10  
+aliases:
+  - /ru/user/core-modules/cases
+  - /ru/user/advanced-modules/cases-with-portal
+---
+
+=== Оглавление
+{{% children depth="2" showhidden="false" %}}

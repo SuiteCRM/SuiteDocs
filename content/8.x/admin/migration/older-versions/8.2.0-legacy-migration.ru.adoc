@@ -1,6 +1,8 @@
 ---
-Title: Миграция с 7.12.x+ на 8.2.x+ (устарело)
-weight: 40
+Title: Миграция с 7.12.x+ на 8.2.x–8.6.x
+weight: 30 
+aliases:
+  - /ru/8.x/admin/legacy-migration/8.2.0-legacy-migration/
 ---
 
 :author: likhobory

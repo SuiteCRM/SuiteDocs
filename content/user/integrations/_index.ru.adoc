@@ -1,0 +1,28 @@
+---
+Title: Интеграции
+Weight: 80
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+:toc:
+:toc-title: Оглавление
+:toclevels: 2
+
+:experimental:
+
+:sectnums:
+:sectnumlevels: 2
+
+:imagesdir: /images/ru/admin/CalendarSync
+
+ifdef::env-github[:imagesdir: ../../../../static/images/ru/admin/CalendarSync]
+
+:btn: btn:
+
+ifdef::env-github[:btn:]
+
+SuiteCRM может подключаться к внешним инструментам и сервисам, обеспечивая синхронизацию данных и сокращая объем ручного ввода. Каждая интеграция настраивается индивидуально: вы подключаете собственные учётные записи, не затрагивая при этом других пользователей.
+
+{{% children depth="2" showhidden="false" %}}

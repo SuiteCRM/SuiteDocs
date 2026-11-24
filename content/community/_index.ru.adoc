@@ -1,6 +1,6 @@
 ---
 Title: "Развитие проекта"
-Weight: 30
+Weight: 50
 ---
 
 :author: likhobory

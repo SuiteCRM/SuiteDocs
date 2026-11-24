@@ -1,7 +1,6 @@
 ---
 Title: Выполнение обновления
 weight: 30   
-
 aliases:
   - /ru/8.x/admin/upgrading/upgrading-82x-versions/
 ---
@@ -26,7 +25,8 @@ aliases:
 {{% /notice %}}
 
 {{% notice warning %}}
-Если обновляемая версия SuiteCRM меньше 8.2.x - обратитесь к разделу link:../../../../8.x/admin/upgrading/#_шаги_обновления[Шаги обновления].
+Если обновляемая версия SuiteCRM меньше 8.2.x - обратитесь к разделу 
+link:../#_шаги_обновления[Шаги обновления].
 {{% /notice %}}
 
 == Скачивание необходимой версии SuiteCRM
@@ -44,7 +44,8 @@ aliases:
 
 == Выполнение обновления
 
-.. ⚠️ Установите необходимые link:../../installation-guide/downloading-installing/#_установка_прав[права доступа^].
+.. ⚠️ Установите необходимые
+link:../../installation-guide/downloading-installing/#_установка_прав[права доступа^].
 
 .. Из корневой папки SuiteCRM 8 выполните команду: `./bin/console suitecrm:app:upgrade -t "<версия>"`, +
 где `<версия>` - название пакета  с устанавливаемой SuiteCRM 8, например: `suitecrm-8-10-1`

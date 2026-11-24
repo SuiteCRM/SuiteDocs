@@ -1,6 +1,8 @@
 ---
 Title: Основная закладка SuiteCRM
-Weight: 52
+Weight: 20
+aliases:
+  - /ru/user/introduction/user-interface/home-page
 ---
 
 :author: likhobory

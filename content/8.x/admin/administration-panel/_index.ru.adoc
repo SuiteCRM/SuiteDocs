@@ -1,6 +1,6 @@
 ---
 title: "Панель администратора"
-weight: 30
+weight: 20
 ---
 
 :author: likhobory

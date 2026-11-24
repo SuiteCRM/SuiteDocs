@@ -1,6 +1,9 @@
 ---
-Title: Управление паролями
-Weight: 190
+Title: Двухфакторная аутентификация
+Weight: 40
+aliases:
+  - /ru/user/modules/passwordmanagement
+  - /ru/user/modules/PasswordManagemen
 ---
 
 :author: likhobory
@@ -8,6 +11,6 @@ Weight: 190
 
 
 
-= Управление паролями
+= Двухфакторная аутентификация
 
-См. раздел link:../../../admin/administration-panel/users/#_управление_паролями[Управление паролями].
+См. раздел link:../../../admin/administration-panel/users/#_параметры_безопасности_пароля[Управление паролями^].

@@ -1,6 +1,8 @@
 ---
 Title: Поиск информации в системе
-Weight: 53
+Weight: 30
+aliases:
+  - /ru/user/introduction/user-interface/search
 ---
 
 :author: likhobory
