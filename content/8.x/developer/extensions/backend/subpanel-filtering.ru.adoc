@@ -1,6 +1,8 @@
 ---
 title: "Фильтрация записей в субпанелях"
 weight: 80
+aliases:
+  - /ru/8.x/features/filters/subpanel-filtering/subpanel-filtering/
 ---
 
 :author: likhobory
@@ -18,9 +20,9 @@ weight: 80
 
 :experimental:
 
-:imagesdir: /images/ru/8.x/features/subpanels
+:imagesdir: /images/ru/8.x/developer/extensions/backend/subpanels 
 
-ifdef::env-github[:imagesdir: ../../../static/images/ru/8.x/features/subpanels]
+ifdef::env-github[:imagesdir: ../../../static/images/ru/8.x/developer/extensions/backend/subpanels]
 
 :btn: btn:
 
@@ -28,7 +30,7 @@ ifdef::env-github[:btn:]
 
 == Включение фильтрации в субпанели
 
-По умолчанию фильтровать записи можно в субпанели link:../../../../../user/core-concepts/views/#_мероприятия[ИСТОРИЯ^], что может быть удобно для быстрого нахождения необходимой информации в случае большого количества записей.
+По умолчанию фильтровать записи можно в субпанели link:../../../../user/core-concepts/relationships-subpanels/#_примеры_субпанелей[ИСТОРИЯ^], что может быть удобно для быстрого нахождения необходимой информации в случае большого количества записей.
 
 При необходимости можно настроить фильтрацию и для других субпанелей.
 
@@ -69,10 +71,9 @@ link:../../../../../admin/administration-panel/system/#_восстановлен
 
 image:image1.png[Добавление фильтра в субпанель]
 
-По умолчанию для фильтрации используются поля 
-link:../../../../../user/core-concepts/searching/#_расширенный_фильтр[Расширенного фильтра^].
+Для модуля *Контакты* поля фильтра могут выглядеть следующим образом:
 
-image:image2.png[Стандартные поля расширенного фильтра]
+image:image2.png[Стандартные поля фильтра]
 
 Для фильтрации заполните необходимы поля и нажмите на кнопку {btn}[Найти]. +
 Для сброса фильтра нажмите на кнопку {btn}[Очистить].
@@ -135,7 +136,7 @@ $searchdefs ['Accounts'] =
                             'type' => 'bool',
                         ),
                     ),
-                'advanced_search' => // поля расширенного фильтра
+                'advanced_search' => // поля фильтра
                     array(
                         'name' =>
                             array(

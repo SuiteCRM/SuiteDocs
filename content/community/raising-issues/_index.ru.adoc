@@ -1,0 +1,12 @@
+---
+Title: "Сообщение о проблемах"
+Weight: 10
+chapter: true
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+== Сообщение о проблемах
+
+{{% children depth="3" showhidden="false" %}}

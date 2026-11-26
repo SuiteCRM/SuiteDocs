@@ -7,6 +7,17 @@ weight: 30
 :email: likhobory@mail.ru
 
 
+:toc:
+:toc-title: Оглавление
+:toclevels: 1
+
+//
+:sectnums:
+:sectnumlevels: 2
+//
+
+== Подготовка к обновлению
+
 . Откройте файл `config/services/system/upgrades.yaml`.
 
 . В раздел *toKeep* добавьте значение *tmp*.
@@ -57,6 +68,8 @@ composer install
 composer install --no-dev --prefer-dist --optimize-autoloader
 ----
 
+== Загрузка пакета обновления
+
 . В установленном экземпляре системы создайте  папку
 `<your-suitecrm-8-root-folder>/tmp/package/upgrade`
 
@@ -65,7 +78,11 @@ https://sourceforge.net/projects/suitecrm/files/pre-release/[пакет^].
 
 . Скопируйте скачанный пакет в созданную папку.
 
-. Установите необходимые link:../../../installation-guide/downloading-installing/#_установка_прав[права доступа^].
+== Установка прав доступа
+
+Установите необходимые link:../../../installation-guide/downloading-installing/#_установка_прав[права доступа^].
+
+== Выполнение обновления
 
 . Из корневой папки SuiteCRM 8 запустите: 
 +

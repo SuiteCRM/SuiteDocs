@@ -1,6 +1,6 @@
 ---
 title: "Настройка конфигурации"
-weight: 20
+weight: 26
 ---
 
 :author: likhobory

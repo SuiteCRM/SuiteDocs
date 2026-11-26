@@ -1,0 +1,48 @@
+---
+title: "Настройка последних просмотров и избранного"
+weight: 40
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+
+:experimental:
+
+:sectnums:
+:sectnumlevels: 2
+
+:imagesdir: /images/ru/8.x/user/core-concepts/quick-filters
+
+ifdef::env-github[:imagesdir: ../../../static/images/ru/8.x/user/core-concepts/quick-filters]
+
+
+:btn: btn:
+
+ifdef::env-github[:btn:]
+
+
+= Настройка отображения последних просмотров и избранного
+
+В меню любого модуля 
+link:../../../user/core-concepts/navigation/#_меню_модуля[присутствуют пункты]  *Последние просмотры* и *Избранное*.
+
+По умолчанию количество записей, отображаемых  в этих меню равно 5. 
+При необходимости количество отображаемых записей может быть изменено.
+ 
+Для этого в файле `config/services/ui/ui.yaml` отредактируйте
+параметры `navigation_max_module_recently_viewed` и 
+`navigation_max_module_favorites`.
+
+Таким же образом может быть изменено  количество записей, отображаемых  в
+link:../../../user/core-concepts/navigation/#_последние_просмотры[общем меню] *Последних просмотров*.
+
+Для этого в вышеуказанном файле отредактируйте
+ параметр `global_recently_viewed`.
+
+После произведённых изменений в панели администратора выполните 
+ link:../../../../admin/administration-panel/system/#_восстановление[быстрое восстановление^]. 
+ 
+
+
+

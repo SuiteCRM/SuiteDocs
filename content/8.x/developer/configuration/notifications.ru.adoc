@@ -1,0 +1,54 @@
+---
+Title: Настройка уведомлений
+Weight: 10
+aliases:
+  - /ru/8.x/features/notifications/notifications/
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+:experimental:
+
+:sectnums:
+:sectnumlevels: 2
+
+
+= Настройка уведомлений
+
+Уведомления настраиваются в файле `config/services/ui/notifications.yaml`.
+
+Чтобы переопределить значения по умолчанию, скопируйте этот файл в пакет вашего расширения:
+
+----
+extensions/<your-package>/config/services/ui/notifications.yaml
+----
+
+== Доступные параметры
+
+[source,yaml]
+------------
+parameters:
+  notifications:
+    module: 'alerts'
+    class: 'notifications'
+    maxListHeight: 350
+    autoRefreshFrequency: 1 #minutes
+    autoRefreshDeviationMin: -15 #seconds. set 0 for no deviation
+    autoRefreshDeviationMax: 15 #seconds. set 0 for no deviation
+------------
+
+[discrete]
+=== Частота проверки уведомлений
+
+По умолчанию уведомления проверяются каждую минуту, для увеличения интервала измените значение параметра `autoRefreshFrequency`:
+
+[discrete] 
+=== Величина отклонения 
+
+В целях повышения производительности добавляется случайное отклонение в виде двух параметров: `autoRefreshDeviationMin`  и `autoRefreshDeviationMin` . Эти параметры предотвращают выполнение запроса для каждого активного пользователя в одно и то же время. Отклонение по умолчанию — это случайное число от -15 до +15 секунд. Для отключения отклонений установите значения этих параметров в '0'.
+
+[discrete]
+=== Высота окна уведомлений
+
+Для изменения высоты окна уведомлений измените значение параметра `maxListHeight`.

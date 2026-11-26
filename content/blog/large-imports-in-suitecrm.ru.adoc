@@ -222,7 +222,7 @@ SHOW CREATE TABLE accounts_contacts;
 ALTER TABLE accounts_contacts DROP KEY idx_account_contact;
 ALTER TABLE accounts_contacts DROP KEY idx_contid_del_accid;
 
-Once the indexes are gone we we import the data:
+Once the indexes are gone we import the data:
 
 .Example
 [source]

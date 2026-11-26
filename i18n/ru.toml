@@ -97,8 +97,8 @@ other = "пользовательского интерфейса"
 [Understand-the]
 other = "Знакомство с "
 
-[CoreModules]
-other = "основными модулями"
+[CoreConcepts]
+other = "Основные понятия"
 
 [Its-open-source]
 other = "Это система с открытым исходным кодом, содержащая"
@@ -110,7 +110,7 @@ other = "подробную документацию"
 other = "для разработчиков"
 
 [Contribute]
-other = "Внеси свой вклад"
+other = "Внесите свой вклад"
 
 [Learn-how-to]
 other = "Как "
@@ -145,3 +145,35 @@ other = "SuiteCRM 7"
 [Suite8]
 other = "SuiteCRM 8" 
 
+[or]
+other = "или"
+
+[and]
+other = "и"
+
+[InstallSetUp]
+other = "Установка и настройка"
+
+[User-guide]
+other = "Руководство пользователя"
+
+[Admin-guide]
+other = "Руководство администратора"
+
+[Dev-guide]
+other = "Руководство разработчика"
+
+[ExtendDevelop]
+other = "Разработка и кастомизация"
+
+[Customise-with]
+other = "Оптимизируйте систему, используя"
+
+[ModuleBuilder]
+other = "Конструктор модулей"
+
+[Docs]
+other = "документацию"
+
+[Studio]
+other = "Студию"

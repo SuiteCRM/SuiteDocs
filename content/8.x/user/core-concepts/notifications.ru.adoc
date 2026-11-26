@@ -1,6 +1,8 @@
 ---
 Title: Уведомления
-Weight: 57
+weight: 70
+aliases:
+  - /ru/8.x/features/notifications/notifications/
 ---
 
 :author: likhobory
@@ -13,9 +15,9 @@ Weight: 57
 
 :experimental:   
 
-:imagesdir: /images/ru/8.x/features/notifications
+:imagesdir: /images/ru/8.x/user/core-concepts/notifications 
 
-ifdef::env-github[:imagesdir: ../../../static/images/ru/8.x/features/notifications]
+ifdef::env-github[:imagesdir: ../../../static/images/ru/8.x/user/core-concepts/notifications]
 
 :btn: btn:
 
@@ -50,37 +52,6 @@ link:../../../../admin/administration-panel/workflow-calculated-fields/#_доб�
 
 == Настройка отложенных уведомлений
 
-Можно настроить интервал времени, на который при необходимости может быть отложено выбранное уведомление. Настойку можно выполнить как для всей системы (menu:Администрирование[Настройка конфигурации]), так и в профиле конкретного пользователя (menu:Мои настройки[Дополнительно]). Настройки пользователя приоритетнее системных.
+Можно настроить интервал времени, на который при необходимости может быть отложено выбранное уведомление. Настройку можно выполнить как для всей системы (menu:Администрирование[Настройка конфигурации]), так и в профиле конкретного пользователя (menu:Мои настройки[Дополнительно]). Настройки пользователя приоритетнее системных.
 
 image:image4.png[Отложить уведомление при необходимости]
-
-==  Детальная настройка параметров уведомлений
-
-При необходимости можно изменить стандартные параметры уведомлений, изменив соответствующие значения в файле `config/services/ui/notifications.yaml`, например:
-
-
-[discrete]
-==== Частота проверки уведомлений
-
-По умолчанию уведомления проверяются каждую минуту, для увеличения интервала измените значение параметра `autoRefreshFrequency`:
-
-[source,yaml]
-------------
-parameters:
-  notifications:
-    module: 'alerts'
-    class: 'notifications'
-    maxListHeight: 350
-    ...
-    autoRefreshFrequency: 1 #minutes
-    autoRefreshDeviationMin: -15 #seconds. set 0 for no deviation
-    autoRefreshDeviationMax: 15 #seconds. set 0 for no deviation
-    ...
-------------
-
-В целях повышения производительности к параметру `autoRefreshFrequency` добавляется случайное отклонение. Это предотвращает выполнение запроса для каждого активного пользователя в одно и то же время. Отклонение по умолчанию — это случайное число от -15 до +15 секунд.
-
-[discrete]
-==== Высота окна уведомлений
-
-Для изменения высоты окна уведомлений измените значение параметра `maxListHeight`.

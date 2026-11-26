@@ -6,6 +6,11 @@ weight: 30
 :author: likhobory
 :email: likhobory@mail.ru
 
+:experimental:
+
+:sectnums:
+:sectnumlevels: 2
+
 {{% notice info %}}
 Описание актуально для версий для SuiteCRM 8.10.0+
 {{% /notice %}}

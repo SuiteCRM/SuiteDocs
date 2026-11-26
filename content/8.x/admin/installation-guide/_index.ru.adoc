@@ -6,6 +6,11 @@ weight: 10
 :author: likhobory
 :email: likhobory@mail.ru
 
+:experimental:
+
+:sectnums:
+:sectnumlevels: 2
+
 == Введение
 
 link:https://suitecrm.com[SuiteCRM] - это отмеченное наградами приложение для управления взаимоотношениями с клиентами (CRM) с открытым исходным кодом.
@@ -21,7 +26,7 @@ link:https://suitecrm.com[SuiteCRM] - это отмеченное награда
 Описание установки SuiteCRM 7+ находится
 link:../../../admin/installation-guide/downloading-installing[здесь]. +
 Описание обновления SuiteCRM 7+ находится 
-and link:../../../admin/upgrading/[здесь].
+link:../upgrading/[здесь].
 {{% /notice %}}
 
 [discrete]

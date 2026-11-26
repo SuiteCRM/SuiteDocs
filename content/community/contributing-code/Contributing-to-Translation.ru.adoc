@@ -1,0 +1,71 @@
+---
+Title: "Локализация SuiteCRM"
+Weight: 70
+aliases:
+  - /ru/community/contributing-to-docs/contributing-to-translation/
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+:toc:
+:toc-title: Оглавление
+:toclevels: 3
+
+:sectnums:
+:sectnumlevels: 2
+
+:experimental:
+
+:imagesdir: /images/en/community
+
+ifdef::env-github[:imagesdir: ../../../static/images/en/community]
+
+:btn: btn:
+
+ifdef::env-github[:btn:]
+
+
+Пакеты локализации, описанные а разделе
+link:../../../8.x/admin/installation-guide/language-management[Русификация SuiteCRM^], создаются следующими способами:
+
+== RAPIRA и SuiteCRM
+
+Это проект предлагает перевод интерфейса SuiteCRM только на русский язык. Проект располагается на платформе GitHub в репозиториях:
+
+* https://github.com/likhobory/SuiteCRM7RU[^] (перевод для версий 7.x)
+* https://github.com/likhobory/SuiteCRM-CoreRU[^] (перевод для версий 8.x)
+
+К проекту могут присоединиться любые желающие.
+ 
+== Crowdin и SuiteCRM
+
+=== Crowdin — это онлайн-платформа для перевода приложений и веб-страниц.
+
+Проект по переводу SuiteCRM использует Crowdin для организации совместной работы над переводами. Здесь вы можете переводить тексты на свой язык.
+Всё, что вам понадобится — это браузер; установка или дополнительная настройка не требуются.
+
+Загружать готовые языковые пакеты для установки в SuiteCRM вы можете  https://sourceforge.net/projects/suitecrmtranslations/files[с этого сайта^].
+
+
+==== Перевод SuiteCRM разделен на два взаимосвязанных проекта:
+
+[cols=2*,options=header]
+|===
+|A — Основные языковые файлы
+|B — Используете Joomla?
+
+|· SuiteCRM (последняя версия): https://crowdin.com/project/suitecrmtranslations
+|Если вы используете Joomla, вам также следует присоединиться к этому проекту и принять участие в переводе: +
+· Advanced OpenPortal (интеграция SuiteCRM и Joomla): https://crowdin.com/project/suitecrm-advanced-openportal
+|===
+
+=== Как приступить к переводу
+
+. Перейдите по https://crowdin.com/project/suitecrmtranslations[этой ссылке^] на сайт Crowdin.
+
+. Создайте учётную запись и выберите язык, на который хотите переводить.
+
+//image:29Crowdin.png[Crowdin]
+
+//=== Начать перевод: https://crowdin.com/project/suitecrmtranslations

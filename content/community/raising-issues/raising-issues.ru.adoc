@@ -1,0 +1,74 @@
+---
+Title: "Сообщение о проблемах"
+Weight: 20
+---
+
+:author: likhobory
+:email: likhobory@mail.ru
+
+:experimental:
+
+:btn: btn:
+
+ifdef::env-github[:btn:]
+
+Проблема (issue) — это часть проекта, который, на ваш взгляд, можно улучшить. Например, вы можете сообщить о найденной ошибке  в работе программного обеспечения или о пробеле в документации проекта.
+
+При сообщении о проблемах через наш репозиторий на GitHub, пожалуйста, чётко излагайте суть проблемы, используя предусмотренные для этого шаблоны. Качественное описание проблемы включает:
+
+*   Чёткий и информативный заголовок.
+*   Подробное описание шагов, необходимых для воспроизведения проблемы.
+*   Версию (или версии) SuiteCRM, в которой была обнаружена проблема.
+*   Сведения об окружении (версия PHP, версия базы данных, веб-сервер).
+*   Соответствующие записи из файла `suitecrm.log` или логов ошибок PHP.
+
+Подробное описание проблемы позволяет участникам сообщества и команде разработчиков быстрее выявить, воспроизвести и устранить недостатки.
+
+== Безопасность
+
+Мы уделяем вопросам безопасности самое пристальное внимание. Если вы обнаружили уязвимость в нашем программном обеспечении, пожалуйста, сообщите нам об этом.
+
+{{% notice warning %}}
+Пожалуйста, *не разглашайте информацию об уязвимостях публично* до тех пор, пока наша команда не изучит их и не выпустит исправление.
+{{% /notice %}}
+
+Подробная информация на эту тему описана в разделе
+link:../../security-policy[Политика безопасности^].
+
+== Метки на GitHub
+
+Метки помогают сообществу и команде разработчиков классифицировать проблемы и определять их приоритетность. Вы можете нажать на метку, чтобы просмотреть текущий список соответствующих проблем на GitHub.
+
+=== Основные метки
+
+[frame=none, cols="40,60"]
+|===
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Type%3ABug[Type: Bug]]
+| Подтвержденная или весьма вероятная функциональная ошибка (баг).
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Priority%3ACritical[Priority: Critical]]
+| Проблемы, приводящие к потере данных или полной неработоспособности приложения.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Priority%3AImportant[Priority: Important]]
+| Проблемы, оказывающие значительное влияние на работоспособность приложения.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Priority%3AModerate[Priority: Moderate]]
+| Стандартные ошибки, для которых существуют практические способы обхода.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Status%3AFix%20Proposed[Status: Fix Proposed]]
+| Проблемы, для которых уже создан запрос на слияние (Pull Request) или предложен вариант исправления.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Area%3ALanguage[Area: Language]]
+| Проблемы, касающиеся переводов или языковых файлов.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/labels/Type%3ASuggestion[Type: Suggestion]]
+| Запросы на добавление новых функций или улучшений. Для общих предложений и пожеланий по функционалу, пожалуйста, используйте раздел https://community.suitecrm.com/c/suggestion-box/13[Suggestion Box] на форуме сообщества.
+|===
+
+=== Метки для запросов на слияние (Pull Requests)
+
+[frame=none, cols="40,60"]
+|===
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3AStatus%3AAssessed[Status: Assessed]]
+|Запросы на слияние, которые были рассмотрены разработчиками и признаны готовыми к проверке кода (code review) и тестированию.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3A%22Status%3A%20Requires%20Code%20Review%22[Status: Requires Code Review]]
+|Внесённые изменения, требующие проверки кода перед проведением тестирования.
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3A%22Status%3A%20Requires%20Testing%22[Status: Requires Testing]]
+|Изменения, требующие тестирования перед переводом в статус «Готово к слиянию» (Ready to Merge).
+|{btn}[https://github.com/SuiteCRM/SuiteCRM/pulls?q=is%3Aopen+is%3Apr+label%3A%22Status%3A%20Ready%20to%20Merge%22[Status: Ready to Merge]]
+|Код, прошедший функциональную оценку и технический анализ.
+|===
